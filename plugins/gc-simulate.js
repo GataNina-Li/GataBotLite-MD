@@ -46,4 +46,5 @@ handler.help = ['simulate <event> [@mention]','simular <event>']
 handler.tags = ['owner']
 handler.command = /^simulate|simular$/i
 handler.group = true
+handler.register = true
 export default handler

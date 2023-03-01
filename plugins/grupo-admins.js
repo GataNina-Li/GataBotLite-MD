@@ -20,4 +20,5 @@ await conn.sendButton(m.chat, textoA, textoB, pp, [[lenguajeGB.smsConMenu(), `.m
 }
 handler.command = /^(admins|@admins|dmins)$/i
 handler.group = true
+handler.register = true
 export default handler
