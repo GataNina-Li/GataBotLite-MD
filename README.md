@@ -1,6 +1,6 @@
 ## 🐈 REPOSITORIO EN DESARROLLO...
 
-### ÚNETE A LAS CUENTAS OFICIALES PARA ESTAR INFORMADO/A ✅
+### ÚNETE A LAS CUENTAS OFICIALES PARA ESTAR INFORMADO/A ✅ 
 
 [![blog](https://img.shields.io/badge/Gmail_➡️_centergatabot@gmail.com-D14836?style=for-the-badge&logo=gmail&logoColor=white)
 ](mailto:https://centergatabot@gmail.com)
