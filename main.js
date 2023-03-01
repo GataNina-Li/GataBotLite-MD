@@ -172,7 +172,10 @@ if (update.qr != 0 && update.qr != undefined) {
 console.log(chalk.yellow(lenguajeGB['smsCodigoQR']()))}  
 if (connection == 'open') {
 console.log(chalk.yellow(lenguajeGB['smsConexion']()))
-await conn.groupAcceptInvite(global.nna2)}
+try{
+await conn.groupAcceptInvite(global.nna2)
+} catch (error) {
+console.log('❌ ENLACE DEL GRUPO OFICIAL\n❗ ERROR ENCONTRADO:\n\n' + error.message)}}
 if (connection == 'close') {
 console.log(chalk.yellow(lenguajeGB['smsConexionOFF']()))}}
 
