@@ -1,7 +1,7 @@
 {
-"name": "GataBot-MD",
-"version": "1.4.5",
-"description": "Super Bot WhatsApp",
+"name": "GataBotLite-MD",
+"version": "1.0.0",
+"description": "Bot ligero para WhatsApp",
 "main": "index.js",
 "type": "module",
     
@@ -21,10 +21,10 @@
     
 "repository": {
 "type": "git",
-"url": "git+https://github.com/GataNina-Li/GataBot-MD.git" },
+"url": "git+https://github.com/GataNina-Li/GataBotLite-MD.git" },
     
 "bugs": {
-"url": "https://github.com/GataNina-Li/GataBot-MD/issues" },
+"url": "https://github.com/GataNina-Li/GataBotLite-MD/issues" },
 "license": "GPL-3.0-or-later",
 "dependencies": {
         "@adiwajshing/baileys": "github:GataNina-Li/baileys",
