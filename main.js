@@ -175,7 +175,7 @@ console.log(chalk.yellow(lenguajeGB['smsConexion']()))
 try{
 await conn.groupAcceptInvite(global.nna2)
 } catch (error) {
-console.log('❌ ENLACE DEL GRUPO OFICIAL\n❗ ERROR ENCONTRADO:\n\n' + error.message)}}
+console.log(chalk.red('❌ ENLACE DEL GRUPO OFICIAL\n❗ ERROR ENCONTRADO:\n\n' + error.message))}}
 if (connection == 'close') {
 console.log(chalk.yellow(lenguajeGB['smsConexionOFF']()))}}
 
