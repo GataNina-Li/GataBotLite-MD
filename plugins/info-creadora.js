@@ -24,7 +24,7 @@ const listMessage = {
 text: null,
 footer: wm,
 title: `🌼 *SELECCIONE QUE QUIERE SABER*
-⎔ ${name} 👋`,
+⎔ ${taguser} 👋`,
 buttonText: "🌹 SELECCIONAR AQUÍ 🌹",
 sections }
 
