@@ -15,20 +15,14 @@ let more = String.fromCharCode(8206)
 let readMore = more.repeat(850)   
 let taguser = '@' + m.sender.split("@s.whatsapp.net")[0]
 let str = `
-˚₊· ͟͟͞͞➳❥ ${wm} 
-⇣
-☆═━┈◈ ${vs} ◈┈━═☆
+˚₊· ͟͟͞͞➳❥ ${packname} 
+*☆═━┈◈ ${vs} ◈┈━═☆*
 │    
 ╰ ㊂ ▸▸ *_INFORMACIÓN DEL MENÚ_* ◂◂
   │
-  ┊▸ ✦  
-  ┊▸ ✦  
-  ┊▸ ✦  
-
-◉ *RESUELVE TUS DUDAS*
-  ║
-  ╠ ○ #creador
-  ╚ Dudas o problemas aqui
+  ┊▸ ✦ ${usedPrefix}creadora
+  ┊▸ ✦ ${usedPrefix}cuentasgb 
+  ┊▸ ✦ ${usedPrefix}donar
 `.trim()
     
 const vi = ['https://telegra.ph/file/067b2cb3312837533239c.mp4',
