@@ -41,9 +41,9 @@ break
 case 'numero':	
 let ppown = await conn.profilePictureUrl(nomorown + '@s.whatsapp.net', 'image').catch(_ => imagen1[1]) 
 let num = `${packname}\n◎ ${owner[0][0]}`
-const data = global.owner.filter(([id, isCreator]) => id && isCreator)
+//const data = global.owner.filter(([id, isCreator]) => id && isCreator)
 conn.sendButton(m.chat, num, wm, ppown, [[lenguajeGB.smsConMenu(), `${usedPrefix}menu`]], m)
-this.sendContact(m.chat, data.map(([id, name]) => [id, name]), catalogo, { contextInfo: { externalAdReply: { showAdAttribution: true }}})		
+//this.sendContact(m.chat, data.map(([id, name]) => [id, name]), catalogo, { contextInfo: { externalAdReply: { showAdAttribution: true }}})		
 break
 		
 default:
