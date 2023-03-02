@@ -7,43 +7,43 @@ let taguser = conn.getName(m.sender)
 let _package = JSON.parse(await promises.readFile(join(__dirname, '../package.json')).catch(_ => ({}))) || {}
 let type = (args[0] || '').toLowerCase()
 
+let sib = '⊜⇢ '
 const sections = [
-{ title: '🌟 I N F O',
+{ title: lenguajeGB.smsCreInfo(),
 rows: [
-{title: "⊜ NOMBRE", rowId: usedPrefix + command + " nombre"},
-{title: "⊜ NUMERO", rowId: usedPrefix + command + " numero"},
-{title: "⊜ CONTACTO", rowId: usedPrefix + "contacto"},
-{title: "⊜ CUENTAS", rowId: usedPrefix + "cuentasgb"},
-{title: "⊜ GRUPOS", rowId: usedPrefix + "grupos"},
+{title: sib + lenguajeGB.smsCreNombre(), rowId: usedPrefix + command + lenguajeGB.lenguaje() == 'es' ? 'nombre' : 'name'},
+{title: sib + lenguajeGB.smsCreNum(), rowId: usedPrefix + command + lenguajeGB.lenguaje() == 'es' ? 'numero' : 'number'},
+{title: sib + lenguajeGB.smsCreContag(), rowId: usedPrefix + lenguajeGB.lenguaje() == 'es' ? 'contacto' : 'contact'},
+{title: sib + lenguajeGB.smsCreGrupos(), rowId: usedPrefix + lenguajeGB.lenguaje() == 'es' ? 'gruposgb' : 'groupsgb'},
 ]},
-{ title: '✨ A P O Y O',
+{ title: lenguajeGB.smsCreApoyo(),
 rows: [
-{title: "⊜ DONAS", rowId: usedPrefix + "paypal"},
-{title: "⊜ INSTALARBOT", rowId: usedPrefix + "instalarbot"},
-{title: "⊜ PREMIUM", rowId: usedPrefix + "pase premium"},
+{title: sib + lenguajeGB.smsCreDonar(), rowId: usedPrefix + lenguajeGB.lenguaje() == 'es' ? 'donar' : 'paypal'},
+{title: sib + lenguajeGB.smsCreCuenta(), rowId: usedPrefix + lenguajeGB.lenguaje() == 'es' ? 'cuentasgb' : 'accounts'},
+{title: sib + lenguajeGB.smsCreInstall(), rowId: usedPrefix + lenguajeGB.lenguaje() == 'es' ? 'instalarbot' : 'installbot'},
+{title: sib + lenguajeGB.smsCrePrem(), rowId: usedPrefix + lenguajeGB.lenguaje() == 'es' ? 'pase premium' : 'pass premium'},
 ]},
 ]
 
 const listMessage = {
-text: `🌼 *_SELECCIONE QUE QUIERE SABER_*
-⎔ ${taguser} 👋`,
+text: lenguajeGB.smsCreDesc(),
 footer: wm,
 title: null,
-buttonText: "🌹 SELECCIONAR AQUÍ 🌹",
+buttonText: lenguajeGB.smsCreSelec(),
 sections }
 
 try {
 if (/(contacto|owner|creator|propietario|dueño|dueña|propietaria|dueño|creadora|creador)/i.test(command)) {
 switch (type) {
 		
-case 'nombre':
-conn.reply(m.chat, `*_🍄 Hola!! ${taguser}, Me llamo ${_package.name} siempre a disposición para ayudarte 😸_*`, m, { contextInfo: { mentionedJid: [taguser] }})
+case 'nombre': case 'name':
+conn.reply(m.chat, `*_🍄 ${lenguajeGB.smsCreA()} ${taguser}, ${lenguajeGB.smsCreB()} ${_package.name} ${lenguajeGB.smsCreC()}_*`, m, { contextInfo: { mentionedJid: [taguser] }})
 break
             
-case 'numero':	
-let ppown = await conn.profilePictureUrl(nomorown + '@s.whatsapp.net', 'image').catch(_ => imagen1[1]) 
+case 'numero': case 'number':	
+let pp = await conn.profilePictureUrl(nomorown + '@s.whatsapp.net', 'image').catch(_ => imagen1[1]) 
 let num = `${packname}\n*◎ Wa.me/${owner[0][0]}*`
-conn.sendButton(m.chat, num, wm, ppown, [[lenguajeGB.smsConMenu(), `${usedPrefix}menu`]], m)		
+conn.sendButton(m.chat, num, wm, pp, [[lenguajeGB.smsConMenu(), `${usedPrefix}menu`]], m)		
 break
 		
 default:
