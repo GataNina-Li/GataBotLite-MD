@@ -15,10 +15,15 @@ let more = String.fromCharCode(8206)
 let readMore = more.repeat(850)   
 let taguser = '@' + m.sender.split("@s.whatsapp.net")[0]
 let str = `
-⌜ _*${wm}*_ ⌟  
-
-◉ *PARA USAR EL BOT*
-Registrate con el comando #verificar
+˚₊· ͟͟͞͞➳❥ ${wm} 
+⇣
+☆═━┈◈ ${vs} ◈┈━═☆
+│    
+╰ ㊂ ▸▸ *_INFORMACIÓN DEL MENÚ_* ◂◂
+  │
+  ┊▸ ✦  
+  ┊▸ ✦  
+  ┊▸ ✦  
 
 ◉ *RESUELVE TUS DUDAS*
   ║
@@ -26,8 +31,8 @@ Registrate con el comando #verificar
   ╚ Dudas o problemas aqui
 `.trim()
     
-const vi = [//'https://telegra.ph/file/067b2cb3312837533239c.mp4',
-//'https://telegra.ph/file/51aa9701839dcc29066e9.mp4',
+const vi = ['https://telegra.ph/file/067b2cb3312837533239c.mp4',
+'https://telegra.ph/file/51aa9701839dcc29066e9.mp4',
 'https://telegra.ph/file/c273b38104d3c31e7fa1a.mp4']
 
 
