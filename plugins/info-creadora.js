@@ -75,11 +75,13 @@ return await conn.sendMessage(m.chat, listMessage, {quoted: m})
 handler.command = /^(contacto|owner|creator|propietario|dueño|dueña|propietaria|dueño|creadora|creador)$/i
 export default handler*/
 
-
+import { promises } from 'fs'
+import { join } from 'path'
 let { MessageType } = (await import('@adiwajshing/baileys')).default
 
 let handler  = async (m, { conn, command, args, usedPrefix, DevMode }) => {
 let catalogo = { key: {  fromMe: false, participant: `0@s.whatsapp.net`, ...(false ? { remoteJid: "5219992095479-1625305606@g.us" } : {}) }, message: { orderMessage: { itemCount : -999999, status: 1, surface : 1, message: wm, orderTitle: 'Bang', thumbnail: imagen1, sellerJid: '0@s.whatsapp.net'}}}
+let _package = JSON.parse(await promises.readFile(join(__dirname, '../package.json')).catch(_ => ({}))) || {}
 let chat = global.db.data.chats[m.chat]
 let user = global.db.data.users[m.sender]
 let bot = global.db.data.settings[conn.user.jid] || {}
@@ -117,7 +119,7 @@ const count = args[1] && args[1].length > 0 ? Math.min(99999999, Math.max(parseI
 switch (type) {
 		
 case 'nombre':
-conn.reply(m.chat, `*_🍄 Hola!! ${taguser}, Me llamo_* ${packname} *_siempre a disposición para ayudarte 😸_*`, m, { contextInfo: { mentionedJid: [taguser] }})
+conn.reply(m.chat, `*_🍄 Hola!! ${taguser}, Me llamo_* ${_package.name} *_siempre a disposición para ayudarte 😸_*`, m, { contextInfo: { mentionedJid: [taguser] }})
 break
             
 case 'numero':	
