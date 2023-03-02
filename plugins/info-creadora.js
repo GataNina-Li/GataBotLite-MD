@@ -46,7 +46,7 @@ this.sendContact(m.chat, data.map(([id, name]) => [id, name]), catalogo, { conte
 break
 		
 default:
-return await conn.sendMessage(m.chat, listMessage, { quoted: m, contextInfo: { mentionedJid: [m.sender] }})
+return await conn.sendMessage(m.chat, listMessage, {quoted: m})
 }}
 	
 } catch (err) {
