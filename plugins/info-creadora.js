@@ -79,6 +79,7 @@ export default handler*/
 let { MessageType } = (await import('@adiwajshing/baileys')).default
 
 let handler  = async (m, { conn, command, args, usedPrefix, DevMode }) => {
+let catalogo = { key: {  fromMe: false, participant: `0@s.whatsapp.net`, ...(false ? { remoteJid: "5219992095479-1625305606@g.us" } : {}) }, message: { orderMessage: { itemCount : -999999, status: 1, surface : 1, message: wm, orderTitle: 'Bang', thumbnail: imagen1, sellerJid: '0@s.whatsapp.net'}}}
 let chat = global.db.data.chats[m.chat]
 let user = global.db.data.users[m.sender]
 let bot = global.db.data.settings[conn.user.jid] || {}
@@ -116,32 +117,21 @@ const count = args[1] && args[1].length > 0 ? Math.min(99999999, Math.max(parseI
 switch (type) {
 		
 case 'nombre':
-conn.reply(m.chat, `🍄 Hola!! ${taguser}, Me llamo ${packname} siempre a disposición para ayudarte 😸`, m, { contextInfo: { mentionedJid: [taguser] }})
+conn.reply(m.chat, `*_🍄 Hola!! ${taguser}, Me llamo_* ${packname} *_siempre a disposición para ayudarte 😸_*`, m, { contextInfo: { mentionedJid: [taguser] }})
 break
             
 case 'numero':	
 let ppown = await conn.profilePictureUrl(nomorown + '@s.whatsapp.net', 'image').catch(_ => imagen1[1]) 
 let num = `${packname}\n◎ Wa.me/${owner[0][0]}`
-//const data = global.owner.filter(([id, isCreator]) => id && isCreator)
+const data = global.owner.filter(([id, isCreator]) => id && isCreator)
 conn.sendButton(m.chat, num, wm, ppown, [[lenguajeGB.smsConMenu(), `${usedPrefix}menu`]], m)
-//this.sendContact(m.chat, data.map(([id, name]) => [id, name]), catalogo, { contextInfo: { externalAdReply: { showAdAttribution: true }}})		
+this.sendContact(m.chat, data.map(([id, name]) => [id, name]), catalogo, { contextInfo: { externalAdReply: { showAdAttribution: true }}})		
 break
 		
 default:
 return await conn.sendMessage(m.chat, listMessage, { quoted: m, contextInfo: { mentionedJid: [m.sender] }})
-
-}} else if (/aoaooaoaooaoa/i.test(command)) {
-const count = args[2] && args[2].length > 0 ? Math.min(99999999, Math.max(parseInt(args[2]), 1)) : !args[2] || args.length < 4 ? 1 :Math.min(1, count)
-switch (_type) {
-		
-case 't':
-break
-case '':
-break
-
-default:
-return conn.sendButton( m.chat, caption, wm, null, [`⋮☰ Menu`, `.menu`], m)
-}}} catch (err) {
+}}
+} catch (err) {
 m.reply("Error\n\n\n" + err.stack)}}
 
 handler.command = /^(contacto|owner|creator|propietario|dueño|dueña|propietaria|dueño|creadora|creador)$/i
