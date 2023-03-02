@@ -42,9 +42,9 @@ var vid = vi[Math.floor(Math.random() * (vi.length))]
 
 //templateButtons
 let templateButtons = [ 
-{index: 1, urlButton: {displayText: '💜 G I T H U B', url: md}},
-{index: 1, urlButton: {displayText: '❤️ Y O U T U B E', url: yt}},
-{index: 1, urlButton: {displayText: '💙 P A Y P A L', url: paypal}}
+{index: 1, urlButton: {displayText: '💜 🅖🅘🅣🅗🅤🅑', url: md}},
+{index: 2, urlButton: {displayText: '❤️ 🅨🅞🅤🅣🅤🅑🅔', url: yt}},
+{index: 3, urlButton: {displayText: '💙 🅕🅐🅒🅔🅑🅞🅞🅚', url: fb}}
 ]
 
 conn.sendMessage(m.chat, { video: { url: vid }, gifPlayback: true, gifAttribution: ~~(Math.random() * 2), caption: menu.trim(), footer: wm, templateButtons }, { quoted: m})
