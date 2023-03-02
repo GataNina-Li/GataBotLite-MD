@@ -49,7 +49,7 @@ return await conn.sendMessage(m.chat, listMessage, { quoted: m, contextInfo: { m
 }}
 	
 } catch (err) {
-m.reply("Error")
+m.reply("Error\n\n" + err)
 }}
 
 handler.command = /^(contacto|owner|creator|propietario|dueño|dueña|propietaria|dueño|creadora|creador)$/i
