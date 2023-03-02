@@ -1,6 +1,6 @@
-//let { MessageType } = (await import('@adiwajshing/baileys')).default
+let { MessageType } = (await import('@adiwajshing/baileys')).default
 
-let handler  = async (m, { conn, command, args, usedPrefix, DevMode }) => {
+let handler  = async (m, { conn, command, args, usedPrefix}) => {
 //const count = args[1] && args[1].length > 0 ? Math.min(99999999, Math.max(parseInt(args[1]), 1)) : !args[1] || args.length < 3 ? 1 : Math.min(1, count)
 let catalogo = { key: {  fromMe: false, participant: `0@s.whatsapp.net`, ...(false ? { remoteJid: "5219992095479-1625305606@g.us" } : {}) }, message: { orderMessage: { itemCount : -999999, status: 1, surface : 1, message: wm, orderTitle: 'Bang', thumbnail: imagen1, sellerJid: '0@s.whatsapp.net'}}}
 let type = (args[0] || '').toLowerCase()
@@ -50,7 +50,7 @@ return await conn.sendMessage(m.chat, listMessage, { quoted: m, contextInfo: { m
 }}
 	
 } catch (err) {
-m.reply("Error\n\n" + err)
+m.reply("Error\n\n" + err.stack)
 }}
 
 handler.command = /^(contacto|owner|creator|propietario|dueño|dueña|propietaria|dueño|creadora|creador)$/i
