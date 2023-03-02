@@ -37,7 +37,7 @@ if (/(contacto|owner|creator|propietario|dueño|dueña|propietaria|dueño|creado
 switch (type) {
 		
 case 'nombre':
-conn.reply(m.chat, `*_🍄 Hola!! ${taguser}, Me llamo ${_package.name} siempre a disposición para ayudarte 😸_*`, m, { contextInfo: { mentionedJid: [taguser] }})
+conn.reply(m.chat, `*_🍄 Hola!! ${taguser}, Me llamo ${package.name} siempre a disposición para ayudarte 😸_*`, m, { contextInfo: { mentionedJid: [taguser] }})
 break
             
 case 'numero':	
