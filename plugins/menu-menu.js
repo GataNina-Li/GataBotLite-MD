@@ -17,12 +17,21 @@ let taguser = '@' + m.sender.split("@s.whatsapp.net")[0]
 let str = `
 ˚₊· ͟͟͞͞➳❥ ${packname} 
 *☆═━┈◈ ${vs} ◈┈━═☆*
-│    
+*│*    
 ╰ ㊂ ▸▸ *_INFORMACIÓN DEL MENÚ_* ◂◂
-  │
-  ┊▸ ✦ ${usedPrefix}creadora
-  ┊▸ ✦ ${usedPrefix}cuentasgb 
-  ┊▸ ✦ ${usedPrefix}donar
+*│* ┊
+*│* ┊▸ ✦ ${usedPrefix}creadora
+*│* ┊▸ ✦ ${usedPrefix}cuentasgb 
+*│* ┊▸ ✦ ${usedPrefix}donar
+*│* ╰∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙ ▸ *_⌜㎇⌟_*
+*│*
+ ╰ ㊂ ▸▸ *_INFORMACIÓN DEL MENÚ_* ◂◂
+*│* ┊
+*│* ┊▸ ✦ ${usedPrefix}creadora
+*│* ┊▸ ✦ ${usedPrefix}cuentasgb 
+*│* ┊▸ ✦ ${usedPrefix}donar
+*│* ╰∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙ ▸ *_⌜㎇⌟_*
+ 
 `.trim()
     
 const vi = ['https://telegra.ph/file/067b2cb3312837533239c.mp4',
