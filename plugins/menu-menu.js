@@ -44,7 +44,7 @@ var vid = vi[Math.floor(Math.random() * (vi.length))]
 let templateButtons = [ 
 {index: 1, urlButton: {displayText: '💜 🅖🅘🅣🅗🅤🅑', url: md}},
 {index: 2, urlButton: {displayText: '❤️ 🅨🅞🅤🅣🅤🅑🅔', url: yt}},
-{index: 3, urlButton: {displayText: '💙 🅕🅐🅒🅔🅑🅞🅞🅚', url: fb}},
+//{index: 3, urlButton: {displayText: '💙 🅕🅐🅒🅔🅑🅞🅞🅚', url: fb}},
 {index: 1, quickReplyButton: {displayText: 'OWNER', id: '#owner'}},
 {index: 1, quickReplyButton: {displayText: 'INFOBOT', id: '#infobot'}},
 {index: 1, quickReplyButton: {displayText: 'DONAR', id: '#donar'}}
