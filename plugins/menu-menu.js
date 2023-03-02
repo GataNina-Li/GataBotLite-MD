@@ -13,7 +13,10 @@ let uptime = clockString(_uptime)
 let rtotalreg = Object.values(global.db.data.users).filter(user => user.registered == true).length 
 let more = String.fromCharCode(8206)
 let readMore = more.repeat(850)   
-let taguser = '@' + m.sender.split("@s.whatsapp.net")[0]
+let taguser = conn.getName(m.sender)
+//let taguser = '@' + m.sender.split("@s.whatsapp.net")[0]
+
+
 let menu = `
 ˚₊·˚₊· ͟͟͞͞➳❥ ${packname} 
 *☆═━┈◈ ╰ ${vs} ㎇ ╯ ◈┈━═☆*
