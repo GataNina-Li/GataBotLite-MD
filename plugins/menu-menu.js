@@ -15,22 +15,22 @@ let more = String.fromCharCode(8206)
 let readMore = more.repeat(850)   
 let taguser = '@' + m.sender.split("@s.whatsapp.net")[0]
 let str = `
-˚₊· ͟͟͞͞➳❥ ${packname} 
-*☆═━┈◈ ${vs} ◈┈━═☆*
+˚₊·˚₊· ͟͟͞͞➳❥ ${packname} 
+*☆═━┈◈ ╰ ${vs} ㎇ ╯ ◈┈━═☆*
 *│*    
+╰ ㊂ ▸▸ *_INFORMACIÓN DEL MENÚ_* ◂◂
+** ┊
+*│* ┊▸ ✦ ${usedPrefix}creadora
+*│* ┊▸ ✦ ${usedPrefix}cuentasgb 
+*│* ┊▸ ✦ ${usedPrefix}donar
+*│* ╰∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙ ∙ ∙ ∙ ∙ 
+*│*
 ╰ ㊂ ▸▸ *_INFORMACIÓN DEL MENÚ_* ◂◂
 *│* ┊
 *│* ┊▸ ✦ ${usedPrefix}creadora
 *│* ┊▸ ✦ ${usedPrefix}cuentasgb 
 *│* ┊▸ ✦ ${usedPrefix}donar
-*│* ╰∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙ ▸ *_⌜㎇⌟_*
-*│*
- ╰ ㊂ ▸▸ *_INFORMACIÓN DEL MENÚ_* ◂◂
-*│* ┊
-*│* ┊▸ ✦ ${usedPrefix}creadora
-*│* ┊▸ ✦ ${usedPrefix}cuentasgb 
-*│* ┊▸ ✦ ${usedPrefix}donar
-*│* ╰∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙ ▸ *_⌜㎇⌟_*
+*│* ╰∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙ ∙ ∙ ∙ ∙ 
  
 `.trim()
     
