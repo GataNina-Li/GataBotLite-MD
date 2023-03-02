@@ -23,7 +23,7 @@ let menu = `
 *│*    
 *╰ ㊂ ▸▸ _INFORMACIÓN DEL MENÚ_ ◂◂*
 *│* ┊
-*│* ┊▸ ✦ ${usedPrefix}creadora
+*│* ┊▸ ✦ _${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'creadora' : 'owner'}_
 *│* ┊▸ ✦ ${usedPrefix}cuentasgb 
 *│* ┊▸ ✦ ${usedPrefix}donar
 *│* ╰∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙ ∙ ∙ ∙ ∙ 
