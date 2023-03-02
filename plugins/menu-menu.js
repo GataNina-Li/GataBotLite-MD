@@ -21,14 +21,14 @@ let menu = `
 ˚₊·˚₊· ͟͟͞͞➳❥ ${packname} 
 *☆═━┈◈ ╰ ${vs} ㎇ ╯ ◈┈━═☆*
 *│*    
-╰ ㊂ ▸▸ *_INFORMACIÓN DEL MENÚ_* ◂◂
+*╰ ㊂ ▸▸ _INFORMACIÓN DEL MENÚ_ ◂◂*
 *│* ┊
 *│* ┊▸ ✦ ${usedPrefix}creadora
 *│* ┊▸ ✦ ${usedPrefix}cuentasgb 
 *│* ┊▸ ✦ ${usedPrefix}donar
 *│* ╰∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙ ∙ ∙ ∙ ∙ 
 *│*
-╰ ㊂ ▸▸ *_INFORMACIÓN DEL MENÚ_* ◂◂
+*╰ ㊂ ▸▸ _INFORMACIÓN DEL MENÚ_ ◂◂*
 *│* ┊
 *│* ┊▸ ✦ ${usedPrefix}creadora
 *│* ┊▸ ✦ ${usedPrefix}cuentasgb 
