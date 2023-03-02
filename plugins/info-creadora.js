@@ -16,8 +16,8 @@ rows: [
 title: '✨ A P O Y O',
 rows: [
 {title: "⊜ DONAS", rowId: usedPrefix + "paypal"},
-{title: "⊜ INSTALARBOT", rowId: usedPrefix "instalarbot"},
-{title: "⊜ PREMIUM", rowId: usedPrefix "pase premium"},
+{title: "⊜ INSTALARBOT", rowId: usedPrefix + "instalarbot"},
+{title: "⊜ PREMIUM", rowId: usedPrefix + "pase premium"},
 ]},]
 
 const listMessage = {
