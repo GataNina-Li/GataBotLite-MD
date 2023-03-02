@@ -46,6 +46,7 @@ break
 		
 default:
 return await conn.sendMessage(m.chat, listMessage, { quoted: m, contextInfo: { mentionedJid: [m.sender] }})
+}}
 	
 } catch (err) {
 m.reply("Error\n\n\n" + err.stack)
