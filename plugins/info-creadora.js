@@ -5,6 +5,7 @@ try {
 //const count = args[1] && args[1].length > 0 ? Math.min(99999999, Math.max(parseInt(args[1]), 1)) : !args[1] || args.length < 3 ? 1 : Math.min(1, count)
 let catalogo = { key: {  fromMe: false, participant: `0@s.whatsapp.net`, ...(false ? { remoteJid: "5219992095479-1625305606@g.us" } : {}) }, message: { orderMessage: { itemCount : -999999, status: 1, surface : 1, message: wm, orderTitle: 'Bang', thumbnail: imagen1, sellerJid: '0@s.whatsapp.net'}}}
 let type = (args[0] || '').toLowerCase()
+let _type = (args[0] || '').toLowerCase()
 let taguser = conn.getName(m.sender)
 
 const sections = [
@@ -47,11 +48,28 @@ break
 		
 default:
 return await conn.sendMessage(m.chat, listMessage, {quoted: m})
-}}
+}
+    } else if (/aoaooaoaooaoa/i.test(command)) {
+      const count = args[2] && args[2].length > 0 ? Math.min(99999999, Math.max(parseInt(args[2]), 1)) : !args[2] || args.length < 4 ? 1 :Math.min(1, count)
+      switch (_type) {
+        case 't':
+          break
+        case '':
+          break
+
+        default:
+          return conn.sendButton( m.chat, wm, wm, null, [`⋮☰ Menu`, `.menu`], m)
+      }
+    }
+  } catch (err) {
+    m.reply("Error\n\n\n" + err.stack)
+  }
+}
+//}}
 	
-} catch (err) {
-m.reply("Error\n\n" + err.stack)
-}}
+//} catch (err) {
+//m.reply("Error\n\n" + err.stack)
+//}}
 
 handler.command = /^(contacto|owner|creator|propietario|dueño|dueña|propietaria|dueño|creadora|creador)$/i
 export default handler
