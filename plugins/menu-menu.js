@@ -28,7 +28,8 @@ Registrate con el comando #verificar
     
 const vi = [//'https://telegra.ph/file/067b2cb3312837533239c.mp4',
 //'https://telegra.ph/file/51aa9701839dcc29066e9.mp4',
-'https://telegra.ph/file/cc89393b6a7d704eea9b8.mp4']
+//'https://telegra.ph/file/cc89393b6a7d704eea9b8.mp4',
+'https://telegra.ph/file/27425f1f616c8c9fce74c.mp4']
 
 
 var vid = vi[Math.floor(Math.random() * (vi.length))]
