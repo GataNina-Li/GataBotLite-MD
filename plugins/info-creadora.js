@@ -1,4 +1,4 @@
-/*let { MessageType } = (await import('@adiwajshing/baileys')).default
+let { MessageType } = (await import('@adiwajshing/baileys')).default
 
 let handler  = async (m, { conn, command, args, usedPrefix}) => {
 try {
@@ -32,6 +32,7 @@ buttonText: "🌹 SELECCIONAR AQUÍ 🌹",
 sections }
 
 if (/(contacto|owner|creator|propietario|dueño|dueña|propietaria|dueño|creadora|creador)/i.test(command)) {
+const count = args[1] && args[1].length > 0 ? Math.min(99999999, Math.max(parseInt(args[1]), 1)) : !args[1] || args.length < 3 ? 1 : Math.min(1, count)
 switch (type){
 		
 case 'nombre':
@@ -72,18 +73,18 @@ return await conn.sendMessage(m.chat, listMessage, {quoted: m})
 //}}
 
 handler.command = /^(contacto|owner|creator|propietario|dueño|dueña|propietaria|dueño|creadora|creador)$/i
-export default handler*/
+export default handler
 
-
+/*
 let { MessageType } = (await import('@adiwajshing/baileys')).default
 
 let handler  = async (m, { conn, command, args, usedPrefix, DevMode }) => {
-  let chat = global.db.data.chats[m.chat]
+let chat = global.db.data.chats[m.chat]
 let user = global.db.data.users[m.sender]
 let bot = global.db.data.settings[conn.user.jid] || {}
 let name = await conn.getName(m.sender)
-  let type = (args[0] || '').toLowerCase()
-  let _type = (args[0] || '').toLowerCase()
+let type = (args[0] || '').toLowerCase()
+let _type = (args[0] || '').toLowerCase()
 
 //------- Nombre
   let nowner = `${wm.split`@`[0]}@s.whatsapp.net`
@@ -185,4 +186,4 @@ handler.help = ['owner', 'creator']
 handler.tags = ['info']
 handler.command = /^(contacto|owner|creator|propietario|dueño|dueña|propietaria|dueño|creadora|creador)$/i
 
-export default handler
+export default handler*/
