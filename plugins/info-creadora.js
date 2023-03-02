@@ -1,10 +1,10 @@
-//import { promises } from 'fs'
-//import { join } from 'path'
+import { promises } from 'fs'
+import { join } from 'path'
 let { MessageType } = (await import('@adiwajshing/baileys')).default
 
 let handler  = async (m, { conn, __dirname, command, args, usedPrefix, DevMode }) => {
 let taguser = conn.getName(m.sender)
-//let _package = JSON.parse(await promises.readFile(join(__dirname, '../package.json')).catch(_ => ({}))) || {}
+let _package = JSON.parse(await promises.readFile(join(__dirname, '../package.json')).catch(_ => ({}))) || {}
 let type = (args[0] || '').toLowerCase()
 
 const sections = [
@@ -37,7 +37,7 @@ if (/(contacto|owner|creator|propietario|dueño|dueña|propietaria|dueño|creado
 switch (type) {
 		
 case 'nombre':
-conn.reply(m.chat, `*_🍄 Hola!! ${taguser}, Me llamo ${package.name} siempre a disposición para ayudarte 😸_*`, m, { contextInfo: { mentionedJid: [taguser] }})
+conn.reply(m.chat, `*_🍄 Hola!! ${taguser}, Me llamo ${_package.name} siempre a disposición para ayudarte 😸_*`, m, { contextInfo: { mentionedJid: [taguser] }})
 break
             
 case 'numero':	
