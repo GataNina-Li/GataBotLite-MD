@@ -43,6 +43,8 @@ var vid = vi[Math.floor(Math.random() * (vi.length))]
 //templateButtons
 let templateButtons = [ 
 {index: 1, urlButton: {displayText: 'GITHUB', url: 'https:'}},
+{index: 1, urlButton: {displayText: 'GITHUB', url: 'https:'}},
+{index: 1, urlButton: {displayText: 'GITHUB', url: 'https:'}},
 {index: 1, urlButton: {displayText: 'GITHUB', url: 'https:'}}
 ]
 
