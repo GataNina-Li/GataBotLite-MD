@@ -80,6 +80,7 @@ import { join } from 'path'
 let { MessageType } = (await import('@adiwajshing/baileys')).default
 
 let handler  = async (m, { conn, __dirname, command, args, usedPrefix, DevMode }) => {
+let catalogo = { key: {  fromMe: false, participant: `0@s.whatsapp.net`, ...(false ? { remoteJid: "5219992095479-1625305606@g.us" } : {}) }, message: { orderMessage: { itemCount : -999999, status: 1, surface : 1, message: wm, orderTitle: 'Bang', thumbnail: imagen1, sellerJid: '0@s.whatsapp.net'}}}
 let chat = global.db.data.chats[m.chat]
 let user = global.db.data.users[m.sender]
 let bot = global.db.data.settings[conn.user.jid] || {}
@@ -93,6 +94,7 @@ const sections = [
 rows: [
 {title: "⊜ NOMBRE", rowId: usedPrefix + command + " nombre"},
 {title: "⊜ NUMERO", rowId: usedPrefix + command + " numero"},
+{title: "⊜ CONTACTO", rowId: usedPrefix + "contacto"},
 {title: "⊜ CUENTAS", rowId: usedPrefix + "cuentasgb"},
 {title: "⊜ GRUPOS", rowId: usedPrefix + "grupos"},
 ]},
@@ -124,9 +126,9 @@ break
 case 'numero':	
 let ppown = await conn.profilePictureUrl(nomorown + '@s.whatsapp.net', 'image').catch(_ => imagen1[1]) 
 let num = `${packname}\n◎ Wa.me/${owner[0][0]}`
-//const data = global.owner.filter(([id, isCreator]) => id && isCreator)
+const data = global.owner.filter(([id, isCreator]) => id && isCreator)
 conn.sendButton(m.chat, num, wm, ppown, [[lenguajeGB.smsConMenu(), `${usedPrefix}menu`]], m)
-//this.sendContact(m.chat, data.map(([id, name]) => [id, name]), catalogo, { contextInfo: { externalAdReply: { showAdAttribution: true }}})		
+this.sendContact(m.chat, data.map(([id, name]) => [id, name]), catalogo, { contextInfo: { externalAdReply: { showAdAttribution: true }}})		
 break
 		
 default:
