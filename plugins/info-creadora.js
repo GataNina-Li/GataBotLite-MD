@@ -82,7 +82,7 @@ let handler  = async (m, { conn, command, args, usedPrefix, DevMode }) => {
 let chat = global.db.data.chats[m.chat]
 let user = global.db.data.users[m.sender]
 let bot = global.db.data.settings[conn.user.jid] || {}
-let name = await conn.getName(m.sender)
+let taguser = conn.getName(m.sender)
 let type = (args[0] || '').toLowerCase()
 let _type = (args[0] || '').toLowerCase()
 
