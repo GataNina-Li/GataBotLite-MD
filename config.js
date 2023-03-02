@@ -8,7 +8,7 @@ import axios from 'axios'
 import moment from 'moment-timezone' 
 import { promises } from 'fs'
 import { join } from 'path'
-global.package = JSON.parse(await promises.readFile(join(dirname, '../package.json')).catch( => ({}))) || {}
+global._package = JSON.parse(await promises.readFile(join(dirname, '../package.json')).catch( => ({}))) || {}
 import { en, es, id, ar, pt } from './lib/idiomas/total-idiomas.js' 
 
 //⊱ ━━━━━.⋅ Añada los numeros a ser Propietario/a | Add the numbers to be Owner ⋅.━━━━ ⊰  
