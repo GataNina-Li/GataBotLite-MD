@@ -1,6 +1,6 @@
 let { MessageType } = (await import('@adiwajshing/baileys')).default
 
-let handler  = async (m, { conn, command, args, usedPrefix}) => {
+let handler  = async (m, { conn, command, args, usedPrefix, DevMode }) => {
 try {
 
 let catalogo = { key: {  fromMe: false, participant: `0@s.whatsapp.net`, ...(false ? { remoteJid: "5219992095479-1625305606@g.us" } : {}) }, message: { orderMessage: { itemCount : -999999, status: 1, surface : 1, message: wm, orderTitle: 'Bang', thumbnail: imagen1, sellerJid: '0@s.whatsapp.net'}}}
