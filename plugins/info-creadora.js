@@ -24,7 +24,7 @@ rows: [
 {title: sib + lenguajeGB.smsCreInfoBot(), rowId: usedPrefix + `${lenguajeGB.lenguaje() == 'es' ? 'infobot' : 'infobot'}`},
 ]},
 ]
-
+ 
 const listMessage = {
 text: lenguajeGB.smsCreDesc() + '\n⎔ ' + taguser,
 footer: wm,
