@@ -26,7 +26,7 @@ rows: [
 ]
 
 const listMessage = {
-text: lenguajeGB.smsCreDesc() + '\n⎔' + taguser,
+text: lenguajeGB.smsCreDesc() + '\n⎔ ' + taguser,
 footer: wm,
 title: null,
 buttonText: lenguajeGB.smsCreSelec(),
