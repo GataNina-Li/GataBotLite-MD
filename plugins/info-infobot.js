@@ -39,6 +39,7 @@ const cpu = cpus.reduce((last, cpu, _, { length }) => {
 const { restrict } = global.db.data.settings[conn.user.jid] || {}
 const { autoread } = global.opts
 let pp = './media/menus/Menu1.jpg'
+let vn = './media/infobot.mp3'
 let old = performance.now()
   //await m.reply('_Realizando test_')
   let neww = performance.now()
