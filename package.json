@@ -15,7 +15,7 @@
 "test": "node test.js",
 "test2": "nodemon index.js" },
     
-"homepage": "https://github.com/GataNina-Li",
+"homepage": "https://github.com/GataNina-Li/GataBotLite-MD",
 "author": {
 "name": "GataNina-Li" },
     
