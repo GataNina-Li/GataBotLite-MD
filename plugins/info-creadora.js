@@ -11,7 +11,7 @@ let sib = '⊜⇢ '
 const sections = [
 { title: lenguajeGB.smsCreInfo(),
 rows: [
-{title: sib + lenguajeGB.smsCreNombre(), rowId: `${usedPrefix + command + ' ' + lenguajeGB.lenguaje() == 'es' ? 'nombre' : 'name'}`},
+{title: sib + lenguajeGB.smsCreNombre(), rowId: usedPrefix + command + ' nombre'},
 {title: sib + lenguajeGB.smsCreNum(), rowId: usedPrefix + command + lenguajeGB.lenguaje() == 'es' ? ' numero' : ' number'},
 {title: sib + lenguajeGB.smsCreContag(), rowId: usedPrefix + lenguajeGB.lenguaje() == 'es' ? 'contacto' : 'contact'},
 {title: sib + lenguajeGB.smsCreGrupos(), rowId: usedPrefix + lenguajeGB.lenguaje() == 'es' ? 'gruposgb' : 'groupsgb'},
@@ -26,7 +26,7 @@ rows: [
 ]
 
 const listMessage = {
-text: lenguajeGB.smsCreDesc(),
+text: lenguajeGB.smsCreDesc() + '\n⎔' + taguser,
 footer: wm,
 title: null,
 buttonText: lenguajeGB.smsCreSelec(),
