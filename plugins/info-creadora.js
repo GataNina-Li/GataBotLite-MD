@@ -36,11 +36,11 @@ try {
 if (/(contacto|owner|creator|propietario|dueño|dueña|propietaria|dueño|creadora|creador)/i.test(command)) {
 switch (type) {
 		
-case 'nombre' | 'name':
+case 'nombre': //| 'name':
 conn.reply(m.chat, `*_🍄 ${lenguajeGB.smsCreA()} ${taguser}, ${lenguajeGB.smsCreB()} ${_package.name} ${lenguajeGB.smsCreC()}_*`, m, { contextInfo: { mentionedJid: [taguser] }})
 break
             
-case 'numero' | 'number':	
+case 'numero': //| 'number':	
 let pp = await conn.profilePictureUrl(nomorown + '@s.whatsapp.net', 'image').catch(_ => imagen1[1]) 
 let num = `${packname}\n*◎ Wa.me/${owner[0][0]}*`
 conn.sendButton(m.chat, num, wm, pp, [[lenguajeGB.smsConMenu(), `${usedPrefix}menu`]], m)		
