@@ -13,10 +13,7 @@ import { en, es, id, ar, pt } from './lib/idiomas/total-idiomas.js'
 global.owner = [
 ['12362000021', '𝙂𝙖𝙩𝙖𝘽𝙤𝙩𝙇𝙞𝙩𝙚-𝙈𝘿 🌻🐈', true], 
 ['5492266613038', '𝙊𝙬𝙣𝙚𝙧 (1) 💻', true],    
-['12267748650', '𝙊𝙬𝙣𝙚𝙧 (2) 💻', true], 
-['5214531173598'], 
-['5492266466080'],  
-['593968585383']]
+['5214531173598'], ['5492266466080'], ['593968585383']]
 
 //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ ฅ^•ﻌ•^ฅ
 
@@ -233,34 +230,36 @@ global.imagen13 = fs.readFileSync('./media/menus/img12.jpg')
 
 //━━━━━━━━━━━━━━ img ━━━━━━━━━
 
-global.img = 'https://i.imgur.com/IXlUwTW.jpg'
-global.img2 = 'https://i.imgur.com/EXTbyyn.jpg'
+global.img = 'https://i.imgur.com/AwlL9kc.jpeg'
+global.img2 = 'https://i.imgur.com/EXTbyyn.jpg'/////
 
-global.img3 = 'https://i.imgur.com/oUAGYc2.jpg' //prem
-global.img4 = 'https://i.imgur.com/i0pccuo.jpg' //prem
+global.img3 = 'https://i.imgur.com/oUAGYc2.jpg' //prem   //no
+global.img4 = 'https://i.imgur.com/i0pccuo.jpg' //prem   //no
 
-global.img5 = 'https://i.imgur.com/iL1snRx.jpeg'
-global.img6 = 'https://i.imgur.com/cYFgSKv.jpeg'
-global.img7 = 'https://i.imgur.com/JqL3h2V.jpeg'
-global.img8 = 'https://i.imgur.com/PCujt1s.jpeg'
-global.img9 = 'https://i.imgur.com/xfUEdDb.jpeg'
+global.img5 = 'https://i.imgur.com/iL1snRx.jpeg'/////
+global.img6 = 'https://i.imgur.com/3zSvnGY.jpeg'
+global.img7 = 'https://i.imgur.com/WY4r6up.jpeg'
+global.img8 = 'https://i.imgur.com/qCO3RYa.jpeg'
+global.img9 = 'https://i.imgur.com/dWk51FS.jpeg'
 
-global.img10 = 'https://i.imgur.com/DvHoMc3.jpg'
-global.img11 = 'https://i.imgur.com/5Q1MqGD.jpg'
-global.img12 = 'https://i.imgur.com/vWnsjh8.jpg'
-global.img13 = 'https://i.imgur.com/pCfFOgw.jpeg'
-global.img14 = 'https://i.imgur.com/knBDWRA.jpeg'
-global.img15 = 'https://i.imgur.com/QrkkKx7.jpeg'
+global.img10 = 'https://i.imgur.com/DvHoMc3.jpg'/////
+global.img11 = 'https://i.imgur.com/5Q1MqGD.jpg'/////
+global.img12 = 'https://i.imgur.com/vWnsjh8.jpg'/////
+global.img13 = 'https://i.imgur.com/O04epJI.jpeg'
+global.img14 = 'https://i.imgur.com/jfbuJRU.jpeg'
+global.img15 = 'https://i.imgur.com/DzqUXkW.jpeg'
 
-global.img16 = 'https://i.imgur.com/11MRjo4.jpeg' //+18
+//global.img16 = 'https://i.imgur.com/11MRjo4.jpeg' //+18   //no
 
-global.img17 = 'https://i.imgur.com/JpYfcH0.jpeg'
-global.img18 = 'https://i.imgur.com/9yLH4W4.jpeg'
+global.img17 = 'https://i.imgur.com/Y3ZWq7z.jpeg'
+global.img18 = 'https://i.imgur.com/kaUN1Nz.jpeg'
+global.img19 = 'https://i.imgur.com/7yJ22hJ.jpeg'
+global.img20 = 'https://i.imgur.com/qcD353P.jpeg'
 
 global.welgata = [ig, yt2, yt2, ig, md, ig, yt, paypal, yt2, yt2, ig, fb]
 global.redesMenu = [nna, nn, nnn, nnnt, nnntt, nnnttt, nnnttt2, nnnttt3, nnnttt4, md, ig, paypal, yt, asistencia, fb]
-global.gataMenu = [img, img2, img6, img7, img8, img9, img13, img14, img15, img17, img18]
-global.gataVidMenu = ['./media/menus/Menuvid1.mp4', './media/menus/Menuvid2.mp4', './media/menus/Menuvid3.mp4']
+global.gataMenu = [img, img2, img6, img7, img8, img9, img13, img14, img15, img17, img18, img19, img20]
+//global.gataVidMenu = ['./media/menus/Menuvid1.mp4', './media/menus/Menuvid2.mp4', './media/menus/Menuvid3.mp4']
 global.gataImg = [imagen1, imagen2, imagen3, imagen4, imagen5, imagen6, imagen7, imagen8, imagen9, imagen10, imagen11, imagen12, imagen13]
 
 //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ ฅ^•ﻌ•^ฅ
