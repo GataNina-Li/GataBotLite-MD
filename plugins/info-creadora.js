@@ -11,17 +11,17 @@ let sib = '⊜⇢ '
 const sections = [
 { title: lenguajeGB.smsCreInfo(),
 rows: [
-{title: sib + lenguajeGB.smsCreNombre(), rowId: usedPrefix + command + ' nombre'},
+{title: sib + lenguajeGB.smsCreNombre(), rowId: usedPrefix + command + `${lenguajeGB.lenguaje() == 'es' ? ' nombre' : ' name'}`},
 {title: sib + lenguajeGB.smsCreNum(), rowId: usedPrefix + command + `${lenguajeGB.lenguaje() == 'es' ? ' numero' : ' number'}`},
-{title: sib + lenguajeGB.smsCreContag(), rowId: usedPrefix + lenguajeGB.lenguaje() == 'es' ? 'contacto' : 'contact'},
-{title: sib + lenguajeGB.smsCreGrupos(), rowId: usedPrefix + lenguajeGB.lenguaje() == 'es' ? 'gruposgb' : 'groupsgb'},
+{title: sib + lenguajeGB.smsCreContag(), rowId: usedPrefix + `${lenguajeGB.lenguaje() == 'es' ? 'contacto' : 'contact'}`},
+{title: sib + lenguajeGB.smsCreGrupos(), rowId: usedPrefix + `${lenguajeGB.lenguaje() == 'es' ? 'gruposgb' : 'groupsgb'}`},
 ]},
 { title: lenguajeGB.smsCreApoyo(),
 rows: [
-{title: sib + lenguajeGB.smsCreDonar(), rowId: usedPrefix + lenguajeGB.lenguaje() == 'es' ? 'donar' : 'paypal'},
-{title: sib + lenguajeGB.smsCreCuenta(), rowId: usedPrefix + lenguajeGB.lenguaje() == 'es' ? 'cuentasgb' : 'accounts'},
-{title: sib + lenguajeGB.smsCreInstall(), rowId: usedPrefix + lenguajeGB.lenguaje() == 'es' ? 'instalarbot' : 'installbot'},
-{title: sib + lenguajeGB.smsCreInfoBot(), rowId: usedPrefix + lenguajeGB.lenguaje() == 'es' ? 'infobot' : 'infobot'},
+{title: sib + lenguajeGB.smsCreDonar(), rowId: usedPrefix + `${lenguajeGB.lenguaje() == 'es' ? 'donar' : 'paypal'}`},
+{title: sib + lenguajeGB.smsCreCuenta(), rowId: usedPrefix + `${lenguajeGB.lenguaje() == 'es' ? 'cuentasgb' : 'accounts'}`},
+{title: sib + lenguajeGB.smsCreInstall(), rowId: usedPrefix + `${lenguajeGB.lenguaje() == 'es' ? 'instalarbot' : 'installbot'}`},
+{title: sib + lenguajeGB.smsCreInfoBot(), rowId: usedPrefix + `${lenguajeGB.lenguaje() == 'es' ? 'infobot' : 'infobot'}`},
 ]},
 ]
 
@@ -36,11 +36,11 @@ try {
 if (/(contacto|owner|creator|propietario|dueño|dueña|propietaria|dueño|creadora|creador)/i.test(command)) {
 switch (type) {
 		
-case 'nombre': //| 'name':
+case 'nombre' | 'name':
 conn.reply(m.chat, `*_🍄 ${lenguajeGB.smsCreA()} ${taguser}, ${lenguajeGB.smsCreB()} ${_package.name} ${lenguajeGB.smsCreC()}_*`, m, { contextInfo: { mentionedJid: [taguser] }})
 break
             
-case 'numero': //| 'number':	
+case 'numero' | 'number':	
 let pp = await conn.profilePictureUrl(nomorown + '@s.whatsapp.net', 'image').catch(_ => imagen1[1]) 
 let num = `${packname}\n*◎ Wa.me/${owner[0][0]}*`
 conn.sendButton(m.chat, num, wm, pp, [[lenguajeGB.smsConMenu(), `${usedPrefix}menu`]], m)		
