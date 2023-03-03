@@ -11,7 +11,7 @@ let sib = '⊜⇢ '
 const sections = [
 { title: lenguajeGB.smsCreInfo(),
 rows: [
-{title: sib + lenguajeGB.smsCreNombre(), rowId: usedPrefix + command + lenguajeGB.lenguaje() == 'es' ? ' nombre' : ' name'},
+{title: sib + lenguajeGB.smsCreNombre(), rowId: `${usedPrefix + command}` + lenguajeGB.lenguaje() == 'es' ? ' nombre' : ' name'},
 {title: sib + lenguajeGB.smsCreNum(), rowId: usedPrefix + command + lenguajeGB.lenguaje() == 'es' ? ' numero' : ' number'},
 {title: sib + lenguajeGB.smsCreContag(), rowId: usedPrefix + lenguajeGB.lenguaje() == 'es' ? 'contacto' : 'contact'},
 {title: sib + lenguajeGB.smsCreGrupos(), rowId: usedPrefix + lenguajeGB.lenguaje() == 'es' ? 'gruposgb' : 'groupsgb'},
@@ -21,7 +21,7 @@ rows: [
 {title: sib + lenguajeGB.smsCreDonar(), rowId: usedPrefix + lenguajeGB.lenguaje() == 'es' ? 'donar' : 'paypal'},
 {title: sib + lenguajeGB.smsCreCuenta(), rowId: usedPrefix + lenguajeGB.lenguaje() == 'es' ? 'cuentasgb' : 'accounts'},
 {title: sib + lenguajeGB.smsCreInstall(), rowId: usedPrefix + lenguajeGB.lenguaje() == 'es' ? 'instalarbot' : 'installbot'},
-{title: sib + lenguajeGB.smsCrePrem(), rowId: usedPrefix + lenguajeGB.lenguaje() == 'es' ? 'pase premium' : 'pass premium'},
+{title: sib + lenguajeGB.smsCreInfoBot(), rowId: usedPrefix + lenguajeGB.lenguaje() == 'es' ? 'infobot' : 'infobot'},
 ]},
 ]
 
