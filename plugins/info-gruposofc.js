@@ -1,6 +1,13 @@
 let media = './media/menus/Menuvid3.mp4'
-let handler = async (m, { conn, command }) => {
+const grupoOficial1 = nna
+let handler = async (m, { conn, command }) => { 
+let [, code] = grupoOficial1.match(/chat\.whatsapp\.com\/(?:invite\/)?([0-9A-Za-z]{20,24})/i) || []  
+let res = await conn.query({ tag: 'iq', attrs: { type: 'get', xmlns: 'w:g2', to: '@g.us' }, content: [{ tag: 'invite', attrs: { code } }] }) 
+let data = extractGroupMetadata(res)
+  
 let str = `
+${data.subject}
+
 💕 𝘽𝙄𝙀𝙉𝙑𝙀𝙉𝙄𝘿𝙊(𝘼) 𝘼 𝙇𝙊𝙎 𝙂𝙍𝙐𝙋𝙊𝙎 𝙊𝙁𝙄𝘾𝙄𝘼𝙇𝙀𝙎
 
 💞 𝙒𝙀𝙇𝘾𝙊𝙈𝙀 𝙏𝙊 𝙏𝙃𝙀 𝙊𝙁𝙁𝙄𝘾𝙄𝘼𝙇 𝙂𝙍𝙊𝙐𝙋𝙎
@@ -51,3 +58,18 @@ handler.command = /^linkgc|grupos|gruposgatabot|gatabotgrupos|gruposdegatabot|gr
 handler.exp = 33
 
 export default handler
+
+const extractGroupMetadata = (result) => {
+	const group = baileys.getBinaryNodeChild(result, 'group')
+	const descChild = baileys.getBinaryNodeChild(group, 'description')
+	let desc
+	if (descChild) desc = baileys.getBinaryNodeChild(descChild, 'body')?.content
+	const metadata = {
+		id: group.attrs.id.includes('@') ? group.attrs.id : baileys.jidEncode(group.attrs.id, 'g.us'),
+		subject: group.attrs.subject,
+		creation: new Date(+group.attrs.creation * 1000).toLocaleString('id', { timeZone: 'Asia/Jakarta' }),
+		owner: group.attrs.creator ? 'wa.me/' + baileys.jidNormalizedUser(group.attrs.creator).split('@')[0] : undefined,
+		desc
+	}
+	return metadata
+}
