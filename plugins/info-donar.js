@@ -23,7 +23,7 @@ await conn.sendMessage(m.chat, { image: { url: img21 }, gifPlayback: false, gifA
 //await conn.sendMessage(userPri, { text: '', templateButtons: [{index: 3, urlButton: {displayText: packname, url: 'https://www.whatsapp.com/otp/copy/' + `https://wa.me/${global.conn.user.jid.split`@`[0]}`}},], footer: '' })
 //conn.sendMessage(userPri.toStrin(), { text: `Apoyar @${m.sender.split("@")[0]}`, mentions: [m.sender], }, { quoted: m })
   
-await conn.reply('593968585383@s.whatsapp.net', wm, null, { contextInfo: { mentionedJid: [m.sender] }})
+conn.reply(m.sender, wm, null, { contextInfo: { mentionedJid: [m.sender] }})
 }
 handler.command = /^dona(te|si)|donar|apoyar|paypal|donating$/i 
 export default handler
