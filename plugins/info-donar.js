@@ -1,5 +1,5 @@
 let handler = async (m, { conn, usedPrefix, command }) => {
-let pay = { contextInfo: { externalAdReply: { mediaUrl: paypal, mediaType: 'VIDEO', description: 'Donación', title: 'PayPal', body: packname, thumbnailUrl: img1, sourceUrl: paypal }}}
+let pay = { contextInfo: { externalAdReply: { mediaUrl: paypal, mediaType: 'VIDEO', description: 'Donación', title: 'PayPal', body: packname, thumbnailUrl: img, sourceUrl: paypal }}}
 let media = './media/menus/Menu4paypal.jpg'  
 let str = `
 🌼 Se acepta apoyo voluntario por PayPal, si deseas apoyar de otra forma puedes donar un Número en Instagram para que el repositorio siga vigente, Gracias!!
