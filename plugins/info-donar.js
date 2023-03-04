@@ -18,12 +18,12 @@ await conn.sendMessage(m.chat, { image: { url: img21 }, gifPlayback: false, gifA
 //{index: 3, urlButton: {displayText: packname, url: 'https://www.whatsapp.com/otp/copy/' + `https://wa.me/${global.conn.user.jid.split`@`[0]}`}},
 //]
 //await conn.sendPayment(m.chat, '99999999', { text: md, templateButtons: botones, footer: author })
-//await conn.sendMessage(userPri, { text: wm, templateButtons: [{index: 1, urlButton: {displayText: '𝗣𝗔𝗬𝗣𝗔𝗟', url: 'https://www.whatsapp.com/otp/copy/' + paypal}},], footer: '🍄 También puedes compartir lo siguiente como Muestra de Apoyo' })
-//await conn.sendMessage(userPri, { text: '', templateButtons: [{index: 2, urlButton: {displayText: '𝗚𝗜𝗧𝗛𝗨𝗕', url: 'https://www.whatsapp.com/otp/copy/' + md}},], footer: '' })
-//await conn.sendMessage(userPri, { text: '', templateButtons: [{index: 3, urlButton: {displayText: packname, url: 'https://www.whatsapp.com/otp/copy/' + `https://wa.me/${global.conn.user.jid.split`@`[0]}`}},], footer: '' })
-//conn.sendMessage(userPri.toStrin(), { text: `Apoyar @${m.sender.split("@")[0]}`, mentions: [m.sender], }, { quoted: m })
+await conn.sendMessage(m.sender, { text: wm, templateButtons: [{index: 1, urlButton: {displayText: '𝗣𝗔𝗬𝗣𝗔𝗟', url: 'https://www.whatsapp.com/otp/copy/' + paypal}},], footer: '🍄 También puedes compartir lo siguiente como Muestra de Apoyo' })
+await conn.sendMessage(m.sender, { text: '', templateButtons: [{index: 2, urlButton: {displayText: '𝗚𝗜𝗧𝗛𝗨𝗕', url: 'https://www.whatsapp.com/otp/copy/' + md}},], footer: '' })
+await conn.sendMessage(m.sender, { text: '', templateButtons: [{index: 3, urlButton: {displayText: packname, url: 'https://www.whatsapp.com/otp/copy/' + `https://wa.me/${global.conn.user.jid.split`@`[0]}`}},], footer: '' })
+//conn.sendMessage(m.sender, { text: `Apoyar @${m.sender.split("@")[0]}`, mentions: [m.sender], }, { quoted: m })
   
-conn.reply(m.sender, wm, null, { contextInfo: { mentionedJid: null }})
+//conn.reply(m.sender, wm, null, { contextInfo: { mentionedJid: null }})
 }
 handler.command = /^dona(te|si)|donar|apoyar|paypal|donating$/i 
 export default handler
