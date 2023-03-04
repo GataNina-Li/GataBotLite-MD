@@ -10,7 +10,7 @@ https://paypal.me/OficialGD`.trim()
 let templateButtons = [ 
 {index: 1, urlButton: {displayText: '💙 ＰＡＹＰＡＬ', url: paypal}},
 //{index: 2, urlButton: {displayText: '💚 ＩＮＳＴＡＧＲＡＭ', url: ig}},
-{index: 2, urlButton: {displayText: 'Obtener Enlace', url: 'https//paypal.me/copy/' + md}},
+{index: 2, urlButton: {displayText: 'Obtener Enlace', url: 'https//paypal.me/otp/copy/' + md}},
 {index: 3, quickReplyButton: {displayText: lenguajeGB.smsConMenu(), id: `${usedPrefix}menu`}}
 ]
 await conn.sendMessage(m.chat, { image: { url: img21 }, gifPlayback: false, gifAttribution: ~~(Math.random() * 2), caption: '*◜🌹❤️ DONACIÓN VOLUNTARIA ❤️🌹◞*', footer: str, templateButtons }, { quoted: m})
