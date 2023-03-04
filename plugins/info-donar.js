@@ -1,4 +1,5 @@
 let handler = async (m, { conn, usedPrefix, command }) => {
+try { 
 let str = `
 🌼 Se acepta apoyo voluntario por PayPal, si deseas apoyar de otra forma puedes donar un Número en Instagram para que el repositorio siga vigente, Gracias!!
 
@@ -11,6 +12,9 @@ let templateButtons = [
 ]
 await conn.sendMessage(m.chat, { image: { url: img21 }, gifPlayback: false, gifAttribution: ~~(Math.random() * 2), caption: '*◜🌹❤️ DONACIÓN VOLUNTARIA ❤️🌹◞*', footer: str, templateButtons }, { quoted: m})
 await conn.sendMessage(m.sender, { text: '🍄 *_También puedes compartir lo siguiente como Muestra de Apoyo_*\n*_Califica el repositorio con una 🌟 Gracias!!_*', templateButtons: [{index: 1, urlButton: {displayText: '💜 ＧＩＴＨＵＢ', url: paypal}}, {index: 2, urlButton: {displayText: packname, url: 'https://www.whatsapp.com/otp/copy/' + md}}, ], footer: wm })
-}
+} catch (e) {
+await m.reply(lenguajeGB['smsMalError3']() + '\n*' + lenguajeGB.smsMensError1() + '*\n*' + usedPrefix + `${lenguajeGB.lenguaje() == 'es' ? 'reporte' : 'report'}` + '* ' + `${lenguajeGB.smsMensError2()} ` + usedPrefix + command)
+console.log(`❗❗ ${lenguajeGB['smsMensError2']()} ${usedPrefix + command} ❗❗`)
+console.log(e)}}
 handler.command = /^dona(te|si)|donar|apoyar|paypal|donating|aportar$/i 
 export default handler
