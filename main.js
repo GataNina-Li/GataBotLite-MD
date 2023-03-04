@@ -117,8 +117,9 @@ function purgeSession() {
 
 } 
 
-try{
+
 function purgeSessionSB() {
+try{
 let listaDirectorios = readdirSync('./GataJadiBot/');
 console.log(listaDirectorios)
       let SBprekey = []
@@ -133,10 +134,10 @@ listaDirectorios.forEach(filesInDir => {
         unlinkSync(`./GataJadiBot/${filesInDir}/${fileInDir}`) 
     })
     })
-}
 } catch (error) {
-console.log(chalk.green('NADA POR ELIMINAR EN AUTO_PURGE_SESSIONS_SUB-BOTS 😸'))       
+console.log(chalk.green('NADA POR ELIMINAR EN AUTO_PURGE_SESSIONS_SUB-BOTS 😸'))}
 }
+
 
 function purgeOldFiles() {
 const directories = ['./GataBotSession/', './GataJadiBot/']
