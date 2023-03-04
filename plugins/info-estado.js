@@ -17,8 +17,7 @@ conn.sendButton(m.chat, wm, `*╭𝄗𝄗✦ 𝙏𝙄𝙀𝙈𝙋𝙊 | 𝙍𝙐
  ⎸ ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
  ⎸ ❉ *Activa durante:*    *_${uptime}_*
  ⎸ ❉ *Active during:*      *_${uptime}_*
-*╰𝄗𝄗𝄗𝄗𝄗𝄗𝄗⬣*`, [
-['𝗠𝗘𝗡𝗨 𝗣𝗥𝗜𝗡𝗖𝗜𝗣𝗔𝗟 ⚡', '.menu']], m)
+*╰𝄗𝄗𝄗𝄗𝄗𝄗𝄗⬣*`, [[lenguajeGB.smsConMenu(), `${usedPrefix}menu`]], m)
 
 /*conn.sendHydrated(m.chat, estado, wm, picture, 'https://github.com/GataNina-Li/GataBot-MD', '𝙂𝙖𝙩𝙖𝘽𝙤𝙩-𝙈𝘿', null, null, [
 ['𝙑𝙤𝙡𝙫𝙚𝙧 𝙖𝙡 𝙈𝙚𝙣𝙪́ | 𝘽𝙖𝙘𝙠 𝙩𝙤 𝙈𝙚𝙣𝙪', '#menu']
