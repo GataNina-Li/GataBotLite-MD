@@ -24,8 +24,8 @@ let menu = `
 *╰ ㊂ ▸▸ _INFORMACIÓN DEL MENÚ_ ◂◂*
 *│* ┊
 *│* ┊▸ ✦ _${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'creadora' : 'owner'}_
-*│* ┊▸ ✦ ${usedPrefix}cuentasgb 
-*│* ┊▸ ✦ ${usedPrefix}donar
+*│* ┊▸ ✦ _${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'contacto' : 'contact'}_ 
+*│* ┊▸ ✦ _${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'cuentasgb' : 'account'}_ 
 *│* ╰∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙ ∙ ∙ ∙ ∙ 
 *│*
 *╰ ㊂ ▸▸ _INFORMACIÓN DEL MENÚ_ ◂◂*
