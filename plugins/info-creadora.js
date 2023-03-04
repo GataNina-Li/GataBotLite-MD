@@ -2,7 +2,8 @@ import { promises } from 'fs'
 import { join } from 'path'
 let { MessageType } = (await import('@adiwajshing/baileys')).default
 
-let handler  = async (m, { conn, __dirname, command, args, usedPrefix, DevMode }) => {
+let handler  = async (m, { conn, __dirname, command, args, usedPrefix, DevMode }) => { 
+try{
 let taguser = conn.getName(m.sender)
 let _package = JSON.parse(await promises.readFile(join(__dirname, '../package.json')).catch(_ => ({}))) || {}
 let type = (args[0] || '').toLowerCase()
@@ -32,7 +33,7 @@ title: null,
 buttonText: lenguajeGB.smsCreSelec(),
 sections }
 
-try {
+
 if (/(contacto|owner|creator|propietario|dueño|dueña|propietaria|dueño|creadora|creador)/i.test(command)) {
 switch (type) {
 		
@@ -49,8 +50,10 @@ break
 default:
 return await conn.sendMessage(m.chat, listMessage, { quoted: m, contextInfo: { mentionedJid: [taguser] }})
 }}
-} catch (err) {
-m.reply("Error\n\n\n" + err.stack)}}
+} catch (e) {
+await m.reply(lenguajeGB['smsMalError3']() + '\n*' + lenguajeGB.smsMensError1() + '*\n*' + usedPrefix + `${lenguajeGB.lenguaje() == 'es' ? 'reporte' : 'report'}` + '* ' + `${lenguajeGB.smsMensError2()} ` + usedPrefix + command)
+console.log(`❗❗ ${lenguajeGB['smsMensError2']()} ${usedPrefix + command} ❗❗`)
+console.log(e)}}
 
 handler.command = /^(owner|creator|propietario|dueño|dueña|propietaria|dueño|creadora|creador)$/i
 export default handler
