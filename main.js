@@ -91,7 +91,7 @@ if (!opts['test']) {
 if (global.db) setInterval(async () => {
 if (global.db.data) await global.db.write()
 if (opts['autocleartmp'] && (global.support || {}).find) (tmp = [os.tmpdir(), 'tmp', "GataJadiBot"], tmp.forEach(filename => cp.spawn('find', [filename, '-amin', '3', '-type', 'f', '-delete'])))
-}, 30 * 1000)}
+}, 1000 * 60 * 3)}
 
 if (opts['server']) (await import('./server.js')).default(global.conn, PORT)
        
@@ -101,7 +101,7 @@ const filename = []
 tmp.forEach(dirname => readdirSync(dirname).forEach(file => filename.push(join(dirname, file))))
 return filename.map(file => {
     const stats = statSync(file)
-    if (stats.isFile() && (Date.now() - stats.mtimeMs >= 1000 * 60 * 3)) return unlinkSync(file) // 3 minutes
+    if (stats.isFile() && (Date.now() - stats.mtimeMs >= 1000 * 60 * 3)) return unlinkSync(file) // 3 min
     return false })}
 
 function purgeSession() {
@@ -136,7 +136,7 @@ listaDirectorios.forEach(filesInDir => {
 
 function purgeOldFiles() {
 const directories = ['./GataBotSession/', './GataJadiBot/']
-const oneHourAgo = Date.now() - (60 * 60 * 1000) 
+const oneHourAgo = Date.now() - (1000 * 60 * 30) //30 min 
 directories.forEach(dir => {
     readdirSync(dir, (err, files) => {
         if (err) throw err
@@ -172,10 +172,6 @@ if (update.qr != 0 && update.qr != undefined) {
 console.log(chalk.yellow(lenguajeGB['smsCodigoQR']()))}  
 if (connection == 'open') {
 console.log(chalk.yellow(lenguajeGB['smsConexion']()))
-//try{
-//await conn.groupAcceptInvite(global.nna2)
-//} catch (error) {
-//console.log(chalk.red('❌ ENLACE DEL GRUPO OFICIAL\n❗ ERROR ENCONTRADO:\n\n' + error.message))}
 }
 if (connection == 'close') {
 console.log(chalk.yellow(lenguajeGB['smsConexionOFF']()))}}
@@ -313,19 +309,35 @@ setInterval(async () => {
 if (stopped == 'close') return
 var a = await clearTmp()        
 console.log(chalk.cyanBright(lenguajeGB['smsClearTmp']()))
-}, 300000) //15 min
+}, 1000 * 60 * 3) 
+
+try {
 setInterval(async () => {
-    await purgeSession()
-console.log(chalk.cyanBright(`\n𓃠 ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈✦ AUTOPURGESESSIONS ✦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈ 𓃠\n│\n│★ 𝙇𝙊𝙎 𝘼𝙍𝘾𝙃𝙄𝙑𝙊𝙎 𝙎𝙄𝘿𝙊 𝙀𝙇𝙄𝙈𝙄𝙉𝘼𝘿𝙊𝙎 𝘾𝙊𝙉 𝙀𝙓𝙄𝙏𝙊 😼✨\n│\n𓃠 ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈✦ ✅ ✦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈ 𓃠\n`))
-}, 1000 * 60 * 60)
+await purgeSession()
+console.log(chalk.cyanBright(`\n𓃠 ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈✦ AUTO_PURGE_SESSIONS ✦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈ 𓃠\n│\n│★ 𝙇𝙊𝙎 𝘼𝙍𝘾𝙃𝙄𝙑𝙊𝙎 𝙎𝙄𝘿𝙊 𝙀𝙇𝙄𝙈𝙄𝙉𝘼𝘿𝙊𝙎 𝘾𝙊𝙉 𝙀𝙓𝙄𝙏𝙊 😼✨\n│\n𓃠 ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈✦ ✅ ✦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈ 𓃠\n`))
+}, 1000 * 60 * 30)
+} catch (error) {
+console.log(chalk.green('NADA POR ELIMINAR EN AUTO_PURGE_SESSIONS 😸'))       
+}
+
+try {
 setInterval(async () => {
-     await purgeSessionSB()
+await purgeSessionSB()
 console.log(chalk.cyanBright(`\n𓃠 ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈✦ AUTO_PURGE_SESSIONS_SUB-BOTS  ✦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈ 𓃠\n│\n│★ 𝙇𝙊𝙎 𝘼𝙍𝘾𝙃𝙄𝙑𝙊𝙎 𝙎𝙄𝘿𝙊 𝙀𝙇𝙄𝙈𝙄𝙉𝘼𝘿𝙊𝙎 𝘾𝙊𝙉 𝙀𝙓𝙄𝙏𝙊 😼✨\n│\n𓃠 ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈✦ ✅ ✦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈ 𓃠\n`))
-}, 1000 * 60 * 60)
+}, 1000 * 60 * 30)
+} catch (error) {
+console.log(chalk.green('NADA POR ELIMINAR EN AUTO_PURGE_SESSIONS_SUB-BOTS 😸'))       
+}
+
+try {
 setInterval(async () => {
-    await purgeOldFiles()
+await purgeOldFiles()
 console.log(chalk.cyanBright(`\n𓃠 ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈✦ AUTO_PURGE_OLDFILES  ✦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈ 𓃠\n│\n│★ 𝙇𝙊𝙎 𝘼𝙍𝘾𝙃𝙄𝙑𝙊𝙎 𝙎𝙄𝘿𝙊 𝙀𝙇𝙄𝙈𝙄𝙉𝘼𝘿𝙊𝙎 𝘾𝙊𝙉 𝙀𝙓𝙄𝙏𝙊 😼✨\n│\n𓃠 ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈✦ ✅ ✦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈ 𓃠\n`))
-}, 1000 * 60 * 60)
+}, 1000 * 60 * 30)
+} catch (error) {
+console.log(chalk.green('NADA POR ELIMINAR EN AUTO_PURGE_OLDFILES 😸'))       
+}
+
 _quickTest()
 .then(() => conn.logger.info(lenguajeGB['smsCargando']()))
 .catch(console.error)
