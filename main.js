@@ -115,7 +115,9 @@ function purgeSession() {
     unlinkSync(`./GataBotSession/${files}`)
 })
 
-}  
+} 
+
+try{
 function purgeSessionSB() {
 let listaDirectorios = readdirSync('./GataJadiBot/');
 console.log(listaDirectorios)
@@ -131,7 +133,9 @@ listaDirectorios.forEach(filesInDir => {
         unlinkSync(`./GataJadiBot/${filesInDir}/${fileInDir}`) 
     })
     })
-    
+}
+} catch (error) {
+console.log(chalk.green('NADA POR ELIMINAR EN AUTO_PURGE_SESSIONS_SUB-BOTS 😸'))       
 }
 
 function purgeOldFiles() {
@@ -320,14 +324,10 @@ console.log(chalk.cyanBright(`\n𓃠 ┈┈┈┈┈┈┈┈┈┈┈┈┈┈�
 console.log(chalk.green('NADA POR ELIMINAR EN AUTO_PURGE_SESSIONS 😸'))       
 }
 
-try {
 setInterval(async () => {
 await purgeSessionSB()
 console.log(chalk.cyanBright(`\n𓃠 ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈✦ AUTO_PURGE_SESSIONS_SUB-BOTS  ✦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈ 𓃠\n│\n│★ 𝙇𝙊𝙎 𝘼𝙍𝘾𝙃𝙄𝙑𝙊𝙎 𝙎𝙄𝘿𝙊 𝙀𝙇𝙄𝙈𝙄𝙉𝘼𝘿𝙊𝙎 𝘾𝙊𝙉 𝙀𝙓𝙄𝙏𝙊 😼✨\n│\n𓃠 ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈✦ ✅ ✦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈ 𓃠\n`))
 }, 1000 * 60 * 30)
-} catch (error) {
-console.log(chalk.green('NADA POR ELIMINAR EN AUTO_PURGE_SESSIONS_SUB-BOTS 😸'))       
-}
 
 try {
 setInterval(async () => {
