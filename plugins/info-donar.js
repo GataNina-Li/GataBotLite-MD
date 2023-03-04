@@ -14,7 +14,6 @@ let templateButtons = [
 {index: 3, quickReplyButton: {displayText: 'INFOBOT', id: '#infobot'}}
 ]
 await conn.sendMessage(m.chat, { video: { url: fs.readFileSync(media) }, gifPlayback: true, gifAttribution: ~~(Math.random() * 2), caption: '*◜🌹❤️ DONACIÓN VOLUNTARIA❤️🌹◞*', footer: str, templateButtons }, { quoted: m})
-
+}
 handler.command = /^dona(te|si)|donar|apoyar|paypal|donating$/i 
-handler.exp = 80
 export default handler
