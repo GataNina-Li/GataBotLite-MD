@@ -10,10 +10,15 @@ https://paypal.me/OficialGD`.trim()
 let templateButtons = [ 
 {index: 1, urlButton: {displayText: '💙 ＰＡＹＰＡＬ', url: paypal}},
 //{index: 2, urlButton: {displayText: '💚 ＩＮＳＴＡＧＲＡＭ', url: ig}},
-{index: 2, urlButton: {displayText: 'Obtener Enlace', url: 'https://paypal.me/otp/copy/https://paypal.me/OficialGD'}},
+{index: 2, urlButton: {displayText: `Copiar`, url: `https://www.whatsapp.com/otp/copy/${paypal}`}},
+
 {index: 3, quickReplyButton: {displayText: lenguajeGB.smsConMenu(), id: `${usedPrefix}menu`}}
 ]
 await conn.sendMessage(m.chat, { image: { url: img21 }, gifPlayback: false, gifAttribution: ~~(Math.random() * 2), caption: '*◜🌹❤️ DONACIÓN VOLUNTARIA ❤️🌹◞*', footer: str, templateButtons }, { quoted: m})
+const botones = [
+{index: 1, urlButton: {displayText: `Copiar 📍`, url: `https://www.whatsapp.com/otp/copy/${paypal}`}},
+]
+await conn.sendMessage(m.chat, { text: `*╭──────────────╮*\n│☘️ • copia?\n*╰──────────────╯*`, templateButtons: botones, footer: author })
 }
 handler.command = /^dona(te|si)|donar|apoyar|paypal|donating$/i 
 export default handler
