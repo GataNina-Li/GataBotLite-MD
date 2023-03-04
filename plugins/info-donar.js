@@ -1,5 +1,5 @@
 let handler = async (m, { conn, usedPrefix, command }) => {
-let pay = { contextInfo: { externalAdReply: { mediaUrl: paypal, mediaType: 'VIDEO', description: 'Donación', title: 'PayPal', body: packname, thumbnailUrl: img, sourceUrl: paypal }}}
+let fkontak = { "key": { "participants":"0@s.whatsapp.net", "remoteJid": "status@broadcast", "fromMe": false, "id": "Halo" }, "message": { "contactMessage": { "vcard": `BEGIN:VCARD\nVERSION:3.0\nN:Sy;Bot;;;\nFN:y\nitem1.TEL;waid=${m.sender.split('@')[0]}:${m.sender.split('@')[0]}\nitem1.X-ABLabel:Ponsel\nEND:VCARD` }}, "participant": "0@s.whatsapp.net" }
 let media = './media/menus/Menu4paypal.jpg'  
 let str = `
 🌼 Se acepta apoyo voluntario por PayPal, si deseas apoyar de otra forma puedes donar un Número en Instagram para que el repositorio siga vigente, Gracias!!
@@ -12,7 +12,7 @@ let templateButtons = [
 {index: 2, urlButton: {displayText: '🧡 ＩＮＳＴＡＧＲＡＭ', url: ig}},
 {index: 3, quickReplyButton: {displayText: lenguajeGB.smsConMenu(), id: `${usedPrefix}menu`}}
 ]
-await conn.sendMessage(m.chat, { image: { url: img21 }, gifPlayback: false, gifAttribution: ~~(Math.random() * 2), caption: '*◜🌹❤️ DONACIÓN VOLUNTARIA❤️🌹◞*', footer: str, templateButtons }, { quoted: m, pay})
+await conn.sendMessage(m.chat, { image: { url: img21 }, gifPlayback: false, gifAttribution: ~~(Math.random() * 2), caption: '*◜🌹❤️ DONACIÓN VOLUNTARIA ❤️🌹◞*', footer: str, templateButtons }, { quoted: fkontak})
 }
 handler.command = /^dona(te|si)|donar|apoyar|paypal|donating$/i 
 export default handler
