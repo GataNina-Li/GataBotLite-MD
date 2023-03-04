@@ -2,10 +2,7 @@ let handler = async (m, { conn, usedPrefix, command }) => {
 let str = `
 🌼 Se acepta apoyo voluntario por PayPal, si deseas apoyar de otra forma puedes donar un Número en Instagram para que el repositorio siga vigente, Gracias!!
 
-🌺 Siempre podrás apoyar siguiendo las Cuentas Oficiales y Compartiendo el trabajo logrado de ${packname}
-
-◎ 𝗣𝗔𝗬𝗣𝗔𝗟
-https://paypal.me/OficialGD`.trim()
+🌺 Siempre podrás apoyar siguiendo las Cuentas Oficiales y Compartiendo el trabajo logrado de ${packname}`.trim()
   
 let templateButtons = [ 
 {index: 1, urlButton: {displayText: '💙 ＰＡＹＰＡＬ', url: paypal}},
@@ -20,7 +17,7 @@ const botones = [
 {index: 3, urlButton: {displayText: packname, url: 'https://www.whatsapp.com/otp/copy/' + `https://wa.me/${global.conn.user.jid.split`@`[0]}`}},
 ]
 //await conn.sendPayment(m.chat, '99999999', { text: md, templateButtons: botones, footer: author })
-await conn.sendMessage(m.chat, { text: '🍄 *_También puedes compartir lo siguiente como Muestra de Apoyo_*', templateButtons: botones, footer: wm })
+await conn.sendMessage(m.chat, { text: wm, templateButtons: botones, footer: '🍄 *_También puedes compartir lo siguiente como Muestra de Apoyo_*' })
 }
 handler.command = /^dona(te|si)|donar|apoyar|paypal|donating$/i 
 export default handler
