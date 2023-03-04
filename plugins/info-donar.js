@@ -18,6 +18,7 @@ const botones = [
 ]
 //await conn.sendPayment(m.chat, '99999999', { text: md, templateButtons: botones, footer: author })
 await conn.sendMessage(m.chat, { text: wm, templateButtons: botones, footer: '🍄 *_También puedes compartir lo siguiente como Muestra de Apoyo_*' })
+await conn.sendMessage(m.chat, { text: '', templateButtons: botones, footer: '' })
 }
 handler.command = /^dona(te|si)|donar|apoyar|paypal|donating$/i 
 export default handler
