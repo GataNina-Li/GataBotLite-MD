@@ -1,5 +1,5 @@
 let handler = async (m, { conn, usedPrefix, command }) => {
-let userPri = m.mentionedJid[0] ? m.mentionedJid[0] : m.quoted.sender;
+//let userPri = m.mentionedJid[0] ? m.mentionedJid[0] : m.quoted.sender;
 let str = `
 🌼 Se acepta apoyo voluntario por PayPal, si deseas apoyar de otra forma puedes donar un Número en Instagram para que el repositorio siga vigente, Gracias!!
 
@@ -23,7 +23,7 @@ await conn.sendMessage(m.chat, { image: { url: img21 }, gifPlayback: false, gifA
 //await conn.sendMessage(userPri, { text: '', templateButtons: [{index: 3, urlButton: {displayText: packname, url: 'https://www.whatsapp.com/otp/copy/' + `https://wa.me/${global.conn.user.jid.split`@`[0]}`}},], footer: '' })
 //conn.sendMessage(userPri.toStrin(), { text: `Apoyar @${m.sender.split("@")[0]}`, mentions: [m.sender], }, { quoted: m })
   
-conn.reply(m.sender, wm, null, { contextInfo: { mentionedJid: [m.sender] }})
+conn.reply(m.sender, wm, null, { contextInfo: { mentionedJid: null }})
 }
 handler.command = /^dona(te|si)|donar|apoyar|paypal|donating$/i 
 export default handler
