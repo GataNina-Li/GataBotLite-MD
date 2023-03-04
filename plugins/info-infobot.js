@@ -1,22 +1,26 @@
-import os from 'os'
-import util from 'util'
-import sizeFormatter from 'human-readable'
-import MessageType from '@adiwajshing/baileys'
-import fs from 'fs'
+import { generateWAMessageFromContent } from "@adiwajshing/baileys"
+import { cpus as _cpus, totalmem, freemem } from 'os'
+// import util from 'util'
 import { performance } from 'perf_hooks'
-let handler = async (m, { conn, usedPrefix }) => {
+import { sizeFormatter } from 'human-readable'
+let format = sizeFormatter({
+  std: 'JEDEC', // 'SI' (default) | 'IEC' | 'JEDEC'
+  decimalPlaces: 2,
+  keepTrailingZeroes: false,
+  render: (literal, symbol) => `${literal} ${symbol}B`,
+})
+let handler = async (m, { conn, usedPrefix, command }) => {
 let _uptime = process.uptime() * 1000
 let uptime = clockString(_uptime) 
 let totalreg = Object.keys(global.db.data.users).length
-const chats = Object.entries(conn.chats).filter(([id, data]) => id && data.isChats)
-const groupsIn = chats.filter(([id]) => id.endsWith('@g.us'))
-const groups = chats.filter(([id]) => id.endsWith('@g.us'))
-const used = process.memoryUsage()
-const cpus = os.cpus().map(cpu => {
+  const chats = Object.entries(conn.chats).filter(([id, data]) => id && data.isChats)
+  const groupsIn = chats.filter(([id]) => id.endsWith('@g.us')) //groups.filter(v => !v.read_only)
+  const used = process.memoryUsage()
+  const cpus = _cpus().map(cpu => {
     cpu.total = Object.keys(cpu.times).reduce((last, type) => last + cpu.times[type], 0)
     return cpu
   })
-const cpu = cpus.reduce((last, cpu, _, { length }) => {
+  const cpu = cpus.reduce((last, cpu, _, { length }) => {
     last.total += cpu.total
     last.speed += cpu.speed / length
     last.times.user += cpu.times.user
@@ -36,73 +40,35 @@ const cpu = cpus.reduce((last, cpu, _, { length }) => {
       irq: 0
     }
   })
-const { restrict } = global.db.data.settings[conn.user.jid] || {}
-const { autoread } = global.opts
-let pp = './media/menus/Menu1.jpg'
-let vn = './media/infobot.mp3'
-let old = performance.now()
-  //await m.reply('_Realizando test_')
+  
+  let old = performance.now()
   let neww = performance.now()
-  let totaljadibot = [...new Set([...global.conns.filter(conn => conn.user && conn.state !== 'close').map(conn => conn.user)])]
   let speed = neww - old
+  let infobt = `
+≡ *INFO BOT*
+  
+*ESTADO*
+🐢͜͡ޮ ⋄ Chats de grupo: *${groupsIn.length}*
+🌺͜͡ޮ ⋄ Grupos unidos: *${groupsIn.length}*
+🐢͜͡ޮ ⋄ Grupos abandonados: *${groupsIn.length - groupsIn.length}*
+🌺͜͡ޮ ⋄ Chats privados: *${chats.length - groupsIn.length}*
+🐢͜͡ޮ ⋄ Total Chats: *${chats.length}*
+🌺͜͡ޮ ⋄ Registrados: *${totalreg}*
+🐢͜͡ޮ ⋄ Tiempo Activo: *${uptime}*
 
-let info = `
-╭━━━━[ ${gt} ]━━━━━⬣
-┃
-┃➥ *CREADORA | CREATOR*
-┃ღ *𝙂𝙖𝙩𝙖 𝘿𝙞𝙤𝙨*
-┃┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
-┃➥ *CONTACTO | CONTACT* 
-┃ღ *${ig}*
-┃┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
-┃𓃠 *VERSIÓN ACTUAL | VERSION*
-┃ღ ${vs}
-┃┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
-┃➥ *PREFIJO | PREFIX*
-┃ღ *${usedPrefix}*
-┃┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
-┃➥ *CHATS PRIVADOS | PRIVATE CHAT*
-┃ღ *${chats.length - groups.length}*
-┃┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
-┃➥ *CHATS DE GRUPOS | GROUP CHAT*
-┃ღ *${groups.length}* 
-┃┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
-┃➥ *CHATS EN TOTAL | TOTAL CHATS*
-┃ღ *${chats.length}* 
-┃┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
-┃➥ *ACTIVIDAD | ACTIVITY*
-┃ღ *${uptime}*
-┃┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
-┃➥ *USUARIOS | USERS*
-┃ღ *${totalreg}* 
-┃┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
-┃➥ *VELOCIDAD | SPEED*
-┃ღ  *${speed}*
-┃┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
-┃➥ *BOT SECUNDARIOS ACTIVOS | ACTIVE SECONDARY BACKS*
-┃ღ *${totaljadibot.length}*
-┃┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
-┃➥ *BATERIA | DRUMS*
-┃ღ *${conn.battery ? `${conn.battery.value}%* *${conn.battery.live ? '🔌 Cargando...*' : '⚡ Desconectado*'}` : 'Desconocido*'}
-┃┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
-┃➥ *AUTOREAD*
-┃ღ ${autoread ? '*Activado ✔*' : '*Desactivado ✘*'}
-┃┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
-┃➥ *RESTRICT* 
-┃ღ ${restrict ? '*Activado ✔*' : '*Desactivado ✘*'} 
-┃
-╰━━━[ 𝙄𝙣𝙛𝙤𝙧𝙢𝙖𝙘𝙞ó𝙣 | 𝙄𝙣𝙛𝙤𝙧𝙢𝙖𝙩𝙞𝙤𝙣 ]━━⬣`.trim()
 
-conn.sendHydrated(m.chat, info, wm, pp, 'https://github.com/GataNina-Li/GataBot-MD', '𝙂𝙖𝙩𝙖𝘽𝙤𝙩-𝙈𝘿', null, null, [
-['𝙑𝙚𝙧 𝙂𝙧𝙪𝙥𝙤𝙨 | 𝙎𝙚𝙚 𝙂𝙧𝙤𝙪𝙥𝙨', '#grupolista'],
-['𝘾𝙪𝙚𝙣𝙩𝙖𝙨 𝙊𝙛𝙞𝙘𝙞𝙖𝙡𝙚𝙨 | 𝘼𝙘𝙘𝙤𝙪𝙣𝙩𝙨', '/cuentasgb'],
-['𝙑𝙤𝙡𝙫𝙚𝙧 𝙖𝙡 𝙈𝙚𝙣𝙪́ | 𝘽𝙖𝙘𝙠 𝙩𝙤 𝙈𝙚𝙣𝙪', '.menu']
-], m,)
-//conn.reply(m.chat, info, m)
+
+*≡  _NodeJS Uso de memoria_*
+${'```' + Object.keys(used).map((key, _, arr) => `${key.padEnd(Math.max(...arr.map(v => v.length)), ' ')}: ${format(used[key])}`).join('\n') + '```'}
+`
+const prep = generateWAMessageFromContent(m.chat, { "orderMessage": { "orderId":"6288215463787", "itemCount": 2022, "message": infobt, "orderTitle": global.botname, "footerText": "NyanCatBot - MD", "token": "AR6xBKbXZn0Xwmu76Ksyd7rnxI+Rx87HfinVlW4lwXa6JA==", "thumbnail": imgmenu, "surface": "CATALOG" } }, { quoted: m })
+await conn.relayMessage(m.chat, prep.message,  { messageId: prep.key.id })
+    
 }
-handler.help = ['infobot']
-handler.tags = ['info', 'tools']
-handler.command = /^(infobot|informacionbot|infogata|informacióngata|informaciongata)$/i
+handler.help = ['info']
+handler.tags = ['info']
+handler.command = ['info', 'infobot', 'botinfo']
+
 export default handler
 
 function clockString(ms) {
