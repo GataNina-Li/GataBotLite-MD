@@ -12,7 +12,7 @@ let templateButtons = [
 {index: 2, urlButton: {displayText: '🧡 ＩＮＳＴＡＧＲＡＭ', url: ig}},
 {index: 3, quickReplyButton: {displayText: lenguajeGB.smsConMenu(), id: `${usedPrefix}menu`}}
 ]
-await conn.sendMessage(m.chat, { image: { url: img21 }, gifPlayback: false, gifAttribution: ~~(Math.random() * 2), caption: '*◜🌹❤️ DONACIÓN VOLUNTARIA❤️🌹◞*', footer: str, templateButtons }, { quoted: pay})
+await conn.sendMessage(m.chat, { image: { url: img21 }, gifPlayback: false, gifAttribution: ~~(Math.random() * 2), caption: '*◜🌹❤️ DONACIÓN VOLUNTARIA❤️🌹◞*', footer: str, templateButtons }, { quoted: m, pay})
 }
 handler.command = /^dona(te|si)|donar|apoyar|paypal|donating$/i 
 export default handler
