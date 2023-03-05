@@ -1,4 +1,4 @@
-import * as baileys from '@adiwajshing/baileys'
+/*import * as baileys from '@adiwajshing/baileys'
 
 const grupo = [nna, nn, nnn, nnnt, nnntt, nnnttt, nnnttt2, nnnttt3, nnnttt4]
 //const grupo = nna
@@ -71,5 +71,5 @@ const extractGroupMetadata = (result) => {
 		desc
 	}
 	return metadata
-}
+}*/
 
