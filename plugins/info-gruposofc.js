@@ -4,7 +4,7 @@ const grupo = [nna, nn, nnn, nnnt, nnntt, nnnttt, nnnttt2, nnnttt3, nnnttt4]
 let handler = async (m, { conn, usedPrefix , command }) => { 
 let enlace = ''	
 	
-function grupo1() {	
+async function grupo1() {	
 let [_1, code] = grupo[0].match(/chat\.whatsapp\.com\/(?:invite\/)?([0-9A-Za-z]{20,24})/i) || []
 let res1 = await conn.query({ tag: 'iq', attrs: { type: 'get', xmlns: 'w:g2', to: '@g.us' }, content: [{ tag: 'invite', attrs: { code } }] })
 let data1 = extractGroupMetadata(res1)
