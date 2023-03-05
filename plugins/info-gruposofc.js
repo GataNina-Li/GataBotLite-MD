@@ -60,5 +60,5 @@ const extractGroupMetadata = (result) => {
 		desc
 	}
 	return metadata
-}*/
+}
 
