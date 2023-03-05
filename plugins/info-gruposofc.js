@@ -10,7 +10,7 @@ let handler = async (m, { conn, command }) => {
 
 let groups = Object.keys(grupos).map((v, index) => {
 let [, code] = grupos[v].match(/chat\.whatsapp\.com\/(?:invite\/)?([0-9A-Za-z]{20,24})/i) || []	
-let res = await conn.query({ tag: 'iq', attrs: { type: 'get', xmlns: 'w:g2', to: '@g.us' }, content: [{ tag: 'invite', attrs: { code } }] })
+let res = conn.query({ tag: 'iq', attrs: { type: 'get', xmlns: 'w:g2', to: '@g.us' }, content: [{ tag: 'invite', attrs: { code } }] })
 let data = extractGroupMetadata(res)
 })
 
