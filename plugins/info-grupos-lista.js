@@ -1,4 +1,4 @@
-let handler = async (m, { conn, isOwner }) => {
+/*let handler = async (m, { conn, isOwner }) => {
 	let groups = Object.values(await conn.groupFetchAllParticipating()),
 		txt = ` ${gt} _ESTÁ EN ESTOS GRUPOS_\n_IS IN THESE GROUPS:_\n\n*✦ Total de Grupos:* ${groups.length}\n\n`
 	for (let i = 0; i < groups.length; i++) {
@@ -14,4 +14,4 @@ handler.tags = ['info']
 handler.command = /^(groups|grouplist|listadegrupo|gruposlista|listagrupos|listadegrupos|grupolista|listagrupo)$/i
 handler.register = true
 
-export default handler
+export default handler*/
