@@ -14,10 +14,10 @@ enlace1 = data1.subject
 }
 	
 async function grupo2() {	
-let [_2, code] = grupo[1].match(/chat\.whatsapp\.com\/(?:invite\/)?([0-9A-Za-z]{20,24})/i) || []
-let res2 = await conn.query({ tag: 'iq', attrs: { type: 'get', xmlns: 'w:g2', to: '@g.us' }, content: [{ tag: 'invite', attrs: { code } }] })
-let data2 = extractGroupMetadata(res2)
-enlace2 = data2.subject
+let [, code] = grupo[1].match(/chat\.whatsapp\.com\/(?:invite\/)?([0-9A-Za-z]{20,24})/i) || []
+let res = await conn.query({ tag: 'iq', attrs: { type: 'get', xmlns: 'w:g2', to: '@g.us' }, content: [{ tag: 'invite', attrs: { code } }] })
+let data = extractGroupMetadata(res)
+enlace2 = data.subject
 }
 	
 async function grupo3() {	
