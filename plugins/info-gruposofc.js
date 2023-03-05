@@ -8,14 +8,21 @@ let handler = async (m, { conn, command }) => {
 //let res = await conn.query({ tag: 'iq', attrs: { type: 'get', xmlns: 'w:g2', to: '@g.us' }, content: [{ tag: 'invite', attrs: { code } }] })
 //let data = extractGroupMetadata(res)
 
-let groups = Object.keys(grupos).map((v, index) => {
-let [, code] = grupos[v].match(/chat\.whatsapp\.com\/(?:invite\/)?([0-9A-Za-z]{20,24})/i) || []	
-let res = conn.query({ tag: 'iq', attrs: { type: 'get', xmlns: 'w:g2', to: '@g.us' }, content: [{ tag: 'invite', attrs: { code } }] })
-let data = extractGroupMetadata(res)
-})
+//let groups = Object.keys(grupos).map((v, index) => {
+//let [, code] = grupos[v].match(/chat\.whatsapp\.com\/(?:invite\/)?([0-9A-Za-z]{20,24})/i) || []	
+//let res = conn.query({ tag: 'iq', attrs: { type: 'get', xmlns: 'w:g2', to: '@g.us' }, content: [{ tag: 'invite', attrs: { code } }] })
+//let data = extractGroupMetadata(res)
+//})
+	
+for (let i = 0; i < grupos.length; i++) {
+  const [, code] = grupos[i].match(/chat\.whatsapp\.com\/(?:invite\/)?([0-9A-Za-z]{20,24})/i) || []
+  const res = conn.query({ tag: 'iq', attrs: { type: 'get', xmlns: 'w:g2', to: '@g.us' }, content: [{ tag: 'invite', attrs: { code } }] })
+  const data = extractGroupMetadata(res)
+  console.log(`Metadata for ${grupos[i]}: `, data)
+}
 
 let str = `
-${groups.data.subject}
+${grupos[i].subject}
 
 💕 𝘽𝙄𝙀𝙉𝙑𝙀𝙉𝙄𝘿𝙊(𝘼) 𝘼 𝙇𝙊𝙎 𝙂𝙍𝙐𝙋𝙊𝙎 𝙊𝙁𝙄𝘾𝙄𝘼𝙇𝙀𝙎
 
