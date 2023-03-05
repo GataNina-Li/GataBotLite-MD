@@ -1,28 +1,20 @@
 import * as baileys from '@adiwajshing/baileys'
+//let gp1, gp2, gp3, gp4, gp5, gp6, gp7, gp8, gp9
+
+const grupos = [nna, nn, nnn, nnnt, nnntt, nnnttt, nnnttt2, nnnttt3, nnnttt4]
+//const nombres = [nna, nn, nnn, nnnt, nnntt, nnnttt, nnnttt2, nnnttt3, nnnttt4]
+//const codigo = [gp1, gp2, gp3, gp4, gp5, gp6, gp7, gp8, gp9]
 
 let handler = async (m, { conn, command }) => { 
-const grupos = [nna, nn, nnn, nnnt, nnntt, nnnttt, nnnttt2, nnnttt3, nnnttt4]
-const nombre = [nna, nn, nnn, nnnt, nnntt, nnnttt, nnnttt2, nnnttt3, nnnttt4]
+for (let i = 0; i < grupos.length; i++) {
+let enlace = grupos[i]
+//let enlace = grupos[i]
+//let enlace = grupos[i]
+//let nombre = nombres[i]	
 
-Object.keys(grupos, nombre).map((v, index) => {
-const extractGroupMetadata = (result) => {
-	const group = baileys.getBinaryNodeChild(result, 'group')
-	const descChild = baileys.getBinaryNodeChild(group, 'description')
-	let desc
-	if (descChild) desc = baileys.getBinaryNodeChild(descChild, 'body')?.content
-	const metadata = {
-		id: group.attrs.id.includes('@') ? group.attrs.id : baileys.jidEncode(group.attrs.id, 'g.us'),
-		subject: group.attrs.subject,
-		creation: new Date(+group.attrs.creation * 1000).toLocaleString('id', { timeZone: 'Asia/Jakarta' }),
-		owner: group.attrs.creator ? 'wa.me/' + baileys.jidNormalizedUser(group.attrs.creator).split('@')[0] : undefined,
-		desc
-	}
-	return metadata
-}	
-
-let [, code] = grupos[v].match(/chat\.whatsapp\.com\/(?:invite\/)?([0-9A-Za-z]{20,24})/i) || [] 
+let [, code] = enlace.match(/chat\.whatsapp\.com\/(?:invite\/)?([0-9A-Za-z]{20,24})/i) || [] 
 let res = conn.query({ tag: 'iq', attrs: { type: 'get', xmlns: 'w:g2', to: '@g.us' }, content: [{ tag: 'invite', attrs: { code } }] })
-let data = extractGroupMetadata(res[v])
+let data = extractGroupMetadata(res)	
 
 let str = `
 ${data.subject}
@@ -72,10 +64,24 @@ conn.sendHydrated(m.chat, str, `𝙂𝘼𝙏𝘼 𝘿𝙄𝙊𝙎 - 𝘼𝙎𝙄
 ['🎁 𝘿𝙤𝙣𝙖𝙧 | 𝘿𝙤𝙣𝙖𝙩𝙚', '.donar'],
 ['𝙑𝙤𝙡𝙫𝙚𝙧 𝙖𝙡 𝙈𝙚𝙣𝙪́ | 𝘽𝙖𝙘𝙠 𝙩𝙤 𝙈𝙚𝙣𝙪 ☘️', '/menu']
 ], m,)
-})
+}
 }
 
 handler.command = /^linkgc|grupos|gruposgatabot|gatabotgrupos|gruposdegatabot|groupofc|gruposgb|grupogb|groupsgb$/i
 export default handler
 
 
+const extractGroupMetadata = (result) => {
+	const group = baileys.getBinaryNodeChild(result, 'group')
+	const descChild = baileys.getBinaryNodeChild(group, 'description')
+	let desc
+	if (descChild) desc = baileys.getBinaryNodeChild(descChild, 'body')?.content
+	const metadata = {
+		id: group.attrs.id.includes('@') ? group.attrs.id : baileys.jidEncode(group.attrs.id, 'g.us'),
+		subject: group.attrs.subject,
+		creation: new Date(+group.attrs.creation * 1000).toLocaleString('id', { timeZone: 'Asia/Jakarta' }),
+		owner: group.attrs.creator ? 'wa.me/' + baileys.jidNormalizedUser(group.attrs.creator).split('@')[0] : undefined,
+		desc
+	}
+	return metadata
+}
