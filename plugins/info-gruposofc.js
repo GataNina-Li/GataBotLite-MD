@@ -4,7 +4,7 @@ import * as baileys from '@adiwajshing/baileys'
 const grupo = nna
 let handler = async (m, { conn, usedPrefix , command }) => { 	
 
-let [, code1] = grupo.match(/chat\.whatsapp\.com\/(?:invite\/)?([0-9A-Za-z]{20,24})/i) || []
+let [code] = grupo.match(/chat\.whatsapp\.com\/(?:invite\/)?([0-9A-Za-z]{20,24})/i) || []
 //let [, code2] = grupo[1].match(/chat\.whatsapp\.com\/(?:invite\/)?([0-9A-Za-z]{20,24})/i) || []
 //let [, code3] = grupo[2].match(/chat\.whatsapp\.com\/(?:invite\/)?([0-9A-Za-z]{20,24})/i) || []
 //let [, code4] = grupo[3].match(/chat\.whatsapp\.com\/(?:invite\/)?([0-9A-Za-z]{20,24})/i) || []
