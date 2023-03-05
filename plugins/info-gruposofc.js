@@ -1,98 +1,97 @@
 import * as baileys from '@adiwajshing/baileys'
 
-const grupos = [nna, nn, nnn, nnnt, nnntt, nnnttt, nnnttt2, nnnttt3, nnnttt4]
-const nombre = [nna, nn, nnn, nnnt, nnntt, nnnttt, nnnttt2, nnnttt3, nnnttt4]
-//const grupo = nna
+const grupo = [nna, nn, nnn, nnnt, nnntt, nnnttt, nnnttt2, nnnttt3, nnnttt4]
 let handler = async (m, { conn, command }) => { 	
 
-//let [, code] = grupo.match(/chat\.whatsapp\.com\/(?:invite\/)?([0-9A-Za-z]{20,24})/i) || []
-//let res = await conn.query({ tag: 'iq', attrs: { type: 'get', xmlns: 'w:g2', to: '@g.us' }, content: [{ tag: 'invite', attrs: { code } }] })
-//let data = extractGroupMetadata(res)
+let [, code1] = grupo[0].match(/chat\.whatsapp\.com\/(?:invite\/)?([0-9A-Za-z]{20,24})/i) || []
+let [, code2] = grupo[1].match(/chat\.whatsapp\.com\/(?:invite\/)?([0-9A-Za-z]{20,24})/i) || []
+let [, code3] = grupo[2].match(/chat\.whatsapp\.com\/(?:invite\/)?([0-9A-Za-z]{20,24})/i) || []
+let [, code4] = grupo[3].match(/chat\.whatsapp\.com\/(?:invite\/)?([0-9A-Za-z]{20,24})/i) || []
+let [, code5] = grupo[4].match(/chat\.whatsapp\.com\/(?:invite\/)?([0-9A-Za-z]{20,24})/i) || []
+let [, code6] = grupo[5].match(/chat\.whatsapp\.com\/(?:invite\/)?([0-9A-Za-z]{20,24})/i) || []
+let [, code7] = grupo[6].match(/chat\.whatsapp\.com\/(?:invite\/)?([0-9A-Za-z]{20,24})/i) || []
+let [, code8] = grupo[7].match(/chat\.whatsapp\.com\/(?:invite\/)?([0-9A-Za-z]{20,24})/i) || []
+let [, code9] = grupo[8].match(/chat\.whatsapp\.com\/(?:invite\/)?([0-9A-Za-z]{20,24})/i) || []
 
-//let groups = Object.keys(grupos).map((v, index) => {
-//let [, code] = grupos[v].match(/chat\.whatsapp\.com\/(?:invite\/)?([0-9A-Za-z]{20,24})/i) || []	
-//let res = conn.query({ tag: 'iq', attrs: { type: 'get', xmlns: 'w:g2', to: '@g.us' }, content: [{ tag: 'invite', attrs: { code } }] })
-//let data = extractGroupMetadata(res)
-//})
-	
-//for (let i = 0; i < grupos.length; i++) {
-//  const [, code] = grupos[i].match(/chat\.whatsapp\.com\/(?:invite\/)?([0-9A-Za-z]{20,24})/i) || []
-//  const res = conn.query({ tag: 'iq', attrs: { type: 'get', xmlns: 'w:g2', to: '@g.us' }, content: [{ tag: 'invite', attrs: { code } }] })
-//  const data = extractGroupMetadata(res)
-//  console.log(`Metadata for ${grupos[i]}: `, data)
-//}
+let res1 = await conn.query({ tag: 'iq', attrs: { type: 'get', xmlns: 'w:g2', to: '@g.us' }, content: [{ tag: 'invite', attrs: { code1 } }] })
+let res2 = await conn.query({ tag: 'iq', attrs: { type: 'get', xmlns: 'w:g2', to: '@g.us' }, content: [{ tag: 'invite', attrs: { code2 } }] })
+let res3 = await conn.query({ tag: 'iq', attrs: { type: 'get', xmlns: 'w:g2', to: '@g.us' }, content: [{ tag: 'invite', attrs: { code3 } }] })
+let res4 = await conn.query({ tag: 'iq', attrs: { type: 'get', xmlns: 'w:g2', to: '@g.us' }, content: [{ tag: 'invite', attrs: { code4 } }] })
+let res5 = await conn.query({ tag: 'iq', attrs: { type: 'get', xmlns: 'w:g2', to: '@g.us' }, content: [{ tag: 'invite', attrs: { code5 } }] })
+let res6 = await conn.query({ tag: 'iq', attrs: { type: 'get', xmlns: 'w:g2', to: '@g.us' }, content: [{ tag: 'invite', attrs: { code6 } }] })
+let res7 = await conn.query({ tag: 'iq', attrs: { type: 'get', xmlns: 'w:g2', to: '@g.us' }, content: [{ tag: 'invite', attrs: { code7 } }] })
+let res8 = await conn.query({ tag: 'iq', attrs: { type: 'get', xmlns: 'w:g2', to: '@g.us' }, content: [{ tag: 'invite', attrs: { code8 } }] })
+let res9 = await conn.query({ tag: 'iq', attrs: { type: 'get', xmlns: 'w:g2', to: '@g.us' }, content: [{ tag: 'invite', attrs: { code9 } }] })
 
-const extractGroupMetadata = (result) => {
-    const group = baileys.getBinaryNodeChild(result, 'group');
-    const descChild = baileys.getBinaryNodeChild(group, 'description');
-    let desc;
-    if (descChild) desc = baileys.getBinaryNodeChild(descChild, 'body')?.content;
-    const metadata = {
-      id: group.attrs.id.includes('@') ? group.attrs.id : baileys.jidEncode(group.attrs.id, 'g.us'),
-      subject: group.attrs.subject,
-      creation: new Date(+group.attrs.creation * 1000).toLocaleString('id', { timeZone: 'Asia/Jakarta' }),
-      owner: group.attrs.creator ? 'wa.me/' + baileys.jidNormalizedUser(group.attrs.creator).split('@')[0] : undefined,
-      desc
-    };
-    return metadata;
-  };
-
-  let metadataObjects = {};
-  
-  for (let i = 0; i < grupos.length; i++) {
-    let [, code] = grupos[i].match(/chat\.whatsapp\.com\/(?:invite\/)?([0-9A-Za-z]{20,24})/i) || [];
-    let res = await conn.query({ tag: 'iq', attrs: { type: 'get', xmlns: 'w:g2', to: '@g.us' }, content: [{ tag: 'invite', attrs: { code } }] });
-    let metadata = extractGroupMetadata(res[0]);
-    metadataObjects[nombre[i]] = metadata;
-  }
-
-  console.log(metadataObjects);
-}
-
-getGroupMetadata();
-	
-
+let data1 = extractGroupMetadata(res1)
+let data2 = extractGroupMetadata(res2)
+let data3 = extractGroupMetadata(res3)
+let data4 = extractGroupMetadata(res4)
+let data5 = extractGroupMetadata(res5)
+let data6 = extractGroupMetadata(res6)
+let data7 = extractGroupMetadata(res7)
+let data8 = extractGroupMetadata(res8)
+let data9 = extractGroupMetadata(res9)
 
 let str = `
+*◜🌺 GRUPOS OFICIALES 🌺◞*
 
-💕 𝘽𝙄𝙀𝙉𝙑𝙀𝙉𝙄𝘿𝙊(𝘼) 𝘼 𝙇𝙊𝙎 𝙂𝙍𝙐𝙋𝙊𝙎 𝙊𝙁𝙄𝘾𝙄𝘼𝙇𝙀𝙎
+◎⇢ ${data1.subject}
+┆ ⭔ *id* ${data1.id}
+┆ ⭔ *creado* ${data1.creation}
+┆ ⭔ *owner* ${data1.owner}
+◎⇢ ${grupo[0]}
 
-💞 𝙒𝙀𝙇𝘾𝙊𝙈𝙀 𝙏𝙊 𝙏𝙃𝙀 𝙊𝙁𝙁𝙄𝘾𝙄𝘼𝙇 𝙂𝙍𝙊𝙐𝙋𝙎
-┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
-𝙏𝙚 𝙞𝙣𝙫𝙞𝙩𝙤 𝙖 𝙦𝙪𝙚 𝙩𝙚 𝙪𝙣𝙖𝙨 𝙖 𝙡𝙖 𝘾𝙤𝙢𝙪𝙣𝙞𝙙𝙖𝙙 𝙂𝙖𝙩𝙖𝘽𝙤𝙩. ✨ 𝙏𝙚𝙣 𝙪𝙣 𝙗𝙪𝙚𝙣 𝙢𝙤𝙢𝙚𝙣𝙩𝙤 𝙚 𝙞𝙣𝙩𝙚𝙧𝙖𝙘𝙘𝙞𝙤𝙣𝙖 𝙘𝙤𝙣 𝙉𝙤𝙨𝙤𝙩𝙧𝙤𝙨. 😸
+◎⇢ ${data2.subject}
+┆ ⭔ *id* ${data2.id}
+┆ ⭔ *creado* ${data2.creation}
+┆ ⭔ *owner* ${data2.owner}
+◎⇢ ${grupo[1]}
 
-𝙄 𝙞𝙣𝙫𝙞𝙩𝙚 𝙮𝙤𝙪 𝙩𝙤 𝙟𝙤𝙞𝙣 𝙩𝙝𝙚 𝙂𝙖𝙩𝙖𝘽𝙤𝙩 𝘾𝙤𝙢𝙢𝙪𝙣𝙞𝙩𝙮. 💫 𝙃𝙖𝙫𝙚 𝙖 𝙜𝙤𝙤𝙙 𝙩𝙞𝙢𝙚 𝙖𝙣𝙙 𝙞𝙣𝙩𝙚𝙧𝙖𝙘𝙩 𝙬𝙞𝙩𝙝 𝙪𝙨. 😼
-┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
-𓃠 *Versión de ${gt}*
-➥ ${vs}
-┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
-✅ 𝙂𝙍𝙐𝙋𝙊 𝙊𝙁𝙄𝘾𝙄𝘼𝙇 ${gt}
-┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
-✨ *Informate de las Novedades!!!*
-🐈 *${nna}*\n
-┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
-🐈 *${nn}*\n
-┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
-🐈 *${nnn}*\n
-┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
-🐈 *${nnnt}*\n
-┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
-🐈 *${nnntt}*\n
-┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
-🐈 *${nnnttt}*\n
-┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
-✅ *COLABORACIÓN CON* ${gt}
-┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
-🐈 *${nnnttt2}*\n
-┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
-🐈 *${nnnttt3}*\n
-┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
-🐈 *${nnnttt4}*\n
-┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
-🐈 *https://chat.whatsapp.com/J8HOf2T3QYeKu3UN9UBkT6*\n
-┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
-*Por favor, no ingresar con números de Bots, y mantener el respeto.*\n
-*Please, do not enter with Bot numbers, and maintain respect.*
+◎⇢ ${data3.subject}
+┆ ⭔ *id* ${data3.id}
+┆ ⭔ *creado* ${data3.creation}
+┆ ⭔ *owner* ${data3.owner}
+◎⇢ ${grupo[2]}
+
+◎⇢ ${data4.subject}
+┆ ⭔ *id* ${data4.id}
+┆ ⭔ *creado* ${data4.creation}
+┆ ⭔ *owner* ${data4.owner}
+◎⇢ ${grupo[3]}
+
+◎⇢ ${data5.subject}
+┆ ⭔ *id* ${data5.id}
+┆ ⭔ *creado* ${data5.creation}
+┆ ⭔ *owner* ${data5.owner}
+◎⇢ ${grupo[4]}
+
+◎⇢ ${data6.subject}
+┆ ⭔ *id* ${data6.id}
+┆ ⭔ *creado* ${data6.creation}
+┆ ⭔ *owner* ${data6.owner}
+◎⇢ ${grupo[5]}
+
+*◜🌸 COLABORACIÓN 🌸◞*
+
+◎⇢ ${data7.subject}
+┆ ⭔ *id* ${data7.id}
+┆ ⭔ *creado* ${data7.creation}
+┆ ⭔ *owner* ${data7.owner}
+◎⇢ ${grupo[6]}
+
+◎⇢ ${data8.subject}
+┆ ⭔ *id* ${data8.id}
+┆ ⭔ *creado* ${data8.creation}
+┆ ⭔ *owner* ${data8.owner}
+◎⇢ ${grupo[7]}
+
+◎⇢ ${data9.subject}
+┆ ⭔ *id* ${data9.id}
+┆ ⭔ *creado* ${data9.creation}
+┆ ⭔ *owner* ${data9.owner}
+◎⇢ ${grupo[8]}
+
 `.trim()
   
 conn.sendHydrated(m.chat, str, `𝙂𝘼𝙏𝘼 𝘿𝙄𝙊𝙎 - 𝘼𝙎𝙄𝙎𝙏𝙀𝙉𝘾𝙄𝘼\n${asistencia}\n\n` + wm, null, 'https://github.com/GataNina-Li/GataBot-MD', '𝙂𝙖𝙩𝙖𝘽𝙤𝙩-𝙈𝘿', null, null, [
