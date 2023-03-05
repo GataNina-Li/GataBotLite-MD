@@ -1,9 +1,10 @@
 import * as baileys from '@adiwajshing/baileys'
 
-const grupo = [nna, nn, nnn, nnnt, nnntt, nnnttt, nnnttt2, nnnttt3, nnnttt4]
+//const grupo = [nna, nn, nnn, nnnt, nnntt, nnnttt, nnnttt2, nnnttt3, nnnttt4]
+const grupo = nna
 let handler = async (m, { conn, usedPrefix , command }) => { 	
 
-let [, code1] = grupo[0].match(/chat\.whatsapp\.com\/(?:invite\/)?([0-9A-Za-z]{20,24})/i) || []
+let [, code] = grupo.match(/chat\.whatsapp\.com\/(?:invite\/)?([0-9A-Za-z]{20,24})/i) || []
 //let [, code2] = grupo[1].match(/chat\.whatsapp\.com\/(?:invite\/)?([0-9A-Za-z]{20,24})/i) || []
 //let [, code3] = grupo[2].match(/chat\.whatsapp\.com\/(?:invite\/)?([0-9A-Za-z]{20,24})/i) || []
 //let [, code4] = grupo[3].match(/chat\.whatsapp\.com\/(?:invite\/)?([0-9A-Za-z]{20,24})/i) || []
@@ -13,7 +14,7 @@ let [, code1] = grupo[0].match(/chat\.whatsapp\.com\/(?:invite\/)?([0-9A-Za-z]{2
 //let [, code8] = grupo[7].match(/chat\.whatsapp\.com\/(?:invite\/)?([0-9A-Za-z]{20,24})/i) || []
 //let [, code9] = grupo[8].match(/chat\.whatsapp\.com\/(?:invite\/)?([0-9A-Za-z]{20,24})/i) || []
 
-let res1 = await conn.query({ tag: 'iq', attrs: { type: 'get', xmlns: 'w:g2', to: '@g.us' }, content: [{ tag: 'invite', attrs: { code1 } }] })
+let res = await conn.query({ tag: 'iq', attrs: { type: 'get', xmlns: 'w:g2', to: '@g.us' }, content: [{ tag: 'invite', attrs: { code } }] })
 //let res2 = await conn.query({ tag: 'iq', attrs: { type: 'get', xmlns: 'w:g2', to: '@g.us' }, content: [{ tag: 'invite', attrs: { code2 } }] })
 //let res3 = await conn.query({ tag: 'iq', attrs: { type: 'get', xmlns: 'w:g2', to: '@g.us' }, content: [{ tag: 'invite', attrs: { code3 } }] })
 //let res4 = await conn.query({ tag: 'iq', attrs: { type: 'get', xmlns: 'w:g2', to: '@g.us' }, content: [{ tag: 'invite', attrs: { code4 } }] })
@@ -23,7 +24,7 @@ let res1 = await conn.query({ tag: 'iq', attrs: { type: 'get', xmlns: 'w:g2', to
 //let res8 = await conn.query({ tag: 'iq', attrs: { type: 'get', xmlns: 'w:g2', to: '@g.us' }, content: [{ tag: 'invite', attrs: { code8 } }] })
 //let res9 = await conn.query({ tag: 'iq', attrs: { type: 'get', xmlns: 'w:g2', to: '@g.us' }, content: [{ tag: 'invite', attrs: { code9 } }] })
 
-let data1 = extractGroupMetadata(res1)
+let data = extractGroupMetadata(res)
 //let data2 = extractGroupMetadata(res2)
 //let data3 = extractGroupMetadata(res3)
 //let data4 = extractGroupMetadata(res4)
@@ -36,10 +37,10 @@ let data1 = extractGroupMetadata(res1)
 let str = `
 *◜🌺 GRUPOS OFICIALES 🌺◞*
 
-◎⇢ ${data1.subject}
-┆ ⭔ *id* ${data1.id}
-┆ ⭔ *creado* ${data1.creation}
-┆ ⭔ *owner* ${data1.owner}
+◎⇢ ${data.subject}
+┆ ⭔ *id* ${data.id}
+┆ ⭔ *creado* ${data.creation}
+┆ ⭔ *owner* ${data.owner}
 ◎⇢ ${grupo[0]}
 
 `.trim()
