@@ -1,4 +1,5 @@
-import { promises, fs } from 'fs'
+import { promises } from 'fs'
+import fs from 'fs'
 import { join } from 'path'
 import fetch from 'node-fetch'
 
