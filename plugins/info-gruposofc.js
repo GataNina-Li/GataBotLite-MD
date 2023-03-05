@@ -1,18 +1,10 @@
 import * as baileys from '@adiwajshing/baileys'
-//let gp1, gp2, gp3, gp4, gp5, gp6, gp7, gp8, gp9
 
 const grupos = [nna, nn, nnn, nnnt, nnntt, nnnttt, nnnttt2, nnnttt3, nnnttt4]
-//const nombres = [nna, nn, nnn, nnnt, nnntt, nnnttt, nnnttt2, nnnttt3, nnnttt4]
-//const codigo = [gp1, gp2, gp3, gp4, gp5, gp6, gp7, gp8, gp9]
 
-let handler = async (m, { conn, command }) => { 
-for (let i = 0; i < grupos.length; i++) {
-let enlace = grupos[i]
-//let enlace = grupos[i]
-//let enlace = grupos[i]
-//let nombre = nombres[i]	
+let handler = async (m, { conn, command }) => { 	
 
-let [, code] = enlace.match(/chat\.whatsapp\.com\/(?:invite\/)?([0-9A-Za-z]{20,24})/i) || [] 
+let [, code] = grupos[0].match(/chat\.whatsapp\.com\/(?:invite\/)?([0-9A-Za-z]{20,24})/i) || [] 
 let res = conn.query({ tag: 'iq', attrs: { type: 'get', xmlns: 'w:g2', to: '@g.us' }, content: [{ tag: 'invite', attrs: { code } }] })
 let data = extractGroupMetadata(res)	
 
@@ -64,7 +56,6 @@ conn.sendHydrated(m.chat, str, `𝙂𝘼𝙏𝘼 𝘿𝙄𝙊𝙎 - 𝘼𝙎𝙄
 ['🎁 𝘿𝙤𝙣𝙖𝙧 | 𝘿𝙤𝙣𝙖𝙩𝙚', '.donar'],
 ['𝙑𝙤𝙡𝙫𝙚𝙧 𝙖𝙡 𝙈𝙚𝙣𝙪́ | 𝘽𝙖𝙘𝙠 𝙩𝙤 𝙈𝙚𝙣𝙪 ☘️', '/menu']
 ], m,)
-}
 }
 
 handler.command = /^linkgc|grupos|gruposgatabot|gatabotgrupos|gruposdegatabot|groupofc|gruposgb|grupogb|groupsgb$/i
