@@ -3,7 +3,7 @@ const grupo = [nna, nn, nnn, nnnt, nnntt, nnnttt, nnnttt2, nnnttt3, nnnttt4, nnn
 let handler = async (m, { conn, usedPrefix , command }) => { 
 
 let str = `
-*◎⇢ ◜🌺 GRUPOS OFICIALES 🌺◞*
+${lenguajeGB.smsGrupoOfc1()}
 _⭔ ${grupo[0]}_
 
 _⭔ ${grupo[1]}_
@@ -17,7 +17,7 @@ _⭔ ${grupo[4]}_
 _⭔ ${grupo[5]}_
 
 
-*◎⇢ ◜🌸 COLABORACIÓN 🌸◞*
+${lenguajeGB.smsGrupoOfc2()}
 _⭔ ${grupo[6]}_
 
 _⭔ ${grupo[7]}_
