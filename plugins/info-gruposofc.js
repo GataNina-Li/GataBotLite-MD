@@ -1,29 +1,31 @@
 import * as baileys from '@adiwajshing/baileys'
-const grupo = [nna, nn, nnn, nnnt, nnntt, nnnttt, nnnttt2, nnnttt3, nnnttt4]
+const grupo = [nna, nn, nnn, nnnt, nnntt, nnnttt, nnnttt2, nnnttt3, nnnttt4, nnnttt5]
 
 let handler = async (m, { conn, usedPrefix , command }) => { 
 
 let str = `
 *◎⇢ ◜🌺 GRUPOS OFICIALES 🌺◞*
-⭔ ${grupo[0]}
+_⭔ ${grupo[0]}_
 
-⭔ ${grupo[1]}
+_⭔ ${grupo[1]}_
 
-⭔ ${grupo[2]}
+_⭔ ${grupo[2]}_
 
-⭔ ${grupo[3]}
+_⭔ ${grupo[3]}_
 
-⭔ ${grupo[4]}
+_⭔ ${grupo[4]}_
 
-⭔ ${grupo[5]}
+_⭔ ${grupo[5]}_
 
 
 *◎⇢ ◜🌸 COLABORACIÓN 🌸◞*
-⭔ ${grupo[6]}
+_⭔ ${grupo[6]}_
 
-⭔ ${grupo[7]}
+_⭔ ${grupo[7]}_
 
-⭔ ${grupo[8]}`.trim()
+_⭔ ${grupo[8]}_
+
+_⭔ ${grupo[9]}_`.trim()
   
 await conn.sendButton(m.chat, wm, str, img, [[lenguajeGB.smsConMenu(), usedPrefix  + 'menu']], m)
 }
