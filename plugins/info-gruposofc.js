@@ -1,7 +1,6 @@
 const grupo = [nna, nn, nnn, nnnt, nnntt, nnnttt, nnnttt2, nnnttt3, nnnttt4, nnnttt5]
 
 let handler = async (m, { conn, usedPrefix , command }) => { 
-
 let str = `
 ${lenguajeGB.smsGrupoOfc1()}
 _⭔ ${grupo[0]}_
@@ -25,8 +24,7 @@ _⭔ ${grupo[7]}_
 _⭔ ${grupo[8]}_
 
 _⭔ ${grupo[9]}_`.trim()
-  
-await conn.sendButton(m.chat, wm, str, img, [[lenguajeGB.smsConMenu(), usedPrefix  + 'menu']], m)
+await conn.sendButton(m.chat, wm, str, gataMenu.getRandom(), [[lenguajeGB.smsConMenu(), usedPrefix  + 'menu']], m)
 }
 
 handler.command = /^linkgc|grupos|gruposgatabot|gatabotgrupos|gruposdegatabot|groupofc|gruposgb|grupogb|groupsgb$/i
