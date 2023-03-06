@@ -46,7 +46,7 @@ https://github.com/jonathanong/heroku-buildpack-ffmpeg-latest.git
 
 https://github.com/clhuang/heroku-buildpack-webp-binaries.git`
 
-let codigo3 `
+let codigo3 = `
 git clone https://github.com/GataNina-Li/GataBot-MD
 cd GataBot-MD
 npm install
