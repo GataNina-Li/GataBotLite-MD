@@ -9,18 +9,18 @@ let uptime = clockString(_uptime)
 let totalreg = Object.keys(global.db.data.users).length
 let rtotalreg = Object.values(global.db.data.users).filter(user => user.registered == true).length
 
-await conn.sendButton(m.chat, wm.trim(), `
+await conn.sendButton(m.chat, wm, `
 *╭𝄗𝄗✦ --ESTADO-- ✦𝄗𝄗⬣*
  ⎸ *⍟ Versión *
  ⎸ ❉ ➺ ${vs}
  ⎸ ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
- ⎸ ❉ *Usuarios/as* ➺                *_${Object.keys(global.db.data.users).length}_*
- ⎸ ❉ *Registrados/as* ➺             *_${rtotalreg}/${totalreg}_*
- ⎸ ❉ *Chat/s Prohibido/s* ➺         *_${Object.entries(global.db.data.chats).filter(chat => chat[1].isBanned).length}_* 
+ ⎸ ❉ *Usuarios/as* ➺ *_${Object.keys(global.db.data.users).length}_*
+ ⎸ ❉ *Registrados/as* ➺ *_${rtotalreg}/${totalreg}_*
+ ⎸ ❉ *Chat/s Prohibido/s* ➺ *_${Object.entries(global.db.data.chats).filter(chat => chat[1].isBanned).length}_* 
  ⎸ ❉ *Usuarios/as Prohibidos/as)* ➺ *_${Object.entries(global.db.data.users).filter(user => user[1].banned).length}_* 
  ⎸ ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
- ⎸ ❉ *Activa durante* ➺            *_${uptime}_*
-*╰𝄗𝄗𝄗𝄗𝄗𝄗𝄗⬣*`, gataImg.getRandom(), [[lenguajeGB.smsConMenu(), `${usedPrefix}menu`]], m)
+ ⎸ ❉ *Activa durante* ➺ *_${uptime}_*
+*╰𝄗𝄗𝄗𝄗𝄗𝄗𝄗⬣*`.trim(), gataImg.getRandom(), [[lenguajeGB.smsConMenu(), `${usedPrefix}menu`]], m)
 }
 handler.command = /^(estado|status|estate|state|stado|stats|botstat(us)?)$/i
 handler.register = true
