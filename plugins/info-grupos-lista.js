@@ -9,7 +9,7 @@ txt += `
 *⋄ Grupo:* ${groups[i].subject}
 *⋄ ID:* ${groups[i].id}
 ${isOwner ? `*⋄ Participantes:* ${groups[i].participants.length}` : ''}
-${isOwner ? `*⋄ Bot Admin:* ${!!groups[i].participants.find(v => v.id == conn.user.jid).admin == true ? '✅' : '❌'}\n` : ''}\n`
+${isOwner ? `*⋄ Bot Admin:* ${!!groups[i].participants.find(v => v.id == conn.user.jid).admin == true ? '✅' : '❌'}\n` : ''}`
 }
 m.reply(txt.trim())
 }
