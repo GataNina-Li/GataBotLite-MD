@@ -17,7 +17,7 @@ _◊ Puedes visitar el repositorio o Copiar los comandos de instalación._`
 
 let buttons = [ 
 {index: 1, urlButton: {displayText: '⍟ G I T H U B', url: md}},
-{index: 2, urlButton: {displayText: 'C O M A N D O S', url: 'https://www.whatsapp.com/otp/copy/' + codigo}},
+{index: 2, urlButton: {displayText: 'C O M A N D O S', url: 'https://www.whatsapp.com/otp/copy/' + md}},
 {index: 3, quickReplyButton: {displayText: lenguajeGB.smsConMenu(), id: `${usedPrefix}menu`}}
 ]
 
