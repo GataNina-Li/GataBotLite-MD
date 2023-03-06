@@ -54,46 +54,46 @@ node .`
 if (/(instalarbot|instalargatabot|instalargata|procesobot|botproceso|procesodelbot|botinstall|installbot)/i.test(command)) {
 switch (type) {
 		
-case 'termux1':
+case 'termux':
 let termux = `*◎ T E R M U X*
 _◊ Puedes visitar el repositorio o Copiar los comandos de instalación._`
 
-let buttons = [ 
+let buttons1 = [ 
 {index: 1, urlButton: {displayText: 'G I T H U B', url: md}},
 {index: 2, urlButton: {displayText: 'T E R M U X', url: 'https://f-droid.org/es/packages/com.termux/'}},
 {index: 3, urlButton: {displayText: 'C O M A N D O S', url: 'https://www.whatsapp.com/otp/copy/' + codigo}},
 {index: 4, quickReplyButton: {displayText: lenguajeGB.smsConMenu(), id: `${usedPrefix}menu`}},
 ]
-await conn.sendMessage(m.chat, { text: termux, templateButtons: buttons, footer: wm }, { quoted: fkontak})
+await conn.sendMessage(m.chat, { text: termux, templateButtons: buttons1, footer: wm }, { quoted: fkontak})
 break
 		
-case 'replit1':
+case 'replit':
 let replit = `*◎ R E P L I T*
 _◊ Cree su cuenta en Replit, si ya tiene cuenta use el tercer Botón._`
 
-let buttons = [ 
+let buttons2 = [ 
 {index: 1, urlButton: {displayText: 'G I T H U B', url: md}},
 {index: 2, urlButton: {displayText: 'C R E A R  C U E N T A', url: 'https://replit.com/login'}},
 {index: 3, urlButton: {displayText: 'R E P L I T', url: 'https://replit.com/github/GataNina-Li/GataBotLite-MD'}},
 {index: 4, quickReplyButton: {displayText: lenguajeGB.smsConMenu(), id: `${usedPrefix}menu`}},
 ]
-await conn.sendMessage(m.chat, { text: replit, templateButtons: buttons, footer: wm }, { quoted: fkontak})
+await conn.sendMessage(m.chat, { text: replit, templateButtons: buttons2, footer: wm }, { quoted: fkontak})
 break
 		
-case 'heroku1':
+case 'heroku':
 let heroku = `*◎ H E R O K U*
 _◊ Cree su cuenta en Replit, si ya tiene cuenta use el tercer Botón._`
 
-let buttons = [ 
+let buttons3 = [ 
 {index: 1, urlButton: {displayText: 'G I T H U B', url: md}},
 {index: 2, urlButton: {displayText: 'H E R O K U', url: 'https://heroku.com/deploy?template=https://github.com/GataNina-Li/GataBotMDLite-Heroku'}},
 {index: 3, urlButton: {displayText: 'C O M A N D O S', url: 'https://www.whatsapp.com/otp/copy/' + codigo2}},
 {index: 4, quickReplyButton: {displayText: lenguajeGB.smsConMenu(), id: `${usedPrefix}menu`}},
 ]
-await conn.sendMessage(m.chat, { text: heroku, templateButtons: buttons, footer: wm }, { quoted: fkontak})
+await conn.sendMessage(m.chat, { text: heroku, templateButtons: buttons3, footer: wm }, { quoted: fkontak})
 break
 		
-case 'windows1':	
+case 'windows':	
 let heroku = `*◎ W I N D O W S*
 *💻 PARA USUARIOS DE WINDOWS/VPS/RDP*
 
@@ -110,12 +110,12 @@ https://classic.yarnpkg.com/en/docs/install#windows-stable
 ⎔ _Descargar e instala FFmpeg_
 https://www.gyan.dev/ffmpeg/builds/`
 
-let buttons = [ 
+let buttons4 = [ 
 {index: 1, urlButton: {displayText: 'G I T H U B', url: md}},
 {index: 2, urlButton: {displayText: 'C O M A N D O S', url: 'https://www.whatsapp.com/otp/copy/' + codigo3}},
 {index: 3, quickReplyButton: {displayText: lenguajeGB.smsConMenu(), id: `${usedPrefix}menu`}},
 ]
-await conn.sendMessage(m.chat, { text: heroku, templateButtons: buttons, footer: wm }, { quoted: fkontak})		
+await conn.sendMessage(m.chat, { text: heroku, templateButtons: buttons4, footer: wm }, { quoted: fkontak})		
 break
 		
 case 'instmd':
