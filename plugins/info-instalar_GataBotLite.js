@@ -40,10 +40,8 @@ cd GataBotLite-MD
 npm start`
 
 let codigo2 = `
-heroku/nodejs
-
-https://github.com/jonathanong/heroku-buildpack-ffmpeg-latest.git
-
+heroku/nodejs\n
+https://github.com/jonathanong/heroku-buildpack-ffmpeg-latest.git\n
 https://github.com/clhuang/heroku-buildpack-webp-binaries.git`
 
 let codigo3 = `
@@ -130,7 +128,7 @@ return await conn.sendMessage(m.chat, listMessage, { quoted: m, contextInfo: { m
 } catch (e) {
 await m.reply(lenguajeGB['smsMalError3']() + '\n*' + lenguajeGB.smsMensError1() + '*\n*' + usedPrefix + `${lenguajeGB.lenguaje() == 'es' ? 'reporte' : 'report'}` + '* ' + `${lenguajeGB.smsMensError2()} ` + usedPrefix + command)
 console.log(`❗❗ ${lenguajeGB['smsMensError2']()} ${usedPrefix + command} ❗❗`)
-console.log(e)}}
-
+console.log(e)}
+}
 handler.command = /^(instalarbot|instalargatabot|instalargata|procesobot|botproceso|procesodelbot|botinstall|installbot)/i
 export default handler
