@@ -45,8 +45,8 @@ https://github.com/jonathanong/heroku-buildpack-ffmpeg-latest.git\n
 https://github.com/clhuang/heroku-buildpack-webp-binaries.git`
 
 let codigo3 = `
-git clone https://github.com/GataNina-Li/GataBot-MD
-cd GataBot-MD
+git clone https://github.com/GataNina-Li/GataBotLite-MD
+cd GataBotLite-MD
 npm install
 npm update
 node .`
@@ -94,8 +94,7 @@ await conn.sendMessage(m.chat, { text: heroku, templateButtons: buttons3, footer
 break
 		
 case 'windows':	
-let windows = `*◎ W I N D O W S*
-*💻 PARA USUARIOS DE WINDOWS/VPS/RDP*
+let windows = `*◎ W I N D O W S / V P S / R D P*
 
 ⎔ _Descargar e instala Git_
 https://git-scm.com/downloads
