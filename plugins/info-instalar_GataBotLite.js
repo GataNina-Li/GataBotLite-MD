@@ -117,7 +117,7 @@ let buttons4 = [
 ]
 await conn.sendMessage(m.chat, { text: windows, templateButtons: buttons4, footer: wm }, { quoted: fkontak})		
 break
-		
+ 		
 case 'instmd':
 await m.reply('*https://github.com/GataNina-Li/GataBot-MD*')
 break
