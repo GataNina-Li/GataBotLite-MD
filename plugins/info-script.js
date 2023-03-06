@@ -8,7 +8,8 @@ let _package = JSON.parse(await promises.readFile(join(__dirname, '../package.js
 //await conn.reply(m.chat, `*_${_package.homepage}_*`, m, { contextInfo: { externalAdReply :{ mediaUrl: null, mediaType: 1, description: null, title: wm, body: lenguajeGB.smsCreApoyo(), previewType: 1, thumbnail: fs.readFileSync("./media/menus/Menu3.jpg"), sourceUrl: md}}})
 let tg = { quoted: m, userJid: conn.user.jid }
 let prep = generateWAMessageFromContent(m.chat, { extendedTextMessage: { text: `*_${_package.homepage}_*`, contextInfo: { externalAdReply: { title: wm, body: lenguajeGB.smsCreApoyo(), thumbnail: gataMenu.getRandom(), sourceUrl: md }}}}, tg)
-await conn.relayMessage(m.chat, prep.message, { messageId: prep.key.id })
+//await conn.relayMessage(m.chat, prep.message, { messageId: prep.key.id })
+conn.relayMessage(m.chat, prep.message, { messageId: prep.key.id, mentions: [m.sender] })
 } catch (e) {
 await m.reply(lenguajeGB['smsMalError3']() + '\n*' + lenguajeGB.smsMensError1() + '*\n*' + usedPrefix + `${lenguajeGB.lenguaje() == 'es' ? 'reporte' : 'report'}` + '* ' + `${lenguajeGB.smsMensError2()} ` + usedPrefix + command)
 console.log(`❗❗ ${lenguajeGB['smsMensError2']()} ${usedPrefix + command} ❗❗`)
