@@ -1,5 +1,5 @@
 let handler  = async (m, { conn, usedPrefix, command, args }) => {
-try{
+try{ 
 let fkontak = { "key": { "participants":"0@s.whatsapp.net", "remoteJid": "status@broadcast", "fromMe": false, "id": "Halo" }, "message": { "contactMessage": { "vcard": `BEGIN:VCARD\nVERSION:3.0\nN:Sy;Bot;;;\nFN:y\nitem1.TEL;waid=${m.sender.split('@')[0]}:${m.sender.split('@')[0]}\nitem1.X-ABLabel:Ponsel\nEND:VCARD` }}, "participant": "0@s.whatsapp.net" }
 let type = (args[0] || '').toLowerCase()
 let taguser = conn.getName(m.sender)
@@ -15,7 +15,7 @@ rows: [
 ]},
 { title: '𝙂𝙖𝙩𝙖𝘽𝙤𝙩-𝙈𝘿 💖🐈',
 rows: [
-{title: sib + 'Instalar 𝙂𝙖𝙩𝙖𝘽𝙤𝙩-𝙈𝘿', rowId: usedPrefix + ' instmd'},
+{title: sib + '𝙂𝙖𝙩𝙖𝘽𝙤𝙩-𝙈𝘿', rowId: usedPrefix + ' instmd'},
 ]},
 ]
  
@@ -54,7 +54,7 @@ node .`
 if (/(instalarbot|instalargatabot|instalargata|procesobot|botproceso|procesodelbot|botinstall|installbot)/i.test(command)) {
 switch (type) {
 		
-case 'termux':
+case 'termux1':
 let termux = `*◎ T E R M U X*
 _◊ Puedes visitar el repositorio o Copiar los comandos de instalación._`
 
@@ -67,7 +67,7 @@ let buttons = [
 await conn.sendMessage(m.chat, { text: termux, templateButtons: buttons, footer: wm }, { quoted: fkontak})
 break
 		
-case 'replit':
+case 'replit1':
 let replit = `*◎ R E P L I T*
 _◊ Cree su cuenta en Replit, si ya tiene cuenta use el tercer Botón._`
 
@@ -80,7 +80,7 @@ let buttons = [
 await conn.sendMessage(m.chat, { text: replit, templateButtons: buttons, footer: wm }, { quoted: fkontak})
 break
 		
-case 'heroku':
+case 'heroku1':
 let heroku = `*◎ H E R O K U*
 _◊ Cree su cuenta en Replit, si ya tiene cuenta use el tercer Botón._`
 
@@ -92,8 +92,8 @@ let buttons = [
 ]
 await conn.sendMessage(m.chat, { text: heroku, templateButtons: buttons, footer: wm }, { quoted: fkontak})
 break
-
-case 'windows':	
+		
+case 'windows1':	
 let heroku = `*◎ W I N D O W S*
 *💻 PARA USUARIOS DE WINDOWS/VPS/RDP*
 
