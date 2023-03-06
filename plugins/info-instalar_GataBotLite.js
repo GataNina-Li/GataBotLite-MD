@@ -82,12 +82,12 @@ break
 		
 case 'heroku':
 let heroku = `*◎ H E R O K U*
-_◊ Cree su cuenta en Replit, si ya tiene cuenta use el tercer Botón._`
+_◊ Cree su cuenta en Heroku, si ya tiene cuenta use el segundo Botón._`
 
 let buttons3 = [ 
 {index: 1, urlButton: {displayText: 'G I T H U B', url: md}},
 {index: 2, urlButton: {displayText: 'H E R O K U', url: 'https://heroku.com/deploy?template=https://github.com/GataNina-Li/GataBotMDLite-Heroku'}},
-{index: 3, urlButton: {displayText: 'C O M A N D O S', url: 'https://www.whatsapp.com/otp/copy/' + codigo2}},
+{index: 3, urlButton: {displayText: 'B U I L D P A C K', url: 'https://www.whatsapp.com/otp/copy/' + codigo2}},
 {index: 4, quickReplyButton: {displayText: lenguajeGB.smsConMenu(), id: `${usedPrefix}menu`}},
 ]
 await conn.sendMessage(m.chat, { text: heroku, templateButtons: buttons3, footer: wm }, { quoted: fkontak})
