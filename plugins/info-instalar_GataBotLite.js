@@ -21,7 +21,7 @@ let buttons = [
 {index: 3, quickReplyButton: {displayText: lenguajeGB.smsConMenu(), id: `${usedPrefix}menu`}}
 ]
 
-await conn.sendMessage(m.chat, { text: gata, templateButtons: buttons, footer: wm })
+await conn.sendMessage(m.chat, { text: gata, templateButtons: buttons, footer: wm }, { quoted: fkontak})
 }
 
 handler.command = /^(instalarbot|instalargatabot|instalargata|procesobot|botproceso|procesodelbot|botinstall|installbot)/i
