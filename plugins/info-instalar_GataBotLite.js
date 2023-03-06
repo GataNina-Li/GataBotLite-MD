@@ -94,7 +94,7 @@ await conn.sendMessage(m.chat, { text: heroku, templateButtons: buttons3, footer
 break
 		
 case 'windows':	
-let heroku = `*◎ W I N D O W S*
+let windows = `*◎ W I N D O W S*
 *💻 PARA USUARIOS DE WINDOWS/VPS/RDP*
 
 ⎔ _Descargar e instala Git_
@@ -115,7 +115,7 @@ let buttons4 = [
 {index: 2, urlButton: {displayText: 'C O M A N D O S', url: 'https://www.whatsapp.com/otp/copy/' + codigo3}},
 {index: 3, quickReplyButton: {displayText: lenguajeGB.smsConMenu(), id: `${usedPrefix}menu`}},
 ]
-await conn.sendMessage(m.chat, { text: heroku, templateButtons: buttons4, footer: wm }, { quoted: fkontak})		
+await conn.sendMessage(m.chat, { text: windows, templateButtons: buttons4, footer: wm }, { quoted: fkontak})		
 break
 		
 case 'instmd':
