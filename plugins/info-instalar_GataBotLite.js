@@ -10,12 +10,12 @@ const sections = [
 rows: [
 {title: sib + 'T E R M U X', rowId: usedPrefix + command + ' termux'},
 {title: sib + 'R E P L I T', rowId: usedPrefix + command + ' replit'},
-{title: sib + 'H E R O K U', rowId: usedPrefix + ' heroku'},
-{title: sib + 'W I N D O W S', rowId: usedPrefix + ' windows'},
+{title: sib + 'H E R O K U', rowId: usedPrefix + command + ' heroku'},
+{title: sib + 'W I N D O W S', rowId: usedPrefix + command + ' windows'},
 ]},
 { title: '𝙂𝙖𝙩𝙖𝘽𝙤𝙩-𝙈𝘿 💖🐈',
 rows: [
-{title: sib + '𝙂𝙖𝙩𝙖𝘽𝙤𝙩-𝙈𝘿', rowId: usedPrefix + ' instmd'},
+{title: sib + '𝙂𝙖𝙩𝙖𝘽𝙤𝙩-𝙈𝘿', rowId: usedPrefix + command + ' instmd'},
 ]},
 ]
  
