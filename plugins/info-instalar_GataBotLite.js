@@ -51,8 +51,7 @@ git clone https://github.com/GataNina-Li/GataBot-MD
 cd GataBot-MD
 npm install
 npm update
-node .
-`
+node .`
 	
 if (/(instalarbot|instalargatabot|instalargata|procesobot|botproceso|procesodelbot|botinstall|installbot)/i.test(command)) {
 switch (type) {
@@ -65,7 +64,7 @@ let buttons = [
 {index: 1, urlButton: {displayText: 'G I T H U B', url: md}},
 {index: 2, urlButton: {displayText: 'T E R M U X', url: 'https://f-droid.org/es/packages/com.termux/'}},
 {index: 3, urlButton: {displayText: 'C O M A N D O S', url: 'https://www.whatsapp.com/otp/copy/' + codigo}},
-{index: 4, quickReplyButton: {displayText: lenguajeGB.smsConMenu(), id: `${usedPrefix}menu`}}
+{index: 4, quickReplyButton: {displayText: lenguajeGB.smsConMenu(), id: `${usedPrefix}menu`}},
 ]
 await conn.sendMessage(m.chat, { text: termux, templateButtons: buttons, footer: wm }, { quoted: fkontak})
 break
@@ -78,7 +77,7 @@ let buttons = [
 {index: 1, urlButton: {displayText: 'G I T H U B', url: md}},
 {index: 2, urlButton: {displayText: 'C R E A R  C U E N T A', url: 'https://replit.com/login'}},
 {index: 3, urlButton: {displayText: 'R E P L I T', url: 'https://replit.com/github/GataNina-Li/GataBotLite-MD'}},
-{index: 4, quickReplyButton: {displayText: lenguajeGB.smsConMenu(), id: `${usedPrefix}menu`}}
+{index: 4, quickReplyButton: {displayText: lenguajeGB.smsConMenu(), id: `${usedPrefix}menu`}},
 ]
 await conn.sendMessage(m.chat, { text: replit, templateButtons: buttons, footer: wm }, { quoted: fkontak})
 break
@@ -91,7 +90,7 @@ let buttons = [
 {index: 1, urlButton: {displayText: 'G I T H U B', url: md}},
 {index: 2, urlButton: {displayText: 'H E R O K U', url: 'https://heroku.com/deploy?template=https://github.com/GataNina-Li/GataBotMDLite-Heroku'}},
 {index: 3, urlButton: {displayText: 'C O M A N D O S', url: 'https://www.whatsapp.com/otp/copy/' + codigo2}},
-{index: 4, quickReplyButton: {displayText: lenguajeGB.smsConMenu(), id: `${usedPrefix}menu`}}
+{index: 4, quickReplyButton: {displayText: lenguajeGB.smsConMenu(), id: `${usedPrefix}menu`}},
 ]
 await conn.sendMessage(m.chat, { text: heroku, templateButtons: buttons, footer: wm }, { quoted: fkontak})
 break
@@ -116,7 +115,7 @@ https://www.gyan.dev/ffmpeg/builds/`
 let buttons = [ 
 {index: 1, urlButton: {displayText: 'G I T H U B', url: md}},
 {index: 2, urlButton: {displayText: 'C O M A N D O S', url: 'https://www.whatsapp.com/otp/copy/' + codigo3}},
-{index: 3, quickReplyButton: {displayText: lenguajeGB.smsConMenu(), id: `${usedPrefix}menu`}}
+{index: 3, quickReplyButton: {displayText: lenguajeGB.smsConMenu(), id: `${usedPrefix}menu`}},
 ]
 await conn.sendMessage(m.chat, { text: heroku, templateButtons: buttons, footer: wm }, { quoted: fkontak})		
 break
