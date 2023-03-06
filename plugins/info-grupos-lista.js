@@ -1,15 +1,15 @@
 let handler = async (m, { conn, isOwner }) => {
 let groups = Object.values(await conn.groupFetchAllParticipating()),
-txt = `${packname} _*ESTÁ EN ESTOS GRUPOS:*_
+txt = `${packname} ${lenguajeGB.smsLisA()}
 
-*⭔ Total de Grupos:* ${groups.length}\n`
+${lenguajeGB.smsLisB()} ${groups.length}\n`
 
 for (let i = 0; i < groups.length; i++) {
-txt += `
-*⋄ Grupo:* ${groups[i].subject}
-*⋄ ID:* ${groups[i].id}
-${isOwner ? `*⋄ Participantes:* ${groups[i].participants.length}` : ''}
-${isOwner ? `*⋄ Bot Admin:* ${!!groups[i].participants.find(v => v.id == conn.user.jid).admin == true ? '✅' : '❌'}\n` : ''}`
+txt += ` 
+${lenguajeGB.smsLisC()} ${groups[i].subject}
+${lenguajeGB.smsLisD()} ${groups[i].id}
+${isOwner ? `${lenguajeGB.smsLisE()} ${groups[i].participants.length}` : ''}
+${isOwner ? `${lenguajeGB.smsLisF()} ${!!groups[i].participants.find(v => v.id == conn.user.jid).admin == true ? '✅' : '❌'}\n` : ''}`
 }
 m.reply(txt.trim())
 }
