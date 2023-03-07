@@ -39,7 +39,7 @@ const cpu = cpus.reduce((last, cpu, _, { length }) => {
   })
 const { restrict } = global.db.data.settings[conn.user.jid] || {}
 const { autoread } = global.opts
-let pp = './media/menus/Menu1.jpg'.replace(/[^\x20-\x7E]/g, '').replace(/\0/g, '')
+let pp = 'media/menus/Menu1.jpg'.replace(/[^\x20-\x7E]/g, '').replace(/\0/g, '')
 let old = performance.now()
 let neww = performance.now()
 //let totaljadibot = [...new Set([...global.conns.filter(conn => conn.user && conn.state !== 'close').map(conn => conn.user)])]
