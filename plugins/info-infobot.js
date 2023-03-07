@@ -46,7 +46,7 @@ let neww = performance.now()
 let speed = neww - old
 
 let info = `
-*${lenguajeGB.smsCreInfo()}*
+*${lenguajeGB.smsCreInfo().slice(0, -1)}*
 
 🌺꙰᠁❥ *◜CREADORA◞* ⇢ ${author}
 🌼꙰᠁❥ *◜VERSIÓN◞* ⇢ ${vs}
