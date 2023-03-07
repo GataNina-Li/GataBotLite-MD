@@ -45,7 +45,7 @@ let neww = performance.now()
 let speed = neww - old
 let totaljadibot
 //try{
-totaljadibot = [...new Set([...global.conns.filter(conn => conn.user && conn.state !== 'close').map(conn => conn.user)]) || 'ERROR'] 
+totaljadibot = [...new Set([...global.conns.filter(conn => conn.user && conn.state !== 'close').map(conn => conn.user) || 'ERROR' ])] 
 //totaljadibot = totaljadibot.length
 //}catch (error) {
 //totaljadibot = 'ERROR...'
