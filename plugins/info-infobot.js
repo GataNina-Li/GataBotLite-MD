@@ -44,11 +44,11 @@ let old = performance.now()
 let neww = performance.now()
 let speed = neww - old
 let totaljadibot
-try{
+//try{
 totaljadibot = [...new Set([...global.conns.filter(conn => conn.user && conn.state !== 'close').map(conn => conn.user)])]
-}catch (error) {
-totaljadibot = 'ERROR...'
-}
+//}catch (error) {
+//totaljadibot = 'ERROR...'
+//}
 
 let info = `
 *${lenguajeGB.smsCreInfo().slice(0, -1)}*
@@ -63,7 +63,7 @@ let info = `
 🌼꙰᠁❥ *◜${lenguajeGB.smsBT8()}◞* ⇢ ${totalreg}
 🌺꙰᠁❥ *◜${lenguajeGB.smsEstado4().toUpperCase()}◞* ⇢ ${rtotalreg}/${totalreg}
 🌻꙰᠁❥ *◜${lenguajeGB.smsVl1()}◞* ⇢ ${(speed * 1000).toFixed(0) / 1000}
-🌼꙰᠁❥ *◜SUB BOTS ACTIVOS◞* ⇢ ${totaljadibot.length || totaljadibot}`.trim()
+🌼꙰᠁❥ *◜SUB BOTS ACTIVOS◞* ⇢ ${totaljadibot.length || 'ERROR'}`.trim()
 
 let templateButtons = [ 
 {index: 1, urlButton: {displayText: 'C O N T A C T O', url: ig}},
