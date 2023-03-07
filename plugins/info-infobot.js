@@ -42,33 +42,32 @@ const { autoread } = global.opts
 let pp = './media/menus/Menu1.jpg'
 let old = performance.now()
 let neww = performance.now()
-//let totaljadibot = [...new Set([...global.conns.filter(conn => conn.user && conn.state !== 'close').map(conn => conn.user)])]
+let totaljadibot = [...new Set([...global.conns.filter(conn => conn.user && conn.state !== 'close').map(conn => conn.user)])]
 let speed = neww - old
 
 let info = `
 *${lenguajeGB.smsCreInfo().slice(0, -1)}*
 
-🌺꙰᠁❥ *◜CREADORA◞* ⇢ ${author}
-🌼꙰᠁❥ *◜VERSIÓN◞* ⇢ ${vs}
-🌺꙰᠁❥ *◜PREFIJO◞* ⇢ ( ${usedPrefix} )
-🌻꙰᠁❥ *◜CHATS PRIVADOS◞* ⇢ ${chats.length - groups.length}
-🌼꙰᠁❥ *◜CHATS DE GRUPOS◞* ⇢ ${groups.length}
-🌺꙰᠁❥ *◜CHATS TOTAL◞* ⇢ ${chats.length}
-🌻꙰᠁❥ *◜ACTIVIDAD◞* ⇢ ${uptime}
-🌼꙰᠁❥ *◜USUARIOS◞* ⇢ ${totalreg}
+🌺꙰᠁❥ *◜${lenguajeGB.smsBT1()}◞* ⇢ ${author}
+🌼꙰᠁❥ *◜${lenguajeGB.smsBT2()}◞* ⇢ ${vs}
+🌺꙰᠁❥ *◜${lenguajeGB.smsBT3()}◞* ⇢ ( ${usedPrefix} )
+🌻꙰᠁❥ *◜${lenguajeGB.smsBT4()}◞* ⇢ ${chats.length - groups.length}
+🌼꙰᠁❥ *◜${lenguajeGB.smsBT5()}◞* ⇢ ${groups.length}
+🌺꙰᠁❥ *◜${lenguajeGB.smsBT6()}◞* ⇢ ${chats.length}
+🌻꙰᠁❥ *◜${lenguajeGB.smsBT7()}◞* ⇢ ${uptime}
+🌼꙰᠁❥ *◜${lenguajeGB.smsBT8()}◞* ⇢ ${totalreg}
 🌺꙰᠁❥ *◜${lenguajeGB.smsEstado4().toUpperCase()}◞* ⇢ ${rtotalreg}/${totalreg}
-🌻꙰᠁❥ *◜VELOCIDAD◞* ⇢ ${(speed * 1000).toFixed(0) / 1000}`.trim()
+🌻꙰᠁❥ *◜${lenguajeGB.smsVl1()}◞* ⇢ ${(speed * 1000).toFixed(0) / 1000}
+🌼꙰᠁❥ *◜SUB BOTS ACTIVOS◞* ⇢ ${totaljadibot.length || '_No hay Sub Bots_'}`.trim()
 
 let templateButtons = [ 
 {index: 1, urlButton: {displayText: 'C O N T A C T O', url: ig}},
-{index: 2, quickReplyButton: {displayText: '🌹 MÁS INFORMACIÓN', id: `${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'creadora' : 'owner'}`}},
-{index: 3, quickReplyButton: {displayText: '🌹 LISTA DE GRUPOS', id: `${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'grupolista' : 'grouplist'}`}},
+{index: 2, quickReplyButton: {displayText: '🌹 ' + lenguajeGB.smsBT9(), id: `${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'creadora' : 'owner'}`}},
+{index: 3, quickReplyButton: {displayText: '🌹 ' + lenguajeGB.smsBT10(), id: `${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'grupolista' : 'grouplist'}`}},
 {index: 4, quickReplyButton: {displayText: '🌹' + lenguajeGB.smsConMenu().substring(1, lenguajeGB.smsConMenu().length), id: `${usedPrefix}menu`}}
 ]
 await conn.sendMessage(m.chat, { image: { url: img3 }, gifPlayback: false, gifAttribution: ~~(Math.random() * 2), caption: info, footer: wm, templateButtons }, { quoted: m})
 }
-handler.help = ['infobot']
-handler.tags = ['info', 'tools']
 handler.command = /^(infobot|informacionbot|infogata|informacióngata|informaciongata)$/i
 export default handler
 
