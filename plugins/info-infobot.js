@@ -61,7 +61,7 @@ let templateButtons = [
 {index: 1, urlButton: {displayText: 'C O N T A C T O', url: ig}},
 {index: 3, quickReplyButton: {displayText: lenguajeGB.smsConMenu(), id: `${usedPrefix}menu`}}
 ]
-await conn.sendMessage(m.chat, { image: { url: imagen1 }, gifPlayback: false, gifAttribution: ~~(Math.random() * 2), caption: info, footer: wm, templateButtons }, { quoted: m})
+await conn.sendMessage(m.chat, { image: { url: imagen1.toString() }, gifPlayback: false, gifAttribution: ~~(Math.random() * 2), caption: info, footer: wm, templateButtons }, { quoted: m})
 }
 handler.help = ['infobot']
 handler.tags = ['info', 'tools']
