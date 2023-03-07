@@ -40,16 +40,13 @@ const cpu = cpus.reduce((last, cpu, _, { length }) => {
 const { restrict } = global.db.data.settings[conn.user.jid] || {}
 const { autoread } = global.opts
 let pp = './media/menus/Menu1.jpg'
-let vn = './media/infobot.mp3'
 let old = performance.now()
-  //await m.reply('_Realizando test_')
-  let neww = performance.now()
-  //let totaljadibot = [...new Set([...global.conns.filter(conn => conn.user && conn.state !== 'close').map(conn => conn.user)])]
-  let speed = neww - old
+let neww = performance.now()
+//let totaljadibot = [...new Set([...global.conns.filter(conn => conn.user && conn.state !== 'close').map(conn => conn.user)])]
+let speed = neww - old
 
 let info = `
 🌺꙰᠁❥ *◜CREADORA◞* ▸ ${author}
-🌻꙰᠁❥ *◜CONTACTO◞* ▸ ${ig}
 🌼꙰᠁❥ *◜VERSIÓN◞* ▸ ${vs}
 🌺꙰᠁❥ *◜PREFIJO◞* ▸ ${usedPrefix}
 🌻꙰᠁❥ *◜CHATS PRIVADOS◞* ▸ ${chats.length - groups.length}
@@ -58,14 +55,13 @@ let info = `
 🌻꙰᠁❥ *◜ACTIVIDAD◞* ▸ ${uptime}
 🌼꙰᠁❥ *◜USUARIOS◞* ▸ ${totalreg}
 🌺꙰᠁❥ *◜${lenguajeGB.smsEstado4()}◞* ▸ ${rtotalreg}/${totalreg}
-🌻꙰᠁❥ *◜VELOCIDAD◞* ▸ ${speed}`.trim()
+🌻꙰᠁❥ *◜VELOCIDAD◞* ▸ ${(speed * 1000).toFixed(0) / 1000}`.trim()
 
-conn.sendHydrated(m.chat, info, wm, pp, 'https://github.com/GataNina-Li/GataBot-MD', '𝙂𝙖𝙩𝙖𝘽𝙤𝙩-𝙈𝘿', null, null, [
-['𝙑𝙚𝙧 𝙂𝙧𝙪𝙥𝙤𝙨 | 𝙎𝙚𝙚 𝙂𝙧𝙤𝙪𝙥𝙨', '#grupolista'],
-['𝘾𝙪𝙚𝙣𝙩𝙖𝙨 𝙊𝙛𝙞𝙘𝙞𝙖𝙡𝙚𝙨 | 𝘼𝙘𝙘𝙤𝙪𝙣𝙩𝙨', '/cuentasgb'],
-['𝙑𝙤𝙡𝙫𝙚𝙧 𝙖𝙡 𝙈𝙚𝙣𝙪́ | 𝘽𝙖𝙘𝙠 𝙩𝙤 𝙈𝙚𝙣𝙪', '.menu']
-], m,)
-//conn.reply(m.chat, info, m)
+let templateButtons = [ 
+{index: 1, urlButton: {displayText: 'C O N T A C T O', url: ig}},
+{index: 3, quickReplyButton: {displayText: lenguajeGB.smsConMenu(), id: `${usedPrefix}menu`}}
+]
+await conn.sendMessage(m.chat, { image: { url: imagen1 }, gifPlayback: false, gifAttribution: ~~(Math.random() * 2), caption: info, footer: wm, templateButtons }, { quoted: m})
 }
 handler.help = ['infobot']
 handler.tags = ['info', 'tools']
