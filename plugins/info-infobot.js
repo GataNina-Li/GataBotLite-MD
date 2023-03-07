@@ -46,16 +46,18 @@ let neww = performance.now()
 let speed = neww - old
 
 let info = `
-🌺꙰᠁❥ *◜CREADORA◞* ▸ ${author}
-🌼꙰᠁❥ *◜VERSIÓN◞* ▸ ${vs}
-🌺꙰᠁❥ *◜PREFIJO◞* ▸ ${usedPrefix}
-🌻꙰᠁❥ *◜CHATS PRIVADOS◞* ▸ ${chats.length - groups.length}
-🌼꙰᠁❥ *◜CHATS DE GRUPOS◞* ▸ ${groups.length}
-🌺꙰᠁❥ *◜CHATS TOTAL◞* ▸ ${chats.length}
-🌻꙰᠁❥ *◜ACTIVIDAD◞* ▸ ${uptime}
-🌼꙰᠁❥ *◜USUARIOS◞* ▸ ${totalreg}
-🌺꙰᠁❥ *◜${lenguajeGB.smsEstado4()}◞* ▸ ${rtotalreg}/${totalreg}
-🌻꙰᠁❥ *◜VELOCIDAD◞* ▸ ${(speed * 1000).toFixed(0) / 1000}`.trim()
+*${lenguajeGB.smsCreInfo()}*
+
+🌺꙰᠁❥ *◜CREADORA◞* ⇢ ${author}
+🌼꙰᠁❥ *◜VERSIÓN◞* ⇢ ${vs}
+🌺꙰᠁❥ *◜PREFIJO◞* ⇢ ( ${usedPrefix} )
+🌻꙰᠁❥ *◜CHATS PRIVADOS◞* ⇢ ${chats.length - groups.length}
+🌼꙰᠁❥ *◜CHATS DE GRUPOS◞* ⇢ ${groups.length}
+🌺꙰᠁❥ *◜CHATS TOTAL◞* ⇢ ${chats.length}
+🌻꙰᠁❥ *◜ACTIVIDAD◞* ⇢ ${uptime}
+🌼꙰᠁❥ *◜USUARIOS◞* ⇢ ${totalreg}
+🌺꙰᠁❥ *◜${lenguajeGB.smsEstado4().toUpperCase()}◞* ⇢ ${rtotalreg}/${totalreg}
+🌻꙰᠁❥ *◜VELOCIDAD◞* ⇢ ${(speed * 1000).toFixed(0) / 1000}`.trim()
 
 let templateButtons = [ 
 {index: 1, urlButton: {displayText: 'C O N T A C T O', url: ig}},
