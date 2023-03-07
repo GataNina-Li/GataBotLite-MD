@@ -39,7 +39,7 @@ const cpu = cpus.reduce((last, cpu, _, { length }) => {
   })
 const { restrict } = global.db.data.settings[conn.user.jid] || {}
 const { autoread } = global.opts
-let pp = 'media/menus/Menu1.jpg'.replace(/[^\x20-\x7E]/g, '').replace(/\0/g, '')
+let pp = './media/menus/Menu1.jpg'
 let old = performance.now()
 let neww = performance.now()
 //let totaljadibot = [...new Set([...global.conns.filter(conn => conn.user && conn.state !== 'close').map(conn => conn.user)])]
@@ -61,7 +61,7 @@ let templateButtons = [
 {index: 1, urlButton: {displayText: 'C O N T A C T O', url: ig}},
 {index: 3, quickReplyButton: {displayText: lenguajeGB.smsConMenu(), id: `${usedPrefix}menu`}}
 ]
-await conn.sendMessage(m.chat, { image: { url: fs.readFileSync(pp) }, gifPlayback: false, gifAttribution: ~~(Math.random() * 2), caption: info, footer: wm, templateButtons }, { quoted: m})
+await conn.sendMessage(m.chat, { image: { url: img }, gifPlayback: false, gifAttribution: ~~(Math.random() * 2), caption: info, footer: wm, templateButtons }, { quoted: m})
 }
 handler.help = ['infobot']
 handler.tags = ['info', 'tools']
