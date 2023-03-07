@@ -1,4 +1,4 @@
-/*import { generateWAMessageFromContent } from "@adiwajshing/baileys"
+import { generateWAMessageFromContent } from "@adiwajshing/baileys"
 import { cpus as _cpus, totalmem, freemem } from 'os'
 // import util from 'util'
 import { performance } from 'perf_hooks'
@@ -76,4 +76,4 @@ let h = Math.floor(ms / 3600000)
 let m = Math.floor(ms / 60000) % 60
 let s = Math.floor(ms / 1000) % 60
 console.log({ms,h,m,s})
-return [h, m, s].map(v => v.toString().padStart(2, 0) ).join(':')}*/
+return [h, m, s].map(v => v.toString().padStart(2, 0) ).join(':')}
