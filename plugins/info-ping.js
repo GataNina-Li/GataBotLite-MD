@@ -47,7 +47,7 @@ let old = performance.now()
 let neww = performance.now()
 let speed = neww - old
 
-let caption = `*${htki} ${lenguajeGB.smsVl1()} ${htka}*
+let caption = `*${htki} *${lenguajeGB.smsVl1()}* ${htka}*
 
 🚀 *${Math.round(neww - old)}* ms
 🚀 *${speed}* ms
