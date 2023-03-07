@@ -4,26 +4,20 @@ import sizeFormatter from 'human-readable'
 import MessageType from '@adiwajshing/baileys'
 import fs from 'fs'
 import { performance } from 'perf_hooks'
+
 let handler = async (m, { conn, usedPrefix }) => {
 let _uptime = process.uptime() * 1000
 let uptime = clockString(_uptime) 
 let totalreg = Object.keys(global.db.data.users).length
 let rtotalreg = Object.values(global.db.data.users).filter(user => user.registered == true).length
+let totaljadibot = [...new Set([...global.conns.filter(conn => conn.user && conn.state !== 'close').map(conn => conn.user)])] 
 const chats = Object.entries(conn.chats).filter(([id, data]) => id && data.isChats)
-const groupsIn = chats.filter(([id]) => id.endsWith('@g.us'))
+//const groupsIn = chats.filter(([id]) => id.endsWith('@g.us'))
 const groups = chats.filter(([id]) => id.endsWith('@g.us'))
-
-let pp = './media/menus/Menu1.jpg'
 let old = performance.now()
 let neww = performance.now()
 let speed = neww - old
-let totaljadibot
-//try{
-totaljadibot = [...new Set([...global.conns.filter(conn => conn.user && conn.state !== 'close').map(conn => conn.user) || 'ERROR' ])] 
-//totaljadibot = totaljadibot.length
-//}catch (error) {
-//totaljadibot = 'ERROR...'
-//}
+//let pp = './media/menus/Menu1.jpg'
 
 let info = `
 *${lenguajeGB.smsCreInfo().slice(0, -1)}*
@@ -38,7 +32,7 @@ let info = `
 🌼꙰᠁❥ *◜${lenguajeGB.smsBT8()}◞* ⇢ ${totalreg}
 🌺꙰᠁❥ *◜${lenguajeGB.smsEstado4().toUpperCase()}◞* ⇢ ${rtotalreg}/${totalreg}
 🌻꙰᠁❥ *◜${lenguajeGB.smsVl1()}◞* ⇢ ${(speed * 1000).toFixed(0) / 1000}
-🌼꙰᠁❥ *◜SUB BOTS ACTIVOS◞* ⇢ ${totaljadibot.length}`.trim()
+🌼꙰᠁❥ *◜${lenguajeGB.smsBT11()}◞* ⇢ ${totaljadibot.length}`.trim()
 
 let templateButtons = [ 
 {index: 1, urlButton: {displayText: 'C O N T A C T O', url: ig}},
