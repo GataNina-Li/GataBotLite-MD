@@ -47,7 +47,7 @@ let totaljadibot
 try{
 totaljadibot = [...new Set([...global.conns.filter(conn => conn.user && conn.state !== 'close').map(conn => conn.user)])]
 }catch (error) {
-totaljadibot = 'ERROR'
+totaljadibot = 'ERROR...'
 }
 
 let info = `
