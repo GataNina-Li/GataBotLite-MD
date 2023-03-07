@@ -6,6 +6,7 @@ import fs from 'fs'
 import { performance } from 'perf_hooks'
 
 let handler = async (m, { conn, usedPrefix }) => {
+try{
 let _uptime = process.uptime() * 1000
 let uptime = clockString(_uptime) 
 let totalreg = Object.keys(global.db.data.users).length
@@ -35,13 +36,16 @@ let info = `
 🌼꙰᠁❥ *◜${lenguajeGB.smsBT11()}◞* ⇢ ${totaljadibot.length}`.trim()
 
 let templateButtons = [ 
-{index: 1, urlButton: {displayText: 'C O N T A C T O', url: ig}},
+{index: 1, urlButton: {displayText: lenguajeGB.smsBT12(), url: ig}},
 {index: 2, quickReplyButton: {displayText: '🌹 ' + lenguajeGB.smsBT9(), id: `${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'creadora' : 'owner'}`}},
 {index: 3, quickReplyButton: {displayText: '🌹 ' + lenguajeGB.smsBT10(), id: `${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'grupolista' : 'grouplist'}`}},
 {index: 4, quickReplyButton: {displayText: '🌹' + lenguajeGB.smsConMenu().substring(1, lenguajeGB.smsConMenu().length), id: `${usedPrefix}menu`}}
 ]
 await conn.sendMessage(m.chat, { image: { url: img3 }, gifPlayback: false, gifAttribution: ~~(Math.random() * 2), caption: info, footer: wm, templateButtons }, { quoted: m})
-}
+} catch (e) {
+await m.reply(lenguajeGB['smsMalError3']() + '\n*' + lenguajeGB.smsMensError1() + '*\n*' + usedPrefix + `${lenguajeGB.lenguaje() == 'es' ? 'reporte' : 'report'}` + '* ' + `${lenguajeGB.smsMensError2()} ` + usedPrefix + command)
+console.log(`❗❗ ${lenguajeGB['smsMensError2']()} ${usedPrefix + command} ❗❗`)
+console.log(e)}}
 handler.command = /^(infobot|informacionbot|infogata|informacióngata|informaciongata)$/i
 export default handler
 
