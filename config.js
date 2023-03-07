@@ -234,6 +234,8 @@ global.imagen13 = fs.readFileSync('./media/menus/img12.jpg')
 global.img = 'https://i.imgur.com/AwlL9kc.jpeg'
 global.img2 = 'https://i.imgur.com/p18q1Ok.jpeg'
 
+global.img3 = 'https://i.imgur.com/01Z8a0a.jpeg' //ft rectangular
+
 //global.img3 = 'https://i.imgur.com/oUAGYc2.jpg' //prem   //no
 //global.img4 = 'https://i.imgur.com/i0pccuo.jpg' //prem   //no
 
@@ -258,7 +260,7 @@ global.img19 = 'https://i.imgur.com/7yJ22hJ.jpeg'
 global.img20 = 'https://i.imgur.com/qcD353P.jpeg'
 global.img21 = 'https://i.imgur.com/3fJTaX6.jpeg'
 
-global.img21 = 'https://i.imgur.com/akofqcE.jpeg'//paypal
+global.img21 = 'https://i.imgur.com/akofqcE.jpeg' //paypal
 
 global.welgata = [ig, yt2, yt2, ig, md, ig, yt, paypal, yt2, yt2, ig, fb]
 global.redesMenu = [nna, nn, nnn, nnnt, nnntt, nnnttt, nnnttt2, nnnttt3, nnnttt4, nnnttt5, md, ig, paypal, yt, asistencia, fb]
