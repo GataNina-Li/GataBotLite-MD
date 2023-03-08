@@ -2,12 +2,17 @@
 import axios from 'axios'
 import fetch from "node-fetch"
 
-let handler = async (m, { conn, args, usedPrefix, command }) => {
+let handler = async (m, { conn, args, usedPrefix, command, text }) => {
 const api_key = '45e67c4cbc3d784261ffc83806b5a1d7e3bd09ae'
-const image_url = 'https://i.imgur.com/oZjCxGo.jpg'
+//const image_url = 'https://i.imgur.com/oZjCxGo.jpg'
 
 try {
-const response = await axios.get(`https://saucenao.com/search.php?db=999&output_type=2&testmode=1&numres=6&api_key=${api_key}&url=${encodeURIComponent(image_url)}`)
+let regex = /\.(jpg|jpeg)$/i
+
+if (!text) return m.reply('INGRESE EL ENLACE DE UNA IMAGEN QUE TERMINE EN jpg o jpeg')
+if (!regex.test(text)) return m.reply('SOLO SE PERMITE ENLACE DE IMAGEN QUE TERMINE EN jpg o jpeg')   
+    
+const response = await axios.get(`https://saucenao.com/search.php?db=999&output_type=2&testmode=1&numres=6&api_key=${api_key}&url=${encodeURIComponent(text)}`)
 const results = response.data.results;
 const primerResultado = results[0];
     
@@ -82,6 +87,7 @@ propName = prop
 resultadoEnBruto += `*${propName}:* ${primerResultado.data[prop]}\n`}
     
 let enlace = { contextInfo: { externalAdReply: { showAdAttribution: true, mediaUrl: md, mediaType: 'VIDEO', description: '', title: wm, body: '😻 𝗦𝘂𝗽𝗲𝗿 𝗚𝗮𝘁𝗮𝗕𝗼𝘁-𝗠𝗗 - 𝗪𝗵𝗮𝘁𝘀𝗔𝗽𝗽 ', thumbnailUrl: await(await fetch(primerResultado.header.thumbnail)).buffer(), sourceUrl: md }}}
+await m.reply('*ESPERE UN MOMENTO...*')
 await conn.sendButton(m.chat, `*Número de resultados:* ${results.length}
 *Resultados encontrados:* ${Boolean(results) === true ? 'Si' : 'No'}
 
@@ -107,7 +113,7 @@ await conn.sendButton(m.chat, `*Número de resultados:* ${results.length}
 
 *Autor*
 • ${primerResultado.data.member_name}\n`,  `\`\`\`RESULTADO EN BRUTO\`\`\`
-${resultadoEnBruto}`.trim(), image_url, [['𝗠 𝗘 𝗡 𝗨 ☘️', '/menu']], m, enlace)
+${resultadoEnBruto}`.trim(), text, [['𝗠 𝗘 𝗡 𝗨 ☘️', '/menu']], m, enlace)
 } catch (error) {
 console.log(error);
 }}
