@@ -111,8 +111,8 @@ const imagen = await fetch('https://i.imgur.com/oZjCxGo.jpg') //fetch(primerResu
 const imageBuffer = await imagen.buffer()
 
 const resizedImage = await Jimp.read(imageBuffer)
-.cover(300, 300);
-//.crop(0, 0, 300, 300)
+.crop(0, 0, 300, 300);
+
 const resizedImageBuffer = await resizedImage.getBufferAsync(jimp.MIME_JPEG)
 
 const frep = { contextInfo: { externalAdReply: { title: wm, body: author, sourceUrl: md, thumbnail: resizedImageBuffer }}}
