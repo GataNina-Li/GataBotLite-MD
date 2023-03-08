@@ -80,6 +80,15 @@ break
         
 case 'material': propName = 'Material' 
 break
+        
+case 'da_id': propName = 'ID de la imagen' 
+break
+        
+case 'author_name': propName = 'Nombre del Autor' 
+break
+        
+case 'author_url': propName = 'URL del Autor' 
+break
 
 default:
 propName = prop
