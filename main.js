@@ -170,7 +170,7 @@ function purgeSessionSB() {
   } catch {
     console.log(chalk.red('ERROR AL PURGAR LAS SESSIONES DE LOS SUB-BOTS 😿'))
   }
-}
+} 
 
 function purgeOldFiles() {
 const directories = ['./GataBotSession/', './GataJadiBot/']
