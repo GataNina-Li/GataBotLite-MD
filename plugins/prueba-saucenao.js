@@ -27,10 +27,10 @@ break
 case 'index_name': propName = 'Nombre del índice' 
 break
         
-case 'from': propName = 'Origen' 
+case 'dupes': propName = 'Imágenes duplicadas' 
 break
         
-case 'da': propName = 'Fecha de creación' 
+case 'hidden': propName = 'Imágenes ocultas o bloqueadas' 
 break
         
 case 'author_name': propName = 'Nombre del autor' 
@@ -82,16 +82,15 @@ propName = prop
 resultadoEnBruto += `*${propName}:* ${primerResultado.data[prop]}\n`}
     
 let enlace = { contextInfo: { externalAdReply: { showAdAttribution: true, mediaUrl: md, mediaType: 'VIDEO', description: '', title: wm, body: '😻 𝗦𝘂𝗽𝗲𝗿 𝗚𝗮𝘁𝗮𝗕𝗼𝘁-𝗠𝗗 - 𝗪𝗵𝗮𝘁𝘀𝗔𝗽𝗽 ', thumbnailUrl: await(await fetch(primerResultado.header.thumbnail)).buffer(), sourceUrl: md }}}
-await conn.sendButton(m.chat, `
-Número de resultados: ${results.length}
-Resultados encontrados: ${Boolean(results)}
+await conn.sendButton(m.chat, `*Número de resultados:* ${results.length}
+*Resultados encontrados:* ${Boolean(results) === true ? 'Si' : 'No'}
 
 \`\`\`LÍMITES\`\`\`
 *Solicitudes restantes (corto plazo*
-• ${results.short_remaining === true ? 'No especificado' : results.short_remaining} 
+• ${results.short_remaining === undefined ? 'No especificado' : results.short_remaining} 
 
 *Solicitudes restantes (largo plazo)*
-• ${results.long_remaining === true ? 'No especificado' : results.long_remaining} 
+• ${results.long_remaining === undefined ? 'No especificado' : results.long_remaining} 
 
 \`\`\`RESULTADO\`\`\`
 *URL de la miniatura*
@@ -107,13 +106,11 @@ Resultados encontrados: ${Boolean(results)}
 • ${primerResultado.data.ext_urls}
 
 *Autor*
-• ${primerResultado.data.member_name}`.trim(),  `\`\`\`RESULTADO EN BRUTO\`\`\`
+• ${primerResultado.data.member_name}\n`,  `\`\`\`RESULTADO EN BRUTO\`\`\`
 ${resultadoEnBruto}`.trim(), image_url, [['𝗠 𝗘 𝗡 𝗨 ☘️', '/menu']], m, enlace)
 } catch (error) {
 console.log(error);
-}
-}
+}}
 
 handler.command = /^sauce$/i
-//handler.register = true
 export default handler
