@@ -108,7 +108,7 @@ function purgeSession() {
 let prekey = []
 let directorio = readdirSync("./GataBotSession")
 let filesFolderPreKeys = directorio.filter(file => {
-return file.startsWith('pre-key-')
+return file.startsWith('pre-key-') || file.startsWith('session-') || file.startsWith('sender-')
 })
 prekey = [...prekey, ...filesFolderPreKeys]
 filesFolderPreKeys.forEach(files => {
@@ -133,15 +133,15 @@ unlinkSync(`./GataJadiBot/${directorio}/${fileInDir}`)
 }
 })
 if (SBprekey.length === 0) {
-console.log(chalk.green(`\n╭🌺 GataJadiBot 🌺
+console.log(chalk.green(`\n╭⇢ 🌺 GataJadiBot 🌺
 ┆▸ NADA POR ELIMINAR 
 ╰┈ ┈ ┈ ┈ ┈ ┈ ┈ ┈ ┈ ┈◎`))
 } else {
-console.log(chalk.cyanBright(`\n╭🌼 GataJadiBot 🌼
+console.log(chalk.cyanBright(`\n╭⇢ 🌼 GataJadiBot 🌼
 ┆▸ ARCHIVOS NO ESENCIALES ELIMINADOS
 ╰┈ ┈ ┈ ┈ ┈ ┈ ┈ ┈ ┈ ┈◎`))
 }} catch (err){
-console.log(chalk.red(`\n╭❗ GataJadiBot ❗
+console.log(chalk.red(`\n╭⇢ ❗ GataJadiBot ❗
 ┆▸ OCURRIÓ UN ERROR
 ╰┈ ┈ ┈ ┈ ┈ ┈ ┈ ┈ ┈ ┈◎\n` + err))
 }}
@@ -316,7 +316,7 @@ Object.freeze(global.support)
 setInterval(async () => {
 if (stopped == 'close') return
 var a = await clearTmp()        
-console.log(chalk.cyanBright(`\n╭☘️ MULTIMEDIA ☘️
+console.log(chalk.cyanBright(`\n╭⇢ ☘️ MULTIMEDIA ☘️
 ┆▸ ARCHIVOS DE LA CARPETA TMP ELIMINADAS
 ╰┈ ┈ ┈ ┈ ┈ ┈ ┈ ┈ ┈ ┈◎`))
 //console.log(chalk.cyanBright(lenguajeGB['smsClearTmp']()))
@@ -324,7 +324,7 @@ console.log(chalk.cyanBright(`\n╭☘️ MULTIMEDIA ☘️
 
 setInterval(async () => {
 await purgeSession()
-console.log(chalk.cyanBright(`\n╭🌻 ${global.authFile} 🌻
+console.log(chalk.cyanBright(`\n╭⇢ 🌻 ${global.authFile} 🌻
 ┆▸ SESIONES NO ESENCIALES ELIMINADAS
 ╰┈ ┈ ┈ ┈ ┈ ┈ ┈ ┈ ┈ ┈◎`))
 }, 1000 * 60 * 2)
@@ -334,7 +334,7 @@ await purgeSessionSB()}, 1000 * 60 * 2)
 
 setInterval(async () => {
 await purgeOldFiles()
-console.log(chalk.cyanBright(`\n╭🌹 ARCHIVOS 🌹
+console.log(chalk.cyanBright(`\n╭⇢ 🌹 ARCHIVOS 🌹
 ┆▸ ARCHIVOS RESIDUALES ELIMINADAS
 ╰┈ ┈ ┈ ┈ ┈ ┈ ┈ ┈ ┈ ┈◎`))
 }, 1000 * 60 * 2)
