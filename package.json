@@ -40,7 +40,7 @@
         "colors": "1.4.0",
         "emoji-api": "^1.0.2",
         "express": "^4.17.3",
-        "jimp": "0.16.1",
+        "jimp": "0.22.7",
         "file-type": "^17.1.1",
         "fluent-ffmpeg": "^2.1.2",
         "fb-downloader-scrapper": "^1.0.1", 
