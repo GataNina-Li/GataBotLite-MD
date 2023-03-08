@@ -89,6 +89,9 @@ break
         
 case 'author_url': propName = 'URL del Autor' 
 break
+        
+case 'member_id': propName = 'ID del Autor' 
+break
 
 default:
 propName = prop
