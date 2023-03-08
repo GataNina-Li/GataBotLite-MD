@@ -1,4 +1,4 @@
-
+import fs from 'fs'
 import axios from 'axios'
 import fetch from "node-fetch"
 
@@ -105,6 +105,7 @@ propName = prop
 resultadoEnBruto += `*${propName}*\n${primerResultado.data[prop]}\n`}
     
 //let enlace = { contextInfo: { externalAdReply: { showAdAttribution: true, mediaUrl: md, mediaType: 'IMAGE', description: '', title: wm, body: '😻 𝗦𝘂𝗽𝗲𝗿 𝗚𝗮𝘁𝗮𝗕𝗼𝘁-𝗠𝗗 - 𝗪𝗵𝗮𝘁𝘀𝗔𝗽𝗽 ', thumbnailUrl: await(await fetch(img3)).buffer(), sourceUrl: md }}}
+let frep = { contextInfo: { externalAdReply: {title: wm, body: author, sourceUrl: md, thumbnail: fs.readFileSync('./media/menus/Menu3.jpg')}}}
 await m.reply('*ESPERE UN MOMENTO...*')
 await conn.sendButton(m.chat, `*Número de resultados:* ${results.length}
 *Resultados encontrados:* ${Boolean(results) === true ? 'Si' : 'No'}
@@ -135,7 +136,7 @@ await conn.sendButton(m.chat, `*Número de resultados:* ${results.length}
 *Autor*
 • ${primerResultado.data.member_name === undefined ? 'No encontrado' : primerResultado.data.member_name}\n`,  `*◎ R E S U L T A D O  E N  B R U T O*
 
-${resultadoEnBruto}`.trim(), text, [['𝗠 𝗘 𝗡 𝗨 ☘️', '/menu']], m, true, { contextInfo: { 'forwardingScore': 200, 'isForwarded': false, externalAdReply:{ showAdAttribution: false, title: wm, body: `h`, mediaType: 2, sourceUrl: nn, thumbnail: imagen1}}}, { quoted: m })
+${resultadoEnBruto}`.trim(), text, [['𝗠 𝗘 𝗡 𝗨 ☘️', '/menu']], m, frep)
 } catch (error) {
 console.log(error);
 }}
