@@ -7,10 +7,10 @@ const api_key = '45e67c4cbc3d784261ffc83806b5a1d7e3bd09ae'
 //const image_url = 'https://i.imgur.com/oZjCxGo.jpg'
 
 try {
-let regex = /\.(jpg|jpeg)$/i
+let regex = /\.(jpg|jpeg|png)$/i
 
-if (!text) return m.reply('INGRESE EL ENLACE DE UNA IMAGEN QUE TERMINE EN jpg o jpeg')
-if (!regex.test(text)) return m.reply('SOLO SE PERMITE ENLACE DE IMAGEN QUE TERMINE EN jpg o jpeg')   
+if (!text) return m.reply('INGRESE EL ENLACE DE UNA IMAGEN QUE TERMINE EN jpg, jpeg o png')
+if (!regex.test(text)) return m.reply('SOLO SE PERMITE ENLACE DE IMAGEN QUE TERMINE EN jpg, jpeg o png')   
     
 const response = await axios.get(`https://saucenao.com/search.php?db=999&output_type=2&testmode=1&numres=6&api_key=${api_key}&url=${encodeURIComponent(text)}`)
 const results = response.data.results;
@@ -110,13 +110,16 @@ await conn.sendButton(m.chat, `*Número de resultados:* ${results.length}
 *Resultados encontrados:* ${Boolean(results) === true ? 'Si' : 'No'}
 
 *◎ L Í M I T E S*
+
 *Solicitudes restantes (corto plazo*
 • ${results.short_remaining === undefined ? 'No especificado' : results.short_remaining} 
 
 *Solicitudes restantes (largo plazo)*
 • ${results.long_remaining === undefined ? 'No especificado' : results.long_remaining} 
 
+
 *◎ R E S U L T A D O*
+
 *URL de la miniatura*
 • ${primerResultado.header.thumbnail}
 
@@ -131,6 +134,7 @@ await conn.sendButton(m.chat, `*Número de resultados:* ${results.length}
 
 *Autor*
 • ${primerResultado.data.member_name === undefined ? 'No encontrado' : primerResultado.data.member_name}\n`,  `*◎ R E S U L T A D O  E N  B R U T O*
+
 ${resultadoEnBruto}`.trim(), text, [['𝗠 𝗘 𝗡 𝗨 ☘️', '/menu']], m, enlace)
 } catch (error) {
 console.log(error);
