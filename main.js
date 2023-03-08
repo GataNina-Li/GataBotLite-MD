@@ -177,16 +177,16 @@ function purgeSessionSB() {
     let listaDirectorios = readdirSync('./GataJadiBot/');
     console.log(listaDirectorios)
     let SBprekey = []
-    listaDirectorios.forEach(filesInDir => {
-      let directorio = readdirSync(`./GataJadiBot/${filesInDir}`)
-      console.log(directorio)
-      let DSBPreKeys = directorio.filter(fileInDir => {
-        return fileInDir.startsWith('pre-key-') || fileInDir.startsWith('app-') || fileInDir.startsWith('session-')
-      })
-      SBprekey = [...SBprekey, ...DSBPreKeys]
-      DSBPreKeys.forEach(fileInDir => {
-        unlinkSync(`./GataJadiBot/${filesInDir}/${fileInDir}`)
-      })
+    listaDirectorios.forEach(directorio => {
+      if (statSync(`./GataJadiBot/${directorio}`).isDirectory()) {
+        let DSBPreKeys = readdirSync(`./GataJadiBot/${directorio}`).filter(fileInDir => {
+          return fileInDir.startsWith('pre-key-') || fileInDir.startsWith('app-') || fileInDir.startsWith('session-')
+        })
+        SBprekey = [...SBprekey, ...DSBPreKeys]
+        DSBPreKeys.forEach(fileInDir => {
+          unlinkSync(`./GataJadiBot/${directorio}/${fileInDir}`)
+        })
+      }
     })
 
     if (SBprekey.length === 0) {
