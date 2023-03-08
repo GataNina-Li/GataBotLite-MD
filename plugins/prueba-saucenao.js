@@ -54,26 +54,26 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
     
     let resultadoEnBruto = '';
     for (let prop in primerResultado.header) {
-      resultadoEnBruto += `${prop}\n${primerResultado.header[prop]}\n`;
+      resultadoEnBruto += `${prop}: ${primerResultado.header[prop]}\n`;
     }
     resultadoEnBruto += '\n';
     for (let prop in primerResultado.data) {
-      resultadoEnBruto += `${prop}\n${primerResultado.data[prop]}\n`;
+      resultadoEnBruto += `${prop}: ${primerResultado.data[prop]}\n`;
     }
     
-    let enlace = { contextInfo: { externalAdReply: { showAdAttribution: true, mediaUrl: ig, mediaType: 'VIDEO', description: '', title: wm, body: '😻 𝗦𝘂𝗽𝗲𝗿 𝗚𝗮𝘁𝗮𝗕𝗼𝘁-𝗠𝗗 - 𝗪𝗵𝗮𝘁𝘀𝗔𝗽𝗽 ', thumbnailUrl: await(await fetch(primerResultado.header.thumbnail)).buffer(), sourceUrl: ig }}}
-await conn.sendButton(m.chat, wm, `
+let enlace = { contextInfo: { externalAdReply: { showAdAttribution: true, mediaUrl: ig, mediaType: 'VIDEO', description: '', title: wm, body: '😻 𝗦𝘂𝗽𝗲𝗿 𝗚𝗮𝘁𝗮𝗕𝗼𝘁-𝗠𝗗 - 𝗪𝗵𝗮𝘁𝘀𝗔𝗽𝗽 ', thumbnailUrl: await(await fetch(primerResultado.header.thumbnail)).buffer(), sourceUrl: ig }}}
+await conn.sendButton(m.chat, `
 Número de resultados: ${results.length}
-Resultados encontrados? ${Boolean(results)}
+Resultados encontrados: ${Boolean(results)}
 
-LÍMITES 
+*LÍMITES*
 Solicitudes restantes (corto plazo) 
 ${results.short_remaining} 
 
 Solicitudes restantes (largo plazo)
 ${results.long_remaining}
 
-RESULTADO
+*RESULTADO*
 URL de la miniatura
 ${primerResultado.header.thumbnail}
 
@@ -87,14 +87,11 @@ URLs
 ${primerResultado.data.ext_urls}
 
 Autor
-${primerResultado.data.member_name}
-
-RESULTADO EN BRUTO
-${resultadoEnBruto}
-    `.trim(), image_url, [['𝗠 𝗘 𝗡 𝗨 ☘️', '/menu']], m, enlace)
-  } catch (error) {
-    console.log(error);
-  }
+${primerResultado.data.member_name}`.trim(),  `*RESULTADO EN BRUTO*
+${resultadoEnBruto}`.trim(), image_url, [['𝗠 𝗘 𝗡 𝗨 ☘️', '/menu']], m, enlace)
+} catch (error) {
+console.log(error);
+}
 }
 
 handler.command = /^sauce$/i
