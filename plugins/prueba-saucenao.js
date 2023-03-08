@@ -92,6 +92,9 @@ break
         
 case 'member_id': propName = 'ID del Autor' 
 break
+        
+case 'fa_id': propName = 'ID del Autor en FurAffinity' 
+break
 
 default:
 propName = prop
