@@ -20,7 +20,7 @@ resultadoEnBruto += `${prop}: ${primerResultado.data[prop]}\n`;
 }
   
 let enlace = { contextInfo: { externalAdReply: { showAdAttribution: true, mediaUrl: ig, mediaType: 'VIDEO', description: '', title: wm, body: '😻 𝗦𝘂𝗽𝗲𝗿 𝗚𝗮𝘁𝗮𝗕𝗼𝘁-𝗠𝗗 - 𝗪𝗵𝗮𝘁𝘀𝗔𝗽𝗽 ', thumbnailUrl: fetch(primerResultado.header.thumbnail).buffer(), sourceUrl: ig }}}
-await conn.sendButton(m.chat, wm, `
+conn.sendButton(m.chat, wm, `
 Número de resultados: ${results.length}
 Resultados encontrados? ${Boolean(results)}
 
