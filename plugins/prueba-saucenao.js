@@ -112,7 +112,7 @@ await conn.sendButton(m.chat, `*Número de resultados:* ${results.length}
 • ${primerResultado.header.thumbnail}
 
 *Puntuación de similitud*
-• ${primerResultado.header.similarity}
+• ${primerResultado.header.similarity}%
 
 *Título*
 • ${primerResultado.data.title}
@@ -121,7 +121,7 @@ await conn.sendButton(m.chat, `*Número de resultados:* ${results.length}
 • ${primerResultado.data.ext_urls}
 
 *Autor*
-• ${primerResultado.data.member_name}\n`,  `\`\`\`RESULTADO EN BRUTO\`\`\`
+• ${primerResultado.data.member_name === undefined ? 'No encontrado' : primerResultado.data.member_name}\n`,  `\`\`\`RESULTADO EN BRUTO\`\`\`
 ${resultadoEnBruto}`.trim(), text, [['𝗠 𝗘 𝗡 𝗨 ☘️', '/menu']], m, enlace)
 } catch (error) {
 console.log(error);
