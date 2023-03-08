@@ -143,8 +143,8 @@ function purgeSession() {
   }
 }*/
 
-function purgeSessionSB() {
-  //try {
+/*function purgeSessionSB() {
+  try {
     let listaDirectorios = readdirSync('./GataJadiBot/');
     console.log(listaDirectorios)
     let SBprekey = []
@@ -167,10 +167,45 @@ function purgeSessionSB() {
         await purgeSessionSB()
         console.log(chalk.cyanBright(`\n𓃠 ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈✦ AUTO_PURGE_SESSIONS_SUB-BOTS  ✦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈ 𓃠\n│\n│★ 𝙇𝙊𝙎 𝘼𝙍𝘾𝙃𝙄𝙑𝙊𝙎 𝙎𝙄𝘿𝙊 𝙀𝙇𝙄𝙈𝙄𝙉𝘼𝘿𝙊𝙎 𝘾𝙊𝙉 𝙀𝙓𝙄𝙏𝙊 😼✨\n│\n𓃠 ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈✦ ✅ ✦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈ 𓃠\n`))
     }, 1000 * 60 * 2)}
- // } catch {
-    //console.log(chalk.red('ERROR AL PURGAR LAS SESSIONES DE LOS SUB-BOTS 😿'))
-  //}
-} 
+  } catch {
+    console.log(chalk.red('ERROR AL PURGAR LAS SESSIONES DE LOS SUB-BOTS 😿'))
+  }
+} */
+
+function purgeSessionSB() {
+  try {
+    let listaDirectorios = readdirSync('./GataJadiBot/');
+    console.log(listaDirectorios)
+    let SBprekey = []
+    listaDirectorios.forEach(filesInDir => {
+      let directorio = readdirSync(`./GataJadiBot/${filesInDir}`)
+      console.log(directorio)
+      let DSBPreKeys = directorio.filter(fileInDir => {
+        return fileInDir.startsWith('pre-key-')
+      })
+      SBprekey = [...SBprekey, ...DSBPreKeys]
+      DSBPreKeys.forEach(fileInDir => {
+        unlinkSync(`./GataJadiBot/${filesInDir}/${fileInDir}`)
+      })
+    })
+
+    if (SBprekey.length === 0) {
+      console.log(chalk.green('NADA POR ELIMINAR EN AUTO_PURGE_SESSIONS_SUB-BOTS 😸'))
+    } else {
+      console.log(chalk.cyanBright(`\n𓃠 ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈✦ AUTO_PURGE_SESSIONS_SUB-BOTS  ✦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈ 𓃠\n│\n│★ 𝙇𝙊𝙎 𝘼𝙍𝘾𝙃𝙄𝙑𝙊𝙎 𝙎𝙄𝘿𝙊 𝙀𝙇𝙄𝙈𝙄𝙉𝘼𝘿𝙊𝙎 𝘾𝙊𝙉 𝙀𝙓𝙄𝙏𝙊 😼✨\n│\n𓃠 ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈✦ ✅ ✦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈ 𓃠\n`))
+    }
+  } catch {
+    console.log(chalk.red('ERROR AL PURGAR LAS SESSIONES DE LOS SUB-BOTS 😿'))
+  }
+}
+
+function startPurgeSessionSB() {
+  setInterval(async () => {
+    await purgeSessionSB()
+  }, 1000 * 60 * 2)
+}
+purgeSessionSB()
+startPurgeSessionSB()
 
 function purgeOldFiles() {
 const directories = ['./GataBotSession/', './GataJadiBot/']
