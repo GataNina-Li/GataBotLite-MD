@@ -109,14 +109,14 @@ await m.reply('*ESPERE UN MOMENTO...*')
 await conn.sendButton(m.chat, `*Número de resultados:* ${results.length}
 *Resultados encontrados:* ${Boolean(results) === true ? 'Si' : 'No'}
 
-\`\`\`LÍMITES\`\`\`
+*◎ L Í M I T E S*
 *Solicitudes restantes (corto plazo*
 • ${results.short_remaining === undefined ? 'No especificado' : results.short_remaining} 
 
 *Solicitudes restantes (largo plazo)*
 • ${results.long_remaining === undefined ? 'No especificado' : results.long_remaining} 
 
-\`\`\`RESULTADO\`\`\`
+*◎ R E S U L T A D O*
 *URL de la miniatura*
 • ${primerResultado.header.thumbnail}
 
@@ -130,7 +130,7 @@ await conn.sendButton(m.chat, `*Número de resultados:* ${results.length}
 • ${primerResultado.data.ext_urls}
 
 *Autor*
-• ${primerResultado.data.member_name === undefined ? 'No encontrado' : primerResultado.data.member_name}\n`,  `\`\`\`RESULTADO EN BRUTO\`\`\`
+• ${primerResultado.data.member_name === undefined ? 'No encontrado' : primerResultado.data.member_name}\n`,  `*◎ R E S U L T A D O  E N  B R U T O*
 ${resultadoEnBruto}`.trim(), text, [['𝗠 𝗘 𝗡 𝗨 ☘️', '/menu']], m, enlace)
 } catch (error) {
 console.log(error);
