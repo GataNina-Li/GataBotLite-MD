@@ -133,11 +133,17 @@ unlinkSync(`./GataJadiBot/${directorio}/${fileInDir}`)
 }
 })
 if (SBprekey.length === 0) {
-console.log(chalk.green('NADA POR ELIMINAR EN AUTO_PURGE_SESSIONS_SUB-BOTS 😸'))
+console.log(chalk.green(`\n╭🌺 GataJadiBot 🌺
+┆▸ NADA POR ELIMINAR 
+╰┈ ┈ ┈ ┈ ┈ ┈ ┈ ┈ ┈ ┈◎`))
 } else {
-console.log(chalk.cyanBright(`\n𓃠 ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈✦ AUTO_PURGE_SESSIONS_SUB-BOTS  ✦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈ 𓃠\n│\n│★ 𝙇𝙊𝙎 𝘼𝙍𝘾𝙃𝙄𝙑𝙊𝙎 𝙎𝙄𝘿𝙊 𝙀𝙇𝙄𝙈𝙄𝙉𝘼𝘿𝙊𝙎 𝘾𝙊𝙉 𝙀𝙓𝙄𝙏𝙊 😼✨\n│\n𓃠 ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈✦ ✅ ✦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈ 𓃠\n`))
+console.log(chalk.cyanBright(`\n╭🌼 GataJadiBot 🌼
+┆▸ ARCHIVOS NO ESENCIALES ELIMINADOS
+╰┈ ┈ ┈ ┈ ┈ ┈ ┈ ┈ ┈ ┈◎`))
 }} catch (err){
-console.log(chalk.red('ERROR AL PURGAR LAS SESSIONES DE LOS SUB-BOTS 😿\n' + err))
+console.log(chalk.red(`\n╭❗ GataJadiBot ❗
+┆▸ OCURRIÓ UN ERROR
+╰┈ ┈ ┈ ┈ ┈ ┈ ┈ ┈ ┈ ┈◎\n` + err))
 }}
 
 function purgeOldFiles() {
@@ -310,12 +316,17 @@ Object.freeze(global.support)
 setInterval(async () => {
 if (stopped == 'close') return
 var a = await clearTmp()        
-console.log(chalk.cyanBright(lenguajeGB['smsClearTmp']()))
+console.log(chalk.cyanBright(`\n╭☘️ MULTIMEDIA ☘️
+┆▸ ARCHIVOS DE LA CARPETA TMP ELIMINADAS
+╰┈ ┈ ┈ ┈ ┈ ┈ ┈ ┈ ┈ ┈◎`))
+//console.log(chalk.cyanBright(lenguajeGB['smsClearTmp']()))
 }, 1000 * 60 * 3) 
 
 setInterval(async () => {
 await purgeSession()
-console.log(chalk.cyanBright(`\n𓃠 ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈✦ AUTO_PURGE_SESSIONS ✦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈ 𓃠\n│\n│★ 𝙇𝙊𝙎 𝘼𝙍𝘾𝙃𝙄𝙑𝙊𝙎 𝙎𝙄𝘿𝙊 𝙀𝙇𝙄𝙈𝙄𝙉𝘼𝘿𝙊𝙎 𝘾𝙊𝙉 𝙀𝙓𝙄𝙏𝙊 😼✨\n│\n𓃠 ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈✦ ✅ ✦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈ 𓃠\n`))
+console.log(chalk.cyanBright(`\n╭🌻 ${global.authFile} 🌻
+┆▸ SESIONES NO ESENCIALES ELIMINADAS
+╰┈ ┈ ┈ ┈ ┈ ┈ ┈ ┈ ┈ ┈◎`))
 }, 1000 * 60 * 2)
 
 setInterval(async () => {
@@ -323,7 +334,9 @@ await purgeSessionSB()}, 1000 * 60 * 2)
 
 setInterval(async () => {
 await purgeOldFiles()
-console.log(chalk.cyanBright(`\n𓃠 ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈✦ AUTO_PURGE_OLDFILES  ✦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈ 𓃠\n│\n│★ 𝙇𝙊𝙎 𝘼𝙍𝘾𝙃𝙄𝙑𝙊𝙎 𝙎𝙄𝘿𝙊 𝙀𝙇𝙄𝙈𝙄𝙉𝘼𝘿𝙊𝙎 𝘾𝙊𝙉 𝙀𝙓𝙄𝙏𝙊 😼✨\n│\n𓃠 ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈✦ ✅ ✦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈ 𓃠\n`))
+console.log(chalk.cyanBright(`\n╭🌹 ARCHIVOS 🌹
+┆▸ ARCHIVOS RESIDUALES ELIMINADAS
+╰┈ ┈ ┈ ┈ ┈ ┈ ┈ ┈ ┈ ┈◎`))
 }, 1000 * 60 * 2)
 
 _quickTest()
