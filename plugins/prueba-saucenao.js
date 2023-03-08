@@ -50,7 +50,7 @@ break
 default:
 propName = prop;
 }
-resultadoEnBruto += `*${propName}:* ${primerResultado.header[prop]}\n`}
+resultadoEnBruto += `*${propName}*\n${primerResultado.header[prop]}\n`}
 resultadoEnBruto += '\n'
     
 for (let prop in primerResultado.data) {
@@ -95,11 +95,14 @@ break
         
 case 'fa_id': propName = 'ID del Autor en FurAffinity' 
 break
+        
+case 'as_project': propName = 'Proyecto en Anime-Source' 
+break
 
 default:
 propName = prop
 }
-resultadoEnBruto += `*${propName}:* ${primerResultado.data[prop]}\n`}
+resultadoEnBruto += `*${propName}*\n${primerResultado.data[prop]}\n`}
     
 let enlace = { contextInfo: { externalAdReply: { showAdAttribution: true, mediaUrl: md, mediaType: 'VIDEO', description: '', title: wm, body: '😻 𝗦𝘂𝗽𝗲𝗿 𝗚𝗮𝘁𝗮𝗕𝗼𝘁-𝗠𝗗 - 𝗪𝗵𝗮𝘁𝘀𝗔𝗽𝗽 ', thumbnailUrl: await(await fetch(primerResultado.header.thumbnail)).buffer(), sourceUrl: md }}}
 await m.reply('*ESPERE UN MOMENTO...*')
