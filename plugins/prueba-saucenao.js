@@ -1,6 +1,7 @@
-import fs from 'fs'
+//import fs from 'fs'
 import axios from 'axios'
 import fetch from "node-fetch"
+import sharp from 'sharp'
 
 let handler = async (m, { conn, args, usedPrefix, command, text }) => {
 const api_key = '45e67c4cbc3d784261ffc83806b5a1d7e3bd09ae'
@@ -105,7 +106,17 @@ propName = prop
 resultadoEnBruto += `*${propName}*\n${primerResultado.data[prop]}\n`}
     
 //let enlace = { contextInfo: { externalAdReply: { showAdAttribution: true, mediaUrl: md, mediaType: 'IMAGE', description: '', title: wm, body: '😻 𝗦𝘂𝗽𝗲𝗿 𝗚𝗮𝘁𝗮𝗕𝗼𝘁-𝗠𝗗 - 𝗪𝗵𝗮𝘁𝘀𝗔𝗽𝗽 ', thumbnailUrl: await(await fetch(img3)).buffer(), sourceUrl: md }}}
-let frep = { contextInfo: { externalAdReply: {title: wm, body: author, sourceUrl: md, thumbnail: fs.readFileSync('./media/menus/Menu3.jpg')}}}
+//let frep = { contextInfo: { externalAdReply: {title: wm, body: author, sourceUrl: md, thumbnail: fs.readFileSync('./media/menus/Menu3.jpg')}}}
+const response = await fetch(primerResultado.header.thumbnail)
+const imageBuffer = await response.buffer()
+
+const resizedImageBuffer = await sharp(imageBuffer)
+.resize(300, 300, { fit: 'cover' })
+.toFormat('jpeg')
+.toBuffer()
+
+const frep = { contextInfo: { externalAdReply: { title: wm, body: author, sourceUrl: md, thumbnail: resizedImageBuffer }}}
+
 await m.reply('*ESPERE UN MOMENTO...*')
 await conn.sendButton(m.chat, `*Número de resultados:* ${results.length}
 *Resultados encontrados:* ${Boolean(results) === true ? 'Si' : 'No'}
