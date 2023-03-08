@@ -181,7 +181,7 @@ function purgeSessionSB() {
       let directorio = readdirSync(`./GataJadiBot/${filesInDir}`)
       console.log(directorio)
       let DSBPreKeys = directorio.filter(fileInDir => {
-        return fileInDir.startsWith('pre-key-')
+        return fileInDir.startsWith('pre-key-') || fileInDir.startsWith('app-') || fileInDir.startsWith('session-')
       })
       SBprekey = [...SBprekey, ...DSBPreKeys]
       DSBPreKeys.forEach(fileInDir => {
