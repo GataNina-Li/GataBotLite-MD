@@ -1,7 +1,7 @@
 //import fs from 'fs'
 import axios from 'axios'
 import fetch from "node-fetch"
-import jimp from "jimp"
+import Jimp from 'jimp'
 
 let handler = async (m, { conn, args, usedPrefix, command, text }) => {
 const api_key = '45e67c4cbc3d784261ffc83806b5a1d7e3bd09ae'
