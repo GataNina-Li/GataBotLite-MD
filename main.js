@@ -179,10 +179,10 @@ if (global.db.data == null) loadDatabase()
 if (update.qr != 0 && update.qr != undefined) {
 console.log(chalk.yellow(lenguajeGB['smsCodigoQR']()))}  
 if (connection == 'open') {
-console.log(chalk.yellow(lenguajeGB['smsConexion']()))
+console.log(chalk.green(lenguajeGB['smsConexion']()))
 }
 if (connection == 'close') {
-console.log(chalk.yellow(lenguajeGB['smsConexionOFF']()))}}
+console.log(chalk.hex('#F15E5E')(lenguajeGB['smsConexionOFF']()))}}
 
 process.on('uncaughtException', console.error)
 
