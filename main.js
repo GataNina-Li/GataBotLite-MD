@@ -100,127 +100,64 @@ const tmp = [tmpdir(), join(__dirname, './tmp')]
 const filename = []
 tmp.forEach(dirname => readdirSync(dirname).forEach(file => filename.push(join(dirname, file))))
 return filename.map(file => {
-    const stats = statSync(file)
-    if (stats.isFile() && (Date.now() - stats.mtimeMs >= 1000 * 60 * 3)) return unlinkSync(file) // 3 min
-    return false })}
+const stats = statSync(file)
+if (stats.isFile() && (Date.now() - stats.mtimeMs >= 1000 * 60 * 3)) return unlinkSync(file) // 3 min
+return false })}
 
 function purgeSession() {
-    let prekey = []
-    let directorio = readdirSync("./GataBotSession")
-    let filesFolderPreKeys = directorio.filter(file => {
-        return file.startsWith('pre-key-')
-    })
-    prekey = [...prekey, ...filesFolderPreKeys]
-    filesFolderPreKeys.forEach(files => {
-    unlinkSync(`./GataBotSession/${files}`)
+let prekey = []
+let directorio = readdirSync("./GataBotSession")
+let filesFolderPreKeys = directorio.filter(file => {
+return file.startsWith('pre-key-')
 })
-
+prekey = [...prekey, ...filesFolderPreKeys]
+filesFolderPreKeys.forEach(files => {
+unlinkSync(`./GataBotSession/${files}`)
+})
 } 
 
-
-/*function purgeSessionSB() {
-  try {
-    let listaDirectorios = readdirSync('./GataJadiBot/');
-    console.log(listaDirectorios)
-    let SBprekey = []
-    listaDirectorios.forEach(filesInDir => {
-      let directorio = readdirSync(`./GataJadiBot/${filesInDir}`)
-      console.log(directorio)
-      let DSBPreKeys = directorio.filter(fileInDir => {
-        return fileInDir.startsWith('pre-key-')
-      })
-      SBprekey = [...SBprekey, ...DSBPreKeys]
-      DSBPreKeys.forEach(fileInDir => {
-        unlinkSync(`./GataJadiBot/${filesInDir}/${fileInDir}`)
-      })
-    })
-
-    if (SBprekey.length === 0) {
-      console.log(chalk.green('NADA POR ELIMINAR EN AUTO_PURGE_SESSIONS_SUB-BOTS 😸'))
-    }
-  } catch {
-    console.log(chalk.red('ERROR AL PURGAR LAS SESSIONES DE LOS SUB-BOTS 😿'))
-  }
-}*/
-
-/*function purgeSessionSB() {
-  try {
-    let listaDirectorios = readdirSync('./GataJadiBot/');
-    console.log(listaDirectorios)
-    let SBprekey = []
-    listaDirectorios.forEach(filesInDir => {
-      let directorio = readdirSync(`./GataJadiBot/${filesInDir}`)
-      console.log(directorio)
-      let DSBPreKeys = directorio.filter(fileInDir => {
-        return fileInDir.startsWith('pre-key-')
-      })
-      SBprekey = [...SBprekey, ...DSBPreKeys]
-      DSBPreKeys.forEach(fileInDir => {
-        unlinkSync(`./GataJadiBot/${filesInDir}/${fileInDir}`)
-      })
-    })
-
-    if (SBprekey.length === 0) {
-      console.log(chalk.green('NADA POR ELIMINAR EN AUTO_PURGE_SESSIONS_SUB-BOTS 😸'))
-    } else {
-      setInterval(async () => {
-        await purgeSessionSB()
-        console.log(chalk.cyanBright(`\n𓃠 ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈✦ AUTO_PURGE_SESSIONS_SUB-BOTS  ✦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈ 𓃠\n│\n│★ 𝙇𝙊𝙎 𝘼𝙍𝘾𝙃𝙄𝙑𝙊𝙎 𝙎𝙄𝘿𝙊 𝙀𝙇𝙄𝙈𝙄𝙉𝘼𝘿𝙊𝙎 𝘾𝙊𝙉 𝙀𝙓𝙄𝙏𝙊 😼✨\n│\n𓃠 ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈✦ ✅ ✦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈ 𓃠\n`))
-    }, 1000 * 60 * 2)}
-  } catch {
-    console.log(chalk.red('ERROR AL PURGAR LAS SESSIONES DE LOS SUB-BOTS 😿'))
-  }
-} */
-
 function purgeSessionSB() {
-  try {
-    let listaDirectorios = readdirSync('./GataJadiBot/');
-    console.log(listaDirectorios)
-    let SBprekey = []
-    listaDirectorios.forEach(directorio => {
-      if (statSync(`./GataJadiBot/${directorio}`).isDirectory()) {
-        let DSBPreKeys = readdirSync(`./GataJadiBot/${directorio}`).filter(fileInDir => {
-          return fileInDir.startsWith('pre-key-') || fileInDir.startsWith('app-') || fileInDir.startsWith('session-')
-        })
-        SBprekey = [...SBprekey, ...DSBPreKeys]
-        DSBPreKeys.forEach(fileInDir => {
-          unlinkSync(`./GataJadiBot/${directorio}/${fileInDir}`)
-        })
-      }
-    })
-
-    if (SBprekey.length === 0) {
-      console.log(chalk.green('NADA POR ELIMINAR EN AUTO_PURGE_SESSIONS_SUB-BOTS 😸'))
-    } else {
-      console.log(chalk.cyanBright(`\n𓃠 ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈✦ AUTO_PURGE_SESSIONS_SUB-BOTS  ✦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈ 𓃠\n│\n│★ 𝙇𝙊𝙎 𝘼𝙍𝘾𝙃𝙄𝙑𝙊𝙎 𝙎𝙄𝘿𝙊 𝙀𝙇𝙄𝙈𝙄𝙉𝘼𝘿𝙊𝙎 𝘾𝙊𝙉 𝙀𝙓𝙄𝙏𝙊 😼✨\n│\n𓃠 ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈✦ ✅ ✦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈ 𓃠\n`))
-    }
-  } catch (err){
-    console.log(chalk.red('ERROR AL PURGAR LAS SESSIONES DE LOS SUB-BOTS 😿\n' + err))
-  }
+try {
+let listaDirectorios = readdirSync('./GataJadiBot/');
+//console.log(listaDirectorios) Nombra las carpetas o archivos
+let SBprekey = []
+listaDirectorios.forEach(directorio => {
+if (statSync(`./GataJadiBot/${directorio}`).isDirectory()) {
+let DSBPreKeys = readdirSync(`./GataJadiBot/${directorio}`).filter(fileInDir => {
+return fileInDir.startsWith('pre-key-') || fileInDir.startsWith('app-') || fileInDir.startsWith('session-')
+})
+SBprekey = [...SBprekey, ...DSBPreKeys]
+DSBPreKeys.forEach(fileInDir => {
+unlinkSync(`./GataJadiBot/${directorio}/${fileInDir}`)
+})
 }
+})
+if (SBprekey.length === 0) {
+console.log(chalk.green('NADA POR ELIMINAR EN AUTO_PURGE_SESSIONS_SUB-BOTS 😸'))
+} else {
+console.log(chalk.cyanBright(`\n𓃠 ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈✦ AUTO_PURGE_SESSIONS_SUB-BOTS  ✦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈ 𓃠\n│\n│★ 𝙇𝙊𝙎 𝘼𝙍𝘾𝙃𝙄𝙑𝙊𝙎 𝙎𝙄𝘿𝙊 𝙀𝙇𝙄𝙈𝙄𝙉𝘼𝘿𝙊𝙎 𝘾𝙊𝙉 𝙀𝙓𝙄𝙏𝙊 😼✨\n│\n𓃠 ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈✦ ✅ ✦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈ 𓃠\n`))
+}} catch (err){
+console.log(chalk.red('ERROR AL PURGAR LAS SESSIONES DE LOS SUB-BOTS 😿\n' + err))
+}}
 
 function purgeOldFiles() {
 const directories = ['./GataBotSession/', './GataJadiBot/']
 const oneHourAgo = Date.now() - (1000 * 60 * 2) //30 min 
 directories.forEach(dir => {
-    readdirSync(dir, (err, files) => {
-        if (err) throw err
-        files.forEach(file => {
-            const filePath = path.join(dir, file)
-            stat(filePath, (err, stats) => {
-                if (err) throw err;
-                if (stats.isFile() && stats.mtimeMs < oneHourAgo && file !== 'creds.json') { 
-                    unlinkSync(filePath, err => {  
-                        if (err) throw err
-                        console.log(`Archivo ${file} borrado con éxito`)
-                    })
-                } else {  
-                    console.log(`Archivo ${file} no borrado`) 
-                } 
-            }) 
-        }) 
-    }) 
+readdirSync(dir, (err, files) => {
+if (err) throw err
+files.forEach(file => {
+const filePath = path.join(dir, file)
+stat(filePath, (err, stats) => {
+if (err) throw err;
+if (stats.isFile() && stats.mtimeMs < oneHourAgo && file !== 'creds.json') { 
+unlinkSync(filePath, err => {  
+if (err) throw err
+console.log(`Archivo ${file} borrado con éxito`)
 })
+} else {  
+console.log(`Archivo ${file} no borrado`) 
+} }) }) }) })
 }
 
 async function connectionUpdate(update) {
@@ -290,11 +227,11 @@ conn.credsUpdate = saveCreds.bind(global.conn, true)
 const currentDateTime = new Date();
 const messageDateTime = new Date(conn.ev);
 if (currentDateTime >= messageDateTime) {
-    let chats = Object.entries(conn.chats).filter(([jid, chat]) => !jid.endsWith('@g.us') && chat.isChats).map(v => v[0])
-  //console.log(chats, conn.ev); 
+let chats = Object.entries(conn.chats).filter(([jid, chat]) => !jid.endsWith('@g.us') && chat.isChats).map(v => v[0])
+//console.log(chats, conn.ev); 
 } else {
-    let chats = Object.entries(conn.chats).filter(([jid, chat]) => !jid.endsWith('@g.us') && chat.isChats).map(v => v[0])}
- //console.log(chats, 'Omitiendo mensajes en espera.'); }
+let chats = Object.entries(conn.chats).filter(([jid, chat]) => !jid.endsWith('@g.us') && chat.isChats).map(v => v[0])}
+//console.log(chats, 'Omitiendo mensajes en espera.'); }
 
 conn.ev.on('messages.upsert', conn.handler)
 conn.ev.on('group-participants.update', conn.participantsUpdate)
@@ -376,30 +313,18 @@ var a = await clearTmp()
 console.log(chalk.cyanBright(lenguajeGB['smsClearTmp']()))
 }, 1000 * 60 * 3) 
 
-try {
 setInterval(async () => {
 await purgeSession()
 console.log(chalk.cyanBright(`\n𓃠 ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈✦ AUTO_PURGE_SESSIONS ✦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈ 𓃠\n│\n│★ 𝙇𝙊𝙎 𝘼𝙍𝘾𝙃𝙄𝙑𝙊𝙎 𝙎𝙄𝘿𝙊 𝙀𝙇𝙄𝙈𝙄𝙉𝘼𝘿𝙊𝙎 𝘾𝙊𝙉 𝙀𝙓𝙄𝙏𝙊 😼✨\n│\n𓃠 ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈✦ ✅ ✦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈ 𓃠\n`))
 }, 1000 * 60 * 2)
-} catch (error) {
-console.log(chalk.green('NADA POR ELIMINAR EN AUTO_PURGE_SESSIONS 😸'))       
-}
 
-function startPurgeSessionSB() {
 setInterval(async () => {
 await purgeSessionSB()}, 1000 * 60 * 2)
-}
-purgeSessionSB()
-startPurgeSessionSB()
 
-try {
 setInterval(async () => {
 await purgeOldFiles()
 console.log(chalk.cyanBright(`\n𓃠 ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈✦ AUTO_PURGE_OLDFILES  ✦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈ 𓃠\n│\n│★ 𝙇𝙊𝙎 𝘼𝙍𝘾𝙃𝙄𝙑𝙊𝙎 𝙎𝙄𝘿𝙊 𝙀𝙇𝙄𝙈𝙄𝙉𝘼𝘿𝙊𝙎 𝘾𝙊𝙉 𝙀𝙓𝙄𝙏𝙊 😼✨\n│\n𓃠 ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈✦ ✅ ✦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈ 𓃠\n`))
 }, 1000 * 60 * 2)
-} catch (error) {
-console.log(chalk.green('NADA POR ELIMINAR EN AUTO_PURGE_OLDFILES 😸'))       
-}
 
 _quickTest()
 .then(() => conn.logger.info(lenguajeGB['smsCargando']()))
