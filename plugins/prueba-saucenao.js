@@ -17,14 +17,30 @@ let propName = '';
 switch (prop) {
 case 'similarity': propName = 'Puntuación de similitud' 
 break
-case 'thumbnail': propName = 'URL de la miniatura' break
-case 'index_id': propName = 'ID del índice' break
-case 'index_name': propName = 'Nombre del índice' break
-case 'from': propName = 'Origen' break
-case 'da': propName = 'Fecha de creación' break
-case 'author_name': propName = 'Nombre del autor' break 
-case 'source': propName = 'Fuente' break
-case 'material': propName = 'Material' break
+        
+case 'thumbnail': propName = 'URL de la miniatura' 
+break
+        
+case 'index_id': propName = 'ID del índice' 
+break
+        
+case 'index_name': propName = 'Nombre del índice' 
+break
+        
+case 'from': propName = 'Origen' 
+break
+        
+case 'da': propName = 'Fecha de creación' 
+break
+        
+case 'author_name': propName = 'Nombre del autor' 
+break 
+        
+case 'source': propName = 'Fuente' 
+break
+        
+case 'material': propName = 'Material' 
+break
 
 default:
 propName = prop;
@@ -36,14 +52,29 @@ for (let prop in primerResultado.data) {
 let propName = ''
 
 switch (prop) {
-case 'title': propName = 'Título' break
-case 'ext_urls': propName = 'URLs' break
-case 'member_name': propName = 'Nombre del autor' break
-case 'pixiv_id': propName = 'ID de Pixiv' break
-case 'danbooru_id': propName = 'ID de Danbooru' break
-case 'gelbooru_id': propName = 'ID de Gelbooru' break
-case 'source': propName = 'Fuente' break
-case 'material': propName = 'Material' break
+case 'title': propName = 'Título' 
+break
+        
+case 'ext_urls': propName = 'URLs' 
+break
+        
+case 'member_name': propName = 'Nombre del autor' 
+break
+        
+case 'pixiv_id': propName = 'ID de Pixiv' 
+break
+        
+case 'danbooru_id': propName = 'ID de Danbooru' 
+break
+        
+case 'gelbooru_id': propName = 'ID de Gelbooru' 
+break
+        
+case 'source': propName = 'Fuente' 
+break
+        
+case 'material': propName = 'Material' 
+break
 
 default:
 propName = prop
