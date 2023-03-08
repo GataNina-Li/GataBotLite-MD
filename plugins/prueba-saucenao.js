@@ -1,7 +1,7 @@
 //import fs from 'fs'
 import axios from 'axios'
 import fetch from "node-fetch"
-import Jimp from 'jimp'
+import { createCanvas, loadImage } from 'canvas'
 
 let handler = async (m, { conn, args, usedPrefix, command, text }) => {
 const api_key = '45e67c4cbc3d784261ffc83806b5a1d7e3bd09ae'
@@ -107,15 +107,41 @@ resultadoEnBruto += `*${propName}*\n${primerResultado.data[prop]}\n`}
     
 //let enlace = { contextInfo: { externalAdReply: { showAdAttribution: true, mediaUrl: md, mediaType: 'IMAGE', description: '', title: wm, body: '😻 𝗦𝘂𝗽𝗲𝗿 𝗚𝗮𝘁𝗮𝗕𝗼𝘁-𝗠𝗗 - 𝗪𝗵𝗮𝘁𝘀𝗔𝗽𝗽 ', thumbnailUrl: await(await fetch(img3)).buffer(), sourceUrl: md }}}
 //let frep = { contextInfo: { externalAdReply: {title: wm, body: author, sourceUrl: md, thumbnail: fs.readFileSync('./media/menus/Menu3.jpg')}}}
-const imagen = await fetch('https://i.imgur.com/oZjCxGo.jpg') //fetch(primerResultado.header.thumbnail)
-const imageBuffer = await imagen.buffer()
+//const imagen = await fetch('https://i.imgur.com/oZjCxGo.jpg') //fetch(primerResultado.header.thumbnail)
+//const imageBuffer = await imagen.buffer()
 
-const resizedImage = await Jimp.read(imageBuffer)
-.crop(0, 0, 300, 300);
+//const resizedImage = await Jimp.read(imageBuffer)
+//.crop(0, 0, 300, 300);
 
-const resizedImageBuffer = await resizedImage.getBufferAsync(jimp.MIME_JPEG)
+//const resizedImageBuffer = await resizedImage.getBufferAsync(jimp.MIME_JPEG)
 
-const frep = { contextInfo: { externalAdReply: { title: wm, body: author, sourceUrl: md, thumbnail: resizedImageBuffer }}}
+//const frep = { contextInfo: { externalAdReply: { title: wm, body: author, sourceUrl: md, thumbnail: resizedImageBuffer }}}
+    
+const canvasSize = 300; // Tamaño del canvas cuadrado
+
+const imagen = await fetch('https://i.imgur.com/oZjCxGo.jpg');
+const imageBuffer = await imagen.buffer();
+
+const img = await loadImage(imageBuffer);
+const canvas = createCanvas(canvasSize, canvasSize);
+const ctx = canvas.getContext('2d');
+
+const offsetX = (canvasSize - img.width) / 2;
+const offsetY = (canvasSize - img.height) / 2;
+ctx.drawImage(img, offsetX, offsetY);
+
+const resizedImageBuffer = canvas.toBuffer('image/jpeg');
+
+const frep = {
+  contextInfo: {
+    externalAdReply: {
+      title: wm,
+      body: author,
+      sourceUrl: md,
+      thumbnail: resizedImageBuffer
+    }
+  }
+};
 
 await m.reply('*ESPERE UN MOMENTO...*')
 await conn.sendButton(m.chat, `*Número de resultados:* ${results.length}
