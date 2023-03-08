@@ -1,7 +1,7 @@
 //import fs from 'fs'
 import axios from 'axios'
 import fetch from "node-fetch"
-import sharp from 'sharp'
+import jimp from "jimp"
 
 let handler = async (m, { conn, args, usedPrefix, command, text }) => {
 const api_key = '45e67c4cbc3d784261ffc83806b5a1d7e3bd09ae'
@@ -110,10 +110,10 @@ resultadoEnBruto += `*${propName}*\n${primerResultado.data[prop]}\n`}
 const imagen = await fetch(primerResultado.header.thumbnail)
 const imageBuffer = await imagen.buffer()
 
-const resizedImageBuffer = await sharp(imageBuffer)
-.resize(300, 300, { fit: 'cover' })
-.toFormat('jpeg')
-.toBuffer()
+const resizedImageBuffer = await Jimp.read(imageBuffer)
+.cover(300, 300)
+.quality(90)
+.getBufferAsync(Jimp.MIME_JPEG)
 
 const frep = { contextInfo: { externalAdReply: { title: wm, body: author, sourceUrl: md, thumbnail: resizedImageBuffer }}}
 
