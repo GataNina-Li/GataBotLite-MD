@@ -15,7 +15,8 @@ let resultadoEnBruto = ''
 for (let prop in primerResultado.header) {
 let propName = '';
 switch (prop) {
-case 'similarity': propName = 'Puntuación de similitud' break
+case 'similarity': propName = 'Puntuación de similitud' 
+break
 case 'thumbnail': propName = 'URL de la miniatura' break
 case 'index_id': propName = 'ID del índice' break
 case 'index_name': propName = 'Nombre del índice' break
