@@ -107,8 +107,8 @@ resultadoEnBruto += `*${propName}*\n${primerResultado.data[prop]}\n`}
     
 //let enlace = { contextInfo: { externalAdReply: { showAdAttribution: true, mediaUrl: md, mediaType: 'IMAGE', description: '', title: wm, body: '😻 𝗦𝘂𝗽𝗲𝗿 𝗚𝗮𝘁𝗮𝗕𝗼𝘁-𝗠𝗗 - 𝗪𝗵𝗮𝘁𝘀𝗔𝗽𝗽 ', thumbnailUrl: await(await fetch(img3)).buffer(), sourceUrl: md }}}
 //let frep = { contextInfo: { externalAdReply: {title: wm, body: author, sourceUrl: md, thumbnail: fs.readFileSync('./media/menus/Menu3.jpg')}}}
-const response = await fetch(primerResultado.header.thumbnail)
-const imageBuffer = await response.buffer()
+const imagen = await fetch(primerResultado.header.thumbnail)
+const imageBuffer = await imagen.buffer()
 
 const resizedImageBuffer = await sharp(imageBuffer)
 .resize(300, 300, { fit: 'cover' })
