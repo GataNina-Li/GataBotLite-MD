@@ -42,7 +42,7 @@ async function uploadImageToTelegraph(buffer, filename) {
   }
   form.append('file', fileData, {filename});
   const response = await axios.post('https://telegra.ph/upload', form, {
-    headers: form.getHeaders()
+    headers: form.getHeaders ? form.getHeaders() : {'Content-Type': 'multipart/form-data'}
   });
   const data = response.data;
   if (!data.ok) {
