@@ -25,7 +25,8 @@ url = await uploadImage(media)
     
 } else if (m.quoted && /image\/webp/.test(mime)) {
 let media = await qq.download()
-let out = await webp2png(media).catch(_ => null) || Buffer.alloc(0)
+let mediaBuffer = Buffer.from(media)
+let out = await webp2png(mediaBuffer).catch(_ => null) || Buffer.alloc(0)
 let media2 = await q.download()
 url = await uploadImage(out)
    
