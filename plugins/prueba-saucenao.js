@@ -26,7 +26,7 @@ url = await uploadImage(media)
 } else if (m.quoted && /image\/webp/.test(mime)) {
 let media = await qq.download()
 let out = await webp2png(mime2).catch(_ => null) || Buffer.alloc(0)
-url = await uploadImage(out)
+url = out
    
 } else {
 return m.reply('Ingrese un enlace o responda al mensaje con una imagen en formato PNG o JPG o JPEG.');
