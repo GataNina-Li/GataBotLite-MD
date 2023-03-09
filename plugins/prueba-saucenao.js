@@ -24,7 +24,7 @@ try {
 //if (!text) return m.reply('INGRESE EL ENLACE DE UNA IMAGEN QUE TERMINE EN jpg, jpeg o png')
 //if (!regex.test(text)) return m.reply('SOLO SE PERMITE ENLACE DE IMAGEN QUE TERMINE EN jpg, jpeg o png')   
 
-const response = await axios.get(`https://saucenao.com/search.php?db=999&output_type=2&testmode=1&numres=6&api_key=${api_key}&url=${encodeURIComponent('https://telegra.ph/file/405daebd4bc0d69e5d165.mp4')}`)
+const response = await axios.get(`https://saucenao.com/search.php?db=999&output_type=2&testmode=1&numres=6&api_key=${api_key}&url=${encodeURIComponent('https://telegra.ph/file/114d82ab377ccc568076a.gif')}`)
 const results = response.data.results;
 const primerResultado = results[0];
     
