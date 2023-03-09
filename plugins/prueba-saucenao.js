@@ -103,7 +103,8 @@ propName = prop
 }
 resultadoEnBruto += `*${propName}*\n${primerResultado.data[prop]}\n\n`}
     
-let frep = { contextInfo: { externalAdReply: {title: wm, body: author, sourceUrl: md, thumbnail: await(await fetch(primerResultado.header.thumbnail)).buffer() }}}
+//let frep = { contextInfo: { externalAdReply: {title: wm, body: author, sourceUrl: md, thumbnail: await(await fetch(primerResultado.header.thumbnail)).buffer() }}}
+let fkontak2 = { key: { participant: '0@s.whatsapp.net' }, message: { contactMessage: { displayName: packname, vcard: `BEGIN:VCARD\nVERSION:3.0\nN:XL;${author},;;;\nFN:${author},\nitem1.TEL;waid=${m.sender.split('@')[0]}:${m.sender.split('@')[0]}\nitem1.X-ABLabell:Ponsel\nEND:VCARD`, jpegThumbnail: await(await fetch(primerResultado.header.thumbnail)).buffer(), thumbnail: await(await fetch(primerResultado.header.thumbnail)).buffer(), sendEphemeral: true }}}
 await m.reply('*ESPERE UN MOMENTO...*')
 await conn.sendButton(m.chat, `*Número de resultados:* ${results.length}
 *Resultados encontrados:* ${Boolean(results) === true ? 'Si' : 'No'}
@@ -134,7 +135,7 @@ await conn.sendButton(m.chat, `*Número de resultados:* ${results.length}
 *Autor*
 • ${primerResultado.data.member_name === undefined ? 'No encontrado' : primerResultado.data.member_name}\n`,  `*◎ R E S U L T A D O  E N  B R U T O*
 
-${resultadoEnBruto}`.trim(), null, [['𝗠 𝗘 𝗡 𝗨 ☘️', '/menu']], m, frep)
+${resultadoEnBruto}`.trim(), null, [['𝗠 𝗘 𝗡 𝗨 ☘️', '/menu']], m, fkontak2)
 } catch (e) {
 await m.reply(lenguajeGB['smsMalError3']() + '\n*' + lenguajeGB.smsMensError1() + '*\n*' + usedPrefix + `${lenguajeGB.lenguaje() == 'es' ? 'reporte' : 'report'}` + '* ' + `${lenguajeGB.smsMensError2()} ` + usedPrefix + command)
 console.log(`❗❗ ${lenguajeGB['smsMensError2']()} ${usedPrefix + command} ❗❗`)
