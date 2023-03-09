@@ -1,4 +1,5 @@
-//import fs from 'fs'
+//Código creado por https://github.com/GataNina-Li || @gata_dios
+
 import axios from 'axios'
 import fetch from "node-fetch"
 import uploadFile from '../lib/uploadFile.js'
@@ -6,24 +7,21 @@ import uploadImage from '../lib/uploadImage.js'
 
 let handler = async (m, { conn, args, usedPrefix, command, text }) => {
 const api_key = '45e67c4cbc3d784261ffc83806b5a1d7e3bd09ae'
-//const image_url = 'https://i.imgur.com/oZjCxGo.jpg'
+const image_url = 'https://i.imgur.com/oZjCxGo.jpg'
 
 try {
+//let regex = /\.(jpg|jpeg|png)$/i
 
-let regex = /\.(jpg|jpeg|png)$/i
-let q = m.quoted ? m.quoted : m
-let mime = (q.msg || q).mimetype || ''
-if (!mime) return m.reply('No se puede')
-let media = await q.download()
-let isTele = /image\/(png|jpe?g|gif)|video\/mp4/.test(mime)
-let link 
-while (!link) {
-link = await (isTele ? uploadImage : uploadFile)(media)
-}
-//if (!link) {
-//m.reply('ERROR')
-//return
-//} 
+//let q = m.quoted ? m.quoted : m
+//let mime = (q.msg || q).mimetype || ''
+//if (!mime) return m.reply('No se puede')
+//let media = await q.download()
+//let isTele = /image\/(png|jpe?g|gif)|video\/mp4/.test(mime)
+//let link 
+//while (!link) {
+//link = await (isTele ? uploadImage : uploadFile)(media)
+//}
+
 //if (!text) return m.reply('INGRESE EL ENLACE DE UNA IMAGEN QUE TERMINE EN jpg, jpeg o png')
 //if (!regex.test(text)) return m.reply('SOLO SE PERMITE ENLACE DE IMAGEN QUE TERMINE EN jpg, jpeg o png')   
 
@@ -36,29 +34,21 @@ for (let prop in primerResultado.header) {
 let propName = '';
 switch (prop) {
 case 'similarity': propName = 'Puntuación de similitud' 
-break
-        
+break        
 case 'thumbnail': propName = 'URL de la miniatura' 
-break
-        
+break        
 case 'index_id': propName = 'ID del índice' 
-break
-        
+break        
 case 'index_name': propName = 'Nombre del índice' 
-break
-        
+break        
 case 'dupes': propName = 'Imágenes duplicadas' 
-break
-        
+break        
 case 'hidden': propName = 'Imágenes ocultas o bloqueadas' 
-break
-        
+break        
 case 'author_name': propName = 'Nombre del autor' 
-break 
-        
+break         
 case 'source': propName = 'Fuente' 
-break
-        
+break        
 case 'material': propName = 'Material' 
 break
 
@@ -73,44 +63,31 @@ let propName = ''
 
 switch (prop) {
 case 'title': propName = 'Título' 
-break
-        
+break        
 case 'ext_urls': propName = 'URLs' 
-break
-        
+break        
 case 'member_name': propName = 'Nombre del autor' 
-break
-        
+break        
 case 'pixiv_id': propName = 'ID de Pixiv' 
-break
-        
+break        
 case 'danbooru_id': propName = 'ID de Danbooru' 
-break
-        
+break        
 case 'gelbooru_id': propName = 'ID de Gelbooru' 
-break
-        
+break        
 case 'source': propName = 'Fuente' 
-break
-        
+break        
 case 'material': propName = 'Material' 
-break
-        
+break        
 case 'da_id': propName = 'ID de la imagen' 
-break
-        
+break        
 case 'author_name': propName = 'Nombre del Autor' 
-break
-        
+break        
 case 'author_url': propName = 'URL del Autor' 
-break
-        
+break        
 case 'member_id': propName = 'ID del Autor' 
-break
-        
+break        
 case 'fa_id': propName = 'ID del Autor en FurAffinity' 
-break
-        
+break        
 case 'as_project': propName = 'Proyecto en Anime-Source' 
 break
 
@@ -156,7 +133,7 @@ await conn.sendButton(m.chat, `*Número de resultados:* ${results.length}
 *Autor*
 • ${primerResultado.data.member_name === undefined ? 'No encontrado' : primerResultado.data.member_name}\n`,  `*◎ R E S U L T A D O  E N  B R U T O*
 
-${resultadoEnBruto}`.trim(), link, [['𝗠 𝗘 𝗡 𝗨 ☘️', '/menu']], m, frep)
+${resultadoEnBruto}`.trim(), image_url, [['𝗠 𝗘 𝗡 𝗨 ☘️', '/menu']], m, frep)
 } catch (error) {
 console.log(error);
 }}
