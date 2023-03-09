@@ -26,9 +26,9 @@ let media = await q.download()
 let img = await webp2png(media).catch(_ => null) || Buffer.alloc(0)
 let buffer = Buffer.from(img, 'binary')
 url = await uploadImage(buffer)
-   
+    
 } else {
-return m.reply('Ingrese un enlace o responda al mensaje con una imagen en formato PNG o JPG o JPEG.');
+return m.reply('Ingrese un enlace o responda al mensaje con una imagen en formato PNG o JPG o JPEG.')
 }
 
 const response = await axios.get(`https://saucenao.com/search.php?db=999&output_type=2&testmode=1&numres=6&api_key=${api_key}&url=${encodeURIComponent(url)}`)
