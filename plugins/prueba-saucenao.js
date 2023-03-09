@@ -36,7 +36,11 @@ return m.reply('Ingrese un enlace o responda al mensaje con una imagen en format
     
 async function uploadImageToTelegraph(buffer, filename) {
   const form = new FormData();
-  form.append('file', buffer, {filename});
+  let fileData = buffer;
+  if (buffer instanceof Buffer) {
+    fileData = new Blob([buffer], {type: 'image/png'});
+  }
+  form.append('file', fileData, {filename});
   const response = await axios.post('https://telegra.ph/upload', form, {
     headers: form.getHeaders()
   });
@@ -44,7 +48,7 @@ async function uploadImageToTelegraph(buffer, filename) {
   if (!data.ok) {
     throw new Error(`Failed to upload image to Telegraph: ${data.error}`);
   }
-  return `https://telegra.ph${data.result[0].src}`;
+  return m.reply(`https://telegra.ph${data.result[0].src}`);
 }
 
 let url;
