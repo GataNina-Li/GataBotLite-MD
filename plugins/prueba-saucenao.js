@@ -21,7 +21,7 @@ let mime = (q.msg || q).mimetype || q.mediaType || ''
 if (text) {
 url = text
     
-} else if (m.quoted && /image\/(png|jpe?g)/.test(mime) || mime.startsWith('image/')) {
+} else if (m.quoted && /image\/(png|jpe?g)/.test(mime)){ //|| mime.startsWith('image/')) {
 let media = await q.download()
 url = await uploadImage(media)
     
@@ -41,14 +41,14 @@ let success = false;
 for (let i = 0; i < apiKeys.length; i++) {
 const apiKey = apiKeys[i];
 try {
-response = await axios.get(`https://saucenao.com/search.php?db=999&output_type=2&testmode=1&numres=6&api_key=${apiKey}&url=${encodeURIComponent(url)}`);
+response = await axios.get(`https://saucenao.com/search.php?db=999&output_type=2&testmode=1&numres=6&api_key=${apiKey}&url=${encodeURIComponent(url)}`)
 success = true;
-break; 
+break
 } catch (error) {
-console.error(`Error en la API key: ${apiKey}`, error); 
+console.error(`Error en la API key: ${apiKey}`, error) 
 }}
 if (!success) {
-m.reply("Todas las solicitudes fallaron. No se pudo encontrar una respuesta exitosa.");
+m.reply("Todas las solicitudes fallaron. No se pudo encontrar una respuesta exitosa.")
 return
 }
 
