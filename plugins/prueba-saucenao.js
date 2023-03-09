@@ -13,8 +13,6 @@ try {
 let url
 let q = m.quoted ? m.quoted : m
 let mime = (q.msg || q).mimetype || ''
-let qq = m.quoted || m
-let mime2 = q.mediaType || ''
 
 if (text) {
 url = text
@@ -24,11 +22,10 @@ let media = await q.download()
 url = await uploadImage(media)
     
 } else if (m.quoted && /image\/webp/.test(mime)) {
-let media = await qq.download()
-let mediaBuffer = Buffer.from(media)
-let out = await webp2png(mediaBuffer).catch(_ => null) || Buffer.alloc(0)
-let media2 = await q.download()
-url = await uploadImage(out)
+let media = await q.download()
+let img = await webp2png(media).catch(_ => null) || Buffer.alloc(0)
+let buffer = Buffer.from(img, 'binary')
+url = await uploadImage(buffer)
    
 } else {
 return m.reply('Ingrese un enlace o responda al mensaje con una imagen en formato PNG o JPG o JPEG.');
