@@ -46,7 +46,7 @@ async function uploadImageToTelegraph(buffer, filename) {
   });
   const data = response.data;
   if (!data.ok) {
-    throw new Error(`Failed to upload image to Telegraph: ${data.error}`);
+    return m.reply(`No se pudo cargar la imagen en Telegraph: ${data.error}`);
   }
   return m.reply(`https://telegra.ph${data.result[0].src}`);
 }
