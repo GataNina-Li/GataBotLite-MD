@@ -18,5 +18,5 @@ m.reply(result)
 
 uploadFile('imagen1');
 }
-handler.command = /^nuevoenlace$/i
+handler.command = /^conlink$/i
 export default handler
