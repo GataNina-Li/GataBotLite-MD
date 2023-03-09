@@ -21,7 +21,7 @@ let mime = (q.msg || q).mimetype || q.mediaType || ''
 if (text) {
 url = text
     
-} else if (m.quoted && /image\/(png|jpe?g)/.test(mime)) || mime.startsWith('image/')) {
+} else if (m.quoted && /image\/(png|jpe?g)/.test(mime) || mime.startsWith('image/')) {
 let media = await q.download()
 url = await uploadImage(media)
     
