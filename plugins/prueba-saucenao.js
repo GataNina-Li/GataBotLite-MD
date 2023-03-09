@@ -34,7 +34,7 @@ url = await webp2png(media)
     
 } else {
 return m.reply('Ingrese un enlace o responda al mensaje con una imagen en formato PNG o JPG o JPEG.')
-}*/
+}
 
 const response = await axios.get(`https://saucenao.com/search.php?db=999&output_type=2&testmode=1&numres=6&api_key=${api_key}&url=${encodeURIComponent(url)}`)
 const results = response.data.results;
