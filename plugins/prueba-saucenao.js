@@ -1,18 +1,26 @@
 //import fs from 'fs'
 import axios from 'axios'
 import fetch from "node-fetch"
+import uploadFile from '../lib/uploadFile.js'
+import uploadImage from '../lib/uploadImage.js'
 
 let handler = async (m, { conn, args, usedPrefix, command, text }) => {
 const api_key = '45e67c4cbc3d784261ffc83806b5a1d7e3bd09ae'
 //const image_url = 'https://i.imgur.com/oZjCxGo.jpg'
 
 try {
-let regex = /\.(jpg|jpeg|png)$/i
 
-if (!text) return m.reply('INGRESE EL ENLACE DE UNA IMAGEN QUE TERMINE EN jpg, jpeg o png')
-if (!regex.test(text)) return m.reply('SOLO SE PERMITE ENLACE DE IMAGEN QUE TERMINE EN jpg, jpeg o png')   
+let regex = /\.(jpg|jpeg|png)$/i
+let q = m.quoted ? m.quoted : m
+let mime = (q.msg || q).mimetype || ''
+if (!mime) return m.reply('No se puede')
+let media = await q.download()
+let isTele = /image\/(png|jpe?g|gif)|video\/mp4/.test(mime)
+let link = await (isTele ? uploadImage : uploadFile)(media)    
+//if (!text) return m.reply('INGRESE EL ENLACE DE UNA IMAGEN QUE TERMINE EN jpg, jpeg o png')
+//if (!regex.test(text)) return m.reply('SOLO SE PERMITE ENLACE DE IMAGEN QUE TERMINE EN jpg, jpeg o png')   
     
-const response = await axios.get(`https://saucenao.com/search.php?db=999&output_type=2&testmode=1&numres=6&api_key=${api_key}&url=${encodeURIComponent(text)}`)
+const response = await axios.get(`https://saucenao.com/search.php?db=999&output_type=2&testmode=1&numres=6&api_key=${api_key}&url=${encodeURIComponent(link)}`)
 const results = response.data.results;
 const primerResultado = results[0];
     
