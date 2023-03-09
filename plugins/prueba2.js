@@ -1,6 +1,6 @@
 import { v2 as cloudinary } from 'cloudinary'
 
-let handler = async (m, { conn, args, usedPrefix, command, text }) => {
+let handler = async (m, { conn, usedPrefix, command, text }) => {
 cloudinary.config({
   cloud_name: 'deuj1ythb',
   api_key: '348851633961558',
