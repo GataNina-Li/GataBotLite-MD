@@ -13,62 +13,25 @@ let handler = async (m, { conn, args, usedPrefix, command, text }) => {
 const api_key = '45e67c4cbc3d784261ffc83806b5a1d7e3bd09ae'
 
 try {
-/*let url
+let url
 let q = m.quoted ? m.quoted : m
 let mime = (q.msg || q).mimetype || ''
 
 if (text) {
 url = text
     
-} else if (m.quoted && /image\/(png|jpe?g)/.test(mime)) {
+} else if (m.quoted && /image\/(webp|png|jpe?g)/.test(mime)) {
 let media = await q.download()
 url = await uploadImage(media)
     
-} else if (m.quoted && /image\/webp/.test(mime)) {
-let media = await q.download()
-let img = await webp2png(media).catch(_ => null) || Buffer.alloc(0)
-let buffer = Buffer.from(img, 'binary')
-url = await uploadImage(buffer)
+//} else if (m.quoted && /image\/webp/.test(mime)) {
+//let media = await q.download()
+//let img = await webp2png(media).catch(_ => null) || Buffer.alloc(0)
+//let buffer = Buffer.from(img, 'binary')
+//url = await uploadImage(buffer)
     
 } else {
 return m.reply('Ingrese un enlace o responda al mensaje con una imagen en formato PNG o JPG o JPEG.')
-}*/
-    
-async function uploadImageToTelegraph(buffer, filename) {
-  const form = new FormData();
-  let fileData = buffer;
-  if (buffer instanceof Buffer) {
-    fileData = new Blob([buffer], {type: 'image/png'});
-  }
-  form.append('file', fileData, {filename});
-  const response = await axios.post('https://telegra.ph/upload', form, {
-    headers: form.getHeaders ? form.getHeaders() : {'Content-Type': 'multipart/form-data'}
-  });
-  const data = response.data;
-  if (!data.ok) {
-    return m.reply(`No se pudo cargar la imagen en Telegraph: ${data.error}`);
-  }
-  return m.reply(`https://telegra.ph${data.result[0].src}`);
-}
-
-let url;
-let q = m.quoted ? m.quoted : m;
-let mime = (q.msg || q).mimetype || '';
-let qq = m.quoted || m;
-let mime2 = q.mediaType || '';
-
-if (text) {
-  url = text;
-} else if (m.quoted && /image\/(png|jpe?g)/.test(mime)) {
-  let media = await q.download();
-  url = await uploadImageToTelegraph(media, 'image.png');
-} else if (m.quoted && /image\/webp/.test(mime)) {
-  let media = await q.download();
-  let img = await webp2png(media).catch(_ => null) || Buffer.alloc(0);
-  let buffer = Buffer.from(img, 'binary');
-  url = await uploadImageToTelegraph(buffer, 'image.png');
-} else {
-  return m.reply('Ingrese un enlace o responda al mensaje con una imagen en formato PNG o JPG o JPEG o WEBP.');
 }
 
 const response = await axios.get(`https://saucenao.com/search.php?db=999&output_type=2&testmode=1&numres=6&api_key=${api_key}&url=${encodeURIComponent(url)}`)
