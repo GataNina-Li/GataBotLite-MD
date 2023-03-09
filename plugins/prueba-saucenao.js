@@ -45,9 +45,9 @@ response = await axios.get(`https://saucenao.com/search.php?db=999&output_type=2
 success = true;
 break;
 } catch (error) {
-//console.error(error);
+console.error(apiKey)
 }}
-if (!success) {
+if (!success) 
 m.reply("Todas las solicitudes fallaron. No se pudo encontrar una respuesta exitosa.")
 return 
 }
