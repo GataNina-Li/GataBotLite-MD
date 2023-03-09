@@ -132,7 +132,7 @@ await conn.sendButton(m.chat, `*Número de resultados:* ${results.length}
 *Autor*
 • ${primerResultado.data.member_name === undefined ? 'No encontrado' : primerResultado.data.member_name}\n`,  `*◎ R E S U L T A D O  E N  B R U T O*
 
-${resultadoEnBruto}`.trim(), 'https://telegra.ph/file/405daebd4bc0d69e5d165.mp4', [['𝗠 𝗘 𝗡 𝗨 ☘️', '/menu']], m, frep)
+${resultadoEnBruto}`.trim(), img3, [['𝗠 𝗘 𝗡 𝗨 ☘️', '/menu']], m, frep)
 } catch (error) {
 console.log(error);
 }}
