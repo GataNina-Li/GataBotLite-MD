@@ -38,6 +38,7 @@
         "chalk": "^5.0.0",
         "cheerio": "^1.0.0-rc.10",
         "colors": "1.4.0",
+        "cloudinary": "^1.27.1",
         "emoji-api": "^1.0.2",
         "express": "^4.17.3",
         "jimp": "0.22.7",
