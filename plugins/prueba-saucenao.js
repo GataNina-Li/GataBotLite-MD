@@ -2,6 +2,7 @@
 
 import axios from 'axios'
 import fetch from "node-fetch"
+import GIF from 'gif.js'
 import uploadFile from '../lib/uploadFile.js'
 import uploadImage from '../lib/uploadImage.js'
 
