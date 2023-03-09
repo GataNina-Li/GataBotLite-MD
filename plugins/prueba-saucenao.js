@@ -15,7 +15,7 @@ const api_key = '45e67c4cbc3d784261ffc83806b5a1d7e3bd09ae'
 try {
 let url
 let q = m.quoted ? m.quoted : m
-let mime = (q.msg || q).mimetype || ''
+let mime = (q.msg || q).mimetype || q.mediaType || ''
 
 if (text) {
 url = text
