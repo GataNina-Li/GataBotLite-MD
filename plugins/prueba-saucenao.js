@@ -46,7 +46,7 @@ response = await axios.get(`https://saucenao.com/search.php?db=999&output_type=2
 success = true;
 break;
 } catch (error) {
-console.error(apiKey)
+console.error(`Error en la API key: ${apiKey}`, error)
 }
 if (!success) 
 m.reply("Todas las solicitudes fallaron. No se pudo encontrar una respuesta exitosa.")
