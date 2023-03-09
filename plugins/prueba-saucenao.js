@@ -14,14 +14,14 @@ try {
 let url
 let q = m.quoted ? m.quoted : m
 let mime = (q.msg || q).mimetype || q.mediaType || ''
-//const urlRegex = /\.(jpg|jpeg|png)$/i;
-//const pageUrlRegex = /^https?:\/\/[^\s/$.?#].[^\s]*$/i
+const urlRegex = /\.(jpg|jpeg|png)$/i;
+const pageUrlRegex = /^https?:\/\/[^\s/$.?#].[^\s]*$/i
 
-//if (pageUrlRegex.test(text) && urlRegex.test(text)) {
-if (text) {
+if (pageUrlRegex.test(text) && urlRegex.test(text)) {
+//if (text) {
 url = text
     
-} else if (m.quoted && /image\/(png|jpe?g)/.test(mime)){ //|| mime.startsWith('image/')) {
+} else if (m.quoted && /image\/(png|jpe?g)/.test(mime) || mime.startsWith('image/')) {
 let media = await q.download()
 url = await uploadImage(media)
     
