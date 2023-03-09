@@ -10,7 +10,7 @@ import formData from 'form-data'
 
 
 let handler = async (m, { conn, args, usedPrefix, command, text }) => {
-const clavesApi = ["45e67c4cbc3d784261ffc83806b5a1d7e3bd09ae", "d3a88baf236200c2ae23f31039e599c252034be8", "clave3", "clave4", "clave5"]
+const api_key = ["45e67c4cbc3d784261ffc83806b5a1d7e3bd09ae", "d3a88baf236200c2ae23f31039e599c252034be8", "clave3", "clave4", "clave5"]
 try {   
 let url
 let q = m.quoted ? m.quoted : m
@@ -52,7 +52,7 @@ throw new Error("No se pudo buscar la imagen con ninguna de las APIs")
 return resultado;
 }
 
-buscarImagen(clavesApi, url)
+buscarImagen(api_key, url)
 .then(resultado => console.log(resultado))
 .catch(error => console.error(error))
 
