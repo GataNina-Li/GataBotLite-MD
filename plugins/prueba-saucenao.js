@@ -10,7 +10,7 @@ import formData from 'form-data'
 
 
 let handler = async (m, { conn, args, usedPrefix, command, text }) => {
-const api_key = '45e67c4cbc3d784261ffc83806b5a1d7e3bd09ae'
+const clavesApi = ["45e67c4cbc3d784261ffc83806b5a1d7e3bd09ae", "d3a88baf236200c2ae23f31039e599c252034be8", "clave3", "clave4", "clave5"]
 try {   
 let url
 let q = m.quoted ? m.quoted : m
@@ -35,6 +35,28 @@ return m.reply('Ingrese un enlace o responda al mensaje con una imagen en format
 }
 
 const response = await axios.get(`https://saucenao.com/search.php?db=999&output_type=2&testmode=1&numres=6&api_key=${api_key}&url=${encodeURIComponent(url)}`)
+async function buscarImagen(apiKeys, imagen) {
+let resultado = null;
+  
+for (const apiKey of apiKeys) {
+try {
+resultado = await apiSearch(apiKey, imagen)
+break;
+} catch (error) {
+console.error(`No se pudo buscar la imagen con la API ${apiKey}: `, error)
+}}
+  
+if (resultado === null) {
+throw new Error("No se pudo buscar la imagen con ninguna de las APIs")
+}
+return resultado;
+}
+
+buscarImagen(clavesApi, url)
+.then(resultado => console.log(resultado))
+.catch(error => console.error(error))
+
+
 const results = response.data.results;
 const primerResultado = results[0]
     
