@@ -56,7 +56,7 @@ default:
 propName = prop;
 }
 resultadoEnBruto += `*${propName}*\n${primerResultado.header[prop]}\n\n`}
-resultadoEnBruto += '\n'
+//resultadoEnBruto += ''
     
 for (let prop in primerResultado.data) {
 let propName = ''
@@ -97,10 +97,10 @@ propName = prop
 resultadoEnBruto += `*${propName}*\n${primerResultado.data[prop]}\n\n`}
     
 //let enlace = { contextInfo: { externalAdReply: { showAdAttribution: true, mediaUrl: md, mediaType: 'IMAGE', description: '', title: wm, body: '😻 𝗦𝘂𝗽𝗲𝗿 𝗚𝗮𝘁𝗮𝗕𝗼𝘁-𝗠𝗗 - 𝗪𝗵𝗮𝘁𝘀𝗔𝗽𝗽 ', thumbnailUrl: await(await fetch(img3)).buffer(), sourceUrl: md }}}
-let frep
-while (!primerResultado.header.thumbnail) {
-frep = { contextInfo: { externalAdReply: {title: wm, body: author, sourceUrl: md, thumbnail: await(await fetch(primerResultado.header.thumbnail)).buffer()}}}
-}
+//let frep
+//while (!primerResultado.header.thumbnail) {
+let frep = { contextInfo: { externalAdReply: {title: wm, body: author, sourceUrl: md, thumbnail: await(await fetch(primerResultado.header.thumbnail)).buffer() }}}
+//}
 
 
 await m.reply('*ESPERE UN MOMENTO...*')
