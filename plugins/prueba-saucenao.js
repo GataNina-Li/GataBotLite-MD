@@ -41,7 +41,7 @@ let success = false;
 
 for (let i = 0; i < apiKeys.length; i++) {
 const apiKey = apiKeys[i]
-try {*/
+try {
 response = await axios.get(`https://saucenao.com/search.php?db=999&output_type=2&testmode=1&numres=6&api_key=${apiKey}&url=${encodeURIComponent(url)}`)
 success = true;
 break;
