@@ -15,11 +15,10 @@ try {
 let url
 let q = m.quoted ? m.quoted : m
 let mime = (q.msg || q).mimetype || q.mediaType || ''
-//const regex = /(https?:\/\/[^\s]+?\.(?:jpg|jpeg|png))/i;
-//const enlaceArray = text.match(regex);
-//const enlace = enlaceArray ? enlaceArray[0].toString() : null
+const urlRegex = /\.(jpg|jpeg|png)$/i;
+const pageUrlRegex = /^https?:\/\/[^\s/$.?#].[^\s]*$/i
 
-if (text) {
+if (pageUrlRegex.test(text) && urlRegex.test(text)) {
 url = text
     
 } else if (m.quoted && /image\/(png|jpe?g)/.test(mime)) {
