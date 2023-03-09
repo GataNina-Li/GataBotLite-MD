@@ -12,24 +12,17 @@ import formData from 'form-data'
 let handler = async (m, { conn, args, usedPrefix, command, text }) => {
 const api_key = '45e67c4cbc3d784261ffc83806b5a1d7e3bd09ae'
 
+const pURL = (text) => {
+return text.match(new RegExp(/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_+.~#?&/=]*)(jpe?g|png)/, 'gi'))
+}
+
 try {
 let url
 let q = m.quoted ? m.quoted : m
 let mime = (q.msg || q).mimetype || q.mediaType || ''
 
-let hasImage = false
-if (q.hasMedia) {
-const media = await q.downloadMedia()
-if (media.mimetype.split('/')[0] === 'image') {
-hasImage = true
-}}
-if (hasImage) {
-let media = await q.download()
-url = await uploadImage(media)    
-} 
-
-/*if (text) {
-url = text
+if (pURL) {
+url = pURL
     
 } else if (m.quoted && /image\/(png|jpe?g)/.test(mime)) {
 let media = await q.download()
