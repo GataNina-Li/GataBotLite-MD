@@ -35,24 +35,24 @@ return m.reply('Ingrese un enlace o responda al mensaje con una imagen en format
 
 //const response = await axios.get(`https://saucenao.com/search.php?db=999&output_type=2&testmode=1&numres=6&api_key=${api_key}&url=${encodeURIComponent(url)}`)
 const apiKeys = ["45e67c4cbc3d784261ffc83806b5a1d7e3bd09ae", "d3a88baf236200c2ae23f31039e599c252034be8"]
-const serverNames = {
-"45e67c4cbc3d784261ffc83806b5a1d7e3bd09ae": "Servidor 1",
-"d3a88baf236200c2ae23f31039e599c252034be8": "Servidor 2",
-}
+//const serverNames = {
+//"45e67c4cbc3d784261ffc83806b5a1d7e3bd09ae": "Servidor 1",
+//"d3a88baf236200c2ae23f31039e599c252034be8": "Servidor 2",
+//}
 let response;
 let success = false;
 
 for (let i = 0; i < apiKeys.length; i++) {
 const apiKey = apiKeys[i];
-try {
+//try {
 response = await axios.get(`https://saucenao.com/search.php?db=999&output_type=2&testmode=1&numres=6&api_key=${apiKey}&url=${encodeURIComponent(url)}`);
 success = true;
 break;
-} catch (error) {
-console.error(`La solicitud con el ${serverNames[apiKey]} falló: ${error}`);
-}}
+//} catch (error) {
+//console.error(`La solicitud con el ${serverNames[apiKey]} falló: ${error}`);
+}//}
 if (!success) {
-console.log("Todas las solicitudes fallaron. No se pudo encontrar una respuesta exitosa.")
+m.reply("Todas las solicitudes fallaron. No se pudo encontrar una respuesta exitosa.")
 return 
 }
 
