@@ -20,15 +20,13 @@ let mime = (q.msg || q).mimetype || ''
 if (text) {
 url = text
     
-} else if (m.quoted && /image\/(webp|png|jpe?g)/.test(mime)) {
+} else if (m.quoted && /image\/(png|jpe?g)/.test(mime)) {
 let media = await q.download()
 url = await uploadImage(media)
     
-//} else if (m.quoted && /image\/webp/.test(mime)) {
-//let media = await q.download()
-//let img = await webp2png(media).catch(_ => null) || Buffer.alloc(0)
-//let buffer = Buffer.from(img, 'binary')
-//url = await uploadImage(buffer)
+} else if (m.quoted && /image\/webp/.test(mime)) {
+let media = await q.download()
+url = await webp2png(media)
     
 } else {
 return m.reply('Ingrese un enlace o responda al mensaje con una imagen en formato PNG o JPG o JPEG.')
