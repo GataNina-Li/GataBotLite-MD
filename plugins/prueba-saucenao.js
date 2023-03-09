@@ -37,7 +37,6 @@ return m.reply('Ingrese un enlace o responda al mensaje con una imagen en format
 //const response = await axios.get(`https://saucenao.com/search.php?db=999&output_type=2&testmode=1&numres=6&api_key=${api_key}&url=${encodeURIComponent(url)}`)
 async function buscarEnAPIs(apiKeys, urls) {
 for (const apiKey of apiKeys) {
-for (const url of urls) {
 const urlEncoded = encodeURIComponent(url);
 const apiUrl = `https://saucenao.com/search.php?db=999&output_type=2&testmode=1&numres=6&api_key=${apiKey}&url=${urlEncoded}`;
 
@@ -48,7 +47,6 @@ const apiUrl = `https://saucenao.com/search.php?db=999&output_type=2&testmode=1&
  console.error(`Error en consulta de API: ${error}`);
   }
     }
-  }
   console.error('No se encontraron resultados en ninguna de las APIs');
   return null;
 }
