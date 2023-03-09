@@ -4,6 +4,7 @@ import axios from 'axios'
 import fetch from "node-fetch"
 import uploadFile from '../lib/uploadFile.js'
 import uploadImage from '../lib/uploadImage.js'
+import { webp2png } from '../lib/webp2mp4.js'
 
 let handler = async (m, { conn, args, usedPrefix, command, text }) => {
 const api_key = '45e67c4cbc3d784261ffc83806b5a1d7e3bd09ae'
@@ -19,6 +20,11 @@ url = text
 } else if (m.quoted && /image\/(png|jpe?g)/.test(mime)) {
 let media = await q.download()
 url = await uploadImage(media)
+    
+} else if (/sticker/.test(mime)) {
+let media = await q.download()
+let img = await webp2png(media).catch(_ => null) || Buffer.alloc(0)
+url = await uploadImage(img)
     
 } else {
 return m.reply('Ingrese un enlace o responda al mensaje con una imagen en formato PNG o JPG o JPEG.');
