@@ -15,12 +15,16 @@ let q = m.quoted ? m.quoted : m
 let mime = (q.msg || q).mimetype || ''
 if (!mime) return m.reply('No se puede')
 let media = await q.download()
-//let isTele = /image\/(png|jpe?g|gif)|video\/mp4/.test(mime)
-//let link = await (isTele ? uploadImage : uploadFile)(media)    
+let isTele = /image\/(png|jpe?g|gif)|video\/mp4/.test(mime)
+let link = await (isTele ? uploadImage : uploadFile)(media)
+if (!link) {
+m.reply('ERROR')
+return
+} 
 //if (!text) return m.reply('INGRESE EL ENLACE DE UNA IMAGEN QUE TERMINE EN jpg, jpeg o png')
 //if (!regex.test(text)) return m.reply('SOLO SE PERMITE ENLACE DE IMAGEN QUE TERMINE EN jpg, jpeg o png')   
 
-const response = await axios.get(`https://saucenao.com/search.php?db=999&output_type=2&testmode=1&numres=6&api_key=${api_key}&url=${encodeURIComponent(media)}`)
+const response = await axios.get(`https://saucenao.com/search.php?db=999&output_type=2&testmode=1&numres=6&api_key=${api_key}&url=${encodeURIComponent(link)}`)
 const results = response.data.results;
 const primerResultado = results[0];
     
