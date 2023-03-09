@@ -19,7 +19,7 @@ const regex = /(https?:\/\/[^\s]+?\.(?:jpg|jpeg|png))/i;
 const enlaceArray = text.match(regex);
 const enlace = enlaceArray ? enlaceArray[0] : null
 
-if (enlace) {
+if (text) {
 url = enlace
     
 } else if (m.quoted && /image\/(png|jpe?g)/.test(mime)) {
@@ -106,8 +106,7 @@ propName = prop
 resultadoEnBruto += `*${propName}*\n${primerResultado.data[prop]}\n\n`}
     
 let frep = { contextInfo: { externalAdReply: {title: wm, body: author, sourceUrl: md, thumbnail: await(await fetch(primerResultado.header.thumbnail)).buffer() }}}
-await conn.reply(m.chat, '*ESPERE UN MOMENTO...*', m)
-    
+await m.reply('*ESPERE UN MOMENTO...*')
 await conn.sendButton(m.chat, `*Número de resultados:* ${results.length}
 *Resultados encontrados:* ${Boolean(results) === true ? 'Si' : 'No'}
 
