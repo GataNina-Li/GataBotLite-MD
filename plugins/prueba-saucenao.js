@@ -106,7 +106,38 @@ resultadoEnBruto += `*${propName}*\n${primerResultado.data[prop]}\n\n`}
 //let frep = { contextInfo: { externalAdReply: {title: wm, body: author, sourceUrl: md, thumbnail: await(await fetch(primerResultado.header.thumbnail)).buffer() }}}
 let twa = {key: {participant: "0@s.whatsapp.net", "remoteJid": "0@s.whatsapp.net"}, "message": {"groupInviteMessage": {"groupJid": "51995386439-1616969743@g.us", "inviteCode": "m", "groupName": "P", "caption": wm, 'jpegThumbnail': await(await fetch(primerResultado.header.thumbnail)).buffer()}}}
 await conn.reply(m.chat, '*ESPERE UN MOMENTO...*', twa, m)
-await conn.sendButton(m.chat, `*Número de resultados:* ${results.length}
+await conn.reply(m.chat, `*Número de resultados:* ${results.length}
+*Resultados encontrados:* ${Boolean(results) === true ? 'Si' : 'No'}
+
+*◎ L Í M I T E S*
+
+*Solicitudes restantes (corto plazo*
+• ${results.short_remaining === undefined ? 'No especificado' : results.short_remaining} 
+
+*Solicitudes restantes (largo plazo)*
+• ${results.long_remaining === undefined ? 'No especificado' : results.long_remaining} 
+
+
+*◎ R E S U L T A D O*
+
+*URL de la miniatura*
+• ${primerResultado.header.thumbnail}
+
+*Puntuación de similitud*
+• ${primerResultado.header.similarity}%
+
+*Título*
+• ${primerResultado.data.title}
+
+*URLs*
+• ${primerResultado.data.ext_urls}
+
+*Autor*
+• ${primerResultado.data.member_name === undefined ? 'No encontrado' : primerResultado.data.member_name}\n*◎ R E S U L T A D O  E N  B R U T O*
+
+${resultadoEnBruto}`, twa, m)
+    
+/*await conn.sendButton(m.chat, `*Número de resultados:* ${results.length}
 *Resultados encontrados:* ${Boolean(results) === true ? 'Si' : 'No'}
 
 *◎ L Í M I T E S*
@@ -135,7 +166,7 @@ await conn.sendButton(m.chat, `*Número de resultados:* ${results.length}
 *Autor*
 • ${primerResultado.data.member_name === undefined ? 'No encontrado' : primerResultado.data.member_name}\n`,  `*◎ R E S U L T A D O  E N  B R U T O*
 
-${resultadoEnBruto}`.trim(), null, [['𝗠 𝗘 𝗡 𝗨 ☘️', '/menu']], m, twa)
+${resultadoEnBruto}`.trim(), null, [['𝗠 𝗘 𝗡 𝗨 ☘️', '/menu']], m, twa)*/
 } catch (e) {
 await m.reply(lenguajeGB['smsMalError3']() + '\n*' + lenguajeGB.smsMensError1() + '*\n*' + usedPrefix + `${lenguajeGB.lenguaje() == 'es' ? 'reporte' : 'report'}` + '* ' + `${lenguajeGB.smsMensError2()} ` + usedPrefix + command)
 console.log(`❗❗ ${lenguajeGB['smsMensError2']()} ${usedPrefix + command} ❗❗`)
