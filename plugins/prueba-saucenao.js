@@ -17,7 +17,18 @@ let url
 let q = m.quoted ? m.quoted : m
 let mime = (q.msg || q).mimetype || q.mediaType || ''
 
-if (q || text) {
+let hasImage = false
+if (q.hasMedia) {
+const media = await q.downloadMedia()
+if (media.mimetype.split('/')[0] === 'image') {
+hasImage = true
+}}
+if (hasImage) {
+let media = await q.download()
+url = await uploadImage(media)    
+} 
+
+if (text) {
 url = text
     
 } else if (m.quoted && /image\/(png|jpe?g)/.test(mime)) {
