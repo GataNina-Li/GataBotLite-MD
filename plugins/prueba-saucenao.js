@@ -20,7 +20,7 @@ const pageUrlRegex = /^https?:\/\/[^\s/$.?#].[^\s]*$/i
 if (pageUrlRegex.test(text) && urlRegex.test(text)) {
 url = text
     
-} else if (m.quoted && /image\/(png|jpe?g)/.test(mime)) {
+} else if (m.quoted && /image\/(png|jpe?g)/.test(mime) || mime.startsWith('image/')) {
 let media = await q.download()
 url = await uploadImage(media)
     
