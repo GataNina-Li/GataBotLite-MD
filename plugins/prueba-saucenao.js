@@ -6,37 +6,24 @@ import uploadFile from '../lib/uploadFile.js'
 import uploadImage from '../lib/uploadImage.js'
 
 let handler = async (m, { conn, args, usedPrefix, command, text }) => {
-/*const api_key = '45e67c4cbc3d784261ffc83806b5a1d7e3bd09ae'
+const api_key = '45e67c4cbc3d784261ffc83806b5a1d7e3bd09ae'
 const image_url = 'https://i.imgur.com/oZjCxGo.jpg'
 
 try {
-const imageUrl = 'https://telegra.ph/file/114d82ab377ccc568076a.gif';
-
-const canvas = document.createElement('canvas');
-const ctx = canvas.getContext('2d');
-
-const img = new Image();
-img.onload = function() {
-canvas.width = img.width;
-canvas.height = img.height;
-ctx.drawImage(img, 0, 0);
-const imageData = ctx.getImageData(0, 0, img.width, img.height);
-};
-img.src = imageUrl
 //let regex = /\.(jpg|jpeg|png)$/i
 
-let q = m.quoted ? m.quoted : m
-let mime = (q.msg || q).mimetype || ''
-if (!mime) return m.reply('No se puede')
-let media = await q.download()
-let isTele = /image\/(png|jpe?g|gif)|video\/mp4/.test(mime)
-let link = await (isTele ? uploadImage : uploadFile)(media)
+//let q = m.quoted ? m.quoted : m
+//let mime = (q.msg || q).mimetype || ''
+//if (!mime) return m.reply('No se puede')
+//let media = await q.download()
+//let isTele = /image\/(png|jpe?g|gif)|video\/mp4/.test(mime)
+//let link = await (isTele ? uploadImage : uploadFile)(media)
 
 
 //if (!text) return m.reply('INGRESE EL ENLACE DE UNA IMAGEN QUE TERMINE EN jpg, jpeg o png')
 //if (!regex.test(text)) return m.reply('SOLO SE PERMITE ENLACE DE IMAGEN QUE TERMINE EN jpg, jpeg o png')   
 
-const response = await axios.get(`https://saucenao.com/search.php?db=999&output_type=2&testmode=1&numres=6&api_key=${api_key}&url=${encodeURIComponent('https://telegra.ph/file/114d82ab377ccc568076a.gif')}`)
+const response = await axios.get(`https://saucenao.com/search.php?db=999&output_type=2&testmode=1&numres=6&api_key=${api_key}&url=${encodeURIComponent('https://telegra.ph/file/114d82ab377ccc568076a.jpg')}`)
 const results = response.data.results;
 const primerResultado = results[0];
     
@@ -147,50 +134,7 @@ await conn.sendButton(m.chat, `*Número de resultados:* ${results.length}
 ${resultadoEnBruto}`.trim(), img3, [['𝗠 𝗘 𝗡 𝗨 ☘️', '/menu']], m, frep)
 } catch (error) {
 console.log(error);
-}*/
-const imageUrl = 'https://telegra.ph/file/114d82ab377ccc568076a.gif';
-
-const canvas = document.createElement('canvas');
-const ctx = canvas.getContext('2d');
-
-const img = new Image();
-img.onload = function() {
-  canvas.width = img.width;
-  canvas.height = img.height;
-  ctx.drawImage(img, 0, 0);
-  const imageData = ctx.getImageData(0, 0, img.width, img.height);
-
- 
-  const frameImageData = extractGifFrame(imageData, 0);
-
-  
-  const canvas2 = document.createElement('canvas');
-  const ctx2 = canvas2.getContext('2d');
-  canvas2.width = frameImageData.width;
-  canvas2.height = frameImageData.height;
-  ctx2.putImageData(frameImageData, 0, 0);
-
-  
-  const imgDataUrl = canvas2.toDataURL('image/jpeg');
-
-  
-  m.reply({ body: imgDataUrl, isImage: true });
-};
-img.src = imageUrl;
-
-
-function extractGifFrame(imageData, frameIndex) {
-  const frameSize = imageData.width * imageData.height * 4;
-  const frameOffset = frameSize * frameIndex;
-
-  const frameData = new Uint8ClampedArray(frameSize);
-  for (let i = 0; i < frameSize; i++) {
-    frameData[i] = imageData.data[frameOffset + i];
-  }
-
-  return new ImageData(frameData, imageData.width, imageData.height);
 }
-
 }
 
 handler.command = /^sauce$/i
