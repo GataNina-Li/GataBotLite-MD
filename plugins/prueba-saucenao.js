@@ -21,7 +21,7 @@ let url
 let q = m.quoted ? m.quoted : m
 let mime = (q.msg || q).mimetype || q.mediaType || ''
 
-if (pURL) {
+if (pURL(text)) {
 url = pURL
     
 } else if (m.quoted && /image\/(png|jpe?g)/.test(mime)) {
