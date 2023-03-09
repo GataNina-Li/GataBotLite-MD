@@ -19,7 +19,7 @@ const regex = /(https?:\/\/[^\s]+?\.(?:jpg|jpeg|png))/i;
 const enlaceArray = text.match(regex);
 const enlace = enlaceArray ? enlaceArray[0].toString() : null
 
-if (text) {
+if (enlace) {
 url = enlace
     
 } else if (m.quoted && /image\/(png|jpe?g)/.test(mime)) {
