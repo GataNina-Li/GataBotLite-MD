@@ -1,16 +1,19 @@
 //Código creado por https://github.com/GataNina-Li || @gata_dios
 
+import fs from 'fs'
 import axios from 'axios'
 import fetch from "node-fetch"
 import uploadFile from '../lib/uploadFile.js'
 import uploadImage from '../lib/uploadImage.js'
 import { webp2png } from '../lib/webp2mp4.js'
+import formData from 'form-data'
+
 
 let handler = async (m, { conn, args, usedPrefix, command, text }) => {
 const api_key = '45e67c4cbc3d784261ffc83806b5a1d7e3bd09ae'
 
 try {
-let url
+/*let url
 let q = m.quoted ? m.quoted : m
 let mime = (q.msg || q).mimetype || ''
 
@@ -29,6 +32,39 @@ url = await uploadImage(buffer)
     
 } else {
 return m.reply('Ingrese un enlace o responda al mensaje con una imagen en formato PNG o JPG o JPEG.')
+}*/
+    
+async function uploadImageToTelegraph(buffer, filename) {
+  const form = new FormData();
+  form.append('file', buffer, {filename});
+  const response = await axios.post('https://telegra.ph/upload', form, {
+    headers: form.getHeaders()
+  });
+  const data = response.data;
+  if (!data.ok) {
+    throw new Error(`Failed to upload image to Telegraph: ${data.error}`);
+  }
+  return `https://telegra.ph${data.result[0].src}`;
+}
+
+let url;
+let q = m.quoted ? m.quoted : m;
+let mime = (q.msg || q).mimetype || '';
+let qq = m.quoted || m;
+let mime2 = q.mediaType || '';
+
+if (text) {
+  url = text;
+} else if (m.quoted && /image\/(png|jpe?g)/.test(mime)) {
+  let media = await q.download();
+  url = await uploadImageToTelegraph(media, 'image.png');
+} else if (m.quoted && /image\/webp/.test(mime)) {
+  let media = await q.download();
+  let img = await webp2png(media).catch(_ => null) || Buffer.alloc(0);
+  let buffer = Buffer.from(img, 'binary');
+  url = await uploadImageToTelegraph(buffer, 'image.png');
+} else {
+  return m.reply('Ingrese un enlace o responda al mensaje con una imagen en formato PNG o JPG o JPEG o WEBP.');
 }
 
 const response = await axios.get(`https://saucenao.com/search.php?db=999&output_type=2&testmode=1&numres=6&api_key=${api_key}&url=${encodeURIComponent(url)}`)
