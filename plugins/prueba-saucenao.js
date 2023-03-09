@@ -35,31 +35,17 @@ return m.reply('Ingrese un enlace o responda al mensaje con una imagen en format
 }
 
 //const response = await axios.get(`https://saucenao.com/search.php?db=999&output_type=2&testmode=1&numres=6&api_key=${api_key}&url=${encodeURIComponent(url)}`)
-async function buscarEnAPIs(apiKeys, urls) {
-for (const apiKey of apiKeys) {
-const urlEncoded = encodeURIComponent(url);
-const apiUrl = `https://saucenao.com/search.php?db=999&output_type=2&testmode=1&numres=6&api_key=${apiKey}&url=${urlEncoded}`;
+const apiKeys = ["45e67c4cbc3d784261ffc83806b5a1d7e3bd09ae", "d3a88baf236200c2ae23f31039e599c252034be8"];
+let response;
 
- try {
- const response = await axios.get(apiUrl);
- return response.data;
- } catch (error) {
- console.error(`Error en consulta de API: ${error}`);
-  }
-    }
-  console.error('No se encontraron resultados en ninguna de las APIs');
-  return null;
-}
-
-const apiKeys = ["45e67c4cbc3d784261ffc83806b5a1d7e3bd09ae", "d3a88baf236200c2ae23f31039e599c252034be"];
-
-buscarEnAPIs(apiKeys)
-  .then((result) => {
-    console.log('Resultado:', result);
-  })
-  .catch((error) => {
-    console.error('Error:', error);
-  });
+for (let i = 0; i < apiKeys.length; i++) {
+const apiKey = apiKeys[i];
+try {
+response = await axios.get(`https://saucenao.com/search.php?db=999&output_type=2&testmode=1&numres=6&api_key=${apiKey}&url=${encodeURIComponent(url)}`);
+break
+} catch (error) {
+console.error(`La solicitud con el servidor ${apiKey} falló: ${error}`);
+}}
 
 
 const results = response.data.results;
