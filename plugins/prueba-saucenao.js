@@ -22,7 +22,7 @@ url = text
 let media = await q.download()
 url = await uploadImage(media)
     
-} else if (m.quoted && /image\/webp/.test(mime)) {
+} else if (m.quoted && /sticker/.test(mime)) {
 let media = await qq.download()
 let out = await webp2png(media).catch(_ => null) || Buffer.alloc(0)
 url = await uploadImage(out)
