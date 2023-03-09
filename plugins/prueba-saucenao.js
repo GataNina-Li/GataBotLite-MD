@@ -105,7 +105,7 @@ resultadoEnBruto += `*${propName}*\n${primerResultado.data[prop]}\n\n`}
     
 //let frep = { contextInfo: { externalAdReply: {title: wm, body: author, sourceUrl: md, thumbnail: await(await fetch(primerResultado.header.thumbnail)).buffer() }}}
 let twa = {key: {participant: "0@s.whatsapp.net", "remoteJid": "0@s.whatsapp.net"}, "message": {"groupInviteMessage": {"groupJid": "51995386439-1616969743@g.us", "inviteCode": "m", "groupName": "P", "caption": wm, 'jpegThumbnail': await(await fetch(primerResultado.header.thumbnail)).buffer()}}}
-await m.reply('*ESPERE UN MOMENTO...*')
+await conn.reply(m.chat, '*ESPERE UN MOMENTO...*', twa, m)
 await conn.sendButton(m.chat, `*Número de resultados:* ${results.length}
 *Resultados encontrados:* ${Boolean(results) === true ? 'Si' : 'No'}
 
