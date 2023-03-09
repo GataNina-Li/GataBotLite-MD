@@ -14,6 +14,7 @@ let url
 let q = m.quoted ? m.quoted : m
 let mime = (q.msg || q).mimetype || ''
 let qq = m.quoted || m
+let mime2 = q.mediaType || ''
 
 if (text) {
 url = text
@@ -24,7 +25,7 @@ url = await uploadImage(media)
     
 } else if (m.quoted && /sticker/.test(mime)) {
 let media = await qq.download()
-let out = await webp2png(media).catch(_ => null) || Buffer.alloc(0)
+let out = await webp2png(mime2).catch(_ => null) || Buffer.alloc(0)
 url = await uploadImage(out)
    
 } else {
