@@ -43,14 +43,14 @@ let response;
 let success = false;
 
 for (let i = 0; i < apiKeys.length; i++) {
-const apiKey = apiKeys[i];
-//try {
+const apiKey = apiKeys[i]
+try {
 response = await axios.get(`https://saucenao.com/search.php?db=999&output_type=2&testmode=1&numres=6&api_key=${apiKey}&url=${encodeURIComponent(url)}`);
 success = true;
 break;
-//} catch (error) {
+} catch (error) {
 //console.error(`La solicitud con el ${serverNames[apiKey]} falló: ${error}`);
-}//}
+}}
 if (!success) {
 m.reply("Todas las solicitudes fallaron. No se pudo encontrar una respuesta exitosa.")
 return 
