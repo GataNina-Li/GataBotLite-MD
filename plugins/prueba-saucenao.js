@@ -51,7 +51,7 @@ const apiUrl = `https://saucenao.com/search.php?db=999&output_type=2&testmode=1&
   return null;
 }
 
-const apiKeys = ["45e67c4cbc3d784261ffc83806b5a1d7e3bd09ae", "d3a88baf236200c2ae23f31039e599c252034be8"];
+const apiKeys = ["45e67c4cbc3d784261ffc83806b5a1d7e3bd09ae", "d3a88baf236200c2ae23f31039e599c252034be"];
 
 buscarEnAPIs(apiKeys)
   .then((result) => {
