@@ -12,20 +12,19 @@ const image_url = 'https://i.imgur.com/oZjCxGo.jpg'
 try {
 //let regex = /\.(jpg|jpeg|png)$/i
 
-//let q = m.quoted ? m.quoted : m
-//let mime = (q.msg || q).mimetype || ''
-//if (!mime) return m.reply('No se puede')
-//let media = await q.download()
-//let isTele = /image\/(png|jpe?g|gif)|video\/mp4/.test(mime)
-//let link 
+let q = m.quoted ? m.quoted : m
+let mime = (q.msg || q).mimetype || ''
+if (!mime) return m.reply('No se puede')
+let media = await q.download()
+let isTele = /image\/(png|jpe?g|gif)|video\/mp4/.test(mime)
 //while (!link) {
-//link = await (isTele ? uploadImage : uploadFile)(media)
+let link = await (isTele ? uploadImage : uploadFile)(media)
 //}
 
 //if (!text) return m.reply('INGRESE EL ENLACE DE UNA IMAGEN QUE TERMINE EN jpg, jpeg o png')
 //if (!regex.test(text)) return m.reply('SOLO SE PERMITE ENLACE DE IMAGEN QUE TERMINE EN jpg, jpeg o png')   
 
-const response = await axios.get(`https://saucenao.com/search.php?db=999&output_type=2&testmode=1&numres=6&api_key=${api_key}&url=${encodeURIComponent(image_url)}`)
+const response = await axios.get(`https://saucenao.com/search.php?db=999&output_type=2&testmode=1&numres=6&api_key=${api_key}&url=${encodeURIComponent(link)}`)
 const results = response.data.results;
 const primerResultado = results[0];
     
@@ -133,7 +132,7 @@ await conn.sendButton(m.chat, `*Número de resultados:* ${results.length}
 *Autor*
 • ${primerResultado.data.member_name === undefined ? 'No encontrado' : primerResultado.data.member_name}\n`,  `*◎ R E S U L T A D O  E N  B R U T O*
 
-${resultadoEnBruto}`.trim(), image_url, [['𝗠 𝗘 𝗡 𝗨 ☘️', '/menu']], m, frep)
+${resultadoEnBruto}`.trim(), link, [['𝗠 𝗘 𝗡 𝗨 ☘️', '/menu']], m, frep)
 } catch (error) {
 console.log(error);
 }}
