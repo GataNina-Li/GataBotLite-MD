@@ -25,7 +25,7 @@ try {
 //if (!text) return m.reply('INGRESE EL ENLACE DE UNA IMAGEN QUE TERMINE EN jpg, jpeg o png')
 //if (!regex.test(text)) return m.reply('SOLO SE PERMITE ENLACE DE IMAGEN QUE TERMINE EN jpg, jpeg o png')   
 
-const response = await axios.get(`https://saucenao.com/search.php?db=999&output_type=2&testmode=1&numres=6&api_key=${api_key}&url=${encodeURIComponent(link)}`)
+const response = await axios.get(`https://saucenao.com/search.php?db=999&output_type=2&testmode=1&numres=6&api_key=${api_key}&url=${encodeURIComponent(image_url)}`)
 const results = response.data.results;
 const primerResultado = results[0];
     
