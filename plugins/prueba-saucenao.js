@@ -15,11 +15,12 @@ try {
 let url
 let q = m.quoted ? m.quoted : m
 let mime = (q.msg || q).mimetype || q.mediaType || ''
-const regex = /(https?:\/\/[^\s]+?\.(?:jpg|jpeg|png))/gi
-const enlaces = text.match(regex)
+const regex = /(https?:\/\/[^\s]+?\.(?:jpg|jpeg|png))/i;
+const enlaceArray = text.match(regex);
+const enlace = enlaceArray ? enlaceArray[0] : null
 
-if (enlaces) {
-url = enlaces
+if (enlace) {
+url = enlace
     
 } else if (m.quoted && /image\/(png|jpe?g)/.test(mime)) {
 let media = await q.download()
