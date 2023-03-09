@@ -36,8 +36,9 @@ return m.reply('Ingrese un enlace o responda al mensaje con una imagen en format
 const apiKeys = [//"45e67c4cbc3d784261ffc83806b5a1d7e3bd09ae", 
 //"d3a88baf236200c2ae23f31039e599c252034be8", 
 //"a74012c56b54b8d36d2675e12b1a216809c353fe",
-//"9812eb9464efa1201c69e5592ba0c74e7edd95e8",
-"2e7da9f5e70c65f2885b07d48595ba03c4be2ba7"]
+"9812eb9464efa1201c69e5592ba0c74e7edd95e8"
+//"2e7da9f5e70c65f2885b07d48595ba03c4be2ba7"
+]
 
 let response;
 let success = false;
@@ -155,7 +156,7 @@ await conn.sendButton(m.chat, `*Número de resultados:* ${results.length}
 • ${primerResultado.data.ext_urls}
 
 *Autor*
-• ${primerResultado.data.member_name === undefined ? 'No encontrado' : primerResultado.data.member_name}\n`,  `*◎ R E S U L T A D O  E N  B R U T O*
+• ${primerResultado.data.member_name === undefined ? 'No encontrado' : primerResultado.data.member_name}\n`,  `*◎ I N F O  A D I C C I O N A L*
 
 ${resultadoEnBruto}`.trim(), url, [['𝗠 𝗘 𝗡 𝗨 ☘️', '/menu']], m, frep)
 } catch (e) {
