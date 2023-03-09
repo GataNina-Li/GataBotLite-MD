@@ -1,4 +1,4 @@
-import { v2 as cloudinary } from 'cloudinary'
+import cloudinary from 'cloudinary'
 
 let handler = async (m, { conn, usedPrefix, command, text }) => {
 cloudinary.config({
