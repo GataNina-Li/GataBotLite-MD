@@ -1,5 +1,4 @@
 import { v2 as cloudinary } from 'cloudinary'
-const cloudinary = require('cloudinary').v2;
 
 let handler = async (m, { conn, args, usedPrefix, command, text }) => {
 cloudinary.config({
