@@ -127,8 +127,10 @@ await conn.sendButton(m.chat, `*Número de resultados:* ${results.length}
 • ${primerResultado.data.member_name === undefined ? 'No encontrado' : primerResultado.data.member_name}\n`,  `*◎ R E S U L T A D O  E N  B R U T O*
 
 ${resultadoEnBruto}`.trim(), url, [['𝗠 𝗘 𝗡 𝗨 ☘️', '/menu']], m, frep)
-} catch (error) {
-console.log(error)}
+} catch (e) {
+await m.reply(lenguajeGB['smsMalError3']() + '\n*' + lenguajeGB.smsMensError1() + '*\n*' + usedPrefix + `${lenguajeGB.lenguaje() == 'es' ? 'reporte' : 'report'}` + '* ' + `${lenguajeGB.smsMensError2()} ` + usedPrefix + command)
+console.log(`❗❗ ${lenguajeGB['smsMensError2']()} ${usedPrefix + command} ❗❗`)
+console.log(e)}
 }
 
 handler.command = /^sauce$/i
