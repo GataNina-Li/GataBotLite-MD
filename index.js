@@ -57,8 +57,8 @@ exec: args[0],
 args: args.slice(1), })
 let p = fork()
 p.on('message', data => {
-//setTimeout(() => {  
-//console.log('┆ ✓ ACTIVIDAD ACTUALIZADA\n╰----------------- - - -', data)//}, 50000)
+const mensaje = data.trim();
+console.log(mensaje)
 switch (data) {
 case 'reset':
 p.process.kill()
