@@ -18,7 +18,7 @@ let taguser = conn.getName(m.sender)
 
 
 let menu = `
-˚₊·˚₊· ͟͟͞͞➳❥ ${packname} 
+˚₊·˚₊· ͟͟͞͞➳❥ ${packname} terms
 *☆═━┈◈ ╰ ${vs} ㎇ ╯ ◈┈━═☆*
 *│*    
 *╰ ㊂ ▸▸ _INFORMACIÓN DEL MENÚ_ ◂◂*
@@ -34,6 +34,7 @@ let menu = `
 *│* ┊▸ ✦ _${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'estado' : 'status'}_ 
 *│* ┊▸ ✦ _${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'velocidad' : 'ping'}_ 
 *│* ┊▸ ✦ _${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'infogata' : 'infobot'}_ 
+*│* ┊▸ ✦ _${lenguajeGB.lenguaje() == 'es' ? 'términos y condiciones' : 'terms'}_ 
 *│* ╰∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙ ∙ ∙ ∙ ∙ 
 *│*
 *╰ ㊂ ▸▸ _INFORMACIÓN DEL MENÚ_ ◂◂*
