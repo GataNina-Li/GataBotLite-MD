@@ -1,5 +1,5 @@
 let handler = async (m, { conn, usedPrefix, command, args, usedPrefix: _p, __dirname, isOwner, text, isAdmin, isROwner }) => {
-  
+try{  
 let Terminos = `
 *_Toda la información que se mencione aquí no excluye a la Propietaria del Bot, y Propietarios Acredores al uso de GataBot_*
 *_No Somos responsables del desconocimiento que tenga por parte de esta información._* 
@@ -51,11 +51,13 @@ _- Al hacer uso de ciertos comandos que tengan como objetivo socavar la incomodi
 *~ Muchas Gracias Por tomarte el tiempo en informate sobre GataBot*
 `.trim()
 await conn.sendButton(m.chat, wm, Terminos, img3, [[lenguajeGB.smsConMenu(), `${usedPrefix}menu`]], m)
-}
+} catch (e) {
+await m.reply(lenguajeGB['smsMalError3']() + '\n*' + lenguajeGB.smsMensError1() + '*\n*' + usedPrefix + `${lenguajeGB.lenguaje() == 'es' ? 'reporte' : 'report'}` + '* ' + `${lenguajeGB.smsMensError2()} ` + usedPrefix + command)
+console.log(`❗❗ ${lenguajeGB['smsMensError2']()} ${usedPrefix + command} ❗❗`)
+console.log(e)}}
 
 handler.customPrefix = /terminos|términos|terms|condiciones|privacidad/i
 handler.command = new RegExp
-handler.exp = 70
 export default handler
 
 const more = String.fromCharCode(8206)
