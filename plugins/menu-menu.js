@@ -37,10 +37,10 @@ let menu = `
 *│* ┊▸ ✦ _${lenguajeGB.lenguaje() == 'es' ? 'términos y condiciones' : 'terms'}_ 
 *│* ╰∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙ ∙ ∙ ∙ ∙ 
 *│*
-*╰ ㊂ ▸▸ _INFORMACIÓN DEL MENÚ_ ◂◂*
+*╰ ㊂ ▸▸ _DESCARGAS_ ◂◂*
 *│* ┊
-*│* ┊▸ ✦ ${usedPrefix}creadora
-*│* ┊▸ ✦ ${usedPrefix}cuentasgb 
+*│* ┊▸ ✦ ${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'play (nombre o enlace)' : 'play (name)'}_
+*│* ┊▸ ✦ ${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'yta (enlace)' : 'yta (link)'}_
 *│* ┊▸ ✦ ${usedPrefix}donar
 *│* ╰∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙ ∙ ∙ ∙ ∙ 
  `.trim()
