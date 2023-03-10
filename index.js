@@ -23,9 +23,8 @@ align: 'center',
 gradient: ['red', 'magenta']})*/
 
 const options = {
-  font: 'block',
-  align: 'center',
-  colors: ['cyan', 'white'],
+  font: 'chrome',
+  colors: ['red', 'yellow', 'green', 'blue', 'purple'],
   background: 'transparent',
   letterSpacing: 1,
   lineHeight: 1,
