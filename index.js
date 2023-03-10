@@ -47,10 +47,10 @@ if (isRunning) return
 isRunning = true
 let args = [join(__dirname, file), ...process.argv.slice(2)]
 
-say('✅ YA PUEDE ESCANEAR EL CÓDIGO QR', {
-font: 'console',
-align: 'center',
-gradient: ['red', 'magenta']})
+//say('✅ YA PUEDE ESCANEAR EL CÓDIGO QR', {
+//font: 'console',
+//align: 'center',
+//gradient: ['red', 'magenta']})
   
 setupMaster({
 exec: args[0],
