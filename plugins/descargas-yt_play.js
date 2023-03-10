@@ -1,4 +1,4 @@
-import fetch from "node-fetch";
+import fetch from "node-fetch"
 import yts from 'yt-search'
 let handler = async (m, { conn, command, text, usedPrefix }) => {
 try{
@@ -39,6 +39,6 @@ console.log(e)}}
 handler.help = ['play', 'play2'].map(v => v + ' <pencarian>')
 handler.tags = ['downloader']
 handler.command = /^play2?$/i
-//handler.register = true
+handler.register = true
 
 export default handler
