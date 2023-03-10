@@ -22,10 +22,19 @@ font: 'console',
 align: 'center',
 gradient: ['red', 'magenta']})*/
 
+function getRandomColor() {
+  const letters = '0123456789ABCDEF';
+  let color = '';
+  for (let i = 0; i < 6; i++) {
+    color += letters[Math.floor(Math.random() * 16)];
+  }
+  return color;
+}
+
 const options = {
   font: 'block',
-  align: 'left',
-  colors: ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'purple'],
+  align: 'center',
+  colors: [getRandomColor(), getRandomColor()],
   background: 'transparent',
   letterSpacing: 1,
   lineHeight: 1,
