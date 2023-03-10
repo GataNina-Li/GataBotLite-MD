@@ -14,8 +14,9 @@ const { say } = cfonts
 const rl = createInterface(process.stdin, process.stdout)
 const startColor = chalk.rgb(Math.floor(Math.random() * 256), Math.floor(Math.random() * 256), Math.floor(Math.random() * 256));
 console.log(startColor('❤️ Iniciando...'));
-try{
+
 function getRandomGradient() {
+try{  
 const color1 = Math.floor(Math.random() * 16777215).toString(16);
 const color2 = Math.floor(Math.random() * 16777215).toString(16);
 return [`#${color1}`, `#${color2}`];
@@ -29,7 +30,7 @@ letterSpacing: 1,
 lineHeight: 1,
 space: true,
 maxLength: '0',
-};
+}
 cfonts.say('gatabot\nlite\nmd'.trim(), options);
 } catch (err) {
 say('GataBot\nLite\nMD', {
