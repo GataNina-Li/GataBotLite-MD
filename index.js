@@ -31,7 +31,7 @@ space: true,
 maxLength: '0',
 };
 cfonts.say('gatabot\nlite\nmd'.trim(), options);
-}} catch (err) {
+} catch (err) {
 say('GataBot\nLite\nMD', {
 font: 'chrome',
 align: 'center',
