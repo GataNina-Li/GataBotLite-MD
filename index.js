@@ -59,7 +59,6 @@ let p = fork()
 p.on('message', data => {
 //setTimeout(() => {  
 //console.log('┆ ✓ ACTIVIDAD ACTUALIZADA\n╰----------------- - - -', data)//}, 50000)
-}
 switch (data) {
 case 'reset':
 p.process.kill()
