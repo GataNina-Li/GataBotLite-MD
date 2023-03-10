@@ -66,7 +66,8 @@ isRunning = false
 start.apply(this, arguments)
 break
 case 'uptime':
-p.send(process.uptime())
+//p.send(process.uptime())
+p.send(process.uptime().toString().trim())
 break }})
 p.on('exit', (_, code) => {
 isRunning = false
