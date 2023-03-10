@@ -1,4 +1,3 @@
-//console.log('𝙄𝙉𝙄𝘾𝙄𝘼𝙉𝘿𝙊 : 𝙎𝙏𝘼𝙍𝙏𝙄𝙉𝙂 🚀')
 import { join, dirname } from 'path'
 import { createRequire } from "module";
 import { fileURLToPath } from 'url'
@@ -31,13 +30,12 @@ const options = {
   space: true,
   maxLength: '0',
 };
-console.log(startColor('Iniciando...'));
+console.log(startColor('❤️ Iniciando...'));
 cfonts.say('gatabot\nlite\nmd'.trim(), options);
 say(`Gracias a @gata_dios`, {
 font: 'console',
 align: 'center',
 gradient: ['red', 'magenta']});
-
 
 var isRunning = false
 /**
