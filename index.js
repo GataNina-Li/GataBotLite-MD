@@ -15,20 +15,20 @@ const rl = createInterface(process.stdin, process.stdout)
 const startColor = chalk.rgb(Math.floor(Math.random() * 256), Math.floor(Math.random() * 256), Math.floor(Math.random() * 256));
 
 function getRandomGradient() {
-  const color1 = Math.floor(Math.random() * 16777215).toString(16);
-  const color2 = Math.floor(Math.random() * 16777215).toString(16);
-  return [`#${color1}`, `#${color2}`];
+const color1 = Math.floor(Math.random() * 16777215).toString(16);
+const color2 = Math.floor(Math.random() * 16777215).toString(16);
+return [`#${color1}`, `#${color2}`];
 }
 
 const options = {
-  font: 'block',
-  align: 'center',
-  colors: getRandomGradient(),
-  background: 'transparent',
-  letterSpacing: 1,
-  lineHeight: 1,
-  space: true,
-  maxLength: '0',
+font: 'block',
+align: 'center',
+colors: getRandomGradient(),
+background: 'transparent',
+letterSpacing: 1,
+lineHeight: 1,
+space: true,
+maxLength: '0',
 };
 console.log(startColor('❤️ Iniciando...'));
 cfonts.say('gatabot\nlite\nmd'.trim(), options);
@@ -58,7 +58,8 @@ args: args.slice(1), })
 let p = fork()
 p.on('message', data => {
 //setTimeout(() => {  
-console.log('┆ ✓ ACTIVIDAD ACTUALIZADA\n╰----------------- - - -', data)//}, 50000)
+//console.log('┆ ✓ ACTIVIDAD ACTUALIZADA\n╰----------------- - - -', data)//}, 50000)
+}
 switch (data) {
 case 'reset':
 p.process.kill()
@@ -70,7 +71,7 @@ p.send(process.uptime())
 break }})
 p.on('exit', (_, code) => {
 isRunning = false
-console.error('⚠️ Error Inesperado : Unexpected Error', code)
+console.error('⚠️ Error Inesperado', code)
   
 p.process.kill()
 isRunning = false
