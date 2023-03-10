@@ -1,10 +1,11 @@
-console.log('𝙄𝙉𝙄𝘾𝙄𝘼𝙉𝘿𝙊 : 𝙎𝙏𝘼𝙍𝙏𝙄𝙉𝙂 🚀')
+//console.log('𝙄𝙉𝙄𝘾𝙄𝘼𝙉𝘿𝙊 : 𝙎𝙏𝘼𝙍𝙏𝙄𝙉𝙂 🚀')
 import { join, dirname } from 'path'
 import { createRequire } from "module";
 import { fileURLToPath } from 'url'
 import { setupMaster, fork } from 'cluster'
 import { watchFile, unwatchFile } from 'fs'
 import cfonts from 'cfonts';
+import chalk from "chalk"
 import { createInterface } from 'readline'
 import yargs from 'yargs'
 const __dirname = dirname(fileURLToPath(import.meta.url))
@@ -12,15 +13,7 @@ const require = createRequire(__dirname)
 const { name, author } = require(join(__dirname, './package.json')) 
 const { say } = cfonts
 const rl = createInterface(process.stdin, process.stdout)
-
-/*say('Gata\nBot', {
-font: 'chrome',
-align: 'center',
-gradient: ['red', 'magenta']})
-say(`Por Gata Dios`, {
-font: 'console',
-align: 'center',
-gradient: ['red', 'magenta']})*/
+const startColor = chalk.rgb(Math.floor(Math.random() * 256), Math.floor(Math.random() * 256), Math.floor(Math.random() * 256));
 
 function getRandomGradient() {
   const color1 = Math.floor(Math.random() * 16777215).toString(16);
@@ -38,7 +31,14 @@ const options = {
   space: true,
   maxLength: '0',
 };
+console.log(startColor('Iniciando...'));
 cfonts.say('gatabot\nlite\nmd'.trim(), options);
+say(`Gracias a @gata_dios`, {
+font: 'console',
+align: 'center',
+gradient: ['red', 'magenta']});
+
+
 var isRunning = false
 /**
 * Start a js file
