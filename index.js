@@ -23,8 +23,9 @@ align: 'center',
 gradient: ['red', 'magenta']})*/
 
 const options = {
-  font: 'chrome',
-  colors: ['red', 'yellow', 'green', 'blue', 'purple'],
+  font: 'block',
+  align: 'left',
+  colors: ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'purple'],
   background: 'transparent',
   letterSpacing: 1,
   lineHeight: 1,
