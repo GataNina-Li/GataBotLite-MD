@@ -16,11 +16,11 @@ const startColor = chalk.rgb(Math.floor(Math.random() * 256), Math.floor(Math.ra
 console.log(startColor('❤️ Iniciando...'));
 
 function getRandomGradient() {
-try{  
+try{   
 const color1 = Math.floor(Math.random() * 16777215).toString(16);
 const color2 = Math.floor(Math.random() * 16777215).toString(16);
-return [`#${color1}`, `#${color2}`];
-}
+return [`#${color1}`, `#${color2}`]
+   
 const options = {
 font: 'block',
 align: 'center',
@@ -37,7 +37,8 @@ say('GataBot\nLite\nMD', {
 font: 'chrome',
 align: 'center',
 gradient: ['red', 'magenta']})
-}
+}}
+
 say(`Gracias a @gata_dios`, {
 font: 'console',
 align: 'center',
