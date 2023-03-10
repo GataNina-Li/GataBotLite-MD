@@ -17,7 +17,7 @@ console.log(startColor('❤️ Iniciando...'));
 try{
 function getRandomGradient() {
 const color1 = Math.floor(Math.random() * 16777215).toString(16);
-//const color2 = Math.floor(Math.random() * 16777215).toString(16);
+const color2 = Math.floor(Math.random() * 16777215).toString(16);
 return [`#${color1}`, `#${color2}`];
 }
 const options = {
