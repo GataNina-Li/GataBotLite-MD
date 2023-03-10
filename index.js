@@ -15,8 +15,8 @@ const rl = createInterface(process.stdin, process.stdout)
 const startColor = chalk.rgb(Math.floor(Math.random() * 256), Math.floor(Math.random() * 256), Math.floor(Math.random() * 256));
 console.log(startColor('❤️ Iniciando...'));
 
-function getRandomGradient() {
-try{   
+try{
+function getRandomGradient() {  
 const color1 = Math.floor(Math.random() * 16777215).toString(16);
 const color2 = Math.floor(Math.random() * 16777215).toString(16);
 return [`#${color1}`, `#${color2}`]
@@ -32,12 +32,12 @@ space: true,
 maxLength: '0',
 }
 cfonts.say('gatabot\nlite\nmd'.trim(), options);
-} catch (err) {
+}} catch (err) {
 say('GataBot\nLite\nMD', {
 font: 'chrome',
 align: 'center',
 gradient: ['red', 'magenta']})
-}}
+}
 
 say(`Gracias a @gata_dios`, {
 font: 'console',
