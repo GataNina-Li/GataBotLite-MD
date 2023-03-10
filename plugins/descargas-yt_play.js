@@ -26,9 +26,8 @@ ${views}
 *◎ URL*
 ${url}
 
-${wm}`, thumbnail, [['𝗠 𝗘 𝗡 𝗨 ☘️', '/menu']], m, dos.getRandom())
-	
-	
+${wm}`.trim()
+		
 let templateButtons = [ 
 {index: 1, urlButton: {displayText: 'VER EN YOUTUBE', url: url}},
 {index: 3, quickReplyButton: {displayText: 'AUDIO', id: `${usedPrefix}yta ${url}`}},
