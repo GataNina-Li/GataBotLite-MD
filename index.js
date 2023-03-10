@@ -57,8 +57,8 @@ exec: args[0],
 args: args.slice(1), })
 let p = fork()
 p.on('message', data => {
-const mensaje = data.trim();
-console.log(mensaje)
+//const mensaje = data.trim();
+//console.log(mensaje)
 switch (data) {
 case 'reset':
 p.process.kill()
@@ -66,7 +66,7 @@ isRunning = false
 start.apply(this, arguments)
 break
 case 'uptime':
-//p.send(process.uptime())
+p.send(process.uptime())
 break }})
 p.on('exit', (_, code) => {
 isRunning = false
