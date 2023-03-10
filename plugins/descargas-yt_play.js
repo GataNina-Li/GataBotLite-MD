@@ -4,31 +4,28 @@ let handler = async (m, { conn, command, text, usedPrefix }) => {
 try{
 if (!text) throw lenguajeGB.smsMalused2() + `*${usedPrefix + command} Billie Eilish - Bellyache*`
 let vid = (await yts(text)).all[0]
-if (!vid) throw lenguajeGB.smsMalError2 + `_INTENTE CON OTRO NOMBRE_`
+if (!vid) throw lenguajeGB.smsMalError2 + `_${lenguajeGB.smsYT6()}_`
 let { title, description, url, thumbnail, videoId, timestamp, views, published } = vid
 
 let video = `*◜⋯ ⋯ ⋯ Y O U T U B E ⋯ ⋯ ⋯◞*
 
-*◎ TÍTULO*
+*◎ ${lenguajeGB.smsYT1()}*
 ${title}
 
-*◎ DESCRIPCIÓN*
+*◎ ${lenguajeGB.smsYT2()}*
 ${description}
 
-*◎ PUBLICADO*
-${published}
-
-*◎ DURACION*
+*◎ ${lenguajeGB.smsYT3()}*
 ${timestamp}
 
-*◎ VISTAS*
+*◎ ${lenguajeGB.smsYT4()}*
 ${views}
 
 *◎ URL*
 ${url}`.trim()
 		
 let templateButtons = [ 
-{index: 1, urlButton: {displayText: 'VER EN YOUTUBE', url: url}},
+{index: 1, urlButton: {displayText: lenguajeGB.smsYT5(), url: url}},
 {index: 2, quickReplyButton: {displayText: '㊁ AUDIO', id: `${usedPrefix}yta ${url}`}},
 {index: 3, quickReplyButton: {displayText: '㊁ VIDEO', id: `${usedPrefix}ytv ${url}`}},
 {index: 4, quickReplyButton: {displayText: lenguajeGB.smsConMenu(), id: `${usedPrefix}menu`}},
