@@ -28,8 +28,8 @@ ${url}`.trim()
 		
 let templateButtons = [ 
 {index: 1, urlButton: {displayText: 'VER EN YOUTUBE', url: url}},
-{index: 2, quickReplyButton: {displayText: '▢ AUDIO', id: `${usedPrefix}yta ${url}`}},
-{index: 3, quickReplyButton: {displayText: '▢ VIDEO', id: `${usedPrefix}ytv ${url}`}},
+{index: 2, quickReplyButton: {displayText: '● AUDIO', id: `${usedPrefix}yta ${url}`}},
+{index: 3, quickReplyButton: {displayText: '● VIDEO', id: `${usedPrefix}ytv ${url}`}},
 {index: 4, quickReplyButton: {displayText: lenguajeGB.smsConMenu(), id: `${usedPrefix}menu`}},
 ]
 await conn.sendMessage(m.chat, { image: { url: thumbnail }, gifPlayback: false, gifAttribution: ~~(Math.random() * 2), caption: video, footer: wm, templateButtons }, { quoted: m})
