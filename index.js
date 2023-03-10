@@ -38,8 +38,7 @@ const options = {
   space: true,
   maxLength: '0',
 };
-cfonts.say('GataBot', options);
-
+cfonts.say('gatabot\nlite\nmd'.trim(), options);
 var isRunning = false
 /**
 * Start a js file
