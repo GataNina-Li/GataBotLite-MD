@@ -19,7 +19,7 @@ let lista = []
 for (let i = 0; i < contacts.length; i++) {
 contact = contacts[i]
 number = String(contact[0])
-ofc = String(contact[1]) //await conn.getName(number+'@s.whatsapp.net')
+ofc = await conn.getName(number+'@s.whatsapp.net') //String(contact[1])
 let biografia = await conn.fetchStatus(number+'@s.whatsapp.net').catch(_ => 'undefined')
 let bio = biografia.status?.toString() || 'No encontrada'
 
