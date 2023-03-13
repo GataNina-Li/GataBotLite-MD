@@ -40,7 +40,7 @@ let contacts = global.owner.filter(c => c[2] === true)
 for (let i = 0; i < contacts.length; i++) {
   let contact = contacts[i]
   let number = String(contact[0])
-  let name = await conn.getName(number)
+  let name = await conn.getName(number+'@s.whatsapp.net')
   
   await conn.sendContactArray(m.chat, [[number, name.notify, '💖 Creadora', 'Solo temas de GataBot', 'centergatabot@gmail.com', '🇪🇨 Ecuador', '🎁 https://github.com/GataNina-Li', '🐱 GataNina-Li']], null, { thumbnail: Buffer.from(contact[8] || '', 'base64'), quoted: m })
 }
