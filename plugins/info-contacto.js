@@ -22,7 +22,7 @@ contact = contacts[i]
 number = String(contact[0])
 ofc = await conn.getName(number + '@s.whatsapp.net') //String(contact[1])
 let biografia = await conn.fetchStatus(number+'@s.whatsapp.net').catch(_ => 'undefined')
-let bio = biografia.status?.toString() || desc2 == '' ? 'I am the Owner of the Bot if you have any questions you can tell me' : desc2
+let bio = biografia.status?.toString() || `${desc2 == '' ? 'I am the Owner of the Bot if you have any questions you can tell me' : desc2}`
   
 nombre = official[0][0] == String(contact[0]) ? official[0][1] : official[1][0] == String(contact[0]) ? official[1][1] : official[2][0] == String(contact[0]) ? official[2][1] : official[3][0] == String(contact[0]) ? official[3][1] : 'Owner' 
 description = official[0][0] == String(contact[0]) ? 'Solo temas de GataBot' : official[1][0] == String(contact[0]) ? 'Asistente Oficial de GataBot' : official[2][0] == String(contact[0]) ? 'Asistente Oficial de GataBot' : official[3][0] == String(contact[0]) ? 'Asistente Oficial de GataBot' : desc === '' ? 'How can I help you?' : desc
