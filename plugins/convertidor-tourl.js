@@ -26,7 +26,7 @@ conn.reply(m.chat, caption, m, { contextInfo: {
     title: wm,
     body: botdate,
     thumbnail: await(await fetch(link)).buffer(),
-    sourceUrl: link
+    sourceUrl: md
      }}
   })
 }
