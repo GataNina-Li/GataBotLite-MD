@@ -19,7 +19,7 @@ let lista = []
 for (let i = 0; i < contacts.length; i++) {
   let contact = contacts[i]
   let number = String(contact[0])
-  let name = await conn.getName(m.number+'@s.whatsapp.net')
+  let name = await conn.getName(number+'@s.whatsapp.net')
   
 nombre = 18059196237 == String(contact[0]) ? 'Gata Dios' : 5492266613038 == String(contact[0]) ? 'Owner Oficial (1)' : 5214531173598 == String(contact[0]) ? 'Owner Oficial (1)' : 'Owner' 
 description = 18059196237 == String(contact[0]) ? 'Solo temas de GataBot' : 5492266613038 == String(contact[0]) ? 'Escríbeme si tiene dudas sobre GataBot' : 5214531173598 == String(contact[0]) ? 'Escríbeme si tiene dudas sobre GataBot' : 'Colaborador' 
