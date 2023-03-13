@@ -40,7 +40,7 @@ let contacts = global.owner.filter(c => c[2] === true)
 for (let i = 0; i < contacts.length; i++) {
   let contact = contacts[i]
   let number = String(contact[0])
-  let name = String(await conn.getName(number))
+  let name = await conn.getName(who)
   
   let vcard = `
 BEGIN:VCARD
