@@ -42,7 +42,9 @@ for (let i = 0; i < contacts.length; i++) {
   let number = String(contact[0])
   let name = await conn.getName(number+'@s.whatsapp.net') 
   
-  await conn.sendContactArray(m.chat, [[number, await conn.getName(number+'@s.whatsapp.net'), '💖 Creadora', 'Solo temas de GataBot', 'centergatabot@gmail.com', '🇪🇨 Ecuador', '🎁 https://github.com/GataNina-Li', '🐱 GataNina-Li']], null, { thumbnail: Buffer.from(contact[8] || '', 'base64'), quoted: m })
+  await conn.sendContactArray(m.chat, [
+  [number, await conn.getName(number+'@s.whatsapp.net'), '💖 Creadora', 'Solo temas de GataBot', 'centergatabot@gmail.com', '🇪🇨 Ecuador', '🎁 https://github.com/GataNina-Li', '🐱 GataNina-Li'],
+  [`${conn.user.jid.split('@')[0]}`, `${await conn.getName(conn.user.jid)}`, `🐈 Bot de WhatsApp`, `📵 No hacer Spam por favor`, `gatabot@gmail.com`, `🇪🇨 Ecuador`, '🎁 ' + md, packname]], fkontak)
 }
 
 await m.reply(`Hola @${m.sender.split(`@`)[0]} Contactos disponibles`)
