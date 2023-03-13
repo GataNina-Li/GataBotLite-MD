@@ -32,7 +32,7 @@ enlace = official[0][0] == String(contact[0]) ? 'https://github.com/GataNina-Li'
 biog = official[0][0] == String(contact[0]) ? bio : official[1][0] == String(contact[0]) ? bio : official[2][0] == String(contact[0]) ? bio : desc === '' ? 'I am the Owner of the Bot if you have any questions you can tell me' : desc 
    
 lista.push([number, ofc, nombre, description, correo, lugar, enlace, biog])
-lista.push([conn.user.jid.split('@')[0], await conn.getName(conn.user.jid), packname, '📵 No hacer Spam por favor', 'centergatabot@gmail.com', '🌎 Global', '🎁 ' + md, bio, '🎁 ' + yt])}
+lista.push([conn.user.jid.split('@')[0], await conn.getName(conn.user.jid), packname, '📵 No hacer Spam por favor', 'centergatabot@gmail.com', '🌎 Global', md, bio, yt, ig, fb, paypal])}
 
 await conn.sendContactArray(m.chat, lista, null, { quoted: m })
 } catch (e) {
