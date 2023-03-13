@@ -134,14 +134,15 @@ global.author = '𝙂𝙖𝙩𝙖 𝘿𝙞𝙤𝙨'
 
 global.official = [ // Agregate si eres Owner
 ['18059196237', 'Gata Dios 💻', 1], 
-['5492266466080', '𝗖𝗼𝗹𝗮𝗯𝗼𝗿𝗮𝗱𝗼𝗿 𝗢𝗳𝗶𝗰𝗶𝗮𝗹 💻', 1],  
-['5214531106422', '𝗖𝗼𝗹𝗮𝗯𝗼𝗿𝗮𝗱𝗼𝗿 𝗢𝗳𝗶𝗰𝗶𝗮𝗹 💻', 1],
-['5521989092076', '𝗖𝗼𝗹𝗮𝗯𝗼𝗿𝗮𝗱𝗼𝗿𝗮 𝗢𝗳𝗶𝗰𝗶𝗮𝗹 💻', 1],
+['5492266466080', '𝗗𝗲𝘀𝗮𝗿𝗿𝗼𝗹𝗹𝗮𝗱𝗼𝗿 𝗢𝗳𝗶𝗰𝗶𝗮𝗹 💻', 1],  
+['5214531106422', '𝗗𝗲𝘀𝗮𝗿𝗿𝗼𝗹𝗹𝗮𝗱𝗼𝗿 𝗢𝗳𝗶𝗰𝗶𝗮𝗹 💻', 1],
+['5521989092076', '𝗗𝗲𝘀𝗮𝗿𝗿𝗼𝗹𝗹𝗮𝗱𝗼𝗿𝗮 𝗢𝗳𝗶𝗰𝗶𝗮𝗹 💻', 1],
 ['5491173694367', 'Prueba', 1]] 
 
-global.mail = 'Ejemplo@gmail.com' //agrega tú correo
-global.desc = 'Descricion de ejemplo' //agrega una descripción
-global.country = '🇪🇺 Ejemplo' //agrega tú país ejemplo: 🇪🇨
+global.mail = '' //agrega tú correo
+global.desc = '' //agrega una descripción corta
+global.desc2 = '' //agrega una descripción larga (Solo se aplicará si su whasapp no tiene descripción)
+global.country = '' //agrega tú país ejemplo: 🇪🇨
 
 global.vs = '1.0.0'
 global.vsJB = '2.0'
