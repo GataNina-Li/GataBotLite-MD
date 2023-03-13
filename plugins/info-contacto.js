@@ -40,26 +40,8 @@ let contacts = global.owner.filter(c => c[2] === true)
 for (let i = 0; i < contacts.length; i++) {
   let contact = contacts[i]
   let number = String(contact[0])
-  let name = await conn.getName(who)
+  let name = await conn.getName(number)
   
-  let vcard = `
-BEGIN:VCARD
-VERSION:3.0
-N:Sy;Bot;;;
-FN:${name.replace(/\n/g, '\\n')}
-item.ORG:${contact[1] || ''}
-item1.TEL;waid=${number}:${PhoneNumber('+' + number).getNumber('international')}
-item1.X-ABLabel:${contact[3] || ''}
-item2.EMAIL;type=INTERNET:${contact[4] || ''}
-item2.X-ABLabel:📧 Email
-item3.ADR:;;${contact[5] || ''};;;;
-item3.X-ABADR:ac
-item3.X-ABLabel:📍 Region
-item4.URL:${contact[6] || ''}
-item4.X-ABLabel:Website
-item5.X-ABLabel:${contact[7] || ''}
-END:VCARD`.trim()
-
   await conn.sendContactArray(m.chat, [[number, name.notify, '💖 Creadora', 'Solo temas de GataBot', 'centergatabot@gmail.com', '🇪🇨 Ecuador', '🎁 https://github.com/GataNina-Li', '🐱 GataNina-Li']], null, { thumbnail: Buffer.from(contact[8] || '', 'base64'), quoted: m })
 }
 
