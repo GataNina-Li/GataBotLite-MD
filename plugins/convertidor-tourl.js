@@ -21,7 +21,7 @@ ${link}
 
 conn.reply(m.chat, caption, m, { contextInfo: {
           externalAdReply :{
-    mediaUrl: sgh,
+    mediaUrl: gt,
     mediaType: 2,
     title: wm,
     body: botdate,
