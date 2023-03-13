@@ -14,11 +14,22 @@ let who = m.mentionedJid && m.mentionedJid[0] ? m.mentionedJid[0] : m.fromMe ? c
 let pp = await conn.profilePictureUrl(who).catch(_ => hwaifu.getRandom())
 let name = await conn.getName(who)
 
-const sentMsg = await conn.sendContactArray(m.chat, [
-[`${nomorown}`, `${await conn.getName(nomorown+'@s.whatsapp.net')}`, `💖 Creadora `, `Solo temas de GataBot`, `centergatabot@gmail.com`, `🇪🇨 Ecuador`, '🎁 https://github.com/GataNina-Li', `🐱 GataNina-Li`],
-[`${conn.user.jid.split('@')[0]}`, `${await conn.getName(conn.user.jid)}`, `🐈 Bot de WhatsApp`, `📵 No hacer Spam por favor`, `gatabot@gmail.com`, `🇪🇨 Ecuador`, '🎁 ' + md, packname]
-], fkontak)
-await m.reply(`ʜᴇʟʟᴏ @${m.sender.split(`@`)[0]} Contactos disponibles`)
+//const sentMsg = await conn.sendContactArray(m.chat, [
+//[`${nomorown}`, `${await conn.getName(nomorown+'@s.whatsapp.net')}`, `💖 Creadora `, `Solo temas de GataBot`, `centergatabot@gmail.com`, `🇪🇨 Ecuador`, '🎁 https://github.com/GataNina-Li', `🐱 GataNina-Li`],
+//[`${conn.user.jid.split('@')[0]}`, `${await conn.getName(conn.user.jid)}`, `🐈 Bot de WhatsApp`, `📵 No hacer Spam por favor`, `gatabot@gmail.com`, `🇪🇨 Ecuador`, '🎁 ' + md, packname]
+//], fkontak)
+//await m.reply(`ʜᴇʟʟᴏ @${m.sender.split(`@`)[0]} Contactos disponibles`)
+
+let contacts = global.owner.filter(c => c[2] === true) //filtrar info del array 
+let numero = contacts.map(c => c[0]) 
+let nombre = await conn.getContacts(numero)
+
+  const sentMsg = await conn.sendContactArray(m.chat, [
+    [`${numero[0]}`, `${nombre[0].notify}`, `💖 Creadora `, `Solo temas de GataBot`, `centergatabot@gmail.com`, `🇪🇨 Ecuador`, '🎁 https://github.com/GataNina-Li', `🐱 GataNina-Li`],
+    [`${conn.user.jid.split('@')[0]}`, `${await conn.getName(conn.user.jid)}`, `🐈 Bot de WhatsApp`, `📵 No hacer Spam por favor`, `gatabot@gmail.com`, `🇪🇨 Ecuador`, '🎁 ' + md, packname]
+  ], fkontak)
+
+  await m.reply(`Hola @${m.sender.split(`@`)[0]} Contactos disponibles`)
 } 
 handler.command = ['contacto', 'contact']  
 export default handler
