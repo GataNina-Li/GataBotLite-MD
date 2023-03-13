@@ -32,7 +32,8 @@ enlace = official[0][0] == String(contact[0]) ? 'https://github.com/GataNina-Li'
 //biog = official[0][0] == String(contact[0]) ? bio : official[1][0] == String(contact[0]) ? bio : official[2][0] == String(contact[0]) ? bio : official[3][0] == String(contact[0]) ? bio : bio 
    
 lista.push([number, ofc, nombre, description, official[3][0] == String(contact[0]) ? null : correo, lugar, enlace, bio, official[1][0] == String(contact[0]) ? 'https://www.youtube.com/@TheLoliBot-MD' : null])
-//lista.push([conn.user.jid.split('@')[0], await conn.getName(conn.user.jid), packname, '📵 No hacer Spam por favor', 'centergatabot@gmail.com', '🌎 Global', md, bio, yt, ig, fb, paypal, nna])}
+//lista.push([conn.user.jid.split('@')[0], await conn.getName(conn.user.jid), packname, '📵 No hacer Spam por favor', 'centergatabot@gmail.com', '🌎 Global', md, bio, yt, ig, fb, paypal, nna])
+}
 
 await conn.sendContactArray(m.chat, lista, null, { quoted: m })
 } catch (e) {
