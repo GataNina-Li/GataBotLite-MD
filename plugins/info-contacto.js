@@ -7,6 +7,7 @@ this.sendContact(m.chat, data.map(([id, name]) => [id, name]), fkontak, { contex
 handler.command = ['contacto', 'contact']  
 export default handler*/
 
+//CÓDIGO CREADO GRACIAS A https://github.com/Azami19 & https://github.com/GataNina-Li
 import fetch from 'node-fetch'
 
 let handler = async (m, { conn, usedPrefix, text, args, command }) => {
@@ -17,9 +18,9 @@ let lista = []
 for (let i = 0; i < contacts.length; i++) {
   let contact = contacts[i]
   let number = String(contact[0])
-  let name = await conn.getName(number+'@s.whatsapp.net')
+  let name = await conn.getName(m.number+'@s.whatsapp.net')
   
-lista.push([number, name, '💖 Creadora', 'Solo temas de GataBot', 'centergatabot@gmail.com', '🇪🇨 Ecuador', '🎁 https://github.com/GataNina-Li', '🎁 https://github.com/GataNina-Li', '🐱 GataNina-Li'])}
+lista.push([number, name, '💖 Creadora', 'Solo temas de GataBot', 'centergatabot@gmail.com', '🇪🇨 Ecuador', '🎁 https://github.com/GataNina-Li', '🐱 GataNina-Li'])}
 lista.push([conn.user.jid.split('@')[0], await conn.getName(conn.user.jid), '🐈 Bot de WhatsApp', '📵 No hacer Spam por favor', 'gatabot@gmail.com', '🇪🇨 Ecuador', '🎁 ' + md, packname])
 
 await conn.sendContactArray(m.chat, lista, null, { quoted: m })
