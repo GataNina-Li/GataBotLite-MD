@@ -136,7 +136,7 @@ global.official = [ // Agregate si eres Owner
 ['12362000021', 'Gata Dios', 1], 
 ['5492266613038', '𝗖𝗼𝗹𝗮𝗯𝗼𝗿𝗮𝗱𝗼𝗿 (1) 💻', 1],  
 ['5214531106422', '𝗖𝗼𝗹𝗮𝗯𝗼𝗿𝗮𝗱𝗼𝗿 (2) 💻', 1],       
-['593968585383', 'Prueba 💻', 1]]
+['51993042301', 'Prueba 💻', 1]]
 
 global.mail = '' //agrega tú correo
 global.desc = '' //agrega una descripción
