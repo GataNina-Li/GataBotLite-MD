@@ -22,12 +22,12 @@ let name = await conn.getName(who)
 
 let contacts = global.owner.filter(c => c[2] === true) //filtrar info del array 
 let numero = contacts.map(c => c[0]) 
-let nombre = await conn.getContacts(numero)
+let nombre = await conn.getName(numero)
 
-  const sentMsg = await conn.sendContactArray(m.chat, [
-    [`${numero[0]}`, `${nombre[0].notify}`, `💖 Creadora `, `Solo temas de GataBot`, `centergatabot@gmail.com`, `🇪🇨 Ecuador`, '🎁 https://github.com/GataNina-Li', `🐱 GataNina-Li`],
-    [`${conn.user.jid.split('@')[0]}`, `${await conn.getName(conn.user.jid)}`, `🐈 Bot de WhatsApp`, `📵 No hacer Spam por favor`, `gatabot@gmail.com`, `🇪🇨 Ecuador`, '🎁 ' + md, packname]
-  ], fkontak)
+const sentMsg = await conn.sendContactArray(m.chat, [
+[`${numero[0]}`, `${nombre[0].notify}`, `💖 Creadora `, `Solo temas de GataBot`, `centergatabot@gmail.com`, `🇪🇨 Ecuador`, '🎁 https://github.com/GataNina-Li', `🐱 GataNina-Li`],
+[`${conn.user.jid.split('@')[0]}`, `${await conn.getName(conn.user.jid)}`, `🐈 Bot de WhatsApp`, `📵 No hacer Spam por favor`, `gatabot@gmail.com`, `🇪🇨 Ecuador`, '🎁 ' + md, packname]
+], fkontak)
 
   await m.reply(`Hola @${m.sender.split(`@`)[0]} Contactos disponibles`)
 } 
