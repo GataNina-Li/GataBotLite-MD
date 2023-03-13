@@ -35,14 +35,11 @@ const sentMsg = await conn.sendContactArray(m.chat, [
 ], fkontak)*/
 
 let contacts = global.owner.filter(c => c[2] === true)
-let numbers = contacts.map(c => c[0])
-let names = await conn.getName(numbers)
-
 for (let i = 0; i < contacts.length; i++) {
   let contact = contacts[i]
-  let number = contact[0]
-  let name = names[i].notify
-
+  let number = String(contact[0])
+  let name = await conn.getName(number)
+  
   let vcard = `
 BEGIN:VCARD
 VERSION:3.0
@@ -61,8 +58,9 @@ item4.X-ABLabel:Website
 item5.X-ABLabel:${contact[7] || ''}
 END:VCARD`.trim()
 
-await conn.sendContactArray(m.chat, [[number, name, '💖 Creadora', 'Solo temas de GataBot', 'centergatabot@gmail.com', '🇪🇨 Ecuador', '🎁 https://github.com/GataNina-Li', '🐱 GataNina-Li']], null, { thumbnail: Buffer.from(contact[8] || '', 'base64'), quoted: m })
+  await conn.sendContactArray(m.chat, [[number, name.notify, '💖 Creadora', 'Solo temas de GataBot', 'centergatabot@gmail.com', '🇪🇨 Ecuador', '🎁 https://github.com/GataNina-Li', '🐱 GataNina-Li']], null, { thumbnail: Buffer.from(contact[8] || '', 'base64'), quoted: m })
 }
+
 await m.reply(`Hola @${m.sender.split(`@`)[0]} Contactos disponibles`)
 } 
 handler.command = ['contacto', 'contact']  
