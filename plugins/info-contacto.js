@@ -25,14 +25,14 @@ let biografia = await conn.fetchStatus(number+'@s.whatsapp.net').catch(_ => 'und
 let bio = biografia.status?.toString() || 'Descripción no encontrada'
   
 nombre = official[0][0] == String(contact[0]) ? official[0][1] : official[1][0] == String(contact[0]) ? official[1][1] : official[2][0] == String(contact[0]) ? official[2][1] : 'Owner' 
-description = official[0][0] == String(contact[0]) ? 'Solo temas de GataBot' : official[1][0] == String(contact[0]) ? 'Asistente Oficial de GataBot' : 5214531173598 == String(contact[0]) ? 'Asistente Oficial de GataBot' : desc === '' ? 'How can I help you?' : desc
-correo = official[0][0] || official[1][0] || official[2][0]  == String(contact[0]) ? 'centergatabot@gmail.com' : mail === '' ? 'I do not have mail' : mail
+description = official[0][0] == String(contact[0]) ? 'Solo temas de GataBot' : official[1][0] == String(contact[0]) ? 'Asistente Oficial de GataBot' : official[2][0] == String(contact[0]) ? 'Asistente Oficial de GataBot' : desc === '' ? 'How can I help you?' : desc
+correo = official[0][0] == String(contact[0]) ? 'socialplus.gata@gamil.com' : official[1][0] == String(contact[0]) ? 'thelolibotm@gmail.com' : official[2][0] == String(contact[0]) ? 'alexismaldonado90700@gmail.com' : mail === '' ? 'I do not have mail' : mail
 lugar = official[0][0] == String(contact[0]) ? '🇪🇨 Ecuador' : official[1][0] == String(contact[0]) ? '🇦🇷 Argentina' : official[2][0] == String(contact[0]) ? '🇲🇽 México' : country === '' ? '🌎 Global' : country
 enlace = official[0][0] == String(contact[0]) ? 'https://github.com/GataNina-Li' : official[1][0] == String(contact[0]) ? 'https://github.com/elrebelde21' : official[2][0] == String(contact[0]) ? 'https://github.com/Azami19' : md 
 biog = official[0][0] == String(contact[0]) ? bio : official[1][0] == String(contact[0]) ? bio : official[2][0] == String(contact[0]) ? bio : desc === '' ? 'I am the Owner of the Bot if you have any questions you can tell me' : desc 
    
 lista.push([number, ofc, nombre, description, correo, lugar, enlace, biog])
-lista.push([conn.user.jid.split('@')[0], await conn.getName(conn.user.jid), packname, '📵 No hacer Spam por favor', paypal, '🌎 Global', '🎁 ' + md, bio])}
+lista.push([conn.user.jid.split('@')[0], await conn.getName(conn.user.jid), packname, '📵 No hacer Spam por favor', 'centergatabot@gmail.com', '🌎 Global', '🎁 ' + md, bio])}
 
 await conn.sendContactArray(m.chat, lista, null, { quoted: m })
 } catch (e) {
