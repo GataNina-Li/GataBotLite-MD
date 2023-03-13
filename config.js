@@ -139,9 +139,9 @@ global.official = [ // Agregate si eres Owner
 ['5521989092076', '𝗖𝗼𝗹𝗮𝗯𝗼𝗿𝗮𝗱𝗼𝗿𝗮 𝗢𝗳𝗶𝗰𝗶𝗮𝗹 💻', 1],
 ['5491173694367', 'Prueba', 1]] 
 
-global.mail = '' //agrega tú correo
-global.desc = '' //agrega una descripción
-global.country = '' //agrega tú país ejemplo: 🇪🇨
+global.mail = 'Ejemplo@gmail.com' //agrega tú correo
+global.desc = 'Descricion de ejemplo' //agrega una descripción
+global.country = '🇪🇺 Ejemplo' //agrega tú país ejemplo: 🇪🇨
 
 global.vs = '1.0.0'
 global.vsJB = '2.0'
