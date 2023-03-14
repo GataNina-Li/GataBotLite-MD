@@ -1,12 +1,3 @@
-/*function handler(m) {
-let fkontak = { "key": { "participants":"0@s.whatsapp.net", "remoteJid": "status@broadcast", "fromMe": false, "id": "Halo" }, "message": { "contactMessage": { "vcard": `BEGIN:VCARD\nVERSION:3.0\nN:Sy;Bot;;;\nFN:y\nitem1.TEL;waid=${m.sender.split('@')[0]}:${m.sender.split('@')[0]}\nitem1.X-ABLabel:Ponsel\nEND:VCARD` }}, "participant": "0@s.whatsapp.net" }
-const data = global.owner.filter(([id, isCreator]) => id && isCreator) 
-this.sendContact(m.chat, data.map(([id, name]) => [id, name]), fkontak, { contextInfo: { externalAdReply: { showAdAttribution: true }}})
-}
-
-handler.command = ['contacto', 'contact']  
-export default handler*/
-
 //CÓDIGO CREADO GRACIAS A https://github.com/Azami19 & https://github.com/GataNina-Li
 import fetch from 'node-fetch'
 
@@ -14,8 +5,8 @@ let handler = async (m, { conn, usedPrefix, text, args, command }) => {
 try{
 let contact, number, ofc, nombre, description, correo, lugar, enlace, biog
 let fkontak = { "key": { "participants":"0@s.whatsapp.net", "remoteJid": "status@broadcast", "fromMe": false, "id": "Halo" }, "message": { "contactMessage": { "vcard": `BEGIN:VCARD\nVERSION:3.0\nN:Sy;Bot;;;\nFN:y\nitem1.TEL;waid=${m.sender.split('@')[0]}:${m.sender.split('@')[0]}\nitem1.X-ABLabel:Ponsel\nEND:VCARD` }}, "participant": "0@s.whatsapp.net" }
-let biografia2 = await conn.fetchStatus(conn.user.jid.split('@')[0] + '@s.whatsapp.net').catch(_ => 'undefined')
-let bio2 = biografia2.status?.toString() || `${desc2 == '' ? 'I am the Owner of the Bot if you have any questions you can tell me' : desc2}`
+let biografiaBot = await conn.fetchStatus(conn.user.jid.split('@')[0] + '@s.whatsapp.net').catch(_ => 'undefined')
+let bioBot = biografiaBot.status?.toString() || `${desc2 == '' ? 'I am the Owner of the Bot if you have any questions you can tell me' : desc2}`
 
 let contacts = global.official.filter(c => c[2] === 1)
 let lista = []
@@ -31,17 +22,24 @@ description = official[0][0] == String(contact[0]) ? 'Solo temas de GataBot' : o
 correo = official[0][0] == String(contact[0]) ? 'socialplus.gata@gamil.com' : official[1][0] == String(contact[0]) ? 'thelolibotm@gmail.com' : official[2][0] == String(contact[0]) ? 'alexismaldonado90700@gmail.com' : mail === '' ? 'I do not have mail' : mail
 lugar = official[0][0] == String(contact[0]) ? '🇪🇨 Ecuador' : official[1][0] == String(contact[0]) ? '🇦🇷 Argentina' : official[2][0] == String(contact[0]) ? '🇲🇽 México' : official[3][0] == String(contact[0]) ? '🇧🇷 Brazil' : country === '' ? '🌎 Global' : country
 enlace = official[0][0] == String(contact[0]) ? 'https://github.com/GataNina-Li' : official[1][0] == String(contact[0]) ? 'https://github.com/elrebelde21' : official[2][0] == String(contact[0]) ? 'https://github.com/Azami19' : official[3][0] == String(contact[0]) ? 'https://github.com/Abiguelreyes75' : md 
-//biog = official[0][0] == String(contact[0]) ? bio : official[1][0] == String(contact[0]) ? bio : official[2][0] == String(contact[0]) ? bio : official[3][0] == String(contact[0]) ? bio : bio 
    
-lista.push([number, ofc, nombre, description, official[3][0] == String(contact[0]) ? null : correo, lugar, enlace, bio, official[1][0] == String(contact[0]) ? 'https://www.youtube.com/@TheLoliBot-MD' : null])
-}  
-lista.push([conn.user.jid.split('@')[0], await conn.getName(conn.user.jid), packname, '📵 No hacer Spam por favor', 'centergatabot@gmail.com', '🌎 Global', md, bio2, yt, ig, fb, paypal, nna])
-
-
-await conn.sendContactArray(m.chat, lista, null, { quoted: m })
+lista.push([number, ofc, nombre, description, official[3][0] == String(contact[0]) ? null : correo, lugar, enlace, bio, official[1][0] == String(contact[0]) ? 'https://www.youtube.com/@TheLoliBot-MD' : null]) }  
+lista.push([conn.user.jid.split('@')[0], await conn.getName(conn.user.jid), packname, '📵 No hacer Spam por favor', 'centergatabot@gmail.com', '🌎 Global', md, bioBot, yt, ig, fb, paypal, nna])
+await conn.sendContactArray(m.chat, lista, null, { quoted: fkontak })
+  
 } catch (e) {
 await m.reply(lenguajeGB['smsMalError3']() + '\n*' + lenguajeGB.smsMensError1() + '*\n*' + usedPrefix + `${lenguajeGB.lenguaje() == 'es' ? 'reporte' : 'report'}` + '* ' + `${lenguajeGB.smsMensError2()} ` + usedPrefix + command)
 console.log(`❗❗ ${lenguajeGB['smsMensError2']()} ${usedPrefix + command} ❗❗`)
 console.log(e)}} 
 handler.command = ['contacto', 'contact']  
 export default handler
+
+
+/*function handler(m) {
+let fkontak = { "key": { "participants":"0@s.whatsapp.net", "remoteJid": "status@broadcast", "fromMe": false, "id": "Halo" }, "message": { "contactMessage": { "vcard": `BEGIN:VCARD\nVERSION:3.0\nN:Sy;Bot;;;\nFN:y\nitem1.TEL;waid=${m.sender.split('@')[0]}:${m.sender.split('@')[0]}\nitem1.X-ABLabel:Ponsel\nEND:VCARD` }}, "participant": "0@s.whatsapp.net" }
+const data = global.owner.filter(([id, isCreator]) => id && isCreator) 
+this.sendContact(m.chat, data.map(([id, name]) => [id, name]), fkontak, { contextInfo: { externalAdReply: { showAdAttribution: true }}})
+}
+
+handler.command = ['contacto', 'contact']  
+export default handler*/
