@@ -1,8 +1,8 @@
 {
-  "name": "GataBot-MD", 
-  "description": "Super Bot WhatsApp",
-  "repository": "https://github.com/GataNina-Li/GataBot-MD",
-  "logo": "https://i.imgur.com/8fK4h6F.jpg",
+  "name": "GataBotLite-MD", 
+  "description": "Bot ligero para WhatsApp",
+  "repository": "https://github.com/GataNina-Li/GataBotLite-MD",
+  "logo": "https://i.imgur.com/AwlL9kc.jpg",
   "keywords": ["java", "bot", "whatsapp-bot", "whatsapp-automation"],
   "buildpacks": [
     {
