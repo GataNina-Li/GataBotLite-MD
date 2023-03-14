@@ -34,7 +34,7 @@ const options = {
 }
 
 try {
-  cfonts.say('gatabot\nlite\nmd'.trim(), options);
+  cfonts.say('gatabot\nlite\nmd'.trim(), poptions);
 } catch (err) {
   say('GataBot\nLite\nMD', {
     font: 'chrome',
