@@ -17,9 +17,9 @@ let handler = async (m, { conn, text }) => {
 `
 	await conn.reply(m.chat, groupinfo, m)
 	const botones = [
-{index: 1, urlButton: {displayText: `Copiar Descripción 😻`, url: `https://www.whatsapp.com/otp/copy/${data.desc}`}},
+{index: 1, urlButton: {displayText: `Copiar Descripción ✨`, url: `https://www.whatsapp.com/otp/copy/${data.desc}`}},
 ]
-await conn.sendMessage(m.chat, { text: `*┏━━━━━━━━━━━━━━┓*\n┃Copiar descripción • 🐈\n*┗━━━━━━━━━━━━━━┛*`, templateButtons: botones, footer: wm })
+await conn.sendMessage(m.chat, { text: `*┏━━━━━━━━━━━━━━┓*\n┃¿Desa copiar la descripción? •🎐\n*┗━━━━━━━━━━━━━━┛*`, templateButtons: botones, footer: wm })
 }
 handler.command = /^(inspect)$/i
 
