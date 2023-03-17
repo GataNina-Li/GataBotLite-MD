@@ -8,14 +8,14 @@ let pp = await conn.profilePictureUrl(who).catch(_ => hwaifu.getRandom())
 let name = await conn.getName(who)
   let q = m.quoted ? m.quoted : m
   let mime = (q.msg || q).mimetype || ''
-  if (!mime) throw 'Pon la imagen que vas a convertir en enlace'
+  if (!mime) throw '⚠️ Pon la imagen que vas a convertir en enlace'
   let media = await q.download()
   let isTele = /image\/(png|jpe?g|gif)|video\/mp4/.test(mime)
   let link = await (isTele ? uploadImage : uploadFile)(media)
   let caption = `📮 *L I N K :*
 ${link}
 📊 *S I Z E :* ${media.length} Byte
-📛 *E x p i r e d :* ${isTele ? 'No ahi fecha de expiración' : 'Unknown'}
+📛 *E x p i r e d :* ${isTele ? 'No se expira' : 'Unknown'}
 
 *S H O R T :* ${await shortUrl(link)}`
 
@@ -23,7 +23,7 @@ conn.reply(m.chat, caption, m, { contextInfo: {
           externalAdReply :{
     mediaUrl: gt,
     mediaType: 2,
-    title: wm,
+    title: link,
     body: botdate,
     thumbnail: await(await fetch(link)).buffer(),
     sourceUrl: md
