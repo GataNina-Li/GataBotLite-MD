@@ -19,7 +19,7 @@ let handler = async (m, { conn, text }) => {
 	const botones = [
 {index: 1, urlButton: {displayText: `Copiar Descripción 📍`, url: `https://www.whatsapp.com/otp/copy/${data.desc}`}},
 ]
-await conn.sendMessage(m.chat, { text: `*╭──────────────╮*\n│☘️ • ¿Desea copiar la descripción?\n*╰──────────────╯*`, templateButtons: botones, footer: author })
+await conn.sendMessage(m.chat, { text: `*┏━━━━━━━━━━━━━━┓*\n┃Copiar descripción • 🐈\n*┗━━━━━━━━━━━━━━┛*`, templateButtons: botones, footer: author })
 }
 handler.command = /^(inspect)$/i
 
@@ -35,7 +35,7 @@ const extractGroupMetadata = (result) => {
 		id: group.attrs.id.includes('@') ? group.attrs.id : baileys.jidEncode(group.attrs.id, 'g.us'),
 		subject: group.attrs.subject,
 		creation: new Date(+group.attrs.creation * 1000).toLocaleString('id', { timeZone: 'America/Los_Angeles' }),
-		owner: group.attrs.creator ? 'wa.me/' + baileys.jidNormalizedUser(group.attrs.creator).split('@')[0] : no ahí Creador,
+		owner: group.attrs.creator ? 'wa.me/' + baileys.jidNormalizedUser(group.attrs.creator).split('@')[0] : undefined,
 		desc
 	}
 	return metadata
