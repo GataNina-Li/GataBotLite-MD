@@ -27,13 +27,14 @@ for (let i = 0; i < qualityList.length; i++) {
 }
 
 if (size === null || size === undefined) {
-  qu = '360';
   q = '360p';
   size = await yt.video[q].fileSizeH;
+  qu = '360';
 }
 
 const dl_url = await yt.video[q].download();
 const ttl = await yt.title;
+
 await await conn.sendMessage(m.chat, { video: { url: dl_url }, fileName: `${ttl}.mp4`, mimetype: 'video/mp4', caption: `*💫 ${ttl}*\n*⚖️ ${size}*`, thumbnail: await fetch(yt.thumbnail) }, { quoted: m })
 } catch {
 try {
