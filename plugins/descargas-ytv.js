@@ -8,19 +8,25 @@ let qu = args[1] || '720';
 if (qu === '720') {
   return qu;
 }
-else if (qu === null || qu === undefined || (qu !== '360' && qu !== '480' && qu !== '720')) {
+
+const size = await yt.video[qu].fileSizeH;
+
+if (size === null || size === undefined || size <= 0) {
   qu = '480';
+  const size2 = await yt.video[qu].fileSizeH;
+
+  if (size2 === null || size2 === undefined || size2 <= 0) {
+    qu = '360';
+  }
 }
-if (qu === null || qu === undefined || (qu !== '360' && qu !== '480' && qu !== '720')) {
-  qu = '360';
-}
-return qu
+
+return qu;
 let q = qu + 'p'
 let v = args[0]
 const yt = await youtubedl(v).catch(async _ => await youtubedlv2(v)).catch(async _ => await youtubedlv3(v))
 const dl_url = await yt.video[q].download()
 const ttl = await yt.title
-const size = await yt.video[q].fileSizeH
+//const size = await yt.video[q].fileSizeH
 await await conn.sendMessage(m.chat, { video: { url: dl_url }, fileName: `${ttl}.mp4`, mimetype: 'video/mp4', caption: `*💫 ${ttl}*\n*⚖️ ${size}*`, thumbnail: await fetch(yt.thumbnail) }, { quoted: m })
 } catch {
 try {
