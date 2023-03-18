@@ -17,7 +17,7 @@ for (let i = quIndex; i < qualities.length; i++) {
   if (yt.video[q]) {
     dl_url = await yt.video[q].download();
     ttl = await yt.title;
-    size = await yt.video[q].fileSizeH;
+    const size = (yt.video[q] && yt.video[q].fileSize) || 'Desconocido';
     break;
   }
 }
