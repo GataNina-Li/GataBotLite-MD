@@ -16,11 +16,24 @@ const rl = createInterface(process.stdin, process.stdout)
 const startColor = chalk.rgb(Math.floor(Math.random() * 256), Math.floor(Math.random() * 256), Math.floor(Math.random() * 256));
 console.log(startColor('❤️ Iniciando...'));
 
+function getRandomColor() {
+  const colors = ['black', 'red', 'green', 'yellow', 'blue', 'magenta', 'cyan', 'white', 'gray', 'redBright', 'greenBright', 'yellowBright', 'blueBright', 'magentaBright', 'cyanBright', 'whiteBright'];
+  const randomIndex = Math.floor(Math.random() * colors.length);
+  return colors[randomIndex];
+}
+
+function getRandomHexColor() {
+  return '#' + Math.floor(Math.random() * 16777215).toString(16);
+}
+
 function getRandomGradient() {  
-  const color1 = Math.floor(Math.random() * 16777215).toString(16);
-  const color2 = Math.floor(Math.random() * 16777215).toString(16);
-  return [`#${color1}`, `#${color2}`]
-}  
+  const useRandomHexColors = Math.random() < 0.5; // 50% colores
+  if (useRandomHexColors) {
+    return [getRandomHexColor(), getRandomHexColor()];
+  } else {
+    return [getRandomColor(), getRandomColor()];
+  }
+}
 
 const options = {
   font: 'block',
