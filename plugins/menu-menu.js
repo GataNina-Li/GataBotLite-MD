@@ -41,7 +41,7 @@ let menu = `
 *│* ┊
 *│* ┊▸ ✦ ${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'play (nombre o enlace)' : 'play (name)'}_
 *│* ┊▸ ✦ ${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'yta (enlace)' : 'yta (link)'}_
-*│* ┊▸ ✦ ${usedPrefix}donar
+*│* ┊▸ ✦ ${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'ytv (enlace)' : 'ytv (link)'}_
 *│* ╰∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙ ∙ ∙ ∙ ∙ 
  `.trim()
     
