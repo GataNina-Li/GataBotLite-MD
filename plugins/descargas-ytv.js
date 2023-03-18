@@ -4,10 +4,7 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
 if (!args[0]) throw lenguajeGB.smsMalused2() + `*${usedPrefix + command} https://youtu.be/ejemplo*\n*${usedPrefix + command} https://www.youtube.com/ejemplo*`
 await conn.reply(m.chat, lenguajeGB.smsAvisoEG() + '*' + lenguajeGB.smsYTV1() + '*', m)
 try {
-let qu = args[1] || '720';
-if (qu === '720') {
-  return qu;
-}
+let qu = '720';
 
 const size = await yt.video[qu].fileSizeH;
 
@@ -21,6 +18,7 @@ if (size === null || size === undefined || size <= 0) {
 }
 
 return qu;
+  
 let q = qu + 'p'
 let v = args[0]
 const yt = await youtubedl(v).catch(async _ => await youtubedlv2(v)).catch(async _ => await youtubedlv3(v))
