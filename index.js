@@ -11,9 +11,9 @@ const __dirname = dirname(fileURLToPath(import.meta.url))
 const require = createRequire(__dirname) 
 const { name, author } = require(join(__dirname, './package.json')) 
 const { say } = cfonts
+const rl = createInterface(process.stdin, process.stdout)
 
 try {
-  const rl = createInterface(process.stdin, process.stdout)
   const startColor = chalk.rgb(Math.floor(Math.random() * 256), Math.floor(Math.random() * 256), Math.floor(Math.random() * 256));
   console.log(startColor('❤️ Iniciando...'));
 
