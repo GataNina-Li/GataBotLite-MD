@@ -16,6 +16,7 @@ const rl = createInterface(process.stdin, process.stdout)
 const startColor = chalk.rgb(Math.floor(Math.random() * 256), Math.floor(Math.random() * 256), Math.floor(Math.random() * 256));
 console.log(startColor('❤️ Iniciando...'));
 
+try {
 function getRandomColor() {
   const colors = ['black', 'red', 'green', 'yellow', 'blue', 'magenta', 'cyan', 'white', 'gray', 'redBright', 'greenBright', 'yellowBright', 'blueBright', 'magentaBright', 'cyanBright', 'whiteBright', 'brightRed', 'brightGreen', 'brightYellow', 'brightBlue', 'brightMagenta', 'brightCyan', 'brightWhite', 'bgBlack', 'bgRed', 'bgGreen', 'bgYellow', 'bgBlue', 'bgMagenta', 'bgCyan', 'bgWhite', 'rainbow', 'zebra', 'america'];
   const randomIndex = Math.floor(Math.random() * colors.length);
@@ -37,7 +38,6 @@ function getRandomGradient() {
   }
 }
 
-
 const options = {
   font: 'block',
   align: 'center',
@@ -49,7 +49,6 @@ const options = {
   maxLength: '0',
 }
 
-try {
   cfonts.say('gatabot\nlite\nmd'.trim(), options);
 } catch (err) {
   say('GataBot\nLite\nMD', {
@@ -75,11 +74,6 @@ function start(file) {
 if (isRunning) return
 isRunning = true
 let args = [join(__dirname, file), ...process.argv.slice(2)]
-
-//say('✅ YA PUEDE ESCANEAR EL CÓDIGO QR', {
-//font: 'console',
-//align: 'center',
-//gradient: ['red', 'magenta']})
   
 setupMaster({
 exec: args[0],
