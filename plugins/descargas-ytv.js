@@ -4,14 +4,31 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
 if (!args[0]) throw lenguajeGB.smsMalused2() + `*${usedPrefix + command} https://youtu.be/ejemplo*\n*${usedPrefix + command} https://www.youtube.com/ejemplo*`
 await conn.reply(m.chat, lenguajeGB.smsAvisoEG() + '*' + lenguajeGB.smsYTV1() + '*', m)
 try {
-let qu = args[1] || '720'
-let q = qu + 'p'
-let v = args[0]
-const yt = await youtubedl(v).catch(async _ => await youtubedlv2(v)).catch(async _ => await youtubedlv3(v))
-const dl_url = await yt.video[q].download()
-const ttl = await yt.title
-const size = await yt.video[q].fileSizeH
-await await conn.sendMessage(m.chat, { video: { url: dl_url }, fileName: `${ttl}.mp4`, mimetype: 'video/mp4', caption: `*💫 ${ttl}*\n*⚖️ ${size}*`, thumbnail: await fetch(yt.thumbnail) }, { quoted: m })
+const qualities = ['1080', '720', '480', '360', '240', '144'];
+let quIndex = qualities.indexOf(args[1]);
+if (quIndex === -1) {
+  quIndex = qualities.indexOf('360');
+}
+let dl_url, ttl, size, q;
+
+for (let i = quIndex; i < qualities.length; i++) {
+  q = qualities[i] + 'p';
+  const yt = await youtubedl(v).catch(async _ => await youtubedlv2(v)).catch(async _ => await youtubedlv3(v));
+  if (yt.video[q]) {
+    dl_url = await yt.video[q].download();
+    ttl = await yt.title;
+    size = await yt.video[q].fileSizeH;
+    break;
+  }
+}
+
+await conn.sendMessage(m.chat, { 
+  video: { url: dl_url }, 
+  fileName: `${ttl}.mp4`, 
+  mimetype: 'video/mp4', 
+  caption: `*💫 ${ttl}*\n*⚖️ ${size}*`, 
+  thumbnail: await fetch(yt.thumbnail) 
+}, { quoted: m });
 } catch {
 try {
 let lolhuman = await fetch(`https://api.lolhuman.xyz/api/ytvideo2?apikey=${lolkeysapi}&url=${args[0]}`)    
