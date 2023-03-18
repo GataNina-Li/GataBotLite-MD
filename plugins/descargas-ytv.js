@@ -4,13 +4,36 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
 if (!args[0]) throw lenguajeGB.smsMalused2() + `*${usedPrefix + command} https://youtu.be/ejemplo*\n*${usedPrefix + command} https://www.youtube.com/ejemplo*`
 await conn.reply(m.chat, lenguajeGB.smsAvisoEG() + '*' + lenguajeGB.smsYTV1() + '*', m)
 try {
-let qu = args[1] || '360'
-let q = qu + 'p'
-let v = args[0]
-const yt = await youtubedl(v).catch(async _ => await youtubedlv2(v)).catch(async _ => await youtubedlv3(v))
-const dl_url = await yt.video[q].download()
-const ttl = await yt.title
-const size = await yt.video[q].fileSizeH
+let qu = '720';
+let q = qu + 'p';
+let v = args[0];
+
+const yt = await youtubedl(v).catch(async _ => await youtubedlv2(v)).catch(async _ => await youtubedlv3(v));
+
+const qualityList = ['720p', '480p', '360p'];
+let size = null;
+
+for (let i = 0; i < qualityList.length; i++) {
+  const currentQuality = qualityList[i];
+  const currentQualityKey = currentQuality + ' video';
+  const currentSize = yt.video[currentQualityKey].fileSizeH;
+  
+  if (currentSize !== null && currentSize !== undefined) {
+    qu = currentQuality.split('p')[0];
+    q = currentQuality;
+    size = currentSize;
+    break;
+  }
+}
+
+if (size === null || size === undefined) {
+  qu = '360';
+  q = '360p';
+  size = await yt.video[q].fileSizeH;
+}
+
+const dl_url = await yt.video[q].download();
+const ttl = await yt.title;
 await await conn.sendMessage(m.chat, { video: { url: dl_url }, fileName: `${ttl}.mp4`, mimetype: 'video/mp4', caption: `*💫 ${ttl}*\n*⚖️ ${size}*`, thumbnail: await fetch(yt.thumbnail) }, { quoted: m })
 } catch {
 try {
