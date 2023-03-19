@@ -14,7 +14,8 @@ handler.register = true
 export default handler*/
 
 import axios from 'axios'
-const openaiApiKey = 'tamvan';
+const openaiApiKey = 'tamvan'
+import { createInterface } from 'readline'
 
 async function enviarSolicitud(texto, conversacionId) {
   try {
@@ -43,15 +44,15 @@ async function enviarSolicitud(texto, conversacionId) {
 
 async function leerMensaje() {
   return new Promise((resolve) => {
-    const readline = require('readline').createInterface({
+    const rl = createInterface({
       input: process.stdin,
       output: process.stdout,
-    })
-    readline.question('Tú: ', (mensaje) => {
-      readline.close();
+    });
+    rl.question('Tú: ', (mensaje) => {
+      rl.close();
       resolve(mensaje);
-    })
-  })
+    });
+  });
 }
 
 async function chat() {
