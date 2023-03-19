@@ -1,6 +1,5 @@
 import { googleIt } from '@bochilteam/scraper'
 let handler = async (m, { conn, command, args, usedPrefix, text }) => {
-const { googleIt } = require('@bochilteam/scraper');
 if (!text) return conn.reply(m.chat, lenguajeGB.smsAvisoMG + '*ESCRIBA LO QUE QUIERE BUSCAR, EJEMPLO:*' + `\n*${usedPrefix + command} Qué es Matemáticas?*` , m)
 async function searchGoogle(query) {
 try {
