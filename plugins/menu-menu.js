@@ -39,9 +39,11 @@ let menu = `
 *│*
 *╰ ㊂ ▸▸ _DESCARGAS_ ◂◂*
 *│* ┊
-*│* ┊▸ ✦ ${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'play (nombre o enlace)' : 'play (name)'}_
-*│* ┊▸ ✦ ${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'yta (enlace)' : 'yta (link)'}_
-*│* ┊▸ ✦ ${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'ytv (enlace)' : 'ytv (link)'}_
+*│* ┊▸ ✦ _${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'play (nombre o enlace)' : 'play (name)'}_
+*│* ┊▸ ✦ _${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'yta (enlace)' : 'yta (link)'}_
+*│* ┊▸ ✦ _${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'ytv (enlace)' : 'ytv (link)'}_
+*│* ┊▸ ✦ _${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'ytadoc (enlace)' : 'ytadoc (link)'}_
+*│* ┊▸ ✦ _${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'ytvdoc (enlace)' : 'ytvdoc (link)'}_
 *│* ╰∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙ ∙ ∙ ∙ ∙ 
  `.trim()
     
