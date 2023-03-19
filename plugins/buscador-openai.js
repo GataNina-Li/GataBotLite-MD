@@ -70,7 +70,7 @@ async function chat() {
 }
 
 let handler = async (m, { text, conn, usedPrefix, command }) => {
-await chat();
+await chat(text);
 }
 handler.command = ['openai', 'chatgpt', 'ia', 'ai']
 handler.register = true
