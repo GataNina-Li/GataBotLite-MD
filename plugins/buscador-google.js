@@ -7,10 +7,10 @@ if (!text) return conn.reply(m.chat, lenguajeGB.smsAvisoMG + '*ESCRIBA LO QUE QU
 let url = 'https://google.com/search?q=' + encodeURIComponent(text)
 let search = await googleIt(text)
 let msg = search.articles.map(({ title, url, description }) => { return `*${title}*\n_${url}_\n_${description}_` }).join('\n\n')
-try {
-let ss = await (await fetch(`https://api.lolhuman.xyz/api/ssweb?apikey=${lolkeysapi}&url=${url}`)).arrayBuffer()
-await conn.sendFile(m.chat, ss, 'error.png', url + '\n\n' + msg, m)
-} catch {
+//try {
+//let ss = await (await fetch(`https://api.lolhuman.xyz/api/ssweb?apikey=${lolkeysapi}&url=${url}`)).arrayBuffer()
+//await conn.sendFile(m.chat, ss, 'error.png', url + '\n\n' + msg, m)
+//} catch {
 m.reply(msg)
 }}
 handler.command = /^googlef?$/i
