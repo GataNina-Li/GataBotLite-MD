@@ -62,8 +62,7 @@ let handler = async (m, { text, conn, usedPrefix, command }) => {
     m.reply(`Usuario: ${m.body}`);
     let respuesta = await enviarSolicitud(m.body, m.id);
     if (respuesta) {
-      m.reply(`Chatbot: ${respuesta}`);
-      conn.sendMessage(m.chat, respuesta, MessageType.text);
+      conn.sendMessage(m.chat, `Chatbot: ${respuesta}`, MessageType.text);
     }
   }
 };
@@ -71,6 +70,7 @@ let handler = async (m, { text, conn, usedPrefix, command }) => {
 handler.command = ['openai', 'chatgpt', 'ia', 'ai'];
 handler.register = true;
 export default handler;
+
 
 
 
