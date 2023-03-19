@@ -1,8 +1,8 @@
 import { webp2png } from '../lib/webp2mp4.js'
 let handler = async (m, { conn, usedPrefix, command }) => {
-try{
 const notStickerMessage = lenguajeGB.smsToimg()
 if (!m.quoted) throw notStickerMessage
+try{  
 const q = m.quoted || m
 let mime = q.mediaType || ''
 if (!/sticker/.test(mime)) throw notStickerMessage
