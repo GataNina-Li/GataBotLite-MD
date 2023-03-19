@@ -25,7 +25,7 @@ try {
 
   function getRandomHexColor() {
    const hexColors = ['#3456ff', '#f80', '#f00808', '#fefe62', '#ff00ff', '#00ffff', '#ffffff', '#00ff00', '#8b00ff', '#ff5733', '#00ced1']
-    cvonst randomIndex = Math.floor(Math.random() * hexColors.length);
+    const randomIndex = Math.floor(Math.random() * hexColors.length);
     return hexColors[randomIndex];
   }
 
