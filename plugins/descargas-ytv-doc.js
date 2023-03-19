@@ -1,7 +1,6 @@
 import { youtubedl, youtubedlv2, youtubedlv3 } from '@bochilteam/scraper'
 import fetch from 'node-fetch'
 let handler = async (m, { conn, args }) => {
-try{
 if (!args[0]) throw lenguajeGB.smsMalused2() + `*${usedPrefix + command} https://youtu.be/ejemplo*\n*${usedPrefix + command} https://www.youtube.com/ejemplo*`
 await conn.reply(m.chat, lenguajeGB.smsAvisoEG() + '*' + lenguajeGB.smsYTV2() + '*', m)
 try {
