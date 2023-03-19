@@ -1,4 +1,4 @@
-let { downloadContentFromMessage } = (await import('@adiwajshing/baileys'));
+let { downloadContentFromMessage } = (await import('@adiwajshing/baileys')); 
 
 export async function before(m, { isAdmin, isBotAdmin }) {
  
