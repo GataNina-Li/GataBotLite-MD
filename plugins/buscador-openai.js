@@ -13,11 +13,11 @@ handler.command = ['openai', 'chatgpt', 'ia', 'ai']
 handler.register = true
 export default handler*/
 
-import MessageType from '@adiwajshing/baileys'
+import { MessageType } from '@adiwajshing/baileys';
 import axios from 'axios';
+import { createInterface } from 'readline';
 
 const openaiApiKey = 'tamvan';
-import { createInterface } from 'readline';
 
 async function enviarSolicitud(texto, conversacionId) {
   try {
@@ -57,31 +57,33 @@ async function leerMensaje() {
   });
 }
 
-async function chat(mensaje, conn) {
+async function chat(m, conn) {
   let conversacionId = Date.now().toString();
-  conn.sendMessage(mensaje.chat, '¡Hola! Soy GataBot impulsada por la IA de ChatGPT. ¿En qué puedo ayudarte?', MessageType.text);
-  let respuesta = await enviarSolicitud(mensaje.body, conversacionId);
-  if (respuesta) {
-    conn.sendMessage(mensaje.chat, `Chatbot: ${respuesta}`, MessageType.text);
+  m.reply('¡Hola! Soy GataBot impulsada por la IA de ChatGPT. ¿En qué puedo ayudarte?');
+  let mensaje = await leerMensaje();
+  while (mensaje !== 'salir') {
+    let respuesta = await enviarSolicitud(mensaje, conversacionId);
+    if (respuesta) {
+      m.reply(`Chatbot: ${respuesta}`);
+      conn.sendMessage(m.chat, respuesta, MessageType.text);
+    }
+    mensaje = await leerMensaje();
   }
+  m.reply('¡Hasta la vista!');
 }
 
-const conn = new WAConnection();
-conn.on('open', () => {
-  console.log('Conexión establecida');
-});
-
-conn.on('message', async message => {
-  if (message.type === 'chat' && message.body) {
-    chat(message, conn);
+const handler = async (m, conn) => {
+  if (m.type === 'chat' && m.body) {
+    m.reply(`Usuario: ${m.body}`);
+    let respuesta = await enviarSolicitud(m.body, m.id);
+    if (respuesta) {
+      m.reply(`Chatbot: ${respuesta}`);
+      conn.sendMessage(m.chat, respuesta, MessageType.text);
+    }
   }
-});
-
-const handler = (m) => {
-  chat(m, conn);
 };
-conn.connect();
 handler.command = ['openai', 'chatgpt', 'ia', 'ai']
 handler.register = true
-export default handler
+export default handler;
+
 
