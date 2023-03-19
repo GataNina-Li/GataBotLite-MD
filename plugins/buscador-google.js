@@ -12,6 +12,6 @@ let msg = search.articles.map(({ title, url, description }) => { return `*${titl
 //await conn.sendFile(m.chat, ss, 'error.png', url + '\n\n' + msg, m)
 //} catch {
 m.reply(msg)
-}}
+}
 handler.command = /^googlef?$/i
 export default handler
