@@ -37,6 +37,11 @@ let menu = `
 *│* ┊▸ ✦ _${lenguajeGB.lenguaje() == 'es' ? 'términos y condiciones' : 'terms'}_ 
 *│* ╰∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙ ∙ ∙ ∙ ∙ 
 *│*
+*╰ ㊂ ▸▸ _BUSCADOR_ ◂◂*
+*│* ┊
+*│* ┊▸ ✦ _${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'google (texto)' : 'googlef (text)'}_
+*│* ╰∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙ ∙ ∙ ∙ ∙ 
+*│*
 *╰ ㊂ ▸▸ _DESCARGAS_ ◂◂*
 *│* ┊
 *│* ┊▸ ✦ _${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'play (nombre o enlace)' : 'play (name)'}_
@@ -45,6 +50,7 @@ let menu = `
 *│* ┊▸ ✦ _${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'ytadoc (enlace)' : 'ytadoc (link)'}_
 *│* ┊▸ ✦ _${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'ytvdoc (enlace)' : 'ytvdoc (link)'}_
 *│* ╰∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙ ∙ ∙ ∙ ∙ 
+
  `.trim()
     
 const vi = ['https://telegra.ph/file/405daebd4bc0d69e5d165.mp4',
