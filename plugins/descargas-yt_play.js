@@ -4,7 +4,7 @@ let handler = async (m, { conn, command, text, usedPrefix }) => {
 try{
 if (!text) throw lenguajeGB.smsMalused2() + `*${usedPrefix + command} Billie Eilish - Bellyache*`
 let vid = (await yts(text)).all[0]
-if (!vid) throw lenguajeGB.smsMalError2 + `_${lenguajeGB.smsYT6()}_`
+if (!vid) throw lenguajeGB.smsMalError2() + `_${lenguajeGB.smsYT6()}_`
 let { title, description, url, thumbnail, videoId, timestamp, views, published } = vid
 
 let video = `*◜⋯ ⋯ ⋯ Y O U T U B E ⋯ ⋯ ⋯◞*
