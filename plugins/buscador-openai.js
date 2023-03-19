@@ -13,7 +13,7 @@ handler.command = ['openai', 'chatgpt', 'ia', 'ai']
 handler.register = true
 export default handler*/
 
-import { MessageType } from '@adiwajshing/baileys';
+import MessageType from '@adiwajshing/baileys'
 import axios from 'axios';
 import { createInterface } from 'readline';
 
