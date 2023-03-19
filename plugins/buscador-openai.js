@@ -13,7 +13,7 @@ handler.command = ['openai', 'chatgpt', 'ia', 'ai']
 handler.register = true
 export default handler*/
 
-import MessageType from '@adiwajshing/baileys'
+import MessageType from '@adiwajshing/baileys';
 import axios from 'axios';
 import { createInterface } from 'readline';
 
@@ -57,22 +57,7 @@ async function leerMensaje() {
   });
 }
 
-async function chat(m, conn) {
-  let conversacionId = Date.now().toString();
-  m.reply('¡Hola! Soy GataBot impulsada por la IA de ChatGPT. ¿En qué puedo ayudarte?');
-  let mensaje = await leerMensaje();
-  while (mensaje !== 'salir') {
-    let respuesta = await enviarSolicitud(mensaje, conversacionId);
-    if (respuesta) {
-      m.reply(`Chatbot: ${respuesta}`);
-      conn.sendMessage(m.chat, respuesta, MessageType.text);
-    }
-    mensaje = await leerMensaje();
-  }
-  m.reply('¡Hasta la vista!');
-}
-
-const handler = async (m, conn) => {
+let handler = async (m, { text, conn, usedPrefix, command }) => {
   if (m.type === 'chat' && m.body) {
     m.reply(`Usuario: ${m.body}`);
     let respuesta = await enviarSolicitud(m.body, m.id);
@@ -82,8 +67,10 @@ const handler = async (m, conn) => {
     }
   }
 };
-handler.command = ['openai', 'chatgpt', 'ia', 'ai']
-handler.register = true
+
+handler.command = ['openai', 'chatgpt', 'ia', 'ai'];
+handler.register = true;
 export default handler;
+
 
 
