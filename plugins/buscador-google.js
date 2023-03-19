@@ -12,7 +12,9 @@ m.reply(`${index + 1}. ${result.title} (${result.link})`);
 console.error(error);
 }
 }
-searchGoogle(text);
+const texto = { myquery: text }; 
+const query = texto.toString(); 
+searchGoogle(query);
 }
 handler.command = /^googlef?$/i
 handler.register = true
