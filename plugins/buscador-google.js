@@ -14,4 +14,5 @@ await m.reply(lenguajeGB['smsMalError3']() + '\n*' + lenguajeGB.smsMensError1() 
 console.log(`❗❗ ${lenguajeGB['smsMensError2']()} ${usedPrefix + command} ❗❗`)
 console.log(e)}}
 handler.command = /^googlef?$/i
+handler.register = true
 export default handler
