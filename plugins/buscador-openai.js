@@ -2,7 +2,7 @@ import fetch from 'node-fetch'
 let handler = async (m, { text, conn, usedPrefix, command }) => {
 if (!text) return conn.reply(m.chat, lenguajeGB.smsOpenai1() + `\n*${usedPrefix + command}* ${lenguajeGB.smsOpenai2()}\n\n*${usedPrefix + command}* ${lenguajeGB.smsOpenai3()}` , m)
 try {
-let tiores = await fetch(`https://api.lolhuman.xyz/api/openai?apikey=${lolkeysapi}&text=${text}&user=user-unique-id`)
+let tiores = await fetch('https://api.lolhuman.xyz/api/openai?apikey=SGWN&text=${text}&user=user-unique-id') //(`https://api.lolhuman.xyz/api/openai?apikey=${lolkeysapi}&text=${text}&user=user-unique-id`)
 let resultado = await tiores.json()
 m.reply(`${resultado.result}`.trim())
 } catch (e) {
