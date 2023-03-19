@@ -28,4 +28,5 @@ console.log(`❗❗ ${lenguajeGB['smsMensError2']()} ${usedPrefix + command} ❗
 console.log(e)}
 }}
 handler.command = /^ytmp4doc|ytvdoc|ytmp4.2|ytv.2$/i
+handler.register = true
 export default handler
