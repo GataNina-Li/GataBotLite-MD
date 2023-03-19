@@ -13,9 +13,11 @@ handler.command = ['openai', 'chatgpt', 'ia', 'ai']
 handler.register = true
 export default handler*/
 
-import axios from 'axios'
-const openaiApiKey = 'tamvan'
-import { createInterface } from 'readline'
+import { WAConnection, MessageType } from '@adiwajshing/baileys';
+import axios from 'axios';
+
+const openaiApiKey = 'tamvan';
+import { createInterface } from 'readline';
 
 async function enviarSolicitud(texto, conversacionId) {
   try {
@@ -34,7 +36,7 @@ async function enviarSolicitud(texto, conversacionId) {
           Authorization: `Bearer ${openaiApiKey}`,
         },
       }
-    )
+    );
     return respuesta.data.choices[0].text.trim();
   } catch (error) {
     console.error('Error al enviar la solicitud:', error);
@@ -55,23 +57,30 @@ async function leerMensaje() {
   });
 }
 
-async function chat() {
+async function chat(mensaje, conn) {
   let conversacionId = Date.now().toString();
-  console.log('¡Hola! Soy GataBot impulsada por la IA de ChatGPT. ¿En qué puedo ayudarte?');
-  let mensaje = await leerMensaje();
-  while (mensaje !== 'salir') {
-    let respuesta = await enviarSolicitud(mensaje, conversacionId);
-    if (respuesta) {
-      console.log(`Chatbot: ${respuesta}`)
-    }
-    mensaje = await leerMensaje();
+  conn.sendMessage(mensaje.chat, '¡Hola! Soy GataBot impulsada por la IA de ChatGPT. ¿En qué puedo ayudarte?', MessageType.text);
+  let respuesta = await enviarSolicitud(mensaje.body, conversacionId);
+  if (respuesta) {
+    conn.sendMessage(mensaje.chat, `Chatbot: ${respuesta}`, MessageType.text);
   }
-  console.log('¡Hasta la vista!');
 }
 
-let handler = async (m, { text, conn, usedPrefix, command }) => {
-await chat(text);
-}
+const conn = new WAConnection();
+conn.on('open', () => {
+  console.log('Conexión establecida');
+});
+
+conn.on('message', async message => {
+  if (message.type === 'chat' && message.body) {
+    chat(message, conn);
+  }
+});
+
+const handler = (m) => {
+  chat(m, conn);
+};
+conn.connect();
 handler.command = ['openai', 'chatgpt', 'ia', 'ai']
 handler.register = true
 export default handler
