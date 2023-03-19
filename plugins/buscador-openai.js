@@ -15,55 +15,61 @@ export default handler*/
 
 import axios from 'axios'
 const openaiApiKey = 'tamvan';
-let handler = async (m, { text, conn, usedPrefix, command }) => {
+
 async function enviarSolicitud(texto, conversacionId) {
-try {
-const respuesta = await axios.post(
-'https://api.openai.com/v1/chat/engines/davinci-codex/completions',
-{
-prompt: `Conversación ID: ${conversacionId}\nUsuario: ${texto}\nChatbot:`,
-max_tokens: 50,
-temperature: 0.7,
-n: 1,
-stop: '\n',
-},
-{
-headers: {
-'Content-Type': 'application/json',
-Authorization: `Bearer ${openaiApiKey}`,
-},
+  try {
+    const respuesta = await axios.post(
+      'https://api.openai.com/v1/chat/engines/davinci-codex/completions',
+      {
+        prompt: `Conversación ID: ${conversacionId}\nUsuario: ${texto}\nChatbot:`,
+        max_tokens: 50,
+        temperature: 0.7,
+        n: 1,
+        stop: '\n',
+      },
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${openaiApiKey}`,
+        },
+      }
+    )
+    return respuesta.data.choices[0].text.trim();
+  } catch (error) {
+    console.error('Error al enviar la solicitud:', error);
+    return null;
+  }
 }
-)
-return respuesta.data.choices[0].text.trim();
-} catch (error) {
-m.reply('Error al enviar la solicitud:', error);
-return null;
-}}
-async function chat() {
-let conversacionId = Date.now().toString();
-m.reply('¡Hola! Soy GataBot impulsada por la IA de ChatGPT. ¿En qué puedo ayudarte?');
-let mensaje = await leerMensaje();
-while (mensaje !== 'salir') {
-let respuesta = await enviarSolicitud(mensaje, conversacionId);
-if (respuesta) {
-m.reply(`Chatbot: ${respuesta}`)}
-mensaje = await leerMensaje();
-}
-m.reply('¡Hasta la vista!');
-}
+
 async function leerMensaje() {
-return new Promise((resolve) => {
-const readline = require('readline').createInterface({
-input: process.stdin,
-output: process.stdout,
-})
-readline.question('Tú: ', (mensaje) => {
-readline.close();
-resolve(mensaje);
-})
-})
+  return new Promise((resolve) => {
+    const readline = require('readline').createInterface({
+      input: process.stdin,
+      output: process.stdout,
+    })
+    readline.question('Tú: ', (mensaje) => {
+      readline.close();
+      resolve(mensaje);
+    })
+  })
 }
-chat(text)
+
+async function chat() {
+  let conversacionId = Date.now().toString();
+  console.log('¡Hola! Soy GataBot impulsada por la IA de ChatGPT. ¿En qué puedo ayudarte?');
+  let mensaje = await leerMensaje();
+  while (mensaje !== 'salir') {
+    let respuesta = await enviarSolicitud(mensaje, conversacionId);
+    if (respuesta) {
+      console.log(`Chatbot: ${respuesta}`)
+    }
+    mensaje = await leerMensaje();
+  }
+  console.log('¡Hasta la vista!');
+}
+
+let handler = async (m, { text, conn, usedPrefix, command }) => {
+await chat();
 }
 handler.command = ['openai', 'chatgpt', 'ia', 'ai']
 handler.register = true
