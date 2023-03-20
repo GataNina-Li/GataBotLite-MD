@@ -58,6 +58,22 @@ async function leerMensaje() {
 
 let handler = async (m, { text, conn, usedPrefix, command }) => {
   try {
+    if (m.type === 'chat') {
+      if (m.isBaileys) {
+        if (m.messages && m.messages.length > 0) {
+          const mensaje = m.messages.all()[0];
+          if (mensaje.messageStubType === MessageType.CHAT_EVENT) {
+            if (mensaje.parameters && mensaje.parameters.action === 'add') {
+              m.reply('¡Hola! Soy GataBot impulsada por la IA de ChatGPT. ¿En qué puedo ayudarte?');
+            }
+          }
+        }
+      } else {
+        m.reply('¡Hola! Soy GataBot impulsada por la IA de ChatGPT. ¿En qué puedo ayudarte?');
+      }
+      return;
+    }
+    
     if (m.type === 'chat' && text) {
       m.reply(`Usuario: ${text}`);
       let respuesta = await enviarSolicitud(text, m.id);
@@ -68,11 +84,12 @@ let handler = async (m, { text, conn, usedPrefix, command }) => {
   } catch (error) {
     console.error('Error en el manejador:', error);
   }
-}
+};
 
-handler.command = ['openai', 'chatgpt', 'ia', 'ai']
-handler.register = true
-export default handler
+handler.command = ['openai', 'chatgpt', 'ia', 'ai'];
+handler.register = true;
+export default handler;
+
 
 
 
