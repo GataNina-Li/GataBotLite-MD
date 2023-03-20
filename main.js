@@ -64,26 +64,18 @@ settings: {},
 global.db.chain = chain(global.db.data)
        
 const databaseDir = path.join(__dirname, 'database');
-const usersDir = path.join(databaseDir, 'users');
-const chatsDir = path.join(databaseDir, 'chats');
-const statsDir = path.join(databaseDir, 'stats');
-const msgsDir = path.join(databaseDir, 'msgs');
-const stickerDir = path.join(databaseDir, 'sticker');
-const settingsDir = path.join(databaseDir, 'settings');
+const subDirs = ['users', 'chats', 'stats', 'msgs', 'sticker', 'settings' ];
 
-function ensureDirectoryExists(directory) {
-  if (!fs.existsSync(directory)) {
-    fs.mkdirSync(directory);
-  }
+if (!fs.existsSync(databaseDir)) {
+  fs.mkdirSync(databaseDir);
 }
 
-ensureDirectoryExists(databaseDir);
-ensureDirectoryExists(usersDir);
-ensureDirectoryExists(chatsDir);
-ensureDirectoryExists(statsDir);
-ensureDirectoryExists(msgsDir);
-ensureDirectoryExists(stickerDir);
-ensureDirectoryExists(settingsDir);
+for (const subDir of subDirs) {
+  const dirPath = path.join(databaseDir, subDir);
+  if (!fs.existsSync(dirPath)) {
+    fs.mkdirSync(dirPath);
+  }
+}
 
 /*const adapter = new JSONFile(path.join(databaseDir, 'database.json'));
 const db = new Low(adapter);
@@ -138,10 +130,7 @@ for (const userId in userDb.users) {
   userDataDb.data = { ...userData, ...chatsData, ...statsData };
   userDataDb.write();
 }*/
-       
-
-       
-       
+            
 //const databaseDir = path.join(__dirname, 'database');
 const adapter = new JSONFile(path.join(databaseDir, 'database.json'));
 const db = new Low(adapter);
