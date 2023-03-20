@@ -274,6 +274,7 @@ for (const userId in userDb.users) {
   userDataDb.write();
 }
 }
+}
 
 process.on('uncaughtException', console.error)
 
