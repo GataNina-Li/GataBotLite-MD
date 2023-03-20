@@ -195,9 +195,10 @@ async function connectionUpdate(update) {
   }
   if (connection == 'open') {
     console.log(chalk.bold.green(lenguajeGB['smsConexion']()))
-    await loadDatabase()
+  }
+    
 
-    const databaseDir = path.join(__dirname, 'database')
+const databaseDir = path.join(__dirname, 'database')
 const usersDir = path.join(databaseDir, 'users')
 const chatsDir = path.join(databaseDir, 'chats')
 const statsDir = path.join(databaseDir, 'stats')
@@ -205,14 +206,14 @@ const msgsDir = path.join(databaseDir, 'msgs')
 const stickerDir = path.join(databaseDir, 'sticker')
 const settingsDir = path.join(databaseDir, 'settings')
 
-// Función para crear un directorio si no existe
+
 function ensureDirectoryExists(directory) {
   if (!fs.existsSync(directory)) {
     fs.mkdirSync(directory)
   }
 }
 
-// Crear la estructura de carpetas necesarias
+
 ensureDirectoryExists(databaseDir)
 ensureDirectoryExists(usersDir)
 ensureDirectoryExists(chatsDir)
@@ -221,15 +222,15 @@ ensureDirectoryExists(msgsDir)
 ensureDirectoryExists(stickerDir)
 ensureDirectoryExists(settingsDir)
 
-// Leer el archivo de la base de datos
+
 const adapter = new JSONFile(path.join(databaseDir, 'database.json'))
 const db = new Low(adapter)
 await db.read()
 
-// Separar los datos del dueño y los ajustes de los usuarios
+
 const { owner, settings, ...userDb } = db.data
 
-// Escribir los datos de cada usuario en su propio archivo
+
 for (const userId in userDb.users) {
   const user = userDb.users[userId]
   const userData = { users: { [userId]: user } }
@@ -270,7 +271,7 @@ for (const userId in userDb.users) {
   userDataDb.write()
 }
 
-// Escribir los datos del dueño y los ajustes en su propio archivo
+
 const ownerData = { owner }
 const ownerFilePath = path.join(usersDir, 'owner.json')
 const ownerAdapter = new JSONFile(ownerFilePath)
@@ -284,7 +285,7 @@ const settingsAdapter = new JSONFile(settingsFilePath)
 const settingsDb = new Low(settingsAdapter)
 settingsDb.data = settingsData
 settingsDb.write()
-  }
+}
 
 
 
