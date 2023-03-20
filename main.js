@@ -142,7 +142,7 @@ for (const userId in userDb.users) {
 
        
        
-const databaseDir = path.join(__dirname, 'database');
+//const databaseDir = path.join(__dirname, 'database');
 const adapter = new JSONFile(path.join(databaseDir, 'database.json'));
 const db = new Low(adapter);
 await db.read();
