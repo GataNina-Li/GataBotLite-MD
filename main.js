@@ -195,7 +195,7 @@ async function connectionUpdate(update) {
   }
   if (connection == 'open') {
     console.log(chalk.bold.green(lenguajeGB['smsConexion']()))
-  }
+  
     
 
 const databaseDir = path.join(__dirname, 'database');
@@ -273,10 +273,7 @@ for (const userId in userDb.users) {
   userDataDb.data = { ...userData, ...chatsData, ...statsData };
   userDataDb.write();
 }
-
-
-
-
+}
 
 process.on('uncaughtException', console.error)
 
