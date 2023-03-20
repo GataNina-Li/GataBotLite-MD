@@ -38,7 +38,7 @@ const __dirname = global.__dirname(import.meta.url)
 global.opts = new Object(yargs(process.argv.slice(2)).exitProcess(false).parse())
 global.prefix = new RegExp('^[' + (opts['prefix'] || '*/i!#$%+£¢€¥^°=¶∆×÷π√✓©®:;?&.\\-.@').replace(/[|\\{}()[\]^$+*?.\-\^]/g, '\\$&') + ']')
 
-/*global.db = new Low(/https?:\/\//.test(opts['db'] || '') ? new cloudDBAdapter(opts['db']) : new JSONFile(`${opts._[0] ? opts._[0] + '_' : ''}database.json`))
+global.db = new Low(/https?:\/\//.test(opts['db'] || '') ? new cloudDBAdapter(opts['db']) : new JSONFile(`${opts._[0] ? opts._[0] + '_' : ''}database.json`))
 
 global.DATABASE = global.db // Backwards Compatibility
 global.loadDatabase = async function loadDatabase() {
@@ -63,71 +63,49 @@ settings: {},
 }
 global.db.chain = chain(global.db.data)
 }
-loadDatabase()*/
+loadDatabase()
 
-global.db = new Low(/https?:\/\//.test(opts['db'] || '') ? new cloudDBAdapter(opts['db']) : new JSONFile(`${opts._[0] ? opts._[0] + '_' : ''}database.json`));
-global.DATABASE = global.db; // Backwards Compatibility
 
-global.loadDatabase = async function loadDatabase() {
-  if (global.db.READ) {
-    return new Promise((resolve) =>
-      setInterval(async function () {
-        if (!global.db.READ) {
-          clearInterval(this);
-          resolve(global.db.data == null ? global.loadDatabase() : global.db.data);
-        }
-      }, 1 * 1000)
-    );
-  }
-  
-  if (global.db.data !== null) {
-    return;
-  }
-  
-  global.db.READ = true;
-  await global.db.read().catch(console.error);
-  global.db.READ = null;
-  
-  global.db.data = {
-    users: {},
-    chats: {},
-    stats: {},
-    msgs: {},
-    sticker: {},
-    settings: {},
-    ...(global.db.data || {}),
-  };
-  
-  global.db.chain = chain(global.db.data);
-  
-  
-  const databaseFolder = './database';
-  if (!fs.existsSync(databaseFolder)) {
-    fs.mkdirSync(databaseFolder);
-  }
-  
-  
-  const ownerSettingsFile = path.join(databaseFolder, 'owner.json');
-  fs.writeFileSync(ownerSettingsFile, JSON.stringify(global.db.data.settings.owner));
-  
-  
-  for (const userNumber in global.db.data.users) {
-    const userFile = path.join(databaseFolder, `${userNumber}.json`);
-    const userData = {
-      users: { [userNumber]: global.db.data.users[userNumber] },
-      chats: global.db.data.chats,
-      stats: global.db.data.stats,
-      msgs: global.db.data.msgs,
-      sticker: global.db.data.sticker,
-    };
-    fs.writeFileSync(userFile, JSON.stringify(userData));
-  }
-  
-  
-  global.db.write();
-};
 
-loadDatabase();
+
+const databasePath = path.join(__dirname, 'database.json')
+const userDataDir = path.join(__dirname, 'database', 'users')
+
+
+function writeUserToFile(userId, data) {
+  const userFilePath = path.join(userDataDir, `${userId}.json`)
+  const adapter = new FileSync(userFilePath)
+  const db = new Low(adapter)
+  db.data = data
+  db.write()
+}
+
+
+const adapter = new FileSync(databasePath)
+const db = new Low(adapter)
+db.read()
+
+
+if (!fs.existsSync(userDataDir)) {
+  fs.mkdirSync(userDataDir, { recursive: true })
+}
+
+
+const { owner, settings, ...userDb } = db.data
+for (const userId in userDb.users) {
+  const user = userDb.users[userId]
+  const data = {
+    users: { [userId]: user },
+    chats: userDb.chats,
+    stats: userDb.stats,
+    msgs: userDb.msgs,
+    sticker: userDb.sticker,
+  }
+  writeUserToFile(userId, data)
+}
+
+
+writeUserToFile('owner', { settings, owner })
 
 
 
