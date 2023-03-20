@@ -251,6 +251,7 @@ async function connectionUpdate(update) {
 }
 
 function writeUserToFile(userId, data) {
+  const userDataDir = path.join(__dirname, 'data')
   const userFilePath = path.join(userDataDir, `${userId}.json`)
   const adapter = new FileSync(userFilePath)
   const db = new Low(adapter)
