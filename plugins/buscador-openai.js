@@ -56,12 +56,23 @@ async function leerMensaje() {
   });
 }
 
-async function handler(mensaje) {
-  const respuesta = await enviarMensaje(mensaje);
-  return respuesta;
+let handler = async (m, { text, conn, usedPrefix, command }) => {
+  try {
+    if (m.type === 'chat' && text) {
+      m.reply(`Usuario: ${text}`);
+      let respuesta = await enviarSolicitud(text, m.id);
+      if (respuesta) {
+        m.reply(`Chatbot: ${respuesta}`);
+      }
+    }
+  } catch (error) {
+    console.error('Error en el manejador:', error);
+  }
 }
 
-export default handler;
+handler.command = ['openai', 'chatgpt', 'ia', 'ai']
+handler.register = true
+export default handler
 
 
 
