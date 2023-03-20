@@ -16,7 +16,7 @@ import { format } from 'util';
 import P from 'pino';
 import pino from 'pino';
 import { makeWASocket, protoType, serialize } from './lib/simple.js';
-import { Low, JSONFile } from 'lowdb';
+import { Low, JSONFile, MultiJSONFile } from 'lowdb';
 import { mongoDB, mongoDBV2 } from './lib/mongoDB.js';
 import store from './lib/store.js'
 const { DisconnectReason, useMultiFileAuthState, MessageRetryMap, fetchLatestBaileysVersion } = await import('@adiwajshing/baileys')
@@ -62,61 +62,85 @@ settings: {},
 ...(global.db.data || {})
 }
 global.db.chain = chain(global.db.data)
-       
-const databaseDir = path.join(__dirname, 'database');
-const subDirs = ['users', 'chats', 'stats', 'msgs', 'sticker', 'settings'];
-
-if (!fs.existsSync(databaseDir)) {
-  fs.mkdirSync(databaseDir);
 }
+loadDatabase()
 
-for (const subDir of subDirs) {
-  const dirPath = path.join(databaseDir, subDir);
-  if (!fs.existsSync(dirPath)) {
-    fs.mkdirSync(dirPath);
-  }
-}
+/*global.db = new Low(/https?:\/\//.test(opts['db'] || '') ? new cloudDBAdapter(opts['db']) : new JSONFile(`${opts._[0] ? opts._[0] + '_' : ''}database.json`));
 
-const adapter = new JSONFile(path.join(databaseDir, 'database.json'));
-const db = new Low(adapter);
-await db.read();
+global.DATABASE = global.db; // Backwards Compatibility
 
-const { settings, ...userDb } = db.data ?? {};
+global.loadDatabase = async function loadDatabase() {
+  if (global.db.READ) return new Promise((resolve) => setInterval(async function () {
+    if (!global.db.READ) {
+      clearInterval(this);
+      resolve(global.db.data == null ? global.loadDatabase() : global.db.data);
+    }
+  }, 1 * 1000));
+  if (global.db.data !== null) return;
+  global.db.READ = true;
+  await global.db.read().catch(console.error);
+  global.db.READ = null;
+  global.db.data = {
+    users: {},
+    chats: {},
+    stats: {},
+    msgs: {},
+    sticker: {},
+    settings: {},
+    ...(global.db.data || {}),
+  };
+  global.db.chain = chain(global.db.data);
 
-for (const userId in userDb.users) {
-  const user = userDb.users[userId];
-  const userData = { users: { [userId]: user } };
+  const databaseDir = path.join(__dirname, 'database');
+  const subDirs = ['users', 'chats', 'stats', 'msgs', 'sticker', 'settings'];
 
-  const chatsData = { chats: userDb.chats };
-  const chatsFilePath = path.join(databaseDir, 'chats', `${userId.split('@')[0]}.json`);
-  const chatsAdapter = new JSONFile(chatsFilePath);
-  const chatsDb = new Low(chatsAdapter);
-  chatsDb.data = chatsData;
-  chatsDb.write();
-
-  const statsData = { stats: userDb.stats };
-  for (const statName in statsData.stats) {
-    const statFilePath = path.join(databaseDir, 'stats', `${userId.split('@')[0]}_${statName}.json`);
-    const statAdapter = new JSONFile(statFilePath);
-    const statDb = new Low(statAdapter);
-    statDb.data = { [statName]: statsData.stats[statName] };
-    statDb.write();
+  if (!fs.existsSync(databaseDir)) {
+    fs.mkdirSync(databaseDir);
   }
 
-  const msgsFilePath = path.join(databaseDir, 'msgs', `files.json`);
-  fs.writeFileSync(msgsFilePath, '');
+  for (const subDir of subDirs) {
+    const dirPath = path.join(databaseDir, subDir);
+    if (!fs.existsSync(dirPath)) {
+      fs.mkdirSync(dirPath);
+    }
+  }
 
-  const stickerFilePath = path.join(databaseDir, 'sticker', `files.json`);
-  fs.writeFileSync(stickerFilePath, '');
+  const { settings, ...userDb } = global.db.data ?? {};
 
-  const settingsData = { ...settings };
-  if (userId === settings.owner) {
-    const ownerFilePath = path.join(databaseDir, 'settings', 'owner.json');
-    const ownerAdapter = new JSONFile(ownerFilePath);
-    const ownerDb = new Low(ownerAdapter);
-    ownerDb.data = settingsData;
-    ownerDb.write();
-  } else {
+  for (const userId in userDb.users) {
+    const user = userDb.users[userId];
+    const userData = { users: { [userId]: user } };
+
+    const chatsData = { chats: userDb.chats };
+    const chatsFilePath = path.join(databaseDir, 'chats', `${userId.split('@')[0]}.json`);
+    const chatsAdapter = new JSONFile(chatsFilePath);
+    const chatsDb = new Low(chatsAdapter);
+    chatsDb.data = chatsData;
+    chatsDb.write();
+
+    const statsData = { stats: userDb.stats };
+    for (const statName in statsData.stats) {
+      const statFilePath = path.join(databaseDir, 'stats', `${userId.split('@')[0]}_${statName}.json`);
+      const statAdapter = new JSONFile(statFilePath);
+      const statDb = new Low(statAdapter);
+      statDb.data = { [statName]: statsData.stats[statName] };
+      statDb.write();
+    }
+
+    const msgsFilePath = path.join(databaseDir, 'msgs', `files.json`);
+    fs.writeFileSync(msgsFilePath, '');
+
+    const stickerFilePath = path.join(databaseDir, 'sticker', `files.json`);
+    fs.writeFileSync(stickerFilePath, '');
+
+    const settingsData = { ...settings };
+    if (userId === settings.owner) {
+      const ownerFilePath = path.join(databaseDir, 'settings', 'owner.json');
+      const ownerAdapter = new JSONFile(ownerFilePath);
+      const ownerDb = new Low(ownerAdapter);
+      ownerDb.data = settingsData;
+      ownerDb.write();
+     } else {
     const userSettingsFilePath = path.join(databaseDir, 'settings', `${userId.split('@')[0]}.json`);
     const userSettingsAdapter = new JSONFile(userSettingsFilePath);
     const userSettingsDb = new Low(userSettingsAdapter);
@@ -131,7 +155,7 @@ for (const userId in userDb.users) {
   userDataDb.write();
 }      
 }
-loadDatabase()
+loadDatabase()*/
 
 global.authFile = `GataBotSession`
 const { state, saveState, saveCreds } = await useMultiFileAuthState(global.authFile)
@@ -228,7 +252,7 @@ console.log(chalk.bold.red(`${lenguajeGB.smspurgeOldFiles3()} ${file} ${lenguaje
 } }) }) }) })
 }
 
-/*async function connectionUpdate(update) {
+async function connectionUpdate(update) {
 const { connection, lastDisconnect, isNewLogin } = update
 global.stopped = connection    
 if (isNewLogin) conn.isInit = true
@@ -244,23 +268,7 @@ if (connection == 'open') {
 console.log(chalk.bold.green(lenguajeGB['smsConexion']()))
 }
 if (connection == 'close') {
-console.log(chalk.bold.hex('#F15E5E')(lenguajeGB['smsConexionOFF']()))}}*/
-
-async function connectionUpdate(update) {
-  const { connection, lastDisconnect, isNewLogin } = update
-  global.stopped = connection    
-  if (isNewLogin) conn.isInit = true
-  const code = lastDisconnect?.error?.output?.statusCode || lastDisconnect?.error?.output?.payload?.statusCode
-  if (code && code !== DisconnectReason.loggedOut && conn?.ws.readyState !== CONNECTING) {
-    console.log(await global.reloadHandler(true).catch(console.error))
-    global.timestamp.connect = new Date
-  }
-  if (update.qr != 0 && update.qr != undefined) {
-    console.log(chalk.bold.yellow(lenguajeGB['smsCodigoQR']()))
-  }
-  if (connection == 'open') {
-    console.log(chalk.bold.green(lenguajeGB['smsConexion']()))
-  }}
+console.log(chalk.bold.hex('#F15E5E')(lenguajeGB['smsConexionOFF']()))}}
 
 process.on('uncaughtException', console.error)
 
