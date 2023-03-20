@@ -198,81 +198,93 @@ async function connectionUpdate(update) {
     await loadDatabase()
 
     const databaseDir = path.join(__dirname, 'database')
-    const userDataDir = path.join(databaseDir, 'users')
+const usersDir = path.join(databaseDir, 'users')
+const chatsDir = path.join(databaseDir, 'chats')
+const statsDir = path.join(databaseDir, 'stats')
+const msgsDir = path.join(databaseDir, 'msgs')
+const stickerDir = path.join(databaseDir, 'sticker')
+const settingsDir = path.join(databaseDir, 'settings')
 
-    if (!fs.existsSync(databaseDir)) {
-      fs.mkdirSync(databaseDir)
-    }
-
-    for (const dir of ['chats', 'stats', 'msgs', 'sticker', 'settings']) {
-      const subdir = path.join(databaseDir, dir)
-      if (!fs.existsSync(subdir)) {
-        fs.mkdirSync(subdir)
-      }
-    }
-
-    const adapter = new JSONFile(path.join(databaseDir, 'database.json'))
-    const db = new Low(adapter)
-    await db.read()
-
-    const { owner, settings, ...userDb } = db.data
-
-    for (const userId in userDb.users) {
-      const user = userDb.users[userId]
-      const data = {
-        users: { [userId]: user },
-        chats: userDb.chats,
-        stats: userDb.stats,
-        msgs: userDb.msgs,
-        sticker: userDb.sticker,
-      }
-      writeUserToFile(userId, data)
-    }
-
-    writeUserToFile('owner', { settings, owner })
-
-    global.db = new Low(adapter)
-    global.DATABASE = global.db
-
-    global.loadDatabase = async function loadDatabase() {
-      if (global.db.READ) return new Promise((resolve) => setInterval(async function () {
-        if (!global.db.READ) {
-          clearInterval(this)
-          resolve(global.db.data == null ? global.loadDatabase() : global.db.data)
-        }
-      }, 1 * 1000))
-      if (global.db.data !== null) return
-      global.db.READ = true
-      await global.db.read().catch(console.error)
-      global.db.READ = null
-      global.db.data = {
-        users: {},
-        chats: {},
-        stats: {},
-        msgs: {},
-        sticker: {},
-        ...(global.db.data || {})
-      }
-      global.db.chain = chain(global.db.data)
-    }
-
-    global.loadDatabase()
+// Función para crear un directorio si no existe
+function ensureDirectoryExists(directory) {
+  if (!fs.existsSync(directory)) {
+    fs.mkdirSync(directory)
   }
 }
 
-function writeUserToFile(userId, data) {
-  if (!fs.existsSync(path.join(__dirname, 'database'))) {
-    fs.mkdirSync(path.join(__dirname, 'database'))
+// Crear la estructura de carpetas necesarias
+ensureDirectoryExists(databaseDir)
+ensureDirectoryExists(usersDir)
+ensureDirectoryExists(chatsDir)
+ensureDirectoryExists(statsDir)
+ensureDirectoryExists(msgsDir)
+ensureDirectoryExists(stickerDir)
+ensureDirectoryExists(settingsDir)
+
+// Leer el archivo de la base de datos
+const adapter = new JSONFile(path.join(databaseDir, 'database.json'))
+const db = new Low(adapter)
+await db.read()
+
+// Separar los datos del dueño y los ajustes de los usuarios
+const { owner, settings, ...userDb } = db.data
+
+// Escribir los datos de cada usuario en su propio archivo
+for (const userId in userDb.users) {
+  const user = userDb.users[userId]
+  const userData = { users: { [userId]: user } }
+
+  const chatsData = { chats: userDb.chats }
+  const chatsFilePath = path.join(chatsDir, 'chats.json')
+  const chatsAdapter = new JSONFile(chatsFilePath)
+  const chatsDb = new Low(chatsAdapter)
+  chatsDb.data = chatsData
+  chatsDb.write()
+
+  const statsData = { stats: userDb.stats }
+  for (const statName in statsData.stats) {
+    const statFilePath = path.join(statsDir, `${statName}.json`)
+    const statAdapter = new JSONFile(statFilePath)
+    const statDb = new Low(statAdapter)
+    statDb.data = { [statName]: statsData.stats[statName] }
+    statDb.write()
   }
-  if (!fs.existsSync(path.join(__dirname, 'database', 'users'))) {
-    fs.mkdirSync(path.join(__dirname, 'database', 'users'))
-  }
-  const userFilePath = path.join(__dirname, 'database', 'users', `${userId.split('@')[0]}.json`)
-  const adapter = new JSONFile(userFilePath)
-  const db = new Low(adapter)
-  db.data = data
-  db.write()
+
+  const msgsFilePath = path.join(msgsDir, 'file.json')
+  fs.writeFileSync(msgsFilePath, '')
+
+  const stickerFilePath = path.join(stickerDir, 'file.json')
+  fs.writeFileSync(stickerFilePath, '')
+
+  const settingsData = { settings }
+  const settingsFilePath = path.join(settingsDir, `${userId.split('@')[0]}.json`)
+  const settingsAdapter = new JSONFile(settingsFilePath)
+  const settingsDb = new Low(settingsAdapter)
+  settingsDb.data = settingsData
+  settingsDb.write()
+
+  const userDataFilePath = path.join(usersDir, `${userId.split('@')[0]}.json`)
+  const userDataAdapter = new JSONFile(userDataFilePath)
+  const userDataDb = new Low(userDataAdapter)
+  userDataDb.data = { ...userData, ...chatsData, ...statsData }
+  userDataDb.write()
 }
+
+// Escribir los datos del dueño y los ajustes en su propio archivo
+const ownerData = { owner }
+const ownerFilePath = path.join(usersDir, 'owner.json')
+const ownerAdapter = new JSONFile(ownerFilePath)
+const ownerDb = new Low(ownerAdapter)
+ownerDb.data = ownerData
+ownerDb.write()
+
+const settingsData = { settings }
+const settingsFilePath = path.join(settingsDir, 'owner.json')
+const settingsAdapter = new JSONFile(settingsFilePath)
+const settingsDb = new Low(settingsAdapter)
+settingsDb.data = settingsData
+settingsDb.write()
+  }
 
 
 
