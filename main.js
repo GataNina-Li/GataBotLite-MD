@@ -65,31 +65,21 @@ global.db.chain = chain(global.db.data)
 }
 loadDatabase()
 
-
-
-
 const databasePath = path.join(__dirname, 'database.json')
 const userDataDir = path.join(__dirname, 'database', 'users')
 
-
-function writeUserToFile(userId, data) {
-  const userFilePath = path.join(userDataDir, `${userId}.json`)
-  const adapter = new FileSync(userFilePath)
-  const db = new Low(adapter)
-  db.data = data
-  db.write()
+if (!fs.existsSync(databasePath)) {
+  console.error('No se ha encontrado la base de datos en la ruta especificada')
+  process.exit(1)
 }
-
-
-const adapter = new FileSync(databasePath)
-const db = new Low(adapter)
-db.read()
-
 
 if (!fs.existsSync(userDataDir)) {
   fs.mkdirSync(userDataDir, { recursive: true })
 }
 
+const adapter = new FileSync(databasePath)
+const db = new Low(adapter)
+db.read()
 
 const { owner, settings, ...userDb } = db.data
 for (const userId in userDb.users) {
@@ -104,8 +94,16 @@ for (const userId in userDb.users) {
   writeUserToFile(userId, data)
 }
 
-
 writeUserToFile('owner', { settings, owner })
+
+function writeUserToFile(userId, data) {
+  const userFilePath = path.join(userDataDir, `${userId}.json`)
+  const adapter = new FileSync(userFilePath)
+  const db = new Low(adapter)
+  db.data = data
+  db.write()
+}
+
 
 
 
