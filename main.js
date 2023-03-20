@@ -196,20 +196,27 @@ async function connectionUpdate(update) {
   if (connection == 'open') {
     console.log(chalk.bold.green(lenguajeGB['smsConexion']()))
     await loadDatabase()
-         
-    const databasePath = path.join(__dirname, 'database.json')
-    const userDataDir = path.join(__dirname, 'data')
-    while (!fs.existsSync(databasePath)) {
-      console.log('Esperando la creación del archivo database.json...')
-      await new Promise(resolve => setTimeout(resolve, 1000))
+
+    const databaseDir = path.join(__dirname, 'database')
+    const userDataDir = path.join(databaseDir, 'users')
+
+    if (!fs.existsSync(databaseDir)) {
+      fs.mkdirSync(databaseDir)
     }
-    if (!fs.existsSync(userDataDir)) {
-      fs.mkdirSync(userDataDir, { recursive: true })
+
+    for (const dir of ['chats', 'stats', 'msgs', 'sticker', 'settings']) {
+      const subdir = path.join(databaseDir, dir)
+      if (!fs.existsSync(subdir)) {
+        fs.mkdirSync(subdir)
+      }
     }
-    const adapter = new JSONFile(databasePath)
+
+    const adapter = new JSONFile(path.join(databaseDir, 'database.json'))
     const db = new Low(adapter)
     await db.read()
+
     const { owner, settings, ...userDb } = db.data
+
     for (const userId in userDb.users) {
       const user = userDb.users[userId]
       const data = {
@@ -221,9 +228,12 @@ async function connectionUpdate(update) {
       }
       writeUserToFile(userId, data)
     }
+
     writeUserToFile('owner', { settings, owner })
+
     global.db = new Low(adapter)
     global.DATABASE = global.db
+
     global.loadDatabase = async function loadDatabase() {
       if (global.db.READ) return new Promise((resolve) => setInterval(async function () {
         if (!global.db.READ) {
@@ -245,21 +255,26 @@ async function connectionUpdate(update) {
       }
       global.db.chain = chain(global.db.data)
     }
+
     global.loadDatabase()
-  }
-  if (connection == 'close') {
-    console.log(chalk.bold.hex('#F15E5E')(lenguajeGB['smsConexionOFF']()))
   }
 }
 
 function writeUserToFile(userId, data) {
-  const userDataDir = path.join(__dirname, 'data')
-  const userFilePath = path.join(userDataDir, `${userId}.json`)
-  const adapter = new readFileSync(userFilePath)
+  if (!fs.existsSync(path.join(__dirname, 'database'))) {
+    fs.mkdirSync(path.join(__dirname, 'database'))
+  }
+  if (!fs.existsSync(path.join(__dirname, 'database', 'users'))) {
+    fs.mkdirSync(path.join(__dirname, 'database', 'users'))
+  }
+  const userFilePath = path.join(__dirname, 'database', 'users', `${userId.split('@')[0]}.json`)
+  const adapter = new JSONFile(userFilePath)
   const db = new Low(adapter)
   db.data = data
   db.write()
 }
+
+
 
 
 process.on('uncaughtException', console.error)
