@@ -64,7 +64,7 @@ settings: {},
 global.db.chain = chain(global.db.data)
        
 const databaseDir = path.join(__dirname, 'database');
-const subDirs = ['users', 'chats', 'stats', 'msgs', 'sticker', 'settings' ];
+const subDirs = ['users', 'chats', 'stats', 'msgs', 'sticker', 'settings'];
 
 if (!fs.existsSync(databaseDir)) {
   fs.mkdirSync(databaseDir);
@@ -77,61 +77,6 @@ for (const subDir of subDirs) {
   }
 }
 
-/*const adapter = new JSONFile(path.join(databaseDir, 'database.json'));
-const db = new Low(adapter);
-await db.read();
-
-const { settings, ...userDb } = db.data ?? {};
-
-for (const userId in userDb.users) {
-  const user = userDb.users[userId];
-  const userData = { users: { [userId]: user } };
-
-  const chatsData = { chats: userDb.chats };
-  const chatsFilePath = path.join(chatsDir, 'chats.json');
-  const chatsAdapter = new JSONFile(chatsFilePath);
-  const chatsDb = new Low(chatsAdapter);
-  chatsDb.data = chatsData;
-  chatsDb.write();
-
-  const statsData = { stats: userDb.stats };
-  for (const statName in statsData.stats) {
-    const statFilePath = path.join(statsDir, `${statName}.json`);
-    const statAdapter = new JSONFile(statFilePath);
-    const statDb = new Low(statAdapter);
-    statDb.data = { [statName]: statsData.stats[statName] };
-    statDb.write();
-  }
-
-  const msgsFilePath = path.join(msgsDir, 'file.json');
-  fs.writeFileSync(msgsFilePath, '');
-
-  const stickerFilePath = path.join(stickerDir, 'file.json');
-  fs.writeFileSync(stickerFilePath, '');
-
-  const settingsData = { ...settings };
-  if (userId === settings.owner) {
-    const ownerFilePath = path.join(settingsDir, 'owner.json');
-    const ownerAdapter = new JSONFile(ownerFilePath);
-    const ownerDb = new Low(ownerAdapter);
-    ownerDb.data = settingsData;
-    ownerDb.write();
-  } else {
-    const userSettingsFilePath = path.join(settingsDir, `${userId.split('@')[0]}.json`);
-    const userSettingsAdapter = new JSONFile(userSettingsFilePath);
-    const userSettingsDb = new Low(userSettingsAdapter);
-    userSettingsDb.data = settingsData;
-    userSettingsDb.write();
-  }
-
-  const userDataFilePath = path.join(usersDir, `${userId.split('@')[0]}.json`);
-  const userDataAdapter = new JSONFile(userDataFilePath);
-  const userDataDb = new Low(userDataAdapter);
-  userDataDb.data = { ...userData, ...chatsData, ...statsData };
-  userDataDb.write();
-}*/
-            
-//const databaseDir = path.join(__dirname, 'database');
 const adapter = new JSONFile(path.join(databaseDir, 'database.json'));
 const db = new Low(adapter);
 await db.read();
@@ -158,10 +103,10 @@ for (const userId in userDb.users) {
     statDb.write();
   }
 
-  const msgsFilePath = path.join(databaseDir, 'msgs', `${userId.split('@')[0]}.json`);
+  const msgsFilePath = path.join(databaseDir, 'msgs', `files.json`);
   fs.writeFileSync(msgsFilePath, '');
 
-  const stickerFilePath = path.join(databaseDir, 'sticker', `${userId.split('@')[0]}.json`);
+  const stickerFilePath = path.join(databaseDir, 'sticker', `files.json`);
   fs.writeFileSync(stickerFilePath, '');
 
   const settingsData = { ...settings };
@@ -182,13 +127,11 @@ for (const userId in userDb.users) {
   const userDataFilePath = path.join(databaseDir, 'users', `${userId.split('@')[0]}.json`);
   const userDataAdapter = new JSONFile(userDataFilePath);
   const userDataDb = new Low(userDataAdapter);
-  userDataDb.data = { ...userData, ...chatsData, ...statsData };
+  userDataDb.data = userData;
   userDataDb.write();
-}
-       
+}      
 }
 loadDatabase()
-
 
 global.authFile = `GataBotSession`
 const { state, saveState, saveCreds } = await useMultiFileAuthState(global.authFile)
