@@ -65,47 +65,6 @@ global.loadDatabase = async function loadDatabase() {
 }
 loadDatabase()
 
-const databasePath = path.join(__dirname, 'database.json')
-const userDataDir = path.join(__dirname, 'database', 'users')
-
-
-while (!fs.existsSync(databasePath)) {
-  console.log('Esperando la creación del archivo database.json...')
-  await new Promise(resolve => setTimeout(resolve, 1000))
-}
-
-if (!fs.existsSync(userDataDir)) {
-  fs.mkdirSync(userDataDir, { recursive: true })
-}
-
-const adapter = new FileSync(databasePath)
-const db = new Low(adapter)
-db.read()
-
-const { owner, settings, ...userDb } = db.data
-for (const userId in userDb.users) {
-  const user = userDb.users[userId]
-  const data = {
-    users: { [userId]: user },
-    chats: userDb.chats,
-    stats: userDb.stats,
-    msgs: userDb.msgs,
-    sticker: userDb.sticker,
-  }
-  writeUserToFile(userId, data)
-}
-
-writeUserToFile('owner', { settings, owner })
-
-function writeUserToFile(userId, data) {
-  const userFilePath = path.join(userDataDir, `${userId}.json`)
-  const adapter = new FileSync(userFilePath)
-  const db = new Low(adapter)
-  db.data = data
-  db.write()
-}
-
-
 
 
 
@@ -204,7 +163,7 @@ console.log(chalk.bold.red(`${lenguajeGB.smspurgeOldFiles3()} ${file} ${lenguaje
 } }) }) }) })
 }
 
-async function connectionUpdate(update) {
+/*async function connectionUpdate(update) {
 const { connection, lastDisconnect, isNewLogin } = update
 global.stopped = connection    
 if (isNewLogin) conn.isInit = true
@@ -220,7 +179,86 @@ if (connection == 'open') {
 console.log(chalk.bold.green(lenguajeGB['smsConexion']()))
 }
 if (connection == 'close') {
-console.log(chalk.bold.hex('#F15E5E')(lenguajeGB['smsConexionOFF']()))}}
+console.log(chalk.bold.hex('#F15E5E')(lenguajeGB['smsConexionOFF']()))}}*/
+
+async function connectionUpdate(update) {
+  const { connection, lastDisconnect, isNewLogin } = update
+  global.stopped = connection    
+  if (isNewLogin) conn.isInit = true
+  const code = lastDisconnect?.error?.output?.statusCode || lastDisconnect?.error?.output?.payload?.statusCode
+  if (code && code !== DisconnectReason.loggedOut && conn?.ws.readyState !== CONNECTING) {
+    console.log(await global.reloadHandler(true).catch(console.error))
+    global.timestamp.connect = new Date
+  }
+  if (update.qr != 0 && update.qr != undefined) {
+    console.log(chalk.bold.yellow(lenguajeGB['smsCodigoQR']()))
+  }
+  if (connection == 'open') {
+    console.log(chalk.bold.green(lenguajeGB['smsConexion']()))
+    await loadDatabase()
+    const databasePath = path.join(__dirname, 'database.json')
+    const userDataDir = path.join(__dirname, 'database', 'users')
+    while (!fs.existsSync(databasePath)) {
+      console.log('Esperando la creación del archivo database.json...')
+      await new Promise(resolve => setTimeout(resolve, 1000))
+    }
+    if (!fs.existsSync(userDataDir)) {
+      fs.mkdirSync(userDataDir, { recursive: true })
+    }
+    const adapter = new FileSync(databasePath)
+    const db = new Low(adapter)
+    db.read()
+    const { owner, settings, ...userDb } = db.data
+    for (const userId in userDb.users) {
+      const user = userDb.users[userId]
+      const data = {
+        users: { [userId]: user },
+        chats: userDb.chats,
+        stats: userDb.stats,
+        msgs: userDb.msgs,
+        sticker: userDb.sticker,
+      }
+      writeUserToFile(userId, data)
+    }
+    writeUserToFile('owner', { settings, owner })
+    global.db = new Low(adapter)
+    global.DATABASE = global.db
+    global.loadDatabase = async function loadDatabase() {
+      if (global.db.READ) return new Promise((resolve) => setInterval(async function () {
+        if (!global.db.READ) {
+          clearInterval(this)
+          resolve(global.db.data == null ? global.loadDatabase() : global.db.data)
+        }
+      }, 1 * 1000))
+      if (global.db.data !== null) return
+      global.db.READ = true
+      await global.db.read().catch(console.error)
+      global.db.READ = null
+      global.db.data = {
+        users: {},
+        chats: {},
+        stats: {},
+        msgs: {},
+        sticker: {},
+        ...(global.db.data || {})
+      }
+      global.db.chain = chain(global.db.data)
+    }
+    global.loadDatabase()
+  }
+  if (connection == 'close') {
+    console.log(chalk.bold.hex('#F15E5E')(lenguajeGB['smsConexionOFF']()))
+  }
+}
+
+function writeUserToFile(userId, data) {
+  const userFilePath = path.join(userDataDir, `${userId}.json`)
+  const adapter = new FileSync(userFilePath)
+  const db = new Low(adapter)
+  db.data = data
+  db.write()
+}
+
 
 process.on('uncaughtException', console.error)
 
