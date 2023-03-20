@@ -17,7 +17,7 @@ import P from 'pino';
 import pino from 'pino';
 import { makeWASocket, protoType, serialize } from './lib/simple.js';
 import { Low, JSONFile } from 'lowdb';
-import { FileSync } from 'fs';
+import { readFileSync } from 'fs';
 import { mongoDB, mongoDBV2 } from './lib/mongoDB.js';
 import store from './lib/store.js'
 const { DisconnectReason, useMultiFileAuthState, MessageRetryMap, fetchLatestBaileysVersion } = await import('@adiwajshing/baileys')
@@ -206,7 +206,7 @@ async function connectionUpdate(update) {
     if (!fs.existsSync(userDataDir)) {
       fs.mkdirSync(userDataDir, { recursive: true })
     }
-    const adapter = new FileSync(databasePath)
+    const adapter = new readFileSync(databasePath)
     const db = new Low(adapter)
     db.read()
     const { owner, settings, ...userDb } = db.data
