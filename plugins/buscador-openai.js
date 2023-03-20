@@ -13,18 +13,17 @@ handler.command = ['openai', 'chatgpt', 'ia', 'ai']
 handler.register = true
 export default handler*/
 
-import MessageType from '@adiwajshing/baileys';
 import axios from 'axios';
 import { createInterface } from 'readline';
 
 const openaiApiKey = 'tamvan';
 
-async function enviarSolicitud(texto, conversacionId) {
+async function enviarMensaje(mensaje) {
   try {
     const respuesta = await axios.post(
       'https://api.openai.com/v1/chat/engines/davinci-codex/completions',
       {
-        prompt: `Conversación ID: ${conversacionId}\nUsuario: ${texto}\nChatbot:`,
+        prompt: `Conversación ID: ${mensaje.id}\nUsuario: ${mensaje.text}\nChatbot:`,
         max_tokens: 50,
         temperature: 0.7,
         n: 1,
@@ -57,19 +56,13 @@ async function leerMensaje() {
   });
 }
 
-let handler = async (m, { text, conn, usedPrefix, command }) => {
-  if (m.type === 'chat' && text) {
-    m.reply(`Usuario: ${text}`);
-    let respuesta = await enviarSolicitud(text, m.id);
-    if (respuesta) {
-      m.reply(`Chatbot: ${respuesta}`);
-    }
-  }
-};
+async function handler(mensaje) {
+  const respuesta = await enviarMensaje(mensaje);
+  return respuesta;
+}
 
-handler.command = ['openai', 'chatgpt', 'ia', 'ai']
-handler.register = true
-export default handler
+export default handler;
+
 
 
 
