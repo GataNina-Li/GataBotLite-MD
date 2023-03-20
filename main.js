@@ -38,7 +38,7 @@ const __dirname = global.__dirname(import.meta.url)
 global.opts = new Object(yargs(process.argv.slice(2)).exitProcess(false).parse())
 global.prefix = new RegExp('^[' + (opts['prefix'] || '*/i!#$%+£¢€¥^°=¶∆×÷π√✓©®:;?&.\\-.@').replace(/[|\\{}()[\]^$+*?.\-\^]/g, '\\$&') + ']')
 
-global.db = new Low(/https?:\/\//.test(opts['db'] || '') ? new cloudDBAdapter(opts['db']) : new JSONFile(`${opts._[0] ? opts._[0] + '_' : ''}database.json`))
+/*global.db = new Low(/https?:\/\//.test(opts['db'] || '') ? new cloudDBAdapter(opts['db']) : new JSONFile(`${opts._[0] ? opts._[0] + '_' : ''}database.json`))
 
 global.DATABASE = global.db // Backwards Compatibility
 global.loadDatabase = async function loadDatabase() {
@@ -63,7 +63,73 @@ settings: {},
 }
 global.db.chain = chain(global.db.data)
 }
-loadDatabase()
+loadDatabase()*/
+
+const DB_PATH = 'database';
+
+global.db = {
+    data: {
+        users: {},
+        chats: {},
+        stats: {},
+        msgs: {},
+        sticker: {}
+    },
+    chain: null
+};
+
+global.loadDatabase = async function loadDatabase() {
+    const ownerData = global.db.data.settings || {};
+    global.db.data.settings = null;
+
+    
+    const ownerFilePath = path.join(DB_PATH, 'owner.json');
+    try {
+        const ownerDataJson = await fs.promises.readFile(ownerFilePath);
+        const ownerDataFromFile = JSON.parse(ownerDataJson);
+        global.db.data.settings = ownerDataFromFile.settings;
+    } catch (e) {
+        console.log(`Error loading owner file: ${e}`);
+    }
+
+    
+    for (let userId in global.db.data.users) {
+        const userData = global.db.data.users[userId] || {};
+        const userFilePath = path.join(DB_PATH, `${userId}.json`);
+
+        
+        const userFolder = path.dirname(userFilePath);
+        await fs.promises.mkdir(userFolder, { recursive: true }).catch(console.error);
+
+        
+        try {
+            const userDataToFile = {
+                users: userData,
+                chats: global.db.data.chats[userId] || {},
+                stats: global.db.data.stats[userId] || {},
+                msgs: global.db.data.msgs[userId] || {},
+                sticker: global.db.data.sticker[userId] || {}
+            };
+            const userDataJson = JSON.stringify(userDataToFile, null, 2);
+            await fs.promises.writeFile(userFilePath, userDataJson);
+        } catch (e) {
+            console.log(`Error writing user file for user ${userId}: ${e}`);
+        }
+    }
+
+    
+    const ownerFilePathNew = path.join(DB_PATH, 'owner.json');
+    try {
+        const ownerDataToFile = { settings: ownerData };
+        const ownerDataJson = JSON.stringify(ownerDataToFile, null, 2);
+        await fs.promises.writeFile(ownerFilePathNew, ownerDataJson);
+    } catch (e) {
+        console.log(`Error writing owner file: ${e}`);
+    }
+};
+
+loadDatabase();
+
 
 global.authFile = `GataBotSession`
 const { state, saveState, saveCreds } = await useMultiFileAuthState(global.authFile)
