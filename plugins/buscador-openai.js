@@ -58,18 +58,19 @@ async function leerMensaje() {
 }
 
 let handler = async (m, { text, conn, usedPrefix, command }) => {
-  if (m.type === 'chat' && m.body) {
-    m.reply(`Usuario: ${m.body}`);
-    let respuesta = await enviarSolicitud(m.body, m.id);
+  if (m.type === 'chat' && text) {
+    m.reply(`Usuario: ${text}`);
+    let respuesta = await enviarSolicitud(text, m.id);
     if (respuesta) {
-      conn.sendMessage(m.chat, `Chatbot: ${respuesta}`, MessageType.text);
+      m.reply(`Chatbot: ${respuesta}`);
     }
   }
 };
 
-handler.command = ['openai', 'chatgpt', 'ia', 'ai'];
-handler.register = true;
-export default handler;
+handler.command = ['openai', 'chatgpt', 'ia', 'ai']
+handler.register = true
+export default handler
+
 
 
 
