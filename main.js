@@ -196,7 +196,9 @@ async function connectionUpdate(update) {
   if (connection == 'open') {
     console.log(chalk.bold.green(lenguajeGB['smsConexion']()))
     await loadDatabase()
+         
     const databasePath = path.join(__dirname, 'database.json')
+    const userDataDir = path.join(__dirname, 'data')
     while (!fs.existsSync(databasePath)) {
       console.log('Esperando la creación del archivo database.json...')
       await new Promise(resolve => setTimeout(resolve, 1000))
