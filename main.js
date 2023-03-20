@@ -42,35 +42,36 @@ global.db = new Low(/https?:\/\//.test(opts['db'] || '') ? new cloudDBAdapter(op
 
 global.DATABASE = global.db // Backwards Compatibility
 global.loadDatabase = async function loadDatabase() {
-if (global.db.READ) return new Promise((resolve) => setInterval(async function () {
-if (!global.db.READ) {
-clearInterval(this)
-resolve(global.db.data == null ? global.loadDatabase() : global.db.data)
-}
-}, 1 * 1000))
-if (global.db.data !== null) return
-global.db.READ = true
-await global.db.read().catch(console.error)
-global.db.READ = null
-global.db.data = {
-users: {},
-chats: {},
-stats: {},
-msgs: {},
-sticker: {},
-settings: {},
-...(global.db.data || {})
-}
-global.db.chain = chain(global.db.data)
+  if (global.db.READ) return new Promise((resolve) => setInterval(async function () {
+    if (!global.db.READ) {
+      clearInterval(this)
+      resolve(global.db.data == null ? global.loadDatabase() : global.db.data)
+    }
+  }, 1 * 1000))
+  if (global.db.data !== null) return
+  global.db.READ = true
+  await global.db.read().catch(console.error)
+  global.db.READ = null
+  global.db.data = {
+    users: {},
+    chats: {},
+    stats: {},
+    msgs: {},
+    sticker: {},
+    settings: {},
+    ...(global.db.data || {})
+  }
+  global.db.chain = chain(global.db.data)
 }
 loadDatabase()
 
 const databasePath = path.join(__dirname, 'database.json')
 const userDataDir = path.join(__dirname, 'database', 'users')
 
-if (!fs.existsSync(databasePath)) {
-  console.error('No se ha encontrado la base de datos en la ruta especificada')
-  process.exit(1)
+
+while (!fs.existsSync(databasePath)) {
+  console.log('Esperando la creación del archivo database.json...')
+  await new Promise(resolve => setTimeout(resolve, 1000))
 }
 
 if (!fs.existsSync(userDataDir)) {
@@ -103,6 +104,7 @@ function writeUserToFile(userId, data) {
   db.data = data
   db.write()
 }
+
 
 
 
