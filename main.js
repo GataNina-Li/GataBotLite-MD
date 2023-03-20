@@ -24,6 +24,8 @@ const { CONNECTING } = ws
 const { chain } = lodash
 const PORT = process.env.PORT || process.env.SERVER_PORT || 3000
 
+const userDataDir = path.join(__dirname, 'database', 'users')
+
 protoType()
 serialize()
 
@@ -42,26 +44,26 @@ global.db = new Low(/https?:\/\//.test(opts['db'] || '') ? new cloudDBAdapter(op
 
 global.DATABASE = global.db // Backwards Compatibility
 global.loadDatabase = async function loadDatabase() {
-  if (global.db.READ) return new Promise((resolve) => setInterval(async function () {
-    if (!global.db.READ) {
-      clearInterval(this)
-      resolve(global.db.data == null ? global.loadDatabase() : global.db.data)
-    }
-  }, 1 * 1000))
-  if (global.db.data !== null) return
-  global.db.READ = true
-  await global.db.read().catch(console.error)
-  global.db.READ = null
-  global.db.data = {
-    users: {},
-    chats: {},
-    stats: {},
-    msgs: {},
-    sticker: {},
-    settings: {},
-    ...(global.db.data || {})
-  }
-  global.db.chain = chain(global.db.data)
+if (global.db.READ) return new Promise((resolve) => setInterval(async function () {
+if (!global.db.READ) {
+clearInterval(this)
+resolve(global.db.data == null ? global.loadDatabase() : global.db.data)
+}
+}, 1 * 1000))
+if (global.db.data !== null) return
+global.db.READ = true
+await global.db.read().catch(console.error)
+global.db.READ = null
+global.db.data = {
+users: {},
+chats: {},
+stats: {},
+msgs: {},
+sticker: {},
+settings: {},
+...(global.db.data || {})
+}
+global.db.chain = chain(global.db.data)
 }
 loadDatabase()
 
@@ -197,7 +199,6 @@ async function connectionUpdate(update) {
     console.log(chalk.bold.green(lenguajeGB['smsConexion']()))
     await loadDatabase()
     const databasePath = path.join(__dirname, 'database.json')
-    const userDataDir = path.join(__dirname, 'database', 'users')
     while (!fs.existsSync(databasePath)) {
       console.log('Esperando la creación del archivo database.json...')
       await new Promise(resolve => setTimeout(resolve, 1000))
@@ -205,9 +206,9 @@ async function connectionUpdate(update) {
     if (!fs.existsSync(userDataDir)) {
       fs.mkdirSync(userDataDir, { recursive: true })
     }
-    const adapter = new readFileSync(databasePath)
+    const adapter = new JSONFile(databasePath)
     const db = new Low(adapter)
-    db.read()
+    await db.read()
     const { owner, settings, ...userDb } = db.data
     for (const userId in userDb.users) {
       const user = userDb.users[userId]
