@@ -157,6 +157,7 @@ const userDataDb = new Low(userDataAdapter);
 userDataDb.data = userData;
 userDataDb.write();
 }
+}
 loadDatabase()
 
 if (global.db) setInterval(async () => {
