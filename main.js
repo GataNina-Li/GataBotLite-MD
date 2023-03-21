@@ -38,7 +38,7 @@ const __dirname = global.__dirname(import.meta.url)
 global.opts = new Object(yargs(process.argv.slice(2)).exitProcess(false).parse())
 global.prefix = new RegExp('^[' + (opts['prefix'] || '*/i!#$%+£¢€¥^°=¶∆×÷π√✓©®:;?&.\\-.@').replace(/[|\\{}()[\]^$+*?.\-\^]/g, '\\$&') + ']')
 
-global.db = new Low(/https?:\/\//.test(opts['db'] || '') ? new cloudDBAdapter(opts['db']) : new JSONFile(`${opts._[0] ? opts._[0] + '_' : ''}database.json`))
+/*global.db = new Low(/https?:\/\//.test(opts['db'] || '') ? new cloudDBAdapter(opts['db']) : new JSONFile(`${opts._[0] ? opts._[0] + '_' : ''}database.json`))
 
 global.DATABASE = global.db // Backwards Compatibility
 global.loadDatabase = async function loadDatabase() {
@@ -65,7 +65,11 @@ global.db.chain = chain(global.db.data)
 }
 loadDatabase()
 
-/*global.db = new Low(/https?:\/\//.test(opts['db'] || '') ? new cloudDBAdapter(opts['db']) : new JSONFile(`${opts._[0] ? opts._[0] + '_' : ''}database.json`));
+if (global.db) setInterval(async () => {
+  if (global.db.data) await global.db.write()
+}, 30 * 1000)*/
+
+global.db = new Low(/https?:\/\//.test(opts['db'] || '') ? new cloudDBAdapter(opts['db']) : new JSONFile(`${opts._[0] ? opts._[0] + '_' : ''}database.json`));
 
 global.DATABASE = global.db; // Backwards Compatibility
 
@@ -120,17 +124,17 @@ global.loadDatabase = async function loadDatabase() {
 
     const statsData = { stats: userDb.stats };
     for (const statName in statsData.stats) {
-      const statFilePath = path.join(databaseDir, 'stats', `${userId.split('@')[0]}_${statName}.json`);
+      const statFilePath = path.join(databaseDir, 'stats', `${userId.split('@')[0]}/${statName}.json`);
       const statAdapter = new JSONFile(statFilePath);
       const statDb = new Low(statAdapter);
       statDb.data = { [statName]: statsData.stats[statName] };
       statDb.write();
     }
 
-    const msgsFilePath = path.join(databaseDir, 'msgs', `files.json`);
+    const msgsFilePath = path.join(databaseDir, 'msgs', `${userId.split('@')[0]}/files.json`);
     fs.writeFileSync(msgsFilePath, '');
 
-    const stickerFilePath = path.join(databaseDir, 'sticker', `files.json`);
+    const stickerFilePath = path.join(databaseDir, 'sticker', `${userId.split('@')[0]}/files.json`);
     fs.writeFileSync(stickerFilePath, '');
 
     const settingsData = { ...settings };
@@ -142,20 +146,24 @@ global.loadDatabase = async function loadDatabase() {
       ownerDb.write();
      } else {
     const userSettingsFilePath = path.join(databaseDir, 'settings', `${userId.split('@')[0]}.json`);
-    const userSettingsAdapter = new JSONFile(userSettingsFilePath);
-    const userSettingsDb = new Low(userSettingsAdapter);
-    userSettingsDb.data = settingsData;
-    userSettingsDb.write();
-  }
+const userSettingsAdapter = new JSONFile(userSettingsFilePath);
+const userSettingsDb = new Low(userSettingsAdapter);
+userSettingsDb.data = settingsData;
+userSettingsDb.write();
 
-  const userDataFilePath = path.join(databaseDir, 'users', `${userId.split('@')[0]}.json`);
-  const userDataAdapter = new JSONFile(userDataFilePath);
-  const userDataDb = new Low(userDataAdapter);
-  userDataDb.data = userData;
-  userDataDb.write();
-}      
+const userDataFilePath = path.join(databaseDir, 'users', `${userId.split('@')[0]}.json`);
+const userDataAdapter = new JSONFile(userDataFilePath);
+const userDataDb = new Low(userDataAdapter);
+userDataDb.data = userData;
+userDataDb.write();
 }
-loadDatabase()*/
+loadDatabase()
+
+if (global.db) setInterval(async () => {
+  if (global.db.data) await global.db.write()
+}, 30 * 1000)
+ 
+
 
 global.authFile = `GataBotSession`
 const { state, saveState, saveCreds } = await useMultiFileAuthState(global.authFile)
