@@ -38,7 +38,7 @@ const __dirname = global.__dirname(import.meta.url)
 global.opts = new Object(yargs(process.argv.slice(2)).exitProcess(false).parse())
 global.prefix = new RegExp('^[' + (opts['prefix'] || '*/i!#$%+£¢€¥^°=¶∆×÷π√✓©®:;?&.\\-.@').replace(/[|\\{}()[\]^$+*?.\-\^]/g, '\\$&') + ']')
 
-/*global.db = new Low(/https?:\/\//.test(opts['db'] || '') ? new cloudDBAdapter(opts['db']) : new JSONFile(`${opts._[0] ? opts._[0] + '_' : ''}database.json`))
+global.db = new Low(/https?:\/\//.test(opts['db'] || '') ? new cloudDBAdapter(opts['db']) : new JSONFile(`${opts._[0] ? opts._[0] + '_' : ''}database.json`))
 
 global.DATABASE = global.db // Backwards Compatibility
 global.loadDatabase = async function loadDatabase() {
@@ -67,9 +67,9 @@ loadDatabase()
 
 if (global.db) setInterval(async () => {
   if (global.db.data) await global.db.write()
-}, 30 * 1000)*/
+}, 30 * 1000)
 
-global.db = new Low(/https?:\/\//.test(opts['db'] || '') ? new cloudDBAdapter(opts['db']) : new JSONFile(`${opts._[0] ? opts._[0] + '_' : ''}database.json`));
+/*global.db = new Low(/https?:\/\//.test(opts['db'] || '') ? new cloudDBAdapter(opts['db']) : new JSONFile(`${opts._[0] ? opts._[0] + '_' : ''}database.json`));
 
 global.DATABASE = global.db; // Backwards Compatibility
 
@@ -163,10 +163,8 @@ loadDatabase()
 
 if (global.db) setInterval(async () => {
   if (global.db.data) await global.db.write()
-}, 30 * 1000)
+}, 30 * 1000)*/
  
-
-
 global.authFile = `GataBotSession`
 const { state, saveState, saveCreds } = await useMultiFileAuthState(global.authFile)
 const msgRetryCounterMap = MessageRetryMap => { }
