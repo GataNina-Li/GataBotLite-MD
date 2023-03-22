@@ -7,7 +7,7 @@ if (!/webp|gif/.test(mime)) throw `RESPONDE AL AUDIO PARA CONVERTIR EN VIDEL\n\n
 try{
 let media = await m.quoted.download()
 let out = Buffer.alloc(0)
-if (/webp/.test(mime)) {
+if (/webp|gif/.test(mime)) {
 out = await webp2mp4(media)
 } else if (/audio/.test(mime)) {
 out = await ffmpeg(media, [
