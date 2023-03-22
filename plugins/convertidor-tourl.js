@@ -6,29 +6,38 @@ let handler = async (m) => {
 let who = m.mentionedJid && m.mentionedJid[0] ? m.mentionedJid[0] : m.fromMe ? conn.user.jid : m.sender
 let pp = await conn.profilePictureUrl(who).catch(_ => hwaifu.getRandom())
 let name = await conn.getName(who)
-  let q = m.quoted ? m.quoted : m
-  let mime = (q.msg || q).mimetype || ''
-  if (!mime) throw '*⚠️ Pon la imagen que vas a convertir en enlace*'
-  let media = await q.download()
-  let isTele = /image\/(png|jpe?g|gif)|video\/mp4/.test(mime)
-  let link = await (isTele ? uploadImage : uploadFile)(media)
-  let caption = `📮 *L I N K :*
-${link}
-📊 *Tamaños :* ${media.length} Byte
-📛 *Expiracion :* ${isTele ? 'No se expira' : 'Unknown'}
+let q = m.quoted ? m.quoted : m
+let mime = (q.msg || q).mimetype || ''
+if (!mime) throw '*⚠️ Pon la imagen que vas a convertir en enlace*'
+let media = await q.download()
+let isTele = /image\/(png|jpe?g|gif)|video\/mp4/.test(mime)
+let link = await (isTele ? uploadImage : uploadFile)(media)
+  
+//Resultado en MG o KB
+const bytes = media.length;
+let result
+const kilobytes = bytes / 1024;
+if (kilobytes < 1) {
+result = kilobytes.toFixed(2) + ' KB';
+} else {
+const megabytes = bytes / (1024 * 1024);
+if (Math.floor(megabytes) >= 1) {
+result = megabytes.toFixed(2) + ' MB';
+} else {
+result = kilobytes.toFixed(2) + ' KB';
+}}
+  
+let caption = `
+*ENLACE*
+${link}\n
+*TAMAÑO* 
+${result}\n
+*CADUCIDAD* 
+${isTele ? 'Infinita' : 'Desconocida'}\n
+*ENLACE CORTO* 
+${await shortUrl(link)}`.trim()
 
-*🎐 CORTO:* ${await shortUrl(link)}`
-
-conn.reply(m.chat, caption, m, { contextInfo: {
-          externalAdReply :{
-    mediaUrl: gt,
-    mediaType: 2,
-    title: link,
-    body: botdate,
-    thumbnail: await(await fetch(link)).buffer(),
-    sourceUrl: md
-     }}
-  })
+m.reply(caption)
 }
 handler.help = ['tourl']
 handler.tags = ['tools']
