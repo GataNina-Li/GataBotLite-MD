@@ -1,4 +1,4 @@
-import { webp2mp4 } from '../lib/webp2mp4.js'
+/*import { webp2mp4 } from '../lib/webp2mp4.js'
 import { ffmpeg } from '../lib/converter.js'
 let handler = async (m, { conn, usedPrefix, command }) => {
 if (!m.quoted) throw `RESPONDE A UN STICKER CON MOVIMIENTO PARA CONVERTIR EN VIDEO\n\n*${usedPrefix + command}*` 
@@ -24,4 +24,4 @@ console.log(`❗❗ ${lenguajeGB['smsMensError2']()} ${usedPrefix + command} ❗
 console.log(e)}}
 
 handler.command = /^to(video|mp4)?|mp4|togif$/i
-export default handler
+export default handler*/
