@@ -1,4 +1,4 @@
-import { webp2png } from '../lib/webp2mp4.js'
+/*import { webp2png } from '../lib/webp2mp4.js'
 let handler = async (m, { conn, usedPrefix, command }) => {
 const notStickerMessage = lenguajeGB.smsToimg()
 if (!m.quoted) throw notStickerMessage
@@ -15,4 +15,4 @@ console.log(`❗❗ ${lenguajeGB['smsMensError2']()} ${usedPrefix + command} ❗
 console.log(e)}}
 handler.command = ['toimg', 'img', 'jpg', 'jpeg']
 handler.register = true
-export default handler
+export default handler*/
