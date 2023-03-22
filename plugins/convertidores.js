@@ -1,4 +1,4 @@
-import { webp2mp4 } from '../lib/webp2mp4.js' 
+/*import { webp2mp4 } from '../lib/webp2mp4.js' 
 import { ffmpeg } from '../lib/converter.js'
 import uploadFile from '../lib/uploadFile.js'
 import uploadImage from '../lib/uploadImage.js'
@@ -91,4 +91,4 @@ console.log(e)}
 }
 
 handler.command = /^(to(img|image)?|jpe?g|t?ourl|upload|to(video|mp4)?|mp4|togif|to(gif|taud)?|gif|taud)$/i
-export default handler
+export default handler*/
