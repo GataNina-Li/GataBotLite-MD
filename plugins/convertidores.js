@@ -7,7 +7,7 @@ import fetch from 'node-fetch'
 let handler = async (m, { conn, command, usedPrefix }) => {
 let q, mime, media, out, caption
 try{
-switch (command) { 
+switch (true) { 
 case /^(to(img|image)?|jpe?g)$/i.test(command):
 const notStickerMessage = lenguajeGB.smsToimg()
 if (!m.quoted) throw notStickerMessage
