@@ -16,7 +16,8 @@ let readMore = more.repeat(850)
 let taguser = conn.getName(m.sender)
 //let taguser = '@' + m.sender.split("@s.whatsapp.net")[0]
 
-conn.reply(m.chat, `Hola ${taguser}\nsi no puede ver los botones del menu es por las nueva actualización del WhatsApp\nYA SE ESTA BUSCADO UNA SOLUCIÓN\nrecomiendo por hora instalar un WhatsApp mods\n\n   
+conn.reply(m.chat, pp, `*☆═━┈◈ ╰ ${vs} ㎇ ╯ ◈┈━═☆*
+*│* Hola ${taguser}\nsi no puede ver los botones del menu es por las nueva actualización del WhatsApp\nYA SE ESTA BUSCADO UNA SOLUCIÓN\nrecomiendo por hora instalar un WhatsApp mods\n\n   
 *╰ ㊂ ▸▸ _INFORMACIÓN DEL MENÚ_ ◂◂*
 *│* ┊
 *│* ┊▸ ✦ _${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'creadora' : 'owner'}_
