@@ -1,5 +1,6 @@
 import { webp2mp4 } from '../lib/webp2mp4.js' 
 import { ffmpeg } from '../lib/converter.js'
+import { webp2png } from '../lib/webp2mp4.js'
 import uploadFile from '../lib/uploadFile.js'
 import uploadImage from '../lib/uploadImage.js'
 import fetch from 'node-fetch'
