@@ -14,9 +14,9 @@ const isCommand4 = /^(to(gif|taud)?|gif|taud)$/i.test(command)
 
 switch (true) {     
 case isCommand1:
-try{
 const notStickerMessage = lenguajeGB.smsToimg()
 if (!m.quoted) throw notStickerMessage
+try{  
 q = m.quoted || m
 mime = q.mediaType || ''
 if (!/sticker/.test(mime)) throw notStickerMessage
