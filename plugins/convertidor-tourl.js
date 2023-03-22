@@ -2,10 +2,11 @@ import uploadFile from '../lib/uploadFile.js'
 import uploadImage from '../lib/uploadImage.js'
 import fetch from 'node-fetch'
 
-let handler = async (m) => {
+let handler = async (m, { conn, usedPrefix, command }) => {
 let q = m.quoted ? m.quoted : m
 let mime = (q.msg || q).mimetype || ''
-if (!mime) throw '*⚠️ Pon la imagen que vas a convertir en enlace*'
+if (!mime) throw lenguajeGB.smsConURL()
+try{
 let media = await q.download()
 const urlRegex = /(https?:\/\/.*\.(?:png|jpe?g|webp))/i
 let isTele = /image\/(png|jpe?g|gif)|video\/mp4/.test(mime)
@@ -26,19 +27,20 @@ result = kilobytes.toFixed(2) + ' KB';
 }}
   
 let caption = `
-🔗 *ENLACE*
+${lenguajeGB.smsConURL1()}
 » ${link}\n
-⚖️ *TAMAÑO* 
+${lenguajeGB.smsConURL2()}
 » ${result}\n
-♻️ *CADUCIDAD* 
-» ${isTele ? 'Infinita' : 'Desconocida'}\n
-🪄 *ENLACE ACORTADO* 
+${lenguajeGB.smsConUR3L()}
+» ${isTele ? lenguajeGB.smsConURLERR1() : lenguajeGB.smsConURLERR2()}\n
+${lenguajeGB.smsConURL4()}
 » ${await shortUrl(link)}`.trim()
 m.reply(caption)
-}
-handler.help = ['tourl']
-handler.tags = ['tools']
-handler.command = /^(tourl|upload)$/i
+} catch (e) {
+await m.reply(lenguajeGB['smsMalError3']() + '\n*' + lenguajeGB.smsMensError1() + '*\n*' + usedPrefix + `${lenguajeGB.lenguaje() == 'es' ? 'reporte' : 'report'}` + '* ' + `${lenguajeGB.smsMensError2()} ` + usedPrefix + command)
+console.log(`❗❗ ${lenguajeGB['smsMensError2']()} ${usedPrefix + command} ❗❗`)
+console.log(e)}}
+handler.command = /^(url|tourl|upload)$/i
 export default handler
 
 async function shortUrl(url) {
