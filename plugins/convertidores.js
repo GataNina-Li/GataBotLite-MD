@@ -1,4 +1,4 @@
-/*import { webp2mp4 } from '../lib/webp2mp4.js' 
+import { webp2mp4 } from '../lib/webp2mp4.js' 
 import { ffmpeg } from '../lib/converter.js'
 import uploadFile from '../lib/uploadFile.js'
 import uploadImage from '../lib/uploadImage.js'
@@ -8,7 +8,7 @@ let handler = async (m, { conn, command, usedPrefix }) => {
 let q, mime, media, out, caption
 try{
 switch (command) { 
-  case "coma1":///^(to(img|image)?|jpe?g)$/i:
+case /^(to(img|image)?|jpe?g)$/i:
 const notStickerMessage = lenguajeGB.smsToimg()
 if (!m.quoted) throw notStickerMessage
 q = m.quoted || m
@@ -19,7 +19,7 @@ out = await webp2png(media).catch(_ => null) || Buffer.alloc(0)
 await conn.sendFile(m.chat, out, 'error.png', null, m) 
 break  
   
-case "coma2":///^(t?ourl|upload)$/i:    
+case /^(t?ourl|upload)$/i:    
 q = m.quoted ? m.quoted : m
 mime = (q.msg || q).mimetype || ''
 if (!mime) throw lenguajeGB.smsConURL()
@@ -55,7 +55,7 @@ let res = await fetch(`https://tinyurl.com/api-create.php?url=${url}`)
 return await res.text()}
 break 
 
-case "coma3":///^(to(video|mp4)?|mp4|togif)$/i:       
+case /^(to(video|mp4)?|mp4|togif)$/i:       
 if (!m.quoted) throw `RESPONDE A UN STICKER CON MOVIMIENTO PARA CONVERTIR EN VIDEO\n\n*${usedPrefix + command}*` 
 mime = m.quoted.mimetype || ''
 if (!/webp|gif/.test(mime)) throw `RESPONDE AL AUDIO PARA CONVERTIR EN VIDEL\n\n*${usedPrefix + command}*`
@@ -74,7 +74,7 @@ out = await ffmpeg(media, [
 await conn.sendFile(m.chat, out, 'error.mp4', '*✓ AQUÍ TIENES TÚ VÍDEO!!*', m, 0, { thumbnail: out })  
 break 
 
-case "coma4":///^(to(gif|taud)?|gif|taud)$/i:       
+case /^(to(gif|taud)?|gif|taud)$/i:       
 if (!m.quoted) throw `RESPONDE A UN VIDEO QUE DESEE CONVERTIR EN GIF CON AUDIO`
 q = m.quoted || m
 mime = (q.msg || q).mimetype || ''
@@ -91,4 +91,4 @@ console.log(e)}
 }
 
 handler.command = /^(to(img|image)?|jpe?g|t?ourl|upload|to(video|mp4)?|mp4|togif|to(gif|taud)?|gif|taud)$/i
-export default handler*/
+export default handler
