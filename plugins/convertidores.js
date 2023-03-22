@@ -8,7 +8,7 @@ let handler = async (m, { conn, command, usedPrefix }) => {
 let q, mime, media, out, caption
 try{
 switch (command) { 
-case /^to(img|image)?|jpe?g$/i:
+case /^(to(img|image)?|jpe?g)$/i:
 const notStickerMessage = lenguajeGB.smsToimg()
 if (!m.quoted) throw notStickerMessage
 q = m.quoted || m
@@ -19,7 +19,7 @@ out = await webp2png(media).catch(_ => null) || Buffer.alloc(0)
 await conn.sendFile(m.chat, out, 'error.png', null, m) 
 break  
   
-case /^t?ourl|upload$/i:    
+case /^(t?ourl|upload)$/i:    
 q = m.quoted ? m.quoted : m
 mime = (q.msg || q).mimetype || ''
 if (!mime) throw lenguajeGB.smsConURL()
@@ -55,7 +55,7 @@ let res = await fetch(`https://tinyurl.com/api-create.php?url=${url}`)
 return await res.text()}
 break 
 
-case /^to(video|mp4)?|mp4|togif$/i:       
+case /^(to(video|mp4)?|mp4|togif)$/i:       
 if (!m.quoted) throw `RESPONDE A UN STICKER CON MOVIMIENTO PARA CONVERTIR EN VIDEO\n\n*${usedPrefix + command}*` 
 mime = m.quoted.mimetype || ''
 if (!/webp|gif/.test(mime)) throw `RESPONDE AL AUDIO PARA CONVERTIR EN VIDEL\n\n*${usedPrefix + command}*`
