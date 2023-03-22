@@ -4,7 +4,8 @@ import fetch from 'node-fetch'
 
 let handler = async (m) => {
 let who = m.mentionedJid && m.mentionedJid[0] ? m.mentionedJid[0] : m.fromMe ? conn.user.jid : m.sender
-let name = await conn.getName(who)
+//let name = await conn.getName(who)
+let name = await '@' + who.split`@`[0]
 let q = m.quoted ? m.quoted : m
 let mime = (q.msg || q).mimetype || ''
 if (!mime) throw '*⚠️ Pon la imagen que vas a convertir en enlace*'
@@ -35,7 +36,7 @@ ${link}\n
 ${result}\n
 *CADUCIDAD* 
 ${isTele ? 'Infinita' : 'Desconocida'}\n
-*ENLACE CORTO* 
+*ENLACE ACORTADO* 
 ${await shortUrl(link)}`.trim()
 
 //m.reply(caption)
