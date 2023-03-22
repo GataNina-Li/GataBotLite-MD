@@ -3,11 +3,6 @@ import uploadImage from '../lib/uploadImage.js'
 import fetch from 'node-fetch'
 
 let handler = async (m) => {
- let who
-if (m.isGroup) who = m.mentionedJid[0] ? m.mentionedJid[0] : m.quoted ? m.quoted.sender : false
-else who = m.chat
-//let name = await conn.getName(who)
-let name = await '@' + who.split`@`[0]
 let q = m.quoted ? m.quoted : m
 let mime = (q.msg || q).mimetype || ''
 if (!mime) throw '*⚠️ Pon la imagen que vas a convertir en enlace*'
@@ -31,18 +26,15 @@ result = kilobytes.toFixed(2) + ' KB';
 }}
   
 let caption = `
-${name}
-*ENLACE*
-${link}\n
-*TAMAÑO* 
-${result}\n
-*CADUCIDAD* 
-${isTele ? 'Infinita' : 'Desconocida'}\n
-*ENLACE ACORTADO* 
-${await shortUrl(link)}`.trim()
-
-//m.reply(caption)
- m.reply(caption, null, { mentions: conn.parseMention(caption) })
+🔗 *ENLACE*
+» ${link}\n
+⚖️ *TAMAÑO* 
+» ${result}\n
+♻️ *CADUCIDAD* 
+» ${isTele ? 'Infinita' : 'Desconocida'}\n
+🪄 *ENLACE ACORTADO* 
+» ${await shortUrl(link)}`.trim()
+m.reply(caption)
 }
 handler.help = ['tourl']
 handler.tags = ['tools']
