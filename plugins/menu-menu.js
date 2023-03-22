@@ -16,7 +16,7 @@ let readMore = more.repeat(850)
 let taguser = conn.getName(m.sender)
 //let taguser = '@' + m.sender.split("@s.whatsapp.net")[0]
 
-conn.reply(m.chat, `Hola ${taguser}\nWHATSAPP Y SUS NUEVA ACTUALIZACIÓNES NO DEJA VISUALIZAR LOS BOTONES DEL BOT,\nYA SE ESTA BUSCADO UNA SOLUCIÓN`, m)
+conn.reply(m.chat, `${wait}\n\nHola ${taguser}\nWHATSAPP Y SUS NUEVA ACTUALIZACIÓNES NO DEJA VISUALIZAR LOS BOTONES DEL BOT,\nYA SE ESTA BUSCADO UNA SOLUCIÓN\n`, m)
 
 let menu = `
 ˚₊·˚₊· ͟͟͞͞➳❥ ${packname} terms
