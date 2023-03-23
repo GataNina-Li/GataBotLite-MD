@@ -172,7 +172,7 @@ console.log(e)}
 break
         
 case isCommand7:
-if (!args[0]) throw conn.reply(m.chat, lenguajeGB.smsMalused2() + `*${usedPrefix + command} https://www.facebook.com/watch?v=636541475139*`
+if (!args[0]) throw lenguajeGB.smsMalused2() + `*${usedPrefix + command} https://www.facebook.com/watch?v=636541475139*`
 if (!args[0].match(/www.facebook.com|fb.watch/g)) throw lenguajeGB.smsMalused2() + `*${usedPrefix + command} https://www.facebook.com/watch?v=636541475139*`    
 try {  
 let contenido = `✅ *FACEBOOK*`
