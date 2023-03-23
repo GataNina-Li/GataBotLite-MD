@@ -6,10 +6,10 @@ import fetch from 'node-fetch'
 
 let handler = async (m, { conn, command, usedPrefix }) => {
 let q, mime, media, out, caption
-const isCommand1 = /^(to(img|image)?|jpe?g|png)$/i.test(command)
+const isCommand1 = /^(to(img|image)?|img|jpe?g|png)$/i.test(command)
 const isCommand2 = /^(tourl|url|upload)$/i.test(command)
-const isCommand3 = /^(to(video|mp4)?|mp4|togif)$/i.test(command)
-const isCommand4 = /^(to(gif|taud)?|gif|taud)$/i.test(command)
+const isCommand3 = /^(to(video|mp4)?|mp4)$/i.test(command)
+const isCommand4 = /^(to(gif|gifau)?|gif|gifau)$/i.test(command)
 
 switch (true) {     
 case isCommand1:
@@ -70,9 +70,9 @@ return await res.text()}
 break 
 
 case isCommand3:       
-if (!m.quoted) throw lenguajeGB.smsConURL() 
+if (!m.quoted) throw lenguajeGB.smsConVIDEO() 
 mime = m.quoted.mimetype || ''
-if (!/webp|gif/.test(mime)) throw lenguajeGB.smsConURL2() 
+if (!/webp|gif/.test(mime)) throw lenguajeGB.smsConVIDEO2() 
 try{ 
 media = await m.quoted.download()
 out = Buffer.alloc(0)
@@ -86,7 +86,7 @@ out = await ffmpeg(media, [
 '-c:a', 'copy',
 '-shortest'
 ], 'mp3', 'mp4')}
-await conn.sendFile(m.chat, out, 'error.mp4', lenguajeGB.smsConURL3(), m, 0, { thumbnail: out }) 
+await conn.sendFile(m.chat, out, 'error.mp4', lenguajeGB.smsConVIDEO3(), m, 0, { thumbnail: out }) 
 } catch (e) {
 await m.reply(lenguajeGB['smsMalError3']() + '\n*' + lenguajeGB.smsMensError1() + '*\n*' + usedPrefix + `${lenguajeGB.lenguaje() == 'es' ? 'reporte' : 'report'}` + '* ' + `${lenguajeGB.smsMensError2()} ` + usedPrefix + command)
 console.log(`❗❗ ${lenguajeGB['smsMensError2']()} ${usedPrefix + command} ❗❗`)
@@ -109,5 +109,5 @@ console.log(e)}
 break 
 }}
 
-handler.command = /^toimg|img|jpe?g|tourl|upload|tovideo|mp4|togif|to(gif|taud)|gif|taud|png$/i
+handler.command = /^to(img|image)?|img|jpe?g|png|tourl|url|upload|tovideo|mp4|to(gif|gifau)|gif|togif|gifau$/i
 export default handler
