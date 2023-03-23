@@ -40,9 +40,9 @@ ${timestamp}
 ${views}
 
 *◎ URL*
-${url}`.trim()
-await conn.sendFile(m.chat, thumbnail, 'error.jpg', video, m)
-    
+${url}
+*◜⋯ ⋯ ⋯ ⬇️ A U D I O ⬇️ ⋯ ⋯ ⋯◞*`.trim()
+await conn.sendFile(m.chat, thumbnail, 'error.jpg', video, m)    
 let ytLink = await fetch(`https://api.lolhuman.xyz/api/ytplay2?apikey=${lolkeysapi}&query=${text}`)
 let jsonn = await ytLink.json()
 let aud = await jsonn.result.audio
