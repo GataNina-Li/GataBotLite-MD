@@ -10,7 +10,7 @@ const isCommand1 = /^(to(img|image)?|img|jpe?g|png)$/i.test(command)
 const isCommand2 = /^(tourl|url|upload)$/i.test(command)
 const isCommand3 = /^(to(video|mp4)?|mp4)$/i.test(command)
 const isCommand4 = /^(to(gif|gifau)?|gif|gifau)$/i.test(command)
-const isCommand5 = /^to(vn|ptt|audio)?$/i.test(command)
+const isCommand5 = /^to(vn|ptt|audio|mp3)?|mp3$/i.test(command)
 
 switch (true) {     
 case isCommand1:
@@ -130,5 +130,5 @@ console.log(e)}
 break
 }}
 
-handler.command = /^to(img|image)?|img|jpe?g|png|tourl|url|upload|tovideo|mp4|to(gif|gifau)|gif|togif|gifau|to(vn|ptt|audio)?$/i
+handler.command = /^to(img|image)?|img|jpe?g|png|tourl|url|upload|tovideo|mp4|to(gif|gifau)|gif|togif|gifau|to(vn|ptt|audio|mp3)?|mp3$/i
 export default handler
