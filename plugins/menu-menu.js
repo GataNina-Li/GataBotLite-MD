@@ -17,7 +17,7 @@ let taguser = conn.getName(m.sender)
 //let taguser = '@' + m.sender.split("@s.whatsapp.net")[0]
 
 let menu = `
-˚₊·˚₊· ͟͟͞͞➳❥ ${packname} terms
+˚₊·˚₊· ͟͟͞͞➳❥ ${packname}
 *☆═━┈◈ ╰ ${vs} ㎇ ╯ ◈┈━═☆*
 *│*    
 *╰ ㊂ ▸▸ _INFORMACIÓN DEL MENÚ_ ◂◂*
@@ -63,9 +63,9 @@ let menu = `
 *│* ╰∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙ ∙ ∙ ∙ ∙ 
  `.trim()
     
-//const vi = ['https://telegra.ph/file/405daebd4bc0d69e5d165.mp4',
-//'https://telegra.ph/file/1d0ad9f79f65f39895b08.mp4',
-//'https://telegra.ph/file/c25afc1685b13210ce602.mp4']
+const vi = ['https://telegra.ph/file/405daebd4bc0d69e5d165.mp4',
+'https://telegra.ph/file/1d0ad9f79f65f39895b08.mp4',
+'https://telegra.ph/file/c25afc1685b13210ce602.mp4']
 
 
 //var vid = vi[Math.floor(Math.random() * (vi.length))]
@@ -78,7 +78,8 @@ let menu = `
 //]
 
 //conn.sendMessage(m.chat, { video: { url: vid }, gifPlayback: true, gifAttribution: ~~(Math.random() * 2), caption: menu.trim(), footer: '✪⇝' + taguser + '\n' + wm, templateButtons }, { quoted: m})
-m.reply(menu)    
+m.reply(menu) 
+await conn.sendFile(m.chat, vi.getRandom(), 'error.mp4', menu, m)
 } catch (e) {
 await m.reply(lenguajeGB['smsMalError3']() + '\n*' + lenguajeGB.smsMensError1() + '*\n*' + usedPrefix + `${lenguajeGB.lenguaje() == 'es' ? 'reporte' : 'report'}` + '* ' + `${lenguajeGB.smsMensError2()} ` + usedPrefix + command)
 console.log(`❗❗ ${lenguajeGB['smsMensError2']()} ${usedPrefix + command} ❗❗`)
