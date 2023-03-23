@@ -8,9 +8,10 @@ _muptime = await new Promise(resolve => { process.once('message', resolve)
 setTimeout(resolve, 1000) }) * 1000}
 let uptime = clockString(_uptime)
 let totalreg = Object.keys(global.db.data.users).length
+let fkontak = { "key": { "participants":"0@s.whatsapp.net", "remoteJid": "status@broadcast", "fromMe": false, "id": "Halo" }, "message": { "contactMessage": { "vcard": `BEGIN:VCARD\nVERSION:3.0\nN:Sy;Bot;;;\nFN:y\nitem1.TEL;waid=${m.sender.split('@')[0]}:${m.sender.split('@')[0]}\nitem1.X-ABLabel:Ponsel\nEND:VCARD` }}, "participant": "0@s.whatsapp.net" }
 let rtotalreg = Object.values(global.db.data.users).filter(user => user.registered == true).length
 
-conn.reply(m.chat, `*╭𝄗𝄗✦ --${lenguajeGB.smsEstado1()}-- ✦𝄗𝄗⬣*
+await conn.reply(m.chat, `*╭𝄗𝄗✦ --${lenguajeGB.smsEstado1()}-- ✦𝄗𝄗⬣*
  ⎸ *⍟ ${lenguajeGB.smsEstado2()}*
  ⎸ ❉ ➺ ${vs}
  ⎸ ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
@@ -20,7 +21,7 @@ conn.reply(m.chat, `*╭𝄗𝄗✦ --${lenguajeGB.smsEstado1()}-- ✦𝄗𝄗�
  ⎸ ❉ *${lenguajeGB.smsEstado6()}* ➺ *_${Object.entries(global.db.data.users).filter(user => user[1].banned).length}_* 
  ⎸ ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
  ⎸ ❉ *${lenguajeGB.smsEstado7()}* ➺ *_${uptime}_*
-*╰𝄗𝄗𝄗𝄗𝄗𝄗𝄗⬣`, m) 
+*╰𝄗𝄗𝄗𝄗𝄗𝄗𝄗⬣*`, fkontak,  m)
 /*await conn.sendButton(m.chat, wm, `
 *╭𝄗𝄗✦ --${lenguajeGB.smsEstado1()}-- ✦𝄗𝄗⬣*
  ⎸ *⍟ ${lenguajeGB.smsEstado2()}*
