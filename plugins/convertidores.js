@@ -7,8 +7,8 @@ import fetch from 'node-fetch'
 
 let handler = async (m, { conn, command, usedPrefix }) => {
 let q, mime, media, out, caption
-const isCommand1 = /^(to(img|image)?|jpe?g)$/i.test(command)
-const isCommand2 = /^(t?ourl|upload)$/i.test(command)
+const isCommand1 = /^(to(img|image)?|jpe?g|png)$/i.test(command)
+const isCommand2 = /^(tourl|url|upload)$/i.test(command)
 const isCommand3 = /^(to(video|mp4)?|mp4|togif)$/i.test(command)
 const isCommand4 = /^(to(gif|taud)?|gif|taud)$/i.test(command)
 
@@ -24,15 +24,16 @@ media = await q.download()
 out = await webp2png(media).catch(_ => null) || Buffer.alloc(0)
 await conn.sendFile(m.chat, out, 'error.png', null, m)
 } catch (e) {
-await conn.sendButton(m.chat, `\n${wm}`, lenguajeGB['smsMalError3']() + '#report ' + usedPrefix + command, null, [[lenguajeGB.smsMensError1(), `#reporte ${lenguajeGB['smsMensError2']()} *${usedPrefix + command}*`]], m)
+await m.reply(lenguajeGB['smsMalError3']() + '\n*' + lenguajeGB.smsMensError1() + '*\n*' + usedPrefix + `${lenguajeGB.lenguaje() == 'es' ? 'reporte' : 'report'}` + '* ' + `${lenguajeGB.smsMensError2()} ` + usedPrefix + command)
 console.log(`❗❗ ${lenguajeGB['smsMensError2']()} ${usedPrefix + command} ❗❗`)
-console.log(e)}  
+console.log(e)} 
 break  
   
 case isCommand2:    
 q = m.quoted ? m.quoted : m
 mime = (q.msg || q).mimetype || ''
 if (!mime) throw lenguajeGB.smsConURL()
+try{ 
 media = await q.download()
 const urlRegex = /(https?:\/\/.*\.(?:png|jpe?g|webp))/i
 let isTele = /image\/(png|jpe?g|gif)|video\/mp4/.test(mime)
@@ -60,15 +61,20 @@ ${lenguajeGB.smsConUR3L()}
 ${lenguajeGB.smsConURL4()}
 » ${await shortUrl(link)}`.trim()
 m.reply(caption) 
+} catch (e) {
+await m.reply(lenguajeGB['smsMalError3']() + '\n*' + lenguajeGB.smsMensError1() + '*\n*' + usedPrefix + `${lenguajeGB.lenguaje() == 'es' ? 'reporte' : 'report'}` + '* ' + `${lenguajeGB.smsMensError2()} ` + usedPrefix + command)
+console.log(`❗❗ ${lenguajeGB['smsMensError2']()} ${usedPrefix + command} ❗❗`)
+console.log(e)}
 async function shortUrl(url) {
 let res = await fetch(`https://tinyurl.com/api-create.php?url=${url}`)
-return await res.text()}
+return await res.text()}    
 break 
 
 case isCommand3:       
-if (!m.quoted) throw `RESPONDE A UN STICKER CON MOVIMIENTO PARA CONVERTIR EN VIDEO\n\n*${usedPrefix + command}*` 
+if (!m.quoted) throw lenguajeGB.smsConURL() 
 mime = m.quoted.mimetype || ''
-if (!/webp|gif/.test(mime)) throw `RESPONDE AL AUDIO PARA CONVERTIR EN VIDEL\n\n*${usedPrefix + command}*`
+if (!/webp|gif/.test(mime)) throw lenguajeGB.smsConURL2() 
+try{ 
 media = await m.quoted.download()
 out = Buffer.alloc(0)
 if (/webp|gif/.test(mime)) {
@@ -81,19 +87,28 @@ out = await ffmpeg(media, [
 '-c:a', 'copy',
 '-shortest'
 ], 'mp3', 'mp4')}
-await conn.sendFile(m.chat, out, 'error.mp4', '*✓ AQUÍ TIENES TÚ VÍDEO!!*', m, 0, { thumbnail: out })  
+await conn.sendFile(m.chat, out, 'error.mp4', lenguajeGB.smsConURL3(), m, 0, { thumbnail: out }) 
+} catch (e) {
+await m.reply(lenguajeGB['smsMalError3']() + '\n*' + lenguajeGB.smsMensError1() + '*\n*' + usedPrefix + `${lenguajeGB.lenguaje() == 'es' ? 'reporte' : 'report'}` + '* ' + `${lenguajeGB.smsMensError2()} ` + usedPrefix + command)
+console.log(`❗❗ ${lenguajeGB['smsMensError2']()} ${usedPrefix + command} ❗❗`)
+console.log(e)}
 break 
 
 case isCommand4:       
-if (!m.quoted) throw `RESPONDE A UN VIDEO QUE DESEE CONVERTIR EN GIF CON AUDIO`
+if (!m.quoted) throw lenguajeGB.smsConGIF()
 q = m.quoted || m
 mime = (q.msg || q).mimetype || ''
-if (!/(mp4)/.test(mime)) throw `EL TIPO DE ARCHIVOS ${mime} NO ES CORRECTO, RESPONDA A UN VIDEO QUE DESEE CONVENTIR EN GIF CON AUDIO`
+if (!/(mp4)/.test(mime)) throw lenguajeGB.smsConGIF2() + mime
+try{ 
 m.reply(global.wait)
 media = await q.download()
 conn.sendMessage(m.chat, { video: media, gifPlayback: true, caption: '*ᴀϙᴜɪ ᴇsᴛᴀ sᴜ ɢɪғ ᴄᴏɴ ᴀᴜᴅɪᴏ, ᴀʟ ᴀʙʀɪʀʟᴏ sᴇ ʀᴇᴘʀᴏᴅᴜᴄᴇ ᴄᴏɴ ᴀᴜᴅɪᴏ*' }, { quoted: m })
+} catch (e) {
+await m.reply(lenguajeGB['smsMalError3']() + '\n*' + lenguajeGB.smsMensError1() + '*\n*' + usedPrefix + `${lenguajeGB.lenguaje() == 'es' ? 'reporte' : 'report'}` + '* ' + `${lenguajeGB.smsMensError2()} ` + usedPrefix + command)
+console.log(`❗❗ ${lenguajeGB['smsMensError2']()} ${usedPrefix + command} ❗❗`)
+console.log(e)}
 break 
 }}
 
-handler.command = /^(to(img|image)?|jpe?g|t?ourl|upload|to(video|mp4)?|mp4|togif|to(gif|taud)?|gif|taud)$/i
+handler.command = /^toimg|img|jpe?g|tourl|upload|tovideo|mp4|togif|to(gif|taud)|gif|taud|png$/i
 export default handler
