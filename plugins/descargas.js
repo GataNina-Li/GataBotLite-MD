@@ -1,4 +1,5 @@
 import { youtubedl, youtubedlv2, youtubedlv3 } from '@bochilteam/scraper'
+import { facebookdl, facebookdlv2 } from '@bochilteam/scraper'
 import { googleImage } from '@bochilteam/scraper'
 import fetch from "node-fetch"
 import yts from 'yt-search'
@@ -176,11 +177,14 @@ if (!args[0]) throw lenguajeGB.smsMalused2() + `*${usedPrefix + command} https:/
 if (!args[0].match(/www.facebook.com|fb.watch/g)) throw lenguajeGB.smsMalused2() + `*${usedPrefix + command} https://www.facebook.com/watch?v=636541475139*`    
 try {  
 let contenido = `✅ *FACEBOOK*`
-let vio = await fetch(`https://api.violetics.pw/api/downloader/facebook?apikey=beta&url=${args[0]}`)  
-let vioo = await vio.json()
-let videovio = `${vioo.result.hd.url || vioo.result.sd.url}`
-await m.reply(wait)
-await conn.sendFile(m.chat, videovio, `error.mp4`, contenido, m)
+//let vio = await fetch(`https://api.violetics.pw/api/downloader/facebook?apikey=beta&url=${args[0]}`)  
+//let vioo = await vio.json()
+//let videovio = `${vioo.result.hd.url || vioo.result.sd.url}`
+//await m.reply(wait)
+//await conn.sendFile(m.chat, videovio, `error.mp4`, contenido, m)
+//if (!args[0]) throw `Use example ${usedPrefix}${command} https://fb.watch/azFEBmFRcy/`
+const { result } = await facebookdl(args[0]).catch(async _ => await facebookdlv2(args[0]))
+for (const { url, isVideo } of result.reverse()) conn.sendFile(m.chat, url, `facebook.${!isVideo ? 'bin' : 'mp4'}`, `🔗 *Url:* ${url}`, m)
 } catch (e) {
 await m.reply(lenguajeGB['smsMalError3']() + '\n*' + lenguajeGB.smsMensError1() + '*\n*' + usedPrefix + `${lenguajeGB.lenguaje() == 'es' ? 'reporte' : 'report'}` + '* ' + `${lenguajeGB.smsMensError2()} ` + usedPrefix + command)
 console.log(`❗❗ ${lenguajeGB['smsMensError2']()} ${usedPrefix + command} ❗❗`)
@@ -197,7 +201,6 @@ let caption = `
 ⌛ ${date}
 ⚖️ ${peso}
 📡 ${mime}
-🔗 ${link}
 
 ${lenguajeGB.smsMediaFr()}`.trim()
 await m.reply(caption)
