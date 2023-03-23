@@ -59,6 +59,7 @@ let menu = `
 *│* ┊▸ ✦ _${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'url *(imagen)*' : 'tourl *(image)*'}_
 *│* ┊▸ ✦ _${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'mp4 *(sticker)*' : 'tovideo *(sticker)*'}_
 *│* ┊▸ ✦ _${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'gif *(video)*' : 'togif *(video)*'}_
+*│* ┊▸ ✦ _${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'mp3 *(video o audio)*' : 'tovn *(video or audio)*'}_
 *│* ╰∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙ ∙ ∙ ∙ ∙ 
  `.trim()
     
