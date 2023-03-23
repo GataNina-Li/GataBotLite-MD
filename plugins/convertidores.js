@@ -145,7 +145,7 @@ if (!text && m.quoted?.text) text = m.quoted.text
 let res
 try { res = await tts(text, lang) }
 catch (e) {
-m.reply(e + '')
+//m.reply(e + '')
 text = args.join(' ')
 if (!text) throw lenguajeGB.smsTradc1() + usedPrefix + command + lenguajeGB.smsTradc2() + usedPrefix + command + ' ' + lenguajeGB.smsTradc3() + lenguajeGB.smsTradc4()
 res = await tts(text, defaultLang)
