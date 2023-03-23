@@ -3,14 +3,18 @@ import { ffmpeg, toPTT } from '../lib/converter.js'
 import uploadFile from '../lib/uploadFile.js'
 import uploadImage from '../lib/uploadImage.js'
 import fetch from 'node-fetch'
+import gtts from 'node-gtts'
+import { readFileSync, unlinkSync } from 'fs'
+import { join } from 'path'
 
-let handler = async (m, { conn, command, usedPrefix }) => {
+let handler = async (m, { conn, command, usedPrefix, args }) => {
 let q, mime, media, out, caption
 const isCommand1 = /^(to(img|image)?|img|jpe?g|png)$/i.test(command)
 const isCommand2 = /^(tourl|url|upload)$/i.test(command)
 const isCommand3 = /^(to(video|mp4)?|mp4)$/i.test(command)
 const isCommand4 = /^(to(gif|gifau)?|gif|gifau)$/i.test(command)
 const isCommand5 = /^to(vn|ptt|audio|mp3)?|mp3$/i.test(command)
+const isCommand6 = /^to(voice|tts)?|tts$/i.test(command)
 
 switch (true) {     
 case isCommand1:
@@ -128,7 +132,45 @@ await m.reply(lenguajeGB['smsMalError3']() + '\n*' + lenguajeGB.smsMensError1() 
 console.log(`❗❗ ${lenguajeGB['smsMensError2']()} ${usedPrefix + command} ❗❗`)
 console.log(e)}
 break
+        
+case isCommand6: 
+let defaultLang = lenguajeGB.lenguaje()
+let lang = args[0]
+let text = args.slice(1).join(' ')
+if ((args[0] || '').length !== 2) { 
+lang = defaultLang 
+text = args.join(' ')
+}
+if (!text && m.quoted?.text) text = m.quoted.text
+let res
+try { res = await tts(text, lang) }
+catch (e) {
+m.reply(e + '')
+text = args.join(' ')
+if (!text) throw lenguajeGB.smsTradc1() + usedPrefix + command + lenguajeGB.smsTradc2() + usedPrefix + command + ' ' + lenguajeGB.smsTradc3() + lenguajeGB.smsTradc4()
+res = await tts(text, defaultLang)
+} finally {
+try{
+if (res) conn.sendFile(m.chat, res, 'tts.opus', null, m, true)}    
+} catch (e) {
+await m.reply(lenguajeGB['smsMalError3']() + '\n*' + lenguajeGB.smsMensError1() + '*\n*' + usedPrefix + `${lenguajeGB.lenguaje() == 'es' ? 'reporte' : 'report'}` + '* ' + `${lenguajeGB.smsMensError2()} ` + usedPrefix + command)
+console.log(`❗❗ ${lenguajeGB['smsMensError2']()} ${usedPrefix + command} ❗❗`)
+console.log(e)}        
+function tts(text, lang = lenguajeGB.lenguaje()) {
+console.log(lang, text)
+return new Promise((resolve, reject) => {
+try {
+let tts = gtts(lang)
+let filePath = join(global.__dirname(import.meta.url), '../tmp', (1 * new Date) + '.wav')
+tts.save(filePath, text, () => {
+resolve(readFileSync(filePath))
+unlinkSync(filePath)
+})
+} catch (e) { reject(e) }
+})}
+break
+        
 }}
 
-handler.command = /^to(img|image)?|img|jpe?g|png|tourl|url|upload|tovideo|mp4|to(gif|gifau)|gif|togif|gifau|to(vn|ptt|audio|mp3)?|mp3$/i
+handler.command = /^to(img|image)?|img|jpe?g|png|tourl|url|upload|tovideo|mp4|to(gif|gifau)|gif|togif|gifau|to(vn|ptt|audio|mp3)?|mp3|to(voice|tts)?|tts$/i
 export default handler
