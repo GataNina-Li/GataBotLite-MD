@@ -10,7 +10,7 @@ let uptime = clockString(_uptime)
 let totalreg = Object.keys(global.db.data.users).length
 let rtotalreg = Object.values(global.db.data.users).filter(user => user.registered == true).length
 
-await conn.sendButton(m.chat, wm, `
+let estado = `
 *╭𝄗𝄗✦ --${lenguajeGB.smsEstado1()}-- ✦𝄗𝄗⬣*
  ⎸ *⍟ ${lenguajeGB.smsEstado2()}*
  ⎸ ❉ ➺ ${vs}
@@ -21,7 +21,21 @@ await conn.sendButton(m.chat, wm, `
  ⎸ ❉ *${lenguajeGB.smsEstado6()}* ➺ *_${Object.entries(global.db.data.users).filter(user => user[1].banned).length}_* 
  ⎸ ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
  ⎸ ❉ *${lenguajeGB.smsEstado7()}* ➺ *_${uptime}_*
-*╰𝄗𝄗𝄗𝄗𝄗𝄗𝄗⬣*`.trim(), gataImg.getRandom(), [[lenguajeGB.smsConMenu(), `${usedPrefix}menu`]], m)
+*╰𝄗𝄗𝄗𝄗𝄗𝄗𝄗⬣`.trim()
+    conn.sendFile(m.chat, pp, 'lp.jpg', estado, m, false, { contextInfo: { mentionedJid }})
+
+/*await conn.sendButton(m.chat, wm, `
+*╭𝄗𝄗✦ --${lenguajeGB.smsEstado1()}-- ✦𝄗𝄗⬣*
+ ⎸ *⍟ ${lenguajeGB.smsEstado2()}*
+ ⎸ ❉ ➺ ${vs}
+ ⎸ ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
+ ⎸ ❉ *${lenguajeGB.smsEstado3()}* ➺ *_${Object.keys(global.db.data.users).length}_*
+ ⎸ ❉ *${lenguajeGB.smsEstado4()}* ➺ *_${rtotalreg}/${totalreg}_*
+ ⎸ ❉ *${lenguajeGB.smsEstado5()}* ➺ *_${Object.entries(global.db.data.chats).filter(chat => chat[1].isBanned).length}_* 
+ ⎸ ❉ *${lenguajeGB.smsEstado6()}* ➺ *_${Object.entries(global.db.data.users).filter(user => user[1].banned).length}_* 
+ ⎸ ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
+ ⎸ ❉ *${lenguajeGB.smsEstado7()}* ➺ *_${uptime}_*
+*╰𝄗𝄗𝄗𝄗𝄗𝄗𝄗⬣*`.trim(), gataImg.getRandom(), [[lenguajeGB.smsConMenu(), `${usedPrefix}menu`]], m)*/
 } catch (e) {
 await m.reply(lenguajeGB['smsMalError3']() + '\n*' + lenguajeGB.smsMensError1() + '*\n*' + usedPrefix + `${lenguajeGB.lenguaje() == 'es' ? 'reporte' : 'report'}` + '* ' + `${lenguajeGB.smsMensError2()} ` + usedPrefix + command)
 console.log(`❗❗ ${lenguajeGB['smsMensError2']()} ${usedPrefix + command} ❗❗`)
