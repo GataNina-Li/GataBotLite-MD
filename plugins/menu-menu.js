@@ -42,6 +42,9 @@ let menu = `
 *│*
 *╰ ㊂ ▸▸ _DESCARGAS_ ◂◂*
 *│* ┊
+*│* ┊▸ ✦ _${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'imagen *(texto)*' : 'gimage *(text)*'}_
+*│* ┊▸ ✦ _${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'facebook *(enlace)*' : 'facebookdl *(link)*'}_
+*│* ┊▸ ✦ _${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'mediafire *(enlace)*' : 'mediafiredl *(link)*'}_
 *│* ┊▸ ✦ _${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'play *(nombre o enlace)*' : 'play *(name)*'}_
 *│* ┊▸ ✦ _${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'yta *(enlace)*' : 'yta *(link)*'}_
 *│* ┊▸ ✦ _${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'ytv *(enlace)*' : 'ytv *(link)*'}_
