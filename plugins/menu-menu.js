@@ -2,8 +2,6 @@ import fs, { promises } from 'fs'
 import fetch from 'node-fetch'
 let handler = async (m, { conn, usedPrefix, command }) => {
 try {
-//let pp = imagen4
-//let img = await(await fetch('https://www.paidmembershipspro.com/wp-content/uploads/2017/07/PayPal-Express.png')).buffer()
 let d = new Date(new Date + 3600000)
 let locale = 'es'
 let week = d.toLocaleDateString(locale, { weekday: 'long' })
@@ -14,8 +12,7 @@ let rtotalreg = Object.values(global.db.data.users).filter(user => user.register
 let more = String.fromCharCode(8206)
 let readMore = more.repeat(850)   
 let taguser = conn.getName(m.sender)
-//let taguser = '@' + m.sender.split("@s.whatsapp.net")[0]
-
+let fkontak = { "key": { "participants":"0@s.whatsapp.net", "remoteJid": "status@broadcast", "fromMe": false, "id": "Halo" }, "message": { "contactMessage": { "vcard": `BEGIN:VCARD\nVERSION:3.0\nN:Sy;Bot;;;\nFN:y\nitem1.TEL;waid=${m.sender.split('@')[0]}:${m.sender.split('@')[0]}\nitem1.X-ABLabel:Ponsel\nEND:VCARD` }}, "participant": "0@s.whatsapp.net" }
 let menu = `
 ˚₊·˚₊· ͟͟͞͞➳❥ ${packname}
 *☆═━┈◈ ╰ ${vs} ㎇ ╯ ◈┈━═☆*
@@ -66,20 +63,8 @@ let menu = `
 const vi = ['https://telegra.ph/file/405daebd4bc0d69e5d165.mp4',
 'https://telegra.ph/file/1d0ad9f79f65f39895b08.mp4',
 'https://telegra.ph/file/c25afc1685b13210ce602.mp4']
-
-
-//var vid = vi[Math.floor(Math.random() * (vi.length))]
-
-//templateButtons
-//let templateButtons = [ 
-//{index: 1, urlButton: {displayText: '❤️ 🅖🅘🅣🅗🅤🅑', url: md}},
-//{index: 2, urlButton: {displayText: '💚 🅘🅝🅢🅣🅐🅖🅡🅐🅜', url: ig}},
-//{index: 3, quickReplyButton: {displayText: 'INFOBOT', id: '#infobot'}}
-//]
-
-//conn.sendMessage(m.chat, { video: { url: vid }, gifPlayback: true, gifAttribution: ~~(Math.random() * 2), caption: menu.trim(), footer: '✪⇝' + taguser + '\n' + wm, templateButtons }, { quoted: m})
-m.reply(menu) 
-await conn.sendFile(m.chat, vi.getRandom(), 'error.mp4', menu, m)
+await conn.sendFile(m.chat, vi.getRandom(), 'error.mp4', menu, fkontak)
+ 
 } catch (e) {
 await m.reply(lenguajeGB['smsMalError3']() + '\n*' + lenguajeGB.smsMensError1() + '*\n*' + usedPrefix + `${lenguajeGB.lenguaje() == 'es' ? 'reporte' : 'report'}` + '* ' + `${lenguajeGB.smsMensError2()} ` + usedPrefix + command)
 console.log(`❗❗ ${lenguajeGB['smsMensError2']()} ${usedPrefix + command} ❗❗`)
