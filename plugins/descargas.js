@@ -191,8 +191,7 @@ case isCommand8:
 if (!args[0]) throw lenguajeGB.smsMalused2() + `*${usedPrefix + command} https://www.mediafire.com/file/04kaaqx9oe3tb8b/DOOM_v13_CLONE%255BCOM.FM%255D.apk/file*`
 try {  
 let res = await mediafireDl(args[0])
-size = res
-let { name, date, mime, link } = res
+let { name, date, mime, link, size1 } = res
 let caption = `
 🗂️ ${name}
 ⚖️ ${size}
@@ -211,11 +210,11 @@ const $ = cheerio.load(res.data)
 const link = $('#downloadButton').attr('href')
 const name = $('body > main > div.content > div.center > div > div.dl-btn-cont > div.dl-btn-labelWrap > div.promoDownloadName.notranslate > div').attr('title').replaceAll(' ','').replaceAll('\n','')
 const date = $('body > main > div.content > div.center > div > div.dl-info > ul > li:nth-child(2) > span').text()
-const size = $('#downloadButton').text().replace('Download', '').replace('(', '').replace(')', '').replace('\n', '').replace('\n', '').replace('                         ', '').replaceAll(' ','')
+const size1 = $('#downloadButton').text().replace('Download', '').replace('(', '').replace(')', '').replace('\n', '').replace('\n', '').replace('                         ', '').replaceAll(' ','')
 let mime = ''
 let rese = await axios.head(link)
 mime = rese.headers['content-type']
-return { name, size, date, mime, link }
+return { name, size1, date, mime, link }
 }
 break 
 }}
