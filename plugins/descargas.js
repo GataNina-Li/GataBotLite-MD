@@ -2,15 +2,18 @@ import { youtubedl, youtubedlv2, youtubedlv3 } from '@bochilteam/scraper'
 import { googleImage } from '@bochilteam/scraper'
 import fetch from "node-fetch"
 import yts from 'yt-search'
+import axios from 'axios'
 
 let handler = async (m, { conn, text, usedPrefix, command, args }) => {
 let q, v, yt, dl_url, ttl, size, lolhuman, lolh, n, n2, n3, n4, cap, qu
-const isCommand1 = /^(gimage|image|imagen)$/i.test(command)
-const isCommand2 = /^(play|play2)$/i.test(command)
+const isCommand1 = /^(gimage|imagen?)$/i.test(command)
+const isCommand2 = /^(play2?)$/i.test(command)
 const isCommand3 = /^(fgmp3|dlmp3|getaud|yt(a|mp3)?)$/i.test(command)
 const isCommand4 = /^(ytmp3doc|ytadoc)$/i.test(command)
 const isCommand5 = /^(fgmp4|dlmp4|getvid|yt(v|mp4)?)$/i.test(command)
 const isCommand6 = /^(ytmp4doc|ytvdoc)$/i.test(command)
+const isCommand7 = /^(facebook|fb|facebookdl|fbdl)$/i.test(command)
+const isCommand8 = /^(mediafire(dl)?|dlmediafire)$/i.test(command)
 
 switch (true) {     
 case isCommand1:
@@ -167,8 +170,56 @@ console.log(`❗❗ ${lenguajeGB['smsMensError2']()} ${usedPrefix + command} ❗
 console.log(e)}
 }
 break
+        
+case isCommand7:
+if (!args[0]) throw conn.reply(m.chat, lenguajeGB.smsMalused2() + `*${usedPrefix + command} https://www.facebook.com/watch?v=636541475139*`
+if (!args[0].match(/www.facebook.com|fb.watch/g)) throw lenguajeGB.smsMalused2() + `*${usedPrefix + command} https://www.facebook.com/watch?v=636541475139*`    
+try {  
+let contenido = `✅ *FACEBOOK*`
+let vio = await fetch(`https://api.violetics.pw/api/downloader/facebook?apikey=beta&url=${args[0]}`)  
+let vioo = await vio.json()
+let videovio = `${vioo.result.hd.url || vioo.result.sd.url}`
+await m.reply(wait)
+await conn.sendFile(m.chat, videovio, `error.mp4`, contenido, m)
+} catch (e) {
+await m.reply(lenguajeGB['smsMalError3']() + '\n*' + lenguajeGB.smsMensError1() + '*\n*' + usedPrefix + `${lenguajeGB.lenguaje() == 'es' ? 'reporte' : 'report'}` + '* ' + `${lenguajeGB.smsMensError2()} ` + usedPrefix + command)
+console.log(`❗❗ ${lenguajeGB['smsMensError2']()} ${usedPrefix + command} ❗❗`)
+console.log(e)}
+break
+        
+case isCommand8:
+if (!args[0]) throw lenguajeGB.smsMalused2() + `*${usedPrefix + command} https://www.mediafire.com/file/04kaaqx9oe3tb8b/DOOM_v13_CLONE%255BCOM.FM%255D.apk/file*`
+try {  
+let res = await mediafireDl(args[0])
+size = res
+let { name, date, mime, link } = res
+let caption = `
+🗂️ ${name}
+⚖️ ${size}
+📡 ${mime}
+
+${lenguajeGB.smsMediaFr()}`.trim()
+await m.reply(caption)
+await conn.sendFile(m.chat, link, name, '', m, null, { mimetype: mime, asDocument: true })  
+} catch (e) {
+await m.reply(lenguajeGB['smsMalError3']() + '\n*' + lenguajeGB.smsMensError1() + '*\n*' + usedPrefix + `${lenguajeGB.lenguaje() == 'es' ? 'reporte' : 'report'}` + '* ' + `${lenguajeGB.smsMensError2()} ` + usedPrefix + command)
+console.log(`❗❗ ${lenguajeGB['smsMensError2']()} ${usedPrefix + command} ❗❗`)
+console.log(e)}    
+async function mediafireDl(url) {
+const res = await axios.get(`https://www-mediafire-com.translate.goog/${url.replace('https://www.mediafire.com/','')}?_x_tr_sl=en&_x_tr_tl=fr&_x_tr_hl=en&_x_tr_pto=wapp`)
+const $ = cheerio.load(res.data)
+const link = $('#downloadButton').attr('href')
+const name = $('body > main > div.content > div.center > div > div.dl-btn-cont > div.dl-btn-labelWrap > div.promoDownloadName.notranslate > div').attr('title').replaceAll(' ','').replaceAll('\n','')
+const date = $('body > main > div.content > div.center > div > div.dl-info > ul > li:nth-child(2) > span').text()
+const size = $('#downloadButton').text().replace('Download', '').replace('(', '').replace(')', '').replace('\n', '').replace('\n', '').replace('                         ', '').replaceAll(' ','')
+let mime = ''
+let rese = await axios.head(link)
+mime = rese.headers['content-type']
+return { name, size, date, mime, link }
+}
+break 
 }}
 
-handler.command = /^(gimage|image|imagen|play|play2|fgmp3|dlmp3|getaud|yt(a|mp3)?|ytmp3doc|ytadoc|fgmp4|dlmp4|getvid|yt(v|mp4)?|ytmp4doc|ytvdoc)$/i
+handler.command = /^(gimage|imagen?|play2?|fgmp3|dlmp3|getaud|yt(a|mp3)?|ytmp3doc|ytadoc|fgmp4|dlmp4|getvid|yt(v|mp4)?|ytmp4doc|ytvdoc|facebook|fb|facebookdl|fbdl|mediafire(dl)?|dlmediafire)$/i
 handler.register = true
 export default handler
