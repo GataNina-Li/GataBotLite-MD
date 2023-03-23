@@ -1,5 +1,6 @@
 import { generateWAMessageFromContent } from "@adiwajshing/baileys"
 import { smsg } from './lib/simple.js'
+import { plugins } from './lib/plugins.js'
 import { format } from 'util'
 import { fileURLToPath } from 'url'
 import path, { join } from 'path'
