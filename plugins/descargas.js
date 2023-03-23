@@ -1,10 +1,14 @@
+import { youtubedl, youtubedlv2, youtubedlv3 } from '@bochilteam/scraper'
 import { googleImage } from '@bochilteam/scraper'
 import fetch from "node-fetch"
 import yts from 'yt-search'
 
 let handler = async (m, { conn, text, usedPrefix, command, args }) => {
+let q, v, yt, dl_url, ttl, size, lolhuman, lolh, n, n2, n3, cap
 const isCommand1 = /^(gimage|image|imagen)$/i.test(command)
 const isCommand2 = /^(play|play2)$/i.test(command)
+const isCommand3 = /^(fgmp3|dlmp3|getaud|yt(a|mp3))$/i.test(command)
+const isCommand4 = /^(ytmp3doc|ytadoc)$/i.test(command)
 
 switch (true) {     
 case isCommand1:
@@ -52,8 +56,61 @@ await m.reply(lenguajeGB['smsMalError3']() + '\n*' + lenguajeGB.smsMensError1() 
 console.log(`❗❗ ${lenguajeGB['smsMensError2']()} ${usedPrefix + command} ❗❗`)
 console.log(e)}    
 break
+        
+case isCommand3:
+if (!args[0]) throw lenguajeGB.smsMalused2() + `*${usedPrefix + command} https://youtu.be/ejemplo*\n*${usedPrefix + command} https://www.youtube.com/ejemplo*`
+await conn.reply(m.chat, lenguajeGB.smsAvisoEG() + '*' + lenguajeGB.smsYTA1() + '*', m)
+try {
+q = '128kbps'
+v = args[0]
+yt = await youtubedl(v).catch(async _ => await youtubedlv2(v)).catch(async _ => await youtubedlv3(v))
+dl_url = await yt.audio[q].download()
+ttl = await yt.title
+size = await yt.audio[q].fileSizeH
+await conn.sendFile(m.chat, dl_url, ttl + '.mp3', null, m, false, { mimetype: 'audio/mp4' })
+} catch {
+try {
+lolhuman = await fetch(`https://api.lolhuman.xyz/api/ytaudio2?apikey=${lolkeysapi}&url=${args[0]}`)    
+lolh = await lolhuman.json()
+n = lolh.result.title || 'error'
+await conn.sendMessage(m.chat, { audio: { url: lolh.result.link }, fileName: `${n}.mp3`, mimetype: 'audio/mp4' }, { quoted: m }) 
+} catch (e) {
+await m.reply(lenguajeGB['smsMalError3']() + '\n*' + lenguajeGB.smsMensError1() + '*\n*' + usedPrefix + `${lenguajeGB.lenguaje() == 'es' ? 'reporte' : 'report'}` + '* ' + `${lenguajeGB.smsMensError2()} ` + usedPrefix + command)
+console.log(`❗❗ ${lenguajeGB['smsMensError2']()} ${usedPrefix + command} ❗❗`)
+console.log(e)}
+}        
+break
+        
+case isCommand4:
+if (!args[0]) throw lenguajeGB.smsMalused2() + `*${usedPrefix + command} https://youtu.be/ejemplo*\n*${usedPrefix + command} https://www.youtube.com/ejemplo*`
+await conn.reply(m.chat, lenguajeGB.smsAvisoEG() + '*' + lenguajeGB.smsYTA2() + '*', m)
+try {
+q = '128kbps'
+v = args[0]
+yt = await youtubedl(v).catch(async _ => await youtubedlv2(v)).catch(async _ => await youtubedlv3(v))
+dl_url = await yt.audio[q].download()
+ttl = await yt.title
+size = await yt.audio[q].fileSizeH
+cap = `🎼 *AUDIO* 🎼\n\n*⎔ ${ttl}*\n\n*⎔ ${size}*`.trim()
+await conn.sendMessage(m.chat, { document: { url: dl_url }, caption: cap, mimetype: 'audio/mpeg', fileName: `${ttl}.mp3`}, { quoted: m })
+} catch {
+try {
+lolhuman = await fetch(`https://api.lolhuman.xyz/api/ytaudio2?apikey=${lolkeysapi}&url=${args[0]}`)   
+lolh = await lolhuman.json()
+n = lolh.result.title || 'error'
+n2 = lolh.result.link
+n3 = lolh.result.size
+cap = `🎧 *AUDIO* 🎧\n\n*⎔ ${n}*\n\n*⎔ ${n3}*`.trim()
+await conn.sendMessage(m.chat, { document: { url: n2 }, caption: cap2, mimetype: 'audio/mpeg', fileName: `${n}.mp3`}, {quoted: m})
+} catch (e) {
+await m.reply(lenguajeGB['smsMalError3']() + '\n*' + lenguajeGB.smsMensError1() + '*\n*' + usedPrefix + `${lenguajeGB.lenguaje() == 'es' ? 'reporte' : 'report'}` + '* ' + `${lenguajeGB.smsMensError2()} ` + usedPrefix + command)
+console.log(`❗❗ ${lenguajeGB['smsMensError2']()} ${usedPrefix + command} ❗❗`)
+console.log(e)}
+}        
+break
+        
 }}
 
-handler.command = /^(gimage|image|imagen|play|play2)$/i
+handler.command = /^(gimage|image|imagen|play|play2|fgmp3|dlmp3|getaud|yt(a|mp3)|ytmp3doc|ytadoc)$/i
 handler.register = true
 export default handler
