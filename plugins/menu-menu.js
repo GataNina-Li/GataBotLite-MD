@@ -1,9 +1,9 @@
 import fs, { promises } from 'fs'
 import fetch from 'node-fetch'
-let handler = async (m, { conn, usedPrefix }) => {
+let handler = async (m, { conn, usedPrefix, command }) => {
 try {
-let pp = imagen4
-let img = await(await fetch('https://www.paidmembershipspro.com/wp-content/uploads/2017/07/PayPal-Express.png')).buffer()
+//let pp = imagen4
+//let img = await(await fetch('https://www.paidmembershipspro.com/wp-content/uploads/2017/07/PayPal-Express.png')).buffer()
 let d = new Date(new Date + 3600000)
 let locale = 'es'
 let week = d.toLocaleDateString(locale, { weekday: 'long' })
@@ -68,7 +68,7 @@ let menu = `
 //'https://telegra.ph/file/c25afc1685b13210ce602.mp4']
 
 
-var vid = vi[Math.floor(Math.random() * (vi.length))]
+//var vid = vi[Math.floor(Math.random() * (vi.length))]
 
 //templateButtons
 //let templateButtons = [ 
