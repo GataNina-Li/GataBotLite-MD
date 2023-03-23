@@ -29,12 +29,16 @@ let { title, description, url, thumbnail, videoId, timestamp, views, published }
 let video = `*◜⋯ ⋯ ⋯ Y O U T U B E ⋯ ⋯ ⋯◞*
 *◎ ${lenguajeGB.smsYT1()}*
 ${title}
+
 *◎ ${lenguajeGB.smsYT2()}*
 ${description}
+
 *◎ ${lenguajeGB.smsYT3()}*
 ${timestamp}
+
 *◎ ${lenguajeGB.smsYT4()}*
 ${views}
+
 *◎ URL*
 ${url}`.trim()
 await conn.sendFile(m.chat, thumbnail, 'error.jpg', video, m)
