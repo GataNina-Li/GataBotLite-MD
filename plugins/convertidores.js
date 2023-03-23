@@ -27,7 +27,8 @@ await m.reply(lenguajeGB['smsMalError3']() + '\n*' + lenguajeGB.smsMensError1() 
 console.log(`❗❗ ${lenguajeGB['smsMensError2']()} ${usedPrefix + command} ❗❗`)
 console.log(e)} 
 break  
-  
+
+// CÓDIGO ADAPTADO POR https://github.com/Azami19   
 case isCommand2:    
 q = m.quoted ? m.quoted : m
 mime = (q.msg || q).mimetype || ''
