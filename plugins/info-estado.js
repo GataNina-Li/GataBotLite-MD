@@ -23,7 +23,6 @@ let estado = `
  ⎸ ❉ *${lenguajeGB.smsEstado7()}* ➺ *_${uptime}_*
 *╰𝄗𝄗𝄗𝄗𝄗𝄗𝄗⬣`.trim()
     conn.sendFile(m.chat, pp, 'lp.jpg', estado, m, false, { contextInfo: { mentionedJid }})
-
 /*await conn.sendButton(m.chat, wm, `
 *╭𝄗𝄗✦ --${lenguajeGB.smsEstado1()}-- ✦𝄗𝄗⬣*
  ⎸ *⍟ ${lenguajeGB.smsEstado2()}*
@@ -37,7 +36,7 @@ let estado = `
  ⎸ ❉ *${lenguajeGB.smsEstado7()}* ➺ *_${uptime}_*
 *╰𝄗𝄗𝄗𝄗𝄗𝄗𝄗⬣*`.trim(), gataImg.getRandom(), [[lenguajeGB.smsConMenu(), `${usedPrefix}menu`]], m)*/
 } catch (e) {
-await m.reply(lenguajeGB['smsMalError3']() + '\n*' + lenguajeGB.smsMensError1() + '*\n*' + usedPrefix + `${lenguajeGB.lenguaje() == 'es' ? 'reporte' : 'report'}` + '* ' + `${lenguajeGB.smsMensError2()} ` + usedPrefix + command)
+//await m.reply(lenguajeGB['smsMalError3']() + '\n*' + lenguajeGB.smsMensError1() + '*\n*' + usedPrefix + `${lenguajeGB.lenguaje() == 'es' ? 'reporte' : 'report'}` + '* ' + `${lenguajeGB.smsMensError2()} ` + usedPrefix + command)
 console.log(`❗❗ ${lenguajeGB['smsMensError2']()} ${usedPrefix + command} ❗❗`)
 console.log(e)}}
 handler.command = /^(estado|status|estate|state|stado|stats|botstat(us)?)$/i
