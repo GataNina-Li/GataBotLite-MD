@@ -55,7 +55,7 @@ ${lenguajeGB.smsConURL1()}
 » ${link}\n
 ${lenguajeGB.smsConURL2()}
 » ${result}\n
-${lenguajeGB.smsConUR3L()}
+${lenguajeGB.smsConURL3()}
 » ${isTele ? lenguajeGB.smsConURLERR1() : lenguajeGB.smsConURLERR2()}\n
 ${lenguajeGB.smsConURL4()}
 » ${await shortUrl(link)}`.trim()
