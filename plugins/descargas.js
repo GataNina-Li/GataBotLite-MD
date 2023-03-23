@@ -2,7 +2,7 @@ import { googleImage } from '@bochilteam/scraper'
 import fetch from "node-fetch"
 import yts from 'yt-search'
 
-let handler = async (m, { conn, text, usedPrefix, command }) => {
+let handler = async (m, { conn, text, usedPrefix, command, args }) => {
 const isCommand1 = /^(gimage|image|imagen)$/i.test(command)
 const isCommand2 = /^(play|play2)$/i.test(command)
 
@@ -38,7 +38,11 @@ ${views}
 *◎ URL*
 ${url}`.trim()
 await conn.sendFile(m.chat, thumbnail, 'error.jpg', video, m)
-await conn.sendMessage(m.chat, { audio: { url: url }, mimetype: "audio/mp4", fileName: `${title}.mp3`, }, { quoted: m })  
+    
+let ytLink = await fetch(`https://api.lolhuman.xyz/api/ytplay2?apikey=${lolkeysapi}&query=${text}`)
+let jsonn = await ytLink.json()
+let aud = await jsonn.result.audio
+await conn.sendMessage(m.chat, { audio: { url: aud }, mimetype: 'audio/mp4', fileName: `${title}.mp3`}, {quoted: m})  
 } catch (e) {
 await m.reply(lenguajeGB['smsMalError3']() + '\n*' + lenguajeGB.smsMensError1() + '*\n*' + usedPrefix + `${lenguajeGB.lenguaje() == 'es' ? 'reporte' : 'report'}` + '* ' + `${lenguajeGB.smsMensError2()} ` + usedPrefix + command)
 console.log(`❗❗ ${lenguajeGB['smsMensError2']()} ${usedPrefix + command} ❗❗`)
