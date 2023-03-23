@@ -1,4 +1,4 @@
-import fetch from "node-fetch"
+/*import fetch from "node-fetch"
 import yts from 'yt-search'
 
 let handler = async (m, { conn, command, text, usedPrefix }) => {
@@ -42,4 +42,4 @@ handler.tags = ['downloader']
 handler.command = /^play2?$/i
 handler.register = true
 
-export default handler
+export default handler*/
