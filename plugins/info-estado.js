@@ -1,5 +1,4 @@
 let handler = async (m, { conn, command, usedPrefix }) => { 
-try{
 let name = await conn.getName(m.sender)
 let _uptime = process.uptime() * 1000
 let _muptime
@@ -10,32 +9,22 @@ let uptime = clockString(_uptime)
 let totalreg = Object.keys(global.db.data.users).length
 let fkontak = { "key": { "participants":"0@s.whatsapp.net", "remoteJid": "status@broadcast", "fromMe": false, "id": "Halo" }, "message": { "contactMessage": { "vcard": `BEGIN:VCARD\nVERSION:3.0\nN:Sy;Bot;;;\nFN:y\nitem1.TEL;waid=${m.sender.split('@')[0]}:${m.sender.split('@')[0]}\nitem1.X-ABLabel:Ponsel\nEND:VCARD` }}, "participant": "0@s.whatsapp.net" }
 let rtotalreg = Object.values(global.db.data.users).filter(user => user.registered == true).length
+try{
+let estado = `*╭𝄗𝄗✦ --${lenguajeGB.smsEstado1()}-- ✦𝄗𝄗⬣*
+ ⎸ *⍟ ${lenguajeGB.smsEstado2()}*
+ ⎸ ❉ ➺ ${vs}
+ ⎸ ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
+ ⎸ ❉ *${lenguajeGB.smsEstado3()}* ➺ *_${Object.keys(global.db.data.users).length}_*
+ ⎸ ❉ *${lenguajeGB.smsEstado4()}* ➺ *_${rtotalreg}/${totalreg}_*
+ ⎸ ❉ *${lenguajeGB.smsEstado5()}* ➺ *_${Object.entries(global.db.data.chats).filter(chat => chat[1].isBanned).length}_* 
+ ⎸ ❉ *${lenguajeGB.smsEstado6()}* ➺ *_${Object.entries(global.db.data.users).filter(user => user[1].banned).length}_* 
+ ⎸ ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
+ ⎸ ❉ *${lenguajeGB.smsEstado7()}* ➺ *_${uptime}_*
+*╰𝄗𝄗𝄗𝄗𝄗𝄗𝄗⬣*`.trim()
 
-await conn.reply(m.chat, `*╭𝄗𝄗✦ --${lenguajeGB.smsEstado1()}-- ✦𝄗𝄗⬣*
- ⎸ *⍟ ${lenguajeGB.smsEstado2()}*
- ⎸ ❉ ➺ ${vs}
- ⎸ ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
- ⎸ ❉ *${lenguajeGB.smsEstado3()}* ➺ *_${Object.keys(global.db.data.users).length}_*
- ⎸ ❉ *${lenguajeGB.smsEstado4()}* ➺ *_${rtotalreg}/${totalreg}_*
- ⎸ ❉ *${lenguajeGB.smsEstado5()}* ➺ *_${Object.entries(global.db.data.chats).filter(chat => chat[1].isBanned).length}_* 
- ⎸ ❉ *${lenguajeGB.smsEstado6()}* ➺ *_${Object.entries(global.db.data.users).filter(user => user[1].banned).length}_* 
- ⎸ ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
- ⎸ ❉ *${lenguajeGB.smsEstado7()}* ➺ *_${uptime}_*
-*╰𝄗𝄗𝄗𝄗𝄗𝄗𝄗⬣*`, fkontak,  m)
-/*await conn.sendButton(m.chat, wm, `
-*╭𝄗𝄗✦ --${lenguajeGB.smsEstado1()}-- ✦𝄗𝄗⬣*
- ⎸ *⍟ ${lenguajeGB.smsEstado2()}*
- ⎸ ❉ ➺ ${vs}
- ⎸ ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
- ⎸ ❉ *${lenguajeGB.smsEstado3()}* ➺ *_${Object.keys(global.db.data.users).length}_*
- ⎸ ❉ *${lenguajeGB.smsEstado4()}* ➺ *_${rtotalreg}/${totalreg}_*
- ⎸ ❉ *${lenguajeGB.smsEstado5()}* ➺ *_${Object.entries(global.db.data.chats).filter(chat => chat[1].isBanned).length}_* 
- ⎸ ❉ *${lenguajeGB.smsEstado6()}* ➺ *_${Object.entries(global.db.data.users).filter(user => user[1].banned).length}_* 
- ⎸ ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
- ⎸ ❉ *${lenguajeGB.smsEstado7()}* ➺ *_${uptime}_*
-*╰𝄗𝄗𝄗𝄗𝄗𝄗𝄗⬣*`.trim(), gataImg.getRandom(), [[lenguajeGB.smsConMenu(), `${usedPrefix}menu`]], m)*/
+await conn.sendFile(m.chat, gataImg.getRandom(), 'gata.jpg', estado, fkontak)
 } catch (e) {
-//await m.reply(lenguajeGB['smsMalError3']() + '\n*' + lenguajeGB.smsMensError1() + '*\n*' + usedPrefix + `${lenguajeGB.lenguaje() == 'es' ? 'reporte' : 'report'}` + '* ' + `${lenguajeGB.smsMensError2()} ` + usedPrefix + command)
+await m.reply(lenguajeGB['smsMalError3']() + '\n*' + lenguajeGB.smsMensError1() + '*\n*' + usedPrefix + `${lenguajeGB.lenguaje() == 'es' ? 'reporte' : 'report'}` + '* ' + `${lenguajeGB.smsMensError2()} ` + usedPrefix + command)
 console.log(`❗❗ ${lenguajeGB['smsMensError2']()} ${usedPrefix + command} ❗❗`)
 console.log(e)}}
 handler.command = /^(estado|status|estate|state|stado|stats|botstat(us)?)$/i
