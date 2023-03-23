@@ -42,6 +42,13 @@ let menu = `
 *│* ┊▸ ✦ ${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'play (nombre o enlace)' : 'play (name)'}_
 *│* ┊▸ ✦ ${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'yta (enlace)' : 'yta (link)'}_
 *│* ┊▸ ✦ ${usedPrefix}donar
+*│* ╰∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙ ∙ ∙ ∙ ∙
+*╰ ㊂ ▸▸ _CONVERTIDOR_ ◂◂*
+*│* ┊
+*│* ┊▸ ✦ _${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'img *(sticker)*' : 'toimg *(sticker)*'}_
+*│* ┊▸ ✦ _${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'url *(imagen)*' : 'tourl *(image)*'}_
+*│* ┊▸ ✦ _${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'mp4 *(sticker)*' : 'tovideo *(sticker)*'}_
+*│* ┊▸ ✦ _${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'gif *(video)*' : 'togif *(video)*'}_
 *│* ╰∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙ ∙ ∙ ∙ ∙ 
  `.trim()
     
