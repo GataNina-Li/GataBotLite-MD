@@ -191,12 +191,11 @@ case isCommand8:
 if (!args[0]) throw lenguajeGB.smsMalused2() + `*${usedPrefix + command} https://www.mediafire.com/file/04kaaqx9oe3tb8b/DOOM_v13_CLONE%255BCOM.FM%255D.apk/file*`
 try {  
 let res = await mediafireDl(args[0])
-{ size } = res
-let { name, date, mime, link } = res
+let { name, date, mime, link, size:peso } = res
 let caption = `
 🗂️ ${name}
 ⌛ ${date}
-⚖️ ${size}
+⚖️ ${peso}
 📡 ${mime}
 🔗 ${link}
 
