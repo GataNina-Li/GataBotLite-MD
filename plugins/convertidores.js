@@ -151,11 +151,12 @@ if (!text) throw lenguajeGB.smsTradc1() + usedPrefix + command + lenguajeGB.smsT
 res = await tts(text, defaultLang)
 } finally {
 try{
-if (res) conn.sendFile(m.chat, res, 'tts.opus', null, m, true)}    
+if (res) conn.sendFile(m.chat, res, 'tts.opus', null, m, true)
 } catch (e) {
 await m.reply(lenguajeGB['smsMalError3']() + '\n*' + lenguajeGB.smsMensError1() + '*\n*' + usedPrefix + `${lenguajeGB.lenguaje() == 'es' ? 'reporte' : 'report'}` + '* ' + `${lenguajeGB.smsMensError2()} ` + usedPrefix + command)
 console.log(`❗❗ ${lenguajeGB['smsMensError2']()} ${usedPrefix + command} ❗❗`)
 console.log(e)}        
+}    
 function tts(text, lang = lenguajeGB.lenguaje()) {
 console.log(lang, text)
 return new Promise((resolve, reject) => {
