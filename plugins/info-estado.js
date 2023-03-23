@@ -10,8 +10,7 @@ let uptime = clockString(_uptime)
 let totalreg = Object.keys(global.db.data.users).length
 let rtotalreg = Object.values(global.db.data.users).filter(user => user.registered == true).length
 
-let estado = `
-*╭𝄗𝄗✦ --${lenguajeGB.smsEstado1()}-- ✦𝄗𝄗⬣*
+conn.reply(m.chat, `*╭𝄗𝄗✦ --${lenguajeGB.smsEstado1()}-- ✦𝄗𝄗⬣*
  ⎸ *⍟ ${lenguajeGB.smsEstado2()}*
  ⎸ ❉ ➺ ${vs}
  ⎸ ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
@@ -21,8 +20,7 @@ let estado = `
  ⎸ ❉ *${lenguajeGB.smsEstado6()}* ➺ *_${Object.entries(global.db.data.users).filter(user => user[1].banned).length}_* 
  ⎸ ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
  ⎸ ❉ *${lenguajeGB.smsEstado7()}* ➺ *_${uptime}_*
-*╰𝄗𝄗𝄗𝄗𝄗𝄗𝄗⬣`.trim()
-    conn.sendFile(m.chat, pp, 'lp.jpg', estado, m, false, { contextInfo: { mentionedJid }})
+*╰𝄗𝄗𝄗𝄗𝄗𝄗𝄗⬣`, m) 
 /*await conn.sendButton(m.chat, wm, `
 *╭𝄗𝄗✦ --${lenguajeGB.smsEstado1()}-- ✦𝄗𝄗⬣*
  ⎸ *⍟ ${lenguajeGB.smsEstado2()}*
