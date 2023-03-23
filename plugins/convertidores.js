@@ -1,5 +1,5 @@
 import { webp2mp4, webp2png  } from '../lib/webp2mp4.js' 
-import { ffmpeg } from '../lib/converter.js'
+import { ffmpeg, toPTT } from '../lib/converter.js'
 import uploadFile from '../lib/uploadFile.js'
 import uploadImage from '../lib/uploadImage.js'
 import fetch from 'node-fetch'
@@ -10,6 +10,7 @@ const isCommand1 = /^(to(img|image)?|img|jpe?g|png)$/i.test(command)
 const isCommand2 = /^(tourl|url|upload)$/i.test(command)
 const isCommand3 = /^(to(video|mp4)?|mp4)$/i.test(command)
 const isCommand4 = /^(to(gif|gifau)?|gif|gifau)$/i.test(command)
+const isCommand5 = /^to(vn|ptt|audio)?$/i.test(command)
 
 switch (true) {     
 case isCommand1:
@@ -107,8 +108,27 @@ conn.sendMessage(m.chat, { video: media, gifPlayback: true, caption: lenguajeGB.
 await m.reply(lenguajeGB['smsMalError3']() + '\n*' + lenguajeGB.smsMensError1() + '*\n*' + usedPrefix + `${lenguajeGB.lenguaje() == 'es' ? 'reporte' : 'report'}` + '* ' + `${lenguajeGB.smsMensError2()} ` + usedPrefix + command)
 console.log(`❗❗ ${lenguajeGB['smsMensError2']()} ${usedPrefix + command} ❗❗`)
 console.log(e)}
-break 
+break
+    
+case isCommand5:       
+q = m.quoted ? m.quoted : m
+mime = (m.quoted ? m.quoted : m.msg).mimetype || ''
+if (!/video|audio/.test(mime)) throw lenguajeGB.smsConVN()
+media = await q.download?.()
+if (!media && !/video/.test(mime)) throw lenguajeGB.smsConVN1()
+if (!media && !/audio/.test(mime)) throw lenguajeGB.smsConVN2()
+let audio = await toPTT(media, 'mp4')
+if (!audio.data && !/audio/.test(mime)) throw lenguajeGB.smsConVN3()
+if (!audio.data && !/video/.test(mime)) throw lenguajeGB.smsConVN4()
+try{
+let aa = conn.sendFile(m.chat, audio.data, 'error.mp3', '', m, true, { mimetype: 'audio/mp4' })
+if (!aa) return conn.sendMessage(m.chat, { audio: { url: media }, fileName: 'error.mp3', mimetype: 'audio/mp4', ptt: true }, { quoted: m }) 
+} catch (e) {
+await m.reply(lenguajeGB['smsMalError3']() + '\n*' + lenguajeGB.smsMensError1() + '*\n*' + usedPrefix + `${lenguajeGB.lenguaje() == 'es' ? 'reporte' : 'report'}` + '* ' + `${lenguajeGB.smsMensError2()} ` + usedPrefix + command)
+console.log(`❗❗ ${lenguajeGB['smsMensError2']()} ${usedPrefix + command} ❗❗`)
+console.log(e)}
+break
 }}
 
-handler.command = /^to(img|image)?|img|jpe?g|png|tourl|url|upload|tovideo|mp4|to(gif|gifau)|gif|togif|gifau$/i
+handler.command = /^to(img|image)?|img|jpe?g|png|tourl|url|upload|tovideo|mp4|to(gif|gifau)|gif|togif|gifau|to(vn|ptt|audio)?$/i
 export default handler
