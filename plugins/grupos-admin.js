@@ -11,7 +11,6 @@ const isCommand7 = /^(setpp(group|grup|gc)?|cambiarfoto)$/i.test(command)
 const isCommand8 = /^(nuevolink|nuevoenlace|revoke|resetlink)$/i.test(command)
 const isCommand9 = /^(kick|echar|hechar|sacar|ban)$/i.test(command)
 
-
 switch (true) {     
 case isCommand1:
 try{
@@ -38,7 +37,7 @@ await conn.reply(m.chat, lenguajeGB['smsAvisoEG']() + lenguajeGB['smsDemott2']()
 }
 break
   
-case isCommand2:
+/*case isCommand2:
 if(isNaN(text) && !text.match(/@/g)){	
 }else if(isNaN(text)) {
 number = text.split`@`[1]
@@ -59,7 +58,7 @@ user = number + '@s.whatsapp.net'
 await conn.groupParticipantsUpdate(m.chat, [user], 'demote')
 await conn.reply(m.chat, lenguajeGB['smsAvisoEG']() + lenguajeGB['smsDemott3'](), fkontak, m)
 }  
-break
+break*/
   
 case isCommand3:
 if (text) {
