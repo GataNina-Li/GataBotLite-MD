@@ -1,5 +1,5 @@
 import fetch from 'node-fetch'
-let handler = async (m, { conn,usedPrefix, command, text, args }) => {
+let handler = async (m, { conn,usedPrefix, command, text, args, isOwner, isAdmin, participants }) => {
 var number, user, fkontak, pp
 const isCommand1 = /^(promote|daradmin|darpoder)$/i.test(command)
 const isCommand2 = /^(demote|quitarpoder|quitaradmin)$/i.test(command)
@@ -10,6 +10,8 @@ const isCommand6 = /^(setname|newnombre|nuevonombre|cambiarnombre)$/i.test(comma
 const isCommand7 = /^(setpp(group|grup|gc)?|cambiarfoto)$/i.test(command)
 const isCommand8 = /^(nuevolink|nuevoenlace|revoke|resetlink)$/i.test(command)
 const isCommand9 = /^(kick|echar|hechar|sacar|ban)$/i.test(command)
+const isCommand10 = /^(group|grupo)$/i.test(command)
+const isCommand11 = /^(tagall|invocar|invocacion|todos|invocación)$/i.test(command)
 
 switch (true) {     
 case isCommand1:
@@ -132,9 +134,43 @@ console.log(`❗❗ ${lenguajeGB['smsMensError2']()} ${usedPrefix + command} ❗
 console.log(e)
 }
 break
+    
+case isCommand10:
+pp = await conn.profilePictureUrl(m.chat, 'image').catch(_ => null) || './src/grupos.jpg'  
+let isClose = { 
+'open': 'not_announcement',
+'close': 'announcement',
+'abierto': 'not_announcement',
+'cerrado': 'announcement',
+'abrir': 'not_announcement',
+'cerrar': 'announcement',
+}[(args[0] || '')]
+if (isClose === undefined)
+throw `${lenguajeGB['smsMalused']()}
+*⭔ ${usedPrefix + command} ${lenguajeGB.lenguaje() == 'es' ? 'abrir' : 'open'}*
+*⭔ ${usedPrefix + command} ${lenguajeGB.lenguaje() == 'es' ? 'cerrar' : 'close'}*`.trim()
+await conn.groupSettingUpdate(m.chat, isClose)
+if (isClose === 'not_announcement'){
+await conn.sendFile(m.chat, pp, 'error.jpg', lenguajeGB.smsGrupoOpen(), m)}
+if (isClose === 'announcement'){
+await conn.sendFile(m.chat, pp, 'error.jpg', lenguajeGB.smsGrupoClose(), m)}      
+break
+    
+case isCommand11:
+if (!(isAdmin || isOwner)) {
+global.dfail('admin', m, conn)
+throw false
+}
+let pesan = args.join` `
+let oi = `ღ ${lenguajeGB['smsAddB5']()} ${pesan}`
+let teks = `*${lenguajeGB['smstagaa']()}*\n\n${oi}\n\n`
+for (let mem of participants) {
+teks += `⎔ @${mem.id.split('@')[0]}\n`}
+await conn.sendMessage(m.chat, { text: teks, mentions: participants.map(a => a.id) }, )    
+break
 }} 
   
-handler.command = /^(promote|daradmin|darpoder|demote|quitarpoder|quitaradmin|setwelcome|bienvenida|edit(?:ar)?wel(?:come)?|setbye|despedida|edit(?:ar)?(bye)?|setdesk|setdesc|newdesc|descripción|descripcion|editardesc|setname|newnombre|nuevonombre|cambiarnombre|setpp(group|grup|gc)?|cambiarfoto|nuevolink|nuevoenlace|revoke|resetlink|kick|echar|hechar|sacar|ban)$/i
+handler.command = /^(promote|daradmin|darpoder|demote|quitarpoder|quitaradmin|setwelcome|bienvenida|edit(?:ar)?wel(?:come)?|setbye|despedida|edit(?:ar)?(bye)?|setdesk|setdesc|newdesc|descripción|descripcion|editardesc|setname|newnombre|nuevonombre|cambiarnombre|setpp(group|grup|gc)?|cambiarfoto|nuevolink|nuevoenlace|revoke|resetlink|kick|echar|hechar|sacar|ban|group|grupo|tagall|invocar|invocacion|todos|invocación)$/i
 handler.group = true
 handler.botAdmin = true  
 handler.admin = true
