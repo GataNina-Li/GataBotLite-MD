@@ -20,7 +20,7 @@ let mime = (quoted.msg || quoted).mimetype || ''
 let isMedia = /image|video|sticker|audio/.test(mime)
 let more = String.fromCharCode(8206)
 let masss = more.repeat(850)
-let htextos = `${text ? text : "*Hola!!*"}`
+let htextos = `${text ? text : "*HOLA!!!*"}`
 if ((isMedia && quoted.mtype === 'imageMessage') && htextos) {
 var mediax = await quoted.download?.()
 conn.sendMessage(m.chat, { image: mediax, mentions: users, caption: htextos, mentions: users }, { quoted: m })
@@ -39,5 +39,4 @@ await conn.relayMessage(m.chat, {extendedTextMessage:{text: `${masss}\n${htextos
 handler.command = /^(hidetag|notificar|notify)$/i
 handler.group = true
 handler.admin = true
-handler.register = true
 export default handler
