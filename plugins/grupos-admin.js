@@ -33,7 +33,7 @@ user = number + '@s.whatsapp.net'
 } finally {
 await conn.groupParticipantsUpdate(m.chat, [user], 'promote')
 await conn.reply(m.chat, lenguajeGB['smsAvisoEG']() + lenguajeGB['smsDemott2'](), fkontak, m)
-}}
+}
 break
   
 /*case isCommand2:
