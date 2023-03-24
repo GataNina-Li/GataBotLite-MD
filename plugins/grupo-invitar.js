@@ -19,8 +19,8 @@ const pp = await conn.profilePictureUrl(m.chat, 'image').catch(_ => null)
 const jpegThumbnail = pp ? await (await fetch(pp)).buffer() : Buffer.alloc(0)
 //const add = getBinaryNodeChild(response, 'add')
 const participant = getBinaryNodeChildren(response, 'add')
-//let anu = participant[0].content.filter(v => v)
-//if (anu[0].attrs.error == 408) conn.sendButton(m.chat, `Tidak dapat menambahkan @${anu[0].attrs.jid.split('@')[0]}!\nKabarnya si @${anu[0].attrs.jid.split('@')[0]} baru keluar dari grup ini :'v`, wm, 'link', usedPrefix + `link`, m)
+let anu = participant[0].content.filter(v => v)
+if (anu[0].attrs.error == 408) conn.sendButton(m.chat, `Tidak dapat menambahkan @${anu[0].attrs.jid.split('@')[0]}!\nKabarnya si @${anu[0].attrs.jid.split('@')[0]} baru keluar dari grup ini :'v`, wm, 'link', usedPrefix + `link`, m)
 for (const user of participant[0].content.filter(item => item.attrs.error == 403)) {
 
 const jid = user.attrs.jid
