@@ -1,7 +1,9 @@
+import fetch from 'node-fetch'
 let handler = async (m, { conn, command, usedPrefix, args, participants, groupMetadata }) => {
 let pp, groupAdmins, listAdmin, owner
 const isCommand1 = /^(infogrupo|gro?upinfo|info(gro?up|gc))$/i.test(command)
 const isCommand2 = /^(admins|@admins|dmins)$/i.test(command)
+const isCommand3 = /^(enlace|link(gro?up)?)$/i.test(command)
 
 async function reportError(e) {
 await m.reply(lenguajeGB['smsMalError3']() + '\n*' + lenguajeGB.smsMensError1() + '*\n*' + usedPrefix + `${lenguajeGB.lenguaje() == 'es' ? 'reporte' : 'report'}` + '* ' + `${lenguajeGB.smsMensError2()} ` + usedPrefix + command)
@@ -51,24 +53,32 @@ listAdmin = groupAdmins.map((v, i) => `*» ${i + 1}. @${v.id.split('@')[0]}*`).j
 owner = groupMetadata.owner || groupAdmins.find(p => p.admin === 'superadmin')?.id || m.chat.split`-`[0] + '@s.whatsapp.net'
 let pesan = args.join` `
 let oi = `${lenguajeGB.smsAddB5()} _${pesan}_`
-
-let textoA = 
-`*⊱ ──── 《.⋅ 🐈 ⋅.》 ──── ⊰*
-ෆ ${lenguajeGB.smsAddB3()}
-ෆ ${oi}
-*⊱ ──── 《.⋅ ${vs} ⋅.》 ──── ⊰*`
-
-let textoB = 
-`${listAdmin}
+let textoA = `ෆ ${lenguajeGB.smsAddB3()}
+ෆ ${oi}\n\n`
+let textoB = `${listAdmin}
 ⛔ ${lenguajeGB.smsAddB4()} ⛔`.trim()
-await conn.sendFile(m.chat, pp, 'error.jpg', info, m, false, { mentions: [...groupAdmins.map(v => v.id), owner] })
+await conn.sendFile(m.chat, pp, 'error.jpg', textoA + textoB, m, false, { mentions: [...groupAdmins.map(v => v.id), owner] })
+} catch (e) {
+reportError(e)
+} 
+break
+    
+case isCommand3:
+let who = m.mentionedJid && m.mentionedJid[0] ? m.mentionedJid[0] : m.fromMe ? conn.user.jid : m.sender
+let mentionedJid = [who]
+let username = conn.getName(who)
+let group = m.chat
+pp = await conn.profilePictureUrl(m.chat, 'image').catch(_ => null) || './src/grupos.jpg' 
+let fsizedoc = '1'.repeat(10)
+try{
+await conn.sendFile(m.chat, pp, 'error.jpg', 'https://chat.whatsapp.com/' + await conn.groupInviteCode(group), m)
 } catch (e) {
 reportError(e)
 } 
 break
 }}
 
-handler.command = /^(infogrupo|gro?upinfo|info(gro?up|gc)|admins|@admins|dmins)$/i
+handler.command = /^(infogrupo|gro?upinfo|info(gro?up|gc)|admins|@admins|dmins|enlace|link(gro?up)?)$/i
 handler.group = true
 handler.register = true
 export default handler
