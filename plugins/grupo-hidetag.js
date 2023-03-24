@@ -23,7 +23,8 @@ let masss = more.repeat(850)
 let htextos = `${text ? text : "*HOLA!!!*"}`
 if ((isMedia && quoted.mtype === 'imageMessage') && htextos) {
 var mediax = await quoted.download?.()
-conn.sendMessage(m.chat, { image: mediax, mentions: users, caption: htextos, mentions: users }, { quoted: m })
+await conn.relayMessage(m.chat, {extendedTextMessage:{text: `${masss}\n${htextos}\n`, ...{ contextInfo: { mentionedJid: users, externalAdReply: { thumbnail: img14, sourceUrl: md }}}}}, {})
+//conn.sendMessage(m.chat, { image: mediax, mentions: users, caption: htextos, mentions: users }, { quoted: m })
 } else if ((isMedia && quoted.mtype === 'videoMessage') && htextos) {
 var mediax = await quoted.download?.()
 conn.sendMessage(m.chat, { video: mediax, mentions: users, mimetype: 'video/mp4', caption: htextos }, { quoted: m })
