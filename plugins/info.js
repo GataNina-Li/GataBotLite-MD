@@ -19,7 +19,7 @@ fkontak = { "key": { "participants":"0@s.whatsapp.net", "remoteJid": "status@bro
 
 const isCommand1 = /^(estado|status|estate|state|stado|stats|botstat(us)?)$/i.test(command)  
 const isCommand2 = /^(cuenta(s)?oficiales?|gataig|(cuentas|account)s?g?b|(ig)?gata|(cuentasdegata)?bot)(s?)$/i.test(command)  
-const isCommand3 = /^(gata(bot)?groups?|grupos(ofc|degatabot|gb)|grupogb|gatagroups?|group(ofc|sofc))$/i.test(command) 
+const isCommand3 = /^(gata(bot)?groups?|grupos(ofc|degatabot|gb)|grupogb|gatagroups?|grupos|group(ofc|sofc))$/i.test(command) 
 const isCommand4 = /^(c(ó|o)digo|sc|git|script)$/i.test(command) 
 const isCommand5 = /^(instalar(gata)?bot|proceso(del)?bot|bot(install|proceso))$/i.test(command) 
 const isCommand6 = /^(owner|creator|propietario|dueño|dueña|propietaria|dueño|creadora|creador)$/i.test(command) 
@@ -68,13 +68,13 @@ try{
 let media = './media/menus/Menu2.jpg'
 let str = `
 ◎ *GITHUB*
-*${md}*
+*${md}*\n
 ◎ *INSTAGRAM*
-*${ig}*
+*${ig}*\n
 ◎ *YOUTUBE*
-*${yt}*
+*${yt}*\n
 ◎ *FACEBOOK*
-*${fb}*
+*${fb}*\n
 ${lenguajeGB.smsOfc2()}`.trim() 
 await conn.sendFile(m.chat, media, 'gata.jpg', lenguajeGB.smsOfc1() + '\n\n' + str, fkontak)  
 } catch (e) {
@@ -322,7 +322,7 @@ reportError(e)
 break
 }}
 
-handler.command = /^(estado|status|estate|state|stado|stats|botstat(us)?|cuenta(s)?oficiales?|gataig|(cuentas|account)s?g?b|(ig)?gata|(cuentasdegata)?bot)s?|gata(bot)?groups?|grupos(ofc|degatabot|gb)|grupogb|gatagroups?|group(ofc|sofc)$/i
+handler.command = /^(estado|status|estate|state|stado|stats|botstat(us)?|cuenta(s)?oficiales?|gataig|(cuentas|account)s?g?b|(ig)?gata|(cuentasdegata)?bot)s?|gata(bot)?groups?|grupos|grupos(ofc|degatabot|gb)|grupogb|gatagroups?|group(ofc|sofc)$/i
 export default handler
 
 function clockString(ms) {
