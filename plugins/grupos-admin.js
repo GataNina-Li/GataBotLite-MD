@@ -7,7 +7,7 @@ const isCommand3 = /^(setwelcome|bienvenida|edit(?:ar)?wel(?:come)?)$/i.test(com
 const isCommand4 = /^(setbye|despedida|edit(?:ar)?(bye)?)$/i.test(command)
 const isCommand5 = /^(setdesk|setdesc|newdesc|descripción|descripcion|cambiardesc)$/i.test(command)
 const isCommand6 = /^(setname|newnombre|nuevonombre|cambiarnombre)$/i.test(command);
-const isCommand7 = /^(setpp(group|grup|gc)?|cambiarfoto)\b$/i.test(command)
+const isCommand7 = /^(setpp(group|grup|gc)?|cambiarft)$/i.test(command)
 const isCommand8 = /^(nuevolink|nuevoenlace|revoke|resetlink)$/i.test(command)
 const isCommand9 = /^(kick|echar|hechar|sacar|ban)$/i.test(command)
 const isCommand10 = /^(group|grupo)$/i.test(command)
@@ -170,7 +170,7 @@ await conn.sendMessage(m.chat, { text: teks, mentions: participants.map(a => a.i
 break
 }} 
   
-handler.command = /^(promote|daradmin|darpoder|demote|quitarpoder|quitaradmin|setwelcome|bienvenida|edit(?:ar)?wel(?:come)?|setbye|despedida|edit(?:ar)?(bye)?|setdesk|setdesc|newdesc|descripción|descripcion|cambiardesc|setname|newnombre|nuevonombre|cambiarnombre|cambiarfoto|setpp(group|grup|gc)?|nuevolink|nuevoenlace|revoke|resetlink|kick|echar|hechar|sacar|ban|group|grupo|tagall|invocar|invocacion|todos|invocación)$/i
+handler.command = /^(promote|daradmin|darpoder|demote|quitarpoder|quitaradmin|setwelcome|bienvenida|edit(?:ar)?wel(?:come)?|setbye|despedida|edit(?:ar)?(bye)?|setdesk|setdesc|newdesc|descripción|descripcion|cambiardesc|setname|newnombre|nuevonombre|cambiarnombre|cambiarft|setpp(group|grup|gc)?|nuevolink|nuevoenlace|revoke|resetlink|kick|echar|hechar|sacar|ban|group|grupo|tagall|invocar|invocacion|todos|invocación)$/i
 handler.group = true
 handler.botAdmin = true  
 handler.admin = true
