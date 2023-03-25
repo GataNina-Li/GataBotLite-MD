@@ -81,7 +81,6 @@ reportError(e)
 break
     
 case isCommand4:
-
 let [, code] = text.match(/chat\.whatsapp\.com\/(?:invite\/)?([0-9A-Za-z]{20,24})/i) || []
 if (!code) throw lenguajeGB.smsMalused() + usedPrefix + command + ' ' + nna 
 try{
@@ -102,25 +101,23 @@ return metadata
 let res = await conn.query({ tag: 'iq', attrs: { type: 'get', xmlns: 'w:g2', to: '@g.us' }, content: [{ tag: 'invite', attrs: { code } }] }),
 data = extractGroupMetadata(res),
 txt = Object.keys(data).map(v => `*${v.capitalize()}:* ${data[v]}`).join('\n'),
-pp = await conn.profilePictureUrl(data.id, 'image').catch(console.error)
 let groupinfo = `
-🌺 *ID*
-→ ${data.id}
+🌺 ${lenguajeGB.smsInsGC1()}
+→ ${data.id === undefined ? '❌' : data.id}
 
-🌸 *NOMBRE*
-→ ${data.subject}
+🌸 ${lenguajeGB.smsInsGC2()}
+→ ${data.subject === undefined ? '❌' : data.subject}
 
-🌼 *CREADO*
-→ ${data.creation}
+🌼 ${lenguajeGB.smsInsGC3()}
+→ ${data.creation === undefined ? '❌' : data.creation}
 
-🌻 *ADMIN PRINCIPAL*
-→ ${data.owner}
+🌻 ${lenguajeGB.smsInsGC4()}
+→ ${data.owner === undefined ? '❌' : data.owner}
 
-🌹 *DESCRIPCIÓN*
-→ ${data.desc}
+🌹 ${lenguajeGB.smsInsGC5()}
+→ ${data.desc === undefined ? '❌' : data.desc}
 `.trim()
-//await conn.reply(m.chat, groupinfo, m)
-await conn.sendFile(m.chat, pp, 'error.jpg', groupinfo, m)
+await conn.sendFile(m.chat, gataImg.getRandom(), 'error.jpg', groupinfo, m)
 } catch (e) {
 reportError(e)
 }   
