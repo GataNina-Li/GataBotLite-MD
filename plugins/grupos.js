@@ -100,7 +100,7 @@ return metadata
 }  
 let res = await conn.query({ tag: 'iq', attrs: { type: 'get', xmlns: 'w:g2', to: '@g.us' }, content: [{ tag: 'invite', attrs: { code } }] }),
 data = extractGroupMetadata(res),
-txt = Object.keys(data).map(v => `*${v.capitalize()}:* ${data[v]}`).join('\n'),
+txt = Object.keys(data).map(v => `*${v.capitalize()}:* ${data[v]}`).join('\n')
 let groupinfo = `
 🌺 ${lenguajeGB.smsInsGC1()}
 → ${data.id === undefined ? '❌' : data.id}
