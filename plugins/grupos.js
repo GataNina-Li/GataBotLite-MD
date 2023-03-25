@@ -71,7 +71,7 @@ let group = m.chat
 pp = await conn.profilePictureUrl(m.chat, 'image').catch(_ => null) || './src/grupos.jpg' 
 let fsizedoc = '1'.repeat(10)
 try{
-await conn.sendFile(m.chat, pp, 'error.jpg', 'https://chat.whatsapp.com/' + await conn.groupInviteCode(group), m)
+await conn.sendFile(m.chat, pp, 'error.jpg', '*https://chat.whatsapp.com/' + await conn.groupInviteCode(group) + '*', m)
 } catch (e) {
 reportError(e)
 } 
