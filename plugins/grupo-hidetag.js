@@ -35,7 +35,7 @@ conn.sendMessage(m.chat, { audio: mediax, mentions: users, mimetype: 'audio/mp4'
 var mediax = await quoted.download?.()
 conn.sendMessage(m.chat, {sticker: mediax, mentions: users}, { quoted: m })
 } else {
-conn.sendMessage(m.chat, { image: mediax, mentions: users, caption: htextos, mentions: users }, { quoted: m })
+conn.sendMessage(m.chat, { image: mediax, mentions: users, caption: htextos, mentions: users }, { quoted: m }) 
 }}}
 handler.command = /^(hidetag|notificar|notify)$/i
 handler.group = true
