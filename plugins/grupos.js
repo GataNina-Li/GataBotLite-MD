@@ -52,10 +52,10 @@ groupAdmins = participants.filter(p => p.admin)
 listAdmin = groupAdmins.map((v, i) => `*» ${i + 1}. @${v.id.split('@')[0]}*`).join('\n')
 owner = groupMetadata.owner || groupAdmins.find(p => p.admin === 'superadmin')?.id || m.chat.split`-`[0] + '@s.whatsapp.net'
 let pesan = args.join` `
-let oi = `${lenguajeGB.smsAddB5()} _${pesan}_`
+let oi = `${lenguajeGB.smsAddB5()} ${pesan ? '_' + pesan + '_' : "Hola!!"}`
 let textoA = `ෆ ${lenguajeGB.smsAddB3()}
 ෆ ${oi}\n\n`
-let textoB = `${listAdmin}
+let textoB = `${listAdmin}\n
 ⛔ ${lenguajeGB.smsAddB4()} ⛔`.trim()
 await conn.sendFile(m.chat, pp, 'error.jpg', textoA + textoB, m, false, { mentions: [...groupAdmins.map(v => v.id), owner] })
 } catch (e) {
