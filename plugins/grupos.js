@@ -1,7 +1,7 @@
 import fetch from 'node-fetch'
 import * as baileys from '@adiwajshing/baileys'
 
-let handler = async (m, { conn, command, usedPrefix, args, participants, groupMetadata }) => {
+let handler = async (m, { conn, command, usedPrefix, args, participants, groupMetadata, text }) => {
 let pp, groupAdmins, listAdmin, owner
 const isCommand1 = /^(infogrupo|gro?upinfo|info(gro?up|gc))$/i.test(command)
 const isCommand2 = /^(admins|@admins|dmins)$/i.test(command)
