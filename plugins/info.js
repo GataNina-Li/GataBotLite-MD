@@ -11,13 +11,6 @@ import fetch from 'node-fetch'
 import osu from 'node-os-utils'
 //import { sizeFormatter } from 'human-readable'
 
-let format = sizeFormatter({
-std: 'JEDEC', // 'SI' (default) | 'IEC' | 'JEDEC'
-decimalPlaces: 2,
-keepTrailingZeroes: false,
-render: (literal, symbol) => `${literal} ${symbol}B`,
-})
-
 let handler = async (m, { conn, command, usedPrefix, args, text, __dirname, isOwner, isRowner }) => {
 let name, _uptime, _muptime, uptime, totalreg, fkontak, rtotalreg, frep, _package, taguser, groups
 const grupo = [nna, nn, nnn, nnnt, nnntt, nnnttt, nnnttt2, nnnttt3, nnnttt4, nnnttt5] 
@@ -262,6 +255,12 @@ break
     
 case isCommand10:
 try {
+let format = sizeFormatter({
+std: 'JEDEC', // 'SI' (default) | 'IEC' | 'JEDEC'
+decimalPlaces: 2,
+keepTrailingZeroes: false,
+render: (literal, symbol) => `${literal} ${symbol}B`,
+})
 const chats = Object.entries(conn.chats).filter(([id, data]) => id && data.isChats)
 const groupsIn = chats.filter(([id]) => id.endsWith('@g.us')) //groups.filter(v => !v.read_only)
 const used = process.memoryUsage()
