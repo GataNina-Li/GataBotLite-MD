@@ -13,9 +13,9 @@ const isCommand9 = /^(kick|echar|hechar|sacar|ban)$/i.test(command)
 const isCommand10 = /^(group|grupo)$/i.test(command)
 const isCommand11 = /^(tagall|invocar|invocacion|todos|invocación)$/i.test(command)
 
+fkontak = { "key": { "participants":"0@s.whatsapp.net", "remoteJid": "status@broadcast", "fromMe": false, "id": "Halo" }, "message": { "contactMessage": { "vcard": `BEGIN:VCARD\nVERSION:3.0\nN:Sy;Bot;;;\nFN:y\nitem1.TEL;waid=${m.sender.split('@')[0]}:${m.sender.split('@')[0]}\nitem1.X-ABLabel:Ponsel\nEND:VCARD` }}, "participant": "0@s.whatsapp.net" }
 switch (true) {     
 case isCommand1:
-fkontak = { "key": { "participants":"0@s.whatsapp.net", "remoteJid": "status@broadcast", "fromMe": false, "id": "Halo" }, "message": { "contactMessage": { "vcard": `BEGIN:VCARD\nVERSION:3.0\nN:Sy;Bot;;;\nFN:y\nitem1.TEL;waid=${m.sender.split('@')[0]}:${m.sender.split('@')[0]}\nitem1.X-ABLabel:Ponsel\nEND:VCARD` }}, "participant": "0@s.whatsapp.net" }
 if(isNaN(text) && !text.match(/@/g)){
 }else if(isNaN(text)) {
 number = text.split`@`[1]
