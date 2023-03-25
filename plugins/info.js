@@ -323,7 +323,7 @@ reportError(e)
 break
 }}
 
-handler.command = /^(estado|status|estate|state|stado|stats|botstat(us)?|cuenta(s)?oficiales?|gataig|(cuentas|account)s?g?b|(ig)?gata|(cuentasdegata)?bot)(s?))$/i
+handler.command = /^(estado|status|estate|state|stado|stats|botstat(us)?|cuenta(s)?oficiales?|gataig|(cuentas|account)s?g?b|(ig)?gata|(cuentasdegata)?bot)(s?)$/i
 export default handler
 
 function clockString(ms) {
