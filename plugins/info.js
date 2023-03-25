@@ -8,7 +8,6 @@ import sizeFormatter from 'human-readable'
 //import MessageType from '@adiwajshing/baileys'
 import { performance } from 'perf_hooks'
 import fetch from 'node-fetch'
-import util from 'util'
 import osu from 'node-os-utils'
 //import { sizeFormatter } from 'human-readable'
 
