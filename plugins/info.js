@@ -19,7 +19,7 @@ fkontak = { "key": { "participants":"0@s.whatsapp.net", "remoteJid": "status@bro
 
 const isCommand1 = /^(estado|status|estate|state|stado|stats|botstat(us)?)$/i.test(command)  
 const isCommand2 = /^(cuenta(s)?oficiales?|gataig|(cuentas|account)s?g?b|(ig)?gata|(cuentasdegata)?bot)(s?)$/i.test(command)  
-const isCommand3 = /^(gata(bot)?groups?|grupos(ofc|degatabot|gb)|grupogb|gatagroups?|grupos|group(ofc|sofc))$/i.test(command) 
+const isCommand3 = /^(gata(bot)?groups?|grupos(ofc|degatabot|gb)|grupogb|groupsgb|gatagroups?|grupos|group(ofc|sofc))$/i.test(command) 
 const isCommand4 = /^(c(ó|o)digo|sc|git|script)$/i.test(command) 
 const isCommand5 = /^(instalar(gata)?bot|proceso(del)?bot|bot(install|proceso))$/i.test(command) 
 const isCommand6 = /^(owner|creator|propietario|dueño|dueña|propietaria|dueño|creadora|creador)$/i.test(command) 
@@ -86,16 +86,16 @@ break
 try{
 let str = `
 ${lenguajeGB.smsGrupoOfc1()}
-_⭔ ${grupo[0]}_
-_⭔ ${grupo[1]}_
-_⭔ ${grupo[2]}_
-_⭔ ${grupo[3]}_
-_⭔ ${grupo[4]}_
-_⭔ ${grupo[5]}_
+_⭔ ${grupo[0]}_\n
+_⭔ ${grupo[1]}_\n
+_⭔ ${grupo[2]}_\n
+_⭔ ${grupo[3]}_\n
+_⭔ ${grupo[4]}_\n
+_⭔ ${grupo[5]}_\n\n
 ${lenguajeGB.smsGrupoOfc2()}
-_⭔ ${grupo[6]}_
-_⭔ ${grupo[7]}_
-_⭔ ${grupo[8]}_
+_⭔ ${grupo[6]}_\n
+_⭔ ${grupo[7]}_\n
+_⭔ ${grupo[8]}_\n
 _⭔ ${grupo[9]}_`.trim()
 await conn.sendFile(m.chat, gataMenu.getRandom(), 'gata.jpg', str, fkontak)   
 } catch (e) {
@@ -322,7 +322,7 @@ reportError(e)
 break
 }}
 
-handler.command = /^(estado|status|estate|state|stado|stats|botstat(us)?|cuenta(s)?oficiales?|gataig|(cuentas|account)s?g?b|(ig)?gata|(cuentasdegata)?bot)s?|gata(bot)?groups?|grupos|grupos(ofc|degatabot|gb)|grupogb|gatagroups?|group(ofc|sofc)$/i
+handler.command = /^(estado|status|estate|state|stado|stats|botstat(us)?|cuenta(s)?oficiales?|gataig|(cuentas|account)s?g?b|(ig)?gata|(cuentasdegata)?bot)s?|gata(bot)?groups?|grupos|groupsgb|grupos(ofc|degatabot|gb)|grupogb|gatagroups?|group(ofc|sofc)$/i
 export default handler
 
 function clockString(ms) {
