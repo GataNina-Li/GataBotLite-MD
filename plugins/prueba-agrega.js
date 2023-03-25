@@ -22,9 +22,9 @@ m.reply(teks,null,{mentions:conn.parseMention(teks)})
     }
 }
 
-handler.help = ['add @numero']
+handler.help = ['prueba @numero']
 handler.tags = ['owner']
-handler.command = /^(add)$/i
+handler.command = /^(prueba)$/i
 handler.owner = true
 handler.group = true
 handler.botAdmin = true
