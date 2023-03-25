@@ -79,7 +79,8 @@ await conn.sendFile(m.chat, pp, 'error.jpg', '*https://chat.whatsapp.com/' + awa
 reportError(e)
 } 
 break
-    
+
+//FUNCIÓN HECHA POR https://github.com/Azami19
 case isCommand4:
 let [, code] = text.match(/chat\.whatsapp\.com\/(?:invite\/)?([0-9A-Za-z]{20,24})/i) || []
 if (!code) throw lenguajeGB.smsMalused() + usedPrefix + command + ' ' + nna 
