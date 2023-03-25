@@ -1,9 +1,12 @@
 import fetch from 'node-fetch'
+import * as baileys from '@adiwajshing/baileys'
+
 let handler = async (m, { conn, command, usedPrefix, args, participants, groupMetadata }) => {
 let pp, groupAdmins, listAdmin, owner
 const isCommand1 = /^(infogrupo|gro?upinfo|info(gro?up|gc))$/i.test(command)
 const isCommand2 = /^(admins|@admins|dmins)$/i.test(command)
 const isCommand3 = /^(enlace|link(gro?up)?)$/i.test(command)
+const isCommand4 = /^(inspect|inspeccionar|revisar)$/i.test(command)
 
 async function reportError(e) {
 await m.reply(lenguajeGB['smsMalError3']() + '\n*' + lenguajeGB.smsMensError1() + '*\n*' + usedPrefix + `${lenguajeGB.lenguaje() == 'es' ? 'reporte' : 'report'}` + '* ' + `${lenguajeGB.smsMensError2()} ` + usedPrefix + command)
@@ -76,9 +79,54 @@ await conn.sendFile(m.chat, pp, 'error.jpg', '*https://chat.whatsapp.com/' + awa
 reportError(e)
 } 
 break
+    
+case isCommand4:
+let [, code] = text.match(/chat\.whatsapp\.com\/(?:invite\/)?([0-9A-Za-z]{20,24})/i) || []
+if (!code) throw lenguajeGB.smsMalused() + usedPrefix + command + ' ' + nna 
+try{
+let res = await conn.query({ tag: 'iq', attrs: { type: 'get', xmlns: 'w:g2', to: '@g.us' }, content: [{ tag: 'invite', attrs: { code } }] }),
+data = extractGroupMetadata(res),
+txt = Object.keys(data).map(v => `*${v.capitalize()}:* ${data[v]}`).join('\n'),
+pp = await conn.profilePictureUrl(data.id, 'image').catch(console.error)
+let groupinfo = `
+🌺 *ID*
+→ ${data.id}
+
+🌸 *NOMBRE*
+→ ${data.subject}
+
+🌼 *CREADO*
+→ ${data.creation}
+
+🌻 *ADMIN PRINCIPAL*
+→ ${data.owner}
+
+🌹 *DESCRIPCIÓN*
+→ ${data.desc}
+`.trim()
+//await conn.reply(m.chat, groupinfo, m)
+await conn.sendFile(m.chat, pp, 'error.jpg', groupinfo, m)
+} catch (e) {
+reportError(e)
+} 
+const extractGroupMetadata = (result) => {
+const group = baileys.getBinaryNodeChild(result, 'group')
+const descChild = baileys.getBinaryNodeChild(group, 'description')
+let desc
+if (descChild) desc = baileys.getBinaryNodeChild(descChild, 'body')?.content
+const metadata = {
+id: group.attrs.id.includes('@') ? group.attrs.id : baileys.jidEncode(group.attrs.id, 'g.us'),
+subject: group.attrs.subject,
+creation: new Date(+group.attrs.creation * 1000).toLocaleString('id', { timeZone: 'America/Los_Angeles' }),
+owner: group.attrs.creator ? 'wa.me/' + baileys.jidNormalizedUser(group.attrs.creator).split('@')[0] : undefined,
+desc
+}
+return metadata
+}    
+break
 }}
 
-handler.command = /^(infogrupo|gro?upinfo|info(gro?up|gc)|admins|@admins|dmins|enlace|link(gro?up)?)$/i
+handler.command = /^(infogrupo|gro?upinfo|info(gro?up|gc)|admins|@admins|dmins|enlace|link(gro?up)?|inspect|inspeccionar|revisar)$/i
 handler.group = true
 handler.register = true
 export default handler
