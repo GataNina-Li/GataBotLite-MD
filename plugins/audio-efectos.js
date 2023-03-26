@@ -175,32 +175,32 @@ set = `-af acrusher=.${sample_rate}:${mix}:${bit_depth}:${mix_log}:log`
 m.reply(`*🎧 VALORES ASIGNADOS:*\n\`\`\`${set}\`\`\`\n1️⃣ *${bit_depth}* 2️⃣ *${sample_rate}* 3️⃣ *${mix}* 4️⃣ *${mix_log}*`)
 }
 // -- deep -- //         
-/*if (/deep/.test(command)) {
+if (/deep/.test(command)) {
 if (!args[0] || !args[1]) throw `*_PARA REALIZAR UNA CORRECTA MODIFICACIÓN DE SU AUDIO USE ESTOS PARÁMETROS_*\n${usedPrefix + command} 1️⃣ 2️⃣\n
 ⎔ *(Parámetro obligatorio)*
-⎔ MIN: *1* | MAX: *64*
-⎔ Predeterminada: *4/4*
+⎔ MIN: *1* | MAX: *15*
+⎔ Predeterminada: *4*
 1️⃣👉 _Audio de entrada, debe ser ajustado a una velocidad de reproducción deseada, involucra cambio en la duración del audio_
 
 ⎔ *(Parámetro obligatorio)*
-⎔ MIN: *0* | MAX: *2550000*
-⎔ Predeterminada: *44500*
+⎔ MIN: *2000* | MAX: *2550000*
+⎔ Predeterminada: *48000*
 2️⃣👉 _Muestreo de audio de salida en Hz, ajuste la frecuencia de muestreo deseada_
 
 *»» EJEMPLOS DE USO:*
 ${usedPrefix + command} 2 3489
-${usedPrefix + command} 32 100000
+${usedPrefix + command} 8 100000
 
 *❕ TODOS LOS PARÁMETROS SON OBLIGATORIOS, SI SE PASA DE SUS LÍMITES, ESTOS SE AGREGARÁN AL VALOR PREDETERMINADO, RECUERDE RESPONDER AL AUDIO O NOTA DE VOZ*`
 let atempo, asetrate
 if (isNaN(args[0]) || isNaN(args[1])) return replyToNumber()  
 if (!mime) return replyToAudio()
-atempo = isNaN(args[0]) || args[0] < 0 || args[0] > 65 ? '4/4' : Number(args[0])
-asetrate = isNaN(args[1]) || args[1] < 0 || args[1] > 2550000 ? 44500 : Number(args[1])
-let set = '-af atempo=4/4,asetrate=44500*2/3' //`-af atempo=${atempo},asetrate=${asetrate}*2/3`
+atempo = isNaN(args[0]) || args[0] < 1 || args[0] > 15 ? '4' : Number(args[0])
+asetrate = isNaN(args[1]) || args[1] < 2000 || args[1] > 2550000 ? 48000 : Number(args[1])
+let set = `-af atempo=${atempo}/${atempo},asetrate=${asetrate}*2/3`
 m.reply(`*🎧 VALORES ASIGNADOS:*\n\`\`\`${set}\`\`\`\n1️⃣ *${atempo}* 2️⃣ *${asetrate}*`)
-}*/
-if (/deep/.test(command)) set = '-af atempo=1,asetrate=8000*2/3'
+}
+//if (/deep/.test(command)) set = '-af atempo=1,asetrate=8000*2/3'
                
 /*
 if (/deep/.test(command)) set = '-af atempo=4/4,asetrate=44500*2/3'
