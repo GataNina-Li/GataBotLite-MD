@@ -141,12 +141,12 @@ num_d = Math.max(Math.min(num_d, d_max), d_min)
 args[2] = num_d.toFixed(1)
 break
 default:
+nearest = Math.round(num_d / 10) * 10;
+num_d = Math.max(Math.min(nearest, d_max), d_min);
+args[2] = num_d.toFixed(1);
+break    
 }
-mix = args[2] !== '' ? parseFloat(args[2]) / 100 : 0.5
-//nearest = Math.round(num_d / 10) * 10;
-//num_d = Math.max(Math.min(nearest, d_max), d_min);
-//args[2] = num_d.toFixed(1);
-//break;
+mix = args[2] !== '' ? parseFloat(args[2]) / 100 : 0.5   
 //}
 //if (args[2] > 100) {
 //mix = 0.5;
