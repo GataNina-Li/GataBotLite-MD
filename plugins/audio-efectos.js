@@ -7,6 +7,11 @@ try {
 let q = m.quoted ? m.quoted : m
 let mime = ((m.quoted ? m.quoted : m.msg).mimetype || '')
 let set
+//function showAudioParamsUsage() { throw `*_PARA REALIZAR UNA CORRECTA MODIFICACIÓN DE SU AUDIO USE ESTOS PARÁMETROS_*\n${usedPrefix + command} 1️⃣ 2️⃣ 3️⃣ 4️⃣`}
+function replyToAudio() { m.reply('*RESPONDA A UN AUDIO O NOTA DE VOZ*')}
+function replyToNumber() { m.reply(`*ESTOS PARÁMETROS SOLO ADMITE NÚMEROS ESCRIBA ${usedPrefix + command} PARA CONOCER LOS PARÁMETROS*`)}
+        
+// -- bass -- //
 if (/bass/.test(command)) {
 if (!args[0] || !args[1]) throw `*_PARA REALIZAR UNA CORRECTA MODIFICACIÓN DE SU AUDIO USE ESTOS PARÁMETROS_*\n${usedPrefix + command} 1️⃣ 2️⃣ 3️⃣ 4️⃣\n
 ⎔ *(Parámetro obligatorio)*
@@ -38,8 +43,8 @@ ${usedPrefix + command} 20 10 h
 ${usedPrefix + command} 1500 15
 
 *❕ SI OMITE AGREGAR LOS PARÁMETROS OPCIONALES O SE PASA DE SUS LÍMITES, ESTOS SE AGREGARÁN AL VALOR PREDETERMINADO, RECUERDE RESPONDER AL AUDIO O NOTA DE VOZ*`
-if (isNaN(args[0]) || isNaN(args[1])) return m.reply(`*ESTOS PARÁMETROS SOLO ADMITE NÚMEROS ESCRIBA ${usedPrefix + command} PARA CONOCER LOS PARÁMETROS*`)
-if (!mime) return m.reply('*RESPONDA A UN AUDIO O NOTA DE VOZ*')
+if (isNaN(args[0]) || isNaN(args[1])) return replyToNumber()
+if (!mime) return replyToAudio()
 let f, g, width_type, width
 f = isNaN(args[0]) || args[0] < 21 || args[0] > 20001 || Number.isInteger(parseFloat(args[2])) === false ? 94 : Number(args[0])
         
@@ -58,7 +63,7 @@ width = isNaN(args[3]) || args[3] < 3 || args[3] > 501 ? 5 : Number(args[3])
 set = `-af equalizer=f=${f}:width_type=${width_type}:width=${width}:g=${g}`
 m.reply(`*🎧 VALORES ASIGNADOS:*\n\`\`\`${set.replace(/:/g, ':\n')}\`\`\`\n1️⃣ *${f}* 2️⃣ *${g}* 3️⃣ *${width_type}* 4️⃣ *${width}*`)
 }
-
+// -- vibra -- //
 if (/vibra/.test(command)) {
 if (!args[0] || !args[1]) throw `*_PARA REALIZAR UNA CORRECTA MODIFICACIÓN DE SU AUDIO USE ESTOS PARÁMETROS_*\n${usedPrefix + command} 1️⃣ 2️⃣\n
 ⎔ *(Parámetro obligatorio)*
@@ -75,9 +80,9 @@ if (!args[0] || !args[1]) throw `*_PARA REALIZAR UNA CORRECTA MODIFICACIÓN DE S
 ${usedPrefix + command} 550 20 
 ${usedPrefix + command} 2843 43
 
-*❕ SI OMITE AGREGAR LOS PARÁMETROS OPCIONALES O SE PASA DE SUS LÍMITES, ESTOS SE AGREGARÁN AL VALOR PREDETERMINADO, RECUERDE RESPONDER AL AUDIO O NOTA DE VOZ*`
-if (isNaN(args[0]) || isNaN(args[1])) return m.reply(`*ESTOS PARÁMETROS SOLO ADMITE NÚMEROS ESCRIBA ${usedPrefix + command} PARA CONOCER LOS PARÁMETROS*`)  
-if (!mime) return m.reply('*RESPONDA A UN AUDIO O NOTA DE VOZ*')  
+*❕ TODOS LOS PARÁMETROS SON OBLIGATORIOS, SI SE PASA DE SUS LÍMITES, ESTOS SE AGREGARÁN AL VALOR PREDETERMINADO, RECUERDE RESPONDER AL AUDIO O NOTA DE VOZ*`
+if (isNaN(args[0]) || isNaN(args[1])) return replyToNumber()  
+if (!mime) return replyToAudio()
 let f, d
 f = isNaN(args[0]) || args[0] < 19 || args[0] > 20001 ? 15 : Number(args[0])
 let d_min = 0, d_max = 100;
@@ -98,7 +103,7 @@ d = args[1] !== '' ? parseFloat(args[1]) / 100 : 0.5
 set = `-filter_complex "vibrato=f=${f}:d=${d}"`
 m.reply(`*🎧 VALORES ASIGNADOS:*\n\`\`\`${set}\`\`\`\n1️⃣ *${f}* 2️⃣ *${d}*`)
 }
-        
+// -- blown -- //        
 if (/blown/.test(command)) {
 if (!args[0] || !args[1]) throw `*_PARA REALIZAR UNA CORRECTA MODIFICACIÓN DE SU AUDIO USE ESTOS PARÁMETROS_*\n${usedPrefix + command} 1️⃣ 2️⃣ 3️⃣ 4️⃣\n
 ⎔ *(Parámetro obligatorio)*
@@ -127,8 +132,8 @@ ${usedPrefix + command} 17 2500 67
 ${usedPrefix + command} 30 8000
 
 *❕ SI OMITE AGREGAR LOS PARÁMETROS OPCIONALES O SE PASA DE SUS LÍMITES, ESTOS SE AGREGARÁN AL VALOR PREDETERMINADO, RECUERDE RESPONDER AL AUDIO O NOTA DE VOZ*`
-if (isNaN(args[0]) || isNaN(args[1])) return m.reply(`*ESTOS PARÁMETROS SOLO ADMITE NÚMEROS ESCRIBA ${usedPrefix + command} PARA CONOCER LOS PARÁMETROS*`)  
-if (!mime) return m.reply('*RESPONDA A UN AUDIO O NOTA DE VOZ*')
+if (isNaN(args[0]) || isNaN(args[1])) return replyToNumber()  
+if (!mime) return replyToAudio()
 let bit_depth, sample_rate, mix, mix_log
 let d_min, d_max, input_d, num_d, nearest
 bit_depth = isNaN(args[0]) || args[0] < 7 || args[0] > 33 ? 16 : Number(args[0])
@@ -169,9 +174,34 @@ mix_log = args[3] !== '' ? parseFloat(args[3]) / 100 : 0.5
 set = `-af acrusher=.${sample_rate}:${mix}:${bit_depth}:${mix_log}:log`
 m.reply(`*🎧 VALORES ASIGNADOS:*\n\`\`\`${set}\`\`\`\n1️⃣ *${bit_depth}* 2️⃣ *${sample_rate}* 3️⃣ *${mix}* 4️⃣ *${mix_log}*`)
 }
+// -- deep -- //         
+if (/deep/.test(command)) {
+if (!args[0]) throw `*_PARA REALIZAR UNA CORRECTA MODIFICACIÓN DE SU AUDIO USE ESTOS PARÁMETROS_*\n${usedPrefix + command} 1️⃣ 2️⃣\n
+⎔ *(Parámetro obligatorio)*
+⎔ MIN: *1* | MAX: *64*
+⎔ Predeterminada: *4/4*
+1️⃣👉 _Audio de entrada, debe ser ajustado a una velocidad de reproducción deseada, ivolucra cambio en la duración del audio_
+
+⎔ *(Parámetro obligatorio)*
+⎔ MIN: *0* | MAX: *2550000*
+⎔ Predeterminada: *44500*
+2️⃣👉 _Muestreo de audio de salida en Hz, ajuste la frecuencia de muestreo deseada_
+
+*»» EJEMPLOS DE USO:*
+${usedPrefix + command} 2 3489
+${usedPrefix + command} 32 100000
+
+*❕ TODOS LOS PARÁMETROS SON OBLIGATORIOS, SI SE PASA DE SUS LÍMITES, ESTOS SE AGREGARÁN AL VALOR PREDETERMINADO, RECUERDE RESPONDER AL AUDIO O NOTA DE VOZ*`
+
+if (isNaN(args[0]) || isNaN(args[1])) return replyToNumber()  
+if (!mime) return replyToAudio()
+let atempo = isNaN(args[0]) || args[0] < 0 || args[0] > 65 ? '4/4' : Number(args[0])
+let asetrate = isNaN(args[1]) || args[1] < 0 || args[1] > 2550000 ? 44500 : Number(args[1])
+let set = `-af atempo=${atempo},asetrate=${asetrate}*2/3`
+m.reply(`*🎧 VALORES ASIGNADOS:*\n\`\`\`${set}\`\`\`\n1️⃣ *${atempo}* 2️⃣ *${asetrate}*`)
+}
                
 /*
-if (/blown/.test(command)) set = '-af acrusher=.1:1:64:0:log'
 if (/deep/.test(command)) set = '-af atempo=4/4,asetrate=44500*2/3'
 if (/earrape/.test(command)) set = '-af volume=12'
 if (/fast/.test(command)) set = '-filter:a "atempo=1.63,asetrate=44100"'
