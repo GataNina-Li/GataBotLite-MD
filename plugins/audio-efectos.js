@@ -21,7 +21,7 @@ if (/bass/.test(command)) {
       
 let f = Number(args[0]);
 let g = Number(args[1]);
-if (isNaN(f) || isNaN(g) || f =< 21 || f => 20001 || g =< -31 || g => 31) {
+if (isNaN(f) || isNaN(g) || f < 21 || f > 20001 || g < -31 || g > 31) {
 f = 94;
 g = 30;
 await m.reply(`Valores f y/o g fuera de rango, se han asignado los valores predeterminados: f=${f}, g=${g}`);
