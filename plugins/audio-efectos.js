@@ -195,8 +195,8 @@ ${usedPrefix + command} 8 100000
 let atempo, asetrate
 if (isNaN(args[0]) || isNaN(args[1])) return replyToNumber()  
 if (!mime) return replyToAudio()
-atempo = isNaN(args[0]) || args[0] < 0 || args[0] > 16 ? '4' : Number(args[0])
-asetrate = isNaN(args[1]) || args[1] < 1999 || args[1] > 2550001 ? 48000 : Number(args[1])
+atempo = isNaN(args[0]) || args[0] < 0 || args[0] > 16 || Number.isInteger(parseFloat(args[0])) === false ? '4' : Number(args[0])
+asetrate = isNaN(args[1]) || args[1] < 1999 || args[1] > 2550001 || Number.isInteger(parseFloat(args[0])) === false ? 48000 : Number(args[1])
 set = `-af atempo=${atempo}/${atempo},asetrate=${asetrate}*2/3`
 m.reply(`*🎧 VALORES ASIGNADOS:*\n\`\`\`${set}\`\`\`\n1️⃣ *${atempo}* 2️⃣ *${asetrate}*`)
 }
