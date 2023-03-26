@@ -87,7 +87,7 @@ conn.sendFile(m.chat, buff, ran, null, m, true, {
 type: 'audioMessage', 
 ptt: true 
 })})
-} else throw `*RESPONDA A UN AUDIO O NOTA DE VOZ PARA APLICAR EL FILTRO**`
+} else throw `*RESPONDA A UN AUDIO O NOTA DE VOZ PARA APLICAR EL FILTRO*`
 } catch (e) {
 throw e
 }}
