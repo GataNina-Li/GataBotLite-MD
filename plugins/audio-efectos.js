@@ -146,10 +146,19 @@ num_d = Math.max(Math.min(nearest, d_max), d_min);
 args[2] = num_d.toFixed(1);
 break;
 }
-if (args[2] > 101) {
+if (isNaN(args[2]) || args[2] < 0 || args[2] > 1000) {
 mix = 0.5
 } else {
-mix = args[2] !== '' ? parseFloat(args[2]) / 100 : 0.5
+num_d = parseFloat(args[2]);
+if (num_d % 10 === 0 || num_d === 100) {
+num_d = Math.max(Math.min(num_d, d_max), d_min);
+args[2] = num_d.toFixed(1)
+} else {
+nearest = Math.round(num_d / 10) * 10
+num_d = Math.max(Math.min(nearest, d_max), d_min);
+args[2] = num_d.toFixed(1);
+}
+mix = num_d / 100
 }
                
 d_min = 0, d_max = 100
