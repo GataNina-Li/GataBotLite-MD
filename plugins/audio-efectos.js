@@ -41,7 +41,7 @@ ${usedPrefix + command} 1500 15
 
 if (isNaN(args[0]) || isNaN(args[1])) return m.reply(`*ESTOS PARÁMETROS SOLO ADMITE NÚMEROS ESCRIBA ${usedPrefix + command} PARA CONOCER LOS PARÁMETROS*`)     
 let f, g, width_type, width
-f = isNaN(args[0]) || args[0] < 21 || args[0] > 20001 ? 94 : Number(args[0])
+f = isNaN(args[0]) || args[0] < 21 || args[0] > 20001 || Number.isInteger(parseFloat(args[2])) === false ? 94 : Number(args[0])
         
 let input_g = isNaN(args[1]) ? '' : args[1]
 let num_g = parseInt(input_g);
@@ -50,7 +50,7 @@ args[1] = num_g < 0 ? input_g : `-${input_g}`
 } else {
 args[1] = ''
 }
-g = args[1] !== '' ? parseInt(args[1]) : 25
+g = args[1] !== '' && Number.isInteger(parseFloat(args[2])) === false ? parseInt(args[1]) : 25
         
 const allowedWidthTypes = ['q', 'h', 'o']
 width_type = allowedWidthTypes.includes(args[2]) ? args[2] : 'o'
