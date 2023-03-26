@@ -131,7 +131,7 @@ let bit_depth, sample_rate, mix, mix_log
 let d_min, d_max, input_d, num_d, nearest
 bit_depth = isNaN(args[0]) || args[0] < 7 || args[0] > 33 ? 16 : Number(args[0])
 sample_rate = isNaN(args[1]) || args[1] < 499 || args[1] > 48001 ? 44100 : Number(args[1])
-        
+               
 d_min = 0, d_max = 100;
 input_d = isNaN(args[2]) ? '' : args[2]
 num_d = parseFloat(input_d)
@@ -146,9 +146,8 @@ num_d = Math.max(Math.min(nearest, d_max), d_min)
 args[2] = num_d.toFixed(1)
 break
 }
-mix = args[2] !== '' ? parseFloat(args[2]) / 100 : 0.5        
-//mix = isNaN(args[2]) || args[2] < 0 || args[2] > 1 ? 0.5 : Number(args[2])
-        
+mix = args[2] !== '' ? parseFloat(args[2]) / 100 : 0.5
+               
 d_min = 0, d_max = 100;
 input_d = isNaN(args[3]) ? '' : args[3]
 num_d = parseFloat(input_d)
@@ -164,9 +163,8 @@ args[3] = num_d.toFixed(1)
 break
 }
 mix_log = args[3] !== '' ? parseFloat(args[3]) / 100 : 0.5
-//mix_log = isNaN(args[3]) || args[3] < 0 || args[3] > 1 ? 0 : Number(args[3])
 set = `-af acrusher=.${bit_depth}:1:${sample_rate}:${mix}:${mix_log}:log`
-m.reply(`*🎧 VALORES ASIGNADOS:*\n\`\`\`${set.replace(/:/g, ':\n')}\`\`\`\n1️⃣ *${bit_depth}* 2️⃣ *${sample_rate}* 3️⃣ *${mix}* 4️⃣ *${mix_log}*`)
+m.reply(`*🎧 VALORES ASIGNADOS:*\n\`\`\`${set}\`\`\`\n1️⃣ *${bit_depth}* 2️⃣ *${sample_rate}* 3️⃣ *${mix}* 4️⃣ *${mix_log}*`)
 }
                
 /*
