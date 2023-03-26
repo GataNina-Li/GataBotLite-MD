@@ -91,7 +91,7 @@ break
 }
 d = args[1] !== '' ? parseFloat(args[1]) / 100 : 0.5
 set = `-filter_complex "vibrato=f=${f}:d=${d}"`
-m.reply(`*🎧 VALORES ASIGNADOS:*\n\`\`\`${set.replace(/:/g, ':\n')}\`\`\`\n1️⃣ *${f}* 2️⃣ *${d}*`)
+m.reply(`*🎧 VALORES ASIGNADOS:*\n\`\`\`${set}\`\`\`\n1️⃣ *${f}* 2️⃣ *${d}*`)
 }
                
 /*
