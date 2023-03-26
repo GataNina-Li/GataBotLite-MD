@@ -59,9 +59,8 @@ set = `-af equalizer=f=${f}:width_type=${width_type}:width=${width}:g=${g}`
 m.reply(`*🎧 VALORES ASIGNADOS:*\n\`\`\`${set.replace(/:/g, ':\n')}\`\`\`\n1️⃣ *${f}* 2️⃣ *${g}* 3️⃣ *${width_type}* 4️⃣ *${width}*`)
 }
 
-
-//if (/bass/.test(command)) set = `-af equalizer=f=${args[0]}:width_type=o:width=2:g=${args[1]}` //'-af equalizer=f=94:width_type=o:width=2:g=30'
-/*if (/vibra/.test(command)) set = '-filter_complex "vibrato=f=15"'
+if (/vibra/.test(command)) set = '-filter_complex "vibrato=f=15"'
+/*
 if (/blown/.test(command)) set = '-af acrusher=.1:1:64:0:log'
 if (/deep/.test(command)) set = '-af atempo=4/4,asetrate=44500*2/3'
 if (/earrape/.test(command)) set = '-af volume=12'
