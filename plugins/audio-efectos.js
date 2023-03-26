@@ -148,21 +148,21 @@ break
 }
 mix = args[2] !== '' ? parseFloat(args[2]) / 100 : 0.5*/
         
-d_min = 0, d_max = 100;
-input_d = isNaN(args[2]) ? '' : args[2]
-num_d = parseFloat(input_d)
+let d_min = 0, d_max = 100;
+let input_d = isNaN(args[2]) ? 50 : args[2]
+let num_d = parseFloat(input_d)
 switch (num_d) {
 case 0:case 10:case 20:case 30:case 40:case 50:case 60:case 70:case 80:case 90:case 100:
-num_d = Math.max(Math.min(num_d, d_max), d_min)
-args[2] = num_d.toFixed(1)
+num_d = Math.max(Math.min(num_d, d_max), d_min);
+args[2] = num_d.toFixed(1);
 break
 default:
 nearest = Math.round(num_d / 10) * 10
 num_d = Math.max(Math.min(nearest, d_max), d_min)
-args[2] = num_d.toFixed(1)
+args[2] = num_d.toFixed(1);
 break
 }
-mix = args[2] !== '' ? parseFloat(args[2]) / 100 : 0.5 || 0.5
+mix = args[2] !== '' ? parseFloat(args[2]) / 100 : 0.5
                
 d_min = 0, d_max = 100;
 input_d = isNaN(args[3]) ? '' : args[3]
