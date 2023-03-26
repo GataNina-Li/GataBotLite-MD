@@ -113,8 +113,7 @@ reportError(e)
 break
     
 case isCommand5:
-let codigo = `
-termux-setup-storage
+let codigo = `termux-setup-storage
 apt update
 pkg upgrade
 pkg install git -y
@@ -149,7 +148,7 @@ https://ffmpeg.org/download.html
 https://imagemagick.org/script/download.php
 ⎔ _Yarn_
 https://classic.yarnpkg.com/en/docs/install#windows-stable`
-await m.reply(termux + '\n\n' + replit + '\n\n' + heroku + '\n\n' + windows)    
+await conn.reply(m.sender, termux + '\n\n' + replit + '\n\n' + heroku + '\n\n' + windows, fkontak)
 } catch (e) {
 reportError(e)
 }    
