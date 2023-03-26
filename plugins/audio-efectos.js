@@ -55,7 +55,7 @@ args[1] = num_g < 0 ? input_g : `${input_g}-`
 } else {
 args[1] = ''
 }
-g = args[1] !== '' && Number.isInteger(parseFloat(args[2])) === false ? parseInt(args[1]) : 25
+g = args[1] !== '' && Number.isInteger(parseFloat(args[1])) === false ? parseInt(args[1]) : 25
        
 const allowedWidthTypes = ['q', 'h', 'o']
 width_type = allowedWidthTypes.includes(args[2]) ? args[2] : 'o'
@@ -217,14 +217,14 @@ let v
 if (isNaN(args[0])) return replyToNumber()  
 if (!mime) return replyToAudio() 
         
-let input_g = isNaN(args[1]) ? '' : args[1]
+let input_g = isNaN(args[0]) ? '' : args[0]
 let num_g = parseInt(input_g)
 if (/^-?\d+$/.test(input_g) && num_g >= -1024 && num_g <= 1024) {
-args[1] = num_g < 0 ? input_g : `${input_g}-`
+args[0] = num_g < 0 ? input_g : `${input_g}-`
 } else {
-args[1] = ''
+args[0] = ''
 }
-v = args[1] !== '' && Number.isInteger(parseFloat(args[2])) === false ? parseInt(args[1]) : 6
+v = args[0] !== '' && Number.isInteger(parseFloat(args[0])) === false ? parseInt(args[0]) : 6
 
 set = `-af volume=${v}`
 m.reply(`*🎧 VALORES ASIGNADOS:*\n\`\`\`${set}\`\`\`\n1️⃣ *${v}*`)
