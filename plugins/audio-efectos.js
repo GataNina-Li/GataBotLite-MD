@@ -38,20 +38,20 @@ ${usedPrefix + command} 20 10 h
 ${usedPrefix + command} 1500 15
 
 *❕ SI OMITE AGREGAR LOS PARÁMETROS OPCIONALES O SE PASA DE SUS LÍMITES, ESTOS SE AGREGARÁN AL VALOR PREDETERMINADO, RECUERDE RESPONDER AL AUDIO O NOTA DE VOZ*`
+if (isNaN(args[0]) || isNaN(args[1])) return m.reply(`*ESTOS PARÁMETROS SOLO ADMITE NÚMEROS ESCRIBA ${usedPrefix + command} PARA CONOCER LOS PARÁMETROS*`)
 if (!mime) return m.reply('*RESPONDA A UN AUDIO O NOTA DE VOZ*')
-if (isNaN(args[0]) || isNaN(args[1])) return m.reply(`*ESTOS PARÁMETROS SOLO ADMITE NÚMEROS ESCRIBA ${usedPrefix + command} PARA CONOCER LOS PARÁMETROS*`)     
 let f, g, width_type, width
 f = isNaN(args[0]) || args[0] < 21 || args[0] > 20001 || Number.isInteger(parseFloat(args[2])) === false ? 94 : Number(args[0])
         
 let input_g = isNaN(args[1]) ? '' : args[1]
-let num_g = parseInt(input_g);
+let num_g = parseInt(input_g)
 if (/^-?\d+$/.test(input_g) && num_g >= -31 && num_g <= 31) {
-args[1] = num_g < 0 ? input_g : `-${input_g}`
+args[1] = num_g < 0 ? input_g : `${input_g}-`
 } else {
 args[1] = ''
 }
 g = args[1] !== '' && Number.isInteger(parseFloat(args[2])) === false ? parseInt(args[1]) : 25
-        
+       
 const allowedWidthTypes = ['q', 'h', 'o']
 width_type = allowedWidthTypes.includes(args[2]) ? args[2] : 'o'
 width = isNaN(args[3]) || args[3] < 3 || args[3] > 501 ? 5 : Number(args[3])
@@ -76,7 +76,8 @@ ${usedPrefix + command} 550 20
 ${usedPrefix + command} 2843 43
 
 *❕ SI OMITE AGREGAR LOS PARÁMETROS OPCIONALES O SE PASA DE SUS LÍMITES, ESTOS SE AGREGARÁN AL VALOR PREDETERMINADO, RECUERDE RESPONDER AL AUDIO O NOTA DE VOZ*`
-  
+if (isNaN(args[0]) || isNaN(args[1])) return m.reply(`*ESTOS PARÁMETROS SOLO ADMITE NÚMEROS ESCRIBA ${usedPrefix + command} PARA CONOCER LOS PARÁMETROS*`)  
+if (!mime) return m.reply('*RESPONDA A UN AUDIO O NOTA DE VOZ*')  
 let f, d
 f = isNaN(args[0]) || args[0] < 19 || args[0] > 20001 ? 15 : Number(args[0])
 let d_min = 0, d_max = 100;
@@ -126,7 +127,8 @@ ${usedPrefix + command} 17 2500 67
 ${usedPrefix + command} 30 8000
 
 *❕ SI OMITE AGREGAR LOS PARÁMETROS OPCIONALES O SE PASA DE SUS LÍMITES, ESTOS SE AGREGARÁN AL VALOR PREDETERMINADO, RECUERDE RESPONDER AL AUDIO O NOTA DE VOZ*`
-if (isNaN(args[0]) || isNaN(args[1])) return m.reply(`*ESTOS PARÁMETROS SOLO ADMITE NÚMEROS ESCRIBA ${usedPrefix + command} PARA CONOCER LOS PARÁMETROS*`)    
+if (isNaN(args[0]) || isNaN(args[1])) return m.reply(`*ESTOS PARÁMETROS SOLO ADMITE NÚMEROS ESCRIBA ${usedPrefix + command} PARA CONOCER LOS PARÁMETROS*`)  
+if (!mime) return m.reply('*RESPONDA A UN AUDIO O NOTA DE VOZ*')
 let bit_depth, sample_rate, mix, mix_log
 let d_min, d_max, input_d, num_d, nearest
 bit_depth = isNaN(args[0]) || args[0] < 7 || args[0] > 33 ? 16 : Number(args[0])
