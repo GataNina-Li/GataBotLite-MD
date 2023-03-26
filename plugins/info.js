@@ -11,7 +11,7 @@ import fetch from 'node-fetch'
 import osu from 'node-os-utils'
 //import { sizeFormatter } from 'human-readable'
 
-let handler = async (m, { conn, command, usedPrefix, args, text, __dirname, isOwner, isRowner }) => {
+let handler = async (m, { conn, command, usedPrefix, args, text, __dirname, isOwner, isRowner, DevMode }) => {
 let name, _uptime, _muptime, uptime, totalreg, fkontak, rtotalreg, frep, _package, taguser, groups
 const grupo = [nna, nn, nnn, nnnt, nnntt, nnnttt, nnnttt2, nnnttt3, nnnttt4, nnnttt5] 
 frep = { contextInfo: { externalAdReply: {title: wm, body: lenguajeGB.smsCreApoyo(), sourceUrl: redesMenu.getRandom(), thumbnail: await(await fetch(gataMenu.getRandom())).buffer() }}}
