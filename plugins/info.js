@@ -105,7 +105,7 @@ break
     
 case isCommand4:
 try{ 
-_package = JSON.parse(await promises.readFile(join(__dirname, '../package.json')).catch(_ => ({}))) || {}  
+_package = JSON.parse(await promises.readFile(join(__dirname, '../package.json')).catch(_ => ({}))) || {}
 await conn.sendFile(m.chat, gataMenu.getRandom(), 'gata.jpg', `*_${_package.homepage}_*\n\n` + lenguajeGB.smsPrivadoDonar(), frep)    
 } catch (e) {
 reportError(e)
