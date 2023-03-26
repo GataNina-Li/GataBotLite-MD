@@ -164,9 +164,9 @@ default:
 nearest = Math.round(num_d / 10) * 10;
 num_d = Math.max(Math.min(nearest, d_max), d_min);
 args[3] = num_d.toFixed(1);
-break
+break;
 }
-if (num_d > d_max) {
+if (args[3] > 101) {
 mix = 0.5
 } else {
 mix = args[3] !== '' ? parseFloat(args[3]) / 100 : 0.5
