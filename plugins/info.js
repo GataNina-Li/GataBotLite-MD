@@ -178,8 +178,7 @@ for (let i = 0; i < groups.length; i++) {
 txt += ` 
 ${lenguajeGB.smsLisC()} ${groups[i].subject}
 ${lenguajeGB.smsLisD()} ${groups[i].id}
-${isOwner ? `${lenguajeGB.smsLisE()} ${groups[i].participants.length}` : ''}`
-//${isOwner ? `${lenguajeGB.smsLisF()} ${!!groups[i].participants.find(v => v.id == conn.user.jid).admin}\n` : ''}
+${isOwner ? `${lenguajeGB.smsLisE()} ${groups[i].participants.length}` : ''}\n`
 }
 m.reply(txt.trim())
 } catch (e) {
