@@ -163,7 +163,7 @@ args[3] = num_d.toFixed(1)
 break
 }
 mix_log = args[3] !== '' ? parseFloat(args[3]) / 100 : 0.5
-set = `-af acrusher=.${bit_depth}:1:${sample_rate}:${mix}:${mix_log}:log`
+set = `-af acrusher=.${sample_rate}:${mix}:${bit_depth}:${mix_log}:log` //`-af acrusher=.${bit_depth}:1:${sample_rate}:${mix}:${mix_log}:log`
 m.reply(`*🎧 VALORES ASIGNADOS:*\n\`\`\`${set}\`\`\`\n1️⃣ *${bit_depth}* 2️⃣ *${sample_rate}* 3️⃣ *${mix}* 4️⃣ *${mix_log}*`)
 }
                
