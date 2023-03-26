@@ -74,8 +74,8 @@ if (!args[0] || !args[1]) throw `*_PARA REALIZAR UNA CORRECTA MODIFICACIÓN DE S
 
 *❕ SI OMITE AGREGAR LOS PARÁMETROS OPCIONALES O SE PASA DE SUS LÍMITES, ESTOS SE AGREGARÁN AL VALOR PREDETERMINADO, RECUERDE RESPONDER AL AUDIO O NOTA DE VOZ*`
   
-let f, d, 
-f = isNaN(args[0]) || args[0] < 19 || args[0] > 20001 ? 15 : Number(args[0])
+let ff, d, 
+ff = isNaN(args[0]) || args[0] < 19 || args[0] > 20001 ? 15 : Number(args[0])
 let d_min = 0, d_max = 100;
 let input_d = isNaN(args[1]) ? '' : args[1]
 let num_d = parseFloat(input_d)
@@ -92,8 +92,8 @@ break
 }
 d = args[1] !== '' ? parseFloat(args[1]) / 100 : 0.5
 //set = `-filter_complex "vibrato=f=${f}:d=${d}:t=${t}:s=${s}:r=${r}"`
-set = `-filter_complex "vibrato=f=${f}:d=${d}"`
-m.reply(`*🎧 VALORES ASIGNADOS:*\n\`\`\`${set.replace(/:/g, ':\n')}\`\`\`\n1️⃣ *${f}* 2️⃣ *${d}*`)
+set = `-filter_complex "vibrato=f=${ff}:d=${d}"`
+m.reply(`*🎧 VALORES ASIGNADOS:*\n\`\`\`${set.replace(/:/g, ':\n')}\`\`\`\n1️⃣ *${ff}* 2️⃣ *${d}*`)
 }
         
         
