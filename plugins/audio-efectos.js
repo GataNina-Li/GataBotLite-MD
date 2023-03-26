@@ -197,7 +197,7 @@ if (isNaN(args[0]) || isNaN(args[1])) return replyToNumber()
 if (!mime) return replyToAudio()
 atempo = isNaN(args[0]) || args[0] < 1 || args[0] > 15 ? '4' : Number(args[0])
 asetrate = isNaN(args[1]) || args[1] < 2000 || args[1] > 2550000 ? 48000 : Number(args[1])
-let set = `-af atempo=${atempo}/${atempo},asetrate=${asetrate}*2/3`
+let set =  '-af atempo=4/4,asetrate=44500*2/3'//`-af atempo=${atempo}/${atempo},asetrate=${asetrate}*2/3`
 m.reply(`*🎧 VALORES ASIGNADOS:*\n\`\`\`${set}\`\`\`\n1️⃣ *${atempo}* 2️⃣ *${asetrate}*`)
 }
 //if (/deep/.test(command)) set = '-af atempo=1,asetrate=8000*2/3'
@@ -221,7 +221,6 @@ let filename = join(__dirname, '../tmp/' + ran)
 let media = await q.download(true)
 exec(`ffmpeg -i ${media} ${set} ${filename}`, async (err, stderr, stdout) => {
 await unlinkSync(media)
-if (err) throw err
 if (err) return m.reply(`*SURGIÓ UN ERROR INTENTÉ CAMBIAR LOS VALORES DE LOS PARÁMETROS Y RECUERDE PARA APLICAR EL FILTRO DEBE DE RESPONDER AL AUDIO O NOTA DE VOZ*`)
 let buff = await readFileSync(filename)
 conn.sendFile(m.chat, buff, ran, null, m, true, {
