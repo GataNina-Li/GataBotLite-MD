@@ -26,7 +26,7 @@ f = 94;
 g = 30;
 //m.reply(`Valores f y/o g fuera de rango, se han asignado los valores predeterminados: f=${f}, g=${g}`);
 }
-const allowedWidthTypes = ['q', 'h', 'o'];
+const allowedWidthTypes = ['q', 'h', 'o']
 const allowedTypes = ['peak', 'lowshelf', 'highshelf'];
 width_type = allowedWidthTypes.includes(args[2]) ? args[2] : 'o';
 width = isNaN(args[3]) ? 2 : Number(args[3]);
@@ -50,7 +50,8 @@ if (/tupai|squirrel|chipmunk/.test(command)) set = '-filter:a "atempo=0.5,asetra
 if (/vibra/.test(command)) set = '-filter_complex "vibrato=f=15"'
 if (/audio8d/.test(command)) set = '-af apulsator=hz=0.125'*/
 if (/audio/.test(mime)) {
-let ran = getRandom('.mp3')
+let ran = (new Date * 1) + '.mp3'
+//let ran = getRandom('.mp3')
 let filename = join(__dirname, '../tmp/' + ran)
 let media = await q.download(true)
 exec(`ffmpeg -i ${media} ${set} ${filename}`, async (err, stderr, stdout) => {
