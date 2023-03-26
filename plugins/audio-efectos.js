@@ -221,6 +221,7 @@ let filename = join(__dirname, '../tmp/' + ran)
 let media = await q.download(true)
 exec(`ffmpeg -i ${media} ${set} ${filename}`, async (err, stderr, stdout) => {
 await unlinkSync(media)
+if (err) throw err
 if (err) return m.reply(`*SURGIÓ UN ERROR INTENTÉ CAMBIAR LOS VALORES DE LOS PARÁMETROS Y RECUERDE PARA APLICAR EL FILTRO DEBE DE RESPONDER AL AUDIO O NOTA DE VOZ*`)
 let buff = await readFileSync(filename)
 conn.sendFile(m.chat, buff, ran, null, m, true, {
