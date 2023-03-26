@@ -175,7 +175,7 @@ set = `-af acrusher=.${sample_rate}:${mix}:${bit_depth}:${mix_log}:log`
 m.reply(`*🎧 VALORES ASIGNADOS:*\n\`\`\`${set}\`\`\`\n1️⃣ *${bit_depth}* 2️⃣ *${sample_rate}* 3️⃣ *${mix}* 4️⃣ *${mix_log}*`)
 }
 // -- deep -- //         
-if (/deep/.test(command)) {
+/*if (/deep/.test(command)) {
 if (!args[0] || !args[1]) throw `*_PARA REALIZAR UNA CORRECTA MODIFICACIÓN DE SU AUDIO USE ESTOS PARÁMETROS_*\n${usedPrefix + command} 1️⃣ 2️⃣\n
 ⎔ *(Parámetro obligatorio)*
 ⎔ MIN: *1* | MAX: *64*
@@ -199,7 +199,8 @@ atempo = isNaN(args[0]) || args[0] < 0 || args[0] > 65 ? '4/4' : Number(args[0])
 asetrate = isNaN(args[1]) || args[1] < 0 || args[1] > 2550000 ? 44500 : Number(args[1])
 let set = '-af atempo=4/4,asetrate=44500*2/3' //`-af atempo=${atempo},asetrate=${asetrate}*2/3`
 m.reply(`*🎧 VALORES ASIGNADOS:*\n\`\`\`${set}\`\`\`\n1️⃣ *${atempo}* 2️⃣ *${asetrate}*`)
-}
+}*/
+if (/deep/.test(command)) set = '-af atempo=4/4,asetrate=44500*2/3'
                
 /*
 if (/deep/.test(command)) set = '-af atempo=4/4,asetrate=44500*2/3'
