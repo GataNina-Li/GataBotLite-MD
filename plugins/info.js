@@ -169,8 +169,9 @@ break
     
 case isCommand7:
 try{
-groups = Object.values(await conn.groupFetchAllParticipating())
-let txt = `${packname} ${lenguajeGB.smsLisA()}
+let txt
+groups = Object.values(await conn.groupFetchAllParticipating()),
+txt = `${packname} ${lenguajeGB.smsLisA()}
 ${lenguajeGB.smsLisB()} ${groups.length}\n`
 
 for (let i = 0; i < groups.length; i++) {
