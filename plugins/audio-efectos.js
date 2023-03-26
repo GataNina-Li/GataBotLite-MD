@@ -5,13 +5,15 @@ import { exec } from 'child_process'
 let handler = async (m, { conn, args, __dirname, usedPrefix, command }) => {
 try {
 let q = m.quoted ? m.quoted : m
-let mime = (q.msg || q).mimetype || ''
-if (!/audio/.test(mime)) throw `*PARA APLICAR EL EFECTO RESPONDA A UN AUDIO O NOTA DE VOZ USANDO ${usedPrefix + command}*`
-let audio = await q.download?.()
-if (!audio) throw '*NO SE PUDO DESCARGAR EL AUDIO*'
-//if (!args[0] || !args[1]) throw 'xample: .bass 10 10'
-//if (isNaN(args[0]) || isNaN(args[1])) return m.reply('Pake angka')
+let mime = ((m.quoted ? m.quoted : m.msg).mimetype || '')
 let set
+//try {
+//let q = m.quoted ? m.quoted : m
+//let mime = (q.msg || q).mimetype || ''
+//if (!/audio/.test(mime)) throw `*PARA APLICAR EL EFECTO RESPONDA A UN AUDIO O NOTA DE VOZ USANDO ${usedPrefix + command}*`
+//let audio = await q.download?.()
+//if (!audio) throw '*NO SE PUDO DESCARGAR EL AUDIO*'
+//let set
 if (/bass/.test(command)) set = '-af equalizer=f=94:width_type=o:width=2:g=30'
 if (/vibra/.test(command)) set = '-filter_complex "vibrato=f=15"'
 if (/blown/.test(command)) set = '-af acrusher=.1:1:64:0:log'
