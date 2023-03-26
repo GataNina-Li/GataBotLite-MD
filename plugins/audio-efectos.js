@@ -61,7 +61,7 @@ m.reply(`*🎧 VALORES ASIGNADOS:*\n\`\`\`${set.replace(/:/g, ':\n')}\`\`\`\n1�
 
 //if (/vibra/.test(command)) set = '-filter_complex "vibrato=f=15"'
 if (/vibra/.test(command)) {
-if (!args[0] || !args[1]) throw `*_PARA REALIZAR UNA CORRECTA MODIFICACIÓN DE SU AUDIO USE ESTOS PARÁMETROS_*\n${usedPrefix + command} 1️⃣ 2️⃣ 3️⃣ 4️⃣ 5️⃣\n
+if (!args[0] || !args[1]) throw `*_PARA REALIZAR UNA CORRECTA MODIFICACIÓN DE SU AUDIO USE ESTOS PARÁMETROS_*\n${usedPrefix + command} 1️⃣ 2️⃣\n
 ⎔ *(Parámetro obligatorio)*
 ⎔ MIN: *20* | MAX: *20000*
 ⎔ Predeterminada: *15*
@@ -72,26 +72,10 @@ if (!args[0] || !args[1]) throw `*_PARA REALIZAR UNA CORRECTA MODIFICACIÓN DE S
 ⎔ Predeterminada: *0.5*
 2️⃣👉 _Profundidad del vibrato, su valor final será en decimal si el valor es mayor a 90 será un entero_
 
-⎔ *(Parámetro opcional)*
-⎔ OPCIONES: *"sine", "square", "triangle", "sawup", "sawdown"*
-⎔ Predeterminada: *sine*
-3️⃣ Tipo de forma de onda del vibrato
-
-⎔ *(Parámetro opcional)*
-⎔ MIN: *1* | MAX: *20*
-⎔ Predeterminada: *5*
-4️⃣ Tamaño del buffer interno en segundos
-
-⎔ *(Parámetro opcional)*
-⎔ MIN: *1* | MAX: *10*
-⎔ Predeterminada: *0.3*
-5️⃣ Ratio de mezcla de vibrato seco/húmedo
-
 *❕ SI OMITE AGREGAR LOS PARÁMETROS OPCIONALES O SE PASA DE SUS LÍMITES, ESTOS SE AGREGARÁN AL VALOR PREDETERMINADO, RECUERDE RESPONDER AL AUDIO O NOTA DE VOZ*`
   
-let f, d, s, r
+let f, d, 
 f = isNaN(args[0]) || args[0] < 19 || args[0] > 20001 ? 15 : Number(args[0])
-//d = isNaN(args[1]) || args[1] < 0 || args[1] > 1 ? 0.5 : Number(args[1])
 let d_min = 0, d_max = 100;
 let input_d = isNaN(args[1]) ? '' : args[1]
 let num_d = parseFloat(input_d)
@@ -107,11 +91,9 @@ args[1] = num_d.toFixed(1)
 break
 }
 d = args[1] !== '' ? parseFloat(args[1]) / 100 : 0.5
-s = isNaN(args[2]) || args[2] < 0 || args[2] > 21 ? 5 : Number(args[2])
-r = isNaN(args[3]) || args[3] < 0 || args[3] > 11 ? 0.3 : Number(args[3])
 //set = `-filter_complex "vibrato=f=${f}:d=${d}:t=${t}:s=${s}:r=${r}"`
-set = `-filter_complex "vibrato=f=${f}:d=${d}:r=${r}"`
-m.reply(`*🎧 VALORES ASIGNADOS:*\n\`\`\`${set}\`\`\`\n1️⃣ *${f}* 2️⃣ *${d}* 3️⃣ *${s}* 4️⃣ *${r}*`)
+set = `-filter_complex "vibrato=f=${f}:d=${d}"`
+m.reply(`*🎧 VALORES ASIGNADOS:*\n\`\`\`${set}\`\`\`\n1️⃣ *${f}* 2️⃣ *${d}*`)
 }
         
         
