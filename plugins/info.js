@@ -4,8 +4,6 @@ import { join } from 'path'
 import fs from 'fs'
 import os, { cpus as _cpus, totalmem, freemem } from 'os';
 import util from 'util'
-//import sizeFormatter from 'human-readable'
-//import MessageType from '@adiwajshing/baileys'
 import { performance } from 'perf_hooks'
 import fetch from 'node-fetch'
 import osu from 'node-os-utils'
