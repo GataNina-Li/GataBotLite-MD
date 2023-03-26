@@ -165,7 +165,8 @@ if (/tupai|squirrel|chipmunk/.test(command)) set = '-filter:a "atempo=0.5,asetra
 if (/vibra/.test(command)) set = '-filter_complex "vibrato=f=15"'
 if (/audio8d/.test(command)) set = '-af apulsator=hz=0.125'
 if (/audio/.test(mime)) {
-      let ran = getRandom('.mp3')
+     // let ran = getRandom('.mp3')
+  let ran = (new Date * 1) + '.mp3'
       let filename = join(__dirname, '../tmp/' + ran)
       let media = await q.download(true)
 
