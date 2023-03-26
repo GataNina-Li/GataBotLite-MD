@@ -110,7 +110,7 @@ d = args[1] !== '' ? parseFloat(args[1]) / 100 : 0.5
 s = isNaN(args[2]) || args[2] < 0 || args[2] > 21 ? 5 : Number(args[2])
 r = isNaN(args[3]) || args[3] < 0 || args[3] > 11 ? 0.3 : Number(args[3])
 //set = `-filter_complex "vibrato=f=${f}:d=${d}:t=${t}:s=${s}:r=${r}"`
-set = `-filter_complex "vibrato=f=${f}:d=${d}:s=${s}"`
+set = `-filter_complex "vibrato=f=${f}:d=${d}:r=${r}"`
 m.reply(`*🎧 VALORES ASIGNADOS:*\n\`\`\`${set}\`\`\`\n1️⃣ *${f}* 2️⃣ *${d}* 3️⃣ *${s}* 4️⃣ *${r}*`)
 }
         
