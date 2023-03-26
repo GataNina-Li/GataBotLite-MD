@@ -152,7 +152,7 @@ mix = 0.5
 mix = args[2] !== '' ? parseFloat(args[2]) / 100 : 0.5
 }
                
-d_min = 0, d_max = 100;
+d_min = 0, d_max = 100
 input_d = isNaN(args[3]) ? 50 : args[3]
 num_d = parseFloat(input_d)
 switch (num_d) {
@@ -167,7 +167,7 @@ args[3] = num_d.toFixed(1);
 break
 }
 if (num_d > d_max) {
-mix = 0.5;
+mix = 0.5
 } else {
 mix = args[3] !== '' ? parseFloat(args[3]) / 100 : 0.5
 }
