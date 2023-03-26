@@ -148,7 +148,7 @@ https://ffmpeg.org/download.html
 https://imagemagick.org/script/download.php
 ⎔ _Yarn_
 https://classic.yarnpkg.com/en/docs/install#windows-stable`
-await conn.reply(m.sender, termux + '\n\n' + replit + '\n\n' + heroku + '\n\n' + windows, fkontak)
+await conn.reply(m.chat, termux + '\n\n' + replit + '\n\n' + heroku + '\n\n' + windows, fkontak)
 } catch (e) {
 reportError(e)
 }    
