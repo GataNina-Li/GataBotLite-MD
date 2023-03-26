@@ -40,21 +40,22 @@ set = `-af equalizer=f=${f}:width_type=${width_type}:width=${width}:g=${g}:type=
 
 
 if (/bass/.test(command)) {
-  let f = Number(args[0])
-  let g = Number(args[1])
-  let width_type = ''
-  let width = ''
-  
-  if (isNaN(f) || isNaN(g) || f < 21 || f > 20001 || g < -31 || g > 31) {
-    f = 94;
-    g = 30;
-    //m.reply(`Valores f y/o g fuera de rango, se han asignado los valores predeterminados: f=${f}, g=${g}`);
-  }
-    const allowedWidthTypes = ['q', 'h', 'o'];
-    width_type = allowedWidthTypes.includes(args[2]) ? args[2] : 'o';
-    width = isNaN(args[3]) ? 2 : Number(args[3]);
-    set = `-af equalizer=f=${f}:width_type=${width_type}:width=${width}:g=${g}`    
-  }
+if (!args[0] || !args[1]) throw 'Ejemplo .bass 10 30'
+if (isNaN(args[0]) || isNaN(args[1])) return m.reply('Solo numeros')     
+let f, g, width_type, width
+f = Number(args[0])
+g = Number(args[1])
+if (isNaN(f) || isNaN(g) || f < 21 || f > 20001 || g < -31 || g > 31) {
+f = 94;
+g = 30;
+m.reply(`Valores f y/o g fuera de rango, se han asignado los valores predeterminados: f=${f}, g=${g}`);
+}
+const allowedWidthTypes = ['q', 'h', 'o'];
+width_type = allowedWidthTypes.includes(args[2]) ? args[2] : 'o';
+width = isNaN(args[3]) ? 2 : Number(args[3]);
+set = `-af equalizer=f=${f}:width_type=${width_type}:width=${width}:g=${g}`
+m.reply(`Valores asignados a set:\n${set.replace(/:/g, ':\n')}`)
+}
 
 
 //if (/bass/.test(command)) set = `-af equalizer=f=${args[0]}:width_type=o:width=2:g=${args[1]}` //'-af equalizer=f=94:width_type=o:width=2:g=30'
