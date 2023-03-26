@@ -38,7 +38,7 @@ ${usedPrefix + command} 20 10 h
 ${usedPrefix + command} 1500 15
 
 *❕ SI OMITE AGREGAR LOS PARÁMETROS OPCIONALES O SE PASA DE SUS LÍMITES, ESTOS SE AGREGARÁN AL VALOR PREDETERMINADO, RECUERDE RESPONDER AL AUDIO O NOTA DE VOZ*`
-
+if (!mime) return m.reply('*RESPONDA A UN AUDIO O NOTA DE VOZ*')
 if (isNaN(args[0]) || isNaN(args[1])) return m.reply(`*ESTOS PARÁMETROS SOLO ADMITE NÚMEROS ESCRIBA ${usedPrefix + command} PARA CONOCER LOS PARÁMETROS*`)     
 let f, g, width_type, width
 f = isNaN(args[0]) || args[0] < 21 || args[0] > 20001 || Number.isInteger(parseFloat(args[2])) === false ? 94 : Number(args[0])
