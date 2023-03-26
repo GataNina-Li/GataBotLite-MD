@@ -213,10 +213,7 @@ ${usedPrefix + command} 10
 ${usedPrefix + command} -12
 
 *❕ EL PARÁMETRO ES OBLIGATORIOS, SI SE PASA DE SUS LÍMITES, ESTOS SE AGREGARÁN AL VALOR PREDETERMINADO, RECUERDE RESPONDER AL AUDIO O NOTA DE VOZ*`
-let v, input_g, num_g
-if (isNaN(args[0])) return replyToNumber()  
-if (!mime) return replyToAudio() 
-        
+let vl, input_g, num_g
 input_g = isNaN(args[0]) ? '' : args[0];
 num_g = parseInt(input_g);
 if (/^-?\d+$/.test(input_g) && num_g >= -1024 && num_g <= 1024) {
@@ -224,10 +221,10 @@ args[0] = num_g < 0 ? `${num_g}-` : `${num_g}`;
 } else {
 args[0] = '';
 }
-v = args[0] !== '' && Number.isInteger(parseFloat(args[0])) === false ? parseInt(args[0]) : 6;
+vl = args[0] !== '' && Number.isInteger(parseFloat(args[0])) === false ? parseInt(args[0]) : 6;
 
-set = `-af volume=${v}`
-m.reply(`*🎧 VALORES ASIGNADOS:*\n\`\`\`${set}\`\`\`\n1️⃣ *${v}*`)
+set = `-af volume=${vl}`
+m.reply(`*🎧 VALORES ASIGNADOS:*\n\`\`\`${set}\`\`\`\n1️⃣ *${vl}*`)
 }
         
         
