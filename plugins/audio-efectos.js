@@ -126,9 +126,9 @@ let handler = async (m, { conn, args, __dirname, usedPrefix, command }) => {
   try {
     let q = m.quoted ? m.quoted : m
     let mime = ((m.quoted ? m.quoted : m.msg).mimetype || '')
-    let set
+    
 
-    if (/bass/.test(command)) {
+    /*if (/bass/.test(command)) {
       if (!args[0] || !args[1]) throw 'Ejemplo .bass 10 9 2 3 8';
       let f = Number(args[0]);
       let g = Number(args[1]);
@@ -144,8 +144,12 @@ let handler = async (m, { conn, args, __dirname, usedPrefix, command }) => {
       const type = allowedTypes.includes(args[4]) ? args[4] : 'peak';
       let set = `-af equalizer=f=${f}:width_type=${width_type}:width=${width}:g=${g}:type=${type}`
       await m.reply(`Valores asignados a set:\n${set.replace(/:/g, ':\n')}`);
-    }
-
+    }*/
+    
+if (!args[0] || !args[1]) throw 'Ejemplo .bass 10 9 2 3 8'
+if (isNaN(args[0]) || isNaN(args[1])) return m.reply('Pake angka')
+let set
+if (/bass/.test(command)) set = `-af equalizer=f=${args[0]}:width_type=o:width=2:g=${args[1]}`
 if (/vibra/.test(command)) set = '-filter_complex "vibrato=f=15"'
 if (/blown/.test(command)) set = '-af acrusher=.1:1:64:0:log'
 if (/deep/.test(command)) set = '-af atempo=4/4,asetrate=44500*2/3'
