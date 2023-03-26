@@ -4,12 +4,12 @@ import { join } from 'path'
 import fs from 'fs'
 import os, { cpus as _cpus, totalmem, freemem } from 'os';
 import util from 'util'
-import sizeFormatter from 'human-readable'
+//import sizeFormatter from 'human-readable'
 //import MessageType from '@adiwajshing/baileys'
 import { performance } from 'perf_hooks'
 import fetch from 'node-fetch'
 import osu from 'node-os-utils'
-//import { sizeFormatter } from 'human-readable'
+import { sizeFormatter } from 'human-readable'
 
 let handler = async (m, { conn, command, usedPrefix, args, text, __dirname, isOwner, isRowner, DevMode }) => {
 let name, _uptime, _muptime, uptime, totalreg, fkontak, rtotalreg, frep, _package, taguser, groups
