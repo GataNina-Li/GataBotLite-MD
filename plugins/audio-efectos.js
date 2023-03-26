@@ -40,21 +40,55 @@ set = `-af equalizer=f=${f}:width_type=${width_type}:width=${width}:g=${g}:type=
 
 
 if (/bass/.test(command)) {
-if (!args[0] || !args[1]) throw 'Ejemplo .bass 10 30'
+if (!args[0] || !args[1]) throw `PARA REALIZAR UNA CORRECTA MODIFICACIÓNDE SU AUDIO USE ESTOS PARÁMETROS\n${usedPrefix + command} 1️⃣ 2️⃣ 3️⃣ 4️⃣\n
+⎔ *(Parámetro obligatorio)*
+⎔ MIN: *20* | MAX: *20000*
+⎔ Predeterminada: *94*
+1️⃣👉 Frecuencia central del filtro en Hz
+
+⎔ *(Parámetro obligatorio)*
+⎔ MIN: *-30* | MAX: *30*
+⎔ Predeterminada: *25*
+2️⃣👉 Ganancias del filtro en dB
+
+⎔ *(Parámetro opcional)*
+⎔ OPCIONES: *"q", "h", "o"*
+⎔ Predeterminada: *o*
+3️⃣👉 Tipo de ancho de banda del filtro
+*q:* Relación de calidad, frecuencia más específica.
+*h:* Ancho de banda constante, igualdad en todas las frecuencias.
+*o:* Ancho de banda en octavas, se duplicará o reducirá a la mitad en cada octava (cada vez que la frecuencia se duplica o se divide por dos).
+
+⎔ *(Parámetro opcional)*
+⎔ MIN: *2* | MAX: *500*
+⎔ Predeterminada: *5*
+4️⃣ Establece el ancho de banda del filtro en X valor si usa [q, h, o]
+
+»» EJEMPLOS DE USO:
+${usedPrefix + command} 200 20 o 6
+${usedPrefix + command} 20 10 q
+${usedPrefix + command} 1500 15
+
+*❕ SI OMITE AGREGAR LOS PARÁMETROS OPCIONALES O SE PASA DE SUS LÍMITES, ESTOS SE AGREGARÁN AL VALOR PREDETERMINADO*`
+
 if (isNaN(args[0]) || isNaN(args[1])) return m.reply('Solo numeros')     
 let f, g, width_type, width
-f = Number(args[0])
-g = Number(args[1])
-if (isNaN(f) || isNaN(g) || f < 21 || f > 20001 || g < -31 || g > 31) {
-f = 94;
-g = 30;
-m.reply(`Valores f y/o g fuera de rango, se han asignado los valores predeterminados: f=${f}, g=${g}`);
+f = isNaN(args[0]) || args[0] < 21 || args[0] > 20001 ? 94 : Number(args[0])
+        
+let input_g = isNaN(args[1]) ? '' : args[1]
+let num_g = parseInt(input_g);
+if (/^-?\d+$/.test(input_g) && num_g >= -31 && num_g <= 31) {
+args[1] = num_g < 0 ? input_g : `-${input_g}`
+} else {
+args[1] = ''
 }
-const allowedWidthTypes = ['q', 'h', 'o'];
-width_type = allowedWidthTypes.includes(args[2]) ? args[2] : 'o';
-width = isNaN(args[3]) ? 2 : Number(args[3]);
+g = args[1] !== '' ? parseInt(args[1]) : 25
+        
+const allowedWidthTypes = ['q', 'h', 'o']
+width_type = allowedWidthTypes.includes(args[2]) ? args[2] : 'o'
+width = isNaN(args[3]) || args[3] < 3 || args[3] > 501 ? 5 : Number(args[3])
 set = `-af equalizer=f=${f}:width_type=${width_type}:width=${width}:g=${g}`
-m.reply(`Valores asignados a set:\n${set.replace(/:/g, ':\n')}`)
+//m.reply(`Valores asignados a set:\n${set.replace(/:/g, ':\n')}`)
 }
 
 
