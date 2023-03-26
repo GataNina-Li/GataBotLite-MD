@@ -1,11 +1,21 @@
-//let handler = async (m, { conn, isOwner, usedPrefix, command, participants }) => {
-let handler = async (m, { conn }) => {
-let txt = ''
-for (let [jid, chat] of Object.entries(conn.chats).filter(([jid, chat]) => jid.endsWith('@g.us') && chat.isChats)) txt += `\n ${await conn.getName(jid)}\n ${jid} [${chat?.metadata?.read_only ? 'NO' : 'SI'}]\n\n`
-m.reply(`*GRUPOS*
-${txt}
-`.trim())
+let handler = async (m, { conn, isOwner }) => {
+try{
+let groups = Object.values(await conn.groupFetchAllParticipating()),
+txt = `${packname} ${lenguajeGB.smsLisA()}
+${lenguajeGB.smsLisB()} ${groups.length}\n`
+
+for (let i = 0; i < groups.length; i++) {
+txt += ` 
+${lenguajeGB.smsLisC()} ${groups[i].subject}
+${lenguajeGB.smsLisD()} ${groups[i].id}
+${isOwner ? `${lenguajeGB.smsLisE()} ${groups[i].participants.length}` : ''}
+${isOwner ? `${lenguajeGB.smsLisF()} \n` : ''}`
 }
+m.reply(txt.trim())
+} catch (e) {
+await m.reply(lenguajeGB['smsMalError3']() + '\n*' + lenguajeGB.smsMensError1() + '*\n*' + usedPrefix + `${lenguajeGB.lenguaje() == 'es' ? 'reporte' : 'report'}` + '* ' + `${lenguajeGB.smsMensError2()} ` + usedPrefix + command)
+console.log(`❗❗ ${lenguajeGB['smsMensError2']()} ${usedPrefix + command} ❗❗`)
+console.log(e)}}
 handler.command = /^(mundogrupo)$/i
 
 export default handler
