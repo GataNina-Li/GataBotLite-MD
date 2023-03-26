@@ -106,8 +106,7 @@ num_d = Math.max(Math.min(nearest, d_max), d_min)
 args[1] = num_d.toFixed(1)
 break
 }
-let d = args[1] !== '' ? parseFloat(args[1]) / 100 : 0.5
-
+d = args[1] !== '' ? parseFloat(args[1]) / 100 : 0.5
 t = ['sine', 'square', 'triangle', 'sawup', 'sawdown'].includes(args[2]) ? args[2] : 'sine'
 s = isNaN(args[3]) || args[3] < 0 || args[3] > 21 ? 5 : Number(args[3])
 r = isNaN(args[4]) || args[4] < 0 || args[4] > 11 ? 0.3 : Number(args[4])
