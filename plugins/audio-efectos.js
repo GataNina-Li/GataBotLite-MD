@@ -167,9 +167,9 @@ args[3] = num_d.toFixed(1)
 break
 }
 if (args[3] > 101) {
-mix = 0.5;
+mix_log = 0.5;
 } else {
-mix = args[3] !== '' ? parseFloat(args[3]) / 100 : 0.5;
+mix_log = args[3] !== '' ? parseFloat(args[3]) / 100 : 0.5;
 }
 
 set = `-af acrusher=.${sample_rate}:${mix}:${bit_depth}:${mix_log}:log`
