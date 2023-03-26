@@ -180,7 +180,7 @@ if (!args[0]) throw `*_PARA REALIZAR UNA CORRECTA MODIFICACIÓN DE SU AUDIO USE 
 ⎔ *(Parámetro obligatorio)*
 ⎔ MIN: *1* | MAX: *64*
 ⎔ Predeterminada: *4/4*
-1️⃣👉 _Audio de entrada, debe ser ajustado a una velocidad de reproducción deseada, ivolucra cambio en la duración del audio_
+1️⃣👉 _Audio de entrada, debe ser ajustado a una velocidad de reproducción deseada, involucra cambio en la duración del audio_
 
 ⎔ *(Parámetro obligatorio)*
 ⎔ MIN: *0* | MAX: *2550000*
@@ -197,7 +197,7 @@ if (isNaN(args[0]) || isNaN(args[1])) return replyToNumber()
 if (!mime) return replyToAudio()
 let atempo = isNaN(args[0]) || args[0] < 0 || args[0] > 65 ? '4/4' : Number(args[0])
 let asetrate = isNaN(args[1]) || args[1] < 0 || args[1] > 2550000 ? 44500 : Number(args[1])
-let set = `-af atempo=${atempo},asetrate=${asetrate}*2/3`
+let set = `-af atempo=${atempo},asetrate=${asetrate}*2/3` //`-af atempo=${atempo},asetrate=${asetrate}*2/3`
 m.reply(`*🎧 VALORES ASIGNADOS:*\n\`\`\`${set}\`\`\`\n1️⃣ *${atempo}* 2️⃣ *${asetrate}*`)
 }
                
