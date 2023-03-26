@@ -217,20 +217,14 @@ let v, input_g, num_g
 if (isNaN(args[0])) return replyToNumber()  
 if (!mime) return replyToAudio() 
         
-input_g = isNaN(args[0]) ? '' : args[0]
-num_g = parseInt(input_g)
+input_g = isNaN(args[0]) ? '' : args[0];
+num_g = parseInt(input_g);
 if (/^-?\d+$/.test(input_g) && num_g >= -1024 && num_g <= 1024) {
-v = args[0] !== '' && Number.isInteger(parseFloat(args[0])) === false ? parseInt(args[0]) : 6
+args[0] = num_g < 0 ? `${num_g}-` : `${num_g}`;
 } else {
-args[0] = ''
+args[0] = '';
 }
-v = args[0] !== '' && Number.isInteger(parseFloat(args[0])) === false ? parseInt(args[0]) : 6
- 
-//args[0] = num_g < 0 ? input_g : `${input_g}-`
-//} else {
-//args[0] = ''
-//}
-//v = args[0] !== '' && Number.isInteger(parseFloat(args[0])) === false ? parseInt(args[0]) : 6
+v = args[0] !== '' && Number.isInteger(parseFloat(args[0])) === false ? parseInt(args[0]) : 6;
 
 set = `-af volume=${v}`
 m.reply(`*🎧 VALORES ASIGNADOS:*\n\`\`\`${set}\`\`\`\n1️⃣ *${v}*`)
