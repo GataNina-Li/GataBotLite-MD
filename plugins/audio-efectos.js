@@ -175,10 +175,10 @@ num_d = Math.max(Math.min(nearest, d_max), d_min);
 args[3] = num_d.toFixed(1)
 break
 }
-if (args[3] > 101) {
+if (args[3] > 100) {
 mix_log = 0.5;
 } else {
-mix_log = args[3] !== '' ? parseFloat(args[3]) / 100 : 0.5;
+mix_log = args[3] !== '' ? parseFloat(args[3]) / 100 : 0.5
 }
 
 set = `-af acrusher=.${sample_rate}:${mix}:${bit_depth}:${mix_log}:log`
