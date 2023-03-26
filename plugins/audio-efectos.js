@@ -88,7 +88,7 @@ const allowedWidthTypes = ['q', 'h', 'o']
 width_type = allowedWidthTypes.includes(args[2]) ? args[2] : 'o'
 width = isNaN(args[3]) || args[3] < 3 || args[3] > 501 ? 5 : Number(args[3])
 set = `-af equalizer=f=${f}:width_type=${width_type}:width=${width}:g=${g}`
-//m.reply(`Valores asignados a set:\n${set.replace(/:/g, ':\n')}`)
+m.reply(`Valores asignados a set:\n${set.replace(/:/g, ':\n')}`)
 }
 
 
