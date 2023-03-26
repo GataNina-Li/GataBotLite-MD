@@ -1,4 +1,4 @@
-let handler = async (m, { conn, isOwner }) => {
+let handler = async (m, { conn, isOwner, usedPrefix, command }) => {
 try{
 let groups = Object.values(await conn.groupFetchAllParticipating()),
 txt = `${packname} ${lenguajeGB.smsLisA()}
