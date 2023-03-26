@@ -27,18 +27,19 @@ if (/smooth/.test(command)) set = '-filter:v "minterpolate=\'mi_mode=mci:mc_mode
 if (/tupai|squirrel|chipmunk/.test(command)) set = '-filter:a "atempo=0.5,asetrate=65100"'
 if (/vibra/.test(command)) set = '-filter_complex "vibrato=f=15"'
 if (/audio8d/.test(command)) set = '-af apulsator=hz=0.125'
-let ran = (new Date * 1) + '.mp3'
-let media = '../tmp/' + ran
-let filename = media + '.mp3'
-await promises.writeFile(media, audio)
-exec(`ffmpeg -i ${media} ${set} ${filename}`, async (err) => {
-await promises.unlink(media)
-if (err) return Promise.reject( `_*Error!*_`)
-let buff = await promises.readFile(filename)
-await m.reply(wait)
-await conn.sendFile(m.chat, buff, ran, null, m, /vn/.test(args[0]), { quoted: m, mimetype: 'audio/mp4' })
-await promises.unlink(filename)
-})
+if (/audio/.test(mime)) {
+let ran = getRandom('.mp3')
+let filename = join(__dirname, '../tmp/' + ran)
+let media = await q.download(true)
+exec(`ffmpeg -i ${media} ${set} ${filename}`, async (err, stderr, stdout) => {
+await unlinkSync(media)
+if (err) throw `_*Error!*_`
+let buff = await readFileSync(filename)
+conn.sendFile(m.chat, buff, ran, null, m, true, {
+type: 'audioMessage', 
+ptt: true 
+})})
+} else throw `*RESPONDA*`
 } catch (e) {
 throw e
 }}
