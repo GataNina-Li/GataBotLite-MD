@@ -170,7 +170,7 @@ break
 case isCommand7:
 try{
 let txt
-groups = Object.values(await conn.groupFetchAllParticipating()),
+groups = Object.values(await conn.groupFetchAllParticipating())
 txt = `${packname} ${lenguajeGB.smsLisA()}
 ${lenguajeGB.smsLisB()} ${groups.length}\n`
 
