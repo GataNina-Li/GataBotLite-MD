@@ -59,7 +59,63 @@ set = `-af equalizer=f=${f}:width_type=${width_type}:width=${width}:g=${g}`
 m.reply(`*🎧 VALORES ASIGNADOS:*\n\`\`\`${set.replace(/:/g, ':\n')}\`\`\`\n1️⃣ *${f}* 2️⃣ *${g}* 3️⃣ *${width_type}* 4️⃣ *${width}*`)
 }
 
-if (/vibra/.test(command)) set = '-filter_complex "vibrato=f=15"'
+//if (/vibra/.test(command)) set = '-filter_complex "vibrato=f=15"'
+if (/vibra/.test(command)) {
+if (!args[0] || !args[1]) throw `*_PARA REALIZAR UNA CORRECTA MODIFICACIÓN DE SU AUDIO USE ESTOS PARÁMETROS_*\n${usedPrefix + command} 1️⃣ 2️⃣ 3️⃣ 4️⃣ 5️⃣\n
+⎔ *(Parámetro obligatorio)*
+⎔ MIN: *20* | MAX: *20000*
+⎔ Predeterminada: *15*
+1️⃣👉 _Frecuencia del vibrato en Hz_
+
+⎔ *(Parámetro obligatorio)*
+⎔ MIN: *0* | MAX: *100*
+⎔ Predeterminada: *0.5*
+2️⃣👉 _Profundidad del vibrato, su valor final será en decimal_
+
+⎔ *(Parámetro opcional)*
+⎔ OPCIONES: *"sine", "square", "triangle", "sawup", "sawdown"*
+⎔ Predeterminada: *sine*
+3️⃣ Tipo de forma de onda del vibrato
+
+⎔ *(Parámetro opcional)*
+⎔ MIN: *1* | MAX: *20*
+⎔ Predeterminada: *5*
+4️⃣ Tamaño del buffer interno en segundos
+
+⎔ *(Parámetro opcional)*
+⎔ MIN: *1* | MAX: *10*
+⎔ Predeterminada: *0.3*
+5️⃣ Ratio de mezcla de vibrato seco/húmedo
+
+*❕ SI OMITE AGREGAR LOS PARÁMETROS OPCIONALES O SE PASA DE SUS LÍMITES, ESTOS SE AGREGARÁN AL VALOR PREDETERMINADO, RECUERDE RESPONDER AL AUDIO O NOTA DE VOZ*`
+  
+let f, d, t, s, r
+f = isNaN(args[0]) || args[0] < 19 || args[0] > 20001 ? 15 : Number(args[0])
+//d = isNaN(args[1]) || args[1] < 0 || args[1] > 1 ? 0.5 : Number(args[1])
+let d_min = 0, d_max = 100;
+let input_d = isNaN(args[1]) ? '' : args[1]
+let num_d = parseFloat(input_d)
+switch (num_d) {
+case 0:case 10:case 20:case 30:case 40:case 50:case 60:case 70:case 80:case 90:case 100:
+num_d = Math.max(Math.min(num_d, d_max), d_min)
+args[1] = num_d.toFixed(1)
+break
+default:
+let nearest = Math.round(num_d / 10) * 10
+num_d = Math.max(Math.min(nearest, d_max), d_min)
+args[1] = num_d.toFixed(1)
+break
+}
+let d = args[1] !== '' ? parseFloat(args[1]) / 100 : 0.5
+
+t = ['sine', 'square', 'triangle', 'sawup', 'sawdown'].includes(args[2]) ? args[2] : 'sine'
+s = isNaN(args[3]) || args[3] < 0 || args[3] > 21 ? 5 : Number(args[3])
+r = isNaN(args[4]) || args[4] < 0 || args[4] > 11 ? 0.3 : Number(args[4])
+set = `-filter_complex "vibrato=f=${f}:d=${d}:t=${t}:s=${s}:r=${r}"`
+m.reply(`*🎧 VALORES ASIGNADOS:*\n\`\`\`${set}\`\`\`\n1️⃣ *${f}* 2️⃣ *${d}* 3️⃣ *${t}* 4️⃣ *${s}* 5️⃣ *${r}*`)
+}
+        
+        
 /*
 if (/blown/.test(command)) set = '-af acrusher=.1:1:64:0:log'
 if (/deep/.test(command)) set = '-af atempo=4/4,asetrate=44500*2/3'
