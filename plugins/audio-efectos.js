@@ -24,7 +24,7 @@ let g = Number(args[1]);
 if (isNaN(f) || isNaN(g) || f < 21 || f > 20001 || g < -31 || g > 31) {
 f = 94;
 g = 30;
-m.reply(`Valores f y/o g fuera de rango, se han asignado los valores predeterminados: f=${f}, g=${g}`);
+//m.reply(`Valores f y/o g fuera de rango, se han asignado los valores predeterminados: f=${f}, g=${g}`);
 }
 const allowedWidthTypes = ['q', 'h', 'o'];
 const allowedTypes = ['peak', 'lowshelf', 'highshelf'];
@@ -32,7 +32,7 @@ const width_type = allowedWidthTypes.includes(args[2]) ? args[2] : 'o';
 const width = isNaN(args[3]) ? 2 : Number(args[3]);
 const type = allowedTypes.includes(args[4]) ? args[4] : 'peak';
 set = `-af equalizer=f=${f}:width_type=${width_type}:width=${width}:g=${g}:type=${type}`
-m.reply(`Valores asignados a set:\n${set.replace(/:/g, ':\n')}`);
+//m.reply(`Valores asignados a set:\n${set.replace(/:/g, ':\n')}`);
 }
      
 //if (/bass/.test(command)) set = `-af equalizer=f=${args[0]}:width_type=o:width=2:g=${args[1]}` //'-af equalizer=f=94:width_type=o:width=2:g=30'
