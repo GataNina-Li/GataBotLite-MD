@@ -47,3 +47,6 @@ throw e
 }}
 handler.command = /^(bass|blown|deep|earrape|fas?t|nightcore|reverse|robot|slow|smooth|tupai|squirrel|chipmunk|vibra|volume|audio8d)$/i
 export default handler
+
+const getRandom = (ext) => {
+return `${Math.floor(Math.random() * 10000)}${ext}`}
