@@ -89,7 +89,7 @@ if (!args[0] || !args[1]) throw `*_PARA REALIZAR UNA CORRECTA MODIFICACIÓN DE S
 
 *❕ SI OMITE AGREGAR LOS PARÁMETROS OPCIONALES O SE PASA DE SUS LÍMITES, ESTOS SE AGREGARÁN AL VALOR PREDETERMINADO, RECUERDE RESPONDER AL AUDIO O NOTA DE VOZ*`
   
-let f, d, t, s, r
+let f, d, s, r
 f = isNaN(args[0]) || args[0] < 19 || args[0] > 20001 ? 15 : Number(args[0])
 //d = isNaN(args[1]) || args[1] < 0 || args[1] > 1 ? 0.5 : Number(args[1])
 let d_min = 0, d_max = 100;
@@ -107,12 +107,11 @@ args[1] = num_d.toFixed(1)
 break
 }
 d = args[1] !== '' ? parseFloat(args[1]) / 100 : 0.5
-t = ['sine', 'square', 'triangle', 'sawup', 'sawdown'].includes(args[2]) ? args[2] : 'sine'
-s = isNaN(args[3]) || args[3] < 0 || args[3] > 21 ? 5 : Number(args[3])
-r = isNaN(args[4]) || args[4] < 0 || args[4] > 11 ? 0.3 : Number(args[4])
+s = isNaN(args[2]) || args[2] < 0 || args[2] > 21 ? 5 : Number(args[2])
+r = isNaN(args[3]) || args[3] < 0 || args[3] > 11 ? 0.3 : Number(args[3])
 //set = `-filter_complex "vibrato=f=${f}:d=${d}:t=${t}:s=${s}:r=${r}"`
 set = `-filter_complex "vibrato=f=${f}:d=${d}:s=${s}"`
-m.reply(`*🎧 VALORES ASIGNADOS:*\n\`\`\`${set}\`\`\`\n1️⃣ *${f}* 2️⃣ *${d}* 3️⃣ *${t}* 4️⃣ *${s}* 5️⃣ *${r}*`)
+m.reply(`*🎧 VALORES ASIGNADOS:*\n\`\`\`${set}\`\`\`\n1️⃣ *${f}* 2️⃣ *${d}* 3️⃣ *${s}* 4️⃣ *${r}*`)
 }
         
         
