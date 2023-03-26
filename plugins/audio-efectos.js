@@ -197,7 +197,7 @@ if (isNaN(args[0]) || isNaN(args[1])) return replyToNumber()
 if (!mime) return replyToAudio()
 let atempo = isNaN(args[0]) || args[0] < 0 || args[0] > 65 ? '4/4' : Number(args[0])
 let asetrate = isNaN(args[1]) || args[1] < 0 || args[1] > 2550000 ? 44500 : Number(args[1])
-let set = `-af atempo=${atempo},asetrate=${asetrate}*2/3` //`-af atempo=${atempo},asetrate=${asetrate}*2/3`
+let set = '-af atempo=4/4,asetrate=44500*2/3' //`-af atempo=${atempo},asetrate=${asetrate}*2/3`
 m.reply(`*🎧 VALORES ASIGNADOS:*\n\`\`\`${set}\`\`\`\n1️⃣ *${atempo}* 2️⃣ *${asetrate}*`)
 }
                
