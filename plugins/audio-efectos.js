@@ -133,7 +133,7 @@ bit_depth = isNaN(args[0]) || args[0] < 7 || args[0] > 33 ? 16 : Number(args[0])
 sample_rate = isNaN(args[1]) || args[1] < 499 || args[1] > 48001 ? 44100 : Number(args[1])
                        
 d_min = 0, d_max = 100
-input_d = isNaN(args[2]) || args[2] > 100 ? 50 : args[2]
+input_d = isNaN(args[2]) || args[2] > 100 || args[2] < 0 ? 50 : args[2]
 num_d = parseFloat(input_d)
 switch (num_d) {
 case 0:case 10:case 20:case 30:case 40:case 50:case 60:case 70:case 80:case 90:case 100:
