@@ -149,7 +149,7 @@ break
 mix = args[2] !== '' ? parseFloat(args[2]) / 100 : 0.5
                
 d_min = 0, d_max = 100;
-input_d = isNaN(args[3]) ? '' : args[3]
+input_d = isNaN(args[3]) ? 50 : args[3]
 num_d = parseFloat(input_d)
 switch (num_d) {
 case 0:case 10:case 20:case 30:case 40:case 50:case 60:case 70:case 80:case 90:case 100:
@@ -162,7 +162,7 @@ num_d = Math.max(Math.min(nearest, d_max), d_min)
 args[3] = num_d.toFixed(1)
 break
 }
-mix_log = args[3] !== '' ? parseFloat(args[3]) / 100 : 0.5 || 0.5
+mix_log = args[3] !== '' ? parseFloat(args[3]) / 100 : 0.5 
 set = `-af acrusher=.${sample_rate}:${mix}:${bit_depth}:${mix_log}:log` //`-af acrusher=.${bit_depth}:1:${sample_rate}:${mix}:${mix_log}:log`
 m.reply(`*🎧 VALORES ASIGNADOS:*\n\`\`\`${set}\`\`\`\n1️⃣ *${bit_depth}* 2️⃣ *${sample_rate}* 3️⃣ *${mix}* 4️⃣ *${mix_log}*`)
 }
