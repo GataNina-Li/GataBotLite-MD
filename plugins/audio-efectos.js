@@ -70,7 +70,7 @@ if (!args[0] || !args[1]) throw `*_PARA REALIZAR UNA CORRECTA MODIFICACIÓN DE S
 ⎔ *(Parámetro obligatorio)*
 ⎔ MIN: *0* | MAX: *100*
 ⎔ Predeterminada: *0.5*
-2️⃣👉 _Profundidad del vibrato, su valor final será en decimal_
+2️⃣👉 _Profundidad del vibrato, su valor final será en decimal si el valor es mayor a 90 será un entero_
 
 ⎔ *(Parámetro opcional)*
 ⎔ OPCIONES: *"sine", "square", "triangle", "sawup", "sawdown"*
@@ -111,7 +111,7 @@ t = ['sine', 'square', 'triangle', 'sawup', 'sawdown'].includes(args[2]) ? args[
 s = isNaN(args[3]) || args[3] < 0 || args[3] > 21 ? 5 : Number(args[3])
 r = isNaN(args[4]) || args[4] < 0 || args[4] > 11 ? 0.3 : Number(args[4])
 //set = `-filter_complex "vibrato=f=${f}:d=${d}:t=${t}:s=${s}:r=${r}"`
-set = `-filter_complex "vibrato=f=${f}:d=${d}"`
+set = `-filter_complex "vibrato=f=${f}:d=${d}:t=${t}"`
 m.reply(`*🎧 VALORES ASIGNADOS:*\n\`\`\`${set}\`\`\`\n1️⃣ *${f}* 2️⃣ *${d}* 3️⃣ *${t}* 4️⃣ *${s}* 5️⃣ *${r}*`)
 }
         
