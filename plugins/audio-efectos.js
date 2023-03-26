@@ -9,8 +9,8 @@ let mime = (q.msg || q).mimetype || ''
 if (!/audio/.test(mime)) throw `*PARA APLICAR EL EFECTO RESPONDA A UN AUDIO O NOTA DE VOZ USANDO ${usedPrefix + command}*`
 let audio = await q.download?.()
 if (!audio) throw '*NO SE PUDO DESCARGAR EL AUDIO*'
-if (!args[0] || !args[1]) throw 'xample: .bass 10 10'
-if (isNaN(args[0]) || isNaN(args[1])) return m.reply('Pake angka')
+//if (!args[0] || !args[1]) throw 'xample: .bass 10 10'
+//if (isNaN(args[0]) || isNaN(args[1])) return m.reply('Pake angka')
 let set
 if (/bass/.test(command)) set = `-af equalizer=f=${args[0]}:width_type=o:width=2:g=${args[1]}`
 if (/volume/.test(command)) set = `-af volume=${args[0]} -vcodec copy`
