@@ -49,7 +49,7 @@ if (/bass/.test(command)) {
     f = 94;
     g = 30;
     //m.reply(`Valores f y/o g fuera de rango, se han asignado los valores predeterminados: f=${f}, g=${g}`);
-  } else {
+  }
     const allowedWidthTypes = ['q', 'h', 'o'];
     width_type = allowedWidthTypes.includes(args[2]) ? args[2] : 'o';
     width = isNaN(args[3]) ? 2 : Number(args[3]);
