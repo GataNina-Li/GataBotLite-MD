@@ -200,8 +200,38 @@ asetrate = isNaN(args[1]) || args[1] < 1999 || args[1] > 2550001 || Number.isInt
 set = `-af atempo=${atempo}/${atempo},asetrate=${asetrate}*2/3`
 m.reply(`*🎧 VALORES ASIGNADOS:*\n\`\`\`${set}\`\`\`\n1️⃣ *${atempo}* 2️⃣ *${asetrate}*`)
 }
-// -- earrape -- //                 
-if (/earrape/.test(command)) set = '-af volume=12'
+// -- earrape -- //    
+if (/earrape/.test(command)) {
+if (!args[0]) throw `*_PARA REALIZAR UNA CORRECTA MODIFICACIÓN DE SU AUDIO USE ESTOS PARÁMETROS_*\n${usedPrefix + command} 1️⃣\n
+⎔ *(Parámetro obligatorio)*
+⎔ MIN: *-1024* | MAX: *1024*
+⎔ Predeterminada: *6*
+1️⃣👉 _Amplificador de audio en dB, un valor negativo disminuye el sonido del audio y un valor positivo aumenta el sonido del audio_
+
+*»» EJEMPLOS DE USO:*
+${usedPrefix + command} 10
+${usedPrefix + command} -12
+
+*❕ EL PARÁMETRO ES OBLIGATORIOS, SI SE PASA DE SUS LÍMITES, ESTOS SE AGREGARÁN AL VALOR PREDETERMINADO, RECUERDE RESPONDER AL AUDIO O NOTA DE VOZ*`
+let v
+if (isNaN(args[0])) return replyToNumber()  
+if (!mime) return replyToAudio() 
+        
+let input_g = isNaN(args[1]) ? '' : args[1]
+let num_g = parseInt(input_g)
+if (/^-?\d+$/.test(input_g) && num_g >= -1024 && num_g <= 1024) {
+args[1] = num_g < 0 ? input_g : `${input_g}-`
+} else {
+args[1] = ''
+}
+v = args[1] !== '' && Number.isInteger(parseFloat(args[2])) === false ? parseInt(args[1]) : 6
+
+set = `-af volume=${v}`
+m.reply(`*🎧 VALORES ASIGNADOS:*\n\`\`\`${set}\`\`\`\n1️⃣ *${v}*`)
+}
+        
+        
+//if (/earrape/.test(command)) set = '-af volume=12'
                
 /*
 if (/earrape/.test(command)) set = '-af volume=12'
