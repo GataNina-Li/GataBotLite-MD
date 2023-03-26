@@ -13,14 +13,14 @@ let set
 //if (!/audio/.test(mime)) throw `*PARA APLICAR EL EFECTO RESPONDA A UN AUDIO O NOTA DE VOZ USANDO ${usedPrefix + command}*`
 //let audio = await q.download?.()
 //if (!audio) throw '*NO SE PUDO DESCARGAR EL AUDIO*'
-//let set
+let f, g, width_type, width, type
 if (!args[0] || !args[1]) throw 'Ejemplo .bass 10 30'
 if (isNaN(args[0]) || isNaN(args[1])) return m.reply('Solo numeros')
         
 if (/bass/.test(command)) {
       
-let f = Number(args[0]);
-let g = Number(args[1]);
+f = Number(args[0]);
+g = Number(args[1]);
 if (isNaN(f) || isNaN(g) || f < 21 || f > 20001 || g < -31 || g > 31) {
 f = 94;
 g = 30;
@@ -28,15 +28,14 @@ g = 30;
 }
 const allowedWidthTypes = ['q', 'h', 'o'];
 const allowedTypes = ['peak', 'lowshelf', 'highshelf'];
-const width_type = allowedWidthTypes.includes(args[2]) ? args[2] : 'o';
-const width = isNaN(args[3]) ? 2 : Number(args[3]);
-const type = allowedTypes.includes(args[4]) ? args[4] : 'peak';
-set = `-af equalizer=f=${f}:width_type=${width_type}:width=${width}:g=${g}:type=${type}`
+width_type = allowedWidthTypes.includes(args[2]) ? args[2] : 'o';
+width = isNaN(args[3]) ? 2 : Number(args[3]);
+type = allowedTypes.includes(args[4]) ? args[4] : 'peak';
 //m.reply(`Valores asignados a set:\n${set.replace(/:/g, ':\n')}`);
 }
-     
+set = `-af equalizer=f=${f}:width_type=${width_type}:width=${width}:g=${g}:type=${type}`     
 //if (/bass/.test(command)) set = `-af equalizer=f=${args[0]}:width_type=o:width=2:g=${args[1]}` //'-af equalizer=f=94:width_type=o:width=2:g=30'
-if (/vibra/.test(command)) set = '-filter_complex "vibrato=f=15"'
+/*if (/vibra/.test(command)) set = '-filter_complex "vibrato=f=15"'
 if (/blown/.test(command)) set = '-af acrusher=.1:1:64:0:log'
 if (/deep/.test(command)) set = '-af atempo=4/4,asetrate=44500*2/3'
 if (/earrape/.test(command)) set = '-af volume=12'
@@ -49,7 +48,7 @@ if (/slow/.test(command)) set = '-filter:a "atempo=0.7,asetrate=44100"'
 if (/smooth/.test(command)) set = '-filter:v "minterpolate=\'mi_mode=mci:mc_mode=aobmc:vsbmc=1:fps=120\'"'
 if (/tupai|squirrel|chipmunk/.test(command)) set = '-filter:a "atempo=0.5,asetrate=65100"'
 if (/vibra/.test(command)) set = '-filter_complex "vibrato=f=15"'
-if (/audio8d/.test(command)) set = '-af apulsator=hz=0.125'
+if (/audio8d/.test(command)) set = '-af apulsator=hz=0.125'*/
 if (/audio/.test(mime)) {
 let ran = getRandom('.mp3')
 let filename = join(__dirname, '../tmp/' + ran)
