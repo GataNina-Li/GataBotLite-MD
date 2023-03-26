@@ -141,16 +141,16 @@ num_d = Math.max(Math.min(num_d, d_max), d_min)
 args[2] = num_d.toFixed(1)
 break
 default:
-nearest = Math.round(num_d / 10) * 10
-num_d = Math.max(Math.min(nearest, d_max), d_min)
-args[2] = num_d.toFixed(1)
+nearest = Math.round(num_d / 10) * 10;
+num_d = Math.max(Math.min(nearest, d_max), d_min);
+args[2] = num_d.toFixed(1);
 break
 }
 if (num_d > d_max) {
-num_d = d_min + ((d_max - d_min) / 2)
-args[2] = num_d.toFixed(1)
-}
+mix = 0.5
+} else {
 mix = args[2] !== '' ? parseFloat(args[2]) / 100 : 0.5
+}
                
 d_min = 0, d_max = 100;
 input_d = isNaN(args[3]) ? 50 : args[3]
@@ -161,16 +161,16 @@ num_d = Math.max(Math.min(num_d, d_max), d_min)
 args[3] = num_d.toFixed(1)
 break
 default:
-nearest = Math.round(num_d / 10) * 10
-num_d = Math.max(Math.min(nearest, d_max), d_min)
-args[3] = num_d.toFixed(1)
+nearest = Math.round(num_d / 10) * 10;
+num_d = Math.max(Math.min(nearest, d_max), d_min);
+args[3] = num_d.toFixed(1);
 break
 }
 if (num_d > d_max) {
-num_d = d_min + ((d_max - d_min) / 2)
-args[3] = num_d.toFixed(1)
-}
+mix = 0.5;
+} else {
 mix = args[3] !== '' ? parseFloat(args[3]) / 100 : 0.5
+}
 set = `-af acrusher=.${sample_rate}:${mix}:${bit_depth}:${mix_log}:log`
 m.reply(`*🎧 VALORES ASIGNADOS:*\n\`\`\`${set}\`\`\`\n1️⃣ *${bit_depth}* 2️⃣ *${sample_rate}* 3️⃣ *${mix}* 4️⃣ *${mix_log}*`)
 }
