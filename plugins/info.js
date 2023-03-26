@@ -313,7 +313,7 @@ break
 case isCommand11:
 try { 
 let donar = lenguajeGB.smsMensajeDonar().trim()
-await conn.sendFile(m.chat, img21, 'gata.jpg', lenguajeGB.smsTituloDonar() + '\n\n' + donar, fkontak) 
+await conn.sendFile(m.chat, img21, 'gata.jpg', lenguajeGB.smsTituloDonar() + '\n\n' + donar + '\n\n' + paypal + '\n' + ig, fkontak) 
 await conn.reply(m.sender, lenguajeGB.smsPrivadoDonar() + '\n\n' + paypal + '\n' + md, m)
 } catch (e) {
 reportError(e)
