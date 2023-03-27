@@ -24,7 +24,7 @@ if (/audio8d/.test(command)) set = '-af apulsator=hz=0.125:amount=1'
 if (/echo/.test(command)) set = '-af aecho=0.8:0.9:1000:0.3'
 if (/distortion/.test(command)) set = '-af distortion=0.6:1:1:0.6:0.7:0.9'//
 if (/reverb/.test(command)) set = '-af areverb=room=0.4:width=2'//
-if (/pitch/.test(command)) set = '-af "asetrate=44100,aresample=44100,atempo=1.5,rubberband=pitch=8"'
+if (/pitch/.test(command)) set = '-af "asetrate=44100,aresample=44100,atempo=1.5,pitch=8,areverb=room=0.8:hf_damping=0.1:stereo=1"'
 if (/flanger/.test(command)) set = '-af flanger=delay=0.002:depth=2:regen=0.3:width=6'
 if (/apulsator/.test(command)) set = '-af apulsator=hz=0.125'
 if (/tremolo/.test(command)) set = '-af tremolo=f=6.0:d=0.8'
