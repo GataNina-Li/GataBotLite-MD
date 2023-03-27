@@ -22,9 +22,9 @@ if (/tupai|squirrel|chipmunk/.test(command)) set = '-filter:a "atempo=0.5,asetra
 
 if (/audio8d/.test(command)) set = '-af apulsator=hz=0.125:amount=1'   
 if (/echo/.test(command)) set = '-af aecho=0.8:0.9:1000:0.3'
-if (/distortion/.test(command)) set = '-af "distort=amount=2:mode=square"'
-if (/pitch/.test(command)) set = '-af "aecho=0.8:0.9:1000:0.3, apulsator=hz=0.125:amount=1, atempo=0.7,asetrate=44100"'//'-af "aecho=0.8:0.9:1000:0.3"'//
-//if (/reverb/.test(command)) set = '-af areverb=room=0.4:width=2'//
+if (/distortion/.test(command)) set = '-af "distort=amount=2:mode=square"'//
+if (/pitch/.test(command)) set = '-af "aecho=0.8:0.9:1000:0.3, apulsator=hz=0.125:amount=1, atempo=0.7,asetrate=44100"'
+if (/reverb/.test(command)) set = '-af "reverb=ReverbTime=2:ReverbDepth=3:HFReference=1000"'//
 if (/flanger/.test(command)) set = '-af "asetrate=48000*1.5,atempo=1.5,asetrate=48000,equalizer=f=8000:width_type=h:width=50:g=6,apulsator=hz=0.125:amount=1"'
 if (/apulsator/.test(command)) set = '-af apulsator=hz=0.125'
 if (/tremolo/.test(command)) set = '-af tremolo=f=6.0:d=0.8'
