@@ -456,7 +456,7 @@ m.reply(`*🎧 VALORES ASIGNADOS:*\n\`\`\`${set}\`\`\`\n1️⃣ *${atempo}* 2️
 }
 
 //if (/audio8d/.test(command)) set = '-af apulsator=hz=0.125:amount=1'   
-if (/audio8d/.test(command)) {
+if (/edit(ed|ar)?audio8d/.test(command)) {
 if (!args[0] || !args[1]) throw `*_PARA REALIZAR UNA CORRECTA MODIFICACIÓN DE SU AUDIO USE ESTOS PARÁMETROS_*\n${usedPrefix + command} 1️⃣ 2️⃣\n
 ⎔ *(Parámetro obligatorio)*
 ⎔ MIN: *0.001* | MAX: *5*
@@ -469,7 +469,7 @@ if (!args[0] || !args[1]) throw `*_PARA REALIZAR UNA CORRECTA MODIFICACIÓN DE S
 2️⃣👉 _Ajusta la cantidad de modulación que se aplica al audio._
 
 *»» EJEMPLOS DE USO:*
-${usedPrefix + command} 0.008 0.03
+${usedPrefix + command} 0.555 0.50
 ${usedPrefix + command} 1 0.07
 
 *❕ TODOS LOS PARÁMETROS SON OBLIGATORIOS, SI SE PASA DE SUS LÍMITES, ESTOS SE AGREGARÁN AL VALOR PREDETERMINADO, RECUERDE RESPONDER AL AUDIO O NOTA DE VOZ*`
@@ -480,7 +480,6 @@ let hz, amount, ar
 
 if (Number.isInteger(parseFloat(args[0]))) {
 hz = isNaN(args[0]) || args[0] < 1 || args[0] > 5 ? 0.125 : Number(args[0]);
-//hz = hz.toFixed(3);
 } else {
 ar = parseFloat(args[0]).toFixed(3);
 hz = isNaN(ar) || ar < 0.001 || ar > 0.999 ? 0.125 : Number(ar);
@@ -488,12 +487,10 @@ hz = isNaN(ar) || ar < 0.001 || ar > 0.999 ? 0.125 : Number(ar);
         
 if (Number.isInteger(parseFloat(args[1]))) {
 amount = isNaN(args[1]) || args[1] < 0 || args[1] > 1 ? 1 : Number(args[1]);
-//amount = amount.toFixed(2);
 } else {
 ar = parseFloat(args[1]).toFixed(2);
 amount = isNaN(ar) || ar < 0.01 || ar > 0.99 ? 1 : Number(ar);
 }
-
 set = `-af apulsator=hz=${hz}:amount=${amount}`
 m.reply(`*🎧 VALORES ASIGNADOS:*\n\`\`\`${set}\`\`\`\n1️⃣ *${hz}* 2️⃣ *${amount}*`);
 }
@@ -544,7 +541,7 @@ ptt: true
 } catch (e) {
 throw e
 }}
-handler.command = /^(bass|blown|deep|earrape|fas?t|nightcore|reverse|robot|slow|smooth|tupai|squirrel|chipmunk|vibra|volume|audio8d)$/i
+handler.command = /^(edit(ed|ar)?(bass|blown|deep|earrape|fas?t|nightcore|reverse|robot|slow|smooth|tupai|squirrel|chipmunk|vibra|volume|audio8d))$/i
 export default handler
 
 const getRandom = (ext) => {
