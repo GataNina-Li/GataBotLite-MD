@@ -55,7 +55,7 @@ args[1] = num_g < 0 ? input_g : `${input_g}-`
 } else {
 args[1] = ''
 }
-g = args[1] !== '' && Number.isInteger(parseFloat(args[1])) === false ? parseInt(args[1]) : 25
+g = args[1] !== '' ? parseInt(args[1]) : 25
        
 const allowedWidthTypes = ['q', 'h', 'o']
 width_type = allowedWidthTypes.includes(args[2]) ? args[2] : 'o'
