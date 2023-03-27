@@ -7,7 +7,6 @@ try {
 let q = m.quoted ? m.quoted : m
 let mime = ((m.quoted ? m.quoted : m.msg).mimetype || '')
 let set
-//function showAudioParamsUsage() { throw `*_PARA REALIZAR UNA CORRECTA MODIFICACIÓN DE SU AUDIO USE ESTOS PARÁMETROS_*\n${usedPrefix + command} 1️⃣ 2️⃣ 3️⃣ 4️⃣`}
 function replyToAudio() { m.reply('*RESPONDA A UN AUDIO O NOTA DE VOZ*')}
 function replyToNumber() { m.reply(`*ESTOS PARÁMETROS SOLO ADMITE NÚMEROS ESCRIBA ${usedPrefix + command} PARA CONOCER LOS PARÁMETROS*`)}
         
@@ -493,38 +492,7 @@ amount = isNaN(ar) || ar < 0.01 || ar > 0.99 ? 1 : Number(ar);
 }
 set = `-af apulsator=hz=${hz}:amount=${amount}`
 m.reply(`*🎧 VALORES ASIGNADOS:*\n\`\`\`${set}\`\`\`\n1️⃣ *${hz}* 2️⃣ *${amount}*`);
-}
-
-        
-               
-/*
-if (/audio8d/.test(command)) set = '-af apulsator=hz=0.125'*/
-        
-/*
-Echo
-'-af aecho=0.8:0.9:1000:0.3'
-
-Distorsión
-'-af distortion=0.6:1:1:0.6:0.7:0.9'
-
-Reverb
-'-af areverb=room=0.4:width=2'
-
-Pitch Shift
-'-af asetrate=44100,aresample=44100,atempo=1.5'
-
-Flanger
-'-af flanger=delay=0.002:depth=2:regen=0.3:width=6'
-
-Apulsator
-'-af apulsator=hz=0.125'
-
-Tremolo
-'-af tremolo=f=6.0:d=0.8'
-
-Chorus
-'-af chorus=0.7:0.9:55:0.4:0.25:2'
-*/
+}    
 if (/audio/.test(mime)) {
 let ran = getRandom('.mp3')
 let filename = join(__dirname, '../tmp/' + ran)
