@@ -316,10 +316,38 @@ set = `-filter:a atempo=${tempo},asetrate=${setrate}*${multi}`
 m.reply(`*🎧 VALORES ASIGNADOS:*\n\`\`\`${set}\`\`\`\n1️⃣ *${tempo}* 2️⃣ *${setrate}* 3️⃣ *${multi}*`)
 }
 
+// -- nightcore -- //     
+if (/robot/.test(command)) {
+if (!args[0] || !args[1]) throw `*_PARA REALIZAR UNA CORRECTA MODIFICACIÓN DE SU AUDIO USE ESTOS PARÁMETROS_*\n${usedPrefix + command} 1️⃣ 2️⃣ 3️⃣\n
+⎔ *(Parámetro obligatorio)*
+⎔ MIN: *32* | MAX: *16384*
+⎔ Predeterminada: *512*
+1️⃣👉 _Tamaño de los fragmentos de señal de audio que se procesan en cada momento_
+
+⎔ *(Parámetro obligatorio)*
+⎔ MIN: *1* | MAX: *100*
+⎔ Predeterminada: *0.75*
+2️⃣👉 _Cantidad de solapamiento que se utiliza entre ventanas consecutivas, Se divide una señal de audio en segmentos o ventanas para aplicarle cierto procesamiento_
+
+*»» EJEMPLOS DE USO:*
+${usedPrefix + command} 100 40
+${usedPrefix + command} 739 24
+
+*❕ TODOS LOS PARÁMETROS SON OBLIGATORIOS, SI SE PASA DE SUS LÍMITES, ESTOS SE AGREGARÁN AL VALOR PREDETERMINADO, RECUERDE RESPONDER AL AUDIO O NOTA DE VOZ*`
+if (isNaN(args[0]) || isNaN(args[1])) return replyToNumber()  
+if (!mime) return replyToAudio()
+let win_size, overlap, filter
+win_size = isNaN(args[0]) || args[0] < 32 || args[0] > 16384 || Number.isInteger(parseFloat(args[0])) === false ? 512 : Number(args[0])
+overlap = isNaN(args[1]) || args[1] < 0.1 || args[1] > 0.99 ? 0.75 : args[1] < 1 ? Number(args[1]) / 100 : Number(args[1])
+overlap = Number(overlap.toFixed(2))
+//filter = isNaN(args[4]) || args[4] < 0 || args[4] > 9 || Number.isInteger(parseFloat(args[0])) === false ? 2 : Number(args[4])
+set = `-filter_complex "afftfilt=real='hypot(re,im)*sin(0)':imag='hypot(re,im)*cos(0)':win_size=${win_size}:overlap=${overlap}"`
+m.reply(`*🎧 VALORES ASIGNADOS:*\n\`\`\`${set}\`\`\`\n1️⃣ *${win_size}* 2️⃣ *${overlap}*`)
+}
+
         
                
 /*
-if (/reverse/.test(command)) set = '-filter_complex "areverse"'
 if (/robot/.test(command)) set = '-filter_complex "afftfilt=real=\'hypot(re,im)*sin(0)\':imag=\'hypot(re,im)*cos(0)\':win_size=512:overlap=0.75"'
 if (/slow/.test(command)) set = '-filter:a "atempo=0.7,asetrate=44100"'
 if (/smooth/.test(command)) set = '-filter:v "minterpolate=\'mi_mode=mci:mc_mode=aobmc:vsbmc=1:fps=120\'"'
