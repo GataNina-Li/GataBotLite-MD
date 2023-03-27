@@ -24,7 +24,7 @@ if (/audio8d/.test(command)) set = '-af apulsator=hz=0.125:amount=1'
 if (/echo/.test(command)) set = '-af aecho=0.8:0.9:1000:0.3'
 if (/distortion/.test(command)) set = '-af "acompressor=threshold=0.1:ratio=20:attack=1:release=10,acrusher=level_in=8:level_out=18:bits=8:mode=log:aa=1"'
 if (/pitch/.test(command)) set = '-af "reverb=80:100:100:100:0:0"'
-if (/reverb/.test(command)) set = '-af "acrusher=bits=8:level_in=8:level_out=18:mode=log:aa=1"'//
+if (/reverb/.test(command)) set = '-af "aecho=0.8:0.9:1000:0.3, aecho=0.8:0.9:500:0.5, aecho=0.8:0.9:250:0.7"'//
 if (/flanger/.test(command)) set = '-af "asetrate=48000*1.5,atempo=1.5,asetrate=48000,equalizer=f=8000:width_type=h:width=50:g=6,apulsator=hz=0.125:amount=1"'
 if (/apulsator/.test(command)) set = '-af apulsator=hz=0.125'
 if (/tremolo/.test(command)) set = '-af tremolo=f=6.0:d=0.8'
