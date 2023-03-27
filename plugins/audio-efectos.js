@@ -372,7 +372,7 @@ let speed, sample_rate, ar
 if (Number.isInteger(parseFloat(args[0]))) {
 speed = isNaN(args[0]) || args[0] < 1 || args[0] > 12 ? 0.7 : Number(args[0])
 } else {
-ar = args[0].toFixed(1)     
+ar = (args[0]).toFixed(1)     
 speed = isNaN(ar) || ar < 0.5 || ar > 0.9 ? 0.7 : Number(ar)
 }
 sample_rate = isNaN(args[1]) || args[1] < 8000 || args[1] > 48000 || Number.isInteger(parseFloat(args[1])) === false ? 44100 : Number(args[1]);
