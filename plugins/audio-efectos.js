@@ -7,7 +7,7 @@ try {
 let q = m.quoted ? m.quoted : m
 let mime = ((m.quoted ? m.quoted : m.msg).mimetype || '')
 let set
-if (/bass/.test(command)) set = '-af "equalizer=f=60:width_type=h:width=50:g=6"' //'-af equalizer=f=94:width_type=o:width=2:g=30' 
+if (/bass/.test(command)) set = '-af "equalizer=f=40:width_type=h:width=50:g=10"' //'-af equalizer=f=94:width_type=o:width=2:g=30' 
 if (/blown/.test(command)) set = '-af "acrusher=.1:1:64:0:log,areverse,acrusher=.1:1:64:0:log,areverse"' //'-af acrusher=.1:1:64:0:log'
 if (/deep/.test(command)) set = '-af "atempo=4/4,asetrate=44500*2/3,highpass=f=100,lowpass=f=15000,sinc=48000:lanczos"' //'-af atempo=4/4,asetrate=44500*2/3'
 if (/earrape/.test(command)) set = '-af "compand=attacks=0:points=-80/-80|-35/-5|0/-2|20/-1.5:gain=5:delay=0,limit=6dB"' //'-af volume=12'
