@@ -213,6 +213,8 @@ ${usedPrefix + command} 10
 ${usedPrefix + command} -12
 
 *❕ EL PARÁMETRO ES OBLIGATORIOS, SI SE PASA DE SUS LÍMITES, ESTOS SE AGREGARÁN AL VALOR PREDETERMINADO, RECUERDE RESPONDER AL AUDIO O NOTA DE VOZ*`
+if (isNaN(args[0])) return replyToNumber()  
+if (!mime) return replyToAudio()
 let vl, input_g, num_g
 input_g = isNaN(args[0]) ? '' : args[0]
 num_g = parseInt(input_g)
@@ -228,10 +230,8 @@ m.reply(`*🎧 VALORES ASIGNADOS:*\n\`\`\`${set}\`\`\`\n1️⃣ *${vl}*`)
 }
         
         
-//if (/earrape/.test(command)) set = '-af volume=12'
                
 /*
-if (/earrape/.test(command)) set = '-af volume=12'
 if (/fast/.test(command)) set = '-filter:a "atempo=1.63,asetrate=44100"'
 if (/fat/.test(command)) set = '-filter:a "atempo=1.6,asetrate=22100"'
 if (/nightcore/.test(command)) set = '-filter:a atempo=1.06,asetrate=44100*1.25'
