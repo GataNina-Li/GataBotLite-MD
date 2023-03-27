@@ -339,10 +339,9 @@ if (!mime) return replyToAudio()
 let win_size, overlap, filter
 win_size = isNaN(args[0]) || args[0] < 32 || args[0] > 16384 || Number.isInteger(parseFloat(args[0])) === false ? 512 : Number(args[0])
 overlap = isNaN(args[1]) || args[1] < 1 || args[1] > 100 ? 0.75 : args[1] < 100 ? Number(args[1]) / 100 : Number(args[1]) / 100;
-//overlap = Number(overlap.toFixed(2))
-//filter = isNaN(args[4]) || args[4] < 0 || args[4] > 9 || Number.isInteger(parseFloat(args[0])) === false ? 2 : Number(args[4])
-set = `-filter_complex "afftfilt=real='hypot(re,im)*sin(0)':imag='hypot(re,im)*cos(0)':win_size=${win_size}:overlap=${overlap}"`
-m.reply(`*🎧 VALORES ASIGNADOS:*\n\`\`\`${set}\`\`\`\n1️⃣ *${win_size}* 2️⃣ *${overlap}*`)
+filter = isNaN(args[4]) || args[4] < 1 || args[4] > 9 || Number.isInteger(parseFloat(args[0])) === false ? 2 : Number(args[4])
+set = `-filter_complex "afftfilt=real='hypot(re,im)*sin(0)':imag='hypot(re,im)*cos(0)':win_size=${win_size}:overlap=${overlap}:filter=${filter}"`
+m.reply(`*🎧 VALORES ASIGNADOS:*\n\`\`\`${set}\`\`\`\n1️⃣ *${win_size}* 2️⃣ *${overlap}* 3️⃣ *${filter}*`)
 }
 
         
