@@ -426,7 +426,7 @@ m.reply(`*🎥 VALORES ASIGNADOS:*\n\`\`\`${set.replace(/:/g, ':\n')}\`\`\`\n1�
 if (/tupai|squirrel|chipmunk/.test(command)) {
 if (!args[0] || !args[1]) throw `*_PARA REALIZAR UNA CORRECTA MODIFICACIÓN DE SU AUDIO USE ESTOS PARÁMETROS_*\n${usedPrefix + command} 1️⃣ 2️⃣\n
 ⎔ *(Parámetro obligatorio)*
-⎔ MIN: *0.1* | MAX: *10*
+⎔ MIN: *0.5* | MAX: *10*
 ⎔ Predeterminada: *0.5*
 1️⃣👉 _ajustar la velocidad de reproducción del audio sin afectar el tono._
 
@@ -448,20 +448,45 @@ if (Number.isInteger(parseFloat(args[0]))) {
 atempo = isNaN(args[0]) || args[0] < 1 || args[0] > 10 ? 0.5 : Number(args[0])
 } else {
 ar = parseFloat(args[0]).toFixed(1);
-atempo = isNaN(ar) || ar < 0.1 || ar > 0.9 ? 0.5 : Number(ar)
+atempo = isNaN(ar) || ar < 0.5 || ar > 0.9 ? 0.5 : Number(ar)
 }
 asetrate = isNaN(args[1]) || args[1] < 2000 || args[1] > 960000 ? 65100 : Number(args[1])
 set = `-filter:a "atempo=${atempo},asetrate=${asetrate}"`;
 m.reply(`*🎧 VALORES ASIGNADOS:*\n\`\`\`${set}\`\`\`\n1️⃣ *${atempo}* 2️⃣ *${asetrate}*`);
 }
 
-        
+if (/audio8d/.test(command)) set = '-af "apulsator=hz=0.08|4,pan=stereo|c0=c0|c1=c1"'        
 
         
                
 /*
-if (/tupai|squirrel|chipmunk/.test(command)) set = '-filter:a "atempo=0.5,asetrate=65100"'
 if (/audio8d/.test(command)) set = '-af apulsator=hz=0.125'*/
+        
+/*
+Echo
+'-af aecho=0.8:0.9:1000:0.3'
+
+Distorsión
+'-af distortion=0.6:1:1:0.6:0.7:0.9'
+
+Reverb
+'-af areverb=room=0.4:width=2'
+
+Pitch Shift
+'-af asetrate=44100,aresample=44100,atempo=1.5'
+
+Flanger
+'-af flanger=delay=0.002:depth=2:regen=0.3:width=6'
+
+Apulsator
+'-af apulsator=hz=0.125'
+
+Tremolo
+'-af tremolo=f=6.0:d=0.8'
+
+Chorus
+'-af chorus=0.7:0.9:55:0.4:0.25:2'
+*/
 if (/audio/.test(mime)) {
 let ran = getRandom('.mp3')
 let filename = join(__dirname, '../tmp/' + ran)
