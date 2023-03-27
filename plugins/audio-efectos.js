@@ -17,8 +17,8 @@ if (/nightcore/.test(command)) set = `-filter:a "atempo=1.06,asetrate=44100*1.25
 if (/reverse/.test(command)) set = '-filter_complex "areverse, highpass=f=200, lowpass=f=8000, afftdn"' //'-filter_complex "areverse"'
 if (/robot/.test(command)) set = '-filter_complex "afftfilt=real=\'hypot(re,im)*sin(0)\':imag=\'hypot(re,im)*cos(0)\':win_size=512:overlap=0.75,volume=5dB"'
 if (/slow/.test(command)) set =  '-filter:a "atempo=0.7,asetrate=44100"' //'-filter:a "atempo=0.7,asetrate=44100"'
-if (/smooth/.test(command)) set = '-af "lowpass=f=500,highpass=f=100"' //'-filter:v "minterpolate=\'mi_mode=mci:mc_mode=aobmc:vsbmc=1:fps=120\'"'
-if (/tupai|squirrel|chipmunk/.test(command)) set = '-af "flanger=d=5:delay=0.5, distortion=gain=6, aecho=0.8:0.9:1000:0.3, reverb=a=0.5"' //'-filter:a "atempo=0.5,asetrate=65100"'
+if (/smooth/.test(command)) set = '-filter:v "minterpolate=\'mi_mode=mci:mc_mode=aobmc:vsbmc=1:fps=120\'"'
+if (/tupai|squirrel|chipmunk/.test(command)) set = '-filter:a "atempo=0.5,asetrate=65100, equalizer=f=1000:width_type=h:width=50:g=3, volume=6dB"' //'-filter:a "atempo=0.5,asetrate=65100"'
 if (/audio/.test(mime)) {
 let ran = getRandom('.mp3')
 let filename = join(__dirname, '../tmp/' + ran)
