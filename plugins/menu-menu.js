@@ -61,27 +61,27 @@ let menu = `
 *╰ ㊂ ▸▸ _EFECTOS DE AUDIO_ ◂◂*
 *│* ┊ (Mejorados y nuevos!!)
 *│* ┊
-*│* ┊▸ ✦ _${usedPrefix}bass
-*│* ┊▸ ✦ _${usedPrefix}blown
-*│* ┊▸ ✦ _${usedPrefix}deep
-*│* ┊▸ ✦ _${usedPrefix}earrape
-*│* ┊▸ ✦ _${usedPrefix}fast
-*│* ┊▸ ✦ _${usedPrefix}fat
-*│* ┊▸ ✦ _${usedPrefix}nightcore
-*│* ┊▸ ✦ _${usedPrefix}reverse
-*│* ┊▸ ✦ _${usedPrefix}robot
-*│* ┊▸ ✦ _${usedPrefix}slow
-*│* ┊▸ ✦ _${usedPrefix}smooth
-*│* ┊▸ ✦ _${usedPrefix}tupai
-*│* ┊▸ ✦ _${usedPrefix}audio8d
-*│* ┊▸ ✦ _${usedPrefix}echo
-*│* ┊▸ ✦ _${usedPrefix}distortion
-*│* ┊▸ ✦ _${usedPrefix}pitch
-*│* ┊▸ ✦ _${usedPrefix}reverb
-*│* ┊▸ ✦ _${usedPrefix}flanger
-*│* ┊▸ ✦ _${usedPrefix}apulsator
-*│* ┊▸ ✦ _${usedPrefix}tremolo
-*│* ┊▸ ✦ _${usedPrefix}chorus
+*│* ┊▸ ✦ _${usedPrefix}bass_
+*│* ┊▸ ✦ _${usedPrefix}blown_
+*│* ┊▸ ✦ _${usedPrefix}deep_
+*│* ┊▸ ✦ _${usedPrefix}earrape_
+*│* ┊▸ ✦ _${usedPrefix}fast_
+*│* ┊▸ ✦ _${usedPrefix}fat_
+*│* ┊▸ ✦ _${usedPrefix}nightcore_
+*│* ┊▸ ✦ _${usedPrefix}reverse_
+*│* ┊▸ ✦ _${usedPrefix}robot_
+*│* ┊▸ ✦ _${usedPrefix}slow_
+*│* ┊▸ ✦ _${usedPrefix}smooth_
+*│* ┊▸ ✦ _${usedPrefix}tupai_
+*│* ┊▸ ✦ _${usedPrefix}audio8d_
+*│* ┊▸ ✦ _${usedPrefix}echo_
+*│* ┊▸ ✦ _${usedPrefix}distortion_
+*│* ┊▸ ✦ _${usedPrefix}pitch_
+*│* ┊▸ ✦ _${usedPrefix}reverb_
+*│* ┊▸ ✦ _${usedPrefix}flanger_
+*│* ┊▸ ✦ _${usedPrefix}apulsator_
+*│* ┊▸ ✦ _${usedPrefix}tremolo_
+*│* ┊▸ ✦ _${usedPrefix}chorus_
 *│* ╰∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙ ∙ ∙ ∙ ∙ 
 *│*
 *╰ ㊂ ▸▸ _DESCARGAS_ ◂◂*
