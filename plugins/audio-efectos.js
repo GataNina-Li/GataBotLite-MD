@@ -372,7 +372,7 @@ let speed, sample_rate
 if (Number.isInteger(parseFloat(args[0]))) {
 speed = isNaN(args[0]) || args[0] < 1 || args[0] > 12 ? 2 : Number(args[0])
 } else {
-speed = isNaN(args[0]) || args[0] < 0.1 || args[0] > 0.99 ? 0.7 : Number(args[0]).toFixed(2)
+speed = isNaN(args[0]) || args[0] < 0.1 || args[0] > 0.99 ? 0.7 : Number(args[0]).toFixed(1)
 }
 sample_rate = isNaN(args[1]) || args[1] < 8000 || args[1] > 48000 || Number.isInteger(parseFloat(args[1])) === false ? 44100 : Number(args[1]);
 set = `-filter:a "atempo=${speed},asetrate=${sample_rate}"`;
