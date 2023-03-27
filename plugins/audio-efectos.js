@@ -424,7 +424,7 @@ m.reply(`*🎥 VALORES ASIGNADOS:*\n\`\`\`${set.replace(/:/g, ':\n')}\`\`\`\n1�
 
 // -- tupai -- //       
 if (/tupai|squirrel|chipmunk/.test(command)) {
-`*_PARA REALIZAR UNA CORRECTA MODIFICACIÓN DE SU AUDIO USE ESTOS PARÁMETROS_*\n${usedPrefix + command} 1️⃣ 2️⃣\n
+if (!args[0] || !args[1]) throw `*_PARA REALIZAR UNA CORRECTA MODIFICACIÓN DE SU AUDIO USE ESTOS PARÁMETROS_*\n${usedPrefix + command} 1️⃣ 2️⃣\n
 ⎔ *(Parámetro obligatorio)*
 ⎔ MIN: *0.1* | MAX: *10*
 ⎔ Predeterminada: *0.5*
@@ -444,7 +444,6 @@ ${usedPrefix + command} 0.8 3849
 if (isNaN(args[0]) || isNaN(args[1])) return replyToNumber()  
 if (!mime) return replyToAudio()
 let atempo, asetrate, ar       
-//let atempo = isNaN(args[0]) || args[0] <= 0.1 || args[0] > 10 ? 0.5 : Number(args[0]);
 if (Number.isInteger(parseFloat(args[0]))) {
 atempo = isNaN(args[0]) || args[0] < 1 || args[0] > 10 ? 0.5 : Number(args[0])
 } else {
