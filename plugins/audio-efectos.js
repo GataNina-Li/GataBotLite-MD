@@ -12,7 +12,7 @@ function replyToAudio() { m.reply('*RESPONDA A UN AUDIO O NOTA DE VOZ*')}
 function replyToNumber() { m.reply(`*ESTOS PARÁMETROS SOLO ADMITE NÚMEROS ESCRIBA ${usedPrefix + command} PARA CONOCER LOS PARÁMETROS*`)}
         
 // -- bass -- //
-if (/bass/.test(command)) {
+if (/edit(ed|ar)?bass/.test(command)) {
 if (!args[0] || !args[1]) throw `*_PARA REALIZAR UNA CORRECTA MODIFICACIÓN DE SU AUDIO USE ESTOS PARÁMETROS_*\n${usedPrefix + command} 1️⃣ 2️⃣ 3️⃣ 4️⃣\n
 ⎔ *(Parámetro obligatorio)*
 ⎔ MIN: *20* | MAX: *20000*
@@ -65,7 +65,7 @@ m.reply(`*🎧 VALORES ASIGNADOS:*\n\`\`\`${set.replace(/:/g, ':\n')}\`\`\`\n1�
 }
         
 // -- vibra -- //
-if (/vibra/.test(command)) {
+if (/edit(ed|ar)?vibra/.test(command)) {
 if (!args[0] || !args[1]) throw `*_PARA REALIZAR UNA CORRECTA MODIFICACIÓN DE SU AUDIO USE ESTOS PARÁMETROS_*\n${usedPrefix + command} 1️⃣ 2️⃣\n
 ⎔ *(Parámetro obligatorio)*
 ⎔ MIN: *20* | MAX: *20000*
@@ -106,7 +106,7 @@ m.reply(`*🎧 VALORES ASIGNADOS:*\n\`\`\`${set}\`\`\`\n1️⃣ *${f}* 2️⃣ *
 }
         
 // -- blown -- //        
-if (/blown/.test(command)) {
+if (/edit(ed|ar)?blown/.test(command)) {
 if (!args[0] || !args[1]) throw `*_PARA REALIZAR UNA CORRECTA MODIFICACIÓN DE SU AUDIO USE ESTOS PARÁMETROS_*\n${usedPrefix + command} 1️⃣ 2️⃣ 3️⃣ 4️⃣\n
 ⎔ *(Parámetro obligatorio)*
 ⎔ MIN: *8* | MAX: *32*
@@ -178,7 +178,7 @@ m.reply(`*🎧 VALORES ASIGNADOS:*\n\`\`\`${set}\`\`\`\n1️⃣ *${bit_depth}* 2
 }
         
 // -- deep -- //         
-if (/deep/.test(command)) {
+if (/edit(ed|ar)?deep/.test(command)) {
 if (!args[0] || !args[1]) throw `*_PARA REALIZAR UNA CORRECTA MODIFICACIÓN DE SU AUDIO USE ESTOS PARÁMETROS_*\n${usedPrefix + command} 1️⃣ 2️⃣\n
 ⎔ *(Parámetro obligatorio)*
 ⎔ MIN: *1* | MAX: *15*
@@ -205,7 +205,7 @@ m.reply(`*🎧 VALORES ASIGNADOS:*\n\`\`\`${set}\`\`\`\n1️⃣ *${atempo}* 2️
 }
         
 // -- earrape -- //    
-if (/earrape/.test(command)) {
+if (/edit(ed|ar)?earrape/.test(command)) {
 if (!args[0]) throw `*_PARA REALIZAR UNA CORRECTA MODIFICACIÓN DE SU AUDIO USE ESTOS PARÁMETROS_*\n${usedPrefix + command} 1️⃣\n
 ⎔ *(Parámetro obligatorio)*
 ⎔ MIN: *-1024* | MAX: *1024*
@@ -234,7 +234,7 @@ m.reply(`*🎧 VALORES ASIGNADOS:*\n\`\`\`${set}\`\`\`\n1️⃣ *${vl}*`)
 }
         
 // -- fast -- //     
-if (/fast/.test(command)) {
+if (/edit(ed|ar)?fast/.test(command)) {
 if (!args[0] || !args[1]) throw `*_PARA REALIZAR UNA CORRECTA MODIFICACIÓN DE SU AUDIO USE ESTOS PARÁMETROS_*\n${usedPrefix + command} 1️⃣ 2️⃣\n
 ⎔ *(Parámetro obligatorio)*
 ⎔ MIN: *1* | MAX: *100*
@@ -261,7 +261,7 @@ m.reply(`*🎧 VALORES ASIGNADOS:*\n\`\`\`${set}\`\`\`\n1️⃣ *${tempo}* 2️�
 }
         
 // -- fat -- //     
-if (/fast/.test(command)) {
+if (/edit(ed|ar)?fat/.test(command)) {
 if (!args[0] || !args[1]) throw `*_PARA REALIZAR UNA CORRECTA MODIFICACIÓN DE SU AUDIO USE ESTOS PARÁMETROS_*\n${usedPrefix + command} 1️⃣ 2️⃣\n
 ⎔ *(Parámetro obligatorio)*
 ⎔ MIN: *1* | MAX: *300*
@@ -288,7 +288,7 @@ m.reply(`*🎧 VALORES ASIGNADOS:*\n\`\`\`${set}\`\`\`\n1️⃣ *${tempo}* 2️�
 }
               
 // -- nightcore -- //     
-if (/nightcore/.test(command)) {
+if (/edit(ed|ar)?nightcore/.test(command)) {
 if (!args[0] || !args[1]) throw `*_PARA REALIZAR UNA CORRECTA MODIFICACIÓN DE SU AUDIO USE ESTOS PARÁMETROS_*\n${usedPrefix + command} 1️⃣ 2️⃣ 3️⃣\n
 ⎔ *(Parámetro obligatorio)*
 ⎔ MIN: *1* | MAX: *150*
@@ -321,7 +321,7 @@ m.reply(`*🎧 VALORES ASIGNADOS:*\n\`\`\`${set}\`\`\`\n1️⃣ *${tempo}* 2️�
 }
 
 // -- robot -- //     
-if (/robot/.test(command)) {
+if (/edit(ed|ar)?robot/.test(command)) {
 if (!args[0] || !args[1]) throw `*_PARA REALIZAR UNA CORRECTA MODIFICACIÓN DE SU AUDIO USE ESTOS PARÁMETROS_*\n${usedPrefix + command} 1️⃣ 2️⃣\n
 ⎔ *(Parámetro obligatorio)*
 ⎔ MIN: *32* | MAX: *16384*
@@ -348,7 +348,7 @@ m.reply(`*🎧 VALORES ASIGNADOS:*\n\`\`\`${set}\`\`\`\n1️⃣ *${win_size}* 2�
 }
 
 // -- slow -- //  
-if (/slow/.test(command)) {
+if (/edit(ed|ar)?slow/.test(command)) {
 if (!args[0] || !args[1]) throw `*_PARA REALIZAR UNA CORRECTA MODIFICACIÓN DE SU AUDIO USE ESTOS PARÁMETROS_*\n${usedPrefix + command} 1️⃣ 2️⃣\n
 ⎔ *(Parámetro obligatorio)*
 ⎔ MIN: *0.5* | MAX: *12*
@@ -381,7 +381,7 @@ m.reply(`*🎧 VALORES ASIGNADOS:*\n\`\`\`${set}\`\`\`\n1️⃣ *${speed}* 2️�
 }
 
 // -- smooth -- //          
-if (/smooth/.test(command)) {
+if (/edit(ed|ar)?smooth/.test(command)) {
 if (!args[0] || !args[1]) throw `*_PARA REALIZAR UNA CORRECTA MODIFICACIÓN DE SU AUDIO USE ESTOS PARÁMETROS_*\n${usedPrefix + command} 1️⃣ 2️⃣ 3️⃣ 4️⃣\n
 ⎔ *(Parámetro obligatorio)*
 ⎔ MIN: *1* | MAX: *5*
@@ -423,7 +423,7 @@ m.reply(`*🎥 VALORES ASIGNADOS:*\n\`\`\`${set.replace(/:/g, ':\n')}\`\`\`\n1�
 }
 
 // -- tupai -- //       
-if (/tupai|squirrel|chipmunk/.test(command)) {
+if (/edit(ed|ar)?(tupai|squirrel|chipmunk)/.test(command)) {
 if (!args[0] || !args[1]) throw `*_PARA REALIZAR UNA CORRECTA MODIFICACIÓN DE SU AUDIO USE ESTOS PARÁMETROS_*\n${usedPrefix + command} 1️⃣ 2️⃣\n
 ⎔ *(Parámetro obligatorio)*
 ⎔ MIN: *0.5* | MAX: *10*
@@ -541,7 +541,7 @@ ptt: true
 } catch (e) {
 throw e
 }}
-handler.command = /^(edit(ed|ar)?(bass|blown|deep|earrape|fas?t|nightcore|reverse|robot|slow|smooth|tupai|squirrel|chipmunk|vibra|volume|audio8d))$/i
+handler.command = /^(edit(ed|ar)?(bass|vibra|blown|deep|earrape|fas?t|nightcore|robot|slow|smooth|tupai|squirrel|chipmunk|audio8d))$/i
 export default handler
 
 const getRandom = (ext) => {
