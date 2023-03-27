@@ -379,7 +379,49 @@ sample_rate = isNaN(args[1]) || args[1] < 8000 || args[1] > 48000 || Number.isIn
 set = `-filter:a "atempo=${speed},asetrate=${sample_rate}"`;
 m.reply(`*🎧 VALORES ASIGNADOS:*\n\`\`\`${set}\`\`\`\n1️⃣ *${speed}* 2️⃣ *${sample_rate}*`);
 }
-if (/audio8d/.test(command)) set = '-af apulsator=hz=0.125'
+
+// -- smooth -- //          
+if (/smooth/.test(command)) {
+if (!args[0] || !args[1]) throw `*_PARA REALIZAR UNA CORRECTA MODIFICACIÓN DE SU AUDIO USE ESTOS PARÁMETROS_*\n${usedPrefix + command} 1️⃣ 2️⃣ 3️⃣ 4️⃣\n
+⎔ *(Parámetro obligatorio)*
+⎔ MIN: *1* | MAX: *5*
+⎔ Predeterminada: *2*
+1️⃣👉 _Modo de interpolación de movimiento utilizado por el filtro._
+
+⎔ *(Parámetro obligatorio)*
+⎔ MIN: *1* | MAX: *4*
+⎔ Predeterminada: *2*
+2️⃣👉 _Modo de compensación de movimiento utilizado por el filtro._
+
+⎔ *(Parámetro opcional)*
+⎔ MIN: *0* | MAX: *10*
+⎔ Predeterminada: *1*
+3️⃣👉 _Uso de interpolación vertical subpíxel_
+
+⎔ *(Parámetro opcional)*
+⎔ MIN: *1* | MAX: *240*
+⎔ Predeterminada: *120*
+4️⃣👉 _Controla la tasa de fotogramas de salida del audio_
+
+*»» EJEMPLOS DE USO:*
+${usedPrefix + command} 2 3 7 30
+${usedPrefix + command} 1 1 9
+${usedPrefix + command} 4 3
+
+*❕ SI OMITE AGREGAR LOS PARÁMETROS OPCIONALES O SE PASA DE SUS LÍMITES, ESTOS SE AGREGARÁN AL VALOR PREDETERMINADO, RECUERDE RESPONDER AL AUDIO O NOTA DE VOZ*`
+if (isNaN(args[0]) || isNaN(args[1])) return replyToNumber()
+if (!mime) return replyToAudio()
+        
+let mi_mode, mc_mode, vsbmc, fps
+mi_mode = args[0] < 1 || args[0] > 5 || Number.isInteger(parseFloat(args[0])) === false ? 2 : Number(args[0])
+mc_mode = args[1] < 1 || args[1] > 4 || Number.isInteger(parseFloat(args[1])) === false ? 2 : Number(args[1])
+vsbmc = args[2] < 0 || args[2] > 10 || Number.isInteger(parseFloat(args[2])) === false ? 1 : Number(args[2])
+fps = args[3] < 1 || args[3] > 240 || Number.isInteger(parseFloat(args[3])) === false ? 120 : Number(args[3])
+
+set = `-filter:v "minterpolate='mi_mode=${mi_mode}:mc_mode=${mc_mode}:vsbmc=${vsbmc}:fps=${fps}'"`;
+m.reply(`*🎥 VALORES ASIGNADOS:*\n\`\`\`${set.replace(/:/g, ':\n')}\`\`\`\n1️⃣ *mi_mode=${mi_mode}* 2️⃣ *mc_mode=${mc_mode}* 3️⃣ *vsbmc=${vsbmc}* 4️⃣ *fps=${fps}*`);
+}
+        
 
         
                
