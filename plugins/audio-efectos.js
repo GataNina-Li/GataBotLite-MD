@@ -480,7 +480,7 @@ let hz, amount, ar
 
 if (Number.isInteger(parseFloat(args[0]))) {
 hz = isNaN(args[0]) || args[0] < 1 || args[0] > 3 ? 0.125 : Number(args[0]);
-hz = speed.toFixed(3);
+//hz = hz.toFixed(3);
 } else {
 ar = parseFloat(args[0]).toFixed(3);
 hz = isNaN(ar) || ar < 0.001 || ar > 0.200 ? 0.125 : Number(ar);
@@ -488,7 +488,7 @@ hz = isNaN(ar) || ar < 0.001 || ar > 0.200 ? 0.125 : Number(ar);
         
 if (Number.isInteger(parseFloat(args[1]))) {
 amount = isNaN(args[1]) || args[1] < 1 || args[1] > 3 ? 1 : Number(args[1]);
-amount = speed.toFixed(2);
+//amount = amount.toFixed(2);
 } else {
 ar = parseFloat(args[1]).toFixed(2);
 amount = isNaN(ar) || ar < 0.01 || ar > 0.99 ? 1 : Number(ar);
