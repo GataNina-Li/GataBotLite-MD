@@ -249,8 +249,8 @@ ${usedPrefix + command} 88 1000
 if (isNaN(args[0]) || isNaN(args[1])) return replyToNumber()  
 if (!mime) return replyToAudio()
 let tempo, setrate
-tempo = isNaN(args[0]) || args[0] < 1 || args[0] > 100 ? 1.63 : Number(args[0])
-setrate = isNaN(args[1]) || args[1] < 8000 || args[1] > 48000 ? 44100 : Number(args[1])
+tempo = isNaN(args[0]) || args[0] < 1 || args[0] > 100 || Number.isInteger(parseFloat(args[0])) === false ? 1.63 : Number(args[0])
+setrate = isNaN(args[1]) || args[1] < 8000 || args[1] > 48000 || Number.isInteger(parseFloat(args[1])) === false ? 44100 : Number(args[1])
 set = `-filter:a "atempo=${tempo},asetrate=${setrate}"`;
 m.reply(`*🎧 VALORES ASIGNADOS:*\n\`\`\`${set}\`\`\`\n1️⃣ *${tempo}* 2️⃣ *${setrate}*`)
 }
