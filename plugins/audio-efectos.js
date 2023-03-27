@@ -421,14 +421,47 @@ fps = isNaN(args[3]) || args[3] < 1 || args[3] > 240 || Number.isInteger(parseFl
 set = `-filter:v "minterpolate='mi_mode=${mi_mode}:mc_mode=${mc_mode}:vsbmc=${vsbmc}:fps=${fps}'"`;
 m.reply(`*🎥 VALORES ASIGNADOS:*\n\`\`\`${set.replace(/:/g, ':\n')}\`\`\`\n1️⃣ *${mi_mode}* 2️⃣ *${mc_mode}* 3️⃣ *${vsbmc}* 4️⃣ *${fps}*`);
 }
+
+// -- tupai -- //       
+if (/tupai|squirrel|chipmunk/.test(command)) {
+`*_PARA REALIZAR UNA CORRECTA MODIFICACIÓN DE SU AUDIO USE ESTOS PARÁMETROS_*\n${usedPrefix + command} 1️⃣ 2️⃣\n
+⎔ *(Parámetro obligatorio)*
+⎔ MIN: *0.1* | MAX: *10*
+⎔ Predeterminada: *0.5*
+1️⃣👉 _ajustar la velocidad de reproducción del audio sin afectar el tono._
+
+⎔ *(Parámetro obligatorio)*
+⎔ MIN: *2000* | MAX: *260000*
+⎔ Predeterminada: *65100*
+2️⃣👉 _Ajustar la tasa de muestreo del audio, es decir, la cantidad de muestras de audio por segundo._
+
+*»» EJEMPLOS DE USO:*
+${usedPrefix + command} 3 9483
+${usedPrefix + command} 0.8 3849
+
+*❕ TODOS LOS PARÁMETROS SON OBLIGATORIOS, SI SE PASA DE SUS LÍMITES, ESTOS SE AGREGARÁN AL VALOR PREDETERMINADO, RECUERDE RESPONDER AL AUDIO O NOTA DE VOZ*`
+
+if (isNaN(args[0]) || isNaN(args[1])) return replyToNumber()  
+if (!mime) return replyToAudio()
+let atempo, asetrate, ar       
+//let atempo = isNaN(args[0]) || args[0] <= 0.1 || args[0] > 10 ? 0.5 : Number(args[0]);
+if (Number.isInteger(parseFloat(args[0]))) {
+atempo = isNaN(args[0]) || args[0] < 1 || args[0] > 10 ? 0.5 : Number(args[0])
+} else {
+ar = parseFloat(args[0]).toFixed(1);
+atempo = isNaN(ar) || ar < 0.1 || ar > 0.9 ? 0.5 : Number(ar)
+}
+asetrate = isNaN(args[1]) || args[1] < 2000 || args[1] > 960000 ? 65100 : Number(args[1])
+set = `-filter:a "atempo=${atempo},asetrate=${asetrate}"`;
+m.reply(`*🎧 VALORES ASIGNADOS:*\n\`\`\`${set}\`\`\`\n1️⃣ *${atempo}* 2️⃣ *${asetrate}*`);
+}
+
         
 
         
                
 /*
-if (/smooth/.test(command)) set = '-filter:v "minterpolate=\'mi_mode=mci:mc_mode=aobmc:vsbmc=1:fps=120\'"'
 if (/tupai|squirrel|chipmunk/.test(command)) set = '-filter:a "atempo=0.5,asetrate=65100"'
-if (/vibra/.test(command)) set = '-filter_complex "vibrato=f=15"'
 if (/audio8d/.test(command)) set = '-af apulsator=hz=0.125'*/
 if (/audio/.test(mime)) {
 let ran = getRandom('.mp3')
