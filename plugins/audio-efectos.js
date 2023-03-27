@@ -415,8 +415,8 @@ if (!mime) return replyToAudio()
 let mi_mode, mc_mode, vsbmc, fps
 mi_mode = args[0] < 1 || args[0] > 5 || Number.isInteger(parseFloat(args[0])) === false ? 2 : Number(args[0])
 mc_mode = args[1] < 1 || args[1] > 4 || Number.isInteger(parseFloat(args[1])) === false ? 2 : Number(args[1])
-vsbmc = args[2] < 0 || args[2] > 10 || Number.isInteger(parseFloat(args[2])) === false ? 1 : Number(args[2])
-fps = args[3] < 1 || args[3] > 240 || Number.isInteger(parseFloat(args[3])) === false ? 120 : Number(args[3])
+vsbmc = isNaN(args[2]) || args[2] < 0 || args[2] > 10 || Number.isInteger(parseFloat(args[2])) === false ? 1 : Number(args[2])
+fps = isNaN(args[3]) || args[3] < 1 || args[3] > 240 || Number.isInteger(parseFloat(args[3])) === false ? 120 : Number(args[3])
 
 set = `-filter:v "minterpolate='mi_mode=${mi_mode}:mc_mode=${mc_mode}:vsbmc=${vsbmc}:fps=${fps}'"`;
 m.reply(`*🎥 VALORES ASIGNADOS:*\n\`\`\`${set.replace(/:/g, ':\n')}\`\`\`\n1️⃣ *${mi_mode}* 2️⃣ *${mc_mode}* 3️⃣ *${vsbmc}* 4️⃣ *${fps}*`);
