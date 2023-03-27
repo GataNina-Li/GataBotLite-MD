@@ -419,7 +419,7 @@ vsbmc = args[2] < 0 || args[2] > 10 || Number.isInteger(parseFloat(args[2])) ===
 fps = args[3] < 1 || args[3] > 240 || Number.isInteger(parseFloat(args[3])) === false ? 120 : Number(args[3])
 
 set = `-filter:v "minterpolate='mi_mode=${mi_mode}:mc_mode=${mc_mode}:vsbmc=${vsbmc}:fps=${fps}'"`;
-m.reply(`*🎥 VALORES ASIGNADOS:*\n\`\`\`${set.replace(/:/g, ':\n')}\`\`\`\n1️⃣ *mi_mode=${mi_mode}* 2️⃣ *mc_mode=${mc_mode}* 3️⃣ *vsbmc=${vsbmc}* 4️⃣ *fps=${fps}*`);
+m.reply(`*🎥 VALORES ASIGNADOS:*\n\`\`\`${set.replace(/:/g, ':\n')}\`\`\`\n1️⃣ *${mi_mode}* 2️⃣ *${mc_mode}* 3️⃣ *${vsbmc}* 4️⃣ *${fps}*`);
 }
         
 
