@@ -10,7 +10,7 @@ let set
 if (/bass/.test(command)) set = '-af "equalizer=f=40:width_type=h:width=50:g=14"' //'-af equalizer=f=94:width_type=o:width=2:g=30' 
 if (/blown/.test(command)) set = '-af "acrusher=.1:1:64:0:log, lowpass=f=3000, highpass=f=200, equalizer=f=1000:width_type=h:width=50:g=6, areverse, acrusher=.1:1:64:0:log, lowpass=f=3000, highpass=f=200, equalizer=f=1000:width_type=h:width=50:g=6, areverse"' //'-af acrusher=.1:1:64:0:log'
 if (/deep/.test(command)) set = '-af atempo=4/4,asetrate=44500*2/3'
-if (/earrape/.test(command)) set = '-af "compand=attacks=0:points=-90/-90|-20.0/-5.0|0/-3.0|20.0/-1.0:soft-knee=6:gain=6"' //'-af volume=12'
+if (/earrape/.test(command)) set = '-af "compand=attacks=0:points=-90/-90|-20.0/-5.0|0/-3.0|20.0/-1.0:soft-knee=6:gain=3"' //'-af "compand=attacks=0:points=-90/-90|-20.0/-5.0|0/-3.0|20.0/-1.0:soft-knee=6:gain=6"' //'-af volume=12'
 if (/fast/.test(command)) set = '-filter:a "atempo=1.63,asetrate=44100,highpass=f=1000,lowpass=f=6000"' //'-filter:a "atempo=1.63,asetrate=44100"'
 if (/fat/.test(command)) set = '-af "equalizer=f=60:width_type=h:width=50:g=-6"' //'-filter:a "atempo=1.6,asetrate=22100"'
 if (/nightcore/.test(command)) set = `-filter:a "atempo=1.06,asetrate=44100*1.25,firequalizer=gain_entry='entry(0,6);entry(250,0);entry(500,-3);entry(1000,-3);entry(2000,-2);entry(4000,0);entry(8000,2);entry(16000,3)',equalizer=f=800:t=h:width_type=h:width=50:g=20"` //'-filter:a atempo=1.06,asetrate=44100*1.25'
