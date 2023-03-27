@@ -25,7 +25,7 @@ if (/echo/.test(command)) set = '-af aecho=0.8:0.9:1000:0.3'
 //if (/distortion/.test(command)) set = '-af distortion=0.6:1:1:0.6:0.7:0.9'//
 //if (/reverb/.test(command)) set = '-af areverb=room=0.4:width=2'//
 //if (/pitch/.test(command)) set = `-af "reverb=ir='reverb.wav':reverb_time=2:decay_cutoff=0.4:WetOnly=1"`//
-if (/flanger/.test(command)) set = '-af "pan=stereo|c0=c0|c1=c1, surround=channel_layout=5.1"'
+if (/flanger/.test(command)) set = '-af "pan=stereo|c0=c0+c1*sin(2*PI*t*4)/2|c1=c1+c0*cos(2*PI*t*4)/2"'
 if (/apulsator/.test(command)) set = '-af apulsator=hz=0.125'
 if (/tremolo/.test(command)) set = '-af tremolo=f=6.0:d=0.8'
 if (/chorus/.test(command)) set = '-af chorus=0.7:0.9:55:0.4:0.25:2'
