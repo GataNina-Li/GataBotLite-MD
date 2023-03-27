@@ -455,7 +455,7 @@ set = `-filter:a "atempo=${atempo},asetrate=${asetrate}"`;
 m.reply(`*🎧 VALORES ASIGNADOS:*\n\`\`\`${set}\`\`\`\n1️⃣ *${atempo}* 2️⃣ *${asetrate}*`);
 }
 
-if (/audio8d/.test(command)) set = '-af "apulsator=hz=0.08|4,pan=stereo|c0=c0|c1=c1"'        
+if (/audio8d/.test(command)) set = '-af apulsator=hz=0.125:width=50:amount=1'     
 
         
                
