@@ -459,12 +459,12 @@ m.reply(`*🎧 VALORES ASIGNADOS:*\n\`\`\`${set}\`\`\`\n1️⃣ *${atempo}* 2️
 if (/audio8d/.test(command)) {
 if (!args[0] || !args[1]) throw `*_PARA REALIZAR UNA CORRECTA MODIFICACIÓN DE SU AUDIO USE ESTOS PARÁMETROS_*\n${usedPrefix + command} 1️⃣ 2️⃣\n
 ⎔ *(Parámetro obligatorio)*
-⎔ MIN: *0.001* | MAX: *3*
+⎔ MIN: *0.001* | MAX: *5*
 ⎔ Predeterminada: *0.125*
 1️⃣👉 _La frecuencia de la onda pulsada en hercios (Hz)_
 
 ⎔ *(Parámetro obligatorio)*
-⎔ MIN: *0.01* | MAX: *3*
+⎔ MIN: *0.01* | MAX: *1*
 ⎔ Predeterminada: *1*
 2️⃣👉 _Ajusta la cantidad de modulación que se aplica al audio._
 
@@ -479,15 +479,15 @@ if (!mime) return replyToAudio()
 let hz, amount, ar 
 
 if (Number.isInteger(parseFloat(args[0]))) {
-hz = isNaN(args[0]) || args[0] < 1 || args[0] > 3 ? 0.125 : Number(args[0]);
+hz = isNaN(args[0]) || args[0] < 1 || args[0] > 5 ? 0.125 : Number(args[0]);
 //hz = hz.toFixed(3);
 } else {
 ar = parseFloat(args[0]).toFixed(3);
-hz = isNaN(ar) || ar < 0.001 || ar > 0.200 ? 0.125 : Number(ar);
+hz = isNaN(ar) || ar < 0.001 || ar > 0.999 ? 0.125 : Number(ar);
 }
         
 if (Number.isInteger(parseFloat(args[1]))) {
-amount = isNaN(args[1]) || args[1] < 1 || args[1] > 3 ? 1 : Number(args[1]);
+amount = isNaN(args[1]) || args[1] < 0 || args[1] > 1 ? 1 : Number(args[1]);
 //amount = amount.toFixed(2);
 } else {
 ar = parseFloat(args[1]).toFixed(2);
