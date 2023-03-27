@@ -63,6 +63,7 @@ width = isNaN(args[3]) || args[3] < 3 || args[3] > 501 ? 5 : Number(args[3])
 set = `-af equalizer=f=${f}:width_type=${width_type}:width=${width}:g=${g}`
 m.reply(`*🎧 VALORES ASIGNADOS:*\n\`\`\`${set.replace(/:/g, ':\n')}\`\`\`\n1️⃣ *${f}* 2️⃣ *${g}* 3️⃣ *${width_type}* 4️⃣ *${width}*`)
 }
+        
 // -- vibra -- //
 if (/vibra/.test(command)) {
 if (!args[0] || !args[1]) throw `*_PARA REALIZAR UNA CORRECTA MODIFICACIÓN DE SU AUDIO USE ESTOS PARÁMETROS_*\n${usedPrefix + command} 1️⃣ 2️⃣\n
@@ -103,6 +104,7 @@ d = args[1] !== '' ? parseFloat(args[1]) / 100 : 0.5
 set = `-filter_complex "vibrato=f=${f}:d=${d}"`
 m.reply(`*🎧 VALORES ASIGNADOS:*\n\`\`\`${set}\`\`\`\n1️⃣ *${f}* 2️⃣ *${d}*`)
 }
+        
 // -- blown -- //        
 if (/blown/.test(command)) {
 if (!args[0] || !args[1]) throw `*_PARA REALIZAR UNA CORRECTA MODIFICACIÓN DE SU AUDIO USE ESTOS PARÁMETROS_*\n${usedPrefix + command} 1️⃣ 2️⃣ 3️⃣ 4️⃣\n
@@ -174,6 +176,7 @@ mix_log = args[3] !== '' ? parseFloat(args[3]) / 100 : 0.5
 set = `-af acrusher=.${sample_rate}:${mix}:${bit_depth}:${mix_log}:log`
 m.reply(`*🎧 VALORES ASIGNADOS:*\n\`\`\`${set}\`\`\`\n1️⃣ *${bit_depth}* 2️⃣ *${sample_rate}* 3️⃣ *${mix}* 4️⃣ *${mix_log}*`)
 }
+        
 // -- deep -- //         
 if (/deep/.test(command)) {
 if (!args[0] || !args[1]) throw `*_PARA REALIZAR UNA CORRECTA MODIFICACIÓN DE SU AUDIO USE ESTOS PARÁMETROS_*\n${usedPrefix + command} 1️⃣ 2️⃣\n
@@ -200,6 +203,7 @@ asetrate = isNaN(args[1]) || args[1] < 1999 || args[1] > 2550001 || Number.isInt
 set = `-af atempo=${atempo}/${atempo},asetrate=${asetrate}*2/3`
 m.reply(`*🎧 VALORES ASIGNADOS:*\n\`\`\`${set}\`\`\`\n1️⃣ *${atempo}* 2️⃣ *${asetrate}*`)
 }
+        
 // -- earrape -- //    
 if (/earrape/.test(command)) {
 if (!args[0]) throw `*_PARA REALIZAR UNA CORRECTA MODIFICACIÓN DE SU AUDIO USE ESTOS PARÁMETROS_*\n${usedPrefix + command} 1️⃣\n
@@ -228,6 +232,7 @@ vl = args[0] !== '' ? parseInt(args[0]) : 6
 set = `-af volume=${vl}`
 m.reply(`*🎧 VALORES ASIGNADOS:*\n\`\`\`${set}\`\`\`\n1️⃣ *${vl}*`)
 }
+        
 // -- fast -- //     
 if (/fast/.test(command)) {
 if (!args[0] || !args[1]) throw `*_PARA REALIZAR UNA CORRECTA MODIFICACIÓN DE SU AUDIO USE ESTOS PARÁMETROS_*\n${usedPrefix + command} 1️⃣ 2️⃣\n
@@ -281,8 +286,7 @@ setrate = isNaN(args[1]) || args[1] < 4000 || args[1] > 4800000 || Number.isInte
 set = `-filter:a "atempo=${tempo},asetrate=${setrate}"`;
 m.reply(`*🎧 VALORES ASIGNADOS:*\n\`\`\`${set}\`\`\`\n1️⃣ *${tempo}* 2️⃣ *${setrate}*`)
 }
-        
-        
+              
 // -- nightcore -- //     
 if (/nightcore/.test(command)) {
 if (!args[0] || !args[1]) throw `*_PARA REALIZAR UNA CORRECTA MODIFICACIÓN DE SU AUDIO USE ESTOS PARÁMETROS_*\n${usedPrefix + command} 1️⃣ 2️⃣ 3️⃣\n
@@ -316,9 +320,9 @@ set = `-filter:a atempo=${tempo},asetrate=${setrate}*${multi}`
 m.reply(`*🎧 VALORES ASIGNADOS:*\n\`\`\`${set}\`\`\`\n1️⃣ *${tempo}* 2️⃣ *${setrate}* 3️⃣ *${multi}*`)
 }
 
-// -- nightcore -- //     
+// -- robot -- //     
 if (/robot/.test(command)) {
-if (!args[0] || !args[1]) throw `*_PARA REALIZAR UNA CORRECTA MODIFICACIÓN DE SU AUDIO USE ESTOS PARÁMETROS_*\n${usedPrefix + command} 1️⃣ 2️⃣ 3️⃣\n
+if (!args[0] || !args[1]) throw `*_PARA REALIZAR UNA CORRECTA MODIFICACIÓN DE SU AUDIO USE ESTOS PARÁMETROS_*\n${usedPrefix + command} 1️⃣ 2️⃣\n
 ⎔ *(Parámetro obligatorio)*
 ⎔ MIN: *32* | MAX: *16384*
 ⎔ Predeterminada: *512*
@@ -339,16 +343,47 @@ if (!mime) return replyToAudio()
 let win_size, overlap, filter
 win_size = isNaN(args[0]) || args[0] < 32 || args[0] > 16384 || Number.isInteger(parseFloat(args[0])) === false ? 512 : Number(args[0])
 overlap = isNaN(args[1]) || args[1] < 1 || args[1] > 100 ? 0.75 : args[1] < 100 ? Number(args[1]) / 100 : Number(args[1]) / 100;
-filter = isNaN(args[2]) || args[2] < 1 || args[2] > 9 || Number.isInteger(parseFloat(args[2])) === false ? 2 : Number(args[2])
-set = `-filter_complex "afftfilt=real='hypot(re,im)*sin(0)':imag='hypot(re,im)*cos(0)':win_size=${win_size}:overlap=${overlap}:filter=${filter}"`
-m.reply(`*🎧 VALORES ASIGNADOS:*\n\`\`\`${set}\`\`\`\n1️⃣ *${win_size}* 2️⃣ *${overlap}* 3️⃣ *${filter}*`)
+set = `-filter_complex "afftfilt=real='hypot(re,im)*sin(0)':imag='hypot(re,im)*cos(0)':win_size=${win_size}:overlap=${overlap}"`
+m.reply(`*🎧 VALORES ASIGNADOS:*\n\`\`\`${set}\`\`\`\n1️⃣ *${win_size}* 2️⃣ *${overlap}*`)
 }
+
+// -- slow -- //  
+if (/slow/.test(command)) {
+if (!args[0] || !args[1]) throw `*_PARA REALIZAR UNA CORRECTA MODIFICACIÓN DE SU AUDIO USE ESTOS PARÁMETROS_*\n${usedPrefix + command} 1️⃣ 2️⃣\n
+⎔ *(Parámetro obligatorio)*
+⎔ MIN: *0.1* | MAX: *12*
+⎔ Predeterminada: *0.7 o 2*
+1️⃣👉 _Velocidad de reproducción del audio. Un valor de 1.0 es la velocidad normal, mientras que un valor mayor a 1.0 acelera la reproducción, y un valor menor a 1.0 la ralentiza._
+
+⎔ *(Parámetro obligatorio)*
+⎔ MIN: *8000* | MAX: *48000*
+⎔ Predeterminada: *44100*
+2️⃣👉 _Frecuencia de muestreo del audio, indica con qué frecuencia se toman muestras del sonido. Cuanto mayor sea la frecuencia de muestreo, mayor será la calidad del audio_
+
+*»» EJEMPLOS DE USO:*
+${usedPrefix + command} 100 40
+${usedPrefix + command} 739 24
+
+*❕ TODOS LOS PARÁMETROS SON OBLIGATORIOS, SI SE PASA DE SUS LÍMITES, ESTOS SE AGREGARÁN AL VALOR PREDETERMINADO, RECUERDE RESPONDER AL AUDIO O NOTA DE VOZ*`
+if (isNaN(args[0]) || isNaN(args[1])) return replyToNumber()  
+if (!mime) return replyToAudio()
+        
+let speed, sample_rate;
+if (Number.isInteger(parseFloat(args[0]))) {
+speed = isNaN(args[0]) || args[0] < 1 || args[0] > 12 ? 2 : Number(args[0])
+} else {
+speed = isNaN(args[0]) || args[0] < 0.1 || args[0] > 0.99 ? 0.7 : Number(args[0].toFixed(2))
+}
+//speed = isNaN(args[0]) || args[0] < 0.5 || args[0] > 2 ? 0.7 : Number(args[0]);
+sample_rate = isNaN(args[1]) || args[1] < 8000 || args[1] > 48000 || Number.isInteger(parseFloat(args[1])) === false ? 44100 : Number(args[1]);
+set = `-filter:a "atempo=${speed},asetrate=${sample_rate}"`;
+m.reply(`*🎧 VALORES ASIGNADOS:*\n\`\`\`${set}\`\`\`\n1️⃣ *${speed}* 2️⃣ *${sample_rate}*`);
+}
+
 
         
                
 /*
-if (/robot/.test(command)) set = '-filter_complex "afftfilt=real=\'hypot(re,im)*sin(0)\':imag=\'hypot(re,im)*cos(0)\':win_size=512:overlap=0.75"'
-if (/slow/.test(command)) set = '-filter:a "atempo=0.7,asetrate=44100"'
 if (/smooth/.test(command)) set = '-filter:v "minterpolate=\'mi_mode=mci:mc_mode=aobmc:vsbmc=1:fps=120\'"'
 if (/tupai|squirrel|chipmunk/.test(command)) set = '-filter:a "atempo=0.5,asetrate=65100"'
 if (/vibra/.test(command)) set = '-filter_complex "vibrato=f=15"'
