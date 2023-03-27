@@ -16,7 +16,7 @@ if (/fat/.test(command)) set = '-af "atempo=1.6,asetrate=22100,equalizer=f=1000:
 if (/nightcore/.test(command)) set = `-filter:a "atempo=1.06,asetrate=44100*1.25,firequalizer=gain_entry='entry(0,6);entry(250,0);entry(500,-3);entry(1000,-3);entry(2000,-2);entry(4000,0);entry(8000,2);entry(16000,3)',equalizer=f=800:t=h:width_type=h:width=50:g=20"` //'-filter:a atempo=1.06,asetrate=44100*1.25'
 if (/reverse/.test(command)) set = '-filter_complex "areverse, highpass=f=200, lowpass=f=8000, afftdn"' //'-filter_complex "areverse"'
 if (/robot/.test(command)) set = '-filter_complex "afftfilt=real=\'hypot(re,im)*sin(0)\':imag=\'hypot(re,im)*cos(0)\':win_size=512:overlap=0.75,volume=5dB"'
-if (/slow/.test(command)) set = `-filter:a "atempo=0.7,asetrate=44100, equalizer=f=60:width_type=h:width=100:g=5, compand=attacks=0:points=-80/-80|-10.1/-5.1|-3.0/-3.0|0/-0.1:knees=120/120|5/5|2/2|0/0:gain=3:volume=-3:delay=0"` //'-filter:a "atempo=0.7,asetrate=44100"'
+if (/slow/.test(command)) set =  '-filter:a "atempo=0.7,asetrate=44100"' //'-filter:a "atempo=0.7,asetrate=44100"'
 if (/smooth/.test(command)) set = '-af "lowpass=f=500,highpass=f=100"' //'-filter:v "minterpolate=\'mi_mode=mci:mc_mode=aobmc:vsbmc=1:fps=120\'"'
 if (/tupai|squirrel|chipmunk/.test(command)) set = '-filter:a "atempo=0.5,asetrate=88200,aresample=soxr"' //'-filter:a "atempo=0.5,asetrate=65100"'
 if (/audio/.test(mime)) {
