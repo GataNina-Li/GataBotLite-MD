@@ -428,7 +428,7 @@ if (!args[0] || !args[1]) throw `*_PARA REALIZAR UNA CORRECTA MODIFICACIÓN DE S
 ⎔ *(Parámetro obligatorio)*
 ⎔ MIN: *0.5* | MAX: *10*
 ⎔ Predeterminada: *0.5*
-1️⃣👉 _ajustar la velocidad de reproducción del audio sin afectar el tono._
+1️⃣👉 _Ajusta la velocidad de reproducción del audio sin afectar el tono._
 
 ⎔ *(Parámetro obligatorio)*
 ⎔ MIN: *2000* | MAX: *260000*
@@ -455,7 +455,48 @@ set = `-filter:a "atempo=${atempo},asetrate=${asetrate}"`;
 m.reply(`*🎧 VALORES ASIGNADOS:*\n\`\`\`${set}\`\`\`\n1️⃣ *${atempo}* 2️⃣ *${asetrate}*`);
 }
 
-if (/audio8d/.test(command)) set = '-af apulsator=hz=0.125:amount=1'     
+//if (/audio8d/.test(command)) set = '-af apulsator=hz=0.125:amount=1'   
+if (/audio8d/.test(command)) {
+if (!args[0] || !args[1]) throw `*_PARA REALIZAR UNA CORRECTA MODIFICACIÓN DE SU AUDIO USE ESTOS PARÁMETROS_*\n${usedPrefix + command} 1️⃣ 2️⃣\n
+⎔ *(Parámetro obligatorio)*
+⎔ MIN: *0.001* | MAX: *3*
+⎔ Predeterminada: *0.125*
+1️⃣👉 _La frecuencia de la onda pulsada en hercios (Hz)_
+
+⎔ *(Parámetro obligatorio)*
+⎔ MIN: *0.01* | MAX: *3*
+⎔ Predeterminada: *1*
+2️⃣👉 _Ajusta la cantidad de modulación que se aplica al audio._
+
+*»» EJEMPLOS DE USO:*
+${usedPrefix + command} 0.008 0.03
+${usedPrefix + command} 1 0.07
+
+*❕ TODOS LOS PARÁMETROS SON OBLIGATORIOS, SI SE PASA DE SUS LÍMITES, ESTOS SE AGREGARÁN AL VALOR PREDETERMINADO, RECUERDE RESPONDER AL AUDIO O NOTA DE VOZ*`
+
+if (isNaN(args[0]) || isNaN(args[1])) return replyToNumber()  
+if (!mime) return replyToAudio()
+let hz, amount, ar 
+
+if (Number.isInteger(parseFloat(args[0]))) {
+hz = isNaN(args[0]) || args[0] < 1 || args[0] > 3 ? 0.125 : Number(args[0]);
+hz = speed.toFixed(3);
+} else {
+ar = parseFloat(args[0]).toFixed(3);
+hz = isNaN(ar) || ar < 0.001 || ar > 0.200 ? 0.125 : Number(ar);
+}
+        
+if (Number.isInteger(parseFloat(args[1]))) {
+amount = isNaN(args[1]) || args[1] < 1 || args[1] > 3 ? 1 : Number(args[1]);
+amount = speed.toFixed(2);
+} else {
+ar = parseFloat(args[1]).toFixed(2);
+amount = isNaN(ar) || ar < 0.01 || ar > 0.99 ? 1 : Number(ar);
+}
+
+set = `-af apulsator=hz=${hz}:amount=${amount}`
+m.reply(`*🎧 VALORES ASIGNADOS:*\n\`\`\`${set}\`\`\`\n1️⃣ *${hz}* 2️⃣ *${amount}*`);
+}
 
         
                
