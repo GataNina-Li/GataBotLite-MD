@@ -352,7 +352,7 @@ if (/slow/.test(command)) {
 if (!args[0] || !args[1]) throw `*_PARA REALIZAR UNA CORRECTA MODIFICACIÓN DE SU AUDIO USE ESTOS PARÁMETROS_*\n${usedPrefix + command} 1️⃣ 2️⃣\n
 ⎔ *(Parámetro obligatorio)*
 ⎔ MIN: *0.1* | MAX: *12*
-⎔ Predeterminada: *0.7 o 2*
+⎔ Predeterminada: *0.7*
 1️⃣👉 _Velocidad de reproducción del audio. Un valor de 1.0 es la velocidad normal, mientras que un valor mayor a 1.0 acelera la reproducción, y un valor menor a 1.0 la ralentiza._
 
 ⎔ *(Parámetro obligatorio)*
@@ -370,7 +370,7 @@ if (!mime) return replyToAudio()
         
 let speed, sample_rate
 if (Number.isInteger(parseFloat(args[0]))) {
-speed = isNaN(args[0]) || args[0] < 1 || args[0] > 12 ? 2 : Number(args[0])
+speed = isNaN(args[0]) || args[0] < 1 || args[0] > 12 ? 0.7 : Number(args[0])
 } else {
 speed = isNaN(args[0]) || args[0] < 0.1 || args[0] > 0.99 ? 0.7 : Number(args[0]).toFixed(1)
 }
