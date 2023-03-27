@@ -8,7 +8,7 @@ let q = m.quoted ? m.quoted : m
 let mime = ((m.quoted ? m.quoted : m.msg).mimetype || '')
 let set
 if (/bass/.test(command)) set = '-af "equalizer=f=40:width_type=h:width=50:g=14"' //'-af equalizer=f=94:width_type=o:width=2:g=30' 
-if (/blown/.test(command)) set = '-af "acrusher=.1:1:64:0:log, lowpass=f=8000, areverse, acrusher=.1:1:64:0:log, lowpass=f=8000, areverse"' //'-af "acrusher=.1:1:64:0:log,areverse,acrusher=.1:1:64:0:log,areverse"' //'-af acrusher=.1:1:64:0:log'
+if (/blown/.test(command)) set = '-af "acrusher=.1:1:64:0:log, anr=75:5:1:1:1, lowpass=f=8000, areverse, asplit=2 [a],[b];[a] asoftclip, lowpass=f=2000 [c];[b] acrusher=.1:1:64:0:log, anr=75:5:1:1:1, lowpass=f=8000, areverse, [d];[c][d] amix=2"' //'-af "acrusher=.1:1:64:0:log, lowpass=f=8000, areverse, acrusher=.1:1:64:0:log, lowpass=f=8000, areverse"' //'-af "acrusher=.1:1:64:0:log,areverse,acrusher=.1:1:64:0:log,areverse"' //'-af acrusher=.1:1:64:0:log'
 if (/deep/.test(command)) set = '-af "atempo=4/4,asetrate=44500*2/3,highpass=f=100,lowpass=f=15000,sinc=48000:lanczos"' //'-af atempo=4/4,asetrate=44500*2/3'
 if (/earrape/.test(command)) set = '-af "compand=attacks=0:points=-80/-80|-35/-5|0/-2|20/-1.5:gain=5:delay=0,limit=6dB"' //'-af volume=12'
 if (/fast/.test(command)) set = '-filter:a "atempo=1.63,asetrate=44100,highpass=f=1000,lowpass=f=6000"' //'-filter:a "atempo=1.63,asetrate=44100"'
