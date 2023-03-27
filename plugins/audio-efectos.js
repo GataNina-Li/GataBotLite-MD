@@ -228,7 +228,33 @@ vl = args[0] !== '' ? parseInt(args[0]) : 6
 set = `-af volume=${vl}`
 m.reply(`*🎧 VALORES ASIGNADOS:*\n\`\`\`${set}\`\`\`\n1️⃣ *${vl}*`)
 }
-        
+// -- fast -- //     
+if (/fast/.test(command)) {
+if (!args[0] || !args[1]) throw `*_PARA REALIZAR UNA CORRECTA MODIFICACIÓN DE SU AUDIO USE ESTOS PARÁMETROS_*\n${usedPrefix + command} 1️⃣ 2️⃣\n
+⎔ *(Parámetro obligatorio)*
+⎔ MIN: *1* | MAX: *100*
+⎔ Predeterminada: *1.63*
+1️⃣👉 _Cambiar la velocidad de reproducción de un archivo de audio_
+
+⎔ *(Parámetro obligatorio)*
+⎔ MIN: *8000* | MAX: *48000*
+⎔ Predeterminada: *44100*
+2️⃣👉 _Cambiar la frecuencia de muestreo de un archivo de audio_
+
+*»» EJEMPLOS DE USO:*
+${usedPrefix + command} 2 3489
+${usedPrefix + command} 88 1000
+
+*❕ TODOS LOS PARÁMETROS SON OBLIGATORIOS, SI SE PASA DE SUS LÍMITES, ESTOS SE AGREGARÁN AL VALOR PREDETERMINADO, RECUERDE RESPONDER AL AUDIO O NOTA DE VOZ*`
+if (isNaN(args[0]) || isNaN(args[1])) return replyToNumber()  
+if (!mime) return replyToAudio()
+let tempo, setrate
+tempo = isNaN(args[0]) || args[0] < 1 || args[0] > 100 ? 1.63 : Number(args[0])
+setrate = isNaN(args[1]) || args[1] < 8000 || args[1] > 48000 ? 44100 : Number(args[1])
+set = `-filter:a "atempo=${tempo},asetrate=${setrate}"`;
+m.reply(`*🎧 VALORES ASIGNADOS:*\n\`\`\`${set}\`\`\`\n1️⃣ *${tempo}* 2️⃣ *${setrate}*`)
+}
+
         
                
 /*
