@@ -19,7 +19,6 @@ if (/robot/.test(command)) set = '-filter_complex "afftfilt=real=\'hypot(re,im)*
 if (/slow/.test(command)) set =  '-filter:a "atempo=0.7,asetrate=44100"'
 if (/smooth/.test(command)) set = '-filter:v "minterpolate=\'mi_mode=mci:mc_mode=aobmc:vsbmc=1:fps=120\'"'
 if (/tupai|squirrel|chipmunk/.test(command)) set = '-filter:a "atempo=0.5,asetrate=65100, equalizer=f=1000:width_type=h:width=50:g=3, volume=4dB"'
-
 if (/audio8d/.test(command)) set = '-af apulsator=hz=0.125:amount=1'   
 if (/echo/.test(command)) set = '-af aecho=0.8:0.9:1000:0.3'
 if (/distortion/.test(command)) set = '-af "acompressor=threshold=0.1:ratio=20:attack=1:release=10,acrusher=level_in=8:level_out=18:bits=8:mode=log:aa=1"'
