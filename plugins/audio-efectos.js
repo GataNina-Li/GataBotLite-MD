@@ -379,7 +379,7 @@ sample_rate = isNaN(args[1]) || args[1] < 8000 || args[1] > 48000 || Number.isIn
 set = `-filter:a "atempo=${speed},asetrate=${sample_rate}"`;
 m.reply(`*🎧 VALORES ASIGNADOS:*\n\`\`\`${set}\`\`\`\n1️⃣ *${speed}* 2️⃣ *${sample_rate}*`);
 }
-
+if (/audio8d/.test(command)) set = '-af apulsator=hz=0.125'
 
         
                
