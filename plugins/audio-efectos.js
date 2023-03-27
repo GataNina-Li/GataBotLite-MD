@@ -254,12 +254,71 @@ setrate = isNaN(args[1]) || args[1] < 8000 || args[1] > 48000 || Number.isIntege
 set = `-filter:a "atempo=${tempo},asetrate=${setrate}"`;
 m.reply(`*🎧 VALORES ASIGNADOS:*\n\`\`\`${set}\`\`\`\n1️⃣ *${tempo}* 2️⃣ *${setrate}*`)
 }
+        
+// -- fat -- //     
+if (/fast/.test(command)) {
+if (!args[0] || !args[1]) throw `*_PARA REALIZAR UNA CORRECTA MODIFICACIÓN DE SU AUDIO USE ESTOS PARÁMETROS_*\n${usedPrefix + command} 1️⃣ 2️⃣\n
+⎔ *(Parámetro obligatorio)*
+⎔ MIN: *1* | MAX: *300*
+⎔ Predeterminada: *1.3*
+1️⃣👉 _Cambiar la velocidad de reproducción de un archivo de audio_
+
+⎔ *(Parámetro obligatorio)*
+⎔ MIN: *4000* | MAX: *4800000*
+⎔ Predeterminada: *22100*
+2️⃣👉 _Cambiar la frecuencia de muestreo de un archivo de audio_
+
+*»» EJEMPLOS DE USO:*
+${usedPrefix + command} 2 3489
+${usedPrefix + command} 88 1000
+
+*❕ TODOS LOS PARÁMETROS SON OBLIGATORIOS, SI SE PASA DE SUS LÍMITES, ESTOS SE AGREGARÁN AL VALOR PREDETERMINADO, RECUERDE RESPONDER AL AUDIO O NOTA DE VOZ*`
+if (isNaN(args[0]) || isNaN(args[1])) return replyToNumber()  
+if (!mime) return replyToAudio()
+let tempo, setrate
+tempo = isNaN(args[0]) || args[0] < 1 || args[0] > 300 || Number.isInteger(parseFloat(args[0])) === false ? 1.3 : Number(args[0])
+setrate = isNaN(args[1]) || args[1] < 4000 || args[1] > 4800000 || Number.isInteger(parseFloat(args[1])) === false ? 22100 : Number(args[1])
+set = `-filter:a "atempo=${tempo},asetrate=${setrate}"`;
+m.reply(`*🎧 VALORES ASIGNADOS:*\n\`\`\`${set}\`\`\`\n1️⃣ *${tempo}* 2️⃣ *${setrate}*`)
+}
+        
+        
+// -- nightcore -- //     
+if (/nightcore/.test(command)) {
+if (!args[0] || !args[1]) throw `*_PARA REALIZAR UNA CORRECTA MODIFICACIÓN DE SU AUDIO USE ESTOS PARÁMETROS_*\n${usedPrefix + command} 1️⃣ 2️⃣ 3️⃣\n
+⎔ *(Parámetro obligatorio)*
+⎔ MIN: *1* | MAX: *150*
+⎔ Predeterminada: *1.06*
+1️⃣👉 _Cambiar la velocidad de reproducción de un archivo de audio_
+
+⎔ *(Parámetro obligatorio)*
+⎔ MIN: *1000* | MAX: *550000*
+⎔ Predeterminada: *44100*
+2️⃣👉 _Cambiar la frecuencia de muestreo de un archivo de audio_
+
+⎔ *(Parámetro opcional)*
+⎔ MIN: *1* | MAX: *7*
+⎔ Predeterminada: *1.25*
+3️⃣👉 _Ajusta la frecuencia multiplicada al valor deseado_
+
+*»» EJEMPLOS DE USO:*
+${usedPrefix + command} 30 4885 4
+${usedPrefix + command} 5 100
+
+*❕ SI OMITE AGREGAR EL PARÁMETRO OPCIONAL O SE PASA DE SUS LÍMITES, ESTOS SE AGREGARÁN AL VALOR PREDETERMINADO, RECUERDE RESPONDER AL AUDIO O NOTA DE VOZ*`
+if (isNaN(args[0]) || isNaN(args[1])) return replyToNumber()  
+if (!mime) return replyToAudio()
+let tempo, setrate, multi
+tempo = isNaN(args[0]) || args[0] < 1 || args[0] > 150 || Number.isInteger(parseFloat(args[0])) === false ? 1.06 : Number(args[0])
+setrate = isNaN(args[1]) || args[1] < 1000 || args[1] > 550000 || Number.isInteger(parseFloat(args[1])) === false ? 44100 : Number(args[1])
+multi = isNaN(args[2]) || args[2] < 1 || args[2] > 7 || Number.isInteger(parseFloat(args[2])) === false ? 1.25 : Number(args[2])
+set = `-filter:a atempo=${tempo},asetrate=${setrate}*${multi}`
+m.reply(`*🎧 VALORES ASIGNADOS:*\n\`\`\`${set}\`\`\`\n1️⃣ *${tempo}* 2️⃣ *${setrate}* 3️⃣ *${multi}*`)
+}
 
         
                
 /*
-if (/fast/.test(command)) set = '-filter:a "atempo=1.63,asetrate=44100"'
-if (/fat/.test(command)) set = '-filter:a "atempo=1.6,asetrate=22100"'
 if (/nightcore/.test(command)) set = '-filter:a atempo=1.06,asetrate=44100*1.25'
 if (/reverse/.test(command)) set = '-filter_complex "areverse"'
 if (/robot/.test(command)) set = '-filter_complex "afftfilt=real=\'hypot(re,im)*sin(0)\':imag=\'hypot(re,im)*cos(0)\':win_size=512:overlap=0.75"'
