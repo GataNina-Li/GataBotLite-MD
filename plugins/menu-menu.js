@@ -41,7 +41,7 @@ let menu = `
 *│* ╰∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙ ∙ ∙ ∙ ∙ 
 *│*
 *╰ ㊂ ▸▸ _EDITAR EFECTOS DE AUDIO_ ◂◂*
-*│* ┊ (Use los mejores parámetros en su audio!!)
+*│* ┊ (Use parámetros en su audio!!)
 *│* ┊
 *│* ┊▸ ✦ _${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'editarbass' : 'editbass'}_
 *│* ┊▸ ✦ _${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'editarvibra' : 'editvibra'}_
@@ -56,6 +56,32 @@ let menu = `
 *│* ┊▸ ✦ _${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'editarsmooth' : 'editsmooth'}_
 *│* ┊▸ ✦ _${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'editartupai' : 'edittupai'}_
 *│* ┊▸ ✦ _${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'editaraudio8d' : 'editaudio8d'}_
+*│* ╰∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙ ∙ ∙ ∙ ∙ 
+*│*
+*╰ ㊂ ▸▸ _EFECTOS DE AUDIO_ ◂◂*
+*│* ┊ (Mejorados y nuevos!!)
+*│* ┊
+*│* ┊▸ ✦ _${usedPrefix}bass
+*│* ┊▸ ✦ _${usedPrefix}blown
+*│* ┊▸ ✦ _${usedPrefix}deep
+*│* ┊▸ ✦ _${usedPrefix}earrape
+*│* ┊▸ ✦ _${usedPrefix}fast
+*│* ┊▸ ✦ _${usedPrefix}fat
+*│* ┊▸ ✦ _${usedPrefix}nightcore
+*│* ┊▸ ✦ _${usedPrefix}reverse
+*│* ┊▸ ✦ _${usedPrefix}robot
+*│* ┊▸ ✦ _${usedPrefix}slow
+*│* ┊▸ ✦ _${usedPrefix}smooth
+*│* ┊▸ ✦ _${usedPrefix}tupai
+*│* ┊▸ ✦ _${usedPrefix}audio8d
+*│* ┊▸ ✦ _${usedPrefix}echo
+*│* ┊▸ ✦ _${usedPrefix}distortion
+*│* ┊▸ ✦ _${usedPrefix}pitch
+*│* ┊▸ ✦ _${usedPrefix}reverb
+*│* ┊▸ ✦ _${usedPrefix}flanger
+*│* ┊▸ ✦ _${usedPrefix}apulsator
+*│* ┊▸ ✦ _${usedPrefix}tremolo
+*│* ┊▸ ✦ _${usedPrefix}chorus
 *│* ╰∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙ ∙ ∙ ∙ ∙ 
 *│*
 *╰ ㊂ ▸▸ _DESCARGAS_ ◂◂*
