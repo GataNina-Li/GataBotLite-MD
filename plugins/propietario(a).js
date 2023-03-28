@@ -30,7 +30,9 @@ break
 case isCommand2:
 if (m.isGroup) who = m.mentionedJid[0] ? m.mentionedJid[0] : m.quoted.sender
 else who = m.chat
-let username = await who.split('@')[0]  //conn.getName(who).replace(/[^\d]/g, '') + '@s.whatsapp.net'   
+const username = who.split('@')[0];
+const contact = await conn.getContact(username + '@s.whatsapp.net');
+username = contact.name
 /*function no(number){
 return number.replace(/\s/g,'').replace(/([@+-])/g,'')}
 text = no(text)
