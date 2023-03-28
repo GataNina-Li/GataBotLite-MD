@@ -56,7 +56,7 @@ if (!m.mentionedJid[0] && !m.quoted) return m.reply(bant, m.chat, { mentions: co
 
 let users = global.db.data.users
 users[who].banned = true
-conn.reply(m.chat, `@${number} *ESTAS BANEADO/A NO PUEDES USAR LOS COMANDOS HASTA QUE ALGUIEN REVIERTA EL BANEO*`, null, { mentions: conn.parseMention(number) })
+conn.reply(m.chat, `*@${number} ESTAS BANEADO/A NO PUEDES USAR LOS COMANDOS HASTA QUE ALGUIEN REVIERTA EL BANEO*`, null, { mentions: [number] })
 }
 break
 }}
