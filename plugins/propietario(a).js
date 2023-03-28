@@ -31,8 +31,6 @@ case isCommand2:
 if (m.isGroup) who = m.mentionedJid[0] ? m.mentionedJid[0] : m.quoted.sender
 else who = m.chat
 const username = who.split('@')[0];
-const contact = await conn.getContact(username + '@s.whatsapp.net');
-username = contact.name
 /*function no(number){
 return number.replace(/\s/g,'').replace(/([@+-])/g,'')}
 text = no(text)
@@ -58,7 +56,7 @@ if (!m.mentionedJid[0] && !m.quoted) return m.reply(bant, m.chat, { mentions: co
 
 let users = global.db.data.users
 users[who].banned = true
-conn.reply(m.chat, `@${username} *ESTAS BANEADO/A NO PUEDES USAR LOS COMANDOS HASTA QUE ALGUIEN REVIERTA EL BANEO*`, null, { mentions: [username] })
+conn.reply(m.chat, `@${username} *ESTAS BANEADO/A NO PUEDES USAR LOS COMANDOS HASTA QUE ALGUIEN REVIERTA EL BANEO*`, null, { mentions: conn.parseMention(username) })
 
 break
 }}
