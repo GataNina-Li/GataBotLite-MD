@@ -30,20 +30,18 @@ break
 case isCommand2:
 if (m.isGroup) who = m.mentionedJid[0] ? m.mentionedJid[0] : m.quoted.sender
 else who = m.chat
-let ww = await who.split`@`[0]        
-
 function no(number){
 return number.replace(/\s/g,'').replace(/([@+-])/g,'')}
-        
-text = no(ww)
-if(isNaN(ww)) {
-var number = ww.split`@`[1]
-} else if(!isNaN(ww)) {
-var number = ww
+text = no(text)
+
+if(isNaN(text)) {
+var number = text.split`@`[1]
+} else if(!isNaN(text)) {
+var number = text
 }
         
 try {
-if(ww) {
+if(text) {
 var user = number + '@s.whatsapp.net'
 } else if(m.quoted.sender) {
 var user = m.quoted.sender
@@ -51,15 +49,15 @@ var user = m.quoted.sender
 var user = number + '@s.whatsapp.net'
 }} catch (e) {
 } finally {
-let number = ww.split('@')[0]
+let number = user.split('@')[0]
  
-let bant = `*ETIQUETE A ALGUIEN O RESPONDA AL MENSAJE DEL USUARIO QUE QUIERE BANEAR DE LOS COMANDOS*\n*EJEMPLO:*\n*${usedPrefix + command} @${number}*`
-if (!m.mentionedJid[0] && !m.quoted) return m.reply(bant, m.chat, { mentions: conn.parseMention(bant)})
+let bant = `*ETIQUETE A ALGUIEN O RESPONDA AL MENSAJE DEL USUARIO QUE QUIERE BANEAR DE LOS COMANDOS*\n*EJEMPLO:*\n*${usedPrefix + command} @${who.split('@')[0]}*`
+if (!m.mentionedJid[0] && !m.quoted) return m.reply(bant, m.chat, { mentions: conn.parseMention(who)})
 //(user === conn.user.jid)
 
 let users = global.db.data.users
-users[who].banned = true
-conn.reply(m.chat, `*@${number} ESTAS BANEADO/A NO PUEDES USAR LOS COMANDOS HASTA QUE ALGUIEN REVIERTA EL BANEO*`, null, { mentions: [number] })
+users[user].banned = true
+conn.reply(m.chat, `*@${number} ESTAS BANEADO/A NO PUEDES USAR LOS COMANDOS HASTA QUE ALGUIEN REVIERTA EL BANEO*`, null, { mentions: [user] })
 }
 break
 }}
