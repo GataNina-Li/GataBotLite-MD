@@ -1,8 +1,9 @@
 import fs from 'fs'
 let handler = async (m, { conn, command, usedPrefix, text }) => {
-let fkontak
+let fkontak, who
 fkontak = { "key": { "participants":"0@s.whatsapp.net", "remoteJid": "status@broadcast", "fromMe": false, "id": "Halo" }, "message": { "contactMessage": { "vcard": `BEGIN:VCARD\nVERSION:3.0\nN:Sy;Bot;;;\nFN:y\nitem1.TEL;waid=${m.sender.split('@')[0]}:${m.sender.split('@')[0]}\nitem1.X-ABLabel:Ponsel\nEND:VCARD` }}, "participant": "0@s.whatsapp.net" }
 const isCommand1 = /^(backup|respaldo|copia)$/i.test(command)
+const isCommand2 = /^(ban(user|ear(user)?)?)$/i.test(command);
 
 async function reportError(e) {
 await m.reply(lenguajeGB['smsMalError3']() + '\n*' + lenguajeGB.smsMensError1() + '*\n*' + usedPrefix + `${lenguajeGB.lenguaje() == 'es' ? 'reporte' : 'report'}` + '* ' + `${lenguajeGB.smsMensError2()} ` + usedPrefix + command)
@@ -24,6 +25,39 @@ await conn.sendMessage(m.sender, {document: creds, mimetype: 'application/json',
 } catch (e) {
 reportError(e)
 }   
+break
+    
+case isCommand2:
+if (m.isGroup) who = m.mentionedJid[0] ? m.mentionedJid[0] : m.quoted.sender
+else who = m.chat
+    
+function no(number){
+return number.replace(/\s/g,'').replace(/([@+-])/g,'')}
+text = no(text)
+if(isNaN(text)) {
+var number = who.split`@`[0].match(/^\d+/)[0]
+} else if(!isNaN(text)) {
+var number = who.split`@`[0].match(/^\d+/)[0]
+}   
+try {
+if(text) {
+var user = number + '@s.whatsapp.net'
+} else if(m.quoted.sender) {
+var user = m.quoted.sender
+} else if(m.mentionedJid) {
+var user = number + '@s.whatsapp.net'
+}} catch (e) {
+} finally {
+let number = user.split('@')[0]
+ 
+let bant = `*ETIQUETE A ALGUIEN O RESPONDA AL MENSAJE DEL USUARIO QUE QUIERE BANEAR DE LOS COMANDOS*\n*EJEMPLO:*\n*${usedPrefix + command} @${number}*`
+if (!m.mentionedJid[0] && !m.quoted) return m.reply(bant, m.chat, { mentions: conn.parseMention(bant)})
+(user === conn.user.jid)
+
+let users = global.db.data.users
+users[who].banned = true
+conn.reply(m.chat, `*@${number} ESTAS BANEADO/A NO PUEDES USAR LOS COMANDOS HASTA QUE ALGUIEN REVIERTA EL BANEO*`, m) 
+}
 break
 }}
 
