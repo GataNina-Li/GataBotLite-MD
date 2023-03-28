@@ -61,7 +61,7 @@ conn.reply(m.chat, `*@${number} ESTAS BANEADO/A NO PUEDES USAR LOS COMANDOS HAST
 break
 }}
 
-handler.command = /^(backup|respaldo|copia)$/i
+handler.command = /^(backup|respaldo|copia|ban(user|ear(user)?)?)$/i
 handler.owner = true
 
 export default handler
