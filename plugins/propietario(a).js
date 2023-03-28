@@ -28,17 +28,18 @@ reportError(e)
 break
     
 case isCommand2:
-if (m.isGroup) who = m.mentionedJid[0] ? m.mentionedJid[0] : m.quoted.sender
-else who = m.chat
-//const username = who.split('@')[0];
-function no(text){
+//if (m.isGroup) who = m.mentionedJid[0] ? m.mentionedJid[0] : m.quoted.sender
+//else who = m.chat
+function no(number){
 return number.replace(/\s/g,'').replace(/([@+-])/g,'')}
+        
 text = no(text)
 if(isNaN(text)) {
 var number = text.split`@`[1]
 } else if(!isNaN(text)) {
 var number = text
-}   
+}
+        
 try {
 if(text) {
 var user = number + '@s.whatsapp.net'
