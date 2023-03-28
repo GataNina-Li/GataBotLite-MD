@@ -52,11 +52,11 @@ let number = user.split('@')[0]
  
 let bant = `*ETIQUETE A ALGUIEN O RESPONDA AL MENSAJE DEL USUARIO QUE QUIERE BANEAR DE LOS COMANDOS*\n*EJEMPLO:*\n*${usedPrefix + command} @${number}*`
 if (!m.mentionedJid[0] && !m.quoted) return m.reply(bant, m.chat, { mentions: conn.parseMention(bant)})
-(user === conn.user.jid)
+//(user === conn.user.jid)
 
 let users = global.db.data.users
 users[who].banned = true
-conn.reply(m.chat, `*@${number} ESTAS BANEADO/A NO PUEDES USAR LOS COMANDOS HASTA QUE ALGUIEN REVIERTA EL BANEO*`, m) 
+conn.reply(m.chat, `*@${number} ESTAS BANEADO/A NO PUEDES USAR LOS COMANDOS HASTA QUE ALGUIEN REVIERTA EL BANEO*`, null, { mentions: [user] })
 }
 break
 }}
