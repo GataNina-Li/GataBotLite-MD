@@ -39,9 +39,9 @@ var number = text.split`@`[1]
 } else if(!isNaN(text)) {
 var number = text
 }
-        
-let bant = `*ETIQUETE A ALGUIEN O RESPONDA AL MENSAJE DEL USUARIO QUE QUIERE BANEAR DE LOS COMANDOS*\n*EJEMPLO:*\n*${usedPrefix + command} @${conn.user.jid.split`@`[0]}}*`
-if (!m.mentionedJid[0] && !m.quoted) return conn.reply(m.chat, bant, null, { mentions: [bant] })
+var user = conn.user.jid.split`@`[0] + '@s.whatsapp.net'        
+let bant = `*ETIQUETE A ALGUIEN O RESPONDA AL MENSAJE DEL USUARIO QUE QUIERE BANEAR DE LOS COMANDOS*\n*EJEMPLO:*\n*${usedPrefix + command} @${conn.user.jid.split`@`[0]}*`
+if (!m.mentionedJid[0] && !m.quoted) return conn.reply(m.chat, bant, null, { mentions: [user] })
 //(user === conn.user.jid)
                
 try {
