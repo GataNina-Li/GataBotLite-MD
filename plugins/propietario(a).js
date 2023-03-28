@@ -30,8 +30,8 @@ break
 case isCommand2:
 if (m.isGroup) who = m.mentionedJid[0] ? m.mentionedJid[0] : m.quoted.sender
 else who = m.chat
-let username = conn.getName(who)    
-function no(number){
+let username = conn.getName(who).replace(/[^\d]/g, '') + '@s.whatsapp.net'   
+/*function no(number){
 return number.replace(/\s/g,'').replace(/([@+-])/g,'')}
 text = no(text)
 if(isNaN(text)) {
@@ -48,9 +48,9 @@ var user = m.quoted.sender
 var user = number + '@s.whatsapp.net'
 }} catch (e) {
 } finally {
-let number = user.split('@')[0]
+let number = user.split('@')[0]*/
  
-let bant = `*ETIQUETE A ALGUIEN O RESPONDA AL MENSAJE DEL USUARIO QUE QUIERE BANEAR DE LOS COMANDOS*\n*EJEMPLO:*\n*${usedPrefix + command} @${number}*`
+let bant = `*ETIQUETE A ALGUIEN O RESPONDA AL MENSAJE DEL USUARIO QUE QUIERE BANEAR DE LOS COMANDOS*\n*EJEMPLO:*\n*${usedPrefix + command} @${username}*`
 if (!m.mentionedJid[0] && !m.quoted) return m.reply(bant, m.chat, { mentions: conn.parseMention(bant)})
 //(user === conn.user.jid)
 
