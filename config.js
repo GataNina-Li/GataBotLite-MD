@@ -22,7 +22,7 @@ global.mods = []
 global.prems = []
    
   
-//⊱ ━━━━━.⋅ IDIOMA : LENGUAJE ⋅.━━━━ ⊰ 
+//⊱ ━━━━━.⋅ IDIOMA : LENGUAJE ⋅.━━━━ ⊰  
 //Agrega el Idioma que quieres que tenga GataBot-MD
 //Add the language you want GataBot-MD to have
 //  es = Español         id = Bahasa Indonesia
