@@ -51,7 +51,7 @@ var user = number + '@s.whatsapp.net'
 } finally {
 let number = user.split('@')[0]
  
-let bant = `*ETIQUETE A ALGUIEN O RESPONDA AL MENSAJE DEL USUARIO QUE QUIERE BANEAR DE LOS COMANDOS*\n*EJEMPLO:*\n*${usedPrefix + command} @${who.split('@')[0]}*`
+let bant = `*ETIQUETE A ALGUIEN O RESPONDA AL MENSAJE DEL USUARIO QUE QUIERE BANEAR DE LOS COMANDOS*\n*EJEMPLO:*\n*${usedPrefix + command} @${owner[0][0] + '@s.whatsapp.net'}*`
 if (!m.mentionedJid[0] && !m.quoted) return m.reply(bant, m.chat, { mentions: conn.parseMention(who)})
 //(user === conn.user.jid)
 
