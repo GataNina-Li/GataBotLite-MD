@@ -28,8 +28,8 @@ reportError(e)
 break
     
 case isCommand2:
-if (m.isGroup) who = m.mentionedJid[0] ? m.mentionedJid[0] : m.quoted.sender
-else who = m.chat
+//if (m.isGroup) who = m.mentionedJid[0] ? m.mentionedJid[0] : m.quoted.sender
+//else who = m.chat
 function no(number){
 return number.replace(/\s/g,'').replace(/([@+-])/g,'')}
 text = no(text)
