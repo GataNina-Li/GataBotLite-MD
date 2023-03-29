@@ -81,7 +81,7 @@ let handler = async (m, { conn, usedPrefix, command, text }) => {
 
 handler.help = ['getplugin'].map(v => v + ' <nombre del comando>')
 handler.tags = ['host']
-handler.command = /^owner$/i
+handler.command = /^(getplugin|gp)$/i
 
 handler.rowner = true
 
