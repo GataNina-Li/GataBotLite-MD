@@ -212,7 +212,7 @@ let handler = async (m, { conn, usedPrefix, command, text }) => {
       const fileContent = await fs.readFileSync(path.join(process.cwd(), pluginsDir, filename))
       await conn.sendMessage(m.chat, { document: fileContent, mimetype: 'text/javascript', fileName: filename }, { quoted: m })
       await m.reply(`MD Código del archivo ${filename}:\n\n${fileContent.toString()}`)
-      return
+      //return
     } catch {
       try {
         const plugin = (await import(path.join(process.cwd(), pluginsDir, matchingFile))).default
