@@ -52,39 +52,40 @@ import { promisify } from 'util'
 const readdir = promisify(fs.readdir)
 const readFile = promisify(fs.readFile)
 
-const main = async () => {
-  let handler = async (m, { conn, usedPrefix, command, text }) => {
-    if (!text) throw `Por favor, proporciona el nombre del comando para buscar el archivo correspondiente\nEjemplo: ${usedPrefix + command} info`
+let handler = async (m, { conn, usedPrefix, command, text }) => {
+  if (!text) throw `Por favor, proporciona el nombre del comando para buscar el archivo correspondiente\nEjemplo: ${usedPrefix + command} info`
 
-    const pluginsDir = './plugins'
-    const files = await readdir(pluginsDir)
+  const pluginsDir = './plugins'
+  const files = await readdir(pluginsDir)
 
-    const matchingFile = files.find(file => {
-      const plugin = (await import(path.join(process.cwd(), pluginsDir, file))).default
-      return plugin.command && plugin.command.test(text)
-    })
-
-    if (!matchingFile) {
-      return m.reply(`El comando '${text}' no fue encontrado`)
+  let matchingFile;
+  for (let file of files) {
+    const plugin = (await import(path.join(process.cwd(), pluginsDir, file))).default
+    if (plugin.command && plugin.command.test(text)) {
+      matchingFile = file;
+      break;
     }
-
-    const plugin = (await import(path.join(process.cwd(), pluginsDir, matchingFile))).default
-
-    const filename = matchingFile.replace('.js', '')
-    const fileContent = await readFile(path.join(process.cwd(), pluginsDir, matchingFile), 'utf-8')
-
-    conn.sendMessage(m.chat, { document: fileContent, mimetype: 'text/javascript', fileName: `${filename}.js` }, { quoted: m })
   }
 
-  handler.help = ['getplugin'].map(v => v + ' <nombre del comando>')
-  handler.tags = ['host']
-  handler.command = /^(getplugin|gp)$/i
-  handler.rowner = true
+  if (!matchingFile) {
+    return m.reply(`El comando '${text}' no fue encontrado`)
+  }
 
-  export default handler
+  const plugin = (await import(path.join(process.cwd(), pluginsDir, matchingFile))).default
+
+  const filename = matchingFile.replace('.js', '')
+  const fileContent = await readFile(path.join(process.cwd(), pluginsDir, matchingFile), 'utf-8')
+
+  conn.sendMessage(m.chat, { document: fileContent, mimetype: 'text/javascript', fileName: `${filename}.js` }, { quoted: m })
 }
 
-main();
+handler.help = ['getplugin'].map(v => v + ' <nombre del comando>')
+handler.tags = ['host']
+handler.command = /^(getplugin|gp)$/i
+
+handler.rowner = true
+
+export default handler
 
 
 
