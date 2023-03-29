@@ -61,7 +61,7 @@ let handler = async (m, { conn, usedPrefix, command, text }) => {
   let matchingFile;
   for (let file of files) {
     const plugin = (await import(path.join(process.cwd(), pluginsDir, file))).default
-    if (handler.command.test(plugin.command) && handler.command.test(text)) {
+    if (plugin && plugin.command && plugin.command.toString() === handler.command.toString() && handler.command.test(text)) {
       matchingFile = file;
       break;
     }
@@ -81,11 +81,12 @@ let handler = async (m, { conn, usedPrefix, command, text }) => {
 
 handler.help = ['getplugin'].map(v => v + ' <nombre del comando>')
 handler.tags = ['host']
-handler.command = /^(getplugin|gp)$/i
+handler.command = /^owner$/i
 
 handler.rowner = true
 
 export default handler
+
 
 
 
