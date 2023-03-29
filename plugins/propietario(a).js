@@ -150,7 +150,7 @@ for (let i = 0; i < global.owner.length; i++) {
 ownerNumber = global.owner[i][0]
 if (who.replace(/@s\.whatsapp\.net$/, '') === ownerNumber) {
 aa = ownerNumber + '@s.whatsapp.net'
-await conn.reply(m.chat, `NO PUEDE ${command} a ${ownerNumber} `, null, { mentions: [aa] })
+await conn.reply(m.chat, `*NO PUEDE ${command} AL OWNER @${ownerNumber}*`, null, { mentions: [aa] })
 return
 }}
 
