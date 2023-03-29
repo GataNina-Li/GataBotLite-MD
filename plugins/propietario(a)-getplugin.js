@@ -58,7 +58,7 @@ let handler = async (m, { conn, usedPrefix, command, text }) => {
   const files = await readdir(pluginsDir)
 
   const matchingFile = files.find(file => {
-    const plugin = require(path.join(process.cwd(), pluginsDir, file)).default
+    const plugin = (await import(path.join(process.cwd(), pluginsDir, file))).default
     return plugin.command && plugin.command.test(text)
   })
 
@@ -66,7 +66,7 @@ let handler = async (m, { conn, usedPrefix, command, text }) => {
     return m.reply(`El comando '${text}' no fue encontrado`)
   }
 
-  const plugin = require(path.join(process.cwd(), pluginsDir, matchingFile)).default
+  const plugin = (await import(path.join(process.cwd(), pluginsDir, matchingFile))).default
 
   const filename = matchingFile.replace('.js', '')
   const fileContent = await fs.promises.readFile(path.join(process.cwd(), pluginsDir, matchingFile), 'utf-8')
@@ -81,5 +81,7 @@ handler.command = /^(getplugin|gp)$/i
 handler.rowner = true
 
 export default handler
+
+
 
 
