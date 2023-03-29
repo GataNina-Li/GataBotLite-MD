@@ -139,39 +139,36 @@ await conn.reply(m.chat, lenguajeGB.smsBanChE(), m)
 break
         
 case isCommand9:
-let why = `*Ejemplo:*\n${usedPrefix + command} @${m.sender.split("@")[0]}`
+let toUser = `@${m.sender.split("@")[0]}`
+let why = lenguajeGB.smsBlockUn1(usedPrefix, command, toUser)
 who = m.mentionedJid[0] ? m.mentionedJid[0] : m.quoted ? m.quoted.sender : text ? text.replace(/[^0-9]/g, '') + '@s.whatsapp.net' : false
 let res = []	
 let cmd = command.toLowerCase()
+let comd = command.toUpperCase()
 if (!who) return conn.reply(m.chat, why, m, { mentions: [m.sender] })		
 for (let i = 0; i < global.owner.length; i++) {
 ownerNumber = global.owner[i][0]
 if (who.replace(/@s\.whatsapp\.net$/, '') === ownerNumber) {
 aa = ownerNumber + '@s.whatsapp.net'
-await conn.reply(m.chat, `*NO PUEDO ${command.toUpperCase()} AL OWNER @${ownerNumber}*`, null, { mentions: [aa] })
+await conn.reply(m.chat, lenguajeGB.smsBlockUn2(comd, ownerNumber), null, { mentions: [aa] })
 return
 }}
 switch (true) {		
 case cmd == "block" || cmd == "bloquear":
 if (who) {
-await conn.updateBlockStatus(who, "block").then(() => {
-res.push(who)
-})
+await conn.updateBlockStatus(who, "block").then(() => { res.push(who) })
 } else {
-await conn.reply(m.chat, why, m, { mentions: [m.sender] })
-}
+await conn.reply(m.chat, why, m, { mentions: [m.sender] })}
 break
 case cmd == "unblock" || cmd == "desbloquear":
 if (who) {
-await conn.updateBlockStatus(who, "unblock").then(() => {
-res.push(who)
-})
+await conn.updateBlockStatus(who, "unblock").then(() => { res.push(who) })
 } else {
-await conn.reply(m.chat, why, m, { mentions: [m.sender] })
-}
+await conn.reply(m.chat, why, m, { mentions: [m.sender] })}
 break
 }
-if (res[0]) conn.reply(m.chat, `*SE HA ${command.toUpperCase()} A ${res ? `${res.map(v => '@' + v.split("@")[0])} CON ÉXITO*` : ''}*`, m, { mentions: res })
+let useB = `${res ? `${res.map(v => '@' + v.split("@")[0])}` : ''}`
+if (res[0]) conn.reply(m.chat, lenguajeGB.smsBlockUn3(comd, useB), m, { mentions: res })
 break
        
 }}
