@@ -105,8 +105,8 @@ number = user.split('@')[0]
 //return
 //}}
 users = global.db.data.users
-if (users[user].banned === true) conn.reply(m.chat, lenguajeGB.smsPropdesban2(number), null, { mentions: [user] }) 
-users[user].banned = true
+if (users[user].banned === false) conn.reply(m.chat, lenguajeGB.smsPropdesban2(number), null, { mentions: [user] }) 
+users[user].banned = false
 usr = m.sender.split('@')[0]     
 await conn.reply(m.chat, lenguajeGB.smsPropdesban3(), null, { mentions: [user] })   
 await conn.reply(user, lenguajeGB.smsPropdesban4(number, usr), null, { mentions: [user, m.sender] })
