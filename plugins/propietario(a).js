@@ -64,6 +64,8 @@ return
 }}
 let users = global.db.data.users
 
+if (users[user].banned === true) conn.reply(m.chat, `*NO ES NECESARIO VOLVER A BANEAR A @${number} SI YA LO ESTÁ*`, null, { mentions: [user] }) 
+
 try{
 users[user].banned = true
 } catch (e) {
