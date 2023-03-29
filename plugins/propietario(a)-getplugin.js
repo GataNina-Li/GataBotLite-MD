@@ -47,7 +47,7 @@ handler.rowner = true
 export default handler*/
 
 
-import fs from 'fs'
+/*import fs from 'fs'
 import path from 'path'
 import { promisify } from 'util'
 
@@ -79,23 +79,20 @@ let handler = async (m, { conn, usedPrefix, command, text }) => {
     return m.reply(`El comando '${text}' no fue encontrado`)
   }
 
-  ///try {
+  try{
     const plugin = (await import(path.join(process.cwd(), pluginsDir, matchingFile))).default
 
     const filename = matchingFile.replace('.js', '')
     const fileContent = await readFile(path.join(process.cwd(), pluginsDir, matchingFile), 'utf-8')
-
-    //conn.sendMessage(m.chat, { document: fileContent, mimetype: 'text/javascript', fileName: `${filename}.js` }, { quoted: m })
-    //conn.sendMessage(m.chat, `Código del archivo ${filename}.js:\n\n${fileContent}`, { quoted: m })
    
     let fileContentT = await fs.readFileSync(`./plugins/${filename}.js`)
     await conn.sendMessage(m.chat, { document: fileContentT, mimetype: 'text/javascript', fileName: filename }, { quoted: m })
     
     await m.reply(`Código del archivo ${filename}.js:\n\n${fileContent.toString()}`)
-  //} catch (err) {
-    //console.log(`Error al enviar el archivo '${matchingFile}': ${err.message}`)
-    //return m.reply(`Ocurrió un error al enviar el archivo '${matchingFile}'`)
-  //}
+  } catch (err) {
+    console.log(`Error al enviar el archivo '${matchingFile}': ${err.message}`)
+    return m.reply(`Ocurrió un error al enviar el archivo '${matchingFile}'`)
+  }
 }
 
 handler.help = ['getplugin'].map(v => v + ' <nombre del comando>')
@@ -104,7 +101,76 @@ handler.command = /^(getplugin|gp)$/i
 
 handler.rowner = true
 
+export default handler*/
+
+import fs from 'fs'
+import path from 'path'
+import { promisify } from 'util'
+
+const readdir = promisify(fs.readdir)
+const readFile = promisify(fs.readFile)
+
+let handler = async (m, { conn, usedPrefix, command, text }) => {
+  if (!text) throw `Por favor, proporciona el nombre del comando o archivo para buscar\nEjemplo: ${usedPrefix + command} info`
+
+  const pluginsDir = './plugins'
+  const files = await readdir(pluginsDir)
+
+  let matchingFile;
+  for (let file of files) {
+    const plugin = (await import(path.join(process.cwd(), pluginsDir, file))).default
+    try {
+      if (plugin && plugin.command && plugin.command.test(text) && text.match(plugin.command)) {
+        matchingFile = file;
+        break;
+      }
+    } catch (err) {
+      console.log(`Error en el archivo ${file}: ${err.message}`)
+    }
+  }
+
+  if (!matchingFile) {
+    let matchingFileNoExt = files.find(file => file.replace('.js', '') === text)
+    if (matchingFileNoExt) matchingFile = matchingFileNoExt
+  }
+
+  if (!matchingFile) {
+    console.log(`No se encontró el archivo o comando '${text}'`)
+    return m.reply(`No se encontró el archivo o comando '${text}'`)
+  }
+
+  try {
+    const plugin = (await import(path.join(process.cwd(), pluginsDir, matchingFile))).default
+
+    if (plugin && plugin.command && plugin.command.test(text) && text.match(plugin.command)) {
+      const filename = matchingFile.replace('.js', '')
+      const fileContent = await readFile(path.join(process.cwd(), pluginsDir, matchingFile), 'utf-8')
+
+      conn.sendMessage(m.chat, { document: fileContent, mimetype: 'text/javascript', fileName: `${filename}.js` }, { quoted: m })
+
+      await m.reply(`Código del archivo ${filename}.js:\n\n${fileContent.toString()}`)
+    } else {
+      const filename = matchingFile.replace('.js', '')
+      const fileContent = await fs.readFileSync(path.join(process.cwd(), pluginsDir, matchingFile), 'utf-8')
+
+      conn.sendMessage(m.chat, { document: fileContent, mimetype: 'text/javascript', fileName: filename }, { quoted: m })
+
+      await m.reply(`Código del archivo ${filename}:\n\n${fileContent.toString()}`)
+    }
+  } catch (err) {
+    console.log(`Error al enviar el archivo o comando '${matchingFile}': ${err.message}`)
+    return m.reply(`Ocurrió un error al enviar el archivo o comando '${matchingFile}'`)
+  }
+}
+
+handler.help = ['getplugin'].map(v => v + ' <nombre del comando o archivo>')
+handler.tags = ['host']
+handler.command = /^(getplugin|gp)$/i
+
+handler.rowner = true
+
 export default handler
+
 
 
 
