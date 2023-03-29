@@ -1,11 +1,16 @@
 import fs from 'fs'
+import { execSync } from 'child_process'
 let handler = async (m, { conn, command, usedPrefix, text, isAdmin }) => {
-let fkontak, who, user, number, bot, bant, ownerNumber, aa, users, usr
+let fkontak, who, user, number, bot, bant, ownerNumber, aa, users, usr, q, mime, img
 fkontak = { "key": { "participants":"0@s.whatsapp.net", "remoteJid": "status@broadcast", "fromMe": false, "id": "Halo" }, "message": { "contactMessage": { "vcard": `BEGIN:VCARD\nVERSION:3.0\nN:Sy;Bot;;;\nFN:y\nitem1.TEL;waid=${m.sender.split('@')[0]}:${m.sender.split('@')[0]}\nitem1.X-ABLabel:Ponsel\nEND:VCARD` }}, "participant": "0@s.whatsapp.net" }
 const isCommand1 = /^(backup|respaldo|copia)$/i.test(command)
 const isCommand2 = /^(ban(user|usuario|earuser|earusuario))$/i.test(command) 
 const isCommand3 = /^((unban|desban)(user|usuario|earuser|earusuario))$/i.test(command) 
 const isCommand4 = /^(seradmin|autoadmin|tenerpoder)$/i.test(command)
+const isCommand5 = /^((set|cambiar|nueva|new)(bio|botbio|biobot))$/i.test(command)
+const isCommand6 = /^((set|cambiar|nuev(a|o)?|new)(name|botname|namebot|nombre|nombrebot|botnombre))$/i.test(command)
+const isCommand7 = /^((set|cambiar|nueva|new)(ppbot|botpp|fotobot|botfoto))$/i.test(command)
+const isCommand8 = /^(update|actualizar|ups)$/i.test(command)
 
 async function reportError(e) {
 await m.reply(lenguajeGB['smsMalError3']() + '\n*' + lenguajeGB.smsMensError1() + '*\n*' + usedPrefix + `${lenguajeGB.lenguaje() == 'es' ? 'reporte' : 'report'}` + '* ' + `${lenguajeGB.smsMensError2()} ` + usedPrefix + command)
@@ -111,15 +116,60 @@ break
         
 case isCommand4:
 if (m.fromMe) return
-if (isAdmin) throw '*USTED YA ES ADMIN 😳🌹*'
+if (isAdmin) throw lenguajeGB.smsAutoAdmin1()
 try {  
 await conn.groupParticipantsUpdate(m.chat, [m.sender], "promote")
 } catch {
-await m.reply('*NO PUDE HACER QUE SEA ADMIN 🥹🥀*')}        
+await m.reply(lenguajeGB.smsAutoAdmin2())}        
+break
+        
+case isCommand5:
+if (!text) throw `*ESCRIBA EL TEXTO QUE QUIERE QUE SE MUESTRE EN LA BIOGRAFÍA DE* ${packname}`
+if (text.length > 139) throw `*LA BIOGRAFÍA ES MUY LARGA, RESUMA LA INFORMACIÓN POR FAVOR*`
+try {
+await conn.updateProfileStatus(text).catch(_ => _)
+await conn.reply(m.chat, '✅ ```INFORMACIÓN DE BIOGRAFÍA DEL BOT CAMBIADA CON ÉXITO```', m)
+} catch (e) {
+reportError(e)
+}        
+break
+        
+case
+if (!text) throw `*ESCRIBA EL TEXTO QUE QUIERE QUE SE MUESTRE COMO NOMBRE DE USUARIO EN* ${packname}`
+if (text.length > 25) throw `*EL NOMBRE ES MUY LARGO, RESUMA LA INFORMACIÓN POR FAVOR*`
+try {
+await conn.updateProfileStatus(text).catch(_ => _)
+await conn.reply(m.chat, '✅ ```NOMBRE DE USUARIO DEL BOT CAMBIADA CON ÉXITO```', m)
+} catch (e) {
+reportError(e)
+}        
+break
+        
+case isCommand7:
+bot = conn.user.jid
+q = m.quoted ? m.quoted : m
+mime = (q.msg || q).mimetype || ''
+if (/image/.test(mime)) {
+img = await q.download()
+if (!img) throw `*RESPONDA A UNA IMAGEN USANDO EL COMMANDO ${usedPrefix + command} PARA ACTUALIZAR LA FOTO DEL PERFIL DEL BOT*`
+await conn.updateProfilePicture(bot, img)
+await conn.reply(m.chat, '✅ ```FOTO DE PERFIL DEL BOT CAMBIADA CON ÉXITO```', m)
+} else throw `*RECUERDE RESPONDER A UNA IMAGEN USANDO EL COMANDO ${usedPrefix + command}*`        
+break
+        
+case isCommand8:
+try {  
+if (global.conn.user.jid == conn.user.jid) {
+let stdout = execSync('git pull' + (m.fromMe && text ? ' ' + text : ''))
+conn.reply(m.chat, stdout.toString(), m)}
+} catch {
+var update = execSync('git remote set-url origin' + md + '.git && git pull')
+await m.reply(update.toString())
+}        
 break
 }}
 
-handler.command = /^(backup|respaldo|copia|ban(user|usuario|earuser|earusuario)|(unban|desban)(user|usuario|earuser|earusuario)|seradmin|autoadmin|tenerpoder)$/i
+handler.command = /^(backup|respaldo|copia|ban(user|usuario|earuser|earusuario)|(unban|desban)(user|usuario|earuser|earusuario)|seradmin|autoadmin|tenerpoder|(set|cambiar|nueva|new)(bio|botbio|biobot)|(set|cambiar|nuev(a|o)?|new)(name|botname|namebot|nombre|nombrebot|botnombre)|(set|cambiar|nueva|new)(ppbot|botpp|fotobot|botfoto)|update|actualizar|ups)$/i
 handler.owner = true
 
 export default handler
