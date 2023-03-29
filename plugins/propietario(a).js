@@ -27,7 +27,7 @@ reportError(e)
 }   
 break
     
-case isCommand2:
+/*case isCommand2:
 try{
 function no(number){
 return number.replace(/\s/g,'').replace(/([@+-])/g,'')}
@@ -69,7 +69,7 @@ await conn.reply(user, lenguajeGB.smsPropban6(number, usr), null, { mentions: [u
 await conn.reply(m.chat, lenguajeGB.smsPropban7(usedPrefix, command, number), null, m)
 console.log(e) 
 }
-break
+break*/
 }}
 
 handler.command = /^(backup|respaldo|copia|ban(user|ear(user)?)?)$/i
