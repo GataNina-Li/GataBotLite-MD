@@ -62,7 +62,7 @@ let handler = async (m, { conn, usedPrefix, command, text }) => {
   for (let file of files) {
     const plugin = (await import(path.join(process.cwd(), pluginsDir, file))).default
     try {
-      if (plugin && plugin.command && plugin.command.toString() === handler.command.toString() && handler.command.test(text)) {
+      if (plugin && plugin.command && plugin.command.test(`^${text}$`)) {
         matchingFile = file;
         break;
       }
@@ -96,6 +96,7 @@ handler.command = /^(getplugin|gp)$/i
 handler.rowner = true
 
 export default handler
+
 
 
 
