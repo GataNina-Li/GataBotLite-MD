@@ -50,6 +50,7 @@ import path from 'path'
 import { promisify } from 'util'
 
 const readdir = promisify(fs.readdir)
+const readFile = promisify(fs.readFile)
 
 let handler = async (m, { conn, usedPrefix, command, text }) => {
   if (!text) throw `Por favor, proporciona el nombre del comando para buscar el archivo correspondiente\nEjemplo: ${usedPrefix + command} info`
@@ -69,7 +70,7 @@ let handler = async (m, { conn, usedPrefix, command, text }) => {
   const plugin = (await import(path.join(process.cwd(), pluginsDir, matchingFile))).default
 
   const filename = matchingFile.replace('.js', '')
-  const fileContent = await fs.promises.readFile(path.join(process.cwd(), pluginsDir, matchingFile), 'utf-8')
+  const fileContent = await readFile(path.join(process.cwd(), pluginsDir, matchingFile), 'utf-8')
 
   conn.sendMessage(m.chat, { document: fileContent, mimetype: 'text/javascript', fileName: `${filename}.js` }, { quoted: m })
 }
@@ -81,6 +82,7 @@ handler.command = /^(getplugin|gp)$/i
 handler.rowner = true
 
 export default handler
+
 
 
 
