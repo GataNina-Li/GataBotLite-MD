@@ -59,17 +59,22 @@ for (let i = 0; i < global.owner.length; i++) {
 let ownerNumber = global.owner[i][0];
 if (user.replace(/@s\.whatsapp\.net$/, '') === ownerNumber) {
 let aa = ownerNumber + '@s.whatsapp.net'
-conn.reply(m.chat, `*NO PUEDO BANEAR AL OWNER @${ownerNumber} DE ${packname}*`, null, { mentions: [aa] })
+await conn.reply(m.chat, `*NO PUEDO BANEAR AL OWNER @${ownerNumber} DE ${packname}*`, null, { mentions: [aa] })
 return
 }}
- 
 let users = global.db.data.users
+
+try{
 users[user].banned = true
-conn.reply(m.chat, `*USUARIO BANEADO CON ÉXITO*`, null, { mentions: [user] })   
-conn.reply(user, `*@${number} ESTAS BANEADO/A POR @${m.sender.split('@')[0]} NO PUEDES USAR LOS COMANDOS HASTA QUE ALGUIEN REVIERTA EL BANEO*`, null, { mentions: [user, m.sender] })
+} catch (e) {
+users[number + '@s.whatsapp.net'].banned = true    
+}
+    
+await conn.reply(m.chat, `*USUARIO BANEADO CON ÉXITO*`, null, { mentions: [user] })   
+await conn.reply(user, `*@${number} ESTAS BANEADO/A POR @${m.sender.split('@')[0]} NO PUEDES USAR LOS COMANDOS HASTA QUE ALGUIEN REVIERTA EL BANEO*`, null, { mentions: [user, m.sender] })
 }
 } catch (e) {
-conn.reply(m.chat, `*SURGIÓ UN ERROR, INTENTE ESCRIBIR EL NÚMERO, SI EL ERROR CONTINÚA REPORTE ESTE COMANDO*`, null, m)
+await conn.reply(m.chat, `*SURGIÓ UN ERROR, INTENTE ESCRIBIR EL NÚMERO, SI EL ERROR CONTINÚA REPORTE ESTE COMANDO*`, null, m)
 console.log(e) 
 }
 break
