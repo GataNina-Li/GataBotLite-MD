@@ -33,7 +33,7 @@ await conn.reply(user, lenguajeGB.smsPropdesban4(number, usr), null, { mentions:
 }} catch (e) {
 await conn.reply(m.chat, lenguajeGB.smsPropdesban5(usedPrefix, command, number), null, m)
 console.log(e)
-}
+}}
 
 handler.command = /^((unban|desban)(user|usuario|earuser|earusuario))$/i
 handler.owner = true
