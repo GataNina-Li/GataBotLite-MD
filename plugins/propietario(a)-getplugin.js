@@ -205,7 +205,7 @@ let handler = async (m, { conn, usedPrefix, command, text }) => {
   let matchingFile;
 
   // Busca ARC
-  if (text.endsWith('-exec.js')) {
+  //if (text.endsWith('-exec.js')) {
     const cmd = text.replace(/\.js$/, '') // Elimina el .js del final
     const filename = `${cmd}.js`
     try {
@@ -226,7 +226,7 @@ let handler = async (m, { conn, usedPrefix, command, text }) => {
         m.reply(`Ocurrió un error al buscar el archivo '${filename}': ${err.message}`)
       }
     }
-  }
+ // }
 
   // Busca CYE
   /*for (let file of files) {
