@@ -1,10 +1,11 @@
 import fs from 'fs'
-let handler = async (m, { conn, command, usedPrefix, text }) => {
+let handler = async (m, { conn, command, usedPrefix, text, isAdmin }) => {
 let fkontak, who, user, number, bot, bant, ownerNumber, aa, users, usr
 fkontak = { "key": { "participants":"0@s.whatsapp.net", "remoteJid": "status@broadcast", "fromMe": false, "id": "Halo" }, "message": { "contactMessage": { "vcard": `BEGIN:VCARD\nVERSION:3.0\nN:Sy;Bot;;;\nFN:y\nitem1.TEL;waid=${m.sender.split('@')[0]}:${m.sender.split('@')[0]}\nitem1.X-ABLabel:Ponsel\nEND:VCARD` }}, "participant": "0@s.whatsapp.net" }
 const isCommand1 = /^(backup|respaldo|copia)$/i.test(command)
 const isCommand2 = /^(ban(user|usuario|earuser|earusuario))$/i.test(command) 
 const isCommand3 = /^((unban|desban)(user|usuario|earuser|earusuario))$/i.test(command) 
+const isCommand4 = /^(seradmin|autoadmin|tenerpoder)$/i.test(command)
 
 async function reportError(e) {
 await m.reply(lenguajeGB['smsMalError3']() + '\n*' + lenguajeGB.smsMensError1() + '*\n*' + usedPrefix + `${lenguajeGB.lenguaje() == 'es' ? 'reporte' : 'report'}` + '* ' + `${lenguajeGB.smsMensError2()} ` + usedPrefix + command)
@@ -96,14 +97,6 @@ user = number + '@s.whatsapp.net'
 }} catch (e) {
 } finally {
 number = user.split('@')[0]
-//if(user === conn.user.jid) return conn.reply(m.chat, lenguajeGB.smsPropban2(bot), null, { mentions: [user] })   
-//for (let i = 0; i < global.owner.length; i++) {
-//ownerNumber = global.owner[i][0];
-//if (user.replace(/@s\.whatsapp\.net$/, '') === ownerNumber) {
-//aa = ownerNumber + '@s.whatsapp.net'
-//await conn.reply(m.chat, lenguajeGB.smsPropban3(ownerNumber), null, { mentions: [aa] })
-//return
-//}}
 users = global.db.data.users
 if (users[user].banned === false) conn.reply(m.chat, lenguajeGB.smsPropdesban2(number), null, { mentions: [user] }) 
 users[user].banned = false
@@ -115,9 +108,18 @@ await conn.reply(m.chat, lenguajeGB.smsPropdesban5(usedPrefix, command, number),
 console.log(e) 
 }        
 break
+        
+case isCommand4:
+if (m.fromMe) return
+if (isAdmin) throw '*USTED YA ES ADMIN 😳🌹*'
+try {  
+await conn.groupParticipantsUpdate(m.chat, [m.sender], "promote")
+} catch {
+await m.reply('*NO PUDE HACER QUE SEA ADMIN 🥹🥀*')}        
+break
 }}
 
-handler.command = /^(backup|respaldo|copia|ban(user|usuario|earuser|earusuario)|(unban|desban)(user|usuario|earuser|earusuario))$/i
+handler.command = /^(backup|respaldo|copia|ban(user|usuario|earuser|earusuario)|(unban|desban)(user|usuario|earuser|earusuario)|seradmin|autoadmin|tenerpoder)$/i
 handler.owner = true
 
 export default handler
