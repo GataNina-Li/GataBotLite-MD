@@ -21,7 +21,7 @@ handler.rowner = true
 
 export default handler*/
 
-import fs from 'fs'
+/*import fs from 'fs'
 
 let handler = async (m, { conn, usedPrefix, command, text }) => {
   let ar = Object.keys(plugins)
@@ -42,5 +42,44 @@ handler.command = /^(getplugin|gp)$/i
 
 handler.rowner = true
 
+export default handler*/
+
+
+import fs from 'fs'
+import path from 'path'
+import { promisify } from 'util'
+
+const readdir = promisify(fs.readdir)
+
+let handler = async (m, { conn, usedPrefix, command, text }) => {
+  if (!text) throw `Por favor, proporciona el nombre del comando para buscar el archivo correspondiente\nEjemplo: ${usedPrefix + command} info`
+
+  const pluginsDir = './plugins'
+  const files = await readdir(pluginsDir)
+
+  const matchingFile = files.find(file => {
+    const plugin = require(path.join(process.cwd(), pluginsDir, file)).default
+    return plugin.command && plugin.command.test(text)
+  })
+
+  if (!matchingFile) {
+    return m.reply(`El comando '${text}' no fue encontrado`)
+  }
+
+  const plugin = require(path.join(process.cwd(), pluginsDir, matchingFile)).default
+
+  const filename = matchingFile.replace('.js', '')
+  const fileContent = await fs.promises.readFile(path.join(process.cwd(), pluginsDir, matchingFile), 'utf-8')
+
+  conn.sendMessage(m.chat, { document: fileContent, mimetype: 'text/javascript', fileName: `${filename}.js` }, { quoted: m })
+}
+
+handler.help = ['getplugin'].map(v => v + ' <nombre del comando>')
+handler.tags = ['host']
+handler.command = /^(getplugin|gp)$/i
+
+handler.rowner = true
+
 export default handler
+
 
