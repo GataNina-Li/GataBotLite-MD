@@ -215,6 +215,19 @@ let handler = async (m, { conn, usedPrefix, command, text }) => {
       //return
     } catch {
       try {
+          
+        for (let file of files) {
+const plugin = (await import(path.join(process.cwd(), pluginsDir, file))).default
+try {
+if (plugin && plugin.command && plugin.command.test(text) && text.match(plugin.command)) {
+matchingFile = file;
+break
+    }
+} catch (err) {
+console.log(`Error en el archivo ${file}: ${err.message}`)
+}
+          
+          
         const plugin = (await import(path.join(process.cwd(), pluginsDir, matchingFile))).default
 
         const filename = matchingFile.replace('.js', '')
