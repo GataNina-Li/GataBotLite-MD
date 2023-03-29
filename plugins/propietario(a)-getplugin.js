@@ -61,22 +61,32 @@ let handler = async (m, { conn, usedPrefix, command, text }) => {
   let matchingFile;
   for (let file of files) {
     const plugin = (await import(path.join(process.cwd(), pluginsDir, file))).default
-    if (plugin && plugin.command && plugin.command.toString() === handler.command.toString() && plugin.command.test(text)) {
-      matchingFile = file;
-      break;
+    try {
+      if (plugin && plugin.command && plugin.command.toString() === handler.command.toString() && handler.command.test(text)) {
+        matchingFile = file;
+        break;
+      }
+    } catch (err) {
+      console.log(`Error en el archivo ${file}: ${err.message}`)
     }
   }
 
   if (!matchingFile) {
+    console.log(`El comando '${text}' no fue encontrado`)
     return m.reply(`El comando '${text}' no fue encontrado`)
   }
 
-  const plugin = (await import(path.join(process.cwd(), pluginsDir, matchingFile))).default
+  try {
+    const plugin = (await import(path.join(process.cwd(), pluginsDir, matchingFile))).default
 
-  const filename = matchingFile.replace('.js', '')
-  const fileContent = await readFile(path.join(process.cwd(), pluginsDir, matchingFile), 'utf-8')
+    const filename = matchingFile.replace('.js', '')
+    const fileContent = await readFile(path.join(process.cwd(), pluginsDir, matchingFile), 'utf-8')
 
-  conn.sendMessage(m.chat, { document: fileContent, mimetype: 'text/javascript', fileName: `${filename}.js` }, { quoted: m })
+    conn.sendMessage(m.chat, { document: fileContent, mimetype: 'text/javascript', fileName: `${filename}.js` }, { quoted: m })
+  } catch (err) {
+    console.log(`Error al enviar el archivo '${matchingFile}': ${err.message}`)
+    return m.reply(`Ocurrió un error al enviar el archivo '${matchingFile}'`)
+  }
 }
 
 handler.help = ['getplugin'].map(v => v + ' <nombre del comando>')
@@ -86,6 +96,7 @@ handler.command = /^(getplugin|gp)$/i
 handler.rowner = true
 
 export default handler
+
 
 
 
