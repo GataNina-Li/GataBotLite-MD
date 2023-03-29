@@ -202,20 +202,29 @@ if (!text) throw `Por favor, proporciona el nombre del comando para buscar el ar
 const pluginsDir = './plugins'
 const files = await readdir(pluginsDir)
 
+try{
+const nombreArchivo = text.replace(/\.js$/, '') // Elimina el .js del final
+const contenidoArchivo = `${nombreArchivo}.js`
+
+const contenido = await fs.readFileSync(path.join(process.cwd(), pluginsDir, contenidoArchivo))
+await conn.sendMessage(m.chat, { document: contenido, mimetype: 'text/javascript', fileName: contenidoArchivo }, { quoted: m })
+await m.reply(`Código del archivo ${contenidoArchivo}:\n\n${contenido.toString()}`)
+return   
+    
+} catch {    
+
 let matchingFile;
-/*for (let file of files) {
+for (let file of files) {
 const plugin = (await import(path.join(process.cwd(), pluginsDir, file))).default
 try {
 if (plugin && plugin.command && plugin.command.test(text) && text.match(plugin.command)) {
 matchingFile = file;
 break
+}} catch (err) {
+return m.reply(`Error en el archivo ${file}: ${err.message}`)
 }
-} catch (err) {
-console.log(`Error en el archivo ${file}: ${err.message}`)
-}}*/
 
 if (!matchingFile) {
-console.log(`El comando '${text}' no fue encontrado`)
 return m.reply(`El comando '${text}' no fue encontrado`)
 }
 
@@ -232,6 +241,7 @@ await m.reply(`Código del archivo ${filename}.js:\n\n${fileContent.toString()}`
 } catch (err) {
 console.log(`Error al enviar el archivo '${matchingFile}': ${err.message}`)
 return m.reply(`Ocurrió un error al enviar el archivo '${matchingFile}'`)
+}
 }
 }
 
