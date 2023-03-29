@@ -211,19 +211,17 @@ let handler = async (m, { conn, usedPrefix, command, text }) => {
     try {
       const fileContent = await fs.readFileSync(path.join(process.cwd(), pluginsDir, filename))
       await conn.sendMessage(m.chat, { document: fileContent, mimetype: 'text/javascript', fileName: filename }, { quoted: m })
-      await m.reply(`Código del archivo ${filename}:\n\n${fileContent.toString()}`)
+      await m.reply(`MD Código del archivo ${filename}:\n\n${fileContent.toString()}`)
       return
     } catch {
       try {
-        matchingFile = files.find(f => f.startsWith(cmd))
-        if (!matchingFile) throw `No se encontró ningún archivo con el nombre '${cmd}'`
-
         const plugin = (await import(path.join(process.cwd(), pluginsDir, matchingFile))).default
+
         const filename = matchingFile.replace('.js', '')
         const fileContent = await readFile(path.join(process.cwd(), pluginsDir, matchingFile), 'utf-8')
-
+   
         await conn.sendMessage(m.chat, { document: fileContent, mimetype: 'text/javascript', fileName: filename }, { quoted: m })
-        await m.reply(`Código del archivo ${filename}.js:\n\n${fileContent.toString()}`)
+        await m.reply(`MC Código del archivo ${filename}.js:\n\n${fileContent.toString()}`)
       } catch (err) {
         m.reply(`Ocurrió un error al buscar el archivo '${filename}': ${err.message}`)
       }
