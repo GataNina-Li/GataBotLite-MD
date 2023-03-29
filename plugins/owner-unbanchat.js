@@ -6,7 +6,7 @@ if (!chat.isBanned) return m.reply(lenguajeGB.smsUnbanCH2())
 chat.isBanned = false
 await conn.reply(m.chat, lenguajeGB.smsUnbanCH3(), m)
 }
-handler.command = /^unbanchat|desbanearchat$/i
+handler.command = /^unbanchat|desbanearchat|desbanchat$/i
 handler.owner = true
 
 export default handler
