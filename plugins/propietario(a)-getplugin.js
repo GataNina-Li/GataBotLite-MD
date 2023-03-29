@@ -203,17 +203,16 @@ const pluginsDir = './plugins'
 const files = await readdir(pluginsDir)
 
 let matchingFile;
-for (let file of files) {
+/*for (let file of files) {
 const plugin = (await import(path.join(process.cwd(), pluginsDir, file))).default
 try {
 if (plugin && plugin.command && plugin.command.test(text) && text.match(plugin.command)) {
 matchingFile = file;
 break
-
 }
 } catch (err) {
 console.log(`Error en el archivo ${file}: ${err.message}`)
-}}
+}}*/
 
 if (!matchingFile) {
 console.log(`El comando '${text}' no fue encontrado`)
