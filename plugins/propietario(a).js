@@ -53,7 +53,15 @@ var user = number + '@s.whatsapp.net'
 } finally {
 let number = user.split('@')[0]
 
-if(user === conn.user.jid) conn.reply(m.chat, `*@${conn.user.jid.split`@`[0]} NO PUEDE SER BANEADA CON ESTE COMANDO*`, null, { mentions: [user] })
+if(user === conn.user.jid) return conn.reply(m.chat, `*@${conn.user.jid.split`@`[0]} NO PUEDE SER BANEADA CON ESTE COMANDO*`, null, { mentions: [user] })
+    
+for (let i = 0; i < global.owner.length; i++) {
+let ownerNumber = global.owner[i][0];
+if (user.replace(/@s\.whatsapp\.net$/, '') === ownerNumber) {
+let aa = ownerNumber + '@s.whatsapp.net'
+conn.reply(m.chat, `*NO PUEDO BANEAR AL OWNER @${ownerNumber} DE ${packname}*`, null, { mentions: [aa] })
+return
+}}
  
 let users = global.db.data.users
 users[user].banned = true
