@@ -28,6 +28,7 @@ reportError(e)
 break
     
 case isCommand2:
+try{
 function no(number){
 return number.replace(/\s/g,'').replace(/([@+-])/g,'')}
 text = no(text)
@@ -56,7 +57,12 @@ if(user === conn.user.jid) conn.reply(m.chat, `*@${conn.user.jid.split`@`[0]} NO
  
 let users = global.db.data.users
 users[user].banned = true
-conn.reply(m.chat, `*@${number} ESTAS BANEADO/A POR @${m.sender.split('@')[0]} NO PUEDES USAR LOS COMANDOS HASTA QUE ALGUIEN REVIERTA EL BANEO*`, null, { mentions: [user, m.sender] })
+conn.reply(m.chat, `*USUARIO BANEADO CON ÉXITO*`, null, { mentions: [user] })   
+conn.reply(user, `*@${number} ESTAS BANEADO/A POR @${m.sender.split('@')[0]} NO PUEDES USAR LOS COMANDOS HASTA QUE ALGUIEN REVIERTA EL BANEO*`, null, { mentions: [user, m.sender] })
+}
+} catch (e) {
+conn.reply(m.chat, `*SURGIÓ UN ERROR, INTENTE ESCRIBIR EL NÚMERO, SI EL ERROR CONTINÚA REPORTE ESTE COMANDO*`, null, m)
+console.log(e) 
 }
 break
 }}
