@@ -144,7 +144,7 @@ who = m.mentionedJid[0] ? m.mentionedJid[0] : m.quoted ? m.quoted.sender : text 
 let res = []	
 let cmd = command.toLowerCase()
 switch (true) {
-if (!who) conn.reply(m.chat, why, m, { mentions: [m.sender] })
+if (!who) return conn.reply(m.chat, why, m, { mentions: [m.sender] })
 		
 let status = await conn.getBlockStatus(who)
 if (cmd == "block" || cmd == "bloquear") {
