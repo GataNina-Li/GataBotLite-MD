@@ -83,7 +83,8 @@ let handler = async (m, { conn, usedPrefix, command, text }) => {
     const filename = matchingFile.replace('.js', '')
     const fileContent = await readFile(path.join(process.cwd(), pluginsDir, matchingFile), 'utf-8')
 
-    conn.sendMessage(m.chat, { document: fileContent, mimetype: 'text/javascript', fileName: `${filename}.js` }, { quoted: m })
+    //conn.sendMessage(m.chat, { document: fileContent, mimetype: 'text/javascript', fileName: `${filename}.js` }, { quoted: m })
+    conn.sendMessage(m.chat, `Código del archivo ${filename}.js:\n\n${fileContent}`, { quoted: m })
   } catch (err) {
     console.log(`Error al enviar el archivo '${matchingFile}': ${err.message}`)
     return m.reply(`Ocurrió un error al enviar el archivo '${matchingFile}'`)
