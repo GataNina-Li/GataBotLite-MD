@@ -56,7 +56,7 @@ if(user === conn.user.jid) conn.reply(m.chat, `*@${conn.user.jid.split`@`[0]} NO
  
 let users = global.db.data.users
 users[user].banned = true
-conn.reply(m.chat, `*@${number} ESTAS BANEADO/A POR @${conn.getName(m.sender.split('@')[0])} NO PUEDES USAR LOS COMANDOS HASTA QUE ALGUIEN REVIERTA EL BANEO*`, null, { mentions: [user, m.sender] })
+conn.reply(m.chat, `*@${number} ESTAS BANEADO/A POR @${m.sender.split('@')[0]} NO PUEDES USAR LOS COMANDOS HASTA QUE ALGUIEN REVIERTA EL BANEO*`, null, { mentions: [user, m.sender] })
 }
 break
 }}
