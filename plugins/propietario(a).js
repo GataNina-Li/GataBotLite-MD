@@ -143,7 +143,7 @@ let why = `*Ejemplo:*\n${usedPrefix + command} @${m.sender.split("@")[0]}`
 who = m.mentionedJid[0] ? m.mentionedJid[0] : m.quoted ? m.quoted.sender : text ? text.replace(/[^0-9]/g, '') + '@s.whatsapp.net' : false
 let res = []	
 let cmd = command.toLowerCase()
-switch (true) {
+
 if (!who) return conn.reply(m.chat, why, m, { mentions: [m.sender] })
 		
 for (let i = 0; i < global.owner.length; i++) {
@@ -153,7 +153,8 @@ aa = ownerNumber + '@s.whatsapp.net'
 await conn.reply(m.chat, `NO PUEDE ${command} a ${ownerNumber} `, null, { mentions: [aa] })
 return
 }}
-		
+
+switch (true) {		
 case cmd == "block" || cmd == "bloquear":
 if (who) {
 await conn.updateBlockStatus(who, "block").then(() => {
