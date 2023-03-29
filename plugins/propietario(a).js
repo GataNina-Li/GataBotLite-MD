@@ -141,12 +141,13 @@ break
 case isCommand9:
 let why = `*Ejemplo:*\n${usedPrefix + command} @${m.sender.split("@")[0]}`
 who = m.mentionedJid[0] ? m.mentionedJid[0] : m.quoted ? m.quoted.sender : text ? text.replace(/[^0-9]/g, '') + '@s.whatsapp.net' : false
-if (!who) conn.reply(m.chat, why, m, { mentions: [m.sender] })
-let res = [];
+
+let res = []
 //console.log(command)
 	
 let cmd = command.toLowerCase()
 switch (true) {
+if (!who) conn.reply(m.chat, why, m, { mentions: [m.sender] })
 case cmd == "block" || cmd == "bloquear":
 if (who) {
 await conn.updateBlockStatus(who, "block").then(() => {
