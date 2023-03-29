@@ -11,6 +11,7 @@ const isCommand5 = /^((set|cambiar|nuev(a|o)?|new)(name|botname|namebot|nombre|n
 const isCommand6 = /^((set|cambiar|nueva|new)(ppbot|botpp|fotobot|botfoto))$/i.test(command)
 const isCommand7 = /^(update|actualizar|ups)$/i.test(command)
 const isCommand8 = /^(banchat|banearchat)$/i.test(command)
+const isCommand9 = /^(block|unblock|bloquear|desbloquear)$/i.test(command)
 
 async function reportError(e) {
 await m.reply(lenguajeGB['smsMalError3']() + '\n*' + lenguajeGB.smsMensError1() + '*\n*' + usedPrefix + `${lenguajeGB.lenguaje() == 'es' ? 'reporte' : 'report'}` + '* ' + `${lenguajeGB.smsMensError2()} ` + usedPrefix + command)
@@ -88,22 +89,22 @@ await m.reply(lenguajeGB.smsAutoAdmin2())}
 break
         
 case isCommand4:
-if (!text) throw `*ESCRIBA EL TEXTO QUE QUIERE QUE SE MUESTRE EN LA BIOGRAFÍA DE* ${packname}`
-if (text.length > 139) throw `*LA BIOGRAFÍA ES MUY LARGA, RESUMA LA INFORMACIÓN POR FAVOR*`
+if (!text) throw lenguajeGB.smsBioEd1()
+if (text.length > 139) throw lenguajeGB.smsBioEd2()
 try {
 await conn.updateProfileStatus(text).catch(_ => _)
-await conn.reply(m.chat, '✅ ```INFORMACIÓN DE BIOGRAFÍA DEL BOT CAMBIADA CON ÉXITO```', m)
+await conn.reply(m.chat, lenguajeGB.smsBioEd3(), m)
 } catch (e) {
 reportError(e)
 }        
 break
         
 case isCommand5:
-if (!text) throw `*ESCRIBA EL TEXTO QUE QUIERE QUE SE MUESTRE COMO NOMBRE DE USUARIO EN* ${packname}`
-if (text.length > 25) throw `*EL NOMBRE ES MUY LARGO, RESUMA LA INFORMACIÓN POR FAVOR*`
+if (!text) throw lenguajeGB.smsNameEd1()
+if (text.length > 25) throw lenguajeGB.smsNameEd2()
 try {
 await conn.updateProfileStatus(text).catch(_ => _)
-await conn.reply(m.chat, '✅ ```NOMBRE DE USUARIO DEL BOT CAMBIADA CON ÉXITO```', m)
+await conn.reply(m.chat, lenguajeGB.smsNameEd3(), m)
 } catch (e) {
 reportError(e)
 }        
@@ -115,10 +116,10 @@ q = m.quoted ? m.quoted : m
 mime = (q.msg || q).mimetype || ''
 if (/image/.test(mime)) {
 img = await q.download()
-if (!img) throw `*RESPONDA A UNA IMAGEN USANDO EL COMMANDO ${usedPrefix + command} PARA ACTUALIZAR LA FOTO DEL PERFIL DEL BOT*`
+if (!img) throw  lenguajeGB.smsFotoEd1(usedPrefix, command)
 await conn.updateProfilePicture(bot, img)
-await conn.reply(m.chat, '✅ ```FOTO DE PERFIL DEL BOT CAMBIADA CON ÉXITO```', m)
-} else throw `*RECUERDE RESPONDER A UNA IMAGEN USANDO EL COMANDO ${usedPrefix + command}*`        
+await conn.reply(m.chat, lenguajeGB.smsFotoEd2(), m)
+} else throw lenguajeGB.smsFotoEd3(usedPrefix, command)        
 break
         
 case isCommand7:
@@ -134,12 +135,43 @@ break
         
 case isCommand8:
 global.db.data.chats[m.chat].isBanned = true
-await conn.reply(m.chat, '*ESTE CHAT FUE BANEADO, NO PODRÁN USAR LOS COMANDOS HASTA DESBANEAR EL CHAT*', m)        
+await conn.reply(m.chat, lenguajeGB.smsBanChE(), m)        
 break
         
+case isCommand9:
+let why = `*Ejemplo:*\n${usedPrefix + command} @${m.sender.split("@")[0]}`
+who = m.mentionedJid[0] ? m.mentionedJid[0] : m.quoted ? m.quoted.sender : text ? text.replace(/[^0-9]/g, '') + '@s.whatsapp.net' : false
+if (!who) conn.reply(m.chat, why, m, { mentions: [m.sender] })
+let res = [];
+//console.log(command)
+	
+let cmd = command.toLowerCase()
+switch (true) {
+case cmd == "block" || cmd == "bloquear":
+if (who) {
+await conn.updateBlockStatus(who, "block").then(() => {
+res.push(who)
+})
+} else {
+await conn.reply(m.chat, why, m, { mentions: [m.sender] })
+}
+break
+case cmd == "unblock" || cmd == "desbloquear":
+if (who) {
+await conn.updateBlockStatus(who, "unblock").then(() => {
+res.push(who)
+})
+} else {
+await conn.reply(m.chat, why, m, { mentions: [m.sender] })
+}
+break
+}
+if (res[0]) conn.reply(m.chat, `*Éxito ${command} ${res ? `${res.map(v => '@' + v.split("@")[0])}` : ''}*`, m, { mentions: res })
+break
+       
 }}
 
-handler.command = /^(backup|respaldo|copia|ban(user|usuario|earuser|earusuario)|seradmin|autoadmin|tenerpoder|(set|cambiar|nueva|new)(bio|botbio|biobot)|(set|cambiar|nuev(a|o)?|new)(name|botname|namebot|nombre|nombrebot|botnombre)|(set|cambiar|nueva|new)(ppbot|botpp|fotobot|botfoto)|update|actualizar|ups|banchat|banearchat)$/i
+handler.command = /^(backup|respaldo|copia|ban(user|usuario|earuser|earusuario)|seradmin|autoadmin|tenerpoder|(set|cambiar|nueva|new)(bio|botbio|biobot)|(set|cambiar|nuev(a|o)?|new)(name|botname|namebot|nombre|nombrebot|botnombre)|(set|cambiar|nueva|new)(ppbot|botpp|fotobot|botfoto)|update|actualizar|ups|banchat|banearchat|salir|leavegc|salirdelgrupo|leave|block|unblock|bloquear|desbloquear)$/i
 handler.owner = true
 
 export default handler
