@@ -134,7 +134,7 @@ reportError(e)
 }        
 break
         
-case
+case isCommand6:
 if (!text) throw `*ESCRIBA EL TEXTO QUE QUIERE QUE SE MUESTRE COMO NOMBRE DE USUARIO EN* ${packname}`
 if (text.length > 25) throw `*EL NOMBRE ES MUY LARGO, RESUMA LA INFORMACIÓN POR FAVOR*`
 try {
