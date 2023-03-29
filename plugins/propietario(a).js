@@ -39,8 +39,8 @@ number = text
 }
 user = conn.user.jid.split`@`[0] + '@s.whatsapp.net'
 bot = conn.user.jid.split`@`[0] 
-bant = lenguajeGB.smsPropban1(usedPrefix, command, bot)
-if (!text && !m.quoted) return conn.reply(m.chat, bant, null, { mentions: [user] })               
+bant = `${lenguajeGB['smsAvisoMG']()}*ETIQUETE A ALGUIEN O RESPONDA AL MENSAJE DEL USUARIO O ESCRIBA EL NÚMERO QUE QUIERE BANEAR DE LOS COMANDOS*\n\n*EJEMPLO:*\n*${usedPrefix + command} @${conn.getName(m.sender)}*`//lenguajeGB.smsPropban1(usedPrefix, command, bot)
+if (!text && !m.quoted) return conn.reply(m.chat, bant, null, { mentions: [user, m.sender] })               
 try {
 if(text) {
 user = number + '@s.whatsapp.net'
