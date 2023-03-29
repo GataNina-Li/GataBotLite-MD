@@ -146,18 +146,13 @@ let cmd = command.toLowerCase()
 switch (true) {
 if (!who) return conn.reply(m.chat, why, m, { mentions: [m.sender] })
 		
-let status = await conn.getBlockStatus(who)
-if (cmd == "block" || cmd == "bloquear") {
-  if (status) {
-    conn.reply(m.chat, `El usuario ya está bloqueado`, m, { mentions: res })
-    return
-  }
-} else if (cmd == "unblock" || cmd == "desbloquear") {
-  if (!status) {
-    conn.reply(m.chat, `El usuario no está bloqueado`, m, { mentions: res })
-    return
-  }
-}
+for (let i = 0; i < global.owner.length; i++) {
+ownerNumber = global.owner[i][0]
+if (who.replace(/@s\.whatsapp\.net$/, '') === ownerNumber) {
+aa = ownerNumber + '@s.whatsapp.net'
+await conn.reply(m.chat, `NO PUEDE ${command} a ${ownerNumber} `, null, { mentions: [aa] })
+return
+}}
 		
 case cmd == "block" || cmd == "bloquear":
 if (who) {
