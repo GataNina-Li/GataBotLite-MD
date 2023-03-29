@@ -62,9 +62,10 @@ let handler = async (m, { conn, usedPrefix, command, text }) => {
   for (let file of files) {
     const plugin = (await import(path.join(process.cwd(), pluginsDir, file))).default
     try {
-      if (handler.command.test(text)) {
-        matchingFile = file;
-        break;
+      if (plugin && plugin.command && plugin.command.test(text) && text.match(plugin.command)) {
+  matchingFile = file;
+  break;
+
       }
     } catch (err) {
       console.log(`Error en el archivo ${file}: ${err.message}`)
