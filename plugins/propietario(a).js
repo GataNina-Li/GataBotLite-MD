@@ -32,7 +32,6 @@ try{
 function no(number){
 return number.replace(/\s/g,'').replace(/([@+-])/g,'')}
 text = no(text)
-
 if(isNaN(text)) {
 number = text.split`@`[1]
 } else if(!isNaN(text)) {
@@ -40,9 +39,8 @@ number = text
 }
 user = conn.user.jid.split`@`[0] + '@s.whatsapp.net'
 bot = conn.user.jid.split`@`[0] 
-bant = `*ETIQUETE A ALGUIEN O RESPONDA AL MENSAJE DEL USUARIO O ESCRIBA EL NÚMERO QUE QUIERE BANEAR DE LOS COMANDOS*\n\n*EJEMPLO:*\n*${usedPrefix + command} @${bot}*`
-if (!text && !m.quoted) return conn.reply(m.chat, bant, null, { mentions: [user] })
-               
+bant = lenguajeGB.smsPropban1(usedPrefix, command, bot)
+if (!text && !m.quoted) return conn.reply(m.chat, bant, null, { mentions: [user] })               
 try {
 if(text) {
 user = number + '@s.whatsapp.net'
@@ -53,31 +51,22 @@ user = number + '@s.whatsapp.net'
 }} catch (e) {
 } finally {
 number = user.split('@')[0]
-
-if(user === conn.user.jid) return conn.reply(m.chat, `*@${bot} NO PUEDE SER BANEADO CON ESTE COMANDO*`, null, { mentions: [user] })
-    
+if(user === conn.user.jid) return conn.reply(m.chat, lenguajeGB.smsPropban2(bot), null, { mentions: [user] })   
 for (let i = 0; i < global.owner.length; i++) {
 ownerNumber = global.owner[i][0];
 if (user.replace(/@s\.whatsapp\.net$/, '') === ownerNumber) {
 aa = ownerNumber + '@s.whatsapp.net'
-await conn.reply(m.chat, `*NO PUEDO BANEAR AL OWNER @${ownerNumber} DE ${packname}*`, null, { mentions: [aa] })
+await conn.reply(m.chat, lenguajeGB.smsPropban3(ownerNumber), null, { mentions: [aa] })
 return
 }}
 users = global.db.data.users
-
-if (users[user].banned === true) conn.reply(m.chat, `*NO ES NECESARIO VOLVER A BANEAR A @${number} SI YA LO ESTÁ*`, null, { mentions: [user] }) 
-
-try{
+if (users[user].banned === true) conn.reply(m.chat, lenguajeGB.smsPropban4(number), null, { mentions: [user] }) 
 users[user].banned = true
-} catch (e) {
-users[number + '@s.whatsapp.net'].banned = true    
-}
 usr = m.sender.split('@')[0]     
-await conn.reply(m.chat, `*USUARIO BANEADO CON ÉXITO*`, null, { mentions: [user] })   
-await conn.reply(user, `*@${number} ESTAS BANEADO/A POR @${usr} NO PUEDES USAR LOS COMANDOS HASTA QUE ALGUIEN REVIERTA EL BANEO*`, null, { mentions: [user, m.sender] })
-}
-} catch (e) {
-await conn.reply(m.chat, `*SURGIÓ UN ERROR, PUEDE SER QUE EL USUARIO NO ESTE EN MI BASE DE DATOS INTENTE ESCRIBIR EL NÚMERO ${number}, SI EL ERROR CONTINÚA REPORTE ESTE COMANDO*`, null, m)
+await conn.reply(m.chat, lenguajeGB.smsPropban5(), null, { mentions: [user] })   
+await conn.reply(user, lenguajeGB.smsPropban6(number, usr), null, { mentions: [user, m.sender] })
+}} catch (e) {
+await conn.reply(m.chat, lenguajeGB.smsPropban7(usedPrefix, command, number), null, m)
 console.log(e) 
 }
 break
