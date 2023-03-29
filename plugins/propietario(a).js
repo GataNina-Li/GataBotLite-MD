@@ -40,8 +40,8 @@ var number = text.split`@`[1]
 var number = text
 }
 var user = conn.user.jid.split`@`[0] + '@s.whatsapp.net'        
-let bant = `*ETIQUETE A ALGUIEN O RESPONDA AL MENSAJE DEL USUARIO QUE QUIERE BANEAR DE LOS COMANDOS*\n\n*EJEMPLO:*\n*${usedPrefix + command} @${conn.user.jid.split`@`[0]}*`
-if (!m.mentionedJid[0] && !m.quoted) return conn.reply(m.chat, bant, null, { mentions: [user] })
+let bant = `*ETIQUETE A ALGUIEN O RESPONDA AL MENSAJE DEL USUARIO O ESCRIBA EL NÚMERO QUE QUIERE BANEAR DE LOS COMANDOS*\n\n*EJEMPLO:*\n*${usedPrefix + command} @${conn.user.jid.split`@`[0]}*`
+if (!text) return conn.reply(m.chat, bant, null, { mentions: [user] })
 //(user === conn.user.jid)
                
 try {
@@ -56,7 +56,7 @@ var user = number + '@s.whatsapp.net'
 let number = user.split('@')[0]
  
 let users = global.db.data.users
-users[user].banned = true
+users[who].banned = true
 conn.reply(m.chat, `*@${number} ESTAS BANEADO/A NO PUEDES USAR LOS COMANDOS HASTA QUE ALGUIEN REVIERTA EL BANEO*`, null, { mentions: [user] })
 }
 break
