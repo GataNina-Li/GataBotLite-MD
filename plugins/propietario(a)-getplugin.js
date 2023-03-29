@@ -1,3 +1,5 @@
+//CÓDIGO CREADO Y ADAPTADO POR GATA DIOS
+
 
 /*import fs from 'fs'
 
