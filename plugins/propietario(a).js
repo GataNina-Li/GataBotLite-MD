@@ -41,7 +41,7 @@ var number = text
 }
 var user = conn.user.jid.split`@`[0] + '@s.whatsapp.net'        
 let bant = `*ETIQUETE A ALGUIEN O RESPONDA AL MENSAJE DEL USUARIO O ESCRIBA EL NÚMERO QUE QUIERE BANEAR DE LOS COMANDOS*\n\n*EJEMPLO:*\n*${usedPrefix + command} @${conn.user.jid.split`@`[0]}*`
-if (!text) return conn.reply(m.chat, bant, null, { mentions: [user] })
+if (!text && !m.quoted) return conn.reply(m.chat, bant, null, { mentions: [user] })
 //(user === conn.user.jid)
                
 try {
