@@ -141,13 +141,24 @@ break
 case isCommand9:
 let why = `*Ejemplo:*\n${usedPrefix + command} @${m.sender.split("@")[0]}`
 who = m.mentionedJid[0] ? m.mentionedJid[0] : m.quoted ? m.quoted.sender : text ? text.replace(/[^0-9]/g, '') + '@s.whatsapp.net' : false
-
-let res = []
-//console.log(command)
-	
+let res = []	
 let cmd = command.toLowerCase()
 switch (true) {
 if (!who) conn.reply(m.chat, why, m, { mentions: [m.sender] })
+		
+let status = await conn.getBlockStatus(who)
+if (cmd == "block" || cmd == "bloquear") {
+  if (status) {
+    conn.reply(m.chat, `El usuario ya está bloqueado`, m, { mentions: res })
+    return
+  }
+} else if (cmd == "unblock" || cmd == "desbloquear") {
+  if (!status) {
+    conn.reply(m.chat, `El usuario no está bloqueado`, m, { mentions: res })
+    return
+  }
+}
+		
 case cmd == "block" || cmd == "bloquear":
 if (who) {
 await conn.updateBlockStatus(who, "block").then(() => {
