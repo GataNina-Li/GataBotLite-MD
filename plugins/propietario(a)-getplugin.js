@@ -20,7 +20,7 @@ const contenidoArchivo = `${nombreArchivo}.js`
 
 const contenido = await readFile(path.join(process.cwd(), pluginsDir, contenidoArchivo))
 await conn.sendMessage(m.chat, { document: contenido, mimetype: 'text/javascript', fileName: contenidoArchivo }, { quoted: m })
-await m.reply(`\`\`\`CÓDIGO DEL ARCHIVO ${contenidoArchivo}.js\`\`\`\n${String.fromCharCode(8206).repeat(850)}\n${contenido.toString()}`)
+await m.reply(`\`\`\`CÓDIGO DEL ARCHIVO ${contenidoArchivo}\`\`\`\n${String.fromCharCode(8206).repeat(850)}\n${contenido.toString()}`)
 return
 } catch (err)  {
  
