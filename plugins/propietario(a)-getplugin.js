@@ -237,11 +237,11 @@ return m.reply(`El comando '${text}' no fue encontrado`)
 try{
 const plugin = (await import(path.join(process.cwd(), pluginsDir, matchingFile))).default
 
-const filename = matchingFile//.replace('.js', '')
+const filename = matchingFile.replace('.js', '')
 const fileContent = await readFile(path.join(process.cwd(), pluginsDir, matchingFile), 'utf-8')
    
 let fileContentT = await fs.readFileSync(`./plugins/${filename}.js`)
-await conn.sendMessage(m.chat, { document: fileContentT, mimetype: 'text/javascript', fileName: filename }, { quoted: m })
+await conn.sendMessage(m.chat, { document: fileContentT, mimetype: 'text/javascript', fileName: filename + '.js' }, { quoted: m })
 await m.reply(`Código del archivo ${filename}.js:\n\n${fileContent.toString()}`)
   
 } catch (err) {
