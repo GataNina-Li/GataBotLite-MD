@@ -256,7 +256,7 @@ handler.tags = ['host']
 handler.command = /^(getplugin|gp)$/i
 handler.rowner = true
 
-export default handler*/
+export default handler
 
 
 
