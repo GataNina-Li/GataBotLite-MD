@@ -87,34 +87,38 @@ return
 } catch (err)  {
  
 let matchingFile;
-for (let file of files) {
-  const plugin = (await import(path.join(process.cwd(), pluginsDir, file))).default
-  try {
-    if (plugin && plugin.command && matchPluginCommand(plugin.command, text)) {
-      matchingFile = file;
-      break
+  if (!matchPluginCommand(command, text)) {
+    if (Array.isArray(command)) {
+      for (let cmd of command) {
+        if (matchPluginCommand(cmd, text)) {
+          matchingFile = files.find(file => (await import(path.join(process.cwd(), pluginsDir, file))).default.command === cmd)
+          break
+        }
+      }
     }
-  } catch (err) {
-    //return m.reply(`*ERROR EN EL ARCHIVO ${file}*`)
-    console.log(err.message)
+    if (!matchingFile && command instanceof RegExp && command.test(text)) {
+      matchingFile = files.find(file => (await import(path.join(process.cwd(), pluginsDir, file))).default.command instanceof RegExp && (await import(path.join(process.cwd(), pluginsDir, file))).default.command.test(text))
+    }
+  } else {
+    matchingFile = files.find(file => (await import(path.join(process.cwd(), pluginsDir, file))).default.command === command)
   }
-}
 
-if (!matchingFile) {
-  return m.reply(`*EL CÓDIGO PARA '${text}' NO FUE ENCONTRADO*`)
-}
+  if (!matchingFile) {
+    return m.reply(`*EL CÓDIGO PARA '${text}' NO FUE ENCONTRADO*`)
+  }
 
-try{
-  const plugin = (await import(path.join(process.cwd(), pluginsDir, matchingFile))).default
-  const filename = matchingFile.replace('.js', '')
-  const fileContent = await readFile(path.join(process.cwd(), pluginsDir, matchingFile), 'utf-8')  
-  let fileContentT = await fs.readFileSync(`./plugins/${filename}.js`)
+  try{
+    const plugin = (await import(path.join(process.cwd(), pluginsDir, matchingFile))).default
+    const filename = matchingFile.replace('.js', '')
+    const fileContent = await readFile(path.join(process.cwd(), pluginsDir, matchingFile), 'utf-8')  
+    let fileContentT = await fs.readFileSync(`./plugins/${filename}.js`)
 
-  await conn.sendMessage(m.chat, { document: fileContentT, mimetype: 'text/javascript', fileName: filename + '.js' }, { quoted: m })
-  await m.reply(`\`\`\`CÓDIGO DEL ARCHIVO ${filename}.js\`\`\`\n${String.fromCharCode(8206).repeat(850)}\n${fileContent.toString()}`)
-} catch (err) {
-  console.log(`Error al enviar el archivo '${matchingFile}': ${err.message}`)
-  return m.reply(`Ocurrió un error al enviar el archivo '${matchingFile}'`)
+    await conn.sendMessage(m.chat, { document: fileContentT, mimetype: 'text/javascript', fileName: filename + '.js' }, { quoted: m })
+    await m.reply(`\`\`\`CÓDIGO DEL ARCHIVO ${filename}.js\`\`\`\n${String.fromCharCode(8206).repeat(850)}\n${fileContent.toString()}`)
+  } catch (err) {
+    console.log(`Error al enviar el archivo '${matchingFile}': ${err.message}`)
+    return m.reply(`Ocurrió un error al enviar el archivo '${matchingFile}'`)
+  }
 }}}
 
 handler.command = /^(getplugin|gp|obtenercodigo|obtenercode|getpg)$/i
@@ -128,7 +132,7 @@ function matchPluginCommand(command, text) {
   } else if (command instanceof RegExp) {
     return command.test(text)
   } else {
-    return false
+    return text === command
   }
 }
 
