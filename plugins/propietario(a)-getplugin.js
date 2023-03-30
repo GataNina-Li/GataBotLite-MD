@@ -237,7 +237,7 @@ return m.reply(`El comando '${text}' no fue encontrado`)
 try{
 const plugin = (await import(path.join(process.cwd(), pluginsDir, matchingFile))).default
 
-const filename = matchingFile.replace('.js', '')
+const filename = matchingFile//.replace('.js', '')
 const fileContent = await readFile(path.join(process.cwd(), pluginsDir, matchingFile), 'utf-8')
    
 let fileContentT = await fs.readFileSync(`./plugins/${filename}.js`)
