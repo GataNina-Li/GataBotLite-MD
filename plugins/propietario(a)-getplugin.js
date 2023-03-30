@@ -20,7 +20,7 @@ const contenidoArchivo = `${nombreArchivo}.js`
 
 const contenido = await readFile(path.join(process.cwd(), pluginsDir, contenidoArchivo))
 await conn.sendMessage(m.chat, { document: contenido, mimetype: 'text/javascript', fileName: contenidoArchivo }, { quoted: m })
-await m.reply(`\`\`\`CÓDIGO DEL ARCHIVO ${contenidoArchivo}\`\`\`\n${String.fromCharCode(8206).repeat(850)}\n${contenido.toString()}`)
+await m.reply(`\`\`\`CÓDIGO DEL ARCHIVO ${contenidoArchivo}.js\`\`\`\n${String.fromCharCode(8206).repeat(850)}\n${contenido.toString()}`)
 return
 } catch (err)  {
  
@@ -48,7 +48,7 @@ const fileContent = await readFile(path.join(process.cwd(), pluginsDir, matching
 let fileContentT = await fs.readFileSync(`./plugins/${filename}.js`)
 
 await conn.sendMessage(m.chat, { document: fileContentT, mimetype: 'text/javascript', fileName: filename + '.js' }, { quoted: m })
-await m.reply(`\`\`\`CÓDIGO DEL ARCHIVO ${filename}\`\`\`\n${String.fromCharCode(8206).repeat(850)}\n${fileContent.toString()}`)
+await m.reply(`\`\`\`CÓDIGO DEL ARCHIVO ${filename}.js\`\`\`\n${String.fromCharCode(8206).repeat(850)}\n${fileContent.toString()}`)
   
 } catch (err) {
 console.log(`Error al enviar el archivo '${matchingFile}': ${err.message}`)
