@@ -9,7 +9,7 @@ const readdir = promisify(fs.readdir)
 const readFile = promisify(fse.readFile)
 
 let handler = async (m, { conn, usedPrefix, command, text }) => {
-if (!text) throw `*POR FAVOR RSCRIBA EL NOMBRE DEL ARCHIVO O EL COMANDO PARA ENVIARLE EL CÓDIGO COMPLETO\n*EJEMPLO*\n\n*${usedPrefix + command} menu-menu.js*\n*${usedPrefix + command} menu*`
+if (!text) throw `*POR FAVOR RSCRIBA EL NOMBRE DEL ARCHIVO O EL COMANDO PARA ENVIAR EL CÓDIGO*\n*EJEMPLO*\n\n*${usedPrefix + command} menu-menu.js*\n*${usedPrefix + command} menu*`
 
 const pluginsDir = './plugins'
 const files = await readdir(pluginsDir)
