@@ -199,8 +199,6 @@ const readFile = promisify(fse.readFile)
 
 let handler = async (m, { conn, usedPrefix, command, text }) => {
  if (!text) throw `Por favor, proporciona el nombre del comando para buscar el archivo correspondiente\nEjemplo: ${usedPrefix + command} info`
-let files, pluginsDir
-
 
 const pluginsDir = './plugins'
 const files = await readdir(pluginsDir)
