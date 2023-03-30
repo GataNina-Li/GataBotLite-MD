@@ -55,7 +55,7 @@ console.log(`Error al enviar el archivo '${matchingFile}': ${err.message}`)
 return m.reply(`Ocurrió un error al enviar el archivo '${matchingFile}'`)
 }}}
 
-handler.command = /^(getplugin|gp)$/i
+handler.command = /^(getplugin|gp|obtenercodigo|obtenercode|getpg)$/i
 handler.owner = true
 
 export default handler
