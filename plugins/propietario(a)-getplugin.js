@@ -192,66 +192,72 @@ export default handler*/
 import fs from 'fs'
 import path from 'path'
 import { promisify } from 'util'
+import fse from 'fs-extra'
 
 const readdir = promisify(fs.readdir)
-const readFile = promisify(fs.readFile)
+const readFile = promisify(fse.readFile)
 
 let handler = async (m, { conn, usedPrefix, command, text }) => {
-if (!text) throw `Por favor, proporciona el nombre del comando para buscar el archivo correspondiente\nEjemplo: ${usedPrefix + command} info`
+  if (!text) throw `Por favor, proporciona el nombre del comando para buscar el archivo correspondiente\nEjemplo: ${usedPrefix + command} info`
 
-const pluginsDir = './plugins'
-const files = await readdir(pluginsDir)
+  const pluginsDir = './plugins'
+  const files = await readdir(pluginsDir)
 
-try{
-const nombreArchivo = text.replace(/\.js$/, '') // Elimina el .js del final
-const contenidoArchivo = `${nombreArchivo}.js`
+  try {
+    const nombreArchivo = text.replace(/\.js$/, '') // Elimina el .js del final
+    const contenidoArchivo = `${nombreArchivo}.js`
 
-const contenido = await fs.readFileSync(path.join(process.cwd(), pluginsDir, contenidoArchivo))
-await conn.sendMessage(m.chat, { document: contenido, mimetype: 'text/javascript', fileName: contenidoArchivo }, { quoted: m })
-await m.reply(`Código del archivo ${contenidoArchivo}:\n\n${contenido.toString()}`)
-return   
-    
-} catch {    
+    const contenido = await readFile(path.join(process.cwd(), pluginsDir, contenidoArchivo))
+    await conn.sendMessage(m.chat, { document: contenido, mimetype: 'text/javascript', fileName: contenidoArchivo }, { quoted: m })
+    await m.reply(`Código del archivo ${contenidoArchivo}:\n\n${contenido.toString()}`)
+    return
+  } catch (err) {
+    console.log(`Error al enviar el archivo '${text}': ${err.message}`)
+  }
 
-let matchingFile;
-for (let file of files) {
-const plugin = (await import(path.join(process.cwd(), pluginsDir, file))).default
-try {
-if (plugin && plugin.command && plugin.command.test(text) && text.match(plugin.command)) {
-matchingFile = file;
-break
-}} catch (err) {
-return m.reply(`Error en el archivo ${file}: ${err.message}`)
-}
+  let matchingFile;
+  for (let file of files) {
+    try {
+      const pluginModule = await import(path.join(process.cwd(), pluginsDir, file))
+      const plugin = pluginModule.default
 
-if (!matchingFile) {
-return m.reply(`El comando '${text}' no fue encontrado`)
-}
+      if (plugin && plugin.command && plugin.command.test(text) && text.match(plugin.command)) {
+        matchingFile = file;
+        break
+      }
+    } catch (err) {
+      console.log(`Error en el archivo ${file}: ${err.message}`)
+      return m.reply(`Error en el archivo ${file}: ${err.message}`)
+    }
+  }
 
-try{
-const plugin = (await import(path.join(process.cwd(), pluginsDir, matchingFile))).default
+  if (!matchingFile) {
+    return m.reply(`El comando '${text}' no fue encontrado`)
+  }
 
-const filename = matchingFile.replace('.js', '')
-const fileContent = await readFile(path.join(process.cwd(), pluginsDir, matchingFile), 'utf-8')
-   
-let fileContentT = await fs.readFileSync(`./plugins/${filename}.js`)
-await conn.sendMessage(m.chat, { document: fileContentT, mimetype: 'text/javascript', fileName: filename }, { quoted: m })
-await m.reply(`Código del archivo ${filename}.js:\n\n${fileContent.toString()}`)
-  
-} catch (err) {
-console.log(`Error al enviar el archivo '${matchingFile}': ${err.message}`)
-return m.reply(`Ocurrió un error al enviar el archivo '${matchingFile}'`)
-}
-}
+  try {
+    const pluginModule = await import(path.join(process.cwd(), pluginsDir, matchingFile))
+    const plugin = pluginModule.default
+
+    const filename = matchingFile.replace('.js', '')
+    const fileContent = await readFile(path.join(process.cwd(), pluginsDir, matchingFile), 'utf-8')
+    const fileContentT = await readFile(`./plugins/${filename}.js`)
+
+    await conn.sendMessage(m.chat, { document: fileContentT, mimetype: 'text/javascript', fileName: filename }, { quoted: m })
+    await m.reply(`Código del archivo ${filename}.js:\n\n${fileContent.toString()}`)
+  } catch (err) {
+    console.log(`Error al enviar el archivo '${matchingFile}': ${err.message}`)
+    return m.reply(`Ocurrió un error al enviar el archivo '${matchingFile}'`)
+  }
 }
 
 handler.help = ['getplugin'].map(v => v + ' <nombre del comando>')
 handler.tags = ['host']
 handler.command = /^(getplugin|gp)$/i
-
 handler.rowner = true
 
 export default handler
+
 
 
 
