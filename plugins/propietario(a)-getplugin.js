@@ -33,7 +33,7 @@ matchingFile = file;
 break
 
 }} catch (err) {
-return m.reply(`*ERROR EN EL ARCHIVO ${file}*`)
+//return m.reply(`*ERROR EN EL ARCHIVO ${file}*`)
 console.log(err.message)
 }}
 
