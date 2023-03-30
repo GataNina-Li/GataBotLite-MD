@@ -124,7 +124,7 @@ export default handler
 
 function matchPluginCommand(command, text) {
   if (Array.isArray(command)) {
-    return command.some(cmd => cmd.test(text) && text.match(cmd))
+    return command.some(cmd => text === cmd)
   } else if (command instanceof RegExp) {
     return command.test(text)
   } else {
