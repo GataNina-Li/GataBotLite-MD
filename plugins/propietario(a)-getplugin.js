@@ -47,7 +47,7 @@ handler.rowner = true
 export default handler*/
 
 
-/*import fs from 'fs'
+import fs from 'fs'
 import path from 'path'
 import { promisify } from 'util'
 
@@ -100,7 +100,7 @@ handler.command = /^(getplugin|gp)$/i
 
 handler.rowner = true
 
-export default handler*/
+export default handler
 
 /*import fs from 'fs'
 import path from 'path'
@@ -189,7 +189,7 @@ handler.rowner = true
 export default handler*/
 
 
-import fs from 'fs'
+/*import fs from 'fs'
 import path from 'path'
 import { promisify } from 'util'
 import fse from 'fs-extra'
@@ -201,10 +201,10 @@ let handler = async (m, { conn, usedPrefix, command, text }) => {
  if (!text) throw `Por favor, proporciona el nombre del comando para buscar el archivo correspondiente\nEjemplo: ${usedPrefix + command} info`
 let files, pluginsDir
 
-try {
+
  pluginsDir = './plugins'
  files = await readdir(pluginsDir)
-
+try {
   
     const nombreArchivo = text.replace(/\.js$/, '') // Elimina el .js del final
     const contenidoArchivo = `${nombreArchivo}.js`
@@ -258,7 +258,7 @@ handler.tags = ['host']
 handler.command = /^(getplugin|gp)$/i
 handler.rowner = true
 
-export default handler
+export default handler*/
 
 
 
