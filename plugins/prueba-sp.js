@@ -74,7 +74,8 @@ while (!acertado) {
     intentos--;
     if (intentos === 0) {
       console.log("Agotaste tus intentos. La palabra correcta era:", fila, columna);
-      generarSopaDeLetras();
+      generarSopaDeLetras()
+       return
       //fila = filaInicial;
       //columna = columnaInicial;
       intentos = 3;
