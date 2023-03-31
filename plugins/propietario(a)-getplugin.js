@@ -62,7 +62,7 @@ export default handler*/
 
 
 
-import fs from 'fs'
+/*import fs from 'fs'
 import path from 'path'
 import { promisify } from 'util'
 import fse from 'fs-extra'
@@ -134,7 +134,7 @@ function matchPluginCommand(command, text) {
   } else {
     return text === command
   }
-}
+}*/
 
 
 
