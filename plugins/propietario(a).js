@@ -1,5 +1,6 @@
 import fs from 'fs'
 import { execSync } from 'child_process'
+let linkRegex = /chat.whatsapp.com\/([0-9A-Za-z]{20,24})/i
 let handler = async (m, { conn, command, usedPrefix, text, isAdmin, isOwner, participants, groupMetadata  }) => {
 let fkontak, who, user, number, bot, bant, ownerNumber, aa, users, usr, q, mime, img
 fkontak = { "key": { "participants":"0@s.whatsapp.net", "remoteJid": "status@broadcast", "fromMe": false, "id": "Halo" }, "message": { "contactMessage": { "vcard": `BEGIN:VCARD\nVERSION:3.0\nN:Sy;Bot;;;\nFN:y\nitem1.TEL;waid=${m.sender.split('@')[0]}:${m.sender.split('@')[0]}\nitem1.X-ABLabel:Ponsel\nEND:VCARD` }}, "participant": "0@s.whatsapp.net" }
@@ -204,7 +205,6 @@ break
         
 case isCommand11:
 user = m.sender.split('@')[0] 
-let linkRegex = /chat.whatsapp.com\/([0-9A-Za-z]{20,24})/i
 let link = (m.quoted ? m.quoted.text ? m.quoted.text : text : text) || text
 let [_1, code1] = text.match(linkRegex) || []
 if (!code1) throw lenguajeGB.smsJoin1(usedPrefix, command)
@@ -212,8 +212,8 @@ try {
 if ( isOwner || m.fromMe) {
 await m.reply(lenguajeGB.smsJoin2())
 res = await conn.groupAcceptInvite(code1)
-await conn.sendMessage(res, { text: `${packname}\n_SE HA UNIDO AL GRUPO_ 😻😻😻`, mentions: (await conn.groupMetadata(`${res}`)).participants.map(v => v.id) }, { quoted: fkontak })
-await conn.reply(res, `🫶 *FUI INVITADA POR: @${user}*`, null, { mentions: [m.sender] })
+await conn.sendMessage(res, { text: `${packname}\n\n_SE HA UNIDO AL GRUPO_ 😻😻😻`, mentions: (await conn.groupMetadata(`${res}`)).participants.map(v => v.id) }, { quoted: fkontak })
+//await conn.reply(res, `🫶 *FUI INVITADA POR: @${user}*`, null, { mentions: [m.sender] })
 }} catch (e) {
 reportError(e)
 }        
