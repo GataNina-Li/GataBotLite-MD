@@ -1,6 +1,6 @@
 import fs from 'fs'
 import { execSync } from 'child_process'
-let handler = async (m, { conn, command, usedPrefix, text, isAdmin }) => {
+let handler = async (m, { conn, command, usedPrefix, text, isAdmin, isOwner, participants, groupMetadata  }) => {
 let fkontak, who, user, number, bot, bant, ownerNumber, aa, users, usr, q, mime, img
 fkontak = { "key": { "participants":"0@s.whatsapp.net", "remoteJid": "status@broadcast", "fromMe": false, "id": "Halo" }, "message": { "contactMessage": { "vcard": `BEGIN:VCARD\nVERSION:3.0\nN:Sy;Bot;;;\nFN:y\nitem1.TEL;waid=${m.sender.split('@')[0]}:${m.sender.split('@')[0]}\nitem1.X-ABLabel:Ponsel\nEND:VCARD` }}, "participant": "0@s.whatsapp.net" }
 const isCommand1 = /^(backup|respaldo|copia)$/i.test(command)
@@ -12,6 +12,8 @@ const isCommand6 = /^((set|cambiar|nueva|new)(ppbot|botpp|fotobot|botfoto))$/i.t
 const isCommand7 = /^(update|actualizar|ups)$/i.test(command)
 const isCommand8 = /^(banchat|banearchat)$/i.test(command)
 const isCommand9 = /^(block|unblock|bloquear|desbloquear)$/i.test(command)
+const isCommand10 = /^(restablecerdatos|borrardatos|deletedatauser)$/i.test(command)
+const isCommand11 = /^(join|nuevogrupo|newgrupo|unete)$/i.test(command)
 
 async function reportError(e) {
 await m.reply(lenguajeGB['smsMalError3']() + '\n*' + lenguajeGB.smsMensError1() + '*\n*' + usedPrefix + `${lenguajeGB.lenguaje() == 'es' ? 'reporte' : 'report'}` + '* ' + `${lenguajeGB.smsMensError2()} ` + usedPrefix + command)
@@ -170,10 +172,56 @@ break
 let useB = `${res ? `${res.map(v => '@' + v.split("@")[0])}` : ''}`
 if (res[0]) conn.reply(m.chat, lenguajeGB.smsBlockUn3(comd, useB), m, { mentions: res })
 break
+        
+case isCommand10:
+function no(number){
+return number.replace(/\s/g,'').replace(/([@+-])/g,'')}
+text = no(text)
+if(isNaN(text)) {
+number = text.split`@`[1]
+} else if(!isNaN(text)) {
+number = text
+}
+if(!text && !m.quoted) return conn.reply(m.chat, lenguajeGB.smsRestarU1(), m)
+if(isNaN(number)) return conn.reply(m.chat, lenguajeGB.smsRestarU2(), m)
+try {
+if(text) {
+user = number + '@s.whatsapp.net'
+} else if(m.quoted.sender) {
+user = m.quoted.sender
+} else if(m.mentionedJid) {
+user = number + '@s.whatsapp.net'
+}} catch (e) {
+} finally {  
+let groupMetadata = m.isGroup ? await conn.groupMetadata(m.chat) : {}
+let participants = m.isGroup ? groupMetadata.participants : []
+users = m.isGroup ? participants.find(u => u.jid == user) : {}
+number = user.split('@')[0] 
+delete global.global.db.data.users[user]
+conn.reply(m.chat, lenguajeGB.smsRestarU3(number), null, { mentions: [user] })
+}        
+break
+        
+case isCommand11:
+try {  
+user = m.sender.split('@')[0] 
+let linkRegex = /chat.whatsapp.com\/([0-9A-Za-z]{20,24})/i
+let link = (m.quoted ? m.quoted.text ? m.quoted.text : text : text) || text
+let [_, code] = link.match(linkRegex) || []
+if (!code) throw lenguajeGB.smsJoin1(usedPrefix, command)
+if ( isOwner || m.fromMe) {
+await m.reply(lenguajeGB.smsJoin2())
+res = await conn.groupAcceptInvite(code)
+await conn.sendMessage(res, { text: `${packname}\n_SE HA UNIDO AL GRUPO_ 😻😻😻\n\n🫶 *FUI INVITADA POR: @${user}*`, mentions: (await conn.groupMetadata(`${res}`)).participants.map(v => v.id), [m.sender] }, { quoted: fkontak })
+//await conn.reply(res, `🫶 *FUI INVITADA POR: @${user}*`, null, { mentions: [m.sender] })
+}} catch (e) {
+reportError(e)
+}        
+break
        
 }}
 
-handler.command = /^(backup|respaldo|copia|ban(user|usuario|earuser|earusuario)|seradmin|autoadmin|tenerpoder|(set|cambiar|nueva|new)(bio|botbio|biobot)|(set|cambiar|nuev(a|o)?|new)(name|botname|namebot|nombre|nombrebot|botnombre)|(set|cambiar|nueva|new)(ppbot|botpp|fotobot|botfoto)|update|actualizar|ups|banchat|banearchat|salir|leavegc|salirdelgrupo|leave|block|unblock|bloquear|desbloquear)$/i
+handler.command = /^(backup|respaldo|copia|ban(user|usuario|earuser|earusuario)|seradmin|autoadmin|tenerpoder|(set|cambiar|nueva|new)(bio|botbio|biobot)|(set|cambiar|nuev(a|o)?|new)(name|botname|namebot|nombre|nombrebot|botnombre)|(set|cambiar|nueva|new)(ppbot|botpp|fotobot|botfoto)|update|actualizar|ups|banchat|banearchat|salir|leavegc|salirdelgrupo|leave|block|unblock|bloquear|desbloquear|restablecerdatos|borrardatos|deletedatauser|join|nuevogrupo|newgrupo|unete)$/i
 handler.owner = true
 
 export default handler
