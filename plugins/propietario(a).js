@@ -212,8 +212,8 @@ if (!code) throw lenguajeGB.smsJoin1(usedPrefix, command)
 if ( isOwner || m.fromMe) {
 await m.reply(lenguajeGB.smsJoin2())
 res = await conn.groupAcceptInvite(code)
-await conn.sendMessage(res, { text: `${packname}\n_SE HA UNIDO AL GRUPO_ 😻😻😻\n\n🫶 *FUI INVITADA POR: @${user}*`, mentions: (await conn.groupMetadata(`${res}`)).participants.map(v => v.id), [m.sender] }, { quoted: fkontak })
-//await conn.reply(res, `🫶 *FUI INVITADA POR: @${user}*`, null, { mentions: [m.sender] })
+await conn.sendMessage(res, { text: `${packname}\n_SE HA UNIDO AL GRUPO_ 😻😻😻`, mentions: (await conn.groupMetadata(`${res}`)).participants.map(v => v.id) }, { quoted: fkontak })
+await conn.reply(res, `🫶 *FUI INVITADA POR: @${user}*`, null, { mentions: [m.sender] })
 }} catch (e) {
 reportError(e)
 }        
