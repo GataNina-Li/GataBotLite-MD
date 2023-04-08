@@ -212,8 +212,7 @@ try {
 if ( isOwner || m.fromMe) {
 await m.reply(lenguajeGB.smsJoin2())
 let res1 = await conn.groupAcceptInvite(code1)
-await conn.sendMessage(res1, { text: `${packname}\n_😻 SE HA UNIDO AL GRUPO_ ${groupMetadata.subject}\n\n🫶 *FUE INVITADA POR: @${user}*`, mentions: (await conn.groupMetadata(`${res1}`)).participants.map(v => v.id) }, [user], { quoted: fkontak })
-//await conn.reply(res, `🫶 *FUI INVITADA POR: @${user}*`, null, { mentions: [m.sender] })
+await conn.sendMessage(res1, { text: `${packname}\n_😻 SE HA UNIDO AL GRUPO_\n\n🫶 *FUE INVITADA POR: @${user}*`, mentions: (await conn.groupMetadata(`${res1}`)).participants.map(v => v.id) }, [user], { quoted: fkontak })
 }} catch (e) {
 reportError(e)
 }        
