@@ -206,14 +206,14 @@ break
 case isCommand11:
 user = m.sender.split('@')[0] 
 let link = (m.quoted ? m.quoted.text ? m.quoted.text : text : text) || text
-let [_1, code1] = text.match(linkRegex) || []
+let [_1, code1] = link.match(linkRegex) || []
 if (!code1) throw lenguajeGB.smsJoin1(usedPrefix, command)
 try {      
 if ( isOwner || m.fromMe) {
 await m.reply(lenguajeGB.smsJoin2())
 let res1 = await conn.groupAcceptInvite(code1)
-await conn.sendMessage(res1, { text: `${packname}\n\n_SE HA UNIDO AL GRUPO_ 😻😻😻`, mentions: (await conn.groupMetadata(`${res1}`)).participants.map(v => v.id) }, { quoted: fkontak })
-//await conn.reply(res, `🫶 *FUI INVITADA POR: @${user}*`, null, { mentions: [m.sender] })
+await conn.sendMessage(res1, { text: `${packname}\n_SE HA UNIDO AL GRUPO_ 😻😻😻`, mentions: (await conn.groupMetadata(`${res1}`)).participants.map(v => v.id) }, { quoted: fkontak })
+await conn.reply(res, `🫶 *FUI INVITADA POR: @${user}*`, null, { mentions: [m.sender] })
 }} catch (e) {
 reportError(e)
 }        
