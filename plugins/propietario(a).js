@@ -208,7 +208,7 @@ user = m.sender.split('@')[0]
 let linkRegex = /chat.whatsapp.com\/([0-9A-Za-z]{20,24})/i
 let link = (m.quoted ? m.quoted.text ? m.quoted.text : text : text) || text
 let [_, code] = link.match(linkRegex) || []
-if (!code) throw lenguajeGB.smsJoin1(usedPrefix, command)
+if (!text) throw lenguajeGB.smsJoin1(usedPrefix, command)
 if ( isOwner || m.fromMe) {
 await m.reply(lenguajeGB.smsJoin2())
 res = await conn.groupAcceptInvite(code)
