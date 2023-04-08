@@ -203,12 +203,12 @@ conn.reply(m.chat, lenguajeGB.smsRestarU3(number), null, { mentions: [user] })
 break
         
 case isCommand11:
-try {  
 user = m.sender.split('@')[0] 
 let linkRegex = /chat.whatsapp.com\/([0-9A-Za-z]{20,24})/i
 let link = (m.quoted ? m.quoted.text ? m.quoted.text : text : text) || text
 let [_, code] = link.match(linkRegex) || []
-if (!text) throw lenguajeGB.smsJoin1(usedPrefix, command)
+if (!code) throw lenguajeGB.smsJoin1(usedPrefix, command)
+try {      
 if ( isOwner || m.fromMe) {
 await m.reply(lenguajeGB.smsJoin2())
 res = await conn.groupAcceptInvite(code)
