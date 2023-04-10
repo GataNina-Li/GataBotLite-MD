@@ -26,6 +26,7 @@ const isCommand8 = /^(info(gata|bot)|informaci(ón|on)(gata|bot))$/i.test(comman
 const isCommand9 = /^(contactos?|contacts?)$/i.test(command) 
 const isCommand10 = /^(ping|speed|velocidad|rapidez|velocity)$/i.test(command) 
 const isCommand11 = /^(dona(te|si)|donar|apoyar|paypal|donating|aportar)$/i.test(command) 
+const isCommand12 = /^(report|request|reporte|bugs|bug|reportowner|reportes|reportar)$/i.test(command) 
 
 async function reportError(e) {
 await m.reply(lenguajeGB['smsMalError3']() + '\n*' + lenguajeGB.smsMensError1() + '*\n*' + usedPrefix + `${lenguajeGB.lenguaje() == 'es' ? 'reporte' : 'report'}` + '* ' + `${lenguajeGB.smsMensError2()} ` + usedPrefix + command)
@@ -317,9 +318,27 @@ await conn.reply(m.sender, lenguajeGB.smsPrivadoDonar() + '\n\n' + paypal + '\n'
 reportError(e)
 }     
 break
+    
+case isCommand12:
+if (!text) throw lenguajeGB.smsReportGB1(usedPrefix, command)
+if (text.length < 8) throw lenguajeGB.smsReportGB2()
+if (text.length > 1000) throw lenguajeGB.smsReportGB3()
+
+let urs = m.sender.split('@')[0]
+for (let i = 0; i < global.owner.length; i++) {
+let ownerNumber = global.owner[i][0]
+if (global.owner[i][2] === true) {
+let aa = ownerNumber + '@s.whatsapp.net'
+let teks = lenguajeGB.smsReportGB4(urs, text)
+setTimeout(async function() {
+await conn.reply(aa, m.quoted ? teks + m.quoted.text : teks, null, { mentions: [m.sender] }, { quoted: fkontak })
+}, 3000 * i)
+}}
+await m.reply(lenguajeGB.smsReportGB5())
+break
 }}
 
-handler.command = /^(estado|status|estate|state|stado|stats|botstat(us)?|cuenta(s)?oficiales?|gataig|(cuentas|account)s?g?b|(ig)?gata|(cuentasdegata)?bot)s?|gata(bot)?groups?|grupos|groupsgb|grupos(ofc|degatabot|gb)|grupogb|gatagroups?|group(ofc|sofc)|c(ó|o)digo|sc|git|script|instalar(gata)?bot|proceso(del)?bot|bot(install|proceso)|installbot|owner|creator|propietario|dueño|dueña|propietaria|dueño|creadora|creador|group(s|list|o(lista)?)|list(a)?(de)?grupo(s)?|grupolista|info(gata|bot)|informaci(ón|on)(gata|bot)|contactos?|contacts?|ping|speed|velocidad|rapidez|velocity|dona(te|si)|donar|apoyar|paypal|donating|aportar$/i
+handler.command = /^(estado|status|estate|state|stado|stats|botstat(us)?|cuenta(s)?oficiales?|gataig|(cuentas|account)s?g?b|(ig)?gata|(cuentasdegata)?bot)s?|gata(bot)?groups?|grupos|groupsgb|grupos(ofc|degatabot|gb)|grupogb|gatagroups?|group(ofc|sofc)|c(ó|o)digo|sc|git|script|instalar(gata)?bot|proceso(del)?bot|bot(install|proceso)|installbot|owner|creator|propietario|dueño|dueña|propietaria|dueño|creadora|creador|group(s|list|o(lista)?)|list(a)?(de)?grupo(s)?|grupolista|info(gata|bot)|informaci(ón|on)(gata|bot)|contactos?|contacts?|ping|speed|velocidad|rapidez|velocity|dona(te|si)|donar|apoyar|paypal|donating|aportar|report|request|reporte|bugs|bug|reportowner|reportes|reportar$/i
 export default handler
 
 function clockString(ms) {
