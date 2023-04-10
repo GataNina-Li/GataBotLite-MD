@@ -3,7 +3,7 @@ if (!text) throw `${mg}*𝙀𝙨𝙘𝙧𝙞𝙗𝙖 𝙚𝙡 𝙧𝙚𝙥𝙤�
 if (text.length < 8) throw `${fg} ✨ *Mínimo 10 caracteres para hacer El Reporte.*\n\n✨ *Minimum 10 characters to make the Report.*`
 if (text.length > 1000) throw `${fg} 😼 *Máximo 1000 caracteres para hacer El Reporte.*\n\n😼 *Maximum 1000 characters to make the Report.*`
 
-let urs = m.sender.split('@')[0] + '@s.whatsapp.net'
+let urs = m.sender.split('@')[0]
 for (let i = 0; i < global.owner.length; i++) {
 let ownerNumber = global.owner[i][0]
 if (urs.replace(/@s\.whatsapp\.net$/, '') === ownerNumber) {
