@@ -80,6 +80,12 @@ await conn.sendFile(m.chat, thumb || gataMenu.getRandom(), 'githubstalk.jpg', co
 } catch (e) {
 reportError(e)
 }  
+break   
+}}
+
+handler.command = /^(googlef?|openai|chatgpt|ia|ai|bot|simi|simsimi|alexa|bixby|cortana|siri|okgoogle|githubstalk|usuariogithub|usergithub)$/i
+export default handler
+
 async function githubstalk(user) {
 return new Promise((resolve, reject) => {
 axios.get('https://api.github.com/users/'+user)
@@ -105,11 +111,4 @@ let hasil = {
  ceated_at: data.created_at,
  updated_at: data.updated_at
 }
-resolve(hasil)
-})
-})        
-break
-}}
-
-handler.command = /^(googlef?|openai|chatgpt|ia|ai|bot|simi|simsimi|alexa|bixby|cortana|siri|okgoogle|githubstalk|usuariogithub|usergithub)$/i
-export default handler
+resolve(hasil)})})     
