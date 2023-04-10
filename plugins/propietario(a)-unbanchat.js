@@ -1,4 +1,4 @@
-//NO BORRAR O CAMBIAR NOMBRE DEL ARCHIVO, DE LO CONTRAIO NO FUNCIONARÁ 
+//NO BORRAR O CAMBIAR NOMBRE DEL ARCHIVO, DE LO CONTRAIO NO FUNCIONARÁ  
 let handler = async (m, { conn }) => {
 if (!(m.chat in global.db.data.chats)) return m.reply(lenguajeGB.smsUnbanCH1())
 let chat = global.db.data.chats[m.chat]
