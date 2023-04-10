@@ -6,7 +6,8 @@ if (text.length > 1000) throw `${fg} 😼 *Máximo 1000 caracteres para hacer El
 let urs = m.sender.split('@')[0]
 for (let i = 0; i < global.owner.length; i++) {
 let ownerNumber = global.owner[i][0]
-if (urs.replace(/@s\.whatsapp\.net$/, '') === ownerNumber && global.owner[i][2] === true) {
+
+if (global.owner[i][2] === true) { 
 let aa = ownerNumber + '@s.whatsapp.net'
 let teks = `
 💌 \`\`\`REPORTE\`\`\` 💌
@@ -20,8 +21,7 @@ let teks = `
 *» ${text}*`.trim()
 await conn.reply(aa, m.quoted ? teks + m.quoted.text : teks, null, { mentions: [m.sender] })
 }}
-
-m.reply(`╰⊱💚⊱ *𝙀́𝙓𝙄𝙏𝙊 | 𝙎𝙐𝘾𝘾𝙀𝙎𝙎* ⊱💚⊱╮\n\n*El reporte ha sido enviado a mí Creadora. Tendrá una respuesta pronto. De ser Falso será Ignorado el reporte.*\n\n*The report has been sent to my Creator. You will have an answer soon. If false, the report will be ignored.*`)
+await m.reply(`╰⊱💚⊱ *𝙀́𝙓𝙄𝙏𝙊 | 𝙎𝙐𝘾𝘾𝙀𝙎𝙎* ⊱💚⊱╮\n\n*El reporte ha sido enviado a mí Creadora. Tendrá una respuesta pronto. De ser Falso será Ignorado el reporte.*\n\n*The report has been sent to my Creator. You will have an answer soon. If false, the report will be ignored.*`)
 }
 
 handler.command = /^(report|request|reporte|bugs|bug|report-owner|reportes|reportar)$/i 
