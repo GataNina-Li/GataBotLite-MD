@@ -3,7 +3,7 @@ if (!text) throw `${mg}*𝙀𝙨𝙘𝙧𝙞𝙗𝙖 𝙚𝙡 𝙧𝙚𝙥𝙤�
 if (text.length < 8) throw `${fg} ✨ *Mínimo 10 caracteres para hacer El Reporte.*\n\n✨ *Minimum 10 characters to make the Report.*`
 if (text.length > 1000) throw `${fg} 😼 *Máximo 1000 caracteres para hacer El Reporte.*\n\n😼 *Maximum 1000 characters to make the Report.*`
 
-let urs = m.sender.split('@')[0]
+let urs = m.sender.split('@')[0] + '@s.whatsapp.net'
 for (let i = 0; i < global.owner.length; i++) {
 let ownerNumber = global.owner[i][0]
 if (urs.replace(/@s\.whatsapp\.net$/, '') === ownerNumber) {
@@ -14,11 +14,11 @@ let teks = `
 *» Wa.me/${m.sender.split`@`[0]}*
 
 *⎔ Usuario:*
-*» @${urs}*
+*» @${urs + '@s.whatsapp.net'}*
 
 *⎔ Mensaje:*
 *» ${text}*`.trim()
-await conn.reply(aa, m.quoted ? teks + m.quoted.text : teks, null, { contextInfo: { mentionedJid: [m.sender] }})  
+await conn.reply(aa, m.quoted ? teks + m.quoted.text : teks, null, { mentions: [m.sender] })
 return
 }}
 m.reply(`╰⊱💚⊱ *𝙀́𝙓𝙄𝙏𝙊 | 𝙎𝙐𝘾𝘾𝙀𝙎𝙎* ⊱💚⊱╮\n\n*El reporte ha sido enviado a mí Creadora. Tendrá una respuesta pronto. De ser Falso será Ignorado el reporte.*\n\n*The report has been sent to my Creator. You will have an answer soon. If false, the report will be ignored.*`)
