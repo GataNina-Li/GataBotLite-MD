@@ -1,4 +1,4 @@
-//NO BORRAR O CAMBIAR NOMBRE DEL ARCHIVO, DE LO CONTRAIO NO FUNCIONARÁ 
+//NO BORRAR O CAMBIAR NOMBRE DEL ARCHIVO, DE LO CONTRAIO NO FUNCIONARÁ  
 let handler = async (m, { conn, text, usedPrefix, command}) => {
 let user, number, bot, bant, ownerNumber, aa, users, usr, q, mime, img
 try{
