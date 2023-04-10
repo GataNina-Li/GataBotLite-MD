@@ -57,25 +57,46 @@ reportError(e)
 break
         
 case isCommand4:
-if (!text) return conn.reply(m.chat, '*⚠️ INGRESE EL NOMBRE DE UN USUARIO DE GITHUB*', m)
-await m.reply('*B U S C A N D O ✅*')
+if (!text) return conn.reply(m.chat, lenguajeGB.smsGit1(usedPrefix, command), m)
+await m.reply(lenguajeGB.smsGit2())
 try{
-let err = 'No encontrado'
+let err = lenguajeGB.smsGit14()
 let request = await githubstalk(text) 
 let { username, following, followers, type, bio, company, blog, location, email, public_repo, public_gists, profile_pic } = request
 let thumb = await (profile_pic)
-let cont = `*╭ • • • ◜G I T H U B◞ • • • ╮*
-➸ *nombre de usuario*: ${username || err}
-➸ *Bio*: ${bio || err}
-➸ *Compañía*: ${company || err}
-➸ *Email:* ${email || err}
-➸ *blogs:* ${blog || err}
-➸ *Repositorios públicos:* ${public_repo || err}
-➸ *Esenciales públicas:* ${public_gists || err}
-➸ *seguidores:* ${followers || err}
-➸ *siguiente:* ${following || err}
-➸ *Ubicación:* ${location || err}
-➸ *tipo:* ${type || err}`
+let cont = `*╭•  •  •  •  • G I T H U B •  •  •  •  •╮*\n
+${lenguajeGB.smsGit3()}
+${username || err}
+
+${lenguajeGB.smsGit4()}
+${bio || err}
+
+${lenguajeGB.smsGit5()}
+${company || err}
+
+${lenguajeGB.smsGit6()}
+${email || err}
+
+${lenguajeGB.smsGit7()}
+${blog || err}
+
+${lenguajeGB.smsGit8()}
+${public_repo || err}
+
+${lenguajeGB.smsGit9()}
+${public_gists || err}
+
+${lenguajeGB.smsGit10()}
+${followers || err}
+
+${lenguajeGB.smsGit11()}
+${following || err}
+
+${lenguajeGB.smsGit12()}
+${location || err}
+
+${lenguajeGB.smsGit13()}
+${type || err}`
 await conn.sendFile(m.chat, thumb || gataMenu.getRandom(), 'githubstalk.jpg', cont, fkontak) 
 } catch (e) {
 reportError(e)
