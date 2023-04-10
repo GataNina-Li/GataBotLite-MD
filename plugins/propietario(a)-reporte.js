@@ -15,7 +15,7 @@ let teks = `
 *» Wa.me/${m.sender.split`@`[0]}*
 
 *⎔ Usuario:*
-*» @${urs + '@s.whatsapp.net'}*
+*» @${urs}*
 
 *⎔ Mensaje:*
 *» ${text}*`.trim()
