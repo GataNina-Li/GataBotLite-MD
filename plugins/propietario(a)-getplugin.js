@@ -50,65 +50,41 @@ let fileContentT = await fs.readFileSync(`./plugins/${filename}.js`)
 await conn.sendMessage(m.chat, { document: fileContentT, mimetype: 'text/javascript', fileName: filename + '.js' }, { quoted: m })
 await m.reply(`\`\`\`CÓDIGO DEL ARCHIVO ${filename}.js\`\`\`\n${String.fromCharCode(8206).repeat(850)}\n${fileContent.toString()}`)*/
   
-async function processMatchingCommand(conn, m, plugin, matchingFile) {
-  
-  const filename = matchingFile.replace('.js', '');
+const plugin = (await import(path.join(process.cwd(), pluginsDir, matchingFile))).default;
+const filename = matchingFile.replace('.js', '');
+const fileContent = await readFile(path.join(process.cwd(), pluginsDir, matchingFile), 'utf-8');
+let fileContentT = await fs.readFileSync(`./plugins/${filename}.js`);
 
-  const fileContentT = await fs.readFileSync(`./plugins/${filename}.js`);
-  const fileContent = await readFile(path.join(process.cwd(), pluginsDir, matchingFile), 'utf-8');
+let matchingCommand = null;
+let matchingPrefix = null;
 
-  let matchingCommand = null;
-  if (Array.isArray(plugin)) {
-    for (let command of plugin) {
-      if (text.trim().startsWith(command.trim())) {
-        matchingCommand = command;
-        break;
-      }
-    }
-  } else if (plugin instanceof RegExp) {
-    const match = text.match(plugin);
-    if (match !== null) {
-      matchingCommand = match[0];
+if (Array.isArray(plugin.command)) {
+  for (let command of plugin.command) {
+    if (m.text.trim().startsWith(command.trim())) {
+      matchingCommand = command;
+      break;
     }
   }
-
-  if (matchingCommand !== null) {
-    await conn.sendMessage(m.chat, { document: fileContentT, mimetype: 'text/javascript', fileName: filename + '.js' }, { quoted: m });
-    await m.reply(`\`\`\`CÓDIGO DEL ARCHIVO ${filename}.js\`\`\`\n${String.fromCharCode(8206).repeat(850)}\n${fileContent.toString()}`);
-  } else {
-    await m.reply(`El comando "${text.trim()}" no coincide con ningún comando del archivo "${matchingFile}".`);
+} else if (plugin.command instanceof RegExp) {
+  const match = m.text.match(plugin.command);
+  if (match !== null) {
+    matchingCommand = match[0];
   }
-  
-  return;
 }
 
-async function handleCommand(conn, m) {
-  const text = m.text || m.caption || '';
-  const commandFiles = await findCommandFiles();
-  
-  for (let i = 0; i < commandFiles.length; i++) {
-    const matchingFile = commandFiles[i];
-    const plugin = (await import(path.join(process.cwd(), pluginsDir, matchingFile))).default;
-
-    if (plugin.customPrefix && plugin.customPrefix.test(text)) {
-      await processMatchingCommand(conn, m, plugin.command, matchingFile);
-      break;
-    }
-
-    if (plugin.command instanceof RegExp && plugin.command.test(text)) {
-      await processMatchingCommand(conn, m, plugin.command, matchingFile);
-      break;
-    }
-
-    if (Array.isArray(plugin.command)) {
-      await processMatchingCommand(conn, m, plugin.command, matchingFile);
-      break;
-    }
+if (plugin.customPrefix instanceof RegExp) {
+  const match = m.text.match(plugin.customPrefix);
+  if (match !== null) {
+    matchingPrefix = match[0];
   }
-  
-  return;
 }
 
+if (matchingPrefix !== null || matchingCommand !== null) {
+  await conn.sendMessage(m.chat, { document: fileContentT, mimetype: 'text/javascript', fileName: filename + '.js' }, { quoted: m });
+  await m.reply(`\`\`\`CÓDIGO DEL ARCHIVO ${filename}.js\`\`\`\n${String.fromCharCode(8206).repeat(850)}\n${fileContent.toString()}`);
+} else {
+  await m.reply(`El mensaje "${m.text.trim()}" no coincide con ningún comando o prefijo personalizado del archivo "${matchingFile}".`);
+}
 
 
  
