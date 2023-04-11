@@ -53,9 +53,11 @@ await m.reply(`\`\`\`CÓDIGO DEL ARCHIVO ${filename}.js\`\`\`\n${String.fromChar
 const plugin = (await import(path.join(process.cwd(), pluginsDir, matchingFile))).default;
 const filename = matchingFile.replace('.js', '');
 const fileContent = await readFile(path.join(process.cwd(), pluginsDir, matchingFile), 'utf-8');
-let fileContentT = await fs.readFileSync(`./plugins/${filename}.js`);
+const fileContentT = await fs.readFileSync(`./plugins/${filename}.js`);
 
+//const text = m.text || m.caption || '';
 let matchingCommand = null;
+
 if (Array.isArray(plugin.command)) {
   for (let command of plugin.command) {
     if (text.trim().startsWith(command.trim())) {
@@ -64,19 +66,17 @@ if (Array.isArray(plugin.command)) {
     }
   }
 } else if (plugin.command instanceof RegExp) {
-  if (plugin.command.test(text)) {
-    const match = text.match(plugin.command);
+  const match = text.match(plugin.command);
+  if (match !== null) {
     matchingCommand = match[0];
   }
 }
 
 if (matchingCommand !== null) {
-  if (matchingCommand === text.trim()) {
-    await conn.sendMessage(m.chat, { document: fileContentT, mimetype: 'text/javascript', fileName: filename + '.js' }, { quoted: m });
-    await m.reply(`\`\`\`CÓDIGO DEL ARCHIVO ${filename}.js\`\`\`\n${String.fromCharCode(8206).repeat(850)}\n${fileContent.toString()}`);
-  } else {
-    await m.reply(`El comando "${text.trim()}" no coincide exactamente con el comando "${matchingCommand}".`);
-  }
+  await conn.sendMessage(m.chat, { document: fileContentT, mimetype: 'text/javascript', fileName: filename + '.js' }, { quoted: m });
+  await m.reply(`\`\`\`CÓDIGO DEL ARCHIVO ${filename}.js\`\`\`\n${String.fromCharCode(8206).repeat(850)}\n${fileContent.toString()}`);
+} else {
+  await m.reply(`El comando "${text.trim()}" no coincide con ningún comando del archivo "${matchingFile}".`);
 }
 
  
@@ -89,24 +89,6 @@ handler.command = /^(getplugin|gp|obtenercodigo|obtenercode|getpg)$/i
 handler.owner = true
 
 export default handler
-
-function findMatchingCommand(plugin, text) {
-  let matchingCommand = null;
-  if (Array.isArray(plugin.command)) {
-    for (let command of plugin.command) {
-      if (text.trim().startsWith(command.trim())) {
-        matchingCommand = command;
-        break;
-      }
-    }
-  } else if (plugin.command instanceof RegExp) {
-    if (plugin.command.test(text)) {
-      const match = text.match(plugin.command);
-      matchingCommand = match[0];
-    }
-  }
-  return matchingCommand;
-}
 
 
 
