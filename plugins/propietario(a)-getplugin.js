@@ -65,6 +65,25 @@ handler.owner = true
 
 export default handler
 
+function findMatchingCommand(plugin, text) {
+  let matchingCommand = null;
+  if (Array.isArray(plugin.command)) {
+    for (let command of plugin.command) {
+      if (text.trim().startsWith(command.trim())) {
+        matchingCommand = command;
+        break;
+      }
+    }
+  } else if (plugin.command instanceof RegExp) {
+    if (plugin.command.test(text)) {
+      const match = text.match(plugin.command);
+      matchingCommand = match[0];
+    }
+  }
+  return matchingCommand;
+}
+
+
 async function processMatchingCommand(conn, m, plugin, matchingFile) {
   const text = m.text || m.caption || '';
   const filename = matchingFile.replace('.js', '');
