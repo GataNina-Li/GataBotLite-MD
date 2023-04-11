@@ -56,12 +56,13 @@ const fileContent = await readFile(path.join(process.cwd(), pluginsDir, matching
 let fileContentT = await fs.readFileSync(`./plugins/${filename}.js`);
 
 let matchingCommand = null;
-let matchingPrefix = null;
+let textMatched = false;
 
 if (Array.isArray(plugin.command)) {
   for (let command of plugin.command) {
     if (m.text.trim().startsWith(command.trim())) {
       matchingCommand = command;
+      textMatched = true;
       break;
     }
   }
@@ -69,22 +70,30 @@ if (Array.isArray(plugin.command)) {
   const match = m.text.match(plugin.command);
   if (match !== null) {
     matchingCommand = match[0];
+    textMatched = true;
   }
 }
 
-if (plugin.customPrefix instanceof RegExp) {
-  const match = m.text.match(plugin.customPrefix);
-  if (match !== null) {
-    matchingPrefix = match[0];
+if (Array.isArray(plugin.customPrefix)) {
+  for (let prefix of plugin.customPrefix) {
+    if (m.text.trim().startsWith(prefix.trim())) {
+      textMatched = true;
+      break;
+    }
+  }
+} else if (plugin.customPrefix instanceof RegExp) {
+  if (plugin.customPrefix.test(m.text)) {
+    textMatched = true;
   }
 }
 
-if (matchingPrefix !== null || matchingCommand !== null) {
+if (textMatched && (matchingCommand !== null || plugin.customPrefix.test(m.text))) {
   await conn.sendMessage(m.chat, { document: fileContentT, mimetype: 'text/javascript', fileName: filename + '.js' }, { quoted: m });
   await m.reply(`\`\`\`CÓDIGO DEL ARCHIVO ${filename}.js\`\`\`\n${String.fromCharCode(8206).repeat(850)}\n${fileContent.toString()}`);
 } else {
   await m.reply(`El mensaje "${m.text.trim()}" no coincide con ningún comando o prefijo personalizado del archivo "${matchingFile}".`);
 }
+
 
 
  
