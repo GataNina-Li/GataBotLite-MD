@@ -50,10 +50,35 @@ let fileContentT = await fs.readFileSync(`./plugins/${filename}.js`)
 await conn.sendMessage(m.chat, { document: fileContentT, mimetype: 'text/javascript', fileName: filename + '.js' }, { quoted: m })
 await m.reply(`\`\`\`CÓDIGO DEL ARCHIVO ${filename}.js\`\`\`\n${String.fromCharCode(8206).repeat(850)}\n${fileContent.toString()}`)*/
   
-const matchingCommand = findMatchingCommand(plugin, text);
-if (matchingCommand !== null) {
-  await processMatchingCommand(conn, m, plugin, matchingFile);
+const plugin = (await import(path.join(process.cwd(), pluginsDir, matchingFile))).default;
+const filename = matchingFile.replace('.js', '');
+const fileContent = await readFile(path.join(process.cwd(), pluginsDir, matchingFile), 'utf-8');
+let fileContentT = await fs.readFileSync(`./plugins/${filename}.js`);
+
+let matchingCommand = null;
+if (Array.isArray(plugin.command)) {
+  for (let command of plugin.command) {
+    if (text.trim().startsWith(command.trim())) {
+      matchingCommand = command;
+      break;
+    }
+  }
+} else if (plugin.command instanceof RegExp) {
+  if (plugin.command.test(text)) {
+    const match = text.match(plugin.command);
+    matchingCommand = match[0];
+  }
 }
+
+if (matchingCommand !== null) {
+  if (matchingCommand === text.trim()) {
+    await conn.sendMessage(m.chat, { document: fileContentT, mimetype: 'text/javascript', fileName: filename + '.js' }, { quoted: m });
+    await m.reply(`\`\`\`CÓDIGO DEL ARCHIVO ${filename}.js\`\`\`\n${String.fromCharCode(8206).repeat(850)}\n${fileContent.toString()}`);
+  } else {
+    await m.reply(`El comando "${text.trim()}" no coincide exactamente con el comando "${matchingCommand}".`);
+  }
+}
+
  
 } catch (err) {
 console.log(`Error al enviar el archivo '${matchingFile}': ${err.message}`)
@@ -81,38 +106,6 @@ function findMatchingCommand(plugin, text) {
     }
   }
   return matchingCommand;
-}
-
-
-async function processMatchingCommand(conn, m, plugin, matchingFile) {
-  const text = m.text || m.caption || '';
-  const filename = matchingFile.replace('.js', '');
-  const fileContent = await readFile(path.join(process.cwd(), pluginsDir, matchingFile), 'utf-8');
-  let fileContentT = await fs.readFileSync(`./plugins/${filename}.js`);
-
-  let matchingCommand = null;
-  if (Array.isArray(plugin.command)) {
-    for (let command of plugin.command) {
-      if (text.trim().startsWith(command.trim())) {
-        matchingCommand = command;
-        break;
-      }
-    }
-  } else if (plugin.command instanceof RegExp) {
-    if (plugin.command.test(text)) {
-      const match = text.match(plugin.command);
-      matchingCommand = match[0];
-    }
-  }
-
-  if (matchingCommand !== null) {
-    if (matchingCommand === text.trim()) {
-      await conn.sendMessage(m.chat, { document: fileContentT, mimetype: 'text/javascript', fileName: filename + '.js' }, { quoted: m });
-      await m.reply(`\`\`\`CÓDIGO DEL ARCHIVO ${filename}.js\`\`\`\n${String.fromCharCode(8206).repeat(850)}\n${fileContent.toString()}`);
-    } else {
-      await m.reply(`El comando "${text.trim()}" no coincide exactamente con el comando "${matchingCommand}".`);
-    }
-  }
 }
 
 
