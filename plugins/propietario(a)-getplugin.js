@@ -42,14 +42,23 @@ return m.reply(`*EL CÓDIGO PARA '${text}' NO FUE ENCONTRADO*`)
 }
 
 try{
-const plugin = (await import(path.join(process.cwd(), pluginsDir, matchingFile))).default
+/*const plugin = (await import(path.join(process.cwd(), pluginsDir, matchingFile))).default
 const filename = matchingFile.replace('.js', '')
 const fileContent = await readFile(path.join(process.cwd(), pluginsDir, matchingFile), 'utf-8')  
 let fileContentT = await fs.readFileSync(`./plugins/${filename}.js`)
 
 await conn.sendMessage(m.chat, { document: fileContentT, mimetype: 'text/javascript', fileName: filename + '.js' }, { quoted: m })
-await m.reply(`\`\`\`CÓDIGO DEL ARCHIVO ${filename}.js\`\`\`\n${String.fromCharCode(8206).repeat(850)}\n${fileContent.toString()}`)
+await m.reply(`\`\`\`CÓDIGO DEL ARCHIVO ${filename}.js\`\`\`\n${String.fromCharCode(8206).repeat(850)}\n${fileContent.toString()}`)*/
   
+const plugin = (await import(path.join(process.cwd(), pluginsDir, matchingFile))).default;
+const filename = matchingFile.replace('.js', '');
+const fileContent = await readFile(path.join(process.cwd(), pluginsDir, matchingFile), 'utf-8');
+let fileContentT = await fs.readFileSync(`./plugins/${filename}.js`);
+
+const matchingCommand = findMatchingCommand(plugin, text);
+await conn.sendMessage(m.chat, { document: fileContentT, mimetype: 'text/javascript', fileName: filename + '.js' }, { quoted: m })
+await m.reply(`\`\`\`CÓDIGO DEL ARCHIVO ${filename}.js\`\`\`\n${String.fromCharCode(8206).repeat(850)}\n${fileContent.toString()}`)
+ 
 } catch (err) {
 console.log(`Error al enviar el archivo '${matchingFile}': ${err.message}`)
 return m.reply(`Ocurrió un error al enviar el archivo '${matchingFile}'`)
@@ -59,6 +68,22 @@ handler.command = /^(getplugin|gp|obtenercodigo|obtenercode|getpg)$/i
 handler.owner = true
 
 export default handler
+
+function findMatchingCommand(plugin, text) {
+let matchingCommand = null;
+if (Array.isArray(plugin.command)) {
+for (let command of plugin.command) {
+if (text.trim().startsWith(command.trim())) {
+matchingCommand = command;
+break
+}}} else if (plugin.command instanceof RegExp) {
+if (plugin.command.test(text)) {
+const match = text.match(plugin.command);
+matchingCommand = match[0];
+}}
+return matchingCommand;
+}
+
 
 
 
