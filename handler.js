@@ -940,30 +940,10 @@ export async function handler(chatUpdate) {
                 if (!('sWelcome' in chat)) chat.sWelcome = ''                    
                 if (!('sBye' in chat)) chat.sBye = ''                    
                 if (!('sPromote' in chat)) chat.sPromote = ''                    
-                if (!('sDemote' in chat)) chat.sDemote = ''                    
-                if (!('delete' in chat))
-                    chat.delete = true                    
-                if (!('modohorny' in chat)) chat.modohorny = false                    
-                if (!('stickers' in chat)) chat.stickers = false                    
-                if (!('autosticker' in chat)) chat.autosticker = false                      
-                if (!('audios' in chat)) chat.audios = false                     
-		if (!('antiver' in chat)) chat.antiver = true                    
-                if (!('antiLink' in chat)) chat.antiLink = false                    
-                if (!('antiLink2' in chat)) chat.antiLink2 = false
-		if (!('antiTiktok' in chat)) chat.antiTiktok = false
-		if (!('antiYoutube' in chat)) chat.antiYoutube = false
-		if (!('antiTelegram' in chat)) chat.antiTelegram = false
-		if (!('antiFacebook' in chat)) chat.antiFacebook = false
-		if (!('antiInstagram' in chat)) chat.antiInstagram = false
-		if (!('antiTwitter' in chat)) chat.antiInstagram = false
-		if (!('antifake' in chat)) chat.antifake = false
-		if (!('reaction' in chat)) chat.reaction = true    
+                if (!('sDemote' in chat)) chat.sDemote = '' 
+                if (!('delete' in chat)) chat.delete = true                        
                 if (!('viewonce' in chat)) chat.viewonce = true         
                 if (!('modoadmin' in chat)) chat.modoadmin = false           
-                if (!('antitoxic' in chat)) chat.antitoxic = true 
-                if (!('simi' in chat)) chat.simi = false
-                if (!('antiTraba' in chat)) chat.antiTraba = true
-		if (!('autolevelup' in chat))  chat.autolevelup = false
                 if (!isNumber(chat.expired)) chat.expired = 0
                     
             } else
@@ -976,27 +956,8 @@ export async function handler(chatUpdate) {
                     sPromote: '',
                     sDemote: '', 
                     delete: true,
-                    modohorny: true,
-                    stickers: false,
-                    autosticker: false,
-                    audios: false,
-		    antiver: true,
-                    antiLink: false,
-                    antiLink2: false,
-		    antiTiktok: false,
-		    antiYoutube: false,
-		    antiTelegram: false,
-		    antiFacebook: false,
-		    antiInstagram: false,
-		    antiTwitter: false,
-		    antifake: false,
-		    reaction: true,
                     viewonce: true,
                     modoadmin: false,
-                    antitoxic: true,
-                    simi: false,
-                    antiTraba: true,
-	            autolevelup: false,
                     expired: 0,
                 }
             let settings = global.db.data.settings[this.user.jid]
@@ -1004,23 +965,17 @@ export async function handler(chatUpdate) {
             if (settings) {
                 if (!('self' in settings)) settings.self = false
                 if (!('autoread' in settings)) settings.autoread = false
-		if (!('autoread2' in settings)) settings.autoread2 = false
                 if (!('restrict' in settings)) settings.restrict = false
-		if (!('temporal' in settings)) settings.temporal = true
-                if (!('antiPrivate' in settings)) settings.antiPrivate = false
 		if (!('antiCall' in settings)) settings.antiCall = true
-		if (!('antiSpam' in settings)) settings.antiSpam = true
-		if (!('jadibotmd' in settings)) settings.jadibotmd = true  
+		if (!('autoread2' in settings)) settings.autoread2 = false
+		if (!('jadibotmd' in settings)) settings.jadibotmd = false  
             } else global.db.data.settings[this.user.jid] = {
                 self: false,
                 autoread: false,
 		autoread2: false,
                 restrict: false,
-		temporal: true,
-		antiPrivate: false,
 		antiCall: true,
-		antiSpam: true,
-		jadibotmd: true,
+		jadibotmd: false,
             }
         } catch (e) {
             console.error(e)
