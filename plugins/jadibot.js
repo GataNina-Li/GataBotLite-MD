@@ -1,5 +1,5 @@
-//import { readdirSync, statSync, unlinkSync, existsSync, readFileSync, watch, rmSync, promises as fs} from "fs"
-import path, { join } from 'path'
+import { readdirSync, statSync, unlinkSync, existsSync, readFileSync, watch, rmSync, promises as fs} from "fs"
+//import path, { join } from 'path'
 import fs from "fs"
 
 let handler = async (m, { conn, command, usedPrefix, args, text, isOwner }) => {
