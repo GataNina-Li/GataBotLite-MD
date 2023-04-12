@@ -46,9 +46,8 @@ break
 case isCommand3:
 let users = [...new Set([...global.conns.filter(conn => conn.user && conn.state !== 'close').map(conn => conn.user)])]
 await m.reply( lenguajeGB.smsJBCom3())
-const message = users.map(v => '🐈 wa.me/' + v.jid.replace(/[^0-9]/g, '') + `?text=${usedPrefix}estado\n( @${v.jid.replace(/[^0-9]/g, '')} )\n\n`).join('\n')
+const message = users.map(v => '🐈 wa.me/' + v.jid.replace(/[^0-9]/g, '') + `?text=${usedPrefix}estado\n( @${v.name} )\n\n`).join('\n')
 const replyMessage = (message.length === 0) ? lenguajeGB.smsJBCom4() : message
-await m.reply(replyMessage) 
 conn.reply(m.chat, replyMessage.trim(), null, { mentions: [message] })
 break    
 }}
