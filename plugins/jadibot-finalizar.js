@@ -3,7 +3,7 @@ if (global.conn.user.jid == conn.user.jid) conn.reply(m.chat, `${ag}𝙎𝙄 �
 else {
 await conn.reply(m.chat, `${rg}𝙐𝙎𝙏𝙀𝘿 𝙃𝘼 𝘾𝙀𝙍𝙍𝘼𝘿𝙊 𝙎𝙀𝙎𝙄𝙊𝙉 𝘾𝙊𝙉𝙈𝙄𝙂𝙊 🙀\n\n𝙔𝙊𝙐 𝙃𝘼𝙑𝙀 𝙇𝙊𝙂𝙂𝙀𝘿 𝙊𝙐𝙏 𝙒𝙄𝙏𝙃 𝙈𝙀 😯`, m)
 conn.ws.close()}}
-handler.command = /^(berhenti|stop|detener)$/i
+handler.command = /^(berhenti|stopsb|detenersb)$/i
 handler.owner = true  
 handler.fail = null
 export default handler
