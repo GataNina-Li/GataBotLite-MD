@@ -9,12 +9,12 @@ import { join } from 'path'
 
 let handler = async (m, { conn, command, usedPrefix, args }) => {
 let q, mime, media, out, caption
-const isCommand1 = /^to(img|image|jpeg|jpg|png)|img|jpe?g|png$/i.test(command)
-const isCommand2 = /^tourl|url|upload$/i.test(command)
-const isCommand3 = /^to(video|mp4)|mp4$/i.test(command)
-const isCommand4 = /^to(gif|gifau)|gif|gifau$/i.test(command)
-const isCommand5 = /^to(vn|ptt|audio|mp3)|mp3$/i.test(command)
-const isCommand6 = /^to(voice|tts)|tts$/i.test(command)
+const isCommand1 = /^to(img|image|jpe?g|png)\b|img\b/i.test(command);
+const isCommand2 = /^tourl\b|url\b|upload\b/i.test(command);
+const isCommand3 = /^to(video|mp4)\b|mp4\b/i.test(command);
+const isCommand4 = /^to(gif|gifau)\b|gif\b|gifau\b/i.test(command);
+const isCommand5 = /^to(vn|ptt|audio|mp3)\b|mp3\b/i.test(command);
+const isCommand6 = /^to(voice|tts)\b|tts\b/i.test(command);
 
 switch (true) {     
 case isCommand1:
@@ -172,5 +172,5 @@ unlinkSync(filePath)
 break        
 }}
 
-handler.command = /^to(img|image|jpeg|jpg|png)|img|jpe?g|png|tourl|url|upload|to(video|mp4)|mp4|to(gif|gifau)|gif|gifau|to(vn|ptt|audio|mp3)|mp3|to(voice|tts)|tts$/i
+handler.command = /^to(img|image|jpe?g|png|video|mp4|gif|gifau|vn|ptt|audio|mp3|voice|tts)\b|img\b|url\b|upload\b|mp4\b|gif\b|gifau\b|mp3\b|tts\b/i
 export default handler
