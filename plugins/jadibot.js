@@ -45,5 +45,5 @@ break
     
 }}
 
-handler.command = /^(deletesesion|eliminarsesion|borrarsesion|delsesion|cerrarsesion|berhenti|pausesb|detenersb|listjadibot|bots|subsbots|subbots)$/i
+handler.command = /^(deletesesion|eliminarsesion|borrarsesion|delsesion|cerrarsesion|berhenti|pausesb|detenersb|pausarsb|listjadibot|bots|subsbots|subbots)$/i
 export default handler
