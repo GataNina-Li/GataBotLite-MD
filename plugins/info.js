@@ -1,4 +1,4 @@
-let { MessageType } = (await import('@adiwajshing/baileys')).default
+let { MessageType } = (await import('@adiwajshing/baileys')).default 
 import { promises } from 'fs'
 import { join } from 'path'
 import fs from 'fs'
