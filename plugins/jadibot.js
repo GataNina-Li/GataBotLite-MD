@@ -29,7 +29,7 @@ if (global.conn.user.jid !== conn.user.jid) return conn.sendMessage(m.chat, {tex
 else {
 await conn.sendMessage(m.chat, { text: lenguajeGB.smsJBAdios() }, { quoted: m })}
 try {
-if (conn.ws.close()) {
+if (!conn.ws.close()) {
 await conn.sendMessage(m.chat, { text : `PRIMERO PAUSE/DETENGA LA SESIÓN USANDO ${usedPrefix}${comd2} LUEGO PUEDE USAR ${usedPrefix + command} PARA PODER ELIMINAR LA SESIÓN` } , { quoted: m })
 return
 } 
