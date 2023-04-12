@@ -1,4 +1,4 @@
-import { readdirSync, statSync, unlinkSync, existsSync, readFileSync, watch, rmSync, promises as fs} from "fs"
+//import { readdirSync, statSync, unlinkSync, existsSync, readFileSync, watch, rmSync, promises as fs} from "fs"
 import path, { join } from 'path'
 import fs from "fs"
 
@@ -17,11 +17,11 @@ switch (true) {
 case isCommand1:
 let who = m.mentionedJid && m.mentionedJid[0] ? m.mentionedJid[0] : m.fromMe ? conn.user.jid : m.sender
 let uniqid = `${who.split`@`[0]}`
-let userS = `${conn.getName(who)}`
-const path = `./GataJadiBot/${uniqid}`;
+const path = `./GataJadiBot/${uniqid}`
+let comd = `${lenguajeGB.lenguaje() == 'es' ? 'serbot' : 'jadibot'}`
 
 if (!fs.existsSync(path)) {
-await conn.sendMessage(m.chat, { text: `*USTED NO TIENE UNA SESIÓN, PUEDE CREAR UNA USANDO:*\n*${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'serbot' : 'jadibot'}*\n\n*SI TIENE UNA (ID) PUEDE USAR PARA SALTARSE EL PASO ANTERIOR USANDO:*\n*${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'serbot' : 'jadibot'}* \`\`\`(ID)\`\`\`` }, { quoted: m })}
+await conn.sendMessage(m.chat, { text: lenguajeGB.smsFoldErr(usedPrefix, comd) }, { quoted: m })
 return
 }
 if (global.conn.user.jid !== conn.user.jid) return conn.sendMessage(m.chat, {text: lenguajeGB.smsJBDel() + `\n\n*https://api.whatsapp.com/send/?phone=${global.conn.user.jid.split`@`[0]}&text=${usedPrefix + command}&type=phone_number&app_absent=0*`}, { quoted: m }) 
@@ -46,10 +46,9 @@ case isCommand3:
 let users = [...new Set([...global.conns.filter(conn => conn.user && conn.state !== 'close').map(conn => conn.user)])]
 await m.reply( lenguajeGB.smsJBCom3())
 const message = users.map(v => '🐈 wa.me/' + v.jid.replace(/[^0-9]/g, '') + `?text=${usedPrefix}estado\n(${v.name})\n\n`).join('\n')
-const replyMessage = (message.length === 0) ? "No hay Sub Bots disponible. Verifique más tarde" : message
+const replyMessage = (message.length === 0) ? lenguajeGB.smsJBCom4() : message
 await m.reply(replyMessage)    
-break
-    
+break    
 }}
 
 handler.command = /^(deletesesion|eliminarsesion|borrarsesion|delsesion|cerrarsesion|berhenti|pausesb|detenersb|pausarsb|listjadibot|bots|subsbots|subbots)$/i
