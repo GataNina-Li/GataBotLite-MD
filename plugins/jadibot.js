@@ -1,7 +1,6 @@
-//import { readdirSync, statSync, unlinkSync, existsSync, readFileSync, watch, rmSync, promises as fs} from "fs"
 import { readdirSync, statSync, unlinkSync, existsSync, readFileSync, watch, rmSync, promises as fsPromises } from "fs";
 const fs = { ...fsPromises, existsSync };
-import path, { join } from 'path'
+import path, { join } from 'path' 
 
 let handler = async (m, { conn, command, usedPrefix, args, text, isOwner }) => {
 const isCommand1 = /^(deletesesion|eliminarsesion|borrarsesion|delsesion|delsession|cerrarsesion)$/i.test(command)  
