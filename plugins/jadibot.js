@@ -1,5 +1,4 @@
-import { readdirSync, statSync, unlinkSync, readFileSync, watch, rmSync, promises as fs} from "fs"
-import fs, { existsSync } from 'fs';
+import { readdirSync, statSync, unlinkSync, existsSync, readFileSync, watch, rmSync, promises as fs} from "fs"
 import path, { join } from 'path'
 
 let handler = async (m, { conn, command, usedPrefix, args, text, isOwner }) => {
@@ -20,7 +19,7 @@ let uniqid = `${who.split`@`[0]}`
 const path = `./GataJadiBot/${uniqid}`
 let comd = `${lenguajeGB.lenguaje() == 'es' ? 'serbot' : 'jadibot'}`
 
-if (!fs.existsSync(path)) {
+/*if (!fs.existsSync(path)) {
 await conn.sendMessage(m.chat, { text: lenguajeGB.smsFoldErr(usedPrefix, comd) }, { quoted: m })}
 if (global.conn.user.jid !== conn.user.jid) return conn.sendMessage(m.chat, {text: lenguajeGB.smsJBDel() + `\n\n*https://api.whatsapp.com/send/?phone=${global.conn.user.jid.split`@`[0]}&text=${usedPrefix + command}&type=phone_number&app_absent=0*`}, { quoted: m }) 
 else {
@@ -30,7 +29,22 @@ fs.rmdir("./GataJadiBot/" + uniqid, { recursive: true, force: true })
 await conn.sendMessage(m.chat, { text : lenguajeGB.smsJBCerrarS() } , { quoted: m })
 } catch (e) {
 reportError(e)
-}  
+}  */
+if (!fs.existsSync(path)) {
+  await conn.sendMessage(m.chat, { text: lenguajeGB.smsFoldErr(usedPrefix, comd) }, { quoted: m })
+}
+if (global.conn.user.jid !== conn.user.jid) {
+  return conn.sendMessage(m.chat, {text: lenguajeGB.smsJBDel() + `\n\n*https://api.whatsapp.com/send/?phone=${global.conn.user.jid.split`@`[0]}&text=${usedPrefix + command}&type=phone_number&app_absent=0*`}, { quoted: m })
+} else {
+  await conn.sendMessage(m.chat, { text: lenguajeGB.smsJBAdios() }, { quoted: m })
+}
+try {
+  await fs.rmdir("./GataJadiBot/" + uniqid, { recursive: true, force: true })
+  await conn.sendMessage(m.chat, { text : lenguajeGB.smsJBCerrarS() } , { quoted: m })
+} catch (e) {
+  reportError(e)
+}
+
 break
     
 case isCommand2:
