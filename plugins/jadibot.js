@@ -29,7 +29,7 @@ const _0x1b371d=_0x537f;(function(_0x1e9dfb,_0x27d53a){const _0x5caddb=_0x537f,_
 break
     
 case isCommand2:
-let parentw = conn
+//let parentw = conn
 let who = m.mentionedJid && m.mentionedJid[0] ? m.mentionedJid[0] : m.fromMe ? conn.user.jid : m.sender
 let uniqid = `${who.split`@`[0]}`
 let userS = `${conn.getName(who)}`
