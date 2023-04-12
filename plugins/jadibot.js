@@ -19,6 +19,7 @@ let who = m.mentionedJid && m.mentionedJid[0] ? m.mentionedJid[0] : m.fromMe ? c
 let uniqid = `${who.split`@`[0]}`
 const path = `./GataJadiBot/${uniqid}`
 let comd = `${lenguajeGB.lenguaje() == 'es' ? 'serbot' : 'jadibot'}`
+let comd2 = `${lenguajeGB.lenguaje() == 'es' ? 'pausarsb' : 'pausesb'}`
 
 if (!await fs.existsSync(path)) {
 await conn.sendMessage(m.chat, { text: lenguajeGB.smsFoldErr(usedPrefix, comd) }, { quoted: m })
@@ -28,7 +29,10 @@ if (global.conn.user.jid !== conn.user.jid) return conn.sendMessage(m.chat, {tex
 else {
 await conn.sendMessage(m.chat, { text: lenguajeGB.smsJBAdios() }, { quoted: m })}
 try {
-conn.ws.close()
+if (conn.ws.close()) {
+await conn.sendMessage(m.chat, { text : `PRIMERO PAUSE/DETENGA LA SESIÓN USANDO ${usedPrefix}${comd2} LUEGO PUEDE USAR ${usedPrefix + command} PARA PODER ELIMINAR LA SESIÓN` } , { quoted: m })
+return
+} 
 fs.rmdir("./GataJadiBot/" + uniqid, { recursive: true, force: true })
 await conn.sendMessage(m.chat, { text : lenguajeGB.smsJBCerrarS() } , { quoted: m })
 } catch (e) {
