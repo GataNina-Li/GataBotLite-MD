@@ -3,7 +3,7 @@ import path, { join } from 'path'
 
 let handler = async (m, { conn, command, usedPrefix, args, text, isOwner }) => {
 const isCommand1 = /^(deletesesion|eliminarsesion|borrarsesion|delsesion|cerrarsesion)$/i.test(command)  
-const isCommand2 = /^(berhenti|stopsb|detenersb)$/i.test(command)  
+const isCommand2 = /^(berhenti|pausesb|detenersb|pausarsb)$/i.test(command)  
 const isCommand3 = /^(listjadibot|bots|subsbots|subbots)$/i.test(command)  
 
 async function reportError(e) {
@@ -45,5 +45,5 @@ break
     
 }}
 
-handler.command = /^(deletesesion|eliminarsesion|borrarsesion|delsesion|cerrarsesion|berhenti|stopsb|detenersb|listjadibot|bots|subsbots|subbots)$/i
+handler.command = /^(deletesesion|eliminarsesion|borrarsesion|delsesion|cerrarsesion|berhenti|pausesb|detenersb|listjadibot|bots|subsbots|subbots)$/i
 export default handler
