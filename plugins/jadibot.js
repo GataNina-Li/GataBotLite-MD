@@ -27,12 +27,12 @@ return
 }
 if (global.conn.user.jid !== conn.user.jid) return conn.sendMessage(m.chat, {text: lenguajeGB.smsJBDel() + `\n\n*https://api.whatsapp.com/send/?phone=${global.conn.user.jid.split`@`[0]}&text=${usedPrefix + command}&type=phone_number&app_absent=0*`}, { quoted: m }) 
 else {
-await conn.sendMessage(m.chat, { text: lenguajeGB.smsJBAdios() }, { quoted: m })}
-try {
 if (!conn.ws.close()) {
 await conn.sendMessage(m.chat, { text : `PRIMERO PAUSE/DETENGA LA SESIÓN USANDO ${usedPrefix}${comd2} LUEGO PUEDE USAR ${usedPrefix + command} PARA PODER ELIMINAR LA SESIÓN` } , { quoted: m })
 return
 } 
+await conn.sendMessage(m.chat, { text: lenguajeGB.smsJBAdios() }, { quoted: m })}
+try {
 fs.rmdir("./GataJadiBot/" + uniqid, { recursive: true, force: true })
 await conn.sendMessage(m.chat, { text : lenguajeGB.smsJBCerrarS() } , { quoted: m })
 } catch (e) {
