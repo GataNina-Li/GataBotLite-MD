@@ -61,3 +61,7 @@ break
 
 handler.command = /^(jadibot|serbot|getcode|rentbot|deletesesion|eliminarsesion|borrarsesion|delsesion|cerrarsesion|berhenti|stopsb|detenersb|listjadibot|bots|subsbots|subbots)$/i
 export default handler
+
+const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
+function sleep(ms) {
+return new Promise(resolve => setTimeout(resolve, ms));}	
