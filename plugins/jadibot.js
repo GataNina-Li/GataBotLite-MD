@@ -3,7 +3,7 @@ import path, { join } from 'path'
 import fs from "fs"
 
 let handler = async (m, { conn, command, usedPrefix, args, text, isOwner }) => {
-const isCommand1 = /^(deletesesion|eliminarsesion|borrarsesion|delsesion|cerrarsesion)$/i.test(command)  
+const isCommand1 = /^(deletesesion|eliminarsesion|borrarsesion|delsesion|delsession|cerrarsesion)$/i.test(command)  
 const isCommand2 = /^(berhenti|pausesb|detenersb|pausarsb)$/i.test(command)  
 const isCommand3 = /^(listjadibot|bots|subsbots|subbots)$/i.test(command)  
 
