@@ -1,8 +1,8 @@
-import { readdirSync, statSync, unlinkSync, existsSync, readFileSync, watch, rmSync, promises as fs} from "fs"
+//import { readdirSync, statSync, unlinkSync, existsSync, readFileSync, watch, rmSync, promises as fs} from "fs"
 import path, { join } from 'path'
 const { useMultiFileAuthState, DisconnectReason } = await import("@adiwajshing/baileys")
 import qrcode from "qrcode"
-//import fs from "fs"
+import fs from "fs"
 import P from 'pino';
 import * as ws from 'ws';
 const { child, spawn, exec } = await import('child_process');
