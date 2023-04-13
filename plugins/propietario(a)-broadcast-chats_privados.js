@@ -1,7 +1,7 @@
 let handler = async (m, { conn, text }) => {
 let cc3 = text ? m : m.quoted ? await m.getQuotedObj() : false || m
 let teks3 = text ? text : cc3.text  
-let chats = Object.keys(await conn.chats)
+let chats = Object.entries(conn.chats).filter(([jid, chat]) => !jid.endsWith('@g.us') && chat.isChats).map(v => v[0])
 await conn.reply(m.chat, "*ENVIANDO MENSAJE, ESPERE UN MOMENTO...*", m)
 /*for (let id of chats) {
 await new Promise(resolve => setTimeout(resolve, 2000)) 
@@ -25,7 +25,7 @@ time = time.toFixed(2) + ' segundos'
 await m.reply(`✅ *EL MENSAJE FUE ENVIADO A ${totalPri} CHAT(S) PRIVADO(S)*\n\nTiempo total de envío: ${time}`)
 }
 
-handler.command = /^(bcchats)$/i 
+handler.command = /^(broadcastchats?|bcc(hats?)?)$/i
 handler.owner = true
 
 export default handler
