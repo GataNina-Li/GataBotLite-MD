@@ -11,7 +11,7 @@ await m.reply(`✅ *EL MENSAJE FUE ENVIADO A ${totalPri} CHAT(S) PRIVADO(S)*`)*/
 let start = new Date().getTime() 
 for (let id of chats) {
 await new Promise(resolve => setTimeout(resolve, 2000)) 
-await conn.sendMessage(id, `✅ *COMUNICADO OFICIAL* ✅\n\n` + teks3)
+await conn.reply(id, `✅ *COMUNICADO OFICIAL* ✅\n\n` + teks3, m)
 }
 let end = new Date().getTime() 
 let totalPri = chats.length
