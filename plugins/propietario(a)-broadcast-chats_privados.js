@@ -1,4 +1,3 @@
-import { getAllChats } from '@adiwajshing/baileys'
 let handler = async (m, { conn, text }) => {
 let cc3 = text ? m : m.quoted ? await m.getQuotedObj() : false || m
 let teks3 = text ? text : cc3.text  
