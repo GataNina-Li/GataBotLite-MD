@@ -16,12 +16,15 @@ await conn.reply(id, `✅ *COMUNICADO OFICIAL* ✅\n\n` + teks3, m)
 }
 let end = new Date().getTime() 
 let totalPri = chats.length
-let time = (end - start) / 1000
+let time = Math.floor((end - start) / 1000)
 if (time >= 60) {
-time = (time / 60).toFixed(2) + ' minutos'
+let minutes = Math.floor(time / 60)
+let seconds = time % 60
+time = `${minutes} minutos y ${seconds} segundos`
 } else {
-time = time.toFixed(2) + ' segundos'
+time = `${time} segundos`
 }
+
 await m.reply(`✅ *EL MENSAJE FUE ENVIADO A ${totalPri} CHAT(S) PRIVADO(S)*\n\nTiempo total de envío: ${time}`)
 }
 
