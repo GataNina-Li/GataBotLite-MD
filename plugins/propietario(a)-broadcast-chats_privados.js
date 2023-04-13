@@ -1,8 +1,11 @@
+import { getAllChats } from '@adiwajshing/baileys'
 let handler = async (m, { conn, text }) => {
 let cc3 = text ? m : m.quoted ? await m.getQuotedObj() : false || m
 let teks3 = text ? text : cc3.text  
-//let chats = Object.entries(conn.chats).filter(([jid, chat]) => !jid.endsWith('@g.us') && chat.isChats).map(v => v[0])
-let chats = Object.entries(conn.chats).filter(([_, chat]) => chat.isChats).map(v => v[0])
+const chats = (await getAllChats(conn, true))
+.filter(chat => chat.jid.endsWith('@s.whatsapp.net'))
+.map(chat => chat.jid)
+//let chats = Object.entries(conn.chats).filter(([_, chat]) => chat.isChats).map(v => v[0])
 await conn.reply(m.chat, "*ENVIANDO MENSAJE, ESPERE UN MOMENTO...*", m)
 /*for (let id of chats) {
 await new Promise(resolve => setTimeout(resolve, 2000)) 
