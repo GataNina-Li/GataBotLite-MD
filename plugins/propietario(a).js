@@ -15,6 +15,7 @@ const isCommand8 = /^(banchat|banearchat)$/i.test(command)
 const isCommand9 = /^(block|unblock|bloquear|desbloquear)$/i.test(command)
 const isCommand10 = /^(restablecerdatos|borrardatos|deletedatauser)$/i.test(command)
 const isCommand11 = /^(join|nuevogrupo|newgrupo|unete)$/i.test(command)
+const isCommand12 = /^(bcbot|bcsubbot|bcsubot)$/i.test(command)
 
 async function reportError(e) {
 await m.reply(lenguajeGB['smsMalError3']() + '\n*' + lenguajeGB.smsMensError1() + '*\n*' + usedPrefix + `${lenguajeGB.lenguaje() == 'es' ? 'reporte' : 'report'}` + '* ' + `${lenguajeGB.smsMensError2()} ` + usedPrefix + command)
@@ -217,10 +218,35 @@ await conn.sendMessage(res1, { text: `${packname}\n_😻 SE HA UNIDO AL GRUPO_\n
 reportError(e)
 }        
 break
-       
+
+case isCommand12:
+if (conn.user.jid !== global.conn.user.jid) throw false
+let users = [...new Set([...global.conns.filter(conn => conn.user && conn.state !== 'close').map(conn => conn.user.jid)])]
+if (users.length === 0) {
+await m.reply('*NO HAY SUB BOT DISPONIBLES*')
+return
+}
+let cc = text ? m : m.quoted ? await m.getQuotedObj() : false || m
+let teks = text ? text : cc.text
+let content = conn.cMod(m.chat, cc, /bc|broadcast/i.test(teks) ? teks : lenguajeGB.smsJBDifu1() + teks)
+for (let id of users) {
+await delay(1500)
+await conn.copyNForward(id, content, true)
+}
+let difuUser = `${users.map(v => '🌺 wa.me/' + v.replace(/[^0-9]/g, '') + `?text=${encodeURIComponent(usedPrefix)}estado`).join('\n')}`
+let tolUser = users.length * 1.5
+let numUser = users.length
+await conn.reply(m.chat, lenguajeGB.smsJBDifu2(numUser, difuUser, tolUser).trim(), m)        
+break
+        
 }}
 
-handler.command = /^(backup|respaldo|copia|ban(user|usuario|earuser|earusuario)|seradmin|autoadmin|tenerpoder|(set|cambiar|nueva|new)(bio|botbio|biobot)|(set|cambiar|nuev(a|o)?|new)(name|botname|namebot|nombre|nombrebot|botnombre)|(set|cambiar|nueva|new)(ppbot|botpp|fotobot|botfoto)|update|actualizar|ups|banchat|banearchat|salir|leavegc|salirdelgrupo|leave|block|unblock|bloquear|desbloquear|restablecerdatos|borrardatos|deletedatauser|join|nuevogrupo|newgrupo|unete)$/i
+handler.command = /^(backup|respaldo|copia|ban(user|usuario|earuser|earusuario)|seradmin|autoadmin|tenerpoder|(set|cambiar|nueva|new)(bio|botbio|biobot)|(set|cambiar|nuev(a|o)?|new)(name|botname|namebot|nombre|nombrebot|botnombre)|(set|cambiar|nueva|new)(ppbot|botpp|fotobot|botfoto)|update|actualizar|ups|banchat|banearchat|salir|leavegc|salirdelgrupo|leave|block|unblock|bloquear|desbloquear|restablecerdatos|borrardatos|deletedatauser|join|nuevogrupo|newgrupo|unete|bcbot|bcsubbot|bcsubot)$/i
 handler.owner = true
 
 export default handler
+
+const more = String.fromCharCode(8206)
+const readMore = more.repeat(4001)
+  
+const delay = time => new Promise(res => setTimeout(res, time))
