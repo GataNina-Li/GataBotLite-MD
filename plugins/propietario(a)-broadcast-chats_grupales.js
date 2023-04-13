@@ -18,7 +18,7 @@ ${String.fromCharCode(8206).repeat(850)}
 \`\`\`${dia}, ${mes} ${año}\`\`\`
 \`\`\`${fecha} || ${tiempo}\`\`\`\n\n`  
 //await conn.reply(id, infoGP + teks2, m)         
-await conn.sendMessage(id, { image: null, mentions: null, caption: infoGP + teks2, mentions: usersTag }, { quoted: m })
+await conn.sendMessage(id, { caption: infoGP + teks2, mentions: usersTag }, { quoted: m })
 }
 await m.reply(`✅ *El mensaje fue enviado a ${groups.length} Chats Grupales*\n\n✅ *The message was sent to ${groups.length} Groups Chats*`)
 }
