@@ -24,7 +24,7 @@ time = time.toFixed(2) + ' segundos'
 await m.reply(`✅ *EL MENSAJE FUE ENVIADO A ${totalPri} CHAT(S) PRIVADO(S)*\n\nTiempo total de envío: ${time}`)
 }
 
-handler.command = /^(broadcastchats?|bcc(hats?)?)$/i
+handler.command = /^(bcchats)$/i
 handler.owner = true
 
 
