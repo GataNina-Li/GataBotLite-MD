@@ -30,6 +30,69 @@ throw false
 chat.welcome = isEnable
 break
 		
+case 'antilink': case 'antienlace':
+if (m.isGroup) {
+if (!(isAdmin || isOwner)) {
+global.dfail('admin', m, conn)
+throw false
+}}
+chat.antiLink = isEnable
+break
+
+case 'antitiktok': case 'antitk': case 'antitik':
+if (m.isGroup) {
+if (!(isAdmin || isOwner)) {
+global.dfail('admin', m, conn)
+throw false
+}}
+chat.antiTiktok = isEnable 
+break
+		
+case 'antiyoutube': case 'antiyt':
+if (m.isGroup) {
+if (!(isAdmin || isOwner)) {
+global.dfail('admin', m, conn)
+throw false
+}}
+chat.antiYoutube = isEnable 
+break
+		
+case 'antitelegram': case 'antitl': case 'antitele': case 'antitg': case 'antitel':
+if (m.isGroup) {
+if (!(isAdmin || isOwner)) {
+global.dfail('admin', m, conn)
+throw false
+}}
+chat.antiTelegram = isEnable 
+break
+		
+case 'antifacebook': case 'antifb': case 'antifbook':
+if (m.isGroup) {
+if (!(isAdmin || isOwner)) {
+global.dfail('admin', m, conn)
+throw false
+}}
+chat.antiFacebook = isEnable 
+break
+		
+case 'antiinstagram': case 'antinstagram': case 'antiig': case 'antig': case 'antiinsta': case 'antinsta':
+if (m.isGroup) {
+if (!(isAdmin || isOwner)) {
+global.dfail('admin', m, conn)
+throw false
+}}
+chat.antiInstagram = isEnable 
+break
+		
+case 'antitwitter': case 'antitw': case 'antitwit': case 'antitwter': case 'antitwiter': case 'antiTwr':
+if (m.isGroup) {
+if (!(isAdmin || isOwner)) {
+global.dfail('admin', m, conn)
+throw false
+}}
+chat.antiTwitter = isEnable 
+break
+
 case 'public': case 'publico':
 isAll = true
 if (!isROwner) {
@@ -81,6 +144,9 @@ if (!/[01]/.test(command)) throw `
 ⚙️ *CONFIGURACIÓN* ⚙️
 🟢 ${usedPrefix}on ${lenguajeGB.lenguaje() == 'es' ? 'bienvenida' : 'welcome'}
 🔴 ${usedPrefix}off ${lenguajeGB.lenguaje() == 'es' ? 'bienvenida' : 'welcome'}
+
+🟢 ${usedPrefix}on ${lenguajeGB.lenguaje() == 'es' ? 'antienlace' : 'antilink'}
+🔴 ${usedPrefix}off ${lenguajeGB.lenguaje() == 'es' ? 'antienlace' : 'antilink'}
 
 🟢 ${usedPrefix}on ${lenguajeGB.lenguaje() == 'es' ? 'restringir' : 'restrict'}
 🔴 ${usedPrefix}off ${lenguajeGB.lenguaje() == 'es' ? 'restringir' : 'restrict'}
