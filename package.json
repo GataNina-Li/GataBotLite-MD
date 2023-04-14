@@ -39,6 +39,7 @@
   "chalk": "^5.0.0",
   "cheerio": "^1.0.0-rc.10",
   "colors": "1.4.0",
+  "canvas": "2.11.2",
   "emoji-api": "^1.0.2",
   "express": "^4.17.3",
   "file-type": "^17.1.1",
