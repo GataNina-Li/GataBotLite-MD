@@ -93,6 +93,15 @@ throw false
 chat.antiTwitter = isEnable 
 break
 
+case 'antiinternacional': case 'antinternacional': case 'antinternational': case 'antifake': case 'antifalsos': case 'antivirtuales': case 'antiextranjeros':		
+if (m.isGroup) {
+if (!(isAdmin || isOwner)) {
+global.dfail('admin', m, conn)
+throw false
+}}
+chat.antifake = isEnable          
+break
+
 case 'public': case 'publico':
 isAll = true
 if (!isROwner) {
@@ -147,6 +156,9 @@ if (!/[01]/.test(command)) throw `
 
 🟢 ${usedPrefix}on ${lenguajeGB.lenguaje() == 'es' ? 'antienlace' : 'antilink'}
 🔴 ${usedPrefix}off ${lenguajeGB.lenguaje() == 'es' ? 'antienlace' : 'antilink'}
+
+🟢 ${usedPrefix}on ${lenguajeGB.lenguaje() == 'es' ? 'antiinternacional' : 'antilfake'}
+🔴 ${usedPrefix}off ${lenguajeGB.lenguaje() == 'es' ? 'antiinternacional' : 'antifake'}
 
 🟢 ${usedPrefix}on ${lenguajeGB.lenguaje() == 'es' ? 'restringir' : 'restrict'}
 🔴 ${usedPrefix}off ${lenguajeGB.lenguaje() == 'es' ? 'restringir' : 'restrict'}
