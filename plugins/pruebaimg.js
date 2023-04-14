@@ -1,27 +1,15 @@
-import sharp from 'sharp';
+import Jimp from 'jimp';
 
 const handler = async (m, { conn, text }) => {
-  const image = await sharp({
-    create: {
-      width: 200,
-      height: 100,
-      channels: 4,
-      background: { r: 255, g: 255, b: 255, alpha: 1 },
-    },
-  });
-
-  const textImage = await sharp(Buffer.from(`<svg xmlns="http://www.w3.org/2000/svg">
-      <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-size="48" font-family="Arial" fill="#000000">HOLA MUNDO</text>
-    </svg>`));
-
-  const compositeImage = await image.composite([{
-    input: await textImage.toBuffer(),
-    gravity: 'center',
-  }]);
-
-  const buffer = await compositeImage.jpeg({ quality: 95 }).toBuffer();
+  const image = await Jimp.create(200, 100, 0xFFFFFFFF);
+  image.print(
+    await Jimp.loadFont(Jimp.FONT_SANS_32_BLACK),
+    0, 0, { text: 'HOLA MUNDO', alignmentX: Jimp.HORIZONTAL_ALIGN_CENTER, alignmentY: Jimp.VERTICAL_ALIGN_MIDDLE },
+    200, 100
+  );
+  const buffer = await image.getBufferAsync(Jimp.MIME_JPEG);
   conn.sendFile(m.chat, buffer, 'img.jpg', 'Mensaje de prueba', m);
 }
 
-handler.command = /^pruebaimg$/i
-export default handler
+handler.command = /^pruebaimg$/i;
+export default handler;
