@@ -5,7 +5,7 @@ const isLinkTel = /telegram.com|t.me/i
 const isLinkFb = /facebook.com|fb.me/i 
 const isLinkIg = /instagram.com/i 
 const isLinkTw = /twitter.com/i 
-const isLink = `/https://chat.whatsapp.com/i`
+const isLink = /chat.whatsapp.com/i 
 const isFake = /91|92|93|94|210|212|49|48|40|27|20|98|96|61|62|60|63|64/i 
 
 export async function before(m, { conn, args, usedPrefix, command, isAdmin, isBotAdmin }) {
@@ -25,8 +25,8 @@ const isAntiLinkTel = isLinkTel.exec(m.text)
 const isAntiLinkFb = isLinkFb.exec(m.text)
 const isAntiLinkIg = isLinkIg.exec(m.text)
 const isAntiLinkTw = isLinkTw.exec(m.text)
-const isAntiLink = `https://chat.whatsapp.com/${await this.groupInviteCode(m.chat)}`
-const isAntiFake = `91|92|93|94|210|212|49|48|40|27|20|98|96|61|62|60|63|64`
+const isAntiLink = isLink.exec(m.text)
+const isAntiFake = isFake.exec(m.text)
 
 if (chat.antiLink && isAntiLink) {
 await m.reply(`${lenguajeGB['smsEnlaceWat']()} ${await this.getName(m.sender)}`)
