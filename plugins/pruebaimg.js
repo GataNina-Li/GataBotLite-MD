@@ -1,7 +1,7 @@
 import Jimp from 'jimp';
 
 const handler = async (m, { conn, text }) => {
-  const font = await Jimp.loadFont('src/Monospace.ttf');
+  const font = await Jimp.loadFont('../src/Monospace.ttf');
   const image = await Jimp.create(1200, 800, 0xffffffff);
   image.print(
     font,
