@@ -927,6 +927,7 @@ export async function handler(chatUpdate) {
 		if (!('antiInstagram' in chat)) chat.antiInstagram = false
 		if (!('antiTwitter' in chat)) chat.antiInstagram = false
 		if (!('antifake' in chat)) chat.antifake = false 
+	    if (!('antitoxic' in chat)) chat.antitoxic = true 
                 if (!isNumber(chat.expired)) chat.expired = 0
                     
             } else
@@ -949,6 +950,7 @@ export async function handler(chatUpdate) {
 		    antiInstagram: false,
 		    antiTwitter: false,
 		    antifake: false,
+		    antitoxic: true,
                     expired: 0,
                 }
             let settings = global.db.data.settings[this.user.jid]
