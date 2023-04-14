@@ -1,20 +1,26 @@
-import { createCanvas } from 'canvas'
+import sharp from 'sharp';
 
-let handler  = async (m, { conn, text }) => {
-  const canvas = createCanvas(200, 100)
-  const context = canvas.getContext('2d')
+const handler = async (m, { conn, text }) => {
+  const image = await sharp({
+    create: {
+      width: 200,
+      height: 100,
+      channels: 4,
+      background: { r: 255, g: 255, b: 255, alpha: 1 },
+    },
+  });
 
-  context.fillStyle = '#ffffff'
-  context.fillRect(0, 0, canvas.width, canvas.height)
+  const textImage = await sharp(Buffer.from(`<svg xmlns="http://www.w3.org/2000/svg">
+      <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-size="48" font-family="Arial" fill="#000000">HOLA MUNDO</text>
+    </svg>`));
 
-  context.fillStyle = '#000000'
-  context.font = 'bold 48px Arial'
-  context.textAlign = 'center'
-  context.textBaseline = 'middle'
-  context.fillText('HOLA MUNDO', canvas.width / 2, canvas.height / 2)
+  const compositeImage = await image.composite([{
+    input: await textImage.toBuffer(),
+    gravity: 'center',
+  }]);
 
-  const buffer = canvas.toBuffer('image/jpeg', { quality: 0.95 })
-  conn.sendFile(m.chat, buffer, 'img.jpg', 'Mensaje de prueba', m)
+  const buffer = await compositeImage.jpeg({ quality: 95 }).toBuffer();
+  conn.sendFile(m.chat, buffer, 'img.jpg', 'Mensaje de prueba', m);
 }
 
 handler.command = /^pruebaimg$/i
