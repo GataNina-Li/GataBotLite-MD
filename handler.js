@@ -96,7 +96,10 @@ export async function handler(chatUpdate) {
                     autolevelup: true,
                     simi: false,
                 }
-		
+		let chat = global.db.data.chats[m.chat]
+            if (typeof chat !== 'object')
+                global.db.data.chats[m.chat] = {}
+                
             if (chat) {
                 if (!('isBanned' in chat)) chat.isBanned = false                    
                 if (!('welcome' in chat)) chat.welcome = true                    
@@ -114,7 +117,8 @@ export async function handler(chatUpdate) {
 		if (!('antiTelegram' in chat)) chat.antiTelegram = false
 		if (!('antiFacebook' in chat)) chat.antiFacebook = false
 		if (!('antiInstagram' in chat)) chat.antiInstagram = false
-		if (!('antiTwitter' in chat)) chat.antiInstagram = false 
+		if (!('antiTwitter' in chat)) chat.antiInstagram = false
+		if (!('antifake' in chat)) chat.antifake = false 
                 if (!isNumber(chat.expired)) chat.expired = 0
                     
             } else
@@ -136,6 +140,7 @@ export async function handler(chatUpdate) {
 		    antiFacebook: false,
 		    antiInstagram: false,
 		    antiTwitter: false,
+		    antifake: false,
                     expired: 0,
                 }
             let settings = global.db.data.settings[this.user.jid]
