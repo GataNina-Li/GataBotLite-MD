@@ -57,7 +57,7 @@ const handler = async (m, { conn, text }) => {
   searchImage.print(font, 0, 0, searchText, textWidth, textHeight);
   image.blit(searchImage, x, y);
 
-  /
+  
   const buffer = await image.getBufferAsync(Jimp.MIME_JPEG);
   await conn.sendFile(m.chat, buffer, 'img.jpg', 'Mensaje', m);
 };
