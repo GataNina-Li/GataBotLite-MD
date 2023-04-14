@@ -1,8 +1,11 @@
-import Jimp from 'jimp';
-import path from 'path';
+import Jimp from 'jimp'
+import path from 'path'
+
+
 
 const handler = async (m, { conn, text }) => {
-  const fontPath = path.join(__dirname, 'src', 'Monospace.ttf');
+  const __dirname = path.dirname(new URL(import.meta.url).pathname);
+  const fontPath = path.join(__dirname, '../src/Monospace.ttf');
   const font = await Jimp.loadFont(fontPath);
   const image = await Jimp.create(1200, 800, 0xffffffff);
   image.print(
