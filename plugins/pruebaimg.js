@@ -14,6 +14,7 @@ export default handler*/
 
 import Jimp from 'jimp';
 
+
 function shuffleText(text) {
   let shuffledText = '';
   while (text.length > 0) {
@@ -39,19 +40,19 @@ const handler = async (m, { conn, text }) => {
     }
   }
 
-  
-  const sopaDeLetras = grid.map(row => row.join(' ')).join('\n');
+ 
+  const sopaDeLetras = grid.map(row => row.join('')).join('\n');
 
   
   const imageSize = Math.max(Jimp.measureText(font, sopaDeLetras), Jimp.measureTextHeight(font, sopaDeLetras, gridSize * Jimp.measureTextHeight(font, 'A')));
   const image = await Jimp.create(imageSize, imageSize, 0xffffffff);
   image.print(font, 0, 0, sopaDeLetras, imageSize, imageSize);
 
- 
+  
   const searchText = shuffleText(text.toLowerCase()); 
   const textWidth = Jimp.measureText(font, searchText);
   const textHeight = Jimp.measureTextHeight(font, searchText, gridSize * Jimp.measureTextHeight(font, 'A'));
-  const x = Math.floor(Math.random() * (imageSize - textWidth));
+  const x = Math.floor(Math.random() * (imageSize - textWidth)); 
   const y = Math.floor(Math.random() * (imageSize - textHeight));
   const searchImage = await Jimp.create(textWidth, textHeight, 0x0);
   searchImage.print(font, 0, 0, searchText, textWidth, textHeight);
