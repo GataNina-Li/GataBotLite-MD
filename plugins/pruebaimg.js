@@ -14,7 +14,6 @@ export default handler*/
 
 import Jimp from 'jimp';
 
-
 function shuffleText(text) {
   let shuffledText = '';
   while (text.length > 0) {
@@ -31,7 +30,7 @@ const handler = async (m, { conn, text }) => {
   const gridSize = 12; 
   const grid = [];
 
-  
+ 
   for (let i = 0; i < gridSize; i++) {
     grid.push([]);
     for (let j = 0; j < gridSize; j++) {
@@ -48,19 +47,22 @@ const handler = async (m, { conn, text }) => {
   const image = await Jimp.create(imageSize, imageSize, 0xffffffff);
   image.print(font, 0, 0, sopaDeLetras, imageSize, imageSize);
 
-  
+ 
   const searchText = shuffleText(text.toLowerCase()); 
   const textWidth = Jimp.measureText(font, searchText);
   const textHeight = Jimp.measureTextHeight(font, searchText, gridSize * Jimp.measureTextHeight(font, 'A'));
-  const x = Math.floor(Math.random() * (imageSize - textWidth)); 
+  const x = Math.floor(Math.random() * (imageSize - textWidth));
   const y = Math.floor(Math.random() * (imageSize - textHeight));
-  image.print(font, x, y, searchText);
+  const searchImage = await Jimp.create(textWidth, textHeight, 0x0);
+  searchImage.print(font, 0, 0, searchText, textWidth, textHeight);
+  image.blit(searchImage, x, y);
 
-  
+  /
   const buffer = await image.getBufferAsync(Jimp.MIME_JPEG);
   await conn.sendFile(m.chat, buffer, 'img.jpg', 'Mensaje', m);
 };
 
 handler.command = /^pruebaimg$/i;
 export default handler;
+
 
