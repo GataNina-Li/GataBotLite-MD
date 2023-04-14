@@ -18,14 +18,21 @@ import Jimp from 'jimp'
 
 const handler = async (m, { conn, text }) => {
   const image = await Jimp.create(1200, 800, 0xffffffff)
-  const font = await Jimp.loadFont(Jimp.FONT_SANS_32_BLACK)
+  let font
+  try {
+    font = await Jimp.loadFont(Jimp.FONT_SANS_32_BLACK)
+  } catch (e) {
+    console.error(e)
+    await m.reply('Ocurrió un error al cargar la fuente')
+    return
+  }
   const textLines = [
     'Updating 2ca8060b..ef4130e6',
     'Fast-forward',
     'plugins/pruebaimg.js | 14 ++++++++------',
     '1 file changed, 8 insertions(+), 6 deletions(-)'
   ]
-  const yPos = (800 - font.bitmap.height * textLines.length) / 2 // Calcular la posición Y del primer carácter
+  const yPos = (800 - font.bitmap.height * textLines.length) / 2
   textLines.forEach((line, index) => {
     image.print(font, 0, yPos + index * font.bitmap.height, {
       text: line,
