@@ -44,15 +44,16 @@ const handler = async (m, { conn, text }) => {
   const sopaDeLetras = grid.map(row => row.join(' ')).join('\n');
 
   
-  const image = await Jimp.create(1200, 800, 0xffffffff);
-  image.print(font, 0, 0, sopaDeLetras, 1200, 800);
+  const imageSize = Math.max(Jimp.measureText(font, sopaDeLetras), Jimp.measureTextHeight(font, sopaDeLetras, gridSize * Jimp.measureTextHeight(font, 'A')));
+  const image = await Jimp.create(imageSize, imageSize, 0xffffffff);
+  image.print(font, 0, 0, sopaDeLetras, imageSize, imageSize);
 
   
   const searchText = shuffleText(text.toLowerCase()); 
   const textWidth = Jimp.measureText(font, searchText);
-  const textHeight = Jimp.measureTextHeight(font, searchText, 800);
-  const x = Math.floor(Math.random() * (1200 - textWidth)); 
-  const y = Math.floor(Math.random() * (800 - textHeight));
+  const textHeight = Jimp.measureTextHeight(font, searchText, gridSize * Jimp.measureTextHeight(font, 'A'));
+  const x = Math.floor(Math.random() * (imageSize - textWidth)); 
+  const y = Math.floor(Math.random() * (imageSize - textHeight));
   image.print(font, x, y, searchText);
 
   
