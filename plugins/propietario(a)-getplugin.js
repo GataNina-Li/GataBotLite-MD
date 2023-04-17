@@ -9,7 +9,7 @@ const readdir = promisify(fs.readdir)
 const readFile = promisify(fse.readFile)
 
 let handler = async (m, { conn, usedPrefix, command, text }) => {
-if (!text) throw `*POR FAVOR RSCRIBA EL NOMBRE DEL ARCHIVO O EL COMANDO PARA ENVIAR EL CÓDIGO*\n*EJEMPLO*\n\n*${usedPrefix + command} menu-menu.js*\n*${usedPrefix + command} menu*`
+if (!text) throw lenguajeGB.smsPlugin1(usedPrefix, command)
 
 const pluginsDir = './plugins'
 const files = await readdir(pluginsDir)
@@ -20,7 +20,8 @@ const contenidoArchivo = `${nombreArchivo}.js`
 
 const contenido = await readFile(path.join(process.cwd(), pluginsDir, contenidoArchivo))
 await conn.sendMessage(m.chat, { document: contenido, mimetype: 'text/javascript', fileName: contenidoArchivo }, { quoted: m })
-await m.reply(`\`\`\`CÓDIGO DEL ARCHIVO ${contenidoArchivo}\`\`\`\n${String.fromCharCode(8206).repeat(850)}\n${contenido.toString()}`)
+
+await m.reply(lenguajeGB.smsPlugin2(contenidoArchivo, contenido))
 return
 } catch (err)  {
  
@@ -36,70 +37,22 @@ break
 //return m.reply(`*ERROR EN EL ARCHIVO ${file}*`)
 console.log(err.message)
 }}
-
 if (!matchingFile) {
-return m.reply(`*EL CÓDIGO PARA '${text}' NO FUE ENCONTRADO*`)
+return m.reply(lenguajeGB.smsPlugin3(text))
 }
 
 try{
-/*const plugin = (await import(path.join(process.cwd(), pluginsDir, matchingFile))).default
+const plugin = (await import(path.join(process.cwd(), pluginsDir, matchingFile))).default
 const filename = matchingFile.replace('.js', '')
 const fileContent = await readFile(path.join(process.cwd(), pluginsDir, matchingFile), 'utf-8')  
 let fileContentT = await fs.readFileSync(`./plugins/${filename}.js`)
 
 await conn.sendMessage(m.chat, { document: fileContentT, mimetype: 'text/javascript', fileName: filename + '.js' }, { quoted: m })
-await m.reply(`\`\`\`CÓDIGO DEL ARCHIVO ${filename}.js\`\`\`\n${String.fromCharCode(8206).repeat(850)}\n${fileContent.toString()}`)*/
-  
-const plugin = (await import(path.join(process.cwd(), pluginsDir, matchingFile))).default;
-const filename = matchingFile.replace('.js', '');
-const fileContent = await readFile(path.join(process.cwd(), pluginsDir, matchingFile), 'utf-8');
-let fileContentT = await fs.readFileSync(`./plugins/${filename}.js`);
+await m.reply(lenguajeGB.smsPlugin4(filename, fileContent))
 
-let matchingCommand = null;
-let textMatched = false;
-
-if (Array.isArray(plugin.command)) {
-  for (let command of plugin.command) {
-    if (m.text.trim().startsWith(command.trim())) {
-      matchingCommand = command;
-      textMatched = true;
-      break;
-    }
-  }
-} else if (plugin.command instanceof RegExp) {
-  const match = m.text.match(plugin.command);
-  if (match !== null) {
-    matchingCommand = match[0];
-    textMatched = true;
-  }
-}
-
-if (Array.isArray(plugin.customPrefix)) {
-  for (let prefix of plugin.customPrefix) {
-    if (m.text.trim().startsWith(prefix.trim())) {
-      textMatched = true;
-      break;
-    }
-  }
-} else if (plugin.customPrefix instanceof RegExp) {
-  if (plugin.customPrefix.test(m.text)) {
-    textMatched = true;
-  }
-}
-
-if (textMatched && (matchingCommand !== null || plugin.customPrefix.test(m.text))) {
-  await conn.sendMessage(m.chat, { document: fileContentT, mimetype: 'text/javascript', fileName: filename + '.js' }, { quoted: m });
-  await m.reply(`\`\`\`CÓDIGO DEL ARCHIVO ${filename}.js\`\`\`\n${String.fromCharCode(8206).repeat(850)}\n${fileContent.toString()}`);
-} else {
-  await m.reply(`El mensaje "${m.text.trim()}" no coincide con ningún comando o prefijo personalizado del archivo "${matchingFile}".`);
-}
-
-
-
- 
 } catch (err) {
-console.log(`Error al enviar el archivo '${matchingFile}': ${err.message}`)
-return m.reply(`Ocurrió un error al enviar el archivo '${matchingFile}'`)
+console.log(lenguajeGB.smsPlugin5(matchingFile, err))
+return m.reply(lenguajeGB.smsPlugin5(matchingFile))
 }}}
 
 handler.command = /^(getplugin|gp|obtenercodigo|obtenercode|getpg)$/i
