@@ -6,9 +6,21 @@ await conn.reply(m.chat, "*ENVIANDO MENSAJE, ESPERE UN MOMENTO...*", m)
 let start = new Date().getTime() 
 for (let user of chats) {
 await new Promise(resolve => setTimeout(resolve, 2000)) // 2 segundos
-//await conn.reply(user, `✅ *COMUNICADO OFICIAL* ✅\n\n` + teks3, m)
-//await conn.sendMessage(user, { text: `✅ *COMUNICADO OFICIAL* ✅\n\n` + teks3 }, { quoted: m })
-await conn.sendMessage(user, { text: `✅ *COMUNICADO OFICIAL* ✅\n\n` + teks3, mentions: [user], }, { quoted: m })
+let fkontak = {
+  "key": {
+    "participants": `${user}@s.whatsapp.net`,
+    "remoteJid": "status@broadcast",
+    "fromMe": false,
+    "id": "Halo"
+  },
+  "message": {
+    "contactMessage": {
+      "vcard": `BEGIN:VCARD\nVERSION:3.0\nN:Sy;Bot;;;\nFN:y\nitem1.TEL;waid=${user.split('@')[0]}:${user.split('@')[0]}\nitem1.X-ABLabel:Ponsel\nEND:VCARD`
+    }
+  },
+  "participant": `${user}@s.whatsapp.net`
+}
+await conn.reply(user, `✅ *COMUNICADO OFICIAL* ✅\n\n` + teks3, fkontak)
 }
 let end = new Date().getTime() 
 let totalPri = chats.length
