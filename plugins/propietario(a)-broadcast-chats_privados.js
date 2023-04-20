@@ -6,20 +6,6 @@ await conn.reply(m.chat, "*ENVIANDO MENSAJE, ESPERE UN MOMENTO...*", m)
 let start = new Date().getTime() 
 for (let user of chats) {
 await new Promise(resolve => setTimeout(resolve, 2000)) // 2 segundos
-let fkontak = {
-  "key": {
-    "participants": `${user}@s.whatsapp.net`,
-    "remoteJid": "status@broadcast",
-    "fromMe": false,
-    "id": "Halo"
-  },
-  "message": {
-    "contactMessage": {
-      "vcard": `BEGIN:VCARD\nVERSION:3.0\nN:Sy;Bot;;;\nFN:y\nitem1.TEL;waid=${user.split('@')[0]}:${user.split('@')[0]}\nitem1.X-ABLabel:Ponsel\nEND:VCARD`
-    }
-  },
-  "participant": `${user}@s.whatsapp.net`
-}
 await conn.reply(user, `✅ *COMUNICADO OFICIAL* ✅\n\n` + teks3, null)
 }
 let end = new Date().getTime() 
@@ -32,7 +18,6 @@ time = `${minutes} minutos y ${seconds} segundos`
 } else {
 time = `${time} segundos`
 }
-
 await m.reply(`✅ *EL MENSAJE FUE ENVIADO A ${totalPri} CHAT(S) PRIVADO(S)*\n\nTiempo total de envío: ${time}`)
 }
 
