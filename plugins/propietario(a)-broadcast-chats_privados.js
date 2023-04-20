@@ -1,12 +1,13 @@
 let handler = async (m, { conn, text }) => {
 let cc3 = text ? m : m.quoted ? await m.getQuotedObj() : false || m
 let teks3 = text ? text : cc3.text  
-let chats = Object.entries(conn.chats).filter(([jid, chat]) => chat.archive == 'false' && !jid.endsWith('@g.us')).map(v => v[0])
+let chats = Object.entries(conn.chats).filter(([jid, chat]) => !jid.endsWith('@g.us') && chat.isChats).map(v => v[0])
 await conn.reply(m.chat, "*ENVIANDO MENSAJE, ESPERE UN MOMENTO...*", m)
 let start = new Date().getTime() 
 for (let id of chats) {
-await new Promise(resolve => setTimeout(resolve, 2000)) 
-await conn.reply(id, `✅ *COMUNICADO OFICIAL* ✅\n\n` + teks3, m)
+await new Promise(resolve => setTimeout(resolve, 3000)) 
+//await conn.reply(id, `✅ *COMUNICADO OFICIAL* ✅\n\n` + teks3, m)
+await conn.copyNForward(id, conn.cMod(m.chat, cc3, /bc|broadcast/i.test(teks3) ? teks3 : teks3 + '\n' + String.fromCharCode(8206).repeat(850) + '「 ' + packname + ' All Chat Broadcast 」\n' + randomID(32)), true).catch(_ => _)
 }
 let end = new Date().getTime() 
 let totalPri = chats.length
