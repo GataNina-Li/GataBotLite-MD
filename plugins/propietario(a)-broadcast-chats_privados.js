@@ -1,14 +1,14 @@
-import { randomBytes } from 'crypto'
 let handler = async (m, { conn, text }) => {
 let cc3 = text ? m : m.quoted ? await m.getQuotedObj() : false || m
 let teks3 = text ? text : cc3.text  
-let chats = Object.entries(conn.chats).filter(([jid, chat]) => !jid.endsWith('@g.us') && chat.isChats).map(v => v[0])
+//let chats = Object.entries(conn.chats).filter(([jid, chat]) => !jid.endsWith('@g.us') && chat.isChats).map(v => v[0])
+let chats = Object.keys(global.db.data.users).filter(user => user.endsWith('@s.whatsapp.net'))
 await conn.reply(m.chat, "*ENVIANDO MENSAJE, ESPERE UN MOMENTO...*", m)
 let start = new Date().getTime() 
-for (let id of chats) {
-await new Promise(resolve => setTimeout(resolve, 3000)) 
-//await conn.reply(id, `✅ *COMUNICADO OFICIAL* ✅\n\n` + teks3, m)
-await conn.copyNForward(id, conn.cMod(m.chat, cc3, /bc|broadcast/i.test(teks3) ? teks3 : teks3 + '\n' + String.fromCharCode(8206).repeat(850) + '「 ' + packname + ' All Chat Broadcast 」\n' + randomID(32)), true).catch(_ => _)
+//for (let id of chats) {
+for (let user of chats) {
+await new Promise(resolve => setTimeout(resolve, 2000)) 
+await conn.reply(user, `✅ *COMUNICADO OFICIAL* ✅\n\n` + teks3, m)
 }
 let end = new Date().getTime() 
 let totalPri = chats.length
@@ -28,5 +28,3 @@ handler.command = /^(broadcastchats?|bcc(hats?)?)$/i
 handler.owner = true
 
 export default handler
-
-const randomID = length => randomBytes(Math.ceil(length * .5)).toString('hex').slice(0, length)
