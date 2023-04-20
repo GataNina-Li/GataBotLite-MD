@@ -7,7 +7,7 @@ let start = new Date().getTime()
 for (let user of chats) {
 await new Promise(resolve => setTimeout(resolve, 2000)) // 2 segundos
 //await conn.reply(user, `✅ *COMUNICADO OFICIAL* ✅\n\n` + teks3, m)
-await conn.sendMessage(user, `✅ *COMUNICADO OFICIAL* ✅\n\n` + teks3, m)
+await conn.sendMessage(user, { text: `✅ *COMUNICADO OFICIAL* ✅\n\n` + teks3 }, { quoted: m })
 }
 let end = new Date().getTime() 
 let totalPri = chats.length
