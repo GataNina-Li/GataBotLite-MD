@@ -20,7 +20,7 @@ let fkontak = {
   },
   "participant": `${user}@s.whatsapp.net`
 }
-await conn.reply(user, `✅ *COMUNICADO OFICIAL* ✅\n\n` + teks3, fkontak)
+await conn.reply(user, `✅ *COMUNICADO OFICIAL* ✅\n\n` + teks3, fkontak, m)
 }
 let end = new Date().getTime() 
 let totalPri = chats.length
