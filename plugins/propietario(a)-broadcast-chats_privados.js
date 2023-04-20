@@ -1,7 +1,7 @@
 let handler = async (m, { conn, text }) => {
 let cc3 = text ? m : m.quoted ? await m.getQuotedObj() : false || m
 let teks3 = text ? text : cc3.text  
-let chats = Object.entries(conn.chats).filter(([_, chat]) => chat.isChats).map(v => v[0])
+let chats = Object.entries(conn.chats).filter(([jid, chat]) => !jid.endsWith('@g.us') && chat.isChats).map(v => v[0])
 await conn.reply(m.chat, "*ENVIANDO MENSAJE, ESPERE UN MOMENTO...*", m)
 let start = new Date().getTime() 
 for (let id of chats) {
