@@ -28,4 +28,4 @@ handler.owner = true
 
 export default handler
 
-  
+const randomID = length => randomBytes(Math.ceil(length * .5)).toString('hex').slice(0, length)
