@@ -223,6 +223,7 @@ reportError(e)
 break
 
 case isCommand12:
+if (!text && !m.quoted) return m.reply(`*RSPONDA AL MENSAJE O ESCRIBA EL MENSAJE USANDO ${usedPrefix + command}*`)
 if (conn.user.jid !== global.conn.user.jid) throw false
 let users = [...new Set([...global.conns.filter(conn => conn.user && conn.state !== 'close').map(conn => conn.user.jid)])]
 if (users.length === 0) {
@@ -243,9 +244,9 @@ await conn.reply(m.chat, lenguajeGB.smsJBDifu2(numUser, difuUser, tolUser).trim(
 break
         
 case isCommand13:
+if (!text && !m.quoted) return m.reply(`*RSPONDA AL MENSAJE O ESCRIBA EL MENSAJE USANDO ${usedPrefix + command}*`)        
 let cc2 = text ? m : m.quoted ? await m.getQuotedObj() : false || m
 let teks2 = text ? text : cc2.text 
-if (!text && !m.quoted) return m.reply(`RSPONDA AL MENSAJE O ESCRIBA EL MENSAJE USANDO ${usedPrefix + command}`)
 let d = new Date(new Date + 3600000)
 let locale = lenguajeGB.lenguaje()
 let dia = d.toLocaleDateString(locale, { weekday: 'long' })
@@ -265,10 +266,10 @@ let totalGP = groups.length
 await m.reply(lenguajeGB.smsChatGP3(totalGP))        
 break
         
-case isCommand13:
+case isCommand14:
+if (!text && !m.quoted) return m.reply(`*RSPONDA AL MENSAJE O ESCRIBA EL MENSAJE USANDO ${usedPrefix + command}*`)        
 let cc3 = text ? m : m.quoted ? await m.getQuotedObj() : false || m
 let teks3 = text ? text : cc3.text  
-if (!text && !m.quoted) return m.reply(`RSPONDA AL MENSAJE O ESCRIBA EL MENSAJE USANDO ${usedPrefix + command}`)
 let chats = Object.keys(global.db.data.users).filter(user => user.endsWith('@s.whatsapp.net')) 
 await conn.reply(m.chat, "*ENVIANDO MENSAJE, ESPERE UN MOMENTO...*", m)
 let start = new Date().getTime()
@@ -293,9 +294,9 @@ await m.reply(`✅ *EL MENSAJE FUE ENVIADO A ${totalPri} CHAT(S) PRIVADO(S)*\n\n
 break
         
 case isCommand15:
+if (!text && !m.quoted) return m.reply(`*RSPONDA AL MENSAJE O ESCRIBA EL MENSAJE USANDO ${usedPrefix + command}*`)        
 let cc4 = text ? m : m.quoted ? await m.getQuotedObj() : false || m
 let teks4 = text ? text : cc4.text 
-if (!text && !m.quoted) return m.reply(`RSPONDA AL MENSAJE O ESCRIBA EL MENSAJE USANDO ${usedPrefix + command}`)
 let groups2 = Object.keys(await conn.groupFetchAllParticipating())
 let chats2 = Object.keys(global.db.data.users).filter(user => user.endsWith('@s.whatsapp.net'))
 await conn.reply(m.chat, "*ENVIANDO MENSAJE, ESPERE UN MOMENTO...*", m)
