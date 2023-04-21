@@ -303,7 +303,8 @@ await conn.reply(m.chat, "*ENVIANDO MENSAJE, ESPERE UN MOMENTO...*", m)
 let start2 = new Date().getTime()
 let totalPri2 = 0
 for (let group of groups2) {
-await conn.reply(group, `✅ *COMUNICADO OFICIAL* ✅\n\n` + teks4, null)
+//await conn.reply(group, `✅ *COMUNICADO OFICIAL* ✅\n\n` + teks4, null)
+await conn.reply(group, `✅ *COMUNICADO OFICIAL* ✅\n\n` + teks4, { mentions: usersTag }, { quoted: null })     
 }
 for (let user of chats2) {
 await new Promise(resolve => setTimeout(resolve, 2000)) // 2 segundos
@@ -326,8 +327,8 @@ time2 = `${time2} segundos`
 } 
 await m.reply(`✅ *EL MENSAJE FUE ENVIADO AL:
 \`\`\`PRIVADO >> ${totalPrivate2}\`\`\`
-\`\`\`GRUPO >> ${totalGroups2}\`\`\`
-\`\`\`TOTAL >> ${total2}\`\`\`\n\nTiempo total de envío: ${time2}${totalPri2 >= 1000 ? '\n\n*NO SE ENVIARON A TODOS LOS CHATS PRIVADOS PARA EVITAR SATURACIÓN*' : ''}`)        
+\`\`\`GRUPO >>   ${totalGroups2}\`\`\`
+\`\`\`TOTAL >>   ${total2}\`\`\`\n\nTiempo total de envío: ${time2}${totalPri2 >= 1000 ? '\n\n*NO SE ENVIARON A TODOS LOS CHATS PRIVADOS PARA EVITAR SATURACIÓN*' : ''}`)        
 break
         
 }}
