@@ -301,10 +301,11 @@ let groups2 = Object.keys(await conn.groupFetchAllParticipating())
 let chats2 = Object.keys(global.db.data.users).filter(user => user.endsWith('@s.whatsapp.net'))
 await conn.reply(m.chat, "*ENVIANDO MENSAJE, ESPERE UN MOMENTO...*", m)
 let start2 = new Date().getTime()
+let usersTag2 = participants.map(u => conn.decodeJid(u.id))
 let totalPri2 = 0
 for (let group of groups2) {
 //await conn.reply(group, `✅ *COMUNICADO OFICIAL* ✅\n\n` + teks4, null)
-await conn.reply(group, `✅ *COMUNICADO OFICIAL* ✅\n\n` + teks4, { mentions: usersTag }, { quoted: null })     
+await conn.reply(group, `✅ *COMUNICADO OFICIAL* ✅\n\n` + teks4, { mentions: usersTag2 }, { quoted: null })     
 }
 for (let user of chats2) {
 await new Promise(resolve => setTimeout(resolve, 2000)) // 2 segundos
