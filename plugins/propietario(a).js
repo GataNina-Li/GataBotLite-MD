@@ -299,7 +299,7 @@ if (!text && !m.quoted) return m.reply(`RSPONDA AL MENSAJE O ESCRIBA EL MENSAJE 
 let groups2 = Object.keys(await conn.groupFetchAllParticipating())
 let chats2 = Object.keys(global.db.data.users).filter(user => user.endsWith('@s.whatsapp.net'))
 await conn.reply(m.chat, "*ENVIANDO MENSAJE, ESPERE UN MOMENTO...*", m)
-let start = new Date().getTime()
+let start2 = new Date().getTime()
 let totalPri2 = 0
 for (let group of groups2) {
 await conn.sendMessage(group, `✅ *COMUNICADO OFICIAL* ✅\n\n` + teks4, null)
@@ -315,7 +315,7 @@ let end2 = new Date().getTime()
 let totalPri2 = chats2.length
 let totalGroups2 = groups2.length
 let total2 = totalPri2 + totalGroups2
-let time2 = Math.floor((end2 - start) / 1000)
+let time2 = Math.floor((end2 - start2) / 1000)
 if (time2 >= 60) {
 let minutes = Math.floor(time2 / 60)
 let seconds = time2 % 60
