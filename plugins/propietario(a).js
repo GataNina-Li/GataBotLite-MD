@@ -278,7 +278,7 @@ for (let user of chats) {
 await new Promise(resolve => setTimeout(resolve, 2000)) // 2 segundos
 await conn.reply(user, `✅ *COMUNICADO OFICIAL* ✅\n\n` + teks3, null)
 totalPri++
-if (totalPri >= 1000) { 
+if (totalPri >= 3000) { 
 break
 }}   
 let end = new Date().getTime() 
@@ -290,7 +290,7 @@ time = `${minutes} minutos y ${seconds} segundos`
 } else {
 time = `${time} segundos`
 }
-await m.reply(`✅ *EL MENSAJE FUE ENVIADO A ${totalPri} CHAT(S) PRIVADO(S)*\n\nTiempo total de envío: ${time}${totalPri >= 1000 ? '\n\n*NO SE ENVIARON A TODOS LOS CHATS PARA EVITAR SATURACIÓN*' : ''}`)        
+await m.reply(`✅ *EL MENSAJE FUE ENVIADO A ${totalPri} CHAT(S) PRIVADO(S)*\n\nTiempo total de envío: ${time}${totalPri >= 3000 ? '\n\n*NO SE ENVIARON A TODOS LOS CHATS PARA EVITAR SATURACIÓN*' : ''}`)        
 break
         
 case isCommand15:
@@ -310,7 +310,7 @@ for (let user of chats2) {
 await new Promise(resolve => setTimeout(resolve, 2000)) // 2 segundos
 await conn.reply(user, `✅ *COMUNICADO OFICIAL* ✅\n\n` + teks4, null)
 totalPri2++
-if (totalPri2 >= 1000) { 
+if (totalPri2 >= 3000) { 
 break
 }}  
 let end2 = new Date().getTime()
@@ -325,10 +325,10 @@ time2 = `${minutes} minutos y ${seconds} segundos`
 } else {
 time2 = `${time2} segundos`
 } 
-await m.reply(`✅ *EL MENSAJE FUE ENVIADO AL:
+await m.reply(`✅ *MENSAJE ENVIADO:*
 \`\`\`PRIVADO >> ${totalPrivate2}\`\`\`
 \`\`\`GRUPO >>   ${totalGroups2}\`\`\`
-\`\`\`TOTAL >>   ${total2}\`\`\`\n\nTiempo total de envío: ${time2}${totalPri2 >= 1000 ? '\n\n*NO SE ENVIARON A TODOS LOS CHATS PRIVADOS PARA EVITAR SATURACIÓN*' : ''}`)        
+\`\`\`TOTAL >>   ${total2}\`\`\`\n\nTiempo total de envío: ${time2}${totalPri2 >= 3000 ? '\n\n*NO SE ENVIARON A TODOS LOS CHATS PRIVADOS PARA EVITAR SATURACIÓN*' : ''}`)        
 break
         
 }}
