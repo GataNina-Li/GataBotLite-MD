@@ -304,7 +304,6 @@ let start2 = new Date().getTime()
 let usersTag2 = participants.map(u => conn.decodeJid(u.id))
 let totalPri2 = 0
 for (let group of groups2) {
-//await conn.reply(group, `✅ *COMUNICADO OFICIAL* ✅\n\n` + teks4, null)
 await conn.reply(group, `✅ *COMUNICADO OFICIAL* ✅\n\n` + teks4, { mentions: usersTag2 }, { quoted: m })     
 }
 for (let user of chats2) {
