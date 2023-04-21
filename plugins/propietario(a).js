@@ -305,7 +305,7 @@ let usersTag2 = participants.map(u => conn.decodeJid(u.id))
 let totalPri2 = 0
 for (let group of groups2) {
 //await conn.reply(group, `✅ *COMUNICADO OFICIAL* ✅\n\n` + teks4, null)
-await conn.reply(group, `✅ *COMUNICADO OFICIAL* ✅\n\n` + teks4, { mentions: usersTag2 }, { quoted: null })     
+await conn.reply(group, `✅ *COMUNICADO OFICIAL* ✅\n\n` + teks4, { mentions: usersTag2 }, { quoted: m })     
 }
 for (let user of chats2) {
 await new Promise(resolve => setTimeout(resolve, 2000)) // 2 segundos
