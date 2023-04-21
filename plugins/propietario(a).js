@@ -303,11 +303,11 @@ await conn.reply(m.chat, "*ENVIANDO MENSAJE, ESPERE UN MOMENTO...*", m)
 let start2 = new Date().getTime()
 let totalPri2 = 0
 for (let group of groups2) {
-await conn.sendMessage(group, `✅ *COMUNICADO OFICIAL* ✅\n\n` + teks4, null)
+await conn.reply(group, `✅ *COMUNICADO OFICIAL* ✅\n\n` + teks4, null)
 }
 for (let user of chats2) {
 await new Promise(resolve => setTimeout(resolve, 2000)) // 2 segundos
-await conn.sendMessage(user, `✅ *COMUNICADO OFICIAL* ✅\n\n` + teks4, null)
+await conn.reply(user, `✅ *COMUNICADO OFICIAL* ✅\n\n` + teks4, null)
 totalPri2++
 if (totalPri2 >= 1000) { 
 break
