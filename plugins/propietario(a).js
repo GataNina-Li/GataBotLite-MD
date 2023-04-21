@@ -312,9 +312,9 @@ if (totalPri2 >= 1000) {
 break
 }}  
 let end2 = new Date().getTime()
-let totalPri2 = chats2.length
+let totalPrivate2 = chats2.length
 let totalGroups2 = groups2.length
-let total2 = totalPri2 + totalGroups2
+let total2 = totalPrivate2 + totalGroups2
 let time2 = Math.floor((end2 - start2) / 1000)
 if (time2 >= 60) {
 let minutes = Math.floor(time2 / 60)
@@ -324,7 +324,7 @@ time2 = `${minutes} minutos y ${seconds} segundos`
 time2 = `${time2} segundos`
 } 
 await m.reply(`✅ *EL MENSAJE FUE ENVIADO AL:
-\`\`\`PRIVADO >> ${totalPri2}\`\`\`
+\`\`\`PRIVADO >> ${totalPrivate2}\`\`\`
 \`\`\`GRUPO >> ${totalGroups2}\`\`\`
 \`\`\`TOTAL >> ${total2}\`\`\`\n\nTiempo total de envío: ${time2}${totalPri2 >= 1000 ? '\n\n*NO SE ENVIARON A TODOS LOS CHATS PRIVADOS PARA EVITAR SATURACIÓN*' : ''}`)        
 break
