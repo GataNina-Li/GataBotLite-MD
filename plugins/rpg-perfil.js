@@ -7,7 +7,7 @@ let who = m.mentionedJid && m.mentionedJid[0] ? m.mentionedJid[0] : m.fromMe ? c
 let pp = await conn.profilePictureUrl(m.sender).catch(_ => img2) 
 let { name, limit, lastclaim, registered, regTime, age } = global.db.data.users[who]
 let user = global.db.data.users[m.sender]
-let tag = `${m.sender.split("@")[0]}`
+let tag = `${m.sender.split("@")[0]}` + '@s.whatsapp.net'
 let sn = createHash('md5').update(m.sender).digest('hex').slice(0, 6)	
 let str =
 `*⎔ NOMBRE* 
@@ -21,7 +21,7 @@ let str =
 
 *⎔ ID DE REGISTRO*
 • \`\`\`${sn}\`\`\``.trim()
-await conn.sendFile(m.chat, pp, 'gata.jpg', str, null, { mentions: [tag + '@s.whatsapp.net'] }) 
+await conn.sendFile(m.chat, pp, 'gata.jpg', str, m, { mentions: [tag] }) 
 }
 handler.command = /^perfil|profile?$/i
 handler.register = true
