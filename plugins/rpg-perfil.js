@@ -10,14 +10,17 @@ let user = global.db.data.users[m.sender]
 let sn = createHash('md5').update(m.sender).digest('hex').slice(0, 6)	
 let str =
 `*⎔ NOMBRE* 
-→ ${name} ${user.registered === true ? 'ͧͧͧͦꙶͣͤ✓ᚲᴳᴮ' : ''}
+• ${name} ${user.registered === true ? 'ͧͧͧͦꙶͣͤ✓ᚲᴳᴮ' : ''}
+
 *⎔ EDAD*
-→ ${age}
+• ${age}
+
 *⎔ NÚMERO*
-→ ${PhoneNumber('+' + who.replace('@s.whatsapp.net', '')).getNumber('international')}
+• ${PhoneNumber('+' + who.replace('@s.whatsapp.net', '')).getNumber('international')}
+
 *⎔ ID DE REGISTRO*
-→ \`\`\`${sn}\`\`\``.trim()
-await conn.sendFile(m.chat, await(await fetch(pp)).buffer(), 'gata.jpg', str, m) 
+• \`\`\`${sn}\`\`\``.trim()
+await conn.sendFile(m.chat, pp, 'gata.jpg', str, m) 
 }
 handler.command = /^perfil|profile?$/i
 handler.register = true
