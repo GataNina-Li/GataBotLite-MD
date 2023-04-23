@@ -11,7 +11,7 @@ let tag = `${m.sender.split("@")[0]}`
 let sn = createHash('md5').update(m.sender).digest('hex').slice(0, 6)	
 let str =
 `*⎔ NOMBRE* 
-• ${name} || @${tag}
+• ${name} || @${m.sender}
 
 *⎔ EDAD*
 • ${age}
