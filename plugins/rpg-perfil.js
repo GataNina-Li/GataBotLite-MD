@@ -11,7 +11,7 @@ let tag = `${m.sender.split("@")[0]}`
 let sn = createHash('md5').update(m.sender).digest('hex').slice(0, 6)	
 let str =
 `*⎔ NOMBRE* 
-• ${name} || @${m.sender}
+• ${name} || @${tag}
 
 *⎔ EDAD*
 • ${age}
@@ -21,7 +21,7 @@ let str =
 
 *⎔ ID DE REGISTRO*
 • \`\`\`${sn}\`\`\``.trim()
-await conn.sendFile(m.chat, pp, 'gata.jpg', str, m, { mentions: [m.sender] }) 
+await conn.sendFile(m.chat, pp, 'gata.jpg', str, m, { mentions: [str] }) 
 }
 handler.command = /^perfil|profile?$/i
 handler.register = true
