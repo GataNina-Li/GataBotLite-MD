@@ -21,7 +21,11 @@ let str =
 
 *⎔ ID DE REGISTRO*
 • \`\`\`${sn}\`\`\``.trim()
-await conn.sendFile(m.chat, pp, 'gata.jpg', str, m, { mentions: [str] }) 
+const mention = {
+  text: str,
+  user_ids: [m.sender.split('@')[0]]
+}
+await conn.sendFile(m.chat, pp, 'gata.jpg', str, m, { mentions: [m.sender.split('@')[0]] }) 
 }
 handler.command = /^perfil|profile?$/i
 handler.register = true
