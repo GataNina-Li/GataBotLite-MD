@@ -14,56 +14,51 @@ const { say } = cfonts
 const rl = createInterface(process.stdin, process.stdout)
 
 try {
-  const startColor = chalk.rgb(Math.floor(Math.random() * 256), Math.floor(Math.random() * 256), Math.floor(Math.random() * 256));
-  console.log(startColor('❤️ Iniciando...'));
+const startColor = chalk.rgb(Math.floor(Math.random() * 256), Math.floor(Math.random() * 256), Math.floor(Math.random() * 256));
+console.log(startColor('❤️ Iniciando...'));
 
-  function getRandomColor() {
-   const colors = ['system', 'black', 'red', 'green', 'yellow', 'blue', 'magenta', 'cyan', 'white', 'gray', 'redBright', 'greenBright', 'yellowBright', 'blueBright', 'magentaBright', 'cyanBright', 'whiteBright', 'candy'];
-   const randomIndex = Math.floor(Math.random() * colors.length);
-    return colors[randomIndex];
-  }
+function getRandomColor() {
+const colors = ['system', 'black', 'red', 'green', 'yellow', 'blue', 'magenta', 'cyan', 'white', 'gray', 'redBright', 'greenBright', 'yellowBright', 'blueBright', 'magentaBright', 'cyanBright', 'whiteBright', 'candy'];
+const randomIndex = Math.floor(Math.random() * colors.length);
+return colors[randomIndex]}
 
-  function getRandomHexColor() {
-   const hexColors = ['#3456ff', '#f80', '#f00808', '#fefe62', '#ff00ff', '#00ffff', '#ffffff', '#00ff00', '#8b00ff', '#ff5733', '#00ced1']
-    const randomIndex = Math.floor(Math.random() * hexColors.length);
-    return hexColors[randomIndex];
-  }
+function getRandomHexColor() {
+const hexColors = ['#3456ff', '#f80', '#f00808', '#fefe62', '#ff00ff', '#00ffff', '#ffffff', '#00ff00', '#8b00ff', '#ff5733', '#00ced1']
+const randomIndex = Math.floor(Math.random() * hexColors.length)
+return hexColors[randomIndex]}
 
-  function getRandomGradient() {  
-    const useRandomHexColors = Math.random() < 0.5; // 50% colors
-    if (useRandomHexColors) {
-      return [getRandomHexColor(), getRandomHexColor()];
-    } else {
-      return [getRandomColor(), getRandomColor()];
-    }
-  }
+function getRandomGradient() {  
+const useRandomHexColors = Math.random() < 0.5; // 50% colors
+if (useRandomHexColors) {
+return [getRandomHexColor(), getRandomHexColor()]
+} else {
+return [getRandomColor(), getRandomColor()];
+}}
 
-  const options = {
-    font: 'block',
-    align: 'center',
-    colors: getRandomGradient(),
-    background: 'transparent',
-    letterSpacing: 1,
-    lineHeight: 1,
-    space: true,
-    maxLength: '0',
-  }
-
-cfonts.say('gatabot\nlite\nmd'.trim(), options);
+const options = {
+ font: 'block',
+ align: 'center',
+ colors: getRandomGradient(),
+ background: 'transparent',
+ letterSpacing: 1,
+ lineHeight: 1,
+ space: true,
+ maxLength: '0',
+}
+cfonts.say('gatabot\nlite\nmd'.trim(), options)
 
 } catch (err) {
-  say('GataBot\nLite\nMD', {
-    font: 'chrome',
-    align: 'center',
-    gradient: ['red', 'magenta']
-  });
-}
+say('GataBot\nLite\nMD', {
+ font: 'chrome',
+ align: 'center',
+ gradient: ['red', 'magenta']
+})}
 
-say(`Gracias a @gata_dios`, {
-  font: 'console',
-  align: 'center',
-  gradient: ['red', 'magenta']
-});
+say(`Desarrollado por @gata_dios`, {
+ font: 'block',
+ align: 'center',
+ colors: ['candy']
+})
 
 var isRunning = false
 /**
