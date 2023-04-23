@@ -55,7 +55,7 @@ say('GataBot\nLite\nMD', {
 })}
 
 say(`Desarrollado por @gata_dios`, {
- font: 'block',
+ font: 'console',
  align: 'center',
  colors: ['candy']
 })
