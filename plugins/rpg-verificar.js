@@ -6,9 +6,9 @@ return list[Math.floor(Math.random() * list.length)]
 }
 let tag = `${m.sender.split("@")[0]}`
 let aa = tag + '@s.whatsapp.net'
-
 let user = global.db.data.users[m.sender]
 if (user.registered === true) throw `${iig}YA ESTAS REGISTRADO(A)!!\nSI QUIERE ANULAR SU REGISTRO USE ESTE COMANDO\n*${usedPrefix}unreg numero de serie*\n\nSI NI RECUEDAD SU NUMERO DE SERIE USE ESTE COMANDO\n*${usedPrefix}myns`
+if (!text) throw `*INGRESE SU NOMBRE Y EDAD PARA ESTAR REGISTRADO*\n*EJEMPLO*\n\n${usedPrefix + command} GataBot.18`  
 let [_, name, splitter, age] = text.match(Reg)
 if (!name) throw '*INGRESE SU NOMBRE*'
 if (!age) throw '*INGRESE SU EDAD*'
