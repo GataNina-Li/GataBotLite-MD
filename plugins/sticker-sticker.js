@@ -9,7 +9,7 @@ let q = m.quoted ? m.quoted : m
 let mime = (q.msg || q).mimetype || q.mediaType || ''
 if (!/webp|image|video/g.test(mime) && !text) return m.reply(lenguajeGB.smsSticker1(usedPrefix, command))
 if (/video/g.test(mime)) if ((q.msg || q).seconds > 10) return m.reply(lenguajeGB.smsSticker2())
-try {
+//try {
 if (/webp|image|video/g.test(mime)) {
 let img = await q.download?.()
 let out
@@ -24,7 +24,7 @@ else if (/image/g.test(mime)) out = await uploadImage(img)
 else if (/video/g.test(mime)) out = await uploadFile(img)
 if (typeof out !== 'string') out = await uploadImage(img)
 stiker = await sticker(false, out, global.packname, global.author)
-}}
+}//}
 } else if (args[0]) {
 if (isUrl(args[0])) stiker = await sticker(false, args[0], global.packname, global.author)
 else return m.reply(lenguajeGB.smsSticker3(usedPrefix, command))
