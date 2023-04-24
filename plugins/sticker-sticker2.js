@@ -29,7 +29,7 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
 		m.reply(stiker)
 	}
 }
-handler.command = /^(sticker2)$/i
+handler.command = /^sticker2$/i
 
 export default handler
 
