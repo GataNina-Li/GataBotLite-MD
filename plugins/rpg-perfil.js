@@ -9,7 +9,9 @@ let user = global.db.data.users[m.sender]
 let tag = `${m.sender.split("@")[0]}`
 let aa = tag + '@s.whatsapp.net'
 let sn = createHash('md5').update(m.sender).digest('hex').slice(0, 6)	
-let str = `*⎔ ${lenguajeGB.smsPerfil1()}* 
+let str = `${lenguajeGB.smsPerfil0()}
+
+*⎔ ${lenguajeGB.smsPerfil1()}* 
 • @${tag}
 
 *⎔ ${lenguajeGB.smsPerfil2()}* 
