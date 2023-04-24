@@ -182,9 +182,9 @@ ${lenguajeGB.smsConfi1bot()}
 throw false
 }
 m.reply(`
-*⭔ ${lenguajeGB.smsConfi2()}:* _${type}_
-*⭔ ${lenguajeGB.smsConfi3()}:* _${isEnable ? lenguajeGB.smsConfi5() : lenguajeGB.smsConfi6()}_
-*⭔ ${lenguajeGB.smsConfi4()}:* _${isAll ? packname : isUser ? '' : lenguajeGB.smsConfi7()}_`)
+*⭔ ${lenguajeGB.smsConfi2bot()}:* _${type}_
+*⭔ ${lenguajeGB.smsConfi3bot()}:* _${isEnable ? lenguajeGB.smsConfi5bot() : lenguajeGB.smsConfi6bot()}_
+*⭔ ${lenguajeGB.smsConfi4bot()}:* _${isAll ? packname : isUser ? '' : lenguajeGB.smsConfi7bot()}_`)
 }
 handler.command = /^((en|dis)able|(tru|fals)e|(turn)?o(n|ff)|[01])$/i
 export default handler
