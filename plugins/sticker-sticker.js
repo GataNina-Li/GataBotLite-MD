@@ -7,8 +7,8 @@ let handler = async (m, { conn, args, usedPrefix, command, text }) => {
 let stiker = false
 let q = m.quoted ? m.quoted : m
 let mime = (q.msg || q).mimetype || q.mediaType || ''
-if (!/webp|image|video/g.test(mime) && !text) return m.reply(`*RESPONDER A UN VÍDEO, IMAGEN, O ESCRIBA ${usedPrefix + command} JUNTO A UN ENLACE QUE TERMINE EN .jpg .jpeg .gif .png*`  )
-if (/video/g.test(mime)) if ((q.msg || q).seconds > 10) return m.reply('*EL VÍDEO NO DEBE DE DURAR MÁS DE 10 SEGUNDOS*')
+if (!/webp|image|video/g.test(mime) && !text) return m.reply(lenguajeGB.smsSticker1(usedPrefix, command))
+if (/video/g.test(mime)) if ((q.msg || q).seconds > 10) return m.reply(lenguajeGB.smsSticker2())
 try {
 if (/webp|image|video/g.test(mime)) {
 let img = await q.download?.()
@@ -27,14 +27,13 @@ stiker = await sticker(false, out, global.packname, global.author)
 }}
 } else if (args[0]) {
 if (isUrl(args[0])) stiker = await sticker(false, args[0], global.packname, global.author)
-else return m.reply(`*EL ENLACE NO ES VALIDO, DEBE DE TERMINAR EN .jpg .jpeg .gif .png EJEMPLO:\n${usedPrefix + command} ${img}*`)
+else return m.reply(lenguajeGB.smsSticker3(usedPrefix, command))
 }
 } catch (e) {
 console.error(e)
 if (!stiker) stiker = e
 } finally {
-//let pp = await conn.profilePictureUrl(conn.user.jid).catch(_ => './src/avatar_contact.png')//await conn.profilePictureUrl(m.sender, 'image').catch(_ => gataImg.getRandom())
-if (stiker) conn.sendFile(m.chat, stiker, 'sticker.webp', '', null, true, { contextInfo: { 'forwardingScore': 200, 'isForwarded': false, externalAdReply:{ showAdAttribution: false, title: packname, body: '• STICKER •', mediaType: 2, sourceUrl: welgata.getRandom(), thumbnail: gataImg.getRandom()}}})
+if (stiker) conn.sendFile(m.chat, stiker, 'sticker.webp', '', null, true, { contextInfo: { 'forwardingScore': 200, 'isForwarded': false, externalAdReply:{ showAdAttribution: false, title: packname, body: '• STICKER •', mediaType: 2, sourceUrl: redesMenu.getRandom(), thumbnail: gataImg.getRandom()}}})
 else { 
 await m.reply(lenguajeGB['smsMalError3']() + '\n*' + lenguajeGB.smsMensError1() + '*\n*' + usedPrefix + `${lenguajeGB.lenguaje() == 'es' ? 'reporte' : 'report'}` + '* ' + `${lenguajeGB.smsMensError2()} ` + usedPrefix + command)
 console.log(`❗❗ ${lenguajeGB['smsMensError2']()} ${usedPrefix + command} ❗❗`)
