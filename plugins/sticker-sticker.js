@@ -24,7 +24,7 @@ else if (/image/g.test(mime)) out = await uploadImage(img)
 else if (/video/g.test(mime)) out = await uploadFile(img)
 if (typeof out !== 'string') out = await uploadImage(img)
 stiker = await sticker(false, out, global.packname, global.author)
-//}}
+}//}
 } else if (args[0]) {
 if (isUrl(args[0])) stiker = await sticker(false, args[0], global.packname, global.author)
 else throw `*EL ENLACE NO ES VALIDO, DEBE DE TERMINAR EN .jpg .jpeg .gif .png EJEMPLO:\n${usedPrefix + command} ${img}*`
