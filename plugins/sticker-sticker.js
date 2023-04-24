@@ -58,7 +58,7 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
   if (/video/g.test(mime)) if ((q.msg || q).seconds > 10) return m.reply('*[❗𝐈𝐍𝐅𝐎❗] 𝙴𝙻 𝚅𝙸𝙳𝙴𝙾 𝙽𝙾 𝙿𝚄𝙴𝙳𝙴 𝙳𝚄𝚁𝙰𝚁 𝙼𝙰𝚂 𝙳𝙴 10 𝚂𝙴𝙶𝚄𝙽𝙳𝙾𝚂*')
   if (/webp|image|video/g.test(mime)) {
     let img = await q.download?.()
-    if (!img) throw `RESPONDER A UN VÍDEO, IMAGEN, O ESCRIBA ${usedPrefix + command} JUNTO A UN ENLACE QUE TERMINE EN .jpg .jpeg .gif .png`
+    if (!mime) throw `RESPONDER A UN VÍDEO, IMAGEN, O ESCRIBA ${usedPrefix + command} JUNTO A UN ENLACE QUE TERMINE EN .jpg .jpeg .gif .png`
     let out
     if (/webp/g.test(mime)) out = await webp2png(img)
     else if (/image/g.test(mime)) out = await uploadImage(img)
