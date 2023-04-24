@@ -4,20 +4,21 @@ import uploadImage from '../lib/uploadImage.js'
 import { webp2png } from '../lib/webp2mp4.js'
 let handler = async (m, { conn, args, usedPrefix, command }) => {
 let stiker = false
-
+//try {
 let q = m.quoted ? m.quoted : m
 let mime = (q.msg || q).mimetype || q.mediaType || ''
 if (/webp|image|video/g.test(mime)) {
 if (/video/g.test(mime)) if ((q.msg || q).seconds > 10) return m.reply('*[❗𝐈𝐍𝐅𝐎❗] 𝙴𝙻 𝚅𝙸𝙳𝙴𝙾 𝙽𝙾 𝙿𝚄𝙴𝙳𝙴 𝙳𝚄𝚁𝙰𝚁 𝙼𝙰𝚂 𝙳𝙴 10 𝚂𝙴𝙶𝚄𝙽𝙳𝙾𝚂*')
-try {
+
 let img = await q.download?.()
 if (!img) throw `RESPONDER A UN VÍDEO, IMAGEN, O ESCRIBA ${usedPrefix + command} JUNTO A UN ENLACE QUE TERMINE EN .jpg .jpeg .gif .png`
 let out
-try {
+//try {
 stiker = await sticker(img, false, global.packname, global.author)
-} catch (e) {
+//} catch (e) {
 //console.error(e)
-} finally {
+try {
+//} finally {
 if (!stiker) {
 if (/webp/g.test(mime)) out = await webp2png(img)
 else if (/image/g.test(mime)) out = await uploadImage(img)
