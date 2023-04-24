@@ -4,7 +4,6 @@ import uploadImage from '../lib/uploadImage.js'
 import { webp2png } from '../lib/webp2mp4.js'
 
 let handler = async (m, { conn, args, usedPrefix, command, text }) => {
-try{
 let stiker = false
 let q = m.quoted ? m.quoted : m
 let mime = (q.msg || q).mimetype || q.mediaType || ''
@@ -25,15 +24,15 @@ if (typeof out !== 'string') out = await uploadImage(img)
 stiker = await sticker(false, out, global.packname, global.author)
  
 }} else if (args[0]) {
-if (isUrl(args[0])) stiker = await sticker(false, args[0], global.packname, global.author)}
-else { return m.reply(lenguajeGB.smsSticker3(usedPrefix, command))}
+if (isUrl(args[0])) stiker = await sticker(false, args[0], global.packname, global.author)
+else return m.reply(lenguajeGB.smsSticker3(usedPrefix, command))}
 
 if (stiker) {
-conn.sendFile(m.chat, stiker, 'sticker.webp', '', null, true, { contextInfo: { 'forwardingScore': 200, 'isForwarded': false, externalAdReply:{ showAdAttribution: false, title: packname, body: '• STICKER •', mediaType: 2, sourceUrl: redesMenu.getRandom(), thumbnail: gataImg.getRandom()}}})}
-} catch (e) {
+conn.sendFile(m.chat, stiker, 'sticker.webp', '', null, true, { contextInfo: { 'forwardingScore': 200, 'isForwarded': false, externalAdReply:{ showAdAttribution: false, title: packname, body: '• STICKER •', mediaType: 2, sourceUrl: redesMenu.getRandom(), thumbnail: gataImg.getRandom()}}})
+} else {
 await m.reply(lenguajeGB['smsMalError3']() + '\n*' + lenguajeGB.smsMensError1() + '*\n*' + usedPrefix + `${lenguajeGB.lenguaje() == 'es' ? 'reporte' : 'report'}` + '* ' + `${lenguajeGB.smsMensError2()} ` + usedPrefix + command)
 console.log(`❗❗ ${lenguajeGB['smsMensError2']()} ${usedPrefix + command} ❗❗`)
-console.log(e)
+console.log(stiker)
 }}
 
 handler.command = /^(s(tickers?)?(image|video|gif|img)?)$/i
