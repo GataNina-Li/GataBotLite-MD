@@ -33,8 +33,8 @@ else return m.reply(`*EL ENLACE NO ES VALIDO, DEBE DE TERMINAR EN .jpg .jpeg .gi
 console.error(e)
 if (!stiker) stiker = e
 } finally {
-let pp = await conn.profilePictureUrl(conn.user.jid).catch(_ => './src/avatar_contact.png')//await conn.profilePictureUrl(m.sender, 'image').catch(_ => gataImg.getRandom())
-if (stiker) conn.sendFile(m.chat, stiker, 'sticker.webp', '', null, true, { contextInfo: { 'forwardingScore': 200, 'isForwarded': false, externalAdReply:{ showAdAttribution: false, title: packname, body: '• STICKER •', mediaType: 2, sourceUrl: welgata.getRandom(), thumbnail: pp}}})
+//let pp = await conn.profilePictureUrl(conn.user.jid).catch(_ => './src/avatar_contact.png')//await conn.profilePictureUrl(m.sender, 'image').catch(_ => gataImg.getRandom())
+if (stiker) conn.sendFile(m.chat, stiker, 'sticker.webp', '', null, true, { contextInfo: { 'forwardingScore': 200, 'isForwarded': false, externalAdReply:{ showAdAttribution: false, title: packname, body: '• STICKER •', mediaType: 2, sourceUrl: welgata.getRandom(), thumbnail: gataImg.getRandom()}}})
 else { 
 await m.reply(lenguajeGB['smsMalError3']() + '\n*' + lenguajeGB.smsMensError1() + '*\n*' + usedPrefix + `${lenguajeGB.lenguaje() == 'es' ? 'reporte' : 'report'}` + '* ' + `${lenguajeGB.smsMensError2()} ` + usedPrefix + command)
 console.log(`❗❗ ${lenguajeGB['smsMensError2']()} ${usedPrefix + command} ❗❗`)
