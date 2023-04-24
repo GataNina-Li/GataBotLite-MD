@@ -61,7 +61,7 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
     if (!img) throw `RESPONDER A UN VÍDEO, IMAGEN, O ESCRIBA ${usedPrefix + command} JUNTO A UN ENLACE QUE TERMINE EN .jpg .jpeg .gif .png`
     let out
     stiker = await sticker(img, false, global.packname, global.author)
-    else {
+    //else {
     if (!stiker) {
       if (/webp/g.test(mime)) out = await webp2png(img)
       else if (/image/g.test(mime)) out = await uploadImage(img)
