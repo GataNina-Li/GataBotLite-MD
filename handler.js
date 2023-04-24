@@ -920,6 +920,7 @@ export async function handler(chatUpdate) {
                 if (!('viewonce' in chat)) chat.viewonce = true         
                 if (!('modoadmin' in chat)) chat.modoadmin = false           
                 if (!('antiLink' in chat)) chat.antiLink = false
+		if (!('antiLink2' in chat)) chat.antiLink2 = false    
                 if (!('antiTiktok' in chat)) chat.antiTiktok = false
 		if (!('antiYoutube' in chat)) chat.antiYoutube = false
 		if (!('antiTelegram' in chat)) chat.antiTelegram = false
@@ -927,7 +928,7 @@ export async function handler(chatUpdate) {
 		if (!('antiInstagram' in chat)) chat.antiInstagram = false
 		if (!('antiTwitter' in chat)) chat.antiInstagram = false
 		if (!('antifake' in chat)) chat.antifake = false 
-	    if (!('antitoxic' in chat)) chat.antitoxic = true 
+	        if (!('antitoxic' in chat)) chat.antitoxic = true 
                 if (!isNumber(chat.expired)) chat.expired = 0
                     
             } else
@@ -943,6 +944,7 @@ export async function handler(chatUpdate) {
                     viewonce: true,
                     modoadmin: false,
                     antiLink: false,
+		    antiLink2: false,	
                     antiTiktok: false,
 		    antiYoutube: false,
 		    antiTelegram: false,
