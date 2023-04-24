@@ -1,5 +1,5 @@
 let linkRegex = /chat.whatsapp.com\/([0-9A-Za-z]{20,24})/i
-export async function before(m, { isAdmin, isBotAdmin }) {
+export async function before(m, { conn, isAdmin, isBotAdmin }) {
 if (m.isBaileys && m.fromMe)
 return !0
 if (!m.isGroup) return !1
@@ -14,10 +14,13 @@ if (chat.antiLink && isGroupLink && !isAdmin) {
 if (isBotAdmin) {
 const linkThisGroup = `https://chat.whatsapp.com/${await this.groupInviteCode(m.chat)}`
 if (m.text.includes(linkThisGroup)) return !0
-}    
+} 
+if (isBotAdmin) {
 await m.reply(`${lenguajeGB['smsEnlaceWat']()} ${await this.getName(m.sender)}`)
-//await conn.sendButton(m.chat, `${lenguajeGB['smsEnlaceWat']()} ${await this.getName(m.sender)} ${isBotAdmin ? '' : `\n\n${lenguajeGB['smsAllAdmin']()}`}`, wm, [`${lenguajeGB['smsApagar']()}`, '/disable antilink'], m)    
-if (!isBotAdmin) return m.reply(`${lenguajeGB['smsAllAdmin']()}`)  
+} else {
+await m.reply(`${lenguajeGB['smsAllAdmin']()}`) 
+return
+}
 if (isBotAdmin) {
 await conn.sendMessage(m.chat, { delete: { remoteJid: m.chat, fromMe: false, id: bang, participant: delet }})
 await conn.groupParticipantsUpdate(m.chat, [m.sender], 'remove')
