@@ -167,29 +167,29 @@ ${lenguajeGB.smsConfi1bot()}
 🌺 ${usedPrefix}on ${lenguajeGB.lenguaje() == 'es' ? 'antienlace' : 'antilink'}
 🌸 ${usedPrefix}off ${lenguajeGB.lenguaje() == 'es' ? 'antienlace' : 'antilink'}
 
-🌺 ${usedPrefix}on ${lenguajeGB.lenguaje() == 'es' ? 'antienlace' : 'antilink'}
-🌸 ${usedPrefix}off ${lenguajeGB.lenguaje() == 'es' ? 'antienlace' : 'antilink'}
+🌺 ${usedPrefix}on ${lenguajeGB.lenguaje() == 'es' ? 'antienlace2' : 'antilink2'}
+🌸 ${usedPrefix}off ${lenguajeGB.lenguaje() == 'es' ? 'antienlace2' : 'antilink2'}
 
-🌺 ${usedPrefix}on ${lenguajeGB.lenguaje() == 'es' ? 'antienlace' : 'antilink'}
-🌸 ${usedPrefix}off ${lenguajeGB.lenguaje() == 'es' ? 'antienlace' : 'antilink'}
+🌺 ${usedPrefix}on antitiktok
+🌸 ${usedPrefix}off antitiktok
 
-🌺 ${usedPrefix}on ${lenguajeGB.lenguaje() == 'es' ? 'antienlace' : 'antilink'}
-🌸 ${usedPrefix}off ${lenguajeGB.lenguaje() == 'es' ? 'antienlace' : 'antilink'}
+🌺 ${usedPrefix}on antiyoutube
+🌸 ${usedPrefix}off antiyoutube
 
-🌺 ${usedPrefix}on ${lenguajeGB.lenguaje() == 'es' ? 'antienlace' : 'antilink'}
-🌸 ${usedPrefix}off ${lenguajeGB.lenguaje() == 'es' ? 'antienlace' : 'antilink'}
+🌺 ${usedPrefix}on antitelegram
+🌸 ${usedPrefix}off antitelegram
 
-🌺 ${usedPrefix}on ${lenguajeGB.lenguaje() == 'es' ? 'antienlace' : 'antilink'}
-🌸 ${usedPrefix}off ${lenguajeGB.lenguaje() == 'es' ? 'antienlace' : 'antilink'}
+🌺 ${usedPrefix}on antifacebook
+🌸 ${usedPrefix}off antifacebook
 
-🌺 ${usedPrefix}on ${lenguajeGB.lenguaje() == 'es' ? 'antienlace' : 'antilink'}
-🌸 ${usedPrefix}off ${lenguajeGB.lenguaje() == 'es' ? 'antienlace' : 'antilink'}
+🌺 ${usedPrefix}on antinstagram
+🌸 ${usedPrefix}off antinstagram
 
-🌺 ${usedPrefix}on ${lenguajeGB.lenguaje() == 'es' ? 'antienlace' : 'antilink'}
-🌸 ${usedPrefix}off ${lenguajeGB.lenguaje() == 'es' ? 'antienlace' : 'antilink'}
+🌺 ${usedPrefix}on antitwitter
+🌸 ${usedPrefix}off antitwitter
 
-🌺 ${usedPrefix}on ${lenguajeGB.lenguaje() == 'es' ? 'antiinternacional' : 'antilfake'}
-🌸 ${usedPrefix}off ${lenguajeGB.lenguaje() == 'es' ? 'antiinternacional' : 'antifake'}
+🌺 ${usedPrefix}on ${lenguajeGB.lenguaje() == 'es' ? 'antinternacional' : 'antifake'}
+🌸 ${usedPrefix}off ${lenguajeGB.lenguaje() == 'es' ? 'antinternacional' : 'antifake'}
 
 🌺 ${usedPrefix}on ${lenguajeGB.lenguaje() == 'es' ? 'restringir' : 'restrict'}
 🌸 ${usedPrefix}off ${lenguajeGB.lenguaje() == 'es' ? 'restringir' : 'restrict'}
