@@ -39,6 +39,15 @@ throw false
 chat.antiLink = isEnable
 break
 
+case 'antilink2': case 'antienlace2':
+if (m.isGroup) {
+if (!(isAdmin || isOwner)) {
+global.dfail('admin', m, conn)
+throw false
+}}
+chat.antiLink2 = isEnable 
+break
+
 case 'antitiktok': case 'antitk': case 'antitik':
 if (m.isGroup) {
 if (!(isAdmin || isOwner)) {
@@ -154,6 +163,27 @@ ${lenguajeGB.smsConfi1bot()}
 
 🌺 ${usedPrefix}on ${lenguajeGB.lenguaje() == 'es' ? 'bienvenida' : 'welcome'}
 🌸 ${usedPrefix}off ${lenguajeGB.lenguaje() == 'es' ? 'bienvenida' : 'welcome'}
+
+🌺 ${usedPrefix}on ${lenguajeGB.lenguaje() == 'es' ? 'antienlace' : 'antilink'}
+🌸 ${usedPrefix}off ${lenguajeGB.lenguaje() == 'es' ? 'antienlace' : 'antilink'}
+
+🌺 ${usedPrefix}on ${lenguajeGB.lenguaje() == 'es' ? 'antienlace' : 'antilink'}
+🌸 ${usedPrefix}off ${lenguajeGB.lenguaje() == 'es' ? 'antienlace' : 'antilink'}
+
+🌺 ${usedPrefix}on ${lenguajeGB.lenguaje() == 'es' ? 'antienlace' : 'antilink'}
+🌸 ${usedPrefix}off ${lenguajeGB.lenguaje() == 'es' ? 'antienlace' : 'antilink'}
+
+🌺 ${usedPrefix}on ${lenguajeGB.lenguaje() == 'es' ? 'antienlace' : 'antilink'}
+🌸 ${usedPrefix}off ${lenguajeGB.lenguaje() == 'es' ? 'antienlace' : 'antilink'}
+
+🌺 ${usedPrefix}on ${lenguajeGB.lenguaje() == 'es' ? 'antienlace' : 'antilink'}
+🌸 ${usedPrefix}off ${lenguajeGB.lenguaje() == 'es' ? 'antienlace' : 'antilink'}
+
+🌺 ${usedPrefix}on ${lenguajeGB.lenguaje() == 'es' ? 'antienlace' : 'antilink'}
+🌸 ${usedPrefix}off ${lenguajeGB.lenguaje() == 'es' ? 'antienlace' : 'antilink'}
+
+🌺 ${usedPrefix}on ${lenguajeGB.lenguaje() == 'es' ? 'antienlace' : 'antilink'}
+🌸 ${usedPrefix}off ${lenguajeGB.lenguaje() == 'es' ? 'antienlace' : 'antilink'}
 
 🌺 ${usedPrefix}on ${lenguajeGB.lenguaje() == 'es' ? 'antienlace' : 'antilink'}
 🌸 ${usedPrefix}off ${lenguajeGB.lenguaje() == 'es' ? 'antienlace' : 'antilink'}
