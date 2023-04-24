@@ -7,8 +7,8 @@ let handler = async (m, { conn, args, usedPrefix, command, text }) => {
 let stiker = false
 let q = m.quoted ? m.quoted : m
 let mime = (q.msg || q).mimetype || q.mediaType || ''
-if (!/webp|image|video/g.test(mime) && !text) return m.reply(`RESPONDER A UN VÍDEO, IMAGEN, O ESCRIBA ${usedPrefix + command} JUNTO A UN ENLACE QUE TERMINE EN .jpg .jpeg .gif .png`  )
-if (/video/g.test(mime)) if ((q.msg || q).seconds > 15) return m.reply('*EL VÍDEO NO DEBE DE DURAR MÁS DE 10 SEGUNDOS*')
+if (!/webp|image|video/g.test(mime) && !text) return m.reply(`*RESPONDER A UN VÍDEO, IMAGEN, O ESCRIBA ${usedPrefix + command} JUNTO A UN ENLACE QUE TERMINE EN .jpg .jpeg .gif .png*`  )
+if (/video/g.test(mime)) if ((q.msg || q).seconds > 10) return m.reply('*EL VÍDEO NO DEBE DE DURAR MÁS DE 10 SEGUNDOS*')
 try {
 if (/webp|image|video/g.test(mime)) {
 let img = await q.download?.()
@@ -33,7 +33,7 @@ else return m.reply(`*EL ENLACE NO ES VALIDO, DEBE DE TERMINAR EN .jpg .jpeg .gi
 console.error(e)
 if (!stiker) stiker = e
 } finally {
-if (stiker) conn.sendFile(m.chat, stiker, 'sticker.webp', '', m)
+if (stiker) conn.sendFile(m.chat, stiker, 'sticker.webp', '', null, true, { contextInfo: { 'forwardingScore': 200, 'isForwarded': false, externalAdReply:{ showAdAttribution: false, title: wm, body: `h`, mediaType: 2, sourceUrl: nn, thumbnail: imagen1}}}, { quoted: m })
 else { 
 await m.reply(lenguajeGB['smsMalError3']() + '\n*' + lenguajeGB.smsMensError1() + '*\n*' + usedPrefix + `${lenguajeGB.lenguaje() == 'es' ? 'reporte' : 'report'}` + '* ' + `${lenguajeGB.smsMensError2()} ` + usedPrefix + command)
 console.log(`❗❗ ${lenguajeGB['smsMensError2']()} ${usedPrefix + command} ❗❗`)
