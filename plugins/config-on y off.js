@@ -150,7 +150,7 @@ break
 		
 default:
 if (!/[01]/.test(command)) throw `
-${lenguajeGB.smsConfi1()}
+${lenguajeGB.smsConfi1bot()}
 
 🌺 ${usedPrefix}on ${lenguajeGB.lenguaje() == 'es' ? 'bienvenida' : 'welcome'}
 🌸 ${usedPrefix}off ${lenguajeGB.lenguaje() == 'es' ? 'bienvenida' : 'welcome'}
