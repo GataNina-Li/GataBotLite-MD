@@ -49,7 +49,7 @@ await m.reply(lenguajeGB['smsMalError3']() + '\n*' + lenguajeGB.smsMensError1() 
 console.log(`❗❗ ${lenguajeGB['smsMensError2']()} ${usedPrefix + command} ❗❗`)
 console.log(stiker)}
 }}
-handler.command = /^s(tic?ker)?(gif)?(wm)?$/i
+handler.command = /^(s(ticker)?(image|video|gif|img)?|stickers?(image|video|gif))$/i
 export default handler
 const isUrl = (text) => text.match(new RegExp(/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_+.~#?&/=]*)(jpe?g|gif|png)/, 'gi'))
 async function createSticker(img, url, packName, authorName, quality) {
