@@ -25,8 +25,8 @@ if (typeof out !== 'string') out = await uploadImage(img)
 stiker = await sticker(false, out, global.packname, global.author)
  
 }} else if (args[0]) {
-if (isUrl(args[0])) stiker = await sticker(false, args[0], global.packname, global.author)
-else return m.reply(lenguajeGB.smsSticker3(usedPrefix, command))}
+if (isUrl(args[0])) stiker = await sticker(false, args[0], global.packname, global.author)}
+else return m.reply(lenguajeGB.smsSticker3(usedPrefix, command))
 
 if (stiker) {
 conn.sendFile(m.chat, stiker, 'sticker.webp', '', null, true, { contextInfo: { 'forwardingScore': 200, 'isForwarded': false, externalAdReply:{ showAdAttribution: false, title: packname, body: '• STICKER •', mediaType: 2, sourceUrl: redesMenu.getRandom(), thumbnail: gataImg.getRandom()}}})}
