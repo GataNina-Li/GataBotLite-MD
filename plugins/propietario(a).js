@@ -290,7 +290,7 @@ time = `${minutes} minutos y ${seconds} segundos`
 } else {
 time = `${time} segundos`
 }
-await m.reply(lenguajeGB.smsBCMensaje(totalPri, time))        
+await m.reply(lenguajeGB.smsBCMensaje3(totalPri, time))        
 break
         
 case isCommand15:
