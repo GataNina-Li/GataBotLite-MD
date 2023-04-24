@@ -15,8 +15,8 @@ if (!img) throw `RESPONDER A UN VÍDEO, IMAGEN, O ESCRIBA ${usedPrefix + command
 let out
 try {
 stiker = await sticker(img, false, global.packname, global.author)
-//} catch (e) {
-//console.error(e)
+} catch (e) {
+console.error(e)
 } finally {
 if (!stiker) {
 if (/webp/g.test(mime)) out = await webp2png(img)
@@ -28,7 +28,7 @@ stiker = await sticker(false, out, global.packname, global.author)
 } else if (args[0]) {
 if (isUrl(args[0])) stiker = await sticker(false, args[0], global.packname, global.author)
 else throw `*EL ENLACE NO ES VALIDO, DEBE DE TERMINAR EN .jpg .jpeg .gif .png EJEMPLO:\n${usedPrefix + command} ${img}*`
-}
+//}
 } catch (e) {
 console.error(e)
 if (!stiker) stiker = e
