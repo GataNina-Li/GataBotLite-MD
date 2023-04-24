@@ -150,40 +150,41 @@ break
 		
 default:
 if (!/[01]/.test(command)) throw `
-⚙️ *CONFIGURACIÓN* ⚙️
-🟢 ${usedPrefix}on ${lenguajeGB.lenguaje() == 'es' ? 'bienvenida' : 'welcome'}
-🔴 ${usedPrefix}off ${lenguajeGB.lenguaje() == 'es' ? 'bienvenida' : 'welcome'}
+${lenguajeGB.smsConfi1()}
 
-🟢 ${usedPrefix}on ${lenguajeGB.lenguaje() == 'es' ? 'antienlace' : 'antilink'}
-🔴 ${usedPrefix}off ${lenguajeGB.lenguaje() == 'es' ? 'antienlace' : 'antilink'}
+🌺 ${usedPrefix}on ${lenguajeGB.lenguaje() == 'es' ? 'bienvenida' : 'welcome'}
+🌸 ${usedPrefix}off ${lenguajeGB.lenguaje() == 'es' ? 'bienvenida' : 'welcome'}
 
-🟢 ${usedPrefix}on ${lenguajeGB.lenguaje() == 'es' ? 'antiinternacional' : 'antilfake'}
-🔴 ${usedPrefix}off ${lenguajeGB.lenguaje() == 'es' ? 'antiinternacional' : 'antifake'}
+🌺 ${usedPrefix}on ${lenguajeGB.lenguaje() == 'es' ? 'antienlace' : 'antilink'}
+🌸 ${usedPrefix}off ${lenguajeGB.lenguaje() == 'es' ? 'antienlace' : 'antilink'}
 
-🟢 ${usedPrefix}on ${lenguajeGB.lenguaje() == 'es' ? 'restringir' : 'restrict'}
-🔴 ${usedPrefix}off ${lenguajeGB.lenguaje() == 'es' ? 'restringir' : 'restrict'}
+🌺 ${usedPrefix}on ${lenguajeGB.lenguaje() == 'es' ? 'antiinternacional' : 'antilfake'}
+🌸 ${usedPrefix}off ${lenguajeGB.lenguaje() == 'es' ? 'antiinternacional' : 'antifake'}
 
-🟢 ${usedPrefix}on ${lenguajeGB.lenguaje() == 'es' ? 'publico' : 'public'}
-🔴 ${usedPrefix}off ${lenguajeGB.lenguaje() == 'es' ? 'publico' : 'public'}
+🌺 ${usedPrefix}on ${lenguajeGB.lenguaje() == 'es' ? 'restringir' : 'restrict'}
+🌸 ${usedPrefix}off ${lenguajeGB.lenguaje() == 'es' ? 'restringir' : 'restrict'}
 
-🟢 ${usedPrefix}on ${lenguajeGB.lenguaje() == 'es' ? 'modoserbot' : 'modejadibot'}
-🔴 ${usedPrefix}off ${lenguajeGB.lenguaje() == 'es' ? 'modoserbot' : 'modejadibot'}
+🌺 ${usedPrefix}on ${lenguajeGB.lenguaje() == 'es' ? 'publico' : 'public'}
+🌸 ${usedPrefix}off ${lenguajeGB.lenguaje() == 'es' ? 'publico' : 'public'}
 
-🟢 ${usedPrefix}on ${lenguajeGB.lenguaje() == 'es' ? 'antillamar' : 'anticall'}
-🔴 ${usedPrefix}off ${lenguajeGB.lenguaje() == 'es' ? 'antillamar' : 'anticall'}
+🌺 ${usedPrefix}on ${lenguajeGB.lenguaje() == 'es' ? 'modoserbot' : 'modejadibot'}
+🌸 ${usedPrefix}off ${lenguajeGB.lenguaje() == 'es' ? 'modoserbot' : 'modejadibot'}
 
-🟢 ${usedPrefix}on ${lenguajeGB.lenguaje() == 'es' ? 'autovisto' : 'autoread'}
-🔴 ${usedPrefix}off ${lenguajeGB.lenguaje() == 'es' ? 'autovisto' : 'autoread'}
+🌺 ${usedPrefix}on ${lenguajeGB.lenguaje() == 'es' ? 'antillamar' : 'anticall'}
+🌸 ${usedPrefix}off ${lenguajeGB.lenguaje() == 'es' ? 'antillamar' : 'anticall'}
 
-🟢 ${usedPrefix}on ${lenguajeGB.lenguaje() == 'es' ? 'modoadmin' : 'modeadmin'}
-🔴 ${usedPrefix}off ${lenguajeGB.lenguaje() == 'es' ? 'modoadmin' : 'modeadmin'}
+🌺 ${usedPrefix}on ${lenguajeGB.lenguaje() == 'es' ? 'autovisto' : 'autoread'}
+🌸 ${usedPrefix}off ${lenguajeGB.lenguaje() == 'es' ? 'autovisto' : 'autoread'}
+
+🌺 ${usedPrefix}on ${lenguajeGB.lenguaje() == 'es' ? 'modoadmin' : 'modeadmin'}
+🌸 ${usedPrefix}off ${lenguajeGB.lenguaje() == 'es' ? 'modoadmin' : 'modeadmin'}
 `.trim()
 throw false
 }
 m.reply(`
-*⭔ COMANDO:* _${type}_
-*⭔ ESTADO:* _${isEnable ? 'ACTIVADO' : 'DESACTIVADO'}_
-*⭔ PARA:* _${isAll ? packname : isUser ? '' : 'ESTE CHAT'}_`)
+*⭔ ${lenguajeGB.smsConfi2()}:* _${type}_
+*⭔ ${lenguajeGB.smsConfi3()}:* _${isEnable ? lenguajeGB.smsConfi5() : lenguajeGB.smsConfi6()}_
+*⭔ ${lenguajeGB.smsConfi4()}:* _${isAll ? packname : isUser ? '' : lenguajeGB.smsConfi7()}_`)
 }
 handler.command = /^((en|dis)able|(tru|fals)e|(turn)?o(n|ff)|[01])$/i
 export default handler
