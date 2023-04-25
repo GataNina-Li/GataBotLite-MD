@@ -39,6 +39,16 @@ throw false
 chat.antiLink = isEnable
 break
 
+case 'antitrabas':
+case 'antitraba':
+if (m.isGroup) {
+if (!(isAdmin || isOwner)) {
+global.dfail('admin', m, conn)
+throw false
+}}
+chat.antiTraba = isEnable
+break
+
 case 'antilink2': case 'antienlace2':
 if (m.isGroup) {
 if (!(isAdmin || isOwner)) {
@@ -187,6 +197,9 @@ ${lenguajeGB.smsConfi1bot()}
 
 🌺 ${usedPrefix}on antitwitter
 🌸 ${usedPrefix}off antitwitter
+
+🌺 ${usedPrefix}on antitraba
+🌸 ${usedPrefix}off antitraba
 
 🌺 ${usedPrefix}on ${lenguajeGB.lenguaje() == 'es' ? 'antinternacional' : 'antifake'}
 🌸 ${usedPrefix}off ${lenguajeGB.lenguaje() == 'es' ? 'antinternacional' : 'antifake'}
