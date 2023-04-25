@@ -39,16 +39,6 @@ throw false
 chat.antiLink = isEnable
 break
 
-case 'antitrabas':
-case 'antitraba':
-if (m.isGroup) {
-if (!(isAdmin || isOwner)) {
-global.dfail('admin', m, conn)
-throw false
-}}
-chat.antiTraba = isEnable
-break
-
 case 'antilink2': case 'antienlace2':
 if (m.isGroup) {
 if (!(isAdmin || isOwner)) {
@@ -171,57 +161,22 @@ default:
 if (!/[01]/.test(command)) throw `
 ${lenguajeGB.smsConfi1bot()}
 
-🌺 ${usedPrefix}on ${lenguajeGB.lenguaje() == 'es' ? 'bienvenida' : 'welcome'}
-🌸 ${usedPrefix}off ${lenguajeGB.lenguaje() == 'es' ? 'bienvenida' : 'welcome'}
-
-🌺 ${usedPrefix}on ${lenguajeGB.lenguaje() == 'es' ? 'antienlace' : 'antilink'}
-🌸 ${usedPrefix}off ${lenguajeGB.lenguaje() == 'es' ? 'antienlace' : 'antilink'}
-
-🌺 ${usedPrefix}on ${lenguajeGB.lenguaje() == 'es' ? 'antienlace2' : 'antilink2'}
-🌸 ${usedPrefix}off ${lenguajeGB.lenguaje() == 'es' ? 'antienlace2' : 'antilink2'}
-
-🌺 ${usedPrefix}on antitiktok
-🌸 ${usedPrefix}off antitiktok
-
-🌺 ${usedPrefix}on antiyoutube
-🌸 ${usedPrefix}off antiyoutube
-
-🌺 ${usedPrefix}on antitelegram
-🌸 ${usedPrefix}off antitelegram
-
-🌺 ${usedPrefix}on antifacebook
-🌸 ${usedPrefix}off antifacebook
-
-🌺 ${usedPrefix}on antinstagram
-🌸 ${usedPrefix}off antinstagram
-
-🌺 ${usedPrefix}on antitwitter
-🌸 ${usedPrefix}off antitwitter
-
-🌺 ${usedPrefix}on antitraba
-🌸 ${usedPrefix}off antitraba
-
-🌺 ${usedPrefix}on ${lenguajeGB.lenguaje() == 'es' ? 'antinternacional' : 'antifake'}
-🌸 ${usedPrefix}off ${lenguajeGB.lenguaje() == 'es' ? 'antinternacional' : 'antifake'}
-
-🌺 ${usedPrefix}on ${lenguajeGB.lenguaje() == 'es' ? 'restringir' : 'restrict'}
-🌸 ${usedPrefix}off ${lenguajeGB.lenguaje() == 'es' ? 'restringir' : 'restrict'}
-
-🌺 ${usedPrefix}on ${lenguajeGB.lenguaje() == 'es' ? 'publico' : 'public'}
-🌸 ${usedPrefix}off ${lenguajeGB.lenguaje() == 'es' ? 'publico' : 'public'}
-
-🌺 ${usedPrefix}on ${lenguajeGB.lenguaje() == 'es' ? 'modoserbot' : 'modejadibot'}
-🌸 ${usedPrefix}off ${lenguajeGB.lenguaje() == 'es' ? 'modoserbot' : 'modejadibot'}
-
-🌺 ${usedPrefix}on ${lenguajeGB.lenguaje() == 'es' ? 'antillamar' : 'anticall'}
-🌸 ${usedPrefix}off ${lenguajeGB.lenguaje() == 'es' ? 'antillamar' : 'anticall'}
-
-🌺 ${usedPrefix}on ${lenguajeGB.lenguaje() == 'es' ? 'autovisto' : 'autoread'}
-🌸 ${usedPrefix}off ${lenguajeGB.lenguaje() == 'es' ? 'autovisto' : 'autoread'}
-
-🌺 ${usedPrefix}on ${lenguajeGB.lenguaje() == 'es' ? 'modoadmin' : 'modeadmin'}
-🌸 ${usedPrefix}off ${lenguajeGB.lenguaje() == 'es' ? 'modoadmin' : 'modeadmin'}
-`.trim()
+🌺 `\`\`\${usedPrefix}on / ${usedPrefix}off\`\`\` ${lenguajeGB.lenguaje() == 'es' ? 'bienvenida' : 'welcome'}\n
+🌸 `\`\`\${usedPrefix}on / ${usedPrefix}off\`\`\` ${lenguajeGB.lenguaje() == 'es' ? 'antienlace' : 'antilink'}\n
+🌺 `\`\`\${usedPrefix}on / ${usedPrefix}off\`\`\` ${lenguajeGB.lenguaje() == 'es' ? 'antienlace2' : 'antilink2'}\n
+🌸 `\`\`\${usedPrefix}on / ${usedPrefix}off\`\`\` antitiktok\n
+🌺 `\`\`\${usedPrefix}on / ${usedPrefix}off\`\`\` antiyoutube\n
+🌸 `\`\`\${usedPrefix}on / ${usedPrefix}off\`\`\` antitelegram\n
+🌺 `\`\`\${usedPrefix}on / ${usedPrefix}off\`\`\` antifacebook\n
+🌸 `\`\`\${usedPrefix}on / ${usedPrefix}off\`\`\` antinstagram\n
+🌺 `\`\`\${usedPrefix}on / ${usedPrefix}off\`\`\` antitwitter\n
+🌸 `\`\`\${usedPrefix}on / ${usedPrefix}off\`\`\` ${lenguajeGB.lenguaje() == 'es' ? 'antinternacional' : 'antifake'}\n
+🌺 `\`\`\${usedPrefix}on / ${usedPrefix}off\`\`\` ${lenguajeGB.lenguaje() == 'es' ? 'restringir' : 'restrict'}\n
+🌸 `\`\`\${usedPrefix}on / ${usedPrefix}off\`\`\` ${lenguajeGB.lenguaje() == 'es' ? 'publico' : 'public'}\n
+🌺 `\`\`\${usedPrefix}on / ${usedPrefix}off\`\`\` ${lenguajeGB.lenguaje() == 'es' ? 'modoserbot' : 'modejadibot'}\n
+🌸 `\`\`\${usedPrefix}on / ${usedPrefix}off\`\`\` ${lenguajeGB.lenguaje() == 'es' ? 'antillamar' : 'anticall'}\n
+🌺 `\`\`\${usedPrefix}on / ${usedPrefix}off\`\`\` ${lenguajeGB.lenguaje() == 'es' ? 'autovisto' : 'autoread'}\n
+🌸 `\`\`\${usedPrefix}on / ${usedPrefix}off\`\`\` ${lenguajeGB.lenguaje() == 'es' ? 'modoadmin' : 'modeadmin'}`.trim()
 throw false
 }
 m.reply(`
