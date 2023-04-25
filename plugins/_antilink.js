@@ -16,8 +16,9 @@ if (isAdmin && chat.antiLink && m.text.includes(grupo)) return m.reply(`${lengua
 if (chat.antiLink && isGroupLink && !isAdmin) {
 if (isBotAdmin) {
 //if (m.text.includes(linkThisGroup)) return !0
-//} 
+// 
 await m.reply(`${lenguajeGB['smsEnlaceWat']()} ${await this.getName(m.sender)}`)  
+}  
 if (isBotAdmin) {
 await conn.sendMessage(m.chat, { delete: { remoteJid: m.chat, fromMe: false, id: bang, participant: delet }})
 await conn.groupParticipantsUpdate(m.chat, [m.sender], 'remove')
