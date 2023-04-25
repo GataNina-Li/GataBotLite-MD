@@ -139,7 +139,7 @@ bot.autoread2 = isEnable
 global.opts['autoread'] = isEnable  
 break
 		
-case 'anticall': case 'antillamar':
+case 'anticall': case 'antillamar': case 'antillamada':
 isAll = true
 if (!isROwner) {
 global.dfail('rowner', m, conn)
@@ -160,7 +160,7 @@ break
 default:
 if (!/[01]/.test(command)) throw `
 ${lenguajeGB.smsConfi1bot()}\n
-🌸 \`\`\`${usedPrefix}on/${usedPrefix}off\`\`\` *${lenguajeGB.lenguaje() == 'es' ? 'bienvenida' : 'welcome'}*
+🌸 \`\`\`${usedPrefix}on/off\`\`\` *${lenguajeGB.lenguaje() == 'es' ? 'bienvenida' : 'welcome'}*
 🌼 \`\`\`${usedPrefix}on/${usedPrefix}off\`\`\` *${lenguajeGB.lenguaje() == 'es' ? 'antienlace' : 'antilink'}*
 🌸 \`\`\`${usedPrefix}on/${usedPrefix}off\`\`\` *${lenguajeGB.lenguaje() == 'es' ? 'antienlace2' : 'antilink2'}*
 🌼 \`\`\`${usedPrefix}on/${usedPrefix}off\`\`\` *antitiktok*
