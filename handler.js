@@ -104,6 +104,7 @@ export async function handler(chatUpdate) {
 		if (!('antiInstagram' in chat)) chat.antiInstagram = false
 		if (!('antiTwitter' in chat)) chat.antiInstagram = false
 		if (!('antifake' in chat)) chat.antifake = false 
+		if (!('antiTraba' in chat)) chat.antiTraba = true
 	        if (!('antitoxic' in chat)) chat.antitoxic = true 
                 if (!isNumber(chat.expired)) chat.expired = 0
                     
@@ -128,6 +129,7 @@ export async function handler(chatUpdate) {
 		    antiInstagram: false,
 		    antiTwitter: false,
 		    antifake: false,
+		    antiTraba: true,
 		    antitoxic: true,
                     expired: 0,
                 }
@@ -516,38 +518,29 @@ export async function participantsUpdate({ id, participants, action }) {
             if (chat.welcome) {
                 let groupMetadata = await this.groupMetadata(id) || (conn.chats[id] || {}).metadata
                 for (let user of participants) {
-                    let pp = 'https://i.imgur.com/whjlJSf.jpg'
-                    let ppgp = 'https://i.imgur.com/whjlJSf.jpg'
+                    let pp = './src/sinfoto.jpg'
                     try {
                         pp = await this.profilePictureUrl(user, 'image')
-                        ppgp = await this.profilePictureUrl(id, 'image')
-                        } finally {
-                        text = (action === 'add' ? (chat.sWelcome || this.welcome || conn.welcome || 'Bienvenido, @user').replace('@group', await this.getName(id)).replace('@desc', groupMetadata.desc?.toString() || 'Desconocido') :
-                            (chat.sBye || this.bye || conn.bye || 'Adiós, @user')).replace('@user', '@' + user.split('@')[0])
-                         
-                            let wel = API('fgmods', '/api/welcome', {
-                                username: await this.getName(user),
-                                groupname: await this.getName(id),
-                                groupicon: ppgp,
-                                membercount: groupMetadata.participants.length,
-                                profile: pp,
-                                background: 'https://i.imgur.com/bbWbASn.jpg'
-                            }, 'apikey')
-
-                            let lea = API('fgmods', '/api/goodbye', {
-                                username: await this.getName(user),
-                                groupname: await this.getName(id),
-                                groupicon: ppgp,
-                                membercount: groupMetadata.participants.length,
-                                profile: pp,
-                                background: 'https://i.imgur.com/klTSO3d.jpg'
-                            }, 'apikey')
-                            // this.sendFile(id, pp, 'pp.jpg', text, null, false, { mentions: [user] })
-                            this.sendButton(id, text, wm, action === 'add' ? wel : lea, [
-                             [(action == 'add' ? '☘️ 𝗠 𝗘 𝗡 𝗨' : 'BYE'), (action == 'add' ? '/menu' : '.s')], 
-                             [(action == 'add' ? '☘️ 𝗠 𝗘 𝗡 𝗨' : 'ッ'), (action == 'add' ? '/menu' : ' ')] ], null, {mentions: [user]})
-                          
-                    }
+                    } catch (e) {
+                    } finally {
+                    let apii = await this.getFile(pp)
+                    const antiArab = JSON.parse(fs.readFileSync('./lib/antiArab.json'))
+                    const userPrefix = antiArab.some(prefix => user.startsWith(prefix))                        
+                    const botTt2 = groupMetadata.participants.find(u => this.decodeJid(u.id) == this.user.jid) || {} 
+                    const isBotAdminNn = botTt2?.admin === "admin" || false
+                        text = (action === 'add' ? (chat.sWelcome || this.welcome || conn.welcome || 'Welcome, @user!').replace('@subject', await this.getName(id)).replace('@desc', groupMetadata.desc?.toString() || '😻 𝗦𝘂𝗽𝗲𝗿 𝗚𝗮𝘁𝗮𝗕𝗼𝘁-𝗠𝗗 😻') :
+                              (chat.sBye || this.bye || conn.bye || 'Bye, @user!')).replace('@user', '@' + user.split('@')[0])
+			    
+if (userPrefix && chat.antiArab && botTt.restrict && isBotAdminNn && action === 'add') {
+ let responseb = await this.groupParticipantsUpdate(id, [user], 'remove')
+     if (responseb[0].status === "404") return 
+let fkontak2 = { "key": { "participants":"0@s.whatsapp.net", "remoteJid": "status@broadcast", "fromMe": false, "id": "Halo" }, "message": { "contactMessage": { "vcard": `BEGIN:VCARD\nVERSION:3.0\nN:Sy;Bot;;;\nFN:y\nitem1.TEL;waid=${user.split('@')[0]}:${user.split('@')[0]}\nitem1.X-ABLabel:Ponsel\nEND:VCARD` }}, "participant": "0@s.whatsapp.net" }      
+this.sendMessage(id, { text: `${lenguajeGB['smsAvisoAG']()}${lenguajeGB['smsInt1']()} *@${m.sender.split`@`[0]}* ${lenguajeGB['smsInt2']()}*`, mentions: [user] }, { quoted: fkontak2 });          
+return    
+}    
+			    
+this.sendFile(id, apii.data, 'pp.jpg', text, null, false, { mentions: [user] }) 
+                   }
                 }
             }
 			    
