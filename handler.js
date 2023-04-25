@@ -594,7 +594,9 @@ export async function callUpdate(callUpdate) {
     for (let nk of callUpdate) { 
     if (nk.isGroup == false) {
     if (nk.status == "offer") {
-    let callmsg = await this.reply(nk.from, `${lenguajeGB['smsCont15']()} *@${nk.from.split('@')[0]}*, ${nk.isVideo ? lenguajeGB.smsCont16() : lenguajeGB.smsCont17()} ${lenguajeGB['smsCont18']()}`, false, { mentions: [nk.from] })
+    let tagUserL = `${nk.from.split('@')[0]}`
+    let llamadaVideo = nk.isVideo
+    let callmsg = await this.reply(nk.from, lenguajeGB['smsHandlerLlamar'](tagUserL, llamadaVideo), false, { mentions: [nk.from] })
     //let data = global.owner.filter(([id, isCreator]) => id && isCreator)
     //await this.sendContact(nk.from, data.map(([id, name]) => [id, name]), false, { quoted: callmsg })
     await this.updateBlockStatus(nk.from, 'block')
@@ -649,7 +651,7 @@ if (msg) return conn.relayMessage(m.chat, prep.message, { messageId: prep.key.id
 
 let file = global.__filename(import.meta.url, true)
 watchFile(file, async () => {
-    unwatchFile(file)
-    console.log(chalk.redBright("SE ACTUALIZO EL 'handler.js' CON ÉXITO"))
-    if (global.reloadHandler) console.log(await global.reloadHandler())
+unwatchFile(file)
+console.log(chalk.bold.greenBright(lenguajeGB['smsHandler']()))
+if (global.reloadHandler) console.log(await global.reloadHandler())
 })
