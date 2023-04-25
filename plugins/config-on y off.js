@@ -160,7 +160,7 @@ break
 default:
 if (!/[01]/.test(command)) throw `
 ${lenguajeGB.smsConfi1bot()}\n
-🌸 \`\`\`${usedPrefix}on / ${usedPrefix}off *${lenguajeGB.lenguaje() == 'es' ? 'bienvenida' : 'welcome'}*
+🌸 \`\`\`${usedPrefix}on / ${usedPrefix}off\`\`\` *${lenguajeGB.lenguaje() == 'es' ? 'bienvenida' : 'welcome'}*
 🌼 \`\`\`${usedPrefix}on / ${usedPrefix}off\`\`\` *${lenguajeGB.lenguaje() == 'es' ? 'antienlace' : 'antilink'}*
 🌸 \`\`\`${usedPrefix}on / ${usedPrefix}off\`\`\` *${lenguajeGB.lenguaje() == 'es' ? 'antienlace2' : 'antilink2'}*
 🌼 \`\`\`${usedPrefix}on / ${usedPrefix}off\`\`\` *antitiktok*
