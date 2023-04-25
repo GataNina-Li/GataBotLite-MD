@@ -531,7 +531,25 @@ export async function participantsUpdate({ id, participants, action }) {
                     const isBotAdminNn = botTt2?.admin === "admin" || false
                         text = (action === 'add' ? (chat.sWelcome || this.welcome || conn.welcome || 'Welcome, @user!').replace('@subject', await this.getName(id)).replace('@desc', groupMetadata.desc?.toString() || '😻 𝗦𝘂𝗽𝗲𝗿 𝗚𝗮𝘁𝗮𝗕𝗼𝘁-𝗠𝗗 😻') :
                               (chat.sBye || this.bye || conn.bye || 'Bye, @user!')).replace('@user', '@' + user.split('@')[0])
-			    
+                              
+			    let wel = API('fgmods', '/api/welcome', {
+                                username: await this.getName(user),
+                                groupname: await this.getName(id),
+                                groupicon: ppgp,
+                                membercount: groupMetadata.participants.length,
+                                profile: pp,
+                                background: 'https://i.imgur.com/bbWbASn.jpg'
+                            }, 'apikey')
+
+                            let lea = API('fgmods', '/api/goodbye', {
+                                username: await this.getName(user),
+                                groupname: await this.getName(id),
+                                groupicon: ppgp,
+                                membercount: groupMetadata.participants.length,
+                                profile: pp,
+                                background: 'https://i.imgur.com/klTSO3d.jpg'
+                            }, 'apikey')
+                            
 if (userPrefix && chat.antifake && botTt.restrict && isBotAdminNn && action === 'add') {
  let responseb = await this.groupParticipantsUpdate(id, [user], 'remove')
      if (responseb[0].status === "404") return 
@@ -540,8 +558,7 @@ this.sendMessage(id, { text: `${lenguajeGB['smsAvisoAG']()}${lenguajeGB['smsInt1
 return    
 }    
 			    
-this.sendFile(id, apii.data, 'pp.jpg', text, null, false, { mentions: [user] }) 
-                   }
+//this.sendFile(id, apii.data, 'pp.jpg', text, null, false, { mentions: [user] }) 
                 }
             }
 			    
