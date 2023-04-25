@@ -159,8 +159,7 @@ break
 		
 default:
 if (!/[01]/.test(command)) throw `
-${lenguajeGB.smsConfi1bot()}
-
+${lenguajeGB.smsConfi1bot()}\n\n
 🌺 `\`\`\${usedPrefix}on / ${usedPrefix}off\`\`\` ${lenguajeGB.lenguaje() == 'es' ? 'bienvenida' : 'welcome'}\n
 🌸 `\`\`\${usedPrefix}on / ${usedPrefix}off\`\`\` ${lenguajeGB.lenguaje() == 'es' ? 'antienlace' : 'antilink'}\n
 🌺 `\`\`\${usedPrefix}on / ${usedPrefix}off\`\`\` ${lenguajeGB.lenguaje() == 'es' ? 'antienlace2' : 'antilink2'}\n
@@ -179,8 +178,7 @@ ${lenguajeGB.smsConfi1bot()}
 🌸 `\`\`\${usedPrefix}on / ${usedPrefix}off\`\`\` ${lenguajeGB.lenguaje() == 'es' ? 'modoadmin' : 'modeadmin'}`.trim()
 throw false
 }
-m.reply(`
-*⭔ ${lenguajeGB.smsConfi2bot()}:* _${type}_
+m.reply(`*⭔ ${lenguajeGB.smsConfi2bot()}:* _${type}_
 *⭔ ${lenguajeGB.smsConfi3bot()}:* _${isEnable ? lenguajeGB.smsConfi5bot() : lenguajeGB.smsConfi6bot()}_
 *⭔ ${lenguajeGB.smsConfi4bot()}:* _${isAll ? packname : isUser ? '' : lenguajeGB.smsConfi7bot()}_`)
 }
