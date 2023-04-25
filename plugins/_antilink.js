@@ -12,14 +12,14 @@ const grupo = `https://chat.whatsapp.com`
 if (isAdmin && chat.antiLink && m.text.includes(grupo)) return m.reply(`${lenguajeGB['smsAdwa']()}`)
 if (chat.antiLink && isGroupLink && !isAdmin) {
 if (isBotAdmin) {
-const linkThisGroup = `https://chat.whatsapp.com/${await this.groupInviteCode(m.chat)}`
+const linkThisGroup = grupo + `/${await this.groupInviteCode(m.chat)}`
 if (m.text.includes(linkThisGroup)) return !0
 }  
 if (!isBotAdmin) return await m.reply(`${lenguajeGB['smsAllAdmin']()}`) 
 if (isBotAdmin && bot.restrict) {
 await m.reply(`${lenguajeGB['smsEnlaceWat']()} ${await this.getName(m.sender)}`)
-await this.sendMessage(m.chat, { delete: { remoteJid: m.chat, fromMe: false, id: bang, participant: delet }})
-let responseb = await this.groupParticipantsUpdate(m.chat, [m.sender], 'remove')
+await conn.sendMessage(m.chat, { delete: { remoteJid: m.chat, fromMe: false, id: bang, participant: delet }})
+let responseb = await conn.groupParticipantsUpdate(m.chat, [m.sender], 'remove')
 if (responseb[0].status === "404") return   
 } else if (!bot.restrict)  return m.reply(`${lenguajeGB['smsSoloOwner']()}`)
 }
