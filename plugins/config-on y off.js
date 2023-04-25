@@ -175,7 +175,7 @@ ${lenguajeGB.smsConfi1bot()}\n
 🌸 \`\`\`${usedPrefix}on / ${usedPrefix}off\`\`\` ${lenguajeGB.lenguaje() == 'es' ? 'modoserbot' : 'modejadibot'}
 🌼 \`\`\`${usedPrefix}on / ${usedPrefix}off\`\`\` ${lenguajeGB.lenguaje() == 'es' ? 'antillamar' : 'anticall'}
 🌸 \`\`\`${usedPrefix}on / ${usedPrefix}off\`\`\` ${lenguajeGB.lenguaje() == 'es' ? 'autovisto' : 'autoread'}
-🌼 \`\`\`${usedPrefix}on / ${usedPrefix}off\`\`\` ${lenguajeGB.lenguaje() == 'es' ? 'modoadmin' : 'modeadmin'}`.join('\n\n').trim()
+🌼 \`\`\`${usedPrefix}on / ${usedPrefix}off\`\`\` ${lenguajeGB.lenguaje() == 'es' ? 'modoadmin' : 'modeadmin'}`.split('\n').map(line => line.trim()).join('\n\n')
 throw false
 }
 m.reply(`*⭔ ${lenguajeGB.smsConfi2bot()}:* _${type}_
