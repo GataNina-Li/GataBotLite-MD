@@ -10,12 +10,14 @@ let bot = global.db.data.settings[this.user.jid] || {}
 const isGroupLink = linkRegex.exec(m.text)
 const grupo = `https://chat.whatsapp.com`
 if (isAdmin && chat.antiLink && m.text.includes(grupo)) return m.reply(`${lenguajeGB['smsAdwa']()}`)
+if (!isBotAdmin) return await m.reply(`${lenguajeGB['smsAllAdmin']()}`) 
 if (chat.antiLink && isGroupLink && !isAdmin) {
 if (isBotAdmin) {
 const linkThisGroup = grupo + `/${await this.groupInviteCode(m.chat)}`
-if (m.text.includes(linkThisGroup)) return !0
-}  
-if (!isBotAdmin) return await m.reply(`${lenguajeGB['smsAllAdmin']()}`) 
+if (m.text.includes(linkThisGroup)) {
+await m.reply('Este es el enlace de invitación del grupo!')
+return true
+}}  
 if (isBotAdmin && bot.restrict) {
 await m.reply(`${lenguajeGB['smsEnlaceWat']()} ${await this.getName(m.sender)}`)
 await conn.sendMessage(m.chat, { delete: { remoteJid: m.chat, fromMe: false, id: bang, participant: delet }})
