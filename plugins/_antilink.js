@@ -17,14 +17,12 @@ if (m.text.includes(linkThisGroup)) return !0
 } 
 if (isBotAdmin) {
 await m.reply(`${lenguajeGB['smsEnlaceWat']()} ${await this.getName(m.sender)}`)
+await conn.sendMessage(m.chat, { delete: { remoteJid: m.chat, fromMe: false, id: bang, participant: delet }})
+await conn.groupParticipantsUpdate(m.chat, [m.sender], 'remove')  
 } else {
 await m.reply(`${lenguajeGB['smsAllAdmin']()}`) 
-return
 }
-if (isBotAdmin) {
-await conn.sendMessage(m.chat, { delete: { remoteJid: m.chat, fromMe: false, id: bang, participant: delet }})
-await conn.groupParticipantsUpdate(m.chat, [m.sender], 'remove')
-} else if (!bot.restrict) return m.reply(`${lenguajeGB['smsSoloOwner']()}`)
+if (!bot.restrict) return m.reply(`${lenguajeGB['smsSoloOwner']()}`)
 }
 return !0
 }
