@@ -14,15 +14,14 @@ if (chat.antiLink && isGroupLink && !isAdmin) {
 if (isBotAdmin) {
 const linkThisGroup = `https://chat.whatsapp.com/${await this.groupInviteCode(m.chat)}`
 if (m.text.includes(linkThisGroup)) return !0
-} 
-if (isBotAdmin) {
+}  
+if (!isBotAdmin) return await m.reply(`${lenguajeGB['smsAllAdmin']()}`) 
+if (isBotAdmin && bot.restrict) {
 await m.reply(`${lenguajeGB['smsEnlaceWat']()} ${await this.getName(m.sender)}`)
 await conn.sendMessage(m.chat, { delete: { remoteJid: m.chat, fromMe: false, id: bang, participant: delet }})
-await conn.groupParticipantsUpdate(m.chat, [m.sender], 'remove')  
-} else {
-await m.reply(`${lenguajeGB['smsAllAdmin']()}`) 
-}
-if (!bot.restrict) return m.reply(`${lenguajeGB['smsSoloOwner']()}`)
+let responseb = await conn.groupParticipantsUpdate(m.chat, [m.sender], 'remove')
+if (responseb[0].status === "404") return   
+} else if (!bot.restrict)  return m.reply(`${lenguajeGB['smsSoloOwner']()}`)
 }
 return !0
 }
