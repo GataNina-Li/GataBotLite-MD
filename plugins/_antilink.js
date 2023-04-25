@@ -18,7 +18,7 @@ if (m.text.includes(linkThisGroup)) return !0
 if (!isBotAdmin) return await m.reply(`${lenguajeGB['smsAllAdmin']()}`) 
 if (isBotAdmin && bot.restrict) {
 await m.reply(`${lenguajeGB['smsEnlaceWat']()} ${await this.getName(m.sender)}`)
-await conn.sendMessage(m.chat, { delete: { remoteJid: m.chat, fromMe: false, id: bang, participant: delet }})
+await conn.sendMessage(m.chat, { delete: { remoteJid: m.chat, fromMe: false, id: bang, participant: delete }})
 let responseb = await conn.groupParticipantsUpdate(m.chat, [m.sender], 'remove')
 if (responseb[0].status === "404") return   
 } else if (!bot.restrict)  return m.reply(`${lenguajeGB['smsSoloOwner']()}`)
