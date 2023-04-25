@@ -160,22 +160,22 @@ break
 default:
 if (!/[01]/.test(command)) throw `
 ${lenguajeGB.smsConfi1bot()}\n\n
-🌺 `\`\`\${usedPrefix}on / ${usedPrefix}off\`\`\` ${lenguajeGB.lenguaje() == 'es' ? 'bienvenida' : 'welcome'}\n
-🌸 `\`\`\${usedPrefix}on / ${usedPrefix}off\`\`\` ${lenguajeGB.lenguaje() == 'es' ? 'antienlace' : 'antilink'}\n
-🌺 `\`\`\${usedPrefix}on / ${usedPrefix}off\`\`\` ${lenguajeGB.lenguaje() == 'es' ? 'antienlace2' : 'antilink2'}\n
-🌸 `\`\`\${usedPrefix}on / ${usedPrefix}off\`\`\` antitiktok\n
-🌺 `\`\`\${usedPrefix}on / ${usedPrefix}off\`\`\` antiyoutube\n
-🌸 `\`\`\${usedPrefix}on / ${usedPrefix}off\`\`\` antitelegram\n
-🌺 `\`\`\${usedPrefix}on / ${usedPrefix}off\`\`\` antifacebook\n
-🌸 `\`\`\${usedPrefix}on / ${usedPrefix}off\`\`\` antinstagram\n
-🌺 `\`\`\${usedPrefix}on / ${usedPrefix}off\`\`\` antitwitter\n
-🌸 `\`\`\${usedPrefix}on / ${usedPrefix}off\`\`\` ${lenguajeGB.lenguaje() == 'es' ? 'antinternacional' : 'antifake'}\n
-🌺 `\`\`\${usedPrefix}on / ${usedPrefix}off\`\`\` ${lenguajeGB.lenguaje() == 'es' ? 'restringir' : 'restrict'}\n
-🌸 `\`\`\${usedPrefix}on / ${usedPrefix}off\`\`\` ${lenguajeGB.lenguaje() == 'es' ? 'publico' : 'public'}\n
-🌺 `\`\`\${usedPrefix}on / ${usedPrefix}off\`\`\` ${lenguajeGB.lenguaje() == 'es' ? 'modoserbot' : 'modejadibot'}\n
-🌸 `\`\`\${usedPrefix}on / ${usedPrefix}off\`\`\` ${lenguajeGB.lenguaje() == 'es' ? 'antillamar' : 'anticall'}\n
-🌺 `\`\`\${usedPrefix}on / ${usedPrefix}off\`\`\` ${lenguajeGB.lenguaje() == 'es' ? 'autovisto' : 'autoread'}\n
-🌸 `\`\`\${usedPrefix}on / ${usedPrefix}off\`\`\` ${lenguajeGB.lenguaje() == 'es' ? 'modoadmin' : 'modeadmin'}`.trim()
+\🌺 `\`\`\${usedPrefix}on / ${usedPrefix}off\`\`\` ${lenguajeGB.lenguaje() == 'es' ? 'bienvenida' : 'welcome'}\n
+\🌸 `\`\`\${usedPrefix}on / ${usedPrefix}off\`\`\` ${lenguajeGB.lenguaje() == 'es' ? 'antienlace' : 'antilink'}\n
+\🌺 `\`\`\${usedPrefix}on / ${usedPrefix}off\`\`\` ${lenguajeGB.lenguaje() == 'es' ? 'antienlace2' : 'antilink2'}\n
+\🌸 `\`\`\${usedPrefix}on / ${usedPrefix}off\`\`\` antitiktok\n
+\🌺 `\`\`\${usedPrefix}on / ${usedPrefix}off\`\`\` antiyoutube\n
+\🌸 `\`\`\${usedPrefix}on / ${usedPrefix}off\`\`\` antitelegram\n
+\🌺 `\`\`\${usedPrefix}on / ${usedPrefix}off\`\`\` antifacebook\n
+\🌸 `\`\`\${usedPrefix}on / ${usedPrefix}off\`\`\` antinstagram\n
+\🌺 `\`\`\${usedPrefix}on / ${usedPrefix}off\`\`\` antitwitter\n
+\🌸 `\`\`\${usedPrefix}on / ${usedPrefix}off\`\`\` ${lenguajeGB.lenguaje() == 'es' ? 'antinternacional' : 'antifake'}\n
+\🌺 `\`\`\${usedPrefix}on / ${usedPrefix}off\`\`\` ${lenguajeGB.lenguaje() == 'es' ? 'restringir' : 'restrict'}\n
+\🌸 `\`\`\${usedPrefix}on / ${usedPrefix}off\`\`\` ${lenguajeGB.lenguaje() == 'es' ? 'publico' : 'public'}\n
+\🌺 `\`\`\${usedPrefix}on / ${usedPrefix}off\`\`\` ${lenguajeGB.lenguaje() == 'es' ? 'modoserbot' : 'modejadibot'}\n
+\🌸 `\`\`\${usedPrefix}on / ${usedPrefix}off\`\`\` ${lenguajeGB.lenguaje() == 'es' ? 'antillamar' : 'anticall'}\n
+\🌺 `\`\`\${usedPrefix}on / ${usedPrefix}off\`\`\` ${lenguajeGB.lenguaje() == 'es' ? 'autovisto' : 'autoread'}\n
+\🌸 `\`\`\${usedPrefix}on / ${usedPrefix}off\`\`\` ${lenguajeGB.lenguaje() == 'es' ? 'modoadmin' : 'modeadmin'}`.split('\n').map(line => line.trim()).join('\n')
 throw false
 }
 m.reply(`*⭔ ${lenguajeGB.smsConfi2bot()}:* _${type}_
