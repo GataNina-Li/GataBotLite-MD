@@ -522,9 +522,10 @@ export async function participantsUpdate({ id, participants, action }) {
                     let ppgp = 'https://i.imgur.com/whjlJSf.jpg'
                     try {
                         pp = await this.profilePictureUrl(user, 'image')
+                        ppgp = await this.profilePictureUrl(id, 'image')
                     } catch (e) {
                     } finally {
-                    let apii = await this.getFile(pp)
+                   // let apii = await this.getFile(pp)
                     const antiArab = JSON.parse(fs.readFileSync('./lib/antiArab.json'))
                     const userPrefix = antiArab.some(prefix => user.startsWith(prefix))                        
                     const botTt2 = groupMetadata.participants.find(u => this.decodeJid(u.id) == this.user.jid) || {} 
