@@ -1,6 +1,6 @@
 import fetch from 'node-fetch'
 let handler = async (m, { conn,usedPrefix, command, text, args, isOwner, isAdmin, participants }) => {
-var number, user, fkontak, pp
+var number, user, fkontak, pp, bot, bant, ownerNumber, aa, users, usr
 const isCommand1 = /^(promote|daradmin|darpoder)$/i.test(command)
 const isCommand2 = /^(demote|quitarpoder|quitaradmin)$/i.test(command)
 const isCommand3 = /^(setwelcome|bienvenida|edit(?:ar)?wel(?:come)?)$/i.test(command)
@@ -12,6 +12,7 @@ const isCommand8 = /^(nuevolink|nuevoenlace|revoke|resetlink)$/i.test(command)
 const isCommand9 = /^(kick|echar|hechar|sacar|ban)$/i.test(command)
 const isCommand10 = /^(group|grupo)$/i.test(command)
 const isCommand11 = /^(tagall|invocar|invocacion|todos|invocación)$/i.test(command)
+const isCommand12 = /^(prohibir|prohibit|privar|deprive)$/i.test(command)
 
 fkontak = { "key": { "participants":"0@s.whatsapp.net", "remoteJid": "status@broadcast", "fromMe": false, "id": "Halo" }, "message": { "contactMessage": { "vcard": `BEGIN:VCARD\nVERSION:3.0\nN:Sy;Bot;;;\nFN:y\nitem1.TEL;waid=${m.sender.split('@')[0]}:${m.sender.split('@')[0]}\nitem1.X-ABLabel:Ponsel\nEND:VCARD` }}, "participant": "0@s.whatsapp.net" }
 switch (true) {     
@@ -156,7 +157,7 @@ if (isClose === 'announcement'){
 await conn.sendFile(m.chat, pp, 'error.jpg', lenguajeGB.smsGrupoClose(), m)}      
 break
     
-case isCommand11:
+case isCommand12:
 if (!(isAdmin || isOwner)) {
 global.dfail('admin', m, conn)
 throw false
@@ -168,9 +169,53 @@ for (let mem of participants) {
 teks += `⎔ @${mem.id.split('@')[0]}\n`}
 await conn.sendMessage(m.chat, { text: teks, mentions: participants.map(a => a.id) }, )    
 break
+    
+case isCommand12:
+try{
+function no(number){
+return number.replace(/\s/g,'').replace(/([@+-])/g,'')}
+text = no(text)
+if(isNaN(text)) {
+number = text.split`@`[1]
+} else if(!isNaN(text)) {
+number = text
+}
+user = conn.user.jid.split`@`[0] + '@s.whatsapp.net'
+bot = conn.user.jid.split`@`[0] 
+bant = lenguajeGB.smsPropban1(usedPrefix, command, bot)
+if (!text && !m.quoted) return conn.reply(m.chat, bant, null, { mentions: [user] })               
+try {
+if(text) {
+user = number + '@s.whatsapp.net'
+} else if(m.quoted.sender) {
+user = m.quoted.sender
+} else if(m.mentionedJid) {
+user = number + '@s.whatsapp.net'
+}} catch (e) {
+} finally {
+number = user.split('@')[0]
+if(user === conn.user.jid) return conn.reply(m.chat, lenguajeGB.smsPropban2(bot), null, { mentions: [user] })   
+for (let i = 0; i < global.owner.length; i++) {
+ownerNumber = global.owner[i][0];
+if (user.replace(/@s\.whatsapp\.net$/, '') === ownerNumber) {
+aa = ownerNumber + '@s.whatsapp.net'
+await conn.reply(m.chat, lenguajeGB.smsPropban3(ownerNumber), null, { mentions: [aa] })
+return
+}}
+users = global.db.data.users
+if (users[user].banned === true) conn.reply(m.chat, lenguajeGB.smsPropban4(number), null, { mentions: [user] }) 
+users[user].banned = true
+usr = m.sender.split('@')[0]     
+await conn.reply(m.chat, lenguajeGB.smsPropban5(), null, { mentions: [user] })   
+await conn.reply(user, lenguajeGB.smsPropban6(number, usr), null, { mentions: [user, m.sender] })
+}} catch (e) {
+await conn.reply(m.chat, lenguajeGB.smsPropban7(usedPrefix, command, number), null, m)
+console.log(e) 
+}
+break
 }} 
   
-handler.command = /^(promote|daradmin|darpoder|demote|quitarpoder|quitaradmin|setwelcome|bienvenida|edit(?:ar)?wel(?:come)?|setbye|despedida|edit(?:ar)?(bye)?|setdesk|setdesc|newdesc|descripción|descripcion|cambiardesc|setname|newnombre|nuevonombre|cambiarnombre|cambiarpp|setpp(group|grup|gc)?|nuevolink|nuevoenlace|revoke|resetlink|kick|echar|hechar|sacar|ban|group|grupo|tagall|invocar|invocacion|todos|invocación)$/i
+handler.command = /^(promote|daradmin|darpoder|demote|quitarpoder|quitaradmin|setwelcome|bienvenida|edit(?:ar)?wel(?:come)?|setbye|despedida|edit(?:ar)?(bye)?|setdesk|setdesc|newdesc|descripción|descripcion|cambiardesc|setname|newnombre|nuevonombre|cambiarnombre|cambiarpp|setpp(group|grup|gc)?|nuevolink|nuevoenlace|revoke|resetlink|kick|echar|hechar|sacar|ban|group|grupo|tagall|invocar|invocacion|todos|invocación|prohibir|prohibit|privar|deprive)$/i
 handler.group = true
 handler.botAdmin = true 
 handler.register = true
