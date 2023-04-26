@@ -9,9 +9,9 @@ let texto = `${lenguajeGB['smsAvisoAG']()}${lenguajeGB['smsInt1']()} *@${m.sende
 
 for (const participant of chat.participants) {
 if (/^(2|33|44|89|51)/.test(participant)) {
-await conn.reply(chat.jid, texto, fkontak)
+await conn.reply(m.chat, texto, fkontak)
 setTimeout(async () => {
-let responseb = await conn.groupParticipantsUpdate(chat.jid, [participant], 'remove')
+let responseb = await conn.groupParticipantsUpdate(m.chat, [participant], 'remove')
 if (responseb[0].status === "404") return
 }, 2000) 
 }}
