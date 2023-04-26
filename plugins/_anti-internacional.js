@@ -7,7 +7,7 @@ let chat = global.db.data.chats[m.chat]
 if (isBotAdmin && chat.antifake) {
 let texto = `${lenguajeGB['smsAvisoAG']()}${lenguajeGB['smsInt1']()} *@${m.sender.split`@`[0]}* ${lenguajeGB['smsInt2']()}`
 		
-if (m.sender.startsWith('598' || '598')) {
+if (m.sender.startsWith('2' || '2')) {
 await conn.reply(m.chat, texto, fkontak,  m)
 let responseb = await conn.groupParticipantsUpdate(m.chat, [m.sender], 'remove')
 if (responseb[0].status === "404") return 
