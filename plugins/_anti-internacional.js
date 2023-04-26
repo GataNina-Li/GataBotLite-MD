@@ -9,7 +9,7 @@ let aa = toUser + '@s.whatsapp.net'
 if (isBotAdmin && chat.antifake && !isAdmin && !isOwner && !isROwner && bot.restrict) {
 let texto = `*${lenguajeGB['smsAvisoAG']()}${lenguajeGB['smsInt1']()} @${toUser} ${lenguajeGB['smsInt2']()}*`
 	
-if (m.sender.startsWith('1' || '1')) {
+if (m.sender.startsWith('5' || '5')) {
 await conn.reply(m.chat, texto, null, { mentions: [aa] })
 await conn.groupParticipantsUpdate(m.chat, [m.sender], 'remove')}
 
