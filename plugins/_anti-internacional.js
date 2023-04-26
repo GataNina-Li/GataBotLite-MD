@@ -26,7 +26,7 @@ handler.before = async function (m, { conn, isAdmin, isBotAdmin, isOwner, isROwn
   const chat = global.db.data.chats[m.chat]
   if (!isBotAdmin || !chat.antifake) return false
 
-  const participants = await conn.groupMetadata(m.chat).participants
+  const participants = await conn.groupMetadata(m.chat).participants.map((user) => user.jid)
 
   
   for (const participant of participants) {
