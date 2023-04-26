@@ -41,7 +41,7 @@ handler.before = async function (m, { conn, isAdmin, isBotAdmin, isOwner, isROwn
     "participant": "0@s.whatsapp.net"
   }
 
-  conn.('group-participants-update', async (event) => {
+  conn('group-participants-update', async (event) => {
     const { jid, action, participants } = event
 
     if (action === 'add' && participants) {
