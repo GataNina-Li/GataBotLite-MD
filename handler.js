@@ -106,6 +106,7 @@ export async function handler(chatUpdate) {
 		if (!('antifake' in chat)) chat.antifake = false 
 		if (!('antiTraba' in chat)) chat.antiTraba = true
 	        if (!('antitoxic' in chat)) chat.antitoxic = true 
+		if (!('reaction' in chat)) chat.reaction = true
                 if (!isNumber(chat.expired)) chat.expired = 0
                     
             } else
@@ -131,6 +132,7 @@ export async function handler(chatUpdate) {
 		    antifake: false,
 		    antiTraba: true,
 		    antitoxic: true,
+		    reaction: true,
                     expired: 0,
                 }
             let settings = global.db.data.settings[this.user.jid]
@@ -285,27 +287,17 @@ export async function handler(chatUpdate) {
 		
 		//if (text) {
 		//m.reply('*ERROR DE COMANDO*')}
-
-                if (!isAccept)
+		    		    
+	      if (!isAccept)
                     continue
                 m.plugin = name
                 if (m.chat in global.db.data.chats || m.sender in global.db.data.users) {
                     let chat = global.db.data.chats[m.chat]
                     let user = global.db.data.users[m.sender]
-                    if (!['propietario(a)-unbanchat.js'].includes(name) && chat && chat.isBanned && !isROwner) return // Except this
-                    if (!['propietario(a)-unbanuser.js'].includes(name) && user && user.banned && !isROwner) {
-                    if (!opts['msgifbanned']) m.reply(`❰ ⚠️ ❱ *ESTAS BANEADO/A* ❰ ⚠️ ❱ ${user.bannedReason ? `\n*Motivo:* *${user.bannedReason}*` : ''}
-
-*👉 Puedes contactar a la propietaria del Bot si crees que se trata de un error (TENER PRUEBAS) para tratar el motivo de tú desbaneo*
-
-👉 ${global.asistencia}
-👉 wa.me/5492266466080
-👉 wa.me/584125778026
-👉 wa.me/51993042301
-👉 ${global.ig}
-`.trim())
+                    if (name != 'propietario(a)-unbanchat.js' && chat?.isBanned)
+                        return // Except this
+                    if (name != 'propietario(a)-unbanuser.js' && user?.banned)
                         return
-                }
                 }
 
                let hl = _prefix 
@@ -489,7 +481,7 @@ export async function handler(chatUpdate) {
 	if (settingsREAD.autoread2) await this.readMessages([m.key])  
 	if (settingsREAD.autoread2 == 'true') await this.readMessages([m.key])    
 	    
-        if (!db.data.chats[m.chat].reaction && m.isGroup) throw 0
+        if (!db.data.chats[m.chat].reaction && m.isGroup) return
         if (!m.fromMem && m.text.match(/(ata|des|able|izo|ido|.-.|._.|:)|:(|:v|v:|o.o|;v|v;|v':|:'v)/gi)) {
         let emot = pickRandom(["😺", "😸", "😹", "😻", "😼", "😽", "🙀", "😿", "😾", "🤩", "😏", "😳", "🥵", "🤯", "😱", "😨", "🤫", "🥴", "🤧", "🤑", "🤠", "🤖", "🤝", "💪", "👑", "😚", "🐱", "🐈", "🐆", "🐅", "⚡️", "🌈", "☃️", "⛄️", "🌝", "🌛", "🌜", "🍓", "🍎", "🎈", "🪄", "❤️", "🧡", "💛", "💚", "💙", "💜", "🖤", "🤍", "💘", "💝", "💟", "🌝", "😎", "🔥", "🖕", "🐦"])
         this.sendMessage(m.chat, { react: { text: emot, key: m.key }})}
@@ -523,21 +515,20 @@ export async function participantsUpdate({ id, participants, action }) {
                         pp = await this.profilePictureUrl(user, 'image')
                     } catch (e) {
                     } finally {
-                    let apii = await this.getFile(pp)
-                    const antiArab = JSON.parse(fs.readFileSync('./lib/antiArab.json'))
-                    const userPrefix = antiArab.some(prefix => user.startsWith(prefix))                        
+                    let apii = await this.getFile(pp)                                      
                     const botTt2 = groupMetadata.participants.find(u => this.decodeJid(u.id) == this.user.jid) || {} 
                     const isBotAdminNn = botTt2?.admin === "admin" || false
                         text = (action === 'add' ? (chat.sWelcome || this.welcome || conn.welcome || 'Welcome, @user!').replace('@subject', await this.getName(id)).replace('@desc', groupMetadata.desc?.toString() || '😻 𝗦𝘂𝗽𝗲𝗿 𝙂𝙖𝙩𝙖𝘽𝙤𝙩𝙇𝙞𝙩𝙚-𝙈𝘿 😻') :
                               (chat.sBye || this.bye || conn.bye || 'Bye, @user!')).replace('@user', '@' + user.split('@')[0])
 			    
-if (userPrefix && chat.antifake && botTt.restrict && isBotAdminNn && action === 'add') {
- let responseb = await this.groupParticipantsUpdate(id, [user], 'remove')
-     if (responseb[0].status === "404") return 
-let fkontak2 = { "key": { "participants":"0@s.whatsapp.net", "remoteJid": "status@broadcast", "fromMe": false, "id": "Halo" }, "message": { "contactMessage": { "vcard": `BEGIN:VCARD\nVERSION:3.0\nN:Sy;Bot;;;\nFN:y\nitem1.TEL;waid=${user.split('@')[0]}:${user.split('@')[0]}\nitem1.X-ABLabel:Ponsel\nEND:VCARD` }}, "participant": "0@s.whatsapp.net" }      
-this.sendMessage(id, { text: `${lenguajeGB['smsAvisoAG']()}${lenguajeGB['smsInt1']()} *@${user.split('@')[0]}* ${lenguajeGB['smsInt2']()}`, mentions: [user] }, { quoted: fkontak2 });          
+if (chat.antifake && botTt.restrict && isBotAdminNn && action === 'add') {
+const numerosPermitidos = ["1", "2", "4", "6", "7", "8", "9"] //PUEDES EDITAR LOS USUARIOS QUE SE ELIMINARÁN SI EMPIEZA POR CUALQUIER DE ESOS NÚMEROS	
+if (numerosPermitidos.some(num => user.startsWith(num))) {	
+this.sendMessage(id, { text:`*${lenguajeGB['smsAvisoAG']()}${lenguajeGB['smsInt1']()} @${user.split("@")[0]} ${lenguajeGB['smsInt2']()}*`, mentions: [user] }, { quoted: null });          
+let responseb = await this.groupParticipantsUpdate(id, [user], 'remove')
+if (responseb[0].status === "404") return      
 return    
-}    
+}}    
 			    
 this.sendFile(id, apii.data, 'pp.jpg', text, null, false, { mentions: [user] }) 
                    }
