@@ -530,12 +530,8 @@ let responseb = await this.groupParticipantsUpdate(id, [user], 'remove')
 if (responseb[0].status === "404") return      
 return    
 }}    
-
-this.sendTemplateButtonLoc(id, apii.data, text.trim(), packname, "Menu", ".menu", false, { mentions: [user] })
-//this.sendFile(id, apii.data, 'pp.jpg', text, null, false, { mentions: [user] }) 
-                   }
-                }
-            }
+this.sendFile(id, apii.data, 'pp.jpg', text, null, false, { mentions: [user] }) 
+}}}
 	     
 break
 case 'promote':
