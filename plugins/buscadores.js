@@ -105,6 +105,7 @@ break
 }}
 
 handler.command = /^(googlef?|openai|chatgpt|ia|ai|bot|simi|simsimi|alexa|bixby|cortana|siri|okgoogle|githubstalk|usuariogithub|usergithub)$/i
+handler.register = true
 export default handler
 
 async function githubstalk(user) {
