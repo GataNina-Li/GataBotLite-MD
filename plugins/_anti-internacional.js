@@ -20,9 +20,6 @@ await conn.groupParticipantsUpdate(m.chat, [participant], 'remove')
 }
 export default handler*/
 
-import { WAConnection, GroupSettingChange, MessageType } from '@adiwajshing/baileys'
-import fs from 'fs/promises'
-
 let handler = m => m
 handler.before = async function (m, { conn, isAdmin, isBotAdmin, isOwner, isROwner }) {
   const chat = global.db.data.chats[m.chat]
@@ -44,7 +41,7 @@ handler.before = async function (m, { conn, isAdmin, isBotAdmin, isOwner, isROwn
     "participant": "0@s.whatsapp.net"
   }
 
-  conn.on('group-participants-update', async (event) => {
+  conn.('group-participants-update', async (event) => {
     const { jid, action, participants } = event
 
     if (action === 'add' && participants) {
