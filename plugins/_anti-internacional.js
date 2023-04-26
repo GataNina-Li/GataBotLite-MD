@@ -1,4 +1,4 @@
-let handler = m => m
+/*let handler = m => m
 handler.before = async function (m, {conn, isAdmin, isBotAdmin, isOwner, isROwner} ) {
 if (!m.isGroup) return !1
 let chat = global.db.data.chats[m.chat]
@@ -34,4 +34,4 @@ await conn.reply(m.chat, texto, null, { mentions: [aa] })
 await conn.groupParticipantsUpdate(m.chat, [m.sender], 'remove')}
 
 }}
-export default handler
+export default handler*/
