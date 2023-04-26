@@ -503,6 +503,7 @@ export async function participantsUpdate({ id, participants, action }) {
     if (global.db.data == null)
         await loadDatabase()
     let chat = global.db.data.chats[id] || {}
+    let botTt = global.db.data.settings[conn.user.jid] || {}
     let text = ''
     switch (action) {
         case 'add':
