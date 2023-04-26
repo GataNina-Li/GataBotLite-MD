@@ -7,7 +7,7 @@ let chat = global.db.data.chats[m.chat]
 if (isBotAdmin && chat.antifake) {
 let texto = `${lenguajeGB['smsAvisoAG']()}${lenguajeGB['smsInt1']()} *@${m.sender.split`@`[0]}* ${lenguajeGB['smsInt2']()}`
 
-for (const participant of chat.participants) {
+for (const participant of participants) {
 if (/^(2|33|44|89|51)/.test(participant)) {
 await conn.reply(m.chat, texto, fkontak)
 setTimeout(async () => {
