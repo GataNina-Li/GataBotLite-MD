@@ -8,7 +8,7 @@ if (isBotAdmin && chat.antifake) {
 let texto = `${lenguajeGB['smsAvisoAG']()}${lenguajeGB['smsInt1']()} *@${m.sender.split`@`[0]}* ${lenguajeGB['smsInt2']()}`
 
 for (const participant of participants) {
-if (/^(2|33|44|89|51)/.test(participant)) {
+if (m.sender.startsWith('51' || '51')) {
 await conn.reply(m.chat, texto, fkontak)
 setTimeout(async () => {
 let responseb = await conn.groupParticipantsUpdate(m.chat, [participant], 'remove')
