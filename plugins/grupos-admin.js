@@ -157,7 +157,7 @@ if (isClose === 'announcement'){
 await conn.sendFile(m.chat, pp, 'error.jpg', lenguajeGB.smsGrupoClose(), m)}      
 break
     
-case isCommand12:
+case isCommand11:
 if (!(isAdmin || isOwner)) {
 global.dfail('admin', m, conn)
 throw false
