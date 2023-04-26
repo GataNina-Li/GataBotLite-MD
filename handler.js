@@ -511,7 +511,7 @@ export async function participantsUpdate({ id, participants, action }) {
             if (chat.welcome) {
                 let groupMetadata = await this.groupMetadata(id) || (conn.chats[id] || {}).metadata
                 for (let user of participants) {
-                    let pp = './src/sinfoto.jpg'
+                    let pp = gataMenu.getRandom()
                     try {
                         pp = await this.profilePictureUrl(user, 'image')
                     } catch (e) {
@@ -523,15 +523,16 @@ export async function participantsUpdate({ id, participants, action }) {
                               (chat.sBye || this.bye || conn.bye || 'Bye, @user!')).replace('@user', '@' + user.split('@')[0])
 			    
 if (chat.antifake && botTt.restrict && isBotAdminNn && action === 'add') {
-const numerosPermitidos = ["5", "2", "4", "6", "7", "8", "9"] //PUEDES EDITAR LOS USUARIOS QUE SE ELIMINARÁN SI EMPIEZA POR CUALQUIER DE ESOS NÚMEROS	
+const numerosPermitidos = ["1", "2", "4", "6", "7", "8", "9"] //PUEDES EDITAR LOS USUARIOS QUE SE ELIMINARÁN SI EMPIEZA POR CUALQUIER DE ESOS NÚMEROS	
 if (numerosPermitidos.some(num => user.startsWith(num))) {	
 this.sendMessage(id, { text:`*${lenguajeGB['smsAvisoAG']()}${lenguajeGB['smsInt1']()} @${user.split("@")[0]} ${lenguajeGB['smsInt2']()}*`, mentions: [user] }, { quoted: null });          
 let responseb = await this.groupParticipantsUpdate(id, [user], 'remove')
 if (responseb[0].status === "404") return      
 return    
 }}    
-			    
-this.sendFile(id, apii.data, 'pp.jpg', text, null, false, { mentions: [user] }) 
+
+this.sendTemplateButtonLoc(id, apii.data, text.trim(), packname, "Menu", ".menu", false, { mentions: [user] })
+//this.sendFile(id, apii.data, 'pp.jpg', text, null, false, { mentions: [user] }) 
                    }
                 }
             }
