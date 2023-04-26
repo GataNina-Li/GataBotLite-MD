@@ -66,7 +66,6 @@ await conn.reply(m.chat, `${lenguajeGB['smsAvisoAG']()}${lenguajeGB['smsEnlaceTw
 await conn.sendMessage(m.chat, { delete: { remoteJid: m.chat, fromMe: false, id: bang, participant: delet }})
 await conn.groupParticipantsUpdate(m.chat, [m.sender], 'remove')
 } 
-}
 return !0
 }
 
