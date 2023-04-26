@@ -539,16 +539,14 @@ let msg = this.serializeM(this.loadMessage(id))
 if (!msg)
 return
 let chat = global.db.data.chats[msg.chat] || {}
+let userDelete = `${participant.split`@`[0]}`
 if (chat.delete) 
 return
 await this.reply(msg.chat, `
-━━━━⬣  𝘼𝙉𝙏𝙄 𝘿𝙀𝙇𝙀𝙏𝙀  ⬣━━━━
-*■ Nombre:* @${participant.split`@`[0]}
-*■ Enviando el mensaje..*
-*■ Para desactivar esta función escriba el comando:*
-*—◉ #disable antidelete*
-*—◉ #enable delete*
-━━━━⬣  𝘼𝙉𝙏𝙄 𝘿𝙀𝙇𝙀𝙏𝙀  ⬣━━━━
+♻️ *ANTI ELIMINAR* ♻️
+*@${userDelete} ELIMINÓ UN MENSAJE!!*
+
+\`\`\`ENVIANDO MENSAJE ELIMINADO...\`\`\`
 `.trim(), msg, {
 mentions: [participant]
 })
