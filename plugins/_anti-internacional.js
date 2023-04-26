@@ -14,7 +14,7 @@ await conn.groupParticipantsUpdate(m.chat, [m.sender], 'remove')}
 }}
 export default handler*/
 
-let handler = m => m
+/*let handler = m => m
 handler.before = async function (m, { conn, isAdmin, isBotAdmin, isOwner, isROwner, groupMetadata }) {
   
 let chat = global.db.data.chats[m.chat]
@@ -35,5 +35,5 @@ await new Promise(resolve => setTimeout(resolve, 2000))
   
 }
 }}
-export default handler
+export default handler*/
 
