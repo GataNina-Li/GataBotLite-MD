@@ -25,7 +25,7 @@ const isAntiLinkIg = isLinkIg.exec(m.text)
 const isAntiLinkTw = isLinkTw.exec(m.text)
 
 if (bot.restrict) {    
-if (!isBotAdmin) return m.reply(`${lenguajeGB['smsAvisoFG']()} ${lenguajeGB['smsAllAdmin']()}`)      
+//if (!isBotAdmin) return m.reply(`${lenguajeGB['smsAvisoFG']()} ${lenguajeGB['smsAllAdmin']()}`)      
 if (chat.antiTiktok && isAntiLinkTik) {   
 await conn.reply(m.chat, `${lenguajeGB['smsAvisoAG']()}${lenguajeGB['smsEnlaceTik']()} *@${toUser}*`, null, { mentions: [aa] })
 await conn.sendMessage(m.chat, { delete: { remoteJid: m.chat, fromMe: false, id: bang, participant: delet }})
