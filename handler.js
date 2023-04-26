@@ -539,7 +539,7 @@ let msg = this.serializeM(this.loadMessage(id))
 if (!msg)
 return
 let chat = global.db.data.chats[msg.chat] || {}
-if (!chat.delete) 
+if (chat.delete) 
 return
 await this.reply(msg.chat, `
 ━━━━⬣  𝘼𝙉𝙏𝙄 𝘿𝙀𝙇𝙀𝙏𝙀  ⬣━━━━
