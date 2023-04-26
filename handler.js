@@ -375,7 +375,7 @@ if (m.limit)
 m.reply(+m.limit + lenguajeGB.smsCont8())
 }
 if (m.money)
-m.reply(+m.money + ' *GATACOINS USADO(S) 🐱')
+m.reply(+m.money + ' *GATACOINS USADO(S)* 🐱')
 break
 }}} catch (e) {
 console.error(e)
@@ -542,14 +542,7 @@ let chat = global.db.data.chats[msg.chat] || {}
 let userDelete = `${participant.split`@`[0]}`
 if (chat.delete) 
 return
-await this.reply(msg.chat, `
-♻️ *ANTI ELIMINAR* ♻️
-*@${userDelete} ELIMINÓ UN MENSAJE!!*
-
-\`\`\`ENVIANDO MENSAJE ELIMINADO...\`\`\`
-`.trim(), msg, {
-mentions: [participant]
-})
+await this.reply(msg.chat, lenguajeGB['smsAntiEliminar'](userDelete).trim(), msg, {mentions: [participant] })
 this.copyNForward(msg.chat, msg).catch(e => console.log(e, msg))
 } catch (e) {
 console.error(e)
