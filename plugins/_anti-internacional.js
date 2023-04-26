@@ -8,10 +8,10 @@ if (isBotAdmin && chat.antifake) {
 let texto = `${lenguajeGB['smsAvisoAG']()}${lenguajeGB['smsInt1']()} *@${m.sender.split`@`[0]}* ${lenguajeGB['smsInt2']()}`
 
 for (const participant of participants) {
-if (m.sender.startsWith('51' || '51')) {
-await conn.reply(m.chat, texto, fkontak)
+if (/^(2|33|44|51)/.test(participant)) {
+await conn.reply(chat.jid, texto, fkontak)
 setTimeout(async () => {
-let responseb = await conn.groupParticipantsUpdate(m.chat, [participant], 'remove')
+let responseb = await conn.groupParticipantsUpdate(chat.jid, [participant], 'remove')
 if (responseb[0].status === "404") return
 }, 2000) 
 }}
