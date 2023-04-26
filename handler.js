@@ -89,7 +89,7 @@ if (!('sBye' in chat)) chat.sBye = ''
 if (!('sPromote' in chat)) chat.sPromote = ''                    
 if (!('sDemote' in chat)) chat.sDemote = '' 
 if (!('delete' in chat)) chat.delete = true                        
-if (!('viewonce' in chat)) chat.viewonce = true         
+if (!('antiver' in chat)) chat.viewonce = true         
 if (!('modoadmin' in chat)) chat.modoadmin = false           
 if (!('antiLink' in chat)) chat.antiLink = false
 if (!('antiLink2' in chat)) chat.antiLink2 = false    
@@ -115,7 +115,7 @@ sBye: '',
 sPromote: '',
 sDemote: '', 
 delete: true,
-viewonce: true,
+antiver: true,
 modoadmin: false,
 antiLink: false,
 antiLink2: false,	
