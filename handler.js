@@ -282,6 +282,8 @@ if (name != 'propietario(a)-unbanchat.js' && chat?.isBanned)
 return 
 if (name != 'propietario(a)-unbanuser.js' && user?.banned)
 return
+if (name != 'grupo-unbanuser.js' && user?.banned)
+return
 }
 
 let hl = _prefix 
