@@ -22,7 +22,7 @@ export default handler*/
 
 let handler = m => m
 
-handler.before = async function (m, { conn, isAdmin, isBotAdmin, isOwner, isROwner, participants, groupMetadata }) {
+handler.before = async function (m, { conn, isAdmin, isBotAdmin, isOwner, isROwner, groupMetadata }) {
   const chat = global.db.data.chats[m.chat]
 
   if (!m.isGroup || !isBotAdmin || !chat.antifake) return false
