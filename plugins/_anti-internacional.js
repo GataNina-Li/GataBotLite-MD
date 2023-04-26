@@ -22,10 +22,9 @@ export default handler*/
 
 
 let handler = m => m
-
 handler.before = async function (m, { conn, isAdmin, isBotAdmin, isOwner, isROwner }) {
   const chat = global.db.data.chats[m.chat]
-  if (!m.isGroup || !isBotAdmin || !chat.antifake) return false
+  if (!m.isGroup || !isBotAdmin || !chat.antifake) return !1
 
   const texto = `${lenguajeGB['smsAvisoAG']()}${lenguajeGB['smsInt1']()} *@${m.sender.split`@`[0]}* ${lenguajeGB['smsInt2']()}`
   const fkontak = {
