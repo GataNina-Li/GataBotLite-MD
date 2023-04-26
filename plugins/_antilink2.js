@@ -1,4 +1,4 @@
-let linkRegex = /https:/i
+/*let linkRegex = /https:/i
 export async function before(m, { isAdmin, isBotAdmin, text }) { 
 if (m.isBaileys && m.fromMe)
 return !0
@@ -21,7 +21,7 @@ await conn.groupParticipantsUpdate(m.chat, [m.sender], 'remove')
 } else if (!bot.restrict) return m.reply(`${lenguajeGB['smsAvisoAG']()}${lenguajeGB['smsSoloOwner']()}`)
 }
 return !0
-}
+}*/
 
 
 
