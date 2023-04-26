@@ -60,7 +60,7 @@ if (chat.antiTwitter && isAntiLinkTw) {
 await conn.reply(m.chat, `${lenguajeGB['smsAvisoAG']()}${lenguajeGB['smsEnlaceTw']()} *@${toUser}*`, null, { mentions: [aa] })
 await conn.sendMessage(m.chat, { delete: { remoteJid: m.chat, fromMe: false, id: bang, participant: delet }})
 await conn.groupParticipantsUpdate(m.chat, [m.sender], 'remove')
-//}         
+}         
 }else{
 return m.reply(`${lenguajeGB['smsAvisoAG']()}${lenguajeGB['smsSoloOwner']()}`)    
 }
