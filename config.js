@@ -207,6 +207,6 @@ global.multiplier = 60 // Cuanto más alto, más difícil subir de nivel
 let file = fileURLToPath(import.meta.url)
 watchFile(file, () => {
 unwatchFile(file)
-console.log(chalk.bold.greenBright(lenguajeGB['smsConfigBot']()))
+console.log(chalk.bold.greenBright(lenguajeGB['smsConfigBot']().trim()))
 import(`${file}?update=${Date.now()}`)
 })
