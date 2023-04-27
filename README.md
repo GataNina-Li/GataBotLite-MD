@@ -37,7 +37,7 @@
 </a>
   
 ----
-### 💠 [`IDIOMAS DISPONIBLES PARA GATABOT`](https://github.com/GataNina-Li/GataBot-MD/blob/master/config.js) 
+### 💠 [`IDIOMAS DISPONIBLES PARA GATABOTLITE`](https://github.com/GataNina-Li/GataBotLite-MD/blob/master/config.js) 
 #### 🌐 Español  
 #### 🌐 Inglés (English) 
 #### 🌐 Portugués (Português)
