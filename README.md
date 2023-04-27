@@ -36,7 +36,7 @@
 <a href="https://chat.whatsapp.com/I3qjtQABJPaB65i2uhGe81" target="blank"><img src="https://img.shields.io/badge/💖 🅜🅤🅛🅣🅘 🅑🅞🅣🅢 💖-25D366?style=for-the-badge&logo=whatsapp&logoColor=white" />
 </a>
 
-### ✅ GATABOT OFICIAL
+### ✅ GATABOTLITE OFICIAL
 Muy pronto 💖🙌
 
 ----
