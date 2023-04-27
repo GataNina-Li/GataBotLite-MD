@@ -8,7 +8,7 @@ import axios from 'axios'
 import moment from 'moment-timezone' 
 import { en, es, id, ar, pt } from './lib/idiomas/total-idiomas.js' 
 
-//⊱ ━━━━━.⋅ Añada los numeros a ser Propietario/a | Add the numbers to be Owner ⋅.━━━━ ⊰  
+//⊱ ━━━━━.⋅ Añada los numeros a ser Propietario/a | Add the numbers to be Owner ⋅.━━━━ ⊰   
 
 global.owner = [
 ['12362000021', '𝙂𝙖𝙩𝙖𝘽𝙤𝙩𝙇𝙞𝙩𝙚-𝙈𝘿 🌻🐈', true], 
