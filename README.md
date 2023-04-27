@@ -36,4 +36,15 @@
 <a href="https://chat.whatsapp.com/I3qjtQABJPaB65i2uhGe81" target="blank"><img src="https://img.shields.io/badge/💖 🅜🅤🅛🅣🅘 🅑🅞🅣🅢 💖-25D366?style=for-the-badge&logo=whatsapp&logoColor=white" />
 </a>
   
-> atte. 𝙂𝙖𝙩𝙖 𝘿𝙞𝙤𝙨
+----
+### 💠 [`IDIOMAS DISPONIBLES PARA GATABOT`](https://github.com/GataNina-Li/GataBot-MD/blob/master/config.js) 
+#### 🌐 Español  
+#### 🌐 Inglés (English) 
+#### 🌐 Portugués (Português)
+#### 🌐 Indonesio (Bahasa Indonesia) 
+#### 🌐 Árabe (عرب)
+- [x] Ejemplo <details><summary>Idioma</summary><img src="https://i.imgur.com/RMWFgZo.jpeg"></details>
+----
+
+### 🌟 CREADORA 
+[![GataNina-Li](https://github.com/GataNina-Li.png?size=100)](https://github.com/GataNina-Li) 
