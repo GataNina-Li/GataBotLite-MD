@@ -1,9 +1,16 @@
-/* Estilo a la imagen */
-#gatabot-img {
-  transition: transform 0.5s ease;
+.rounded-img {
+  border-radius: 50%;
+  animation: move 2s infinite;
 }
 
-/* Animación "hover" a la imagen */
-#gatabot-img:hover {
-  transform: rotate(360deg);
+@keyframes move {
+  0% {
+    transform: translate(0);
+  }
+  50% {
+    transform: translate(10px, 10px);
+  }
+  100% {
+    transform: translate(0);
+  }
 }
