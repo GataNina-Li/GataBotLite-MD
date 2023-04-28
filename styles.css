@@ -1,0 +1,9 @@
+/* Estilo a la imagen */
+#gatabot-img {
+  transition: transform 0.5s ease;
+}
+
+/* Animación "hover" a la imagen */
+#gatabot-img:hover {
+  transform: rotate(360deg);
+}
