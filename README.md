@@ -1,5 +1,9 @@
 ## 🐈 REPOSITORIO EN DESARROLLO... 
 
+<p align="center">
+<img src="https://i.imgur.com/AwlL9kc.jpeg" alt="GataBotLite-MD" width="500"/>
+</p>
+
 ### ÚNETE A LAS CUENTAS OFICIALES PARA ESTAR INFORMADO/A ✅ 
 
 [![blog](https://img.shields.io/badge/Gmail_➡️_centergatabot@gmail.com-D14836?style=for-the-badge&logo=gmail&logoColor=white)
