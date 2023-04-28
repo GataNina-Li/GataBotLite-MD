@@ -1,7 +1,16 @@
-## 🐈 REPOSITORIO EN DESARROLLO... 
+> **Warning** ESTA REPOSITORIO ESTÁ EN DESARROLO...
 
+<a href="#"><img title="GataBot-MD" src="https://img.shields.io/badge/VERSIÓN 1.0.0 -red?colorA=%238B38CD&colorB=%238B38CD&style=for-the-badge"></a>
 <p align="center">
 <img src="https://i.imgur.com/AwlL9kc.jpeg" alt="GataBotLite-MD" width="500"/>
+</p>
+
+<!-- Agrega el enlace al archivo de estilo -->
+<link rel="stylesheet" type="text/css" href="styles.css">
+
+<!-- Agrega la imagen con un ID -->
+<p align="center">
+  <img id="gatabot-img" src="https://i.imgur.com/AwlL9kc.jpeg" alt="GataBotLite-MD" width="500"/>
 </p>
 
 ### ÚNETE A LAS CUENTAS OFICIALES PARA ESTAR INFORMADO/A ✅ 
