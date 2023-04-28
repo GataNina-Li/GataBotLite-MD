@@ -1,4 +1,4 @@
-> **Warning** ESTA REPOSITORIO ESTÁ EN DESARROLO...
+> **Warning** ESTE REPOSITORIO ESTÁ EN DESARROLO...
 
 <a href="#"><img title="GataBot-MD" src="https://img.shields.io/badge/VERSIÓN 1.0.0 -red?colorA=%238B38CD&colorB=%238B38CD&style=for-the-badge"></a>
 <p align="center"> 
@@ -34,17 +34,74 @@
 </a>
 </div>
 
-### ✅ GATABOTLITE OFICIAL
-Muy pronto 💖🙌
+#### DISPONIBLE EN:
+> - [x] TERMUX, REPLIT, WINDOWS, HEROKU
 
-----
+
+### 🌸 INSTALACIÓN AUTOMÁTICA - TERMUX 🌸
+```bash
+termux-setup-storage
+```
+```bash
+apt update -y && yes | apt upgrade && pkg install -y bash wget mpv && wget -O - https://raw.githubusercontent.com/GataNina-Li/GataBotLite-MD/master/gatalite.sh | bash
+```
+### 🌼 INSTALACIÓN MANUAL - TERMUX 🌼
+```bash
+termux-setup-storage
+apt update
+apt upgrade
+pkg install -y git nodejs ffmpeg imagemagick yarn
+git clone https://github.com/GataNina-Li/GataBotLite-MD 
+cd GataBotLite-MD
+yarn install
+npm install
+npm start
+```
+### 🌹 INSTALACIÓN EN REPLIT 🌹
+<a target="_blank" href="https://replit.com/github/GataNina-Li/GataBotLite-MD"><img alt="Run on Replit" src="https://binbashbanana.github.io/deploy-buttons/buttons/remade/replit.svg"></a>
+
+### 🪷 INSTALACIÓN EN HEROKU 🪷
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/GataNina-Li/GataBotLite-MD-Heroku) 
+> 👇 Añada lo siguente al Buildpack: 
+```bash
+heroku/nodejs
+```
+```bash
+https://github.com/jonathanong/heroku-buildpack-ffmpeg-latest.git
+```
+```bash
+https://github.com/clhuang/heroku-buildpack-webp-binaries.git
+```
+## 🌻 INSTALACIÓN PARA WINDOWS/VPS/RDP 🌻
+
+* Descargar e instala Git [`Aquí`](https://git-scm.com/downloads)
+* Descargar e instala NodeJS [`Aquí`](https://nodejs.org/en/download)
+* Descargar e instala FFmpeg [`Aquí`](https://ffmpeg.org/download.html) (**No olvide agregar FFmpeg a la variable de entorno PATH**)
+* Descargar e instala ImageMagick [`Aquí`](https://imagemagick.org/script/download.php)
+* Descargar e instala Yarn [`Aquí`](https://classic.yarnpkg.com/en/docs/install#windows-stable)
+```bash
+git clone https://github.com/GataNina-Li/GataBotLite-MD && cd GataBotLite-MD && yarn install && npm install && npm update && node .
+```
+### Instalación de FFmpeg para Windows 
+* Descarga cualquiera de las versiones de FFmpeg disponibles haciendo clic en [FFmpeg](https://www.gyan.dev/ffmpeg/builds/).
+* Extraer archivos a `C:\` path.
+* Cambie el nombre de la carpeta extraída a `ffmpeg`.
+* Ejecute el símbolo del sistema como administrador.
+* Ejecute el siguiente comando:
+```cmd
+> setx /m PATH "C:\ffmpeg\bin;%PATH%"
+```
+Si tiene éxito, le dará un mensaje como: `SUCCESS: specified value was saved`.
+* Ahora que tiene FFmpeg instalado, verifique que funcionó ejecutando este comando para ver la versión:
+```cmd
+> ffmpeg -version
+```
 ### 💠 [`IDIOMAS DISPONIBLES PARA GATABOTLITE`](https://github.com/GataNina-Li/GataBotLite-MD/blob/master/config.js) 
-#### 🌐 Español  
-#### 🌐 Inglés (English) 
-#### 🌐 Portugués (Português)
-#### 🌐 Indonesio (Bahasa Indonesia) 
-#### 🌐 Árabe (عرب)
-- [x] Ejemplo <details><summary>Idioma</summary><img src="https://i.imgur.com/RMWFgZo.jpeg"></details>
+#### ✨ Español  
+#### ✨ Inglés (English) 
+#### ✨ Portugués (Português)
+#### ✨ Indonesio (Bahasa Indonesia) 
+#### ✨ Árabe (عرب)
 ----
 
 ### 🌟 CREADORA 
