@@ -5,13 +5,12 @@
 <img src="https://i.imgur.com/AwlL9kc.jpeg" alt="GataBotLite-MD" width="500"/>
 </p>
 
-<!-- Agrega el enlace al archivo de estilo -->
-<link rel="stylesheet" type="text/css" href="styles.css">
 
-<!-- Agrega la imagen con un ID -->
 <p align="center">
-  <img id="gatabot-img" src="https://i.imgur.com/AwlL9kc.jpeg" alt="GataBotLite-MD" width="500"/>
+  <img src="https://i.imgur.com/AwlL9kc.jpeg" alt="GataBotLite-MD" width="500" class="rounded-img">
 </p>
+
+
 
 ### ÚNETE A LAS CUENTAS OFICIALES PARA ESTAR INFORMADO/A ✅ 
 
