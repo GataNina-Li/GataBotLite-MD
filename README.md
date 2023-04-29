@@ -56,6 +56,31 @@ yarn install
 npm install
 npm start
 ```
+
+### 🍁 TERMUX 24/7 🍁
+> Comandos para realizar una ejecución 24/7
+- INICIAR
+> Use estos comandos dentro de la carpeta GataBotLite-MD
+```bash
+termux-wake-lock && npm i -g pm2 && pm2 start index.js && pm2 startup && pm2 save && pm2 resurrect && pm2 monit
+```
+- DETENER PM2
+> Detener todos los procesos del bot
+```bash
+pm2 stop all && pm2 unstartup
+```
+- VOLVER A VISUALIZAR EL PROCESO
+> Usar dentro de la carpeta GataBotLite-MD para ver en tiempo real
+```bash
+pm2 start index
+```
+- ELIMINAR PROCESOS PM2
+> Eliminar todos los procesos del bot. Para volver a usar PM2 debe volver a usar los comandos de INICIAR
+```bash
+pm2 delete all
+```
+> **Note** Demanda consumo de RAM y CPU, el resultado mejora mientras las especificaciones del dispositivo sean moderadas
+
 ### 🌹 INSTALACIÓN EN REPLIT 🌹
 <a target="_blank" href="https://replit.com/github/GataNina-Li/GataBotLite-MD"><img alt="Run on Replit" src="https://binbashbanana.github.io/deploy-buttons/buttons/remade/replit.svg"></a>
 
