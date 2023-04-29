@@ -62,7 +62,7 @@ npm start
 - INICIAR
 > Use estos comandos dentro de la carpeta GataBotLite-MD
 ```bash
-termux-wake-lock && npm i -g pm2 && pm2 start index.js && pm2 startup && pm2 save && pm2 resurrect && pm2 monit
+termux-wake-lock && npm i -g pm2 && pm2 start index.js && pm2 save && pm2 logs 
 ```
 - DETENER PM2
 > Detener todos los procesos del bot
@@ -72,9 +72,9 @@ pm2 stop all && pm2 unstartup
 - REANUDAR 
 > Reanudar los procesos, usar dentro de la carpeta GataBotLite-MD 
 ```bash
-pm2 start index.js
+pm2 start index.js 
 ```
-- VOLVER A VISUALIZAR EL PROCESO
+- VISUALIZAR EL PROCESO
 > Usar dentro de la carpeta GataBotLite-MD para ver en tiempo real
 ```bash
 pm2 logs 
