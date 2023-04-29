@@ -205,6 +205,7 @@ global.gataImg = [imagen1, imagen2, imagen3, imagen4, imagen5, imagen6, imagen7,
 global.htki = '*⭑•̩̩͙⊱•••• ☪*'
 global.htka = '*☪ ••••̩̩͙⊰•⭑*'
 global.htjava = '⫹⫺'
+global.wait = lenguajeGB['smsMeWait']()
 
 global.multiplier = 60 // Cuanto más alto, más difícil subir de nivel 
 
