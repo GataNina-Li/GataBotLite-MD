@@ -69,10 +69,15 @@ termux-wake-lock && npm i -g pm2 && pm2 start index.js && pm2 startup && pm2 sav
 ```bash
 pm2 stop all && pm2 unstartup
 ```
+- REANUDAR 
+> Reanudar los procesos, usar dentro de la carpeta GataBotLite-MD 
+```bash
+pm2 start index.js
+```
 - VOLVER A VISUALIZAR EL PROCESO
 > Usar dentro de la carpeta GataBotLite-MD para ver en tiempo real
 ```bash
-pm2 start index
+pm2 logs 
 ```
 - ELIMINAR PROCESOS PM2
 > Eliminar todos los procesos del bot. Para volver a usar PM2 debe volver a usar los comandos de INICIAR
