@@ -114,13 +114,12 @@ break
 case isCommand5:
 let codigo = `termux-setup-storage
 apt update
-pkg upgrade
-pkg install git -y
-pkg install nodejs -y
-pkg install ffmpeg -y
-pkg install imagemagick -y
-git clone https://github.com/GataNina-Li/GataBotLite-MD
+apt upgrade
+pkg install -y git nodejs ffmpeg imagemagick yarn
+git clone https://github.com/GataNina-Li/GataBotLite-MD 
 cd GataBotLite-MD
+yarn install
+npm install
 npm start`
 let codigo2 = `
 heroku/nodejs\n
