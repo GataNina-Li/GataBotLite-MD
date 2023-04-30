@@ -37,6 +37,7 @@
 > - [x] TERMUX, REPLIT, WINDOWS, HEROKU
 
 
+[`♻️ App Termux`](https://f-droid.org/es/packages/com.termux/)
 ### 🌸 INSTALACIÓN AUTOMÁTICA - TERMUX 🌸
 ```bash
 termux-setup-storage
@@ -57,7 +58,7 @@ npm install
 npm start
 ```
 
-### 🍁 TERMUX 24/7 🍁
+### 🍁 TERMUX 24/7 🍁 
 > Comandos para realizar una ejecución 24/7
 - INICIAR
 > Use estos comandos dentro de la carpeta GataBotLite-MD
