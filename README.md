@@ -37,6 +37,9 @@
 
 [`♻️ App Termux`](https://f-droid.org/es/packages/com.termux/)
 ### 🌸 INSTALACIÓN AUTOMÁTICA - TERMUX 🌸
+<a href="https://youtu.be/tzM0f_N8BII">
+<img src="https://img.shields.io/badge/Tutorial-FF0000?style=for-the-badge&logo=youtube&logoColor=white" alt="Tutorial"> </a>
+
 ```bash
 termux-setup-storage
 ```
@@ -46,7 +49,7 @@ apt update -y && yes | apt upgrade && pkg install -y bash wget && wget -O - http
 #### EN CASO QUE QUIERA USAR ESTE MÉTODO DEBE DE EDITAR (Previo a una Bifurcación)
 - [`Repositorio`](https://github.com/GataNina-Li/GataBotLite-MD/blob/14da583cddcf76285988dadb76cfc77f9373d8a8/gatalite.sh#L155)
 - [`Nombre del Bot`](https://github.com/GataNina-Li/GataBotLite-MD/blob/14da583cddcf76285988dadb76cfc77f9373d8a8/gatalite.sh#L159)
-- Actualizar parámetros de `user y `bot` en `https://raw.githubusercontent.com/[user]/[bot]/master/gatalite.sh`
+- Actualizar: `https://raw.githubusercontent.com/GataNina-Li/GataBotLite-MD/master/gatalite.sh`
 ### 🌼 INSTALACIÓN MANUAL - TERMUX 🌼
 ```bash
 termux-setup-storage
