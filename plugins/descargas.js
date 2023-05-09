@@ -14,6 +14,7 @@ const isCommand5 = /^(fgmp4|dlmp4|getvid|yt(v|mp4)?)$/i.test(command)
 const isCommand6 = /^(ytmp4doc|ytvdoc)$/i.test(command)
 const isCommand7 = /^(facebook|fb|facebookdl|fbdl)$/i.test(command)
 const isCommand8 = /^(mediafire(dl)?|dlmediafire)$/i.test(command)
+const isCommand9 = /^(ytmax(v|mp4)?)$/i.test(command)
 
 switch (true) {     
 case isCommand1:
@@ -221,8 +222,46 @@ mime = rese.headers['content-type']
 return { name, size, date, mime, link }
 }
 break 
+        
+case isCommand9:
+if (!args[0]) throw lenguajeGB.smsMalused2() + `*${usedPrefix + command} https://youtu.be/ejemplo*\n*${usedPrefix + command} https://www.youtube.com/ejemplo*`
+await conn.reply(m.chat, lenguajeGB.smsAvisoEG() + '*' + lenguajeGB.smsYTV1() + '*', m)
+try {
+qu = args[1] || '720';
+q = qu + 'p';
+v = args[0];
+yt = await youtubedl(v)
+.catch(async (_) => await youtubedlv2(v))
+.catch(async (_) => await youtubedlv3(v));
+dl_url = await yt.video['1440p'].download().catch(async (_) => {
+dl_url = await yt.video['1080p'].download().catch(async (_) => {
+dl_url = await yt.video['480p'].download()
+})
+})
+ttl = await yt.title
+size = await yt.video['1440p'].fileSizeH
+if (!size) {
+size = await yt.video['1080p'].fileSizeH
+if (!size) {
+size = await yt.video['480p'].fileSizeH
+}}
+await conn.sendMessage(m.chat, { video: { url: dl_url }, fileName: `${ttl}.mp4`, mimetype: 'video/mp4', caption: `*💫 ${ttl}*\n*⚖️ ${size}*`, thumbnail: await fetch(yt.thumbnail)}, { quoted: m })
+/*qu = args[1] || '720'
+q = qu + 'p' 
+v = args[0]
+yt = await youtubedl(v).catch(async _ => await youtubedlv2(v)).catch(async _ => await youtubedlv3(v))
+dl_url = await yt.video[q].download()
+ttl = await yt.title
+size = await yt.video[q].fileSizeH
+await await conn.sendMessage(m.chat, { video: { url: dl_url }, fileName: `${ttl}.mp4`, mimetype: 'video/mp4', caption: `*💫 ${ttl}*\n*⚖️ ${size}*`, thumbnail: await fetch(yt.thumbnail) }, { quoted: m })*/
+} catch (e) {
+await m.reply(lenguajeGB['smsMalError3']() + '\n*' + lenguajeGB.smsMensError1() + '*\n*' + usedPrefix + `${lenguajeGB.lenguaje() == 'es' ? 'reporte' : 'report'}` + '* ' + `${lenguajeGB.smsMensError2()} ` + usedPrefix + command)
+console.log(`❗❗ ${lenguajeGB['smsMensError2']()} ${usedPrefix + command} ❗❗`)
+console.log(e)}
+}        
+break
 }}
 
-handler.command = /^(gimage|imagen?|play2?|fgmp3|dlmp3|getaud|yt(a|mp3)?|ytmp3doc|ytadoc|fgmp4|dlmp4|getvid|yt(v|mp4)?|ytmp4doc|ytvdoc|facebook|fb|facebookdl|fbdl|mediafire(dl)?|dlmediafire)$/i
+handler.command = /^(gimage|imagen?|play2?|fgmp3|dlmp3|getaud|yt(a|mp3)?|ytmp3doc|ytadoc|fgmp4|dlmp4|getvid|yt(v|mp4)?|ytmp4doc|ytvdoc|facebook|fb|facebookdl|fbdl|mediafire(dl)?|dlmediafire|ytmax(v|mp4)?)$/i
 handler.register = true
 export default handler
