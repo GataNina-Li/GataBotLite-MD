@@ -56,7 +56,7 @@ await conn.sendFile(m.chat, thumbnail, 'error.jpg', video, m)
 //let jsonn = await ytLink.json()
 //let aud = await jsonn.result.audio
 q = '128kbps'
-v = args[0]
+v = url
 yt = await youtubedl(v).catch(async () => await youtubedlv2(v)).catch(async () => await youtubedlv3(v))
 dl_url = await yt.audio[q].download()
 title = await yt.title
