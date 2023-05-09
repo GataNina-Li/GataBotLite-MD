@@ -227,26 +227,27 @@ case isCommand9:
 if (!args[0]) throw lenguajeGB.smsMalused2() + `*${usedPrefix + command} https://youtu.be/ejemplo*\n*${usedPrefix + command} https://www.youtube.com/ejemplo*`
 await conn.reply(m.chat, lenguajeGB.smsAvisoEG() + '*' + lenguajeGB.smsYTV1() + '*', m)
 try {
-qu = args[1] || '720';
+qu = args[1] || '';
 q = qu + 'p';
 v = args[0];
 yt = await youtubedl(v)
 .catch(async (_) => await youtubedlv2(v))
-.catch(async (_) => await youtubedlv3(v));
+.catch(async (_) => await youtubedlv3(v))
 if (yt.video['480p']) {
-    dl_url = await yt.video['480p'].download().catch(async (_) => {
-      if (yt.video['720p']) {
-        dl_url = await yt.video['720p'].download().catch(async (_) => {
-          if (yt.video['1080p']) {
-            dl_url = await yt.video['1080p'].download();
-            size = await yt.video['1080p'].fileSizeH;
-          }
-        });
-        size = await yt.video['720p'].fileSizeH;
-      }
-    });
-    size = await yt.video['480p'].fileSizeH;
-  }
+dl_url = await yt.video['480p'].download().catch(async (_) => {
+if (yt.video['720p']) {
+dl_url = await yt.video['720p'].download().catch(async (_) => {
+if (yt.video['1080p']) {
+dl_url = await yt.video['1080p'].download()
+    
+size = await yt.video['1080p'].fileSizeH
+}
+});
+size = await yt.video['720p'].fileSizeH
+}
+});
+size = await yt.video['480p'].fileSizeH
+}
 ttl = await yt.title
 await conn.sendMessage(m.chat, { video: { url: dl_url }, fileName: `${ttl}.mp4`, mimetype: 'video/mp4', caption: `*💫 ${ttl}*\n*⚖️ ${size}*`, thumbnail: await fetch(yt.thumbnail) }, { quoted: m })
 //await conn.sendMessage(m.chat, { video: { url: dl_url }, fileName: `${ttl}.mp4`, mimetype: 'video/mp4', caption: 'Prueba', thumbnail: await fetch(yt.thumbnail)}, { quoted: m })
