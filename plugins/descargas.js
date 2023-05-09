@@ -233,11 +233,20 @@ v = args[0];
 yt = await youtubedl(v)
 .catch(async (_) => await youtubedlv2(v))
 .catch(async (_) => await youtubedlv3(v));
-dl_url = await yt.video['1440p'].download().catch(async (_) => {
-dl_url = await yt.video['1080p'].download().catch(async (_) => {
-dl_url = await yt.video['720p'].download()
-})
-})
+if (yt.video['480p']) {
+    dl_url = await yt.video['480p'].download().catch(async (_) => {
+      if (yt.video['720p']) {
+        dl_url = await yt.video['720p'].download().catch(async (_) => {
+          if (yt.video['1080p']) {
+            dl_url = await yt.video['1080p'].download();
+            size = await yt.video['1080p'].fileSizeH;
+          }
+        });
+        size = await yt.video['720p'].fileSizeH;
+      }
+    });
+    size = await yt.video['480p'].fileSizeH;
+  }
 ttl = await yt.title
 /*size = await yt.video['1440p'].fileSizeH
 if (!size) {
