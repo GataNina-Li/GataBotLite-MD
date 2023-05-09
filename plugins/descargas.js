@@ -239,12 +239,12 @@ dl_url = await yt.video['720p'].download()
 })
 })
 ttl = await yt.title
-size = await yt.video['1440p'].fileSizeH
+/*size = await yt.video['1440p'].fileSizeH
 if (!size) {
 size = await yt.video['1080p'].fileSizeH
 if (!size) {
 size = await yt.video['720p'].fileSizeH
-}}
+}}*/
 await conn.sendMessage(m.chat, { video: { url: dl_url }, fileName: `${ttl}.mp4`, mimetype: 'video/mp4', caption: 'Prueba', thumbnail: await fetch(yt.thumbnail)}, { quoted: m })
 /*qu = args[1] || '720'
 q = qu + 'p' 
