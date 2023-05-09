@@ -230,7 +230,7 @@ try {
 qu = args[1] || '360'
 q = qu + 'p'
 v = args[0]
-  yt = await youtubedl(v).catch(async (_) => await youtubedlv2(v)).catch(async (_) => await youtubedlv3(v));
+yt = await youtubedl(v).catch(async _ => await youtubedlv2(v)).catch(async _ => await youtubedlv3(v))
   if (yt.video['2160p']) {
     dl_url = await yt.video['2160p'].download().catch(async (_) => {
       if (yt.video['1440p']) {
