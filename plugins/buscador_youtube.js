@@ -10,27 +10,20 @@ let teks = results.all.map(v => {
 switch (v.type) {
 case 'video': return `
 ⁖❤️꙰༻ *TÍTULO*
-${v.title}
+${v.title || lenguajeGB.smsGit14()}
 
 ⁖🩵꙰༻ *ENLACE*
-${v.url}
+${v.url || lenguajeGB.smsGit14()}
 
 ⁖💜꙰༻ *DURACIÓN*
-${v.timestamp}
+${v.timestamp || lenguajeGB.smsGit14()}
 
 ⁖💚꙰༻ *SUBIDO*
-${v.ago}
+${v.ago || lenguajeGB.smsGit14()}
 
 ⁖🧡꙰༻ *VISTAS*
-${v.views}`.trim()
-
-case 'canal': return `
-▢ *${v.name}* (${v.url})
-▢${v.subCountLabel} (${v.subCount}) Suscribirse
-▢ ${v.videoCount} videos
-`.trim()
-
-}}).filter(v => v).join('\n\n◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦\n\n')
+${v.views || lenguajeGB.smsGit14()}`.trim()
+}}).filter(v => v).join('\n\n••••••••••••••••••••••••••••\n\n')
 await conn.sendFile(m.chat, tes[0].thumbnail, 'yts.jpeg', teks, m)
 }
 handler.command = ['ytsearch', 'yts'] 
