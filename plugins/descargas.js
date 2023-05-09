@@ -239,7 +239,7 @@ const currentQuality = qualities[i];
 if (yt.video[currentQuality]) {
 try {
 dl_url = await yt.video[currentQuality].download();
-size = await yt.video[qualities].fileSizeH //currentQuality
+size = currentQuality
 quality = currentQuality
 break
 } catch {
