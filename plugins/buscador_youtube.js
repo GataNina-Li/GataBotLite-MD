@@ -22,7 +22,15 @@ ${v.timestamp}
 ${v.ago}
 
 ⁖🧡꙰༻ *VISTAS*
-${v.views}`}}).filter(v => v).join('\n\n◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦\n\n')
+${v.views}`.trim()
+
+case 'canal': return `
+▢ *${v.name}* (${v.url})
+▢${v.subCountLabel} (${v.subCount}) Suscribirse
+▢ ${v.videoCount} videos
+`.trim()
+
+}}).filter(v => v).join('\n\n◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦\n\n')
 await conn.sendFile(m.chat, tes[0].thumbnail, 'yts.jpeg', teks, m)
 }
 handler.command = ['ytsearch', 'yts'] 
