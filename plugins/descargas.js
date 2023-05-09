@@ -231,7 +231,7 @@ q = '';
 v = args[0];
 yt = await youtubedl(v).catch(async _ => await youtubedlv2(v)).catch(async _ => await youtubedlv3(v))
   let quality = null;
-let qualities = ['1080p', '720p', '480p', '360p'];
+let qualities = ['2160p', '1440p', '1080p', '720p', '480p', '360p', '240p', '144p']
 
 for (let i = 0; i < qualities.length; i++) {
 const currentQuality = qualities[i];
