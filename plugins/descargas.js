@@ -52,7 +52,7 @@ ${views}
 ${url}
 *◜⋯ ⋯ ⋯ ⬇️ A U D I O ⬇️ ⋯ ⋯ ⋯◞*`.trim()
 await conn.sendFile(m.chat, thumbnail, 'error.jpg', video, m)    
-q = '320kbps'
+q = '128kbps'
 v = url
 yt = await youtubedl(v).catch(async () => await youtubedlv2(v)).catch(async () => await youtubedlv3(v))
 dl_url = await yt.audio[q].download()
