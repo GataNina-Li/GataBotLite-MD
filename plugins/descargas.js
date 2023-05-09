@@ -231,28 +231,28 @@ q = '';
 v = args[0];
 yt = await youtubedl(v).catch(async _ => await youtubedlv2(v)).catch(async _ => await youtubedlv3(v))
   if (yt.video['1080p']) {
-  dl_url = await yt.video['1080p'].download().catch(async (_) => {
+  try {
+    dl_url = await yt.video['1080p'].download();
+    size = '1080p' //await yt.video['1080p'].fileSizeH;
+  } catch {
     if (yt.video['720p']) {
-      dl_url = await yt.video['720p'].download().catch(async (_) => {
+      try {
+        dl_url = await yt.video['720p'].download();
+        size = '720p' //await yt.video['720p'].fileSizeH;
+      } catch {
         if (yt.video['480p']) {
-          dl_url = await yt.video['480p'].download().catch(async (_) => {
+          try {
+            dl_url = await yt.video['480p'].download();
+            size = '480p' //await yt.video['480p'].fileSizeH;
+          } catch {
             if (yt.video['360p']) {
               dl_url = await yt.video['360p'].download();
-              size = await yt.video['360p'].fileSizeH;
+              size = '360p' //await yt.video['360p'].fileSizeH;
             }
-          });
-          if (!dl_url) {
-            size = '480p' //await yt.video['480p'].fileSizeH;
           }
         }
-      });
-      if (!dl_url) {
-        size = '720p' //await yt.video['720p'].fileSizeH;
       }
     }
-  });
-  if (!dl_url) {
-    size = '1080p' //await yt.video['1080p'].fileSizeH;
   }
 }
   ttl = await yt.title;
