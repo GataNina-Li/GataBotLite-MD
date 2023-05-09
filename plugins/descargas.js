@@ -242,17 +242,17 @@ yt = await youtubedl(v).catch(async _ => await youtubedlv2(v)).catch(async _ => 
             }
           });
           if (!dl_url) {
-            size = await yt.video['480p'].fileSizeH;
+            size = '480p' //await yt.video['480p'].fileSizeH;
           }
         }
       });
       if (!dl_url) {
-        size = await yt.video['720p'].fileSizeH;
+        size = '720p' //await yt.video['720p'].fileSizeH;
       }
     }
   });
   if (!dl_url) {
-    size = await yt.video['1080p'].fileSizeH;
+    size = '1080p' //await yt.video['1080p'].fileSizeH;
   }
 }
   ttl = await yt.title;
