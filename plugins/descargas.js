@@ -227,9 +227,9 @@ case isCommand9:
 if (!args[0]) throw lenguajeGB.smsMalused2() + `*${usedPrefix + command} https://youtu.be/ejemplo*\n*${usedPrefix + command} https://www.youtube.com/ejemplo*`
 await conn.reply(m.chat, lenguajeGB.smsAvisoEG() + '*' + lenguajeGB.smsYTV1() + '*', m)
 try {
-  qu = args[1] || '720';
-  q = qu + 'p';
-  v = args[0];
+qu = args[1] || '360'
+q = qu + 'p'
+v = args[0]
   yt = await youtubedl(v).catch(async (_) => await youtubedlv2(v)).catch(async (_) => await youtubedlv3(v));
   if (yt.video['2160p']) {
     dl_url = await yt.video['2160p'].download().catch(async (_) => {
