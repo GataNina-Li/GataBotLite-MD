@@ -2,7 +2,7 @@ import yts from 'yt-search'
 import fs from 'fs'
 
 let handler = async (m, {conn, text, usedPrefix, command }) => {
-if (!text) throw lenguajeGB.smsMalused2() + usedPrefix + command + ' ' + 'GataBot'
+if (!text) throw lenguajeGB.smsMalused2() + `*${usedPrefix + command}* GataBot`
 await conn.reply(m.chat, global.wait, m)
 let results = await yts(text)
 let tes = results.all
