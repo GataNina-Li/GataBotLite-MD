@@ -135,7 +135,7 @@ if (!isROwner) {
 global.dfail('rowner', m, conn)
 throw false
 }
-bot.jadibotmd = isEnable
+bot.jadibotmd = !isEnable
 break 
 		
 case 'autoread': case 'autovisto':
