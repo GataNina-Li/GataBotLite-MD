@@ -1,12 +1,15 @@
 import { googleIt } from '@bochilteam/scraper'
 import fetch from 'node-fetch'
 import axios from 'axios'
+import yts from 'yt-search'
+import fs from 'fs'
 
 let handler = async (m, { conn, command, usedPrefix, args, text }) => {
 const isCommand1 = /^(googlef?)$/i.test(command)
 const isCommand2 = /(openai|chatgpt|ia|ai)/i.test(command)
 const isCommand3 = /^(bot|simi|simsimi|alexa|bixby|cortana|siri|okgoogle)$/i.test(command)
 const isCommand4 = /^(githubstalk|usuariogithub|usergithub)$/i.test(command)
+const isCommand5 = /^(yt(s|search))$/i.test(command)
 
 let fkontak = { "key": { "participants":"0@s.whatsapp.net", "remoteJid": "status@broadcast", "fromMe": false, "id": "Halo" }, "message": { "contactMessage": { "vcard": `BEGIN:VCARD\nVERSION:3.0\nN:Sy;Bot;;;\nFN:y\nitem1.TEL;waid=${m.sender.split('@')[0]}:${m.sender.split('@')[0]}\nitem1.X-ABLabel:Ponsel\nEND:VCARD` }}, "participant": "0@s.whatsapp.net" }
 async function reportError(e) {
@@ -102,9 +105,39 @@ await conn.sendFile(m.chat, thumb || gataMenu.getRandom(), 'githubstalk.jpg', co
 reportError(e)
 }  
 break   
+        
+case isCommand5:
+if (!text) throw lenguajeGB.smsMalused2() + `*${usedPrefix + command}* GataBot`
+try{
+await conn.reply(m.chat, global.wait, m)
+let results = await yts(text)
+let tes = results.all
+let teks = results.all.map(v => {
+switch (v.type) {
+case 'video': return `
+⁖❤️꙰༻ *TÍTULO*
+» ${v.title || lenguajeGB.smsGit14()}
+
+⁖🩵꙰༻ *ENLACE*
+» ${v.url || lenguajeGB.smsGit14()}
+
+⁖💜꙰༻ *DURACIÓN*
+» ${v.timestamp || lenguajeGB.smsGit14()}
+
+⁖💚꙰༻ *SUBIDO*
+» ${v.ago || lenguajeGB.smsGit14()}
+
+⁖🧡꙰༻ *VISTAS*
+» ${v.views || lenguajeGB.smsGit14()}`.trim()
+}}).filter(v => v).join('\n\n••••••••••••••••••••••••••••••••••••\n\n')
+await conn.sendFile(m.chat, tes[0].thumbnail, 'yts.jpeg', teks, m)
+} catch (e) {
+reportError(e)
+}          
+break
 }}
 
-handler.command = /^(googlef?|openai|chatgpt|ia|ai|bot|simi|simsimi|alexa|bixby|cortana|siri|okgoogle|githubstalk|usuariogithub|usergithub)$/i
+handler.command = /^(googlef?|openai|chatgpt|ia|ai|bot|simi|simsimi|alexa|bixby|cortana|siri|okgoogle|githubstalk|usuariogithub|usergithub|(yt(s|search)))$/i
 handler.register = true
 export default handler
 
