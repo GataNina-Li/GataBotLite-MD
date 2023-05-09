@@ -3,7 +3,6 @@ const fs = { ...fsPromises, existsSync };
 import path, { join } from 'path' 
 
 let handler = async (m, { conn, command, usedPrefix, args, text, isOwner }) => {
-if (global.db.data.settings[conn.user.jid].jadibotmd) throw `${lenguajeGB['smsSoloOwnerJB']()}`
 const isCommand1 = /^(deletesesion|eliminarsesion|borrarsesion|delsesion|delsession|cerrarsesion)$/i.test(command)  
 const isCommand2 = /^(berhenti|pausesb|detenersb|pausarsb)$/i.test(command)  
 const isCommand3 = /^(listjadibot|bots|subsbots|subbots)$/i.test(command)  
@@ -45,6 +44,7 @@ conn.ws.close()}
 break
     
 case isCommand3:
+if (global.db.data.settings[conn.user.jid].jadibotmd) throw `${lenguajeGB['smsSoloOwnerJB']()}`
 let users = [...new Set([...global.conns.filter(conn => conn.user && conn.state !== 'close').map(conn => conn.user)])]
 await m.reply( lenguajeGB.smsJBCom3())
 const message = users.map(v => '🐈 wa.me/' + v.jid.replace(/[^0-9]/g, '') + `?text=${usedPrefix}estado\n(${v.name})\n\n`).join('\n')
