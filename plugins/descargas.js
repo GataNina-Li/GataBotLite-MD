@@ -228,7 +228,7 @@ if (!args[0]) throw lenguajeGB.smsMalused2() + `*${usedPrefix + command} https:/
 await conn.reply(m.chat, lenguajeGB.smsAvisoEG() + '*' + lenguajeGB.smsYTV1() + '*', m)
 try {
 q = '';
-v = args[0];
+v = args[0]
 yt = await youtubedl(v).catch(async _ => await youtubedlv2(v)).catch(async _ => await youtubedlv3(v))
   let quality = null;
 let qualities = ['2160p', '1440p', '1080p', '720p', '480p', '360p', '240p', '144p']
@@ -239,23 +239,14 @@ const currentQuality = qualities[i];
 if (yt.video[currentQuality]) {
 try {
 dl_url = await yt.video[currentQuality].download();
-size = currentQuality;
-quality = currentQuality;
+size = await yt.video[qualities].fileSizeH //currentQuality
+quality = currentQuality
 break
 } catch {
 m.reply(`Error en la descarga de calidad ${currentQuality}`)
 }}}
 ttl = await yt.title;
 await conn.sendMessage(m.chat, { video: { url: dl_url }, fileName: `${ttl}.mp4`, mimetype: 'video/mp4', caption: `*💫 ${ttl}*\n*⚖️ ${size}*`, thumbnail: await fetch(yt.thumbnail) }, { quoted: m })
-//await conn.sendMessage(m.chat, { video: { url: dl_url }, fileName: `${ttl}.mp4`, mimetype: 'video/mp4', caption: 'Prueba', thumbnail: await fetch(yt.thumbnail)}, { quoted: m })
-/*qu = args[1] || '720'
-q = qu + 'p' 
-v = args[0]
-yt = await youtubedl(v).catch(async _ => await youtubedlv2(v)).catch(async _ => await youtubedlv3(v))
-dl_url = await yt.video[q].download()
-ttl = await yt.title
-size = await yt.video[q].fileSizeH
-await await conn.sendMessage(m.chat, { video: { url: dl_url }, fileName: `${ttl}.mp4`, mimetype: 'video/mp4', caption: `*💫 ${ttl}*\n*⚖️ ${size}*`, thumbnail: await fetch(yt.thumbnail) }, { quoted: m })*/
 } catch (e) {
 await m.reply(lenguajeGB['smsMalError3']() + '\n*' + lenguajeGB.smsMensError1() + '*\n*' + usedPrefix + `${lenguajeGB.lenguaje() == 'es' ? 'reporte' : 'report'}` + '* ' + `${lenguajeGB.smsMensError2()} ` + usedPrefix + command)
 console.log(`❗❗ ${lenguajeGB['smsMensError2']()} ${usedPrefix + command} ❗❗`)
