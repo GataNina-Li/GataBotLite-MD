@@ -52,10 +52,7 @@ ${views}
 ${url}
 *◜⋯ ⋯ ⋯ ⬇️ A U D I O ⬇️ ⋯ ⋯ ⋯◞*`.trim()
 await conn.sendFile(m.chat, thumbnail, 'error.jpg', video, m)    
-//let ytLink = await fetch(`https://api.lolhuman.xyz/api/ytplay2?apikey=${lolkeysapi}&query=${text}`)
-//let jsonn = await ytLink.json()
-//let aud = await jsonn.result.audio
-q = '128kbps'
+q = '320kbps'
 v = url
 yt = await youtubedl(v).catch(async () => await youtubedlv2(v)).catch(async () => await youtubedlv3(v))
 dl_url = await yt.audio[q].download()
