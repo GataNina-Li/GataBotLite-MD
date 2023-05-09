@@ -243,7 +243,7 @@ size = currentQuality;
 quality = currentQuality;
 break
 } catch {
-console.log(`Error en la descarga de calidad ${currentQuality}`)
+m.reply(`Error en la descarga de calidad ${currentQuality}`)
 }}}
 ttl = await yt.title;
 await conn.sendMessage(m.chat, { video: { url: dl_url }, fileName: `${ttl}.mp4`, mimetype: 'video/mp4', caption: `*💫 ${ttl}*\n*⚖️ ${size}*`, thumbnail: await fetch(yt.thumbnail) }, { quoted: m })
