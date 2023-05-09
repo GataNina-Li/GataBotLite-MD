@@ -230,32 +230,22 @@ try {
 q = '';
 v = args[0];
 yt = await youtubedl(v).catch(async _ => await youtubedlv2(v)).catch(async _ => await youtubedlv3(v))
-  if (yt.video['1080p']) {
-  try {
-    dl_url = await yt.video['1080p'].download();
-    size = '1080p' //await yt.video['1080p'].fileSizeH;
-  } catch {
-    if (yt.video['720p']) {
-      try {
-        dl_url = await yt.video['720p'].download();
-        size = '720p' //await yt.video['720p'].fileSizeH;
-      } catch {
-        if (yt.video['480p']) {
-          try {
-            dl_url = await yt.video['480p'].download();
-            size = '480p' //await yt.video['480p'].fileSizeH;
-          } catch {
-            if (yt.video['360p']) {
-              dl_url = await yt.video['360p'].download();
-              size = '360p' //await yt.video['360p'].fileSizeH;
-            }
-          }
-        }
-      }
-    }
-  }
-}
-  ttl = await yt.title;
+  let quality = null;
+let qualities = ['1080p', '720p', '480p', '360p'];
+
+for (let i = 0; i < qualities.length; i++) {
+const currentQuality = qualities[i];
+  
+if (yt.video[currentQuality]) {
+try {
+dl_url = await yt.video[currentQuality].download();
+size = currentQuality;
+quality = currentQuality;
+break
+} catch {
+console.log(`Error en la descarga de calidad ${currentQuality}`)
+}}}
+ttl = await yt.title;
 await conn.sendMessage(m.chat, { video: { url: dl_url }, fileName: `${ttl}.mp4`, mimetype: 'video/mp4', caption: `*💫 ${ttl}*\n*⚖️ ${size}*`, thumbnail: await fetch(yt.thumbnail) }, { quoted: m })
 //await conn.sendMessage(m.chat, { video: { url: dl_url }, fileName: `${ttl}.mp4`, mimetype: 'video/mp4', caption: 'Prueba', thumbnail: await fetch(yt.thumbnail)}, { quoted: m })
 /*qu = args[1] || '720'
