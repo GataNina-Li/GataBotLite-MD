@@ -1,4 +1,3 @@
-<a href="#"><img title="GataBot-MD" src="https://img.shields.io/badge/VERSIÓN 1.0.2 -red?colorA=%238B38CD&colorB=%238B38CD&style=for-the-badge"></a>
 <p align="center"> 
 <img src="https://i.imgur.com/AwlL9kc.jpeg" alt="GataBotLite-MD" width="500"/>
 </p>
