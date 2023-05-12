@@ -1,4 +1,4 @@
-import { youtubedl, youtubedlv2, youtubedlv3 } from '@bochilteam/scraper' 
+import { youtubedl, youtubedlv2, youtubedlv3, tiktokdl, tiktokdlv2, tiktokdlv3 } from '@bochilteam/scraper' 
 import { googleImage } from '@bochilteam/scraper'
 import fetch from "node-fetch"
 import yts from 'yt-search'
@@ -15,7 +15,8 @@ const isCommand6 = /^(ytmp4doc|ytvdoc)$/i.test(command)
 const isCommand7 = /^(facebook|fb|facebookdl|fbdl)$/i.test(command)
 const isCommand8 = /^(mediafire(dl)?|dlmediafire)$/i.test(command)
 const isCommand9 = /^(ytmax)$/i.test(command)
-const isCommand10 = /^(ytmaxdoc)$/i.test(command)
+const isCommand10 = /^(Tiktok|tiktok)$/i.test(command)
+const isCommand11 = /^(ytmaxdoc)$/i.test(command)
 
 switch (true) {     
 case isCommand1:
@@ -250,8 +251,27 @@ await m.reply(lenguajeGB['smsMalError3']() + '\n*' + lenguajeGB.smsMensError1() 
 console.log(`❗❗ ${lenguajeGB['smsMensError2']()} ${usedPrefix + command} ❗❗`)
 console.log(e)}        
 break
-        
+
+//codigo adartado por https://github.com/elrebelde21
 case isCommand10:
+if (!text) return conn.reply(m.chat, `${lenguajeGB['smsMalused2']()}\n*${usedPrefix + command} https://vm.tiktok.com/ZMLEPnruc/?k=1*`, m)
+if (!/(?:https:?\/{2})?(?:w{3}|vm|vt|t)?\.?tiktok.com\/([^\s&]+)/gi.test(text)) return conn.reply(m.chat, `${lenguajeGB['smsYT6']()}`, m)  
+try {
+const { author: { nickname }, video, description } = await tiktokdl(args[0])
+.catch(async _ => await tiktokdlv2(args[0]))
+.catch(async _ => await tiktokdlv3(args[0]))
+const url = video.no_watermark2 || video.no_watermark || 'https://tikcdn.net' + video.no_watermark_raw || video.no_watermark_hd
+if (!url) return conn.reply(m.chat, `${lenguajeGB['smsMalError3']()}`, m)
+await conn.reply(m.chat, `${lenguajeGB['smsAvisoEG']()} ${lenguajeGB['smsTiktok']()}`, m)    
+conn.sendFile(m.chat, url, 'tiktok.mp4', `
+⛱️\n*${nickname}*\n${description ? `\n⛱️ \n*${description}*` : ''} ${wm}`.trim(), m)
+} catch (e) {
+await m.reply(lenguajeGB['smsMalError3']() + '\n*' + lenguajeGB.smsMensError1() + '*\n*' + usedPrefix + `${lenguajeGB.lenguaje() == 'es' ? 'reporte' : 'report'}` + '* ' + `${lenguajeGB.smsMensError2()} ` + usedPrefix + command)
+console.log(`❗❗ ${lenguajeGB['smsMensError2']()} ${usedPrefix + command} ❗❗`)
+console.log(e)}         
+break
+   
+case isCommand11:
 if (!args[0]) throw lenguajeGB.smsMalused2() + `*${usedPrefix + command} https://youtu.be/ejemplo*\n*${usedPrefix + command} https://www.youtube.com/ejemplo*`
 await conn.reply(m.chat, lenguajeGB.smsAvisoEG() + '*' + lenguajeGB.smsYTV2() + '*', m)
 try {
@@ -277,6 +297,6 @@ console.log(e)}
 break
 }}
 
-handler.command = /^(gimage|imagen?|play2?|fgmp3|dlmp3|getaud|yt(a|mp3)?|ytmp3doc|ytadoc|fgmp4|dlmp4|getvid|yt(v|mp4)?|ytmp4doc|ytvdoc|facebook|fb|facebookdl|fbdl|mediafire(dl)?|dlmediafire|ytmax|ytmaxdoc)$/i
+handler.command = /^(gimage|imagen?|play2?|fgmp3|dlmp3|getaud|yt(a|mp3)?|ytmp3doc|ytadoc|fgmp4|dlmp4|getvid|yt(v|mp4)?|ytmp4doc|ytvdoc|facebook|fb|facebookdl|fbdl|mediafire(dl)?|dlmediafire|ytmax|ytmaxdoc|tiktok|Tiktok)$/i
 handler.register = true
 export default handler
