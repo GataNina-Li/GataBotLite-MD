@@ -31,7 +31,7 @@
 </div>
 
 #### DISPONIBLE EN:
-> - [x] TERMUX, REPLIT, WINDOWS, HEROKU, ZIPPONODES
+> - [x] TERMUX, REPLIT, WINDOWS, HEROKU, ZIPPONODES, BOXMINE-HOST
 
 
 [`♻️ App Termux`](https://f-droid.org/es/packages/com.termux/)
