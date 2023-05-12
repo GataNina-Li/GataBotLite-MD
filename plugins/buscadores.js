@@ -115,19 +115,19 @@ let tes = results.all
 let teks = results.all.map(v => {
 switch (v.type) {
 case 'video': return `
-⁖❤️꙰༻ *TÍTULO*
+⁖❤️꙰༻ *${lenguajeGB.smsytserh1()}*
 » ${v.title || lenguajeGB.smsGit14()}
 
-⁖🩵꙰༻ *ENLACE*
+⁖🩵꙰༻ *${lenguajeGB.smsytserh2()}*
 » ${v.url || lenguajeGB.smsGit14()}
 
-⁖💜꙰༻ *DURACIÓN*
+⁖💜꙰༻ *${lenguajeGB.smsytserh3()}*
 » ${v.timestamp || lenguajeGB.smsGit14()}
 
-⁖💚꙰༻ *SUBIDO*
+⁖💚꙰༻ *${lenguajeGB.smsytserh4()}*
 » ${v.ago || lenguajeGB.smsGit14()}
 
-⁖🧡꙰༻ *VISTAS*
+⁖🧡꙰༻ *${lenguajeGB.smsytserh5()}*
 » ${v.views || lenguajeGB.smsGit14()}`.trim()
 }}).filter(v => v).join('\n\n••••••••••••••••••••••••••••••••••••\n\n')
 await conn.sendFile(m.chat, tes[0].thumbnail, 'yts.jpeg', teks, m)
