@@ -1,31 +1,15 @@
-let handler = async (m, { conn, args, isAdmin, isOwner, participants, text }) => {
-/*if (m.isGroup) {
-if (!(isAdmin || isOwner)) {
-dfail('admin', m, conn)
-throw false
+let handler = async (m, { conn, participants }) => {
+  let onlineUsers = participants
+    .filter(user => user.presence && user.presence.isOnline && user.jid !== conn.user.jid)
+    .map(user => user.jid.replace(/@.+/, ''))
+
+  let mentionList = onlineUsers.map(jid => `@${jid}`).join('\n')
+
+  let replyText = `Usuarios en línea:\n\n${mentionList}`
+
+  await conn.reply(m.chat, replyText, m, { mentions: onlineUsers })
 }
-}*/
-//let online = participants.filter((participant) => participant.jid !== conn.user.jid && participant.presence?.isOnline)
-//let onlineJids = online.map((participant) => participant.jid)
-//await conn.reply(m.chat, '*USUARIOS EN LÍNEA* \n' + onlineJids.map((jid) => '- @' + jid.replace(/@.+/, '')).join('\n') + '------------', m, { contextInfo: { mentionedJid: onlineJids } })
-//}
-//let users = participants.map(u => u.presences.id).filter(v => v !== conn.user.jid)
-//m.reply(`*Tep:*\n${text ? `${text}\n` : ''}\nEN LINEA\n` + users.map(v => '│♪ @' + v.replace(/@.+/, '')).join`\n` + '\nEN LINEA', null, {
-//mentions: users })
 
-//let onlineUsers = participants.filter(user => user.presence && user.presence.isOnline && user.jid !== conn.user.jid)
-//let mentionList = onlineUsers.map(user => `@${user.jid.replace(/@.+/, '')}`).join('\n')
-
-//let replyText = `Usuarios en línea:\n\n${mentionList}`
-//await conn.reply(m.chat, replyText, m, { mentions: onlineUsers })
-let users = participants
-.filter(user => user.presence && user.presence.isOnline && user.jid !== conn.user.jid)
-.map(user => user.jid)
-
-let mentionText = users.map(jid => `│♪ @${jid.replace(/@.+/, '')}`).join('\n')
-let replyText = `EN LINEA\n${mentionText}\nEN LINEA`
-m.reply(replyText, null, { mentions: users })
-}
-handler.command = /^((list)?online)$/i
+handler.command = /^(listonline)$/i
 
 export default handler
