@@ -18,10 +18,13 @@ throw false
 
 //let replyText = `Usuarios en línea:\n\n${mentionList}`
 //await conn.reply(m.chat, replyText, m, { mentions: onlineUsers })
-let users = participants.map(u => u.presences).filter(v => v !== conn.user.jid)
-m.reply(`EN LINEA\n` + users.map(v => '│♪ @' + v.replace(/@.+/, '')).join`\n` + '\nEN LINEA', null, {
-mentions: users
-})
+let users = participants
+.filter(user => user.presence && user.presence.isOnline && user.jid !== conn.user.jid)
+.map(user => user.jid)
+
+let mentionText = users.map(jid => `│♪ @${jid.replace(/@.+/, '')}`).join('\n')
+let replyText = `EN LINEA\n${mentionText}\nEN LINEA`
+m.reply(replyText, null, { mentions: users })
 }
 handler.command = /^((list)?online)$/i
 
