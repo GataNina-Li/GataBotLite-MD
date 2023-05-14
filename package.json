@@ -73,7 +73,7 @@
   "socket.io": "^4.4.1",
   "syntax-error": "^1.4.0",
   "nsfwjs": "^2.4.2",
-  "openai": "^3.1.0",
+  "openai": "^3.2.1",
   "ffmpeg-extract-frames": "^2.0.2",
   "get-video-duration": "^4.1.0",
   "instagram-url-direct": "^1.0.12",
