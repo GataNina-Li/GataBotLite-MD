@@ -66,7 +66,7 @@ try{
 let err = lenguajeGB.smsGit14()
 let request = await githubstalk(text) 
 let { username, following, followers, type, bio, company, blog, location, email, public_repo, public_gists, profile_pic } = request
-let thumb = await (profile_pic)
+let thumb = await profile_pic
 let cont = `*╭•  •  •  •  • G I T H U B •  •  •  •  •╮*\n
 ${lenguajeGB.smsGit3()}
 ${username || err}
@@ -102,8 +102,7 @@ ${lenguajeGB.smsGit13()}
 ${type || err}`
 await conn.sendFile(m.chat, thumb || gataMenu.getRandom(), 'githubstalk.jpg', cont, fkontak) 
 } catch (e) {
-reportError(e)
-}  
+reportError(e)}  
 break   
         
 case isCommand5:
