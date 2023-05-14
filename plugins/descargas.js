@@ -258,42 +258,7 @@ const url = video.no_watermark2 || video.no_watermark || 'https://tikcdn.net' + 
 await conn.reply(m.chat, `${lenguajeGB['smsAvisoEG']()}*${lenguajeGB['smsTiktok']()}*`, m)    
 await conn.sendFile(m.chat, url, 'tiktok.mp4', `
 💜 *${nickname}*`.trim(), m)
-await conn.sendMessage(m.chat, { audio: { url: url }, fileName: 'tiktok.mp3', mimetype: 'audio/mp4', ptt: false }, { quoted: m }) 
- 
-let urut = text.split`|`
-let one = urut[1]
-/*let Tikdl = await (await fetch("https://api.tikdl.caliphdev.codes/video?url=" + one)).json()
-let T = Tikdl.result
-let TikdlCap = `*[ T I K T O K ]*
-
-*ID:* ${T.id}
-*Title:* ${T.title}
-*Created:* ${T.created_at}
-
-*[ S T A T S ]*
-*Like:* ${T.stats.likeCount}
-*Comment:* ${T.stats.commentCount}
-*Share:* ${T.stats.shareCount}
-*Play:* ${T.stats.playCount}
-*Saved:* ${T.stats.saveCount}
-
-*[ V I D E O ]*
-*Widh:* ${T.video.width}
-*Height:* ${T.video.height}
-*Duration:* ${T.video.durationFormatted}
-*Ratio:* ${T.video.ratio}
-
-[ A U D I O ]*
-*ID:* ${T.music.id}
-*Title:* ${T.music.title}
-*Author:* ${T.music.author}
-*Duration:* ${T.music.durationFormatted}
-`
-await conn.sendFile(m.chat, T.video.watermark, "", TikdlCap, m)*/
-let response = await fetch("https://api.tikdl.caliphdev.codes/video?url=" + text);
-let responseBody = await response.text();
-console.log(responseBody)
-    
+await conn.sendMessage(m.chat, { audio: { url: url }, fileName: 'tiktok.mp3', mimetype: 'audio/mp4', ptt: false }, { quoted: m })     
 } catch (e) {
 reportError(e)
 }         
