@@ -15,7 +15,7 @@ const isCommand6 = /^(ytmp4doc|ytvdoc)$/i.test(command)
 const isCommand7 = /^(facebook|fb|facebookdl|fbdl)$/i.test(command)
 const isCommand8 = /^(mediafire(dl)?|dlmediafire)$/i.test(command)
 const isCommand9 = /^(ytmax)$/i.test(command)
-const isCommand10 = /^(Tiktok|tiktok)$/i.test(command)
+const isCommand10 = /^(tkdl|tiktok)$/i.test(command)
 const isCommand11 = /^(ytmaxdoc)$/i.test(command)
 
 async function reportError(e) {
@@ -292,6 +292,6 @@ reportError(e)
 break
 }}
 
-handler.command = /^(gimage|imagen?|play2?|fgmp3|dlmp3|getaud|yt(a|mp3)?|ytmp3doc|ytadoc|fgmp4|dlmp4|getvid|yt(v|mp4)?|ytmp4doc|ytvdoc|facebook|fb|facebookdl|fbdl|mediafire(dl)?|dlmediafire|ytmax|ytmaxdoc|tiktok|Tiktok)$/i
+handler.command = /^(gimage|imagen?|play2?|fgmp3|dlmp3|getaud|yt(a|mp3)?|ytmp3doc|ytadoc|fgmp4|dlmp4|getvid|yt(v|mp4)?|ytmp4doc|ytvdoc|facebook|fb|facebookdl|fbdl|mediafire(dl)?|dlmediafire|ytmax|ytmaxdoc|tiktok|tkdl)$/i
 handler.register = true
 export default handler
