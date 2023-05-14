@@ -1,5 +1,5 @@
 import { Configuration, OpenAIApi } from 'openai'
-const configuration = new Configuration({ organization: 'KEY-ORG-KAMU', apiKey: 'KEY-OPENAI-APIKEY-KAMU' }); //KEY-OPENAI-APIKEY-KAMU = https://platform.openai.com/account/api-keys , KEY-ORG-KAMU = https://platform.openai.com/account/org-settings
+const configuration = new Configuration({ organization: 'org-1uO5i0TQQwQ055s6XZrCDGZk', apiKey: 'sk-...XF4P' }); //apiKey = https://platform.openai.com/account/api-keys , organization = https://platform.openai.com/account/org-settings
 const openai = new OpenAIApi(configuration);
 
 let handler = async (m, { conn, text, command }) => {
