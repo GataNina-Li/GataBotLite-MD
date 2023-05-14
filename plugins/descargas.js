@@ -18,6 +18,12 @@ const isCommand9 = /^(ytmax)$/i.test(command)
 const isCommand10 = /^(Tiktok|tiktok)$/i.test(command)
 const isCommand11 = /^(ytmaxdoc)$/i.test(command)
 
+async function reportError(e) {
+await m.reply(lenguajeGB['smsMalError3']() + '\n*' + lenguajeGB.smsMensError1() + '*\n*' + usedPrefix + `${lenguajeGB.lenguaje() == 'es' ? 'reporte' : 'report'}` + '* ' + `${lenguajeGB.smsMensError2()} ` + usedPrefix + command)
+console.log(`❗❗ ${lenguajeGB['smsMensError2']()} ${usedPrefix + command} ❗❗`)
+console.log(e)
+}
+
 switch (true) {     
 case isCommand1:
 if (!text) throw lenguajeGB.smsMalused2() + `\n*${usedPrefix + command} Gata*`
@@ -27,9 +33,8 @@ let image = res.getRandom()
 let link = image
 conn.sendFile(m.chat, link, 'error.jpg', `*💞 Resultado de:* ${text}`, m)
 } catch (e) {
-await m.reply(lenguajeGB['smsMalError3']() + '\n*' + lenguajeGB.smsMensError1() + '*\n*' + usedPrefix + `${lenguajeGB.lenguaje() == 'es' ? 'reporte' : 'report'}` + '* ' + `${lenguajeGB.smsMensError2()} ` + usedPrefix + command)
-console.log(`❗❗ ${lenguajeGB['smsMensError2']()} ${usedPrefix + command} ❗❗`)
-console.log(e)}
+reportError(e)
+} 
 break
     
 case isCommand2:
@@ -63,9 +68,8 @@ title = await yt.title
 size = await yt.audio[q].fileSizeH
 await conn.sendFile(m.chat, dl_url, title + '.mp3', null, m, false, { mimetype: 'audio/mp4' })
 } catch (e) {
-await m.reply(lenguajeGB['smsMalError3']() + '\n*' + lenguajeGB.smsMensError1() + '*\n*' + usedPrefix + `${lenguajeGB.lenguaje() == 'es' ? 'reporte' : 'report'}` + '* ' + `${lenguajeGB.smsMensError2()} ` + usedPrefix + command)
-console.log(`❗❗ ${lenguajeGB['smsMensError2']()} ${usedPrefix + command} ❗❗`)
-console.log(e)}    
+reportError(e)
+}    
 break
         
 case isCommand3:
@@ -86,9 +90,7 @@ lolh = await lolhuman.json()
 n = lolh.result.title || 'error'
 await conn.sendMessage(m.chat, { audio: { url: lolh.result.link }, fileName: `${n}.mp3`, mimetype: 'audio/mp4' }, { quoted: m }) 
 } catch (e) {
-await m.reply(lenguajeGB['smsMalError3']() + '\n*' + lenguajeGB.smsMensError1() + '*\n*' + usedPrefix + `${lenguajeGB.lenguaje() == 'es' ? 'reporte' : 'report'}` + '* ' + `${lenguajeGB.smsMensError2()} ` + usedPrefix + command)
-console.log(`❗❗ ${lenguajeGB['smsMensError2']()} ${usedPrefix + command} ❗❗`)
-console.log(e)}
+reportError(e)
 }        
 break
         
@@ -114,10 +116,8 @@ n3 = lolh.result.size
 cap = `🎧 *AUDIO* 🎧\n\n*⎔ ${n}*\n\n*⎔ ${n3}*`.trim()
 await conn.sendMessage(m.chat, { document: { url: n2 }, caption: cap2, mimetype: 'audio/mpeg', fileName: `${n}.mp3`}, {quoted: m})
 } catch (e) {
-await m.reply(lenguajeGB['smsMalError3']() + '\n*' + lenguajeGB.smsMensError1() + '*\n*' + usedPrefix + `${lenguajeGB.lenguaje() == 'es' ? 'reporte' : 'report'}` + '* ' + `${lenguajeGB.smsMensError2()} ` + usedPrefix + command)
-console.log(`❗❗ ${lenguajeGB['smsMensError2']()} ${usedPrefix + command} ❗❗`)
-console.log(e)}
-}        
+reportError(e)
+}         
 break
         
 case isCommand5:
@@ -142,9 +142,7 @@ n3 = lolh.result.size
 n4 = lolh.result.thumbnail
 await conn.sendMessage(m.chat, { video: { url: n2 }, fileName: `${n}.mp4`, mimetype: 'video/mp4', caption: `*💫 ${n}*\n*⚖️ ${n3}*`, thumbnail: await fetch(n4) }, { quoted: m })
 } catch (e) {
-await m.reply(lenguajeGB['smsMalError3']() + '\n*' + lenguajeGB.smsMensError1() + '*\n*' + usedPrefix + `${lenguajeGB.lenguaje() == 'es' ? 'reporte' : 'report'}` + '* ' + `${lenguajeGB.smsMensError2()} ` + usedPrefix + command)
-console.log(`❗❗ ${lenguajeGB['smsMensError2']()} ${usedPrefix + command} ❗❗`)
-console.log(e)}
+reportError(e)
 }        
 break
 
@@ -171,9 +169,8 @@ n3 = lolh.result.size
 cap = `🎥 *VIDEO* 🎥\n\n*⎔ ${n}*\n\n*⎔ ${n3}*`.trim()
 await conn.sendMessage(m.chat, { document: { url: n2 }, caption: cap, mimetype: 'video/mp4', fileName: n + `.mp4`}, {quoted: m})
 } catch (e) {
-await m.reply(lenguajeGB['smsMalError3']() + '\n*' + lenguajeGB.smsMensError1() + '*\n*' + usedPrefix + `${lenguajeGB.lenguaje() == 'es' ? 'reporte' : 'report'}` + '* ' + `${lenguajeGB.smsMensError2()} ` + usedPrefix + command)
-console.log(`❗❗ ${lenguajeGB['smsMensError2']()} ${usedPrefix + command} ❗❗`)
-console.log(e)}
+reportError(e)
+} 
 }
 break
         
@@ -188,9 +185,8 @@ let videovio = `${vioo.result.hd.url || vioo.result.sd.url}`
 await m.reply(wait)
 await conn.sendFile(m.chat, videovio, `error.mp4`, contenido, m)
 } catch (e) {
-await m.reply(lenguajeGB['smsMalError3']() + '\n*' + lenguajeGB.smsMensError1() + '*\n*' + usedPrefix + `${lenguajeGB.lenguaje() == 'es' ? 'reporte' : 'report'}` + '* ' + `${lenguajeGB.smsMensError2()} ` + usedPrefix + command)
-console.log(`❗❗ ${lenguajeGB['smsMensError2']()} ${usedPrefix + command} ❗❗`)
-console.log(e)}
+reportError(e)
+} 
 break
         
 case isCommand8:
@@ -247,28 +243,28 @@ break
 ttl = await yt.title;
 await conn.sendMessage(m.chat, { video: { url: dl_url }, fileName: `${ttl}.mp4`, mimetype: 'video/mp4', caption: `*🌻 ${ttl}*\n*🔱 ${size == '720p' ? 'HD' : size == '1080p' ? 'FULL HD' : size == '1440p' ? '2K' : '4K'}*`, thumbnail: await fetch(yt.thumbnail) }, { quoted: m })
 } catch (e) {
-await m.reply(lenguajeGB['smsMalError3']() + '\n*' + lenguajeGB.smsMensError1() + '*\n*' + usedPrefix + `${lenguajeGB.lenguaje() == 'es' ? 'reporte' : 'report'}` + '* ' + `${lenguajeGB.smsMensError2()} ` + usedPrefix + command)
-console.log(`❗❗ ${lenguajeGB['smsMensError2']()} ${usedPrefix + command} ❗❗`)
-console.log(e)}        
+reportError(e)
+}        
 break
 
-//codigo adartado por https://github.com/elrebelde21
+//codigo adaptado por https://github.com/elrebelde21
 case isCommand10:
-if (!text) return conn.reply(m.chat, `${lenguajeGB['smsMalused2']()}\n*${usedPrefix + command} https://vm.tiktok.com/ZMLEPnruc/?k=1*`, m)
-if (!/(?:https:?\/{2})?(?:w{3}|vm|vt|t)?\.?tiktok.com\/([^\s&]+)/gi.test(text)) return conn.reply(m.chat, `${lenguajeGB['smsYT6']()}`, m)  
+if (!text) return conn.reply(m.chat, `${lenguajeGB['smsMalused2']()}\n*${usedPrefix + command} https://vm.tiktok.com/ZM2e66NBM/?t=1*`, m)
+if (!/(?:https:?\/{2})?(?:w{3}|vm|vt|t)?\.?tiktok.com\/([^\s&]+)/gi.test(text)) return conn.reply(m.chat, `${lenguajeGB['smsAvisoFG']()}*${lenguajeGB['smsYT6']()}*`, m)  
 try {
-const { author: { nickname }, video, description } = await tiktokdl(args[0])
+const { author: { nickname }, video, description, audio } = await tiktokdl(args[0])
 .catch(async _ => await tiktokdlv2(args[0]))
 .catch(async _ => await tiktokdlv3(args[0]))
 const url = video.no_watermark2 || video.no_watermark || 'https://tikcdn.net' + video.no_watermark_raw || video.no_watermark_hd
-if (!url) return conn.reply(m.chat, `${lenguajeGB['smsMalError3']()}`, m)
-await conn.reply(m.chat, `${lenguajeGB['smsAvisoEG']()} ${lenguajeGB['smsTiktok']()}`, m)    
-conn.sendFile(m.chat, url, 'tiktok.mp4', `
-⛱️\n*${nickname}*\n${description ? `\n⛱️ \n*${description}*` : ''} ${wm}`.trim(), m)
+//if (!url) return conn.reply(m.chat, `${lenguajeGB['smsMalError3']()}`, m)
+await conn.reply(m.chat, `${lenguajeGB['smsAvisoEG']()}*${lenguajeGB['smsTiktok']()}*`, m)    
+await conn.sendFile(m.chat, url, 'tiktok.mp4', `
+💜 *@${nickname}*
+${description ? `🩵 \`\`\`${description}\`\`\`` : ''}`.trim(), m)
+if (audio) return conn.sendFile(m.chat, audio, 'tiktok.opus', null, m)
 } catch (e) {
-await m.reply(lenguajeGB['smsMalError3']() + '\n*' + lenguajeGB.smsMensError1() + '*\n*' + usedPrefix + `${lenguajeGB.lenguaje() == 'es' ? 'reporte' : 'report'}` + '* ' + `${lenguajeGB.smsMensError2()} ` + usedPrefix + command)
-console.log(`❗❗ ${lenguajeGB['smsMensError2']()} ${usedPrefix + command} ❗❗`)
-console.log(e)}         
+reportError(e)
+}         
 break
    
 case isCommand11:
@@ -291,9 +287,8 @@ break
 ttl = await yt.title;
 await conn.sendMessage(m.chat, { document: { url: dl_url }, caption: `*🪷 ${ttl}*\n*🎞️ ${size == '720p' ? 'HD' : size == '1080p' ? 'FULL HD' : size == '1440p' ? '2K' : '4K'}*`, mimetype: 'video/mp4', fileName: ttl + `.mp4`}, {quoted: m})
 } catch (e) {
-await m.reply(lenguajeGB['smsMalError3']() + '\n*' + lenguajeGB.smsMensError1() + '*\n*' + usedPrefix + `${lenguajeGB.lenguaje() == 'es' ? 'reporte' : 'report'}` + '* ' + `${lenguajeGB.smsMensError2()} ` + usedPrefix + command)
-console.log(`❗❗ ${lenguajeGB['smsMensError2']()} ${usedPrefix + command} ❗❗`)
-console.log(e)}        
+reportError(e)
+}        
 break
 }}
 
