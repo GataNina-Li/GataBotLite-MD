@@ -6,21 +6,22 @@ const configuration = new Configuration({
 
 const openai = new OpenAIApi(configuration);
 
-let handler = async (m, { conn, text, command }) => {
+const handler = async (m, { conn, text, command }) => {
   try {
-    if (!text) throw new Error(`Creación de una imagen a partir de IA.\n\nEjemplo:\n.img Gata\n\nCrear imagen a partir de IA\n\nExample:\nCasa de madera en la montaña nevada`);
+    if (!text) {
+      throw new Error(`Ejemplo: ${command} Gata`);
+    }
 
     await conn.reply(m.chat, 'Espera un momento...', m);
 
     const response = await openai.createImage({
       prompt: text,
-      num_images: 1,
+      numImages: 1,
       width: 1024,
       height: 1024,
     });
 
     await conn.sendFile(m.chat, response.data.images[0].file, 'image.jpg', 'Aquí está la imagen generada:', m);
-
   } catch (error) {
     if (error.response) {
       console.log(error.response.status);
