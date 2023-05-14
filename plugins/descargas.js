@@ -143,7 +143,7 @@ n4 = lolh.result.thumbnail
 await conn.sendMessage(m.chat, { video: { url: n2 }, fileName: `${n}.mp4`, mimetype: 'video/mp4', caption: `*💫 ${n}*\n*⚖️ ${n3}*`, thumbnail: await fetch(n4) }, { quoted: m })
 } catch (e) {
 reportError(e)
-}        
+}}     
 break
 
 case isCommand6:
