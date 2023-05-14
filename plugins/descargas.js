@@ -260,7 +260,8 @@ await conn.reply(m.chat, `${lenguajeGB['smsAvisoEG']()}*${lenguajeGB['smsTiktok'
 await conn.sendFile(m.chat, url, 'tiktok.mp4', `
 💜 *${nickname}*`.trim(), m)
 //await conn.sendMessage(m.chat, { audio: { url: url }, fileName: 'tiktok.mp3', mimetype: 'audio/mp4', ptt: true }, { quoted: m })
-await conn.sendFile(m.chat, url, 'tiktok.mp3', '', m, true, { mimetype: 'audio/mp4' })
+//await conn.sendFile(m.chat, url, 'tiktok.mp3', '', m, true, { mimetype: 'audio/mp4' })
+await conn.sendFile(m.chat, url, nickname + '.mp3', null, m, false, { mimetype: 'audio/mp4' })
 } catch (e) {
 reportError(e)
 }         
