@@ -1,5 +1,5 @@
 import { Configuration, OpenAIApi } from 'openai'
-const configuration = new Configuration({ organization: 'org-1uO5i0TQQwQ055s6XZrCDGZk', apiKey: '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' }); //apiKey = https://platform.openai.com/account/api-keys , organization = https://platform.openai.com/account/org-settings
+const configuration = new Configuration({ apiKey: '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' }) //apiKey = https://platform.openai.com/account/api-keys , organization = https://platform.openai.com/account/org-settings
 const openai = new OpenAIApi(configuration);
 
 let handler = async (m, { conn, text, command }) => {
