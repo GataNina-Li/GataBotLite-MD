@@ -260,7 +260,7 @@ await conn.reply(m.chat, `${lenguajeGB['smsAvisoEG']()}*${lenguajeGB['smsTiktok'
 await conn.sendFile(m.chat, url, 'tiktok.mp4', `
 💜 *@${nickname}*
 ${description ? `🩵 \`\`\`${description}\`\`\`` : ''}`.trim(), m)
-if (audio) return conn.sendFile(m.chat, audio, 'tiktok.opus', null, m)
+await conn.sendFile(m.chat, audio, 'tiktok.opus', null, m)
 } catch (e) {
 reportError(e)
 }         
