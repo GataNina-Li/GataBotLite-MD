@@ -251,17 +251,17 @@ case isCommand10:
 if (!text) return conn.reply(m.chat, `${lenguajeGB['smsMalused2']()}\n*${usedPrefix + command} https://vm.tiktok.com/ZM2e66NBM/?t=1*`, m)
 if (!/(?:https:?\/{2})?(?:w{3}|vm|vt|t)?\.?tiktok.com\/([^\s&]+)/gi.test(text)) return conn.reply(m.chat, `${lenguajeGB['smsAvisoFG']()}*${lenguajeGB['smsYT6']()}*`, m)  
 try {
-const { author: { nickname }, video, description, audio, username } = await tiktokdl(args[0])
+const { author: { nickname }, video, description, audio } = await tiktokdl(args[0])
 .catch(async _ => await tiktokdlv2(args[0]))
 .catch(async _ => await tiktokdlv3(args[0]))
 const url = video.no_watermark2 || video.no_watermark || 'https://tikcdn.net' + video.no_watermark_raw || video.no_watermark_hd
 //if (!url) return conn.reply(m.chat, `${lenguajeGB['smsMalError3']()}`, m)
 await conn.reply(m.chat, `${lenguajeGB['smsAvisoEG']()}*${lenguajeGB['smsTiktok']()}*`, m)    
 await conn.sendFile(m.chat, url, 'tiktok.mp4', `
-💜 *@${username}*
 💜 *@${nickname}*
+💜 *@${description}*
 ${description ? `🩵 \`\`\`${description}\`\`\`` : ''}`.trim(), m)
-await conn.sendFile(m.chat, audio, 'tiktok.opus', null, m)
+await conn.sendFile(m.chat, audio.data, 'error.mp3', '', m, true, { mimetype: 'audio/mp4' })
 } catch (e) {
 reportError(e)
 }         
