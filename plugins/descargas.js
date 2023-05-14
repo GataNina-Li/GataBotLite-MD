@@ -259,7 +259,8 @@ const url = video.no_watermark2 || video.no_watermark || 'https://tikcdn.net' + 
 await conn.reply(m.chat, `${lenguajeGB['smsAvisoEG']()}*${lenguajeGB['smsTiktok']()}*`, m)    
 await conn.sendFile(m.chat, url, 'tiktok.mp4', `
 💜 *${nickname}*`.trim(), m)
-await conn.sendMessage(m.chat, { audio: { url: url }, fileName: 'tiktok.mp3', mimetype: 'audio/mp4', ptt: true }, { quoted: m }) 
+//await conn.sendMessage(m.chat, { audio: { url: url }, fileName: 'tiktok.mp3', mimetype: 'audio/mp4', ptt: true }, { quoted: m })
+await conn.sendFile(m.chat, url, 'tiktok.mp3', '', m, true, { mimetype: 'audio/mp4' })
 } catch (e) {
 reportError(e)
 }         
