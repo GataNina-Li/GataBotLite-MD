@@ -262,7 +262,7 @@ await conn.sendMessage(m.chat, { audio: { url: url }, fileName: 'tiktok.mp3', mi
  
 let urut = text.split`|`
 let one = urut[1]
-let Tikdl = await (await fetch("https://api.tikdl.caliphdev.codes/video?url=" + one)).json()
+/*let Tikdl = await (await fetch("https://api.tikdl.caliphdev.codes/video?url=" + one)).json()
 let T = Tikdl.result
 let TikdlCap = `*[ T I K T O K ]*
 
@@ -289,7 +289,11 @@ let TikdlCap = `*[ T I K T O K ]*
 *Author:* ${T.music.author}
 *Duration:* ${T.music.durationFormatted}
 `
-await conn.sendFile(m.chat, T.video.watermark, "", TikdlCap, m)
+await conn.sendFile(m.chat, T.video.watermark, "", TikdlCap, m)*/
+let response = await fetch("https://api.tikdl.caliphdev.codes/video?url=" + text);
+let responseBody = await response.text();
+console.log(responseBody)
+    
 } catch (e) {
 reportError(e)
 }         
