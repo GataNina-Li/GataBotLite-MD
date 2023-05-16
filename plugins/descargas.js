@@ -18,6 +18,7 @@ const isCommand9 = /^(ytmax)$/i.test(command)
 const isCommand10 = /^(tkdl|tiktok)$/i.test(command)
 const isCommand11 = /^(ytmaxdoc)$/i.test(command)
 const isCommand12 = /^(dalle|openiamage|aiimage|aiimg|aimage|iaimagen|openaimage|openaiimage)$/i.test(command)
+const isCommand13 = /^(openjourney|journey|midjourney)$/i.test(command)
 
 async function reportError(e) {
 await m.reply(lenguajeGB['smsMalError3']() + '\n*' + lenguajeGB.smsMensError1() + '*\n*' + usedPrefix + `${lenguajeGB.lenguaje() == 'es' ? 'reporte' : 'report'}` + '* ' + `${lenguajeGB.smsMensError2()} ` + usedPrefix + command)
@@ -294,22 +295,55 @@ if (args.length >= 1) {
 text = args.slice(0).join(" ")
 } else if (m.quoted && m.quoted.text) {
 text = m.quoted.text
-} else return conn.reply(m.chat, `${lenguajeGB['smsMalused3']()}\n*${usedPrefix + command} Un gato de color morado con celeste estando en Júpiter, iluminando el cosmo con su encanto con un efecto minimalista.*`, m)
-await m.reply(wait)
-//try{
-//let response = await fetch(`https://botcahx.cyclic.app/dalle?text=${encodeURIComponent(text)}`)
-//let image = await response.buffer()
-//await conn.sendFile(m.chat, image, 'image.jpg', '💻 *IMAGEN CREADA CON AI/DALL-E* ✨' + `\n\n_${text}_`, m)
-//} catch {
+} else return conn.reply(m.chat, `${lenguajeGB['smsMalused3']()}\n*${usedPrefix + command} ${lenguajeGB.smsIAimage2()}*`, m)
+await m.reply(wait) 
+try{   
+let response = await fetch(`https://botcahx.cyclic.app/dalle?text=${encodeURIComponent(text)}`)
+let image = await response.buffer()
+await conn.sendFile(m.chat, image, 'image.jpg', lenguajeGB.smsIAimage() + `\n\n_${text}_`, m)
+} catch {
 try{
 let res = `https://api.lolhuman.xyz/api/dall-e?apikey=${lolkeysapi}&text=${text}`  
-await conn.sendFile(m.chat, res, 'image.jpg', '💻 *IMAGEN CREADA CON AI/DALL-E* ✨' + `\n\n_${text}_`, m)
+await conn.sendFile(m.chat, res, 'image.jpg', lenguajeGB.smsIAimage() + `\n\n_${text}_`, m)
 } catch (e) {
 reportError(e)} 
-//}        
+}        
+break
+        
+case isCommand13:
+if (args.length >= 1) {
+text = args.slice(0).join(" ")
+} else if (m.quoted && m.quoted.text) {
+text = m.quoted.text
+} else return conn.reply(m.chat, `${lenguajeGB['smsMalused3']()}\n*${usedPrefix + command} ${lenguajeGB.smsIAimage4()}*`, m)
+m.reply(wait)
+try {
+await Draw(text).then((img) => {
+await conn.sendFile(m.chat, img, 'image.jpg', lenguajeGB.smsIAimage3() + `\n\n_${text}_`, m)
+})
+} catch (e) {
+reportError(e)}        
 break
 }}
 
-handler.command = /^(gimage|imagen?|play2?|fgmp3|dlmp3|getaud|yt(a|mp3)?|ytmp3doc|ytadoc|fgmp4|dlmp4|getvid|yt(v|mp4)?|ytmp4doc|ytvdoc|facebook|fb|facebookdl|fbdl|mediafire(dl)?|dlmediafire|ytmax|ytmaxdoc|tiktok|tkdl|dalle|openiamage|aiimage|aiimg|aimage|iaimagen|openaimage|openaiimage)$/i
+handler.command = /^(gimage|imagen?|play2?|fgmp3|dlmp3|getaud|yt(a|mp3)?|ytmp3doc|ytadoc|fgmp4|dlmp4|getvid|yt(v|mp4)?|ytmp4doc|ytvdoc|facebook|fb|facebookdl|fbdl|mediafire(dl)?|dlmediafire|ytmax|ytmaxdoc|tiktok|tkdl|dalle|openiamage|aiimage|aiimg|aimage|iaimagen|openaimage|openaiimage|openjourney|journey|midjourney)$/i
 handler.register = true
 export default handler
+
+async function Draw(propmt) {
+const Blobs = await fetch(
+"https://api-inference.huggingface.co/models/prompthero/openjourney-v2",
+{
+method: "POST",
+headers: {
+"content-type": "application/json",
+Authorization: "Bearer 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",
+},
+body: JSON.stringify({ inputs: propmt }),
+})
+.then((res) => res.blob())
+const arrayBuffer = await Blobs.arrayBuffer();
+const buffer = Buffer.from(arrayBuffer);
+return buffer
+}
+
