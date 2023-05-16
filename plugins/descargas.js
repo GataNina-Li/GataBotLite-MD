@@ -17,6 +17,7 @@ const isCommand8 = /^(mediafire(dl)?|dlmediafire)$/i.test(command)
 const isCommand9 = /^(ytmax)$/i.test(command)
 const isCommand10 = /^(tkdl|tiktok)$/i.test(command)
 const isCommand11 = /^(ytmaxdoc)$/i.test(command)
+const isCommand12 = /^(dalle|openiamage|aiimage|aiimg|aimage|iaimagen|openaimage|openaiimage)$/i.test(command)
 
 async function reportError(e) {
 await m.reply(lenguajeGB['smsMalError3']() + '\n*' + lenguajeGB.smsMensError1() + '*\n*' + usedPrefix + `${lenguajeGB.lenguaje() == 'es' ? 'reporte' : 'report'}` + '* ' + `${lenguajeGB.smsMensError2()} ` + usedPrefix + command)
@@ -287,8 +288,28 @@ await conn.sendMessage(m.chat, { document: { url: dl_url }, caption: `*🪷 ${tt
 reportError(e)
 }        
 break
+        
+case isCommand12:
+if (args.length >= 1) {
+text = args.slice(0).join(" ")
+} else if (m.quoted && m.quoted.text) {
+text = m.quoted.text
+} else return conn.reply(m.chat, `${lenguajeGB['smsMalused3']()}\n*${usedPrefix + command} Un gato de color morado con celeste estando en Júpiter, iluminando el cosmo con su encanto con un efecto minimalista.*`, m)
+await m.reply(wait)
+try{
+let response = await fetch(`https://botcahx.cyclic.app/dalle?text=${encodeURIComponent(text)}`)
+let image = await response.buffer()
+await conn.sendFile(m.chat, image, 'image.jpg', '💻 *IMAGEN CREADA CON AI/DALL-E* ✨' + `\n\n_${text}_`, m)
+} catch {
+try{
+let res = `https://api.lolhuman.xyz/api/dall-e?apikey=${lolkeysapi}&text=${text}`  
+await conn.sendFile(m.chat, res, 'image.jpg', '💻 *IMAGEN CREADA CON AI/DALL-E* ✨' + `\n\n_${text}_`, m)
+} catch (e) {
+reportError(e)} 
+}        
+break
 }}
 
-handler.command = /^(gimage|imagen?|play2?|fgmp3|dlmp3|getaud|yt(a|mp3)?|ytmp3doc|ytadoc|fgmp4|dlmp4|getvid|yt(v|mp4)?|ytmp4doc|ytvdoc|facebook|fb|facebookdl|fbdl|mediafire(dl)?|dlmediafire|ytmax|ytmaxdoc|tiktok|tkdl)$/i
+handler.command = /^(gimage|imagen?|play2?|fgmp3|dlmp3|getaud|yt(a|mp3)?|ytmp3doc|ytadoc|fgmp4|dlmp4|getvid|yt(v|mp4)?|ytmp4doc|ytvdoc|facebook|fb|facebookdl|fbdl|mediafire(dl)?|dlmediafire|ytmax|ytmaxdoc|tiktok|tkdl|dalle|openiamage|aiimage|aiimg|aimage|iaimagen|openaimage|openaiimage)$/i
 handler.register = true
 export default handler
