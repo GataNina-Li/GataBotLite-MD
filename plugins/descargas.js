@@ -319,7 +319,7 @@ text = m.quoted.text
 m.reply(wait)
 try {
 await Draw(text).then((img) => {
-await conn.sendFile(m.chat, img, 'image.jpg', lenguajeGB.smsIAimage3() + `\n\n_${text}_`, m)
+conn.sendFile(m.chat, img, 'image.jpg', lenguajeGB.smsIAimage3() + `\n\n_${text}_`, m)
 })
 } catch (e) {
 reportError(e)}        
