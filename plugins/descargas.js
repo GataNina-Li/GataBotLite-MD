@@ -296,17 +296,17 @@ text = args.slice(0).join(" ")
 text = m.quoted.text
 } else return conn.reply(m.chat, `${lenguajeGB['smsMalused3']()}\n*${usedPrefix + command} Un gato de color morado con celeste estando en Júpiter, iluminando el cosmo con su encanto con un efecto minimalista.*`, m)
 await m.reply(wait)
-try{
-let response = await fetch(`https://botcahx.cyclic.app/dalle?text=${encodeURIComponent(text)}`)
-let image = await response.buffer()
-await conn.sendFile(m.chat, image, 'image.jpg', '💻 *IMAGEN CREADA CON AI/DALL-E* ✨' + `\n\n_${text}_`, m)
-} catch {
+//try{
+//let response = await fetch(`https://botcahx.cyclic.app/dalle?text=${encodeURIComponent(text)}`)
+//let image = await response.buffer()
+//await conn.sendFile(m.chat, image, 'image.jpg', '💻 *IMAGEN CREADA CON AI/DALL-E* ✨' + `\n\n_${text}_`, m)
+//} catch {
 try{
 let res = `https://api.lolhuman.xyz/api/dall-e?apikey=${lolkeysapi}&text=${text}`  
 await conn.sendFile(m.chat, res, 'image.jpg', '💻 *IMAGEN CREADA CON AI/DALL-E* ✨' + `\n\n_${text}_`, m)
 } catch (e) {
 reportError(e)} 
-}        
+//}        
 break
 }}
 
