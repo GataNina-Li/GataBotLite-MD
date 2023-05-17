@@ -4,9 +4,8 @@ if (m.isGroup) who = m.mentionedJid[0] ? m.mentionedJid[0] : m.quoted ? m.quoted
 else who = m.chat
 let name = await conn.getName(m.sender)	
 if (!global.db.data.settings[conn.user.jid].restrict) return conn.reply(m.chat, `${lenguajeGB['smsAvisoAG']()}${lenguajeGB['smsSoloOwner']()}`, fkontak, m)
-if (/^[a-zA-Z]+$/.test(text)) {
-return conn.reply(m.chat, "El texto solo contiene letras. Por favor, proporciona un número válido.", m)
-}
+
+if (/^[a-zA-Z]+$/.test(text)) return conn.reply(m.chat, "El texto solo contiene letras. Por favor, proporciona un número válido.", m)
 if (args.length >= 1) {
 text = args.slice(0).join(" ")
 } else if (m.quoted && m.quoted.text) {
