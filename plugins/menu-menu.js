@@ -187,11 +187,19 @@ const vi = ['https://telegra.ph/file/405daebd4bc0d69e5d165.mp4',
 'https://telegra.ph/file/1d0ad9f79f65f39895b08.mp4',
 'https://telegra.ph/file/c25afc1685b13210ce602.mp4']
 
-try{
-await conn.sendFile(m.chat, vi.getRandom(), 'error.mp4', menu, fkontak, false, { mentions: [m.sender] })
-} catch (error) {
-await conn.sendFile(m.chat, imagen4, 'error.jpg', menu, fkontak, false, { mentions: [m.sender] }); 
+async function getRandomImage() {
+  try {
+    return await vi.getRandom();
+  } catch (error) {
+    return img3;
+  }
 }
+
+const randomImage = await getRandomImage();
+const filename = randomImage === img3 ? 'error.mp4' : 'error.jpg';
+
+await conn.sendFile(m.chat, randomImage, filename, menu, fkontak, false, { mentions: [m.sender] });
+
 
 } catch (e) {
 await m.reply(lenguajeGB['smsMalError3']() + '\n*' + lenguajeGB.smsMensError1() + '*\n*' + usedPrefix + `${lenguajeGB.lenguaje() == 'es' ? 'reporte' : 'report'}` + '* ' + `${lenguajeGB.smsMensError2()} ` + usedPrefix + command)
