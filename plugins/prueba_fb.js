@@ -14,10 +14,9 @@ if (!text) throw `${usedPrefix}${command} https://www.facebook.com/1000109297947
 //r2es = `${d2ata.urls[0]?.hd || d2ata.urls[1]?.sd || ''}`}
 //conn.sendFile(m.chat, r2es, 'error.mp4', packname, m)
 
-let vio = await fetch(`https://api.violetics.pw/api/downloader/facebook?apikey=beta&url=${args[0]}`)  
-let vioo = await vio.json()
-let videovio = `${vioo.result.hd.url || vioo.result.sd.url}`
-await conn.sendFile(m.chat, videovio, `error.mp4`, wm, m)
+var get = await fetch(`https://api.botcahx.live/api/dowloader/fbdown?url=${args[0]}&apikey=QaepQXxR`);
+var js = await get.json()   
+conn.sendFile(m.chat, js.result.HD, 'fb.mp4', wm, m);
 }
 
 handler.command = /^(facebook5)$/i
