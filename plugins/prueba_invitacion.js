@@ -17,7 +17,7 @@ let NumeroUser = text.replace(/\D/g, '')
 let user = m.sender.split`@`[0]
 let link = 'https://chat.whatsapp.com/' + await conn.groupInviteCode(m.chat)
  
-await conn.reply(NumeroUser + '@s.whatsapp.net', `¡Hola! *@${NumeroUser}* Soy ${packname}, un Bot para WhatsApp. Parece que *@${user}* te está invitandi al Grupo ${groupMetadata.subject}\n\n\`\`\`¡Te esperamos con ansias en el grupo!\`\`\`\n\n*${link}*`, null, {mentions: [NumeroUser + '@s.whatsapp.net', m.sender]})
+await conn.reply(NumeroUser + '@s.whatsapp.net', `¡Hola! *@${NumeroUser}* Soy ${packname}, un Bot para WhatsApp. Parece que *@${user}* te está invitando al Grupo ${groupMetadata.subject}\n\n\`\`\`¡Te esperamos con ansias en el grupo!\`\`\`\n\n*${link}*`, null, {mentions: [NumeroUser + '@s.whatsapp.net', m.sender]})
 await conn.reply(m.chat, `*INVITACIÓN ENVIADA AL PRIVADO DE @${NumeroUser}*`, m, {mentions: [NumeroUser + '@s.whatsapp.net', m.sender]})
 }
 handler.command = /^(add|agregar|invitar|invite|añadir|\+)$/i
