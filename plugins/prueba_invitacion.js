@@ -19,7 +19,7 @@ return conn.reply(m.chat, "El texto solo contiene letras. Por favor, proporciona
 }
   
 let NumeroUser = text.replace(/\D/g, '')
-let user = m.sender.split`@`[0] + '@s.whatsapp.net'
+let user = m.sender.split`@`[0]
 let link = 'https://chat.whatsapp.com/' + await conn.groupInviteCode(m.chat)
  
 await conn.reply(NumeroUser + '@s.whatsapp.net', `¡Hola! @${NumeroUser} Soy ${packname}, un Bot para WhatsApp. Parece que @${user} intentó agregarte, pero no pude hacerlo. No te preocupes, ¡aquí tienes una invitación para unirte! ¡Te esperamos con ansias en el grupo!\n\n${link}`, m, {mentions: [NumeroUser + '@s.whatsapp.net', m.sender]})
