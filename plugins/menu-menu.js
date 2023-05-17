@@ -188,7 +188,7 @@ const vi = ['https://telegra.ph/file/405daebd4bc0d69e5d165.mp4',
 'https://telegra.ph/file/c25afc1685b13210ce602.mp4']
 
 //vi.getRandom();
-await conn.sendFile(m.chat, img3, 'error.jpg', menu, fkontak, false, { mentions: [m.sender] });
+conn.sendFile(m.chat, img7, 'menu.jpg', menu, fkontak, false, { mentions: [m.sender] })
 
 } catch (e) {
 await m.reply(lenguajeGB['smsMalError3']() + '\n*' + lenguajeGB.smsMensError1() + '*\n*' + usedPrefix + `${lenguajeGB.lenguaje() == 'es' ? 'reporte' : 'report'}` + '* ' + `${lenguajeGB.smsMensError2()} ` + usedPrefix + command)
