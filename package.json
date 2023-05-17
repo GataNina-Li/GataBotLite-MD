@@ -28,7 +28,7 @@
 "license": "GPL-3.0-or-later",
 "dependencies": {
   "@adiwajshing/baileys": "npm:baileys@^6.0.9",
-  "@bochilteam/scraper": "^4.0.22-alpha.0",
+  "@bochilteam/scraper": "^3.0.0",
   "@vitalets/google-translate-api": "^8.0.0",
   "@shineiichijo/marika": "^2.0.6",
   "@xct007/frieren-scraper": "^0.0.2",
