@@ -171,7 +171,7 @@ global.imagen13 = fs.readFileSync('./media/menus/img12.jpg')
 global.img = 'https://i.imgur.com/AwlL9kc.jpeg'
 global.img2 = 'https://i.imgur.com/p18q1Ok.jpeg'
 
-global.img3 = 'https://i.imgur.com/01Z8a0a.jpeg' //ft rectangular
+global.img3 = 'https://i.imgur.com/01Z8a0a.jpg' //ft rectangular
 
 //global.img3 = 'https://i.imgur.com/oUAGYc2.jpg' //prem   //no
 //global.img4 = 'https://i.imgur.com/i0pccuo.jpg' //prem   //no
