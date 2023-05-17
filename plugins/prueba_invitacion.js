@@ -7,7 +7,7 @@ if (!global.db.data.settings[conn.user.jid].restrict) return conn.reply(m.chat, 
 
 //if (/^[a-zA-Z]+$/.test(text)) return conn.reply(m.chat, "El texto solo contiene letras. Por favor, proporciona un número válido.", m)
 if (args.length >= 1) {
-if (/^[a-zA-Z]+$/.test(text)) return conn.reply(m.chat, "El texto solo contiene letras. Por favor, proporciona un número válido.", m)
+if (/[a-zA-Z]/.test(text)) return conn.reply(m.chat, "El texto solo contiene letras. Por favor, proporciona un número válido.", m)
 text = args.slice(0).join(" ")
 } else if (m.quoted && m.quoted.text) {
 text = m.quoted.text
