@@ -190,7 +190,7 @@ const vi = ['https://telegra.ph/file/405daebd4bc0d69e5d165.mp4',
 try{
 await conn.sendFile(m.chat, vi.getRandom(), 'error.mp4', menu, fkontak, false, { mentions: [m.sender] })
 } catch (error) {
-await conn.sendFile(m.chat, img3, 'error.jpg', menu, fkontak, false, { mentions: [m.sender] }); 
+await conn.sendFile(m.chat, imagen4, 'error.jpg', menu, fkontak, false, { mentions: [m.sender] }); 
 }
 
 } catch (e) {
