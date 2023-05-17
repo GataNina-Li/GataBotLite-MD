@@ -1,4 +1,5 @@
 import { youtubedl, youtubedlv2, youtubedlv3, tiktokdl, tiktokdlv2, tiktokdlv3 } from '@bochilteam/scraper' 
+import { facebook } from "@xct007/frieren-scraper"
 import { googleImage } from '@bochilteam/scraper'
 import fetch from "node-fetch"
 import yts from 'yt-search'
@@ -176,18 +177,49 @@ reportError(e)
 break
         
 case isCommand7:
-if (!args[0]) throw lenguajeGB.smsMalused2() + `*${usedPrefix + command} https://www.facebook.com/watch?v=636541475139*`
-if (!args[0].match(/www.facebook.com|fb.watch/g)) throw lenguajeGB.smsMalused2() + `*${usedPrefix + command} https://www.facebook.com/watch?v=636541475139*`    
-try {  
-let contenido = `✅ *FACEBOOK*`
-let vio = await fetch(`https://api.violetics.pw/api/downloader/facebook?apikey=beta&url=${args[0]}`)  
-let vioo = await vio.json()
-let videovio = `${vioo.result.hd.url || vioo.result.sd.url}`
-await m.reply(wait)
-await conn.sendFile(m.chat, videovio, `error.mp4`, contenido, m)
+if (!text) throw lenguajeGB.smsMalused2() + `\n*${usedPrefix}${command}* https://fb.watch/kAOXy3wf2L/?mibextid=Nif5oz\n\n*${usedPrefix}${command}* https://www.facebook.com/reel/1662783117489590?s=yWDuG2&fs=e&mibextid=Nif5oz`
+if (!args[0].match(/www.facebook.com|fb.watch|web.facebook.com|business.facebook.com|video.fb.com/g)) throw lenguajeGB.smsAvisoFG() + lenguajeGB.smsyFBvid1()
+let messageType = checkMessageType(args[0])
+let message = ''
+switch (messageType) {
+case "groups":
+message = lenguajeGB.smsyFBvid2()
+break
+case "reel":
+message = lenguajeGB.smsyFBvid3()
+break
+case "stories":
+message = lenguajeGB.smsyFBvid4()
+break
+case "posts":
+message = lenguajeGB.smsyFBvid5()
+break
+default:
+message = lenguajeGB.smsyFBvid6()
+break
+}  
+try {
+let res = await fetch(`https://api.lolhuman.xyz/api/facebook?apikey=${lolkeysapi}&url=${args[0]}`)
+let _json = await res.json()
+vid = _json.result[0]
+if (vid == '' || !vid || vid == null) vid = _json.result[1]
+await conn.sendFile(m.chat, vid, 'error.mp4', `*${message}*`, m)
+} catch (error1) {
+try {
+const d2ata = await facebook.v1(args[0])
+let r2es = ''
+if (d2ata.urls && d2ata.urls.length > 0) {
+r2es = `${d2ata.urls[0]?.hd || d2ata.urls[1]?.sd || ''}`
+}
+await conn.sendFile(m.chat, r2es, 'error.mp4', `*${message}*`, m)
+} catch (error2) {
+try {
+var get = await fetch(`https://api.botcahx.live/api/dowloader/fbdown?url=${args[0]}&apikey=QaepQXxR`)
+var js = await get.json()
+await conn.sendFile(m.chat, js.result.HD, 'error.mp4', `*${message}*`, m)
 } catch (e) {
-reportError(e)
-} 
+reportError(e)} 
+}}    
 break
         
 case isCommand8:
@@ -345,5 +377,19 @@ body: JSON.stringify({ inputs: propmt }),
 const arrayBuffer = await Blobs.arrayBuffer();
 const buffer = Buffer.from(arrayBuffer);
 return buffer
+}
+
+function checkMessageType(url) {
+if (url.includes("www.facebook.com")) {
+if (url.includes("/groups/")) {
+return "groups"
+} else if (url.includes("/reel/")) {
+return "reel"
+} else if (url.includes("/stories/")) {
+return "stories"
+} else if (url.includes("/posts/")) {
+return "posts"
+}}
+return "default"
 }
 
