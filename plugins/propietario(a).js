@@ -1,4 +1,4 @@
-import fs from 'fs'
+import fs from 'fs' 
 import { execSync } from 'child_process'
 let linkRegex = /chat.whatsapp.com\/([0-9A-Za-z]{20,24})/i
 let handler = async (m, { conn, command, usedPrefix, text, isAdmin, isOwner, isROwner, participants, groupMetadata  }) => {
