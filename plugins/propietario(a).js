@@ -259,10 +259,17 @@ let groups = Object.keys(await conn.groupFetchAllParticipating())
 let usersTag = participants.map(u => conn.decodeJid(u.id))
 let readMS = String.fromCharCode(8206).repeat(850)
 await m.reply(lenguajeGB.smsChatGP1())
-for (let id of groups) {  
-let infoGP = lenguajeGB.smsChatGP2(readMS, dia, mes, año, fecha, tiempo)  
-await conn.reply(id, infoGP + teks2, { mentions: usersTag }, { quoted: m })         
-}
+//for (let id of groups) {  
+//let infoGP = lenguajeGB.smsChatGP2(readMS, dia, mes, año, fecha, tiempo)  
+//await conn.reply(id, infoGP + teks2, { mentions: usersTag }, { quoted: null })         
+//}
+for (let i = 0; i < groups.length; i++) {
+const id = groups[i];
+const infoGP = lenguajeGB.smsChatGP2(readMS, dia, mes, año, fecha, tiempo)
+const delay = i * 4000 //4 seg
+setTimeout(async () => {
+await conn.reply(id, infoGP + teks2, { mentions: usersTag }, { quoted: null });
+}, delay)}        
 let totalGP = groups.length
 await m.reply(lenguajeGB.smsChatGP3(totalGP))        
 break
