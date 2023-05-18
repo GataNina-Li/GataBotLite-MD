@@ -1,7 +1,7 @@
 import fs from 'fs'
 import { execSync } from 'child_process'
 let linkRegex = /chat.whatsapp.com\/([0-9A-Za-z]{20,24})/i
-let handler = async (m, { conn, command, usedPrefix, text, isAdmin, isOwner, participants, groupMetadata  }) => {
+let handler = async (m, { conn, command, usedPrefix, text, isAdmin, isOwner, isROwner, participants, groupMetadata  }) => {
 let fkontak, who, user, number, bot, bant, ownerNumber, aa, users, usr, q, mime, img
 fkontak = { "key": { "participants":"0@s.whatsapp.net", "remoteJid": "status@broadcast", "fromMe": false, "id": "Halo" }, "message": { "contactMessage": { "vcard": `BEGIN:VCARD\nVERSION:3.0\nN:Sy;Bot;;;\nFN:y\nitem1.TEL;waid=${m.sender.split('@')[0]}:${m.sender.split('@')[0]}\nitem1.X-ABLabel:Ponsel\nEND:VCARD` }}, "participant": "0@s.whatsapp.net" }
 const isCommand1 = /^(backup|respaldo|copia)$/i.test(command)
@@ -152,14 +152,15 @@ who = m.mentionedJid[0] ? m.mentionedJid[0] : m.quoted ? m.quoted.sender : text 
 let res = []	
 let cmd = command.toLowerCase()
 let comd = command.toUpperCase()
-if (!who) return conn.reply(m.chat, why, m, { mentions: [m.sender] })		
+if (!who) return conn.reply(m.chat, why, m, { mentions: [m.sender] })
+if (!((cmd === "unblock" || cmd === "desbloquear") && (isOwner || isROwner))) {
 for (let i = 0; i < global.owner.length; i++) {
 ownerNumber = global.owner[i][0]
 if (who.replace(/@s\.whatsapp\.net$/, '') === ownerNumber) {
 aa = ownerNumber + '@s.whatsapp.net'
 await conn.reply(m.chat, lenguajeGB.smsBlockUn2(comd, ownerNumber), null, { mentions: [aa] })
 return
-}}
+}}}
 switch (true) {		
 case cmd == "block" || cmd == "bloquear":
 if (who) {
