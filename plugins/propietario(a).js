@@ -268,8 +268,7 @@ const id = groups[i];
 const infoGP = lenguajeGB.smsChatGP2(readMS, dia, mes, año, fecha, tiempo)
 const delay = i * 4000 //4 seg
 setTimeout(async () => {
-await conn.reply(id, infoGP + teks2, { mentions: usersTag }, { quoted: usersTag });
-//await conn.sendMessage(id, { text: infoGP + teks2, mentions: conn.parseMention(infoGP + teks2)}, { quoted: fkontak })
+await conn.reply(id, infoGP + teks2, { mentions: usersTag }, { quoted: fkontak });
 }, delay)}        
 let totalGP = groups.length
 await m.reply(lenguajeGB.smsChatGP3(totalGP))        
@@ -319,7 +318,7 @@ for (let i = 0; i < groups2.length; i++) {
 const group = groups2[i];
 const delay = i * 4000; // 4 seg
 setTimeout(async () => {
-await conn.reply(group, `${lenguajeGB.smsBCbot7()}\n\n` + teks4, { mentions: usersTag2 }, { quoted: m });
+await conn.reply(group, `${lenguajeGB.smsBCbot7()}\n\n` + teks4, { mentions: usersTag2 }, { quoted: fkontak });
 }, delay)}
 for (let user of chats2) {
 await new Promise(resolve => setTimeout(resolve, 2000)) // 2 segundos
