@@ -1,7 +1,7 @@
 import { WAMessageStubType } from '@adiwajshing/baileys'
 
-export async function before(m) {
-	if (!m.messageStubType || !m.isGroup) return;
+export async function before(m, { conn }) {
+	if (!m.messageStubType || !m.isGroup) return
 	let edtr = `@${m.sender.split`@`[0]}`
 	let fkontak = { "key": { "participants":"0@s.whatsapp.net", "remoteJid": "status@broadcast", "fromMe": false, "id": "Halo" }, "message": { "contactMessage": { "vcard": `BEGIN:VCARD\nVERSION:3.0\nN:Sy;Bot;;;\nFN:y\nitem1.TEL;waid=${m.sender.split('@')[0]}:${m.sender.split('@')[0]}\nitem1.X-ABLabel:Ponsel\nEND:VCARD` }}, "participant": "0@s.whatsapp.net" }
 	if (m.messageStubType == 21) {
@@ -27,10 +27,10 @@ export async function before(m) {
 	} else {
 		console.log({
 			messageStubType: m.messageStubType,
-			messageStubParameters: m.messageStubParameters,
-			type: WAMessageStubType[m.messageStubType],
+	    messageStubParameters: m.messageStubParameters,
+	    type: WAMessageStubType[m.messageStubType], 
 		});
 	}
 }
 
-export const disabled = true
+//export const disabled = true
