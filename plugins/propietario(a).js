@@ -286,7 +286,7 @@ for (let user of chats) {
 await new Promise(resolve => setTimeout(resolve, 2000)) // 2 segundos
 await conn.reply(user, `${lenguajeGB.smsBCbot7()}\n\n` + teks3, null)
 totalPri++
-if (totalPri >= 3000) { 
+if (totalPri >= 500000) { 
 break
 }}   
 let end = new Date().getTime() 
@@ -311,14 +311,20 @@ await conn.reply(m.chat, lenguajeGB.smsBCMensaje2(), m)
 let start2 = new Date().getTime()
 let usersTag2 = participants.map(u => conn.decodeJid(u.id))
 let totalPri2 = 0
-for (let group of groups2) {
-await conn.reply(group, `${lenguajeGB.smsBCbot7()}\n\n` + teks4, { mentions: usersTag2 }, { quoted: m })     
-}
+//for (let group of groups2) {
+//await conn.reply(group, `${lenguajeGB.smsBCbot7()}\n\n` + teks4, { mentions: usersTag2 }, { quoted: m })     
+//}
+for (let i = 0; i < groups2.length; i++) {
+const group = groups2[i];
+const delay = i * 4000; // 4 seg
+setTimeout(async () => {
+await conn.reply(group, `${lenguajeGB.smsBCbot7()}\n\n` + teks4, { mentions: usersTag2 }, { quoted: null });
+}, delay)}
 for (let user of chats2) {
 await new Promise(resolve => setTimeout(resolve, 2000)) // 2 segundos
 await conn.reply(user, `${lenguajeGB.smsBCbot7()}\n\n` + teks4, null)
 totalPri2++
-if (totalPri2 >= 3000) { 
+if (totalPri2 >= 500000) { 
 break
 }}  
 let end2 = new Date().getTime()
@@ -336,7 +342,7 @@ time2 = `${time2} segundos`
 await m.reply(`${lenguajeGB.smsBCbot1()}
 \`\`\`${lenguajeGB.smsBCbot2()} >> ${totalPrivate2}\`\`\`
 \`\`\`${lenguajeGB.smsBCbot3()} >>   ${totalGroups2}\`\`\`
-\`\`\`${lenguajeGB.smsBCbot4()} >>   ${total2}\`\`\`\n\n*${lenguajeGB.smsBCbot5()} ${time2}*\n${totalPri2 >= 3000 ? `\n*${lenguajeGB.smsBCbot6()}*` : ''}`)        
+\`\`\`${lenguajeGB.smsBCbot4()} >>   ${total2}\`\`\`\n\n*${lenguajeGB.smsBCbot5()} ${time2}*\n${totalPri2 >= 500000 ? `\n*${lenguajeGB.smsBCbot6()}*` : ''}`)        
 break
         
 }}
