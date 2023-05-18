@@ -319,7 +319,7 @@ for (let i = 0; i < groups2.length; i++) {
 const group = groups2[i];
 const delay = i * 4000; // 4 seg
 setTimeout(async () => {
-await conn.reply(group, `${lenguajeGB.smsBCbot7()}\n\n` + teks4, { mentions: usersTag2 }, { quoted: fkontak });
+await conn.reply(group, `${lenguajeGB.smsBCbot7()}\n\n` + teks4, { mentions: usersTag2 }, { quoted: m });
 }, delay)}
 for (let user of chats2) {
 await new Promise(resolve => setTimeout(resolve, 2000)) // 2 segundos
