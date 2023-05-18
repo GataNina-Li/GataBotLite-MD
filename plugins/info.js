@@ -96,7 +96,7 @@ _⭔ ${grupo[6]}_\n
 _⭔ ${grupo[7]}_\n
 _⭔ ${grupo[8]}_\n
 _⭔ ${grupo[9]}_`.trim()
-await conn.sendFile(m.chat, gataMenu.getRandom(), 'gata.jpg', str, fkontak)   
+await conn.sendFile(m.chat, gataImg.getRandom(), 'gata.jpg', str, fkontak)   
 } catch (e) {
 reportError(e)
 }    
