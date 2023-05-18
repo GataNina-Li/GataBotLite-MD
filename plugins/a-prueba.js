@@ -16,10 +16,14 @@ export async function before(m, { conn }) {
 		await this.sendMessage(m.chat, { text: `🔒 ${edtr} AHORA *${m.messageStubParameters[0] == 'on' ? 'SOLO ADMINS' : 'TODOS'}* PUEDE EDITAR LAS INFORMACION DEL GRUPO.`, mentions: [m.sender] }, { quoted: fkontak })
 	} else if (m.messageStubType == 26) {
 		await this.sendMessage(m.chat, { text: `🔓 ${edtr} EL GRUPO *${m.messageStubParameters[0] == 'on' ? 'ESTA CERRADO' : 'ESTA ABIERTO'}*\n ${m.messageStubParameters[0] == 'on' ? 'SOLO ADMINS' : 'TODOS'} PUEDEN ENVIAR MENSAJES.`, mentions: [m.sender] }, { quoted: fkontak })
+   } else if (m.messageStubType == 28) {
+		await this.sendMessage(m.chat, { text: `${edtr} ELIMINO A @${m.messageStubParameters[0].split`@`[0]}`, mentions: [m.sender] }, { quoted: fkontak })
 	} else if (m.messageStubType == 29) {
 		await this.sendMessage(m.chat, { text: `AHORA ES ADMIN EN ESTE GRUPO @${m.messageStubParameters[0].split`@`[0]}\n\n😼🫵ACCIÓN ECHA POR: ${edtr}`, mentions: [`${m.sender}`,`${m.messageStubParameters[0]}`] }, { quoted: fkontak })
 	} else if (m.messageStubType == 30) {
 		await this.sendMessage(m.chat, { text: `DEJA DE SER ADMIN EN ESTE GRUPO @${m.messageStubParameters[0].split`@`[0]}\n\n😼🫵ACCION ECHA POR: ${edtr}`, mentions: [`${m.sender}`,`${m.messageStubParameters[0]}`] }, { quoted: fkontak })
+    } else if (m.messageStubType ==  32) {
+		await this.sendMessage(m.chat, { text: `Se fue del Grupo @${m.messageStubParameters[0].split`@`[0]}`, mentions: [m.sender] }, { quoted: fkontak })
 	} else if (m.messageStubType == 72) {
 		await this.sendMessage(m.chat, { text: `${edtr} CAMBIO LAS DURACIÓN DEL LOS MENSAJE TEMPORALES A *@${m.messageStubParameters[0]}*`, mentions: [m.sender] }, { quoted: fkontak })
 	} else if (m.messageStubType == 123) {
