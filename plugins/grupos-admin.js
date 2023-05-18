@@ -219,21 +219,21 @@ case isCommand13:
 let who 
 if (m.isGroup) who = m.mentionedJid[0] ? m.mentionedJid[0] : m.quoted ? m.quoted.sender : text
 else who = m.chat
-let name = await conn.getName(m.sender)	
+bot = conn.user.jid.split`@`[0]
 if (!global.db.data.settings[conn.user.jid].restrict) return conn.reply(m.chat, `${lenguajeGB['smsAvisoAG']()}${lenguajeGB['smsSoloOwner']()}`, fkontak, m)
 if (args.length >= 1) {
-if (/[a-zA-Z]/.test(text)) return conn.reply(m.chat, lenguajeGB.smsAvisoFG() + "*SOLO SE ACEPTA DIGITOS, NO LETRAS*", m)
+if (/[a-zA-Z]/.test(text)) return conn.reply(m.chat, lenguajeGB.smsAvisoFG() + lenguajeGB.smsInvite1(), m)
 text = args.slice(0).join(" ")
 } else if (m.quoted && m.quoted.text) {
 text = m.quoted.text
 } else {
-return conn.reply(m.chat, `${lenguajeGB['smsAvisoMG']()}*INGRESE EL NÚMERO COMPLETO DEL USUARIO QUE QUIERE INVITAR AL GRUPO*\n*EJEMPLO:*\n\n*${usedPrefix + command}* +${conn.user.jid.split`@`[0]}`, m);
+return conn.reply(m.chat, `${lenguajeGB['smsAvisoMG']()}${lenguajeGB.smsInvite2(usedPrefix, command, bot)}`, m);
 }  
 let NumeroUser = text.replace(/\D/g, '')
 user = m.sender.split`@`[0]
 let link = 'https://chat.whatsapp.com/' + await conn.groupInviteCode(m.chat)
-await conn.reply(NumeroUser + '@s.whatsapp.net', `✨ ¡Hola! *@${NumeroUser}* Soy ${packname}, un Bot para WhatsApp. Parece que *@${user}* te está invitando al Grupo ${groupMetadata.subject}\n\n\`\`\`¡Te esperamos con ansias en el grupo!\`\`\`\n\n*${link}*`, null, {mentions: [NumeroUser + '@s.whatsapp.net', m.sender]})
-await conn.reply(m.chat, `*INVITACIÓN ENVIADA AL PRIVADO DE @${NumeroUser}*`, m, {mentions: [NumeroUser + '@s.whatsapp.net', m.sender]})    
+await conn.reply(NumeroUser + '@s.whatsapp.net', lenguajeGB.smsInvite3(NumeroUser, user, groupMetadata, link), null, {mentions: [NumeroUser + '@s.whatsapp.net', m.sender]})
+await conn.reply(m.chat, lenguajeGB.smsInvite4(NumeroUser), m, {mentions: [NumeroUser + '@s.whatsapp.net', m.sender]})    
 break
 }} 
   
