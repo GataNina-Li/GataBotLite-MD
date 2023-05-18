@@ -227,7 +227,7 @@ text = args.slice(0).join(" ")
 } else if (m.quoted && m.quoted.text) {
 text = m.quoted.text
 } else {
-return conn.reply(m.chat, `${lenguajeGB['smsAvisoMG']()}*INGRESE EL NÚMERO COMPLETO DEL USUARIO QUE QUIERA ENVIAR INVITACIÓN*`, m);
+return conn.reply(m.chat, `${lenguajeGB['smsAvisoMG']()}*INGRESE EL NÚMERO COMPLETO DEL USUARIO QUE QUIERE INVITAR AL GRUPO*\nEJEMPLO:\n\n${usedPrefix + command} ${conn.user.jid.split`@`[0]}`, m);
 }  
 let NumeroUser = text.replace(/\D/g, '')
 user = m.sender.split`@`[0]
