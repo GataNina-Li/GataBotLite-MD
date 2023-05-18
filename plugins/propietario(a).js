@@ -3,7 +3,7 @@ import { execSync } from 'child_process'
 let linkRegex = /chat.whatsapp.com\/([0-9A-Za-z]{20,24})/i
 let handler = async (m, { conn, command, usedPrefix, text, isAdmin, isOwner, isROwner, participants, groupMetadata  }) => {
 let fkontak, who, user, number, bot, bant, ownerNumber, aa, users, usr, q, mime, img
-fkontak = { "key": { "participants":"0@s.whatsapp.net", "remoteJid": "status@broadcast", "fromMe": false, "id": "Halo" }, "message": { "contactMessage": { "vcard": `BEGIN:VCARD\nVERSION:3.0\nN:Sy;Bot;;;\nFN:y\nitem1.TEL;waid=${m.sender.split('@')[0]}:${m.sender.split('@')[0]}\nitem1.X-ABLabel:Ponsel\nEND:VCARD` }}, "participant": "0@s.whatsapp.net" }
+fkontak = { "key": { "participants":"0@s.whatsapp.net", "remoteJid": "status@broadcast", "fromMe": false, "id": "Halo" }, "message": { "contactMessage": { "vcard": `BEGIN:VCARD\nVERSION:3.0\nN:Sy;Bot;;;\nFN:y\nitem1.TEL;waid=${conn.user.jid.split('@')[0]}:${conn.user.jid.split('@')[0]}\nitem1.X-ABLabel:Ponsel\nEND:VCARD` }}, "participant": "0@s.whatsapp.net" }
 const isCommand1 = /^(backup|respaldo|copia)$/i.test(command)
 const isCommand2 = /^(ban(user|usuario|earuser|earusuario))$/i.test(command) 
 const isCommand3 = /^(seradmin|autoadmin|tenerpoder)$/i.test(command)
@@ -268,8 +268,8 @@ const id = groups[i];
 const infoGP = lenguajeGB.smsChatGP2(readMS, dia, mes, año, fecha, tiempo)
 const delay = i * 4000 //4 seg
 setTimeout(async () => {
-//await conn.reply(id, infoGP + teks2, { mentions: participants.map(a => a.id) }, { quoted: fkontak });
-await conn.sendMessage(id, { text: infoGP + teks2, mentions: conn.parseMention(infoGP + teks2)}, { quoted: m })
+await conn.reply(id, infoGP + teks2, { mentions: usersTag }, { quoted: fkontak });
+//await conn.sendMessage(id, { text: infoGP + teks2, mentions: conn.parseMention(infoGP + teks2)}, { quoted: fkontak })
 }, delay)}        
 let totalGP = groups.length
 await m.reply(lenguajeGB.smsChatGP3(totalGP))        
