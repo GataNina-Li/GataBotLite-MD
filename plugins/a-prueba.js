@@ -2,12 +2,13 @@ import { WAMessageStubType } from '@adiwajshing/baileys'
 
 export async function before(m, { conn }) {
 	if (!m.messageStubType || !m.isGroup) return
+	const pp = await conn.profilePictureUrl(m.chat, 'image').catch(_ => null) || './src/avatar_contact.png'
 	let usuario = `@${m.sender.split`@`[0]}`
 	let fkontak = { "key": { "participants":"0@s.whatsapp.net", "remoteJid": "status@broadcast", "fromMe": false, "id": "Halo" }, "message": { "contactMessage": { "vcard": `BEGIN:VCARD\nVERSION:3.0\nN:Sy;Bot;;;\nFN:y\nitem1.TEL;waid=${m.sender.split('@')[0]}:${m.sender.split('@')[0]}\nitem1.X-ABLabel:Ponsel\nEND:VCARD` }}, "participant": "0@s.whatsapp.net" }
 	//let pp = gataMenu.getRandom()
  //   let apii = await this.getFile(pp)
 	if (m.messageStubType == 21) {
-		await this.sendMessage(m.chat, { text: `${usuario} 𝙃𝘼𝙎 𝘾𝘼𝙈𝘽𝙄𝘼𝘿𝙊 𝙀́𝙇 𝙉𝙊𝙈𝘽𝙍𝙀́ 𝘿𝙀𝙇 𝙂𝙍𝙐𝙋𝙊 𝘼:\n*${m.messageStubParameters[0]}*`, mentions: [m.sender] }, { quoted: fkontak }) 
+		await this.sendMessage(m.chat, { text: `${usuario} 𝙃𝘼𝙎 𝘾𝘼𝙈𝘽𝙄𝘼𝘿𝙊 𝙀𝙇 𝙉𝙊𝙈𝘽𝙍𝙀́ 𝘿𝙀𝙇 𝙂𝙍𝙐𝙋𝙊 𝘼:\n*${m.messageStubParameters[0]}*`, mentions: [m.sender] }, { quoted: fkontak }) 
 	} else if (m.messageStubType == 22) {
 		await this.sendMessage(m.chat, { text: `${usuario} 𝙃𝘼𝙎 𝘾𝘼𝙈𝘽𝙄𝘼𝘿𝙊 𝙇𝘼𝙎 𝙁𝙊𝙏𝙊 𝘿𝙀𝙇 𝙂𝙍𝙐𝙋𝙊`, mentions: [m.sender] }, { quoted: fkontak }) 
 	} else if (m.messageStubType == 1 || m.messageStubType == 23 || m.messageStubType == 132) {
@@ -24,8 +25,6 @@ export async function before(m, { conn }) {
 		await this.sendMessage(m.chat, { text: `@${m.messageStubParameters[0].split`@`[0]} AHORA ES ADMIN EN ESTE GRUPO\n\n😼🫵ACCIÓN REALIZADA POR: ${usuario}`, mentions: [`${m.sender}`,`${m.messageStubParameters[0]}`] }, { quoted: fkontak })
 	} else if (m.messageStubType == 30) {
 		await this.sendMessage(m.chat, { text: `@${m.messageStubParameters[0].split`@`[0]} DEJA DE SER ADMIN EN ESTE GRUPO\n\n😼🫵ACCION REALIZADA POR: ${usuario}`, mentions: [`${m.sender}`,`${m.messageStubParameters[0]}`] }, { quoted: fkontak })
-    } else if (m.messageStubType ==  32) {
-		await this.sendMessage(m.chat, { text: `Se fue del Grupo @${m.messageStubParameters[0].split`@`[0]}`, mentions: [m.sender] }, { quoted: fkontak })
 	} else if (m.messageStubType == 72) {
 		await this.sendMessage(m.chat, { text: `${usuario} CAMBIO LAS DURACIÓN DEL LOS MENSAJE TEMPORALES A *@${m.messageStubParameters[0]}*`, mentions: [m.sender] }, { quoted: fkontak })
 	} else if (m.messageStubType == 123) {
