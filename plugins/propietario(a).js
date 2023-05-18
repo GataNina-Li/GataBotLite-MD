@@ -269,7 +269,7 @@ const infoGP = lenguajeGB.smsChatGP2(readMS, dia, mes, año, fecha, tiempo)
 const delay = i * 4000 //4 seg
 setTimeout(async () => {
 //await conn.reply(id, infoGP + teks2, { mentions: participants.map(a => a.id) }, { quoted: fkontak });
-await conn.sendMessage(id, { text: infoGP + teks2, mentions: participants.map(a => a.id) }, )
+await conn.sendMessage(id, { text: infoGP + teks2, mentions: usersTag }, )
 }, delay)}        
 let totalGP = groups.length
 await m.reply(lenguajeGB.smsChatGP3(totalGP))        
