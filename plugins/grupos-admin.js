@@ -13,6 +13,7 @@ const isCommand9 = /^(kick|echar|hechar|sacar|ban)$/i.test(command)
 const isCommand10 = /^(group|grupo)$/i.test(command)
 const isCommand11 = /^(tagall|invocar|invocacion|todos|invocación)$/i.test(command)
 const isCommand12 = /^(prohibir|prohibit|privar|deprive)$/i.test(command)
+const isCommand13 = /^(add|agregar|invitar|invite|añadir)$/i.test(command)
 
 fkontak = { "key": { "participants":"0@s.whatsapp.net", "remoteJid": "status@broadcast", "fromMe": false, "id": "Halo" }, "message": { "contactMessage": { "vcard": `BEGIN:VCARD\nVERSION:3.0\nN:Sy;Bot;;;\nFN:y\nitem1.TEL;waid=${m.sender.split('@')[0]}:${m.sender.split('@')[0]}\nitem1.X-ABLabel:Ponsel\nEND:VCARD` }}, "participant": "0@s.whatsapp.net" }
 switch (true) {     
@@ -213,9 +214,30 @@ await conn.reply(m.chat, lenguajeGB.smsPropban7(usedPrefix, command, number), nu
 console.log(e) 
 }
 break
+    
+case isCommand13:
+let who 
+if (m.isGroup) who = m.mentionedJid[0] ? m.mentionedJid[0] : m.quoted ? m.quoted.sender : text
+else who = m.chat
+let name = await conn.getName(m.sender)	
+if (!global.db.data.settings[conn.user.jid].restrict) return conn.reply(m.chat, `${lenguajeGB['smsAvisoAG']()}${lenguajeGB['smsSoloOwner']()}`, fkontak, m)
+if (args.length >= 1) {
+if (/[a-zA-Z]/.test(text)) return conn.reply(m.chat, lenguajeGB.smsAvisoFG() + "*SOLO SE ACEPTA DIGITOS, NO LETRAS*", m)
+text = args.slice(0).join(" ")
+} else if (m.quoted && m.quoted.text) {
+text = m.quoted.text
+} else {
+return conn.reply(m.chat, `${lenguajeGB['smsAvisoMG']()}*INGRESE EL NÚMERO COMPLETO DEL USUARIO QUE QUIERA ENVIAR INVITACIÓN*`, m);
+}  
+let NumeroUser = text.replace(/\D/g, '')
+user = m.sender.split`@`[0]
+let link = 'https://chat.whatsapp.com/' + await conn.groupInviteCode(m.chat)
+await conn.reply(NumeroUser + '@s.whatsapp.net', `✨ ¡Hola! *@${NumeroUser}* Soy ${packname}, un Bot para WhatsApp. Parece que *@${user}* te está invitando al Grupo ${groupMetadata.subject}\n\n\`\`\`¡Te esperamos con ansias en el grupo!\`\`\`\n\n*${link}*`, null, {mentions: [NumeroUser + '@s.whatsapp.net', m.sender]})
+await conn.reply(m.chat, `*INVITACIÓN ENVIADA AL PRIVADO DE @${NumeroUser}*`, m, {mentions: [NumeroUser + '@s.whatsapp.net', m.sender]})    
+break
 }} 
   
-handler.command = /^(promote|daradmin|darpoder|demote|quitarpoder|quitaradmin|setwelcome|bienvenida|edit(?:ar)?wel(?:come)?|setbye|despedida|edit(?:ar)?(bye)?|setdesk|setdesc|newdesc|descripción|descripcion|cambiardesc|setname|newnombre|nuevonombre|cambiarnombre|cambiarpp|setpp(group|grup|gc)?|nuevolink|nuevoenlace|revoke|resetlink|kick|echar|hechar|sacar|ban|group|grupo|tagall|invocar|invocacion|todos|invocación|prohibir|prohibit|privar|deprive)$/i
+handler.command = /^(promote|daradmin|darpoder|demote|quitarpoder|quitaradmin|setwelcome|bienvenida|edit(?:ar)?wel(?:come)?|setbye|despedida|edit(?:ar)?(bye)?|setdesk|setdesc|newdesc|descripción|descripcion|cambiardesc|setname|newnombre|nuevonombre|cambiarnombre|cambiarpp|setpp(group|grup|gc)?|nuevolink|nuevoenlace|revoke|resetlink|kick|echar|hechar|sacar|ban|group|grupo|tagall|invocar|invocacion|todos|invocación|prohibir|prohibit|privar|deprive|add|agregar|invitar|invite|añadir)$/i
 handler.group = true
 handler.botAdmin = true 
 handler.register = true
