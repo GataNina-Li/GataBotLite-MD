@@ -213,7 +213,7 @@ let info = `
 🌻꙰᠁❥ *◜${lenguajeGB.smsVl1()}◞* ⇢ ${(speed * 1000).toFixed(0) / 1000}
 🌼꙰᠁❥ *◜${lenguajeGB.smsBT9()}◞* ⇢ ${totaljadibot.length}`.trim()
 
-await conn.sendFile(m.chat, img3, 'gata.jpg', info, fkontak) 
+await conn.sendFile(m.chat, gataImg.getRandom(), 'gata.jpg', info, fkontak) 
 } catch (e) {
 reportError(e)
 }     
