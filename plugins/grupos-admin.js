@@ -1,5 +1,5 @@
 import fetch from 'node-fetch'
-let handler = async (m, { conn,usedPrefix, command, text, args, isOwner, isAdmin, participants }) => {
+let handler = async (m, { conn,usedPrefix, command, text, args, isOwner, isAdmin, participants, groupMetadata }) => {
 var number, user, fkontak, pp, bot, bant, ownerNumber, aa, users, usr
 const isCommand1 = /^(promote|daradmin|darpoder)$/i.test(command)
 const isCommand2 = /^(demote|quitarpoder|quitaradmin)$/i.test(command)
@@ -227,7 +227,7 @@ text = args.slice(0).join(" ")
 } else if (m.quoted && m.quoted.text) {
 text = m.quoted.text
 } else {
-return conn.reply(m.chat, `${lenguajeGB['smsAvisoMG']()}*INGRESE EL NÚMERO COMPLETO DEL USUARIO QUE QUIERE INVITAR AL GRUPO*\nEJEMPLO:\n\n${usedPrefix + command} ${conn.user.jid.split`@`[0]}`, m);
+return conn.reply(m.chat, `${lenguajeGB['smsAvisoMG']()}*INGRESE EL NÚMERO COMPLETO DEL USUARIO QUE QUIERE INVITAR AL GRUPO*\n*EJEMPLO:*\n\n*${usedPrefix + command}* +${conn.user.jid.split`@`[0]}`, m);
 }  
 let NumeroUser = text.replace(/\D/g, '')
 user = m.sender.split`@`[0]
