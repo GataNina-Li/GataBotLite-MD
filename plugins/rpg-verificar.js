@@ -7,7 +7,7 @@ return list[Math.floor(Math.random() * list.length)]
 let tag = `${m.sender.split("@")[0]}`
 let aa = tag + '@s.whatsapp.net'
 let user = global.db.data.users[m.sender]
-if (user.registered === true) throw lenguajeGB.smsVerify0(usedPrefix)
+if (user.registered === true) throw lenguajeGB.smsVerify0(usedPrefix) + '*'
 if (!Reg.test(text)) throw lenguajeGB.smsVerify1(usedPrefix, command)
 let [_, name, splitter, age] = text.match(Reg)
 if (!name) throw lenguajeGB.smsVerify2()
