@@ -11,10 +11,10 @@ import { en, es, id, ar, pt } from './lib/idiomas/total-idiomas.js'
 //⊱ ━━━━━.⋅ Añada los numeros a ser Propietario/a | Add the numbers to be Owner ⋅.━━━━ ⊰   
 
 global.owner = [
-['12362000021', '⚡Tekⱥshi⚡', true], 
+['573203993812', '⚡Tekⱥshi⚡', true], 
 ['573105514142', '𝙊𝙬𝙣𝙚𝙧 (1) 💻', true], 
 ['573105514142', '𝘾𝙪𝙨𝙩𝙤𝙢𝙚𝙧 𝙎𝙪𝙥𝙥𝙤𝙧𝙩 🤖', true],
-['573105514142'], 
+['573105514142']
 
 //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ ฅ^•ﻌ•^ฅ
 
@@ -165,36 +165,36 @@ global.imagen13 = fs.readFileSync('./media/menus/img12.jpg')
 
 //━━━━━━━━━━━━━━ img ━━━━━━━━━
 
-global.img = 'https://i.imgur.com/AwlL9kc.jpeg'
-global.img2 = 'https://i.imgur.com/p18q1Ok.jpeg'
+global.img = 'https://i.imgur.com/6awaI6K.jpg'
+global.img2 = 'https://i.imgur.com/4C22IOp.jpg'
 
-global.img3 = 'https://i.imgur.com/01Z8a0a.jpg' //ft rectangular
+global.img3 = 'https://i.imgur.com/RMCge6S.jpg' //ft rectangular
 
 //global.img3 = 'https://i.imgur.com/oUAGYc2.jpg' //prem   //no
 //global.img4 = 'https://i.imgur.com/i0pccuo.jpg' //prem   //no
 
-global.img5 = 'https://i.imgur.com/80uz37R.jpeg'
-global.img6 = 'https://i.imgur.com/3zSvnGY.jpeg'
-global.img7 = 'https://i.imgur.com/WY4r6up.jpeg'
-global.img8 = 'https://i.imgur.com/qCO3RYa.jpeg'
-global.img9 = 'https://i.imgur.com/dWk51FS.jpeg'
+global.img5 = 'https://i.imgur.com/fdo8bGg.jpg'
+global.img6 = 'https://i.imgur.com/5H6wSR0.jpg'
+global.img7 = 'https://i.imgur.com/2K2bwtr.jpg'
+global.img8 = 'https://i.imgur.com/j0cmeJw.jpg'
+global.img9 = 'https://i.imgur.com/XMJvwCY.jpg'
 
-global.img10 = 'https://i.imgur.com/T4NjKMi.jpeg'
-global.img11 = 'https://i.imgur.com/jqyWSlh.jpeg'
-global.img12 = 'https://i.imgur.com/mpCRttm.jpeg'
-global.img13 = 'https://i.imgur.com/O04epJI.jpeg'
-global.img14 = 'https://i.imgur.com/jfbuJRU.jpeg'
-global.img15 = 'https://i.imgur.com/DzqUXkW.jpeg'
+global.img10 = 'https://i.imgur.com/J6yBAuK.jpg'
+global.img11 = 'https://i.imgur.com/rLGxBMI.jpg'
+global.img12 = 'https://i.imgur.com/ZsE6ow9.jpg'
+global.img13 = 'https://i.imgur.com/UgBZLsr.jpg'
+global.img14 = 'https://i.imgur.com/YDSaPCs.jpg'
+global.img15 = 'https://i.imgur.com/GORchEj.jpg'
 
 //global.img16 = 'https://i.imgur.com/11MRjo4.jpeg' //+18   //no
 
-global.img17 = 'https://i.imgur.com/Y3ZWq7z.jpeg'
-global.img18 = 'https://i.imgur.com/kaUN1Nz.jpeg'
-global.img19 = 'https://i.imgur.com/7yJ22hJ.jpeg'
-global.img20 = 'https://i.imgur.com/qcD353P.jpeg'
-global.img21 = 'https://i.imgur.com/3fJTaX6.jpeg'
+global.img17 = 'https://i.imgur.com/LNftyVj.jpg'
+global.img18 = 'https://i.imgur.com/aeBjkBU.jpg'
+global.img19 = 'https://i.imgur.com/VLGq8gp.jpg'
+global.img20 = 'https://i.imgur.com/FGevVKq.jpg'
+global.img21 = 'https://i.imgur.com/CnnzfOh.jpg'
 
-global.img21 = 'https://i.imgur.com/akofqcE.jpeg' //paypal
+global.img21 = 'https://i.imgur.com/wtwbLrf.jpg' //paypal
 
 global.welgata = [ig, yt2, yt2, ig, md, ig, yt, paypal, yt2, yt2, ig, fb]
 global.redesMenu = [nna, nn, nnn, nnnt, nnntt, nnnttt, nnnttt2, nnnttt3, nnnttt4, nnnttt5, md, ig, paypal, yt, asistencia, fb]
