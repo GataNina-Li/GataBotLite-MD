@@ -463,7 +463,7 @@ case 'remove':
 if (chat.welcome) {
 let groupMetadata = await this.groupMetadata(id) || (conn.chats[id] || {}).metadata
 for (let user of participants) {
-let pp = gataMenu.getRandom()
+let pp = gataImg.getRandom()
 try {
 pp = await this.profilePictureUrl(user, 'image')
 } catch (e) {
