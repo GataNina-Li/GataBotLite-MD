@@ -27,13 +27,7 @@
 </a>
 <a href="https://chat.whatsapp.com/IXZ0aBryB1cHjNxe0VIm76">
 <img src="https://img.shields.io/badge/🐈_GataBot_|_Soporte_⚙️-25D366?style=for-the-badge&logo=whatsapp&logoColor=white">
-</a>
-</div>
-
-### ✅ GATABOTLITE OFICIAL
-
 <a href="http://wa.me/593993684821?text=.menu" target="blank"><img src="https://img.shields.io/badge/1️⃣_𝙂𝙖𝙩𝙖𝘽𝙤𝙩𝙇𝙞𝙩𝙚-𝙈𝘿-25D366?style=for-the-badge&logo=whatsapp&logoColor=white" />
-
 <a href="http://wa.me/51910406992?text=.menu" target="blank"><img src="https://img.shields.io/badge/2️⃣_𝙂𝙖𝙩𝙖𝘽𝙤𝙩𝙇𝙞𝙩𝙚-𝙈𝘿-25D366?style=for-the-badge&logo=whatsapp&logoColor=white" />
 <a href="http://wa.me/51965859630?text=.menu" target="blank"><img src="https://img.shields.io/badge/3️⃣_𝙂𝙖𝙩𝙖𝘽𝙤𝙩𝙇𝙞𝙩𝙚-𝙈𝘿-25D366?style=for-the-badge&logo=whatsapp&logoColor=white" />
 <a href="http://wa.me/34688884723?text=.menu" target="blank"><img src="https://img.shields.io/badge/4️⃣_𝙂𝙖𝙩𝙖𝘽𝙤𝙩𝙇𝙞𝙩𝙚-𝙈𝘿-25D366?style=for-the-badge&logo=whatsapp&logoColor=white" />
