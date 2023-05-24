@@ -1,4 +1,4 @@
-import { googleIt } from '@bochilteam/scraper' 
+import { googleIt } from '@bochilteam/scraper'  
 import fetch from 'node-fetch'
 import axios from 'axios'
 import yts from 'yt-search'
