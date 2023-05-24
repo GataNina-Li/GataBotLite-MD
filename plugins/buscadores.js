@@ -42,8 +42,8 @@ text = m.quoted.text
 } else return conn.reply(m.chat, lenguajeGB.smsOpenai1() + `\n*${usedPrefix + command}* ${lenguajeGB.smsOpenai2()}\n\n*${usedPrefix + command}* ${lenguajeGB.smsOpenai3()}` , m)
 try {
 let ia1 = await fetch(`https://api.amosayomide05.cf/gpt/?question=${text}&string_id=${m.sender}`)  
-let resu = await ia1.json()
-m.reply(`${resu.response}`.trim())    
+let resu1 = await ia1.json()
+m.reply(`${resu1.response}`.trim())    
 } catch {
 try {   
 let ia2 = await fetch(`https://api.ibeng.tech/api/info/openai?text=${text}&apikey=tamvan`)
