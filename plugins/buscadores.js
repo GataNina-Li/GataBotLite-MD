@@ -41,30 +41,22 @@ text = args.slice(0).join(" ")
 text = m.quoted.text
 } else return conn.reply(m.chat, lenguajeGB.smsOpenai1() + `\n*${usedPrefix + command}* ${lenguajeGB.smsOpenai2()}\n\n*${usedPrefix + command}* ${lenguajeGB.smsOpenai3()}` , m)
 try {
-let IA2 = await fetch(`https://api.amosayomide05.cf/gpt/?question=${text}&string_id=${m.sender}`)  
-let IAR2 = await IA2.json()
-m.reply(`${IAR2.response}`.trim())    
+let ia1 = await fetch(`https://api.amosayomide05.cf/gpt/?question=${text}&string_id=${m.sender}`)  
+let resu = await ia1.json()
+m.reply(`${resu.response}`.trim())    
 } catch {
 try {   
-let rrEes = await fetch(`https://api.ibeng.tech/api/info/openai?text=${text}&apikey=tamvan`)
-let jjJson = await rrEes.json()
-m.reply(jjJson.data.data.trim())    
+let ia2 = await fetch(`https://api.ibeng.tech/api/info/openai?text=${text}&apikey=tamvan`)
+let resu2 = await ia2.json()
+m.reply(resu2.data.data.trim())    
 } catch {      
 try {    
-let tioress = await fetch(`https://api.lolhuman.xyz/api/openai?apikey=BrunoSobrino&text=${text}&user=${m.sender}`)
-let hasill = await tioress.json()
-m.reply(`${hasill.result}`.trim())   
+let ia3 = await fetch(`https://api.lolhuman.xyz/api/openai?apikey=${lolkeysapi}&text=${text}&user=${m.sender}`)
+let resu3 = await ia3.json()
+m.reply(`${resu3.result}`.trim())   
 } catch (e) {
 reportError(e)
-}}}
-//try {
-//await conn.sendPresenceUpdate('composing', m.chat)
-//let tiores = await fetch(`https://api.lolhuman.xyz/api/openai?apikey=${lolkeysapi}&text=${text}&user=user-unique-id`)
-//let hasil = await tiores.json()
-//m.reply(`${hasil.result}`.trim())
-//} catch (e) {
-//reportError(e)
-//}    
+}}} 
 break
     
 case isCommand3:
