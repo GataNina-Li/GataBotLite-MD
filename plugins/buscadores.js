@@ -35,15 +35,36 @@ reportError(e)
 break 
     
 case isCommand2:
-if (!text) return conn.reply(m.chat, lenguajeGB.smsOpenai1() + `\n*${usedPrefix + command}* ${lenguajeGB.smsOpenai2()}\n\n*${usedPrefix + command}* ${lenguajeGB.smsOpenai3()}` , m)
+if (args.length >= 1) {
+text = args.slice(0).join(" ")
+} else if (m.quoted && m.quoted.text) {
+text = m.quoted.text
+} else return conn.reply(m.chat, lenguajeGB.smsOpenai1() + `\n*${usedPrefix + command}* ${lenguajeGB.smsOpenai2()}\n\n*${usedPrefix + command}* ${lenguajeGB.smsOpenai3()}` , m)
 try {
-await conn.sendPresenceUpdate('composing', m.chat)
-let tiores = await fetch(`https://api.lolhuman.xyz/api/openai?apikey=${lolkeysapi}&text=${text}&user=user-unique-id`)
-let hasil = await tiores.json()
-m.reply(`${hasil.result}`.trim())
+let IA2 = await fetch(`https://api.amosayomide05.cf/gpt/?question=${text}&string_id=${m.sender}`)  
+let IAR2 = await IA2.json()
+m.reply(`${IAR2.response}`.trim())    
+} catch {
+try {   
+let rrEes = await fetch(`https://api.ibeng.tech/api/info/openai?text=${text}&apikey=tamvan`)
+let jjJson = await rrEes.json()
+m.reply(jjJson.data.data.trim())    
+} catch {      
+try {    
+let tioress = await fetch(`https://api.lolhuman.xyz/api/openai?apikey=BrunoSobrino&text=${text}&user=${m.sender}`)
+let hasill = await tioress.json()
+m.reply(`${hasill.result}`.trim())   
 } catch (e) {
 reportError(e)
-}    
+}}}
+//try {
+//await conn.sendPresenceUpdate('composing', m.chat)
+//let tiores = await fetch(`https://api.lolhuman.xyz/api/openai?apikey=${lolkeysapi}&text=${text}&user=user-unique-id`)
+//let hasil = await tiores.json()
+//m.reply(`${hasil.result}`.trim())
+//} catch (e) {
+//reportError(e)
+//}    
 break
     
 case isCommand3:
