@@ -1,4 +1,5 @@
 let linkRegex = /https?:/i
+let linkRegex2 = /chat.whatsapp.com\/([0-9A-Za-z]{20,24})/i 
 export async function before(m, { isAdmin, isBotAdmin, text }) {
 if (m.isBaileys && m.fromMe)
 return !0
@@ -9,7 +10,7 @@ let bang = m.key.id
 let toUser = `${m.sender.split("@")[0]}`
 let aa = toUser + '@s.whatsapp.net'
 let bot = global.db.data.settings[this.user.jid] || {}
-const isGroupLink = linkRegex.exec(m.text)
+const isGroupLink = linkRegex.exec(m.text) || linkRegex2.exec(m.text)
 const grupo = `https://chat.whatsapp.com`
 if (isAdmin && chat.antiLink2 && m.text.includes(grupo)) return m.reply(`${lenguajeGB['smsAdwa']()}`)
 if (chat.antiLink2 && isGroupLink && !isAdmin) {  
