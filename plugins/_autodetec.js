@@ -1,6 +1,6 @@
 import { WAMessageStubType } from '@adiwajshing/baileys'
 
-export async function before(m, { conn, participants }) {
+export async function before(m, { conn, participants, groupMetadata }) {
 if (!m.messageStubType || !m.isGroup) return
 const fkontak = { "key": { "participants":"0@s.whatsapp.net", "remoteJid": "status@broadcast", "fromMe": false, "id": "Halo" }, "message": { "contactMessage": { "vcard": `BEGIN:VCARD\nVERSION:3.0\nN:Sy;Bot;;;\nFN:y\nitem1.TEL;waid=${m.sender.split('@')[0]}:${m.sender.split('@')[0]}\nitem1.X-ABLabel:Ponsel\nEND:VCARD` }}, "participant": "0@s.whatsapp.net"}  
 let usuario = `@${m.sender.split`@`[0]}`
@@ -12,7 +12,7 @@ let pp = await conn.profilePictureUrl(m.chat, 'image').catch(_ => null) || './sr
 let nombre, foto, edit
 nombre = `${inf}*${usuario} HA CAMBIADO EL NOMBRE DEL GRUPO*\n\n🔰 *AHORA EL GRUPO SE LLAMA:*\n${m.messageStubParameters[0]}`
 foto = `${inf}*${usuario} HA CAMBIADO LA IMAGEN DEL GRUPO*`
-edit = `${inf}*${usuario} HA PERMITIDO QUE ${m.messageStubParameters[0] == 'on' ? 'SOLO ADMINS' : 'TODOS'} PUEDAN CONFIGURAR* ${m.messageStubParameters[0]}`
+edit = `${inf}*${usuario} HA PERMITIDO QUE ${m.messageStubParameters[0] == 'on' ? 'SOLO ADMINS' : 'TODOS'} PUEDAN CONFIGURAR* ${groupMetadata.subject}`
   
 if (m.messageStubType == 21) {
 await conn.sendMessage(m.chat, { text: nombre, mentions: [m.sender] }, { quoted: fkontak })   
