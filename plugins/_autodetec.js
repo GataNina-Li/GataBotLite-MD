@@ -5,14 +5,15 @@ if (!m.messageStubType || !m.isGroup) return
 let usuario = `@${m.sender.split`@`[0]}`
 let groupAdmins = participants.filter(p => p.admin)
 const mentionsString = [m.sender, m.messageStubParameters[0], ...groupAdmins.map(v => v.id)]
-let tag = `${m.sender.split`@`[0]}@s.whatsapp.net`
+let tag = [m.sender, m.messageStubParameters[0]]
 let fkontak = { "key": { "participants":"0@s.whatsapp.net", "remoteJid": "status@broadcast", "fromMe": false, "id": "Halo" }, "message": { "contactMessage": { "vcard": `BEGIN:VCARD\nVERSION:3.0\nN:Sy;Bot;;;\nFN:y\nitem1.TEL;waid=${m.sender.split('@')[0]}:${m.sender.split('@')[0]}\nitem1.X-ABLabel:Ponsel\nEND:VCARD` }}, "participant": "0@s.whatsapp.net" }
 let pp = await conn.profilePictureUrl(m.chat, 'image').catch(_ => null) || './src/grupos.jpg'  
+
 let nombre
-nombre = `${lenguajeGB.smsAvisoIIG()}*${usuario} HA CAMBIADO EL NOMBRE DEL GRUPO*\n\n*AHORA EL GRUPO SE LLAMA:*\n${m.messageStubParameters[0]}`
+nombre = `${lenguajeGB.smsAvisoIIG()}*${usuario} HA CAMBIADO EL NOMBRE DEL GRUPO*\n\n🔰 *AHORA EL GRUPO SE LLAMA:*\n${m.messageStubParameters[0]}`
 
 if (m.messageStubType == 21) {
-await this.sendMessage(m.chat, { text: nombre, mentions: groupAdmins }, { quoted: fkontak }) 
+await this.sendMessage(m.chat, { text: nombre, mentions: tag }, { quoted: fkontak }) 
   
 } else if (m.messageStubType == 22) {
 await this.sendMessage(m.chat, { text: `${usuario} 𝙃𝘼𝙎 𝘾𝘼𝙈𝘽𝙄𝘼𝘿𝙊 𝙇𝘼𝙎 𝙁𝙊𝙏𝙊 𝘿𝙀𝙇 𝙂𝙍𝙐𝙋𝙊`, mentions: [m.sender] }, { quoted: fkontak }) 
