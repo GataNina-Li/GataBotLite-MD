@@ -360,7 +360,7 @@ reportError(e)}
 break
         
 case isCommand14:
-if (!text) return m.reply(lenguajeGB.smsMalused2() + `*${usedPrefix + command} Bellyache*`)
+/*if (!text) return m.reply(lenguajeGB.smsMalused2() + `*${usedPrefix + command} Bellyache*`)
 try {
 let res = await fetch(`https://api.lolhuman.xyz/api/spotifysearch?apikey=${lolkeysapi}&query=${text}`)
 let json = await res.json()
@@ -386,8 +386,42 @@ ${lenguajeGB.smsSP5()}`
 await m.reply('💚 *Ｓ Ｐ Ｏ Ｔ Ｉ Ｆ Ｙ* 💚\n\n' + spotifyi)
 await conn.sendFile(m.chat, thumbnail, 'image.jpg', '💚 *Ｓ Ｐ Ｏ Ｔ Ｉ Ｆ Ｙ* 💚\n\n' + spotifyi, m)
 let aa = await conn.sendMessage(m.chat, { audio: { url: json2.result.link }, fileName: `error.mp3`, mimetype: 'audio/mp4' }, { quoted: m })  
-if (!aa) return conn.sendFile(m.chat, json2.result.link, 'error.mp3', null, m, false, { mimetype: 'audio/mp4' }) 
-} catch (e) {
+if (!aa) return conn.sendFile(m.chat, json2.result.link, 'error.mp3', null, m, false, { mimetype: 'audio/mp4' })*/
+if (!text) return m.reply(lenguajeGB.smsMalused2() + `*${usedPrefix + command} Bellyache*`)
+let link
+if (text.startsWith('https://open.spotify.com/track/')) {
+link = text
+} else {
+let res = await fetch(`https://api.lolhuman.xyz/api/spotifysearch?apikey=${lolkeysapi}&query=${text}`)
+let json = await res.json()
+link = json.result[0].link
+}
+
+let res2 = await fetch(`https://api.lolhuman.xyz/api/spotify?apikey=${lolkeysapi}&url=${link}`)
+let json2 = await res2.json()
+let { thumbnail, title, artists, link: songLink } = json2.result
+
+let spotifyi = `${lenguajeGB.smsSP1()}
+⭔ _${title}_
+
+${lenguajeGB.smsSP2()}
+⭔ _${artists}_
+
+${lenguajeGB.smsSP3()}
+⭔ _${link}_
+
+${lenguajeGB.smsSP4()}
+⭔ _${songLink}_
+
+${lenguajeGB.smsSP5()}`
+
+await conn.sendFile(m.chat, thumbnail, 'image.jpg', '💚 *Ｓ Ｐ Ｏ Ｔ Ｉ Ｆ Ｙ* 💚\n\n' + spotifyi, m)
+let aa = await conn.sendMessage(m.chat, { audio: { url: songLink }, fileName: `${title}.mp3`, mimetype: 'audio/mp3' }, { quoted: m })
+if (!aa) {
+let audioRes = await fetch(songLink)
+let audioBuffer = await audioRes.buffer()
+await conn.sendFile(m.chat, audioBuffer, `${title}.mp3`, null, m, false, { mimetype: 'audio/mp3' })
+}} catch (e) {
 reportError(e)}              
 break
 }}
