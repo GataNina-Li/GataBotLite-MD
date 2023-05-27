@@ -5,6 +5,7 @@ if (!m.messageStubType || !m.isGroup) return
 let usuario = `@${m.sender.split`@`[0]}`
 let fkontak = { "key": { "participants":"0@s.whatsapp.net", "remoteJid": "status@broadcast", "fromMe": false, "id": "Halo" }, "message": { "contactMessage": { "vcard": `BEGIN:VCARD\nVERSION:3.0\nN:Sy;Bot;;;\nFN:y\nitem1.TEL;waid=${m.sender.split('@')[0]}:${m.sender.split('@')[0]}\nitem1.X-ABLabel:Ponsel\nEND:VCARD` }}, "participant": "0@s.whatsapp.net" }
 //let pp = gataMenu.getRandom()
+let pp = await conn.profilePictureUrl(m.chat, 'image').catch(_ => null) || './src/grupos.jpg'  
 //let apii = await this.getFile(pp)
 if (m.messageStubType == 21) {
 let groupAdmins = participants.filter(p => p.admin)
@@ -15,7 +16,8 @@ await this.sendMessage(m.chat, { text: `${usuario} 𝙃𝘼𝙎 𝘾𝘼𝙈𝘽
 } else if (m.messageStubType == 24) {
 await this.sendMessage(m.chat, { text: `${usuario} 𝙉𝙐𝙀𝙑𝘼 𝘿𝙀𝙎𝘾𝙍𝙄𝙋𝘾𝙄𝙊𝙉 𝘿𝙀𝙇 𝙂𝙍𝙐𝙋𝙊 𝙀𝙎:\n\n${m.messageStubParameters[0]}`, mentions: [m.sender] }, { quoted: fkontak })
 } else if (m.messageStubType == 25) {
-await this.sendMessage(m.chat, { text: `🔒 AHORA *${m.messageStubParameters[0] == 'on' ? 'SOLO ADMINS' : 'TODOS'}* PUEDE EDITAR LAS INFORMACION DEL GRUPO.`, mentions: [m.sender] }, { quoted: fkontak })
+await this.sendFile(m.chat, pp, 'error.jpg', `${usuario} 🔒 AHORA *${m.messageStubParameters[0] == 'on' ? 'SOLO ADMINS' : 'TODOS'}* PUEDE EDITAR LAS INFORMACION DEL GRUPO.`, { mentions: [m.sender] }, { quoted: fkontak })
+//await this.sendMessage(m.chat, { text: `🔒 AHORA *${m.messageStubParameters[0] == 'on' ? 'SOLO ADMINS' : 'TODOS'}* PUEDE EDITAR LAS INFORMACION DEL GRUPO.`, mentions: [m.sender] }, { quoted: fkontak })
 } else if (m.messageStubType == 26) {
 await this.sendMessage(m.chat, { text: `EL GRUPO *${m.messageStubParameters[0] == 'on' ? 'ESTA CERRADO 🔒' : 'ESTA ABIERTO 🔓'}*\n ${m.messageStubParameters[0] == 'on' ? 'SOLO ADMINS' : 'TODOS'} PUEDEN ENVIAR MENSAJES.`, mentions: [m.sender] }, { quoted: fkontak })
 /* } else if (m.messageStubType == 28) {
