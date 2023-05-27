@@ -13,7 +13,8 @@ let nombre
 nombre = `*${usuario} HA CAMBIADO EL NOMBRE DEL GRUPO*\n\n🔰 *AHORA EL GRUPO SE LLAMA:*\n${m.messageStubParameters[0]}`
 
 if (m.messageStubType == 21) {
-await conn.sendMessage(m.chat, { image: { url: pp }, caption: nombre, mentions: tag }, { quoted: fkontak })
+await conn.sendFile(m.chat, pp, nombre, fkontak, false, { mentions: tag }) 
+//await conn.sendMessage(m.chat, { image: { url: pp }, caption: nombre, mentions: tag }, { quoted: fkontak })
 //await this.sendMessage(m.chat, { text: nombre, mentions: tag }, { quoted: fkontak }) 
   
 } else if (m.messageStubType == 22) {
