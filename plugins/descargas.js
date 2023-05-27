@@ -402,8 +402,7 @@ case isCommand15:
 if (!text) return m.reply(lenguajeGB.smsMalused2() + `*${usedPrefix + command} Bellyache*`)
 let res = await fetch(`https://api.lolhuman.xyz/api/spotifysearch?apikey=${lolkeysapi}&query=${encodeURIComponent(text)}`)
 let json = await res.json()
-if (!json) throw `${lenguajeGB['smsAvisoFG']()}*NO SE ENCONTRÓ RESULTADOS. INTENTE CON OTRO NOMBRE O ENLACE*`
-if (!json) return 0
+if (json.status != '200') throw `${lenguajeGB['smsAvisoFG']()}*NO SE ENCONTRÓ RESULTADOS. INTENTE CON OTRO NOMBRE O ENLACE*`
 try{
 let get_result = json.result
 let ini_txt = `🔎 \`\`\`RESULTADO DE: ${text}\`\`\``
