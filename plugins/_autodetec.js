@@ -14,7 +14,7 @@ edit = `${inf}*${usuario} HA PERMITIDO QUE ${m.messageStubParameters[0] == 'on' 
 newlink = `${inf}*EL ENLACE DE ${groupMetadata.subject} HA SIDO RESTABLECIDO POR ${usuario}*`
 status = `${inf}*${groupMetadata.subject} HA SIDO ${m.messageStubParameters[0] == 'on' ? 'CERRADO 🔒' : 'ABIERTO 🔓'} POR ${usuario}*\n\n💬 *AHORA ${m.messageStubParameters[0] == 'on' ? 'SOLO ADMINS' : 'TODOS'} PUEDEN ENVIAR MENSAJES*`
 admingp = `${inf}*${usuario} HA DECIDIDO QUE @${m.messageStubParameters[0].split`@`[0]} SEA ADMIN EN ${groupMetadata.subject}*`
-noadmingp = `${inf}*${usuario} HA DECIDIDO QUE @${m.messageStubParameters[0].split`@`[0]} DEJA DE SER ADMIN EN ${groupMetadata.subject}*`
+noadmingp = `${inf}*${usuario} HA DECIDIDO QUE ${'@' + m.messageStubParameters[0].split`@`[0]} DEJA DE SER ADMIN EN ${groupMetadata.subject}*`
 
 if (m.messageStubType == 21) {
 await conn.sendMessage(m.chat, { text: nombre, mentions: [m.sender] }, { quoted: fkontak })   
@@ -42,6 +42,7 @@ await this.sendMessage(m.chat, { text: `${usuario} CAMBIO LAS DURACIÓN DEL LOS 
 
 } else if (m.messageStubType == 123) {
 await this.sendMessage(m.chat, { text: `${usuario} *DESACTIVÓ* LOS MENSAJE TEMPORAL..`, mentions: [m.sender] }, { quoted: fkontak })
+
 } else {
 console.log({ messageStubType: m.messageStubType,
 messageStubParameters: m.messageStubParameters,
