@@ -1,4 +1,4 @@
-import { youtubedl, youtubedlv2, youtubedlv3, tiktokdl, tiktokdlv2, tiktokdlv3 } from '@bochilteam/scraper' 
+import { youtubedl, youtubedlv2, youtubedlv3, tiktokdl, tiktokdlv2, tiktokdlv3 } from '@bochilteam/scraper'  
 import { facebook } from "@xct007/frieren-scraper"
 import { googleImage } from '@bochilteam/scraper'
 import fetch from "node-fetch"
