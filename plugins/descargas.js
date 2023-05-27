@@ -373,7 +373,7 @@ link = json.result[0].link
 
 let res2 = await fetch(`https://api.lolhuman.xyz/api/spotify?apikey=${lolkeysapi}&url=${link}`)
 let json2 = await res2.json()
-if (json2.status != '200') throw `Ocurrió un error, no se encontró resultados. Intente con otro nombre o enlace`
+if (json2.status != '200') throw `${lenguajeGB['smsAvisoFG']()}*NO SE ENCONTRÓ RESULTADOS. INTENTE CON OTRO NOMBRE O ENLACE*`
 let { thumbnail, title, artists, link: songLink } = json2.result
 try {
 let spotifyi = `${lenguajeGB.smsSP1()}
@@ -402,7 +402,7 @@ case isCommand15:
 if (!text) return m.reply(lenguajeGB.smsMalused2() + `*${usedPrefix + command} Bellyache*`)
 let res = await fetch(`https://api.lolhuman.xyz/api/spotifysearch?apikey=${lolkeysapi}&query=${encodeURIComponent(text)}`)
 let json = await res.json()
-if (json.status != '200') throw `Ocurrió un error, no se encontró resultados. Intente con otro nombre o enlace`
+if (json.status != '200') throw `${lenguajeGB['smsAvisoFG']()}*NO SE ENCONTRÓ RESULTADOS. INTENTE CON OTRO NOMBRE O ENLACE*`
 try{
 let get_result = json.result
 let ini_txt = `🔎 \`\`\`RESULTADO DE: ${text}\`\`\``
