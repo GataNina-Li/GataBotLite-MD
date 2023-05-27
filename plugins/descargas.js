@@ -407,7 +407,9 @@ let json = await res.json()
 let get_result = json.result
 let ini_txt = `Encontro : *${text}*`
 for (var sh of get_result) {
-ini_txt += `\n\n${lenguajeGB.smsSP1()} ${sh.title} | ⏱️ ${sh.duration}*\n`
+const duration = sh.duration
+const formatted = formatVideoDuration(duration)
+ini_txt += `\n\n${lenguajeGB.smsSP1()} ${sh.title} | ⏱️ ${formatted}\n`
 ini_txt += `${lenguajeGB.smsSP2()} ${sh.artists}\n`
 ini_txt += `${lenguajeGB.smsSP3()} ${sh.link}\n`
 ini_txt += `⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯`
@@ -453,4 +455,23 @@ return "posts"
 }}
 return "default"
 }
+
+function formatVideoDuration(duration) {
+const durationString = String(duration)
+const length = durationString.length
+
+if (length === 2) {
+const seconds = durationString
+return `${seconds} seg`
+} else if (length === 3) {
+const minutes = durationString.substring(0, 1)
+const seconds = durationString.substring(1)
+return `${minutes}:${seconds} min`
+} else if (length === 4) {
+const minutes = durationString.substring(0, 2)
+const seconds = durationString.substring(2)
+return `${minutes}:${seconds} min`
+} else {
+return "--"
+}}
 
