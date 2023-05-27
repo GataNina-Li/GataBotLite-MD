@@ -30,6 +30,19 @@ throw false
 chat.welcome = isEnable
 break
 		
+case 'detect': case 'avisos': case 'autodetectar':
+if (!m.isGroup) {
+if (!isOwner) {
+global.dfail('group', m, conn)
+throw false
+}
+} else if (!isAdmin) {
+global.dfail('admin', m, conn)
+throw false
+}
+chat.detect = isEnable
+break
+		
 case 'antiver': case 'modover': case 'modoobservar': case 'modobservar': case 'antiviewonce':
 if (m.isGroup) {
 if (!(isAdmin || isOwner)) {
@@ -187,6 +200,8 @@ break
 default:
 if (!/[01]/.test(command)) throw `
 ${lenguajeGB.smsConfi1bot()}\n
+${lenguajeGB.smsParaAdmins() + ' ' + `${m.isGroup ? chat.detect ? '✅' : '❌' : lenguajeGB.smsNoGg()}`}
+🌼 \`\`\`${usedPrefix}on/off\`\`\` *${lenguajeGB.lenguaje() == 'es' ? 'avisos' : 'detect'}*\n
 ${lenguajeGB.smsParaAdmins() + ' ' + `${m.isGroup ? chat.welcome ? '✅' : '❌' : lenguajeGB.smsNoGg()}`}
 🌸 \`\`\`${usedPrefix}on/off\`\`\` *${lenguajeGB.lenguaje() == 'es' ? 'bienvenida' : 'welcome'}*\n
 ${lenguajeGB.smsParaAdmins() + ' ' + `${m.isGroup ? chat.antiLink ? '✅' : '❌' : lenguajeGB.smsNoGg()}`}
