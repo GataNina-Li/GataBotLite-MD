@@ -10,7 +10,7 @@ const fkontak = { "key": { "participants":"0@s.whatsapp.net", "remoteJid": "stat
 let pp = await conn.profilePictureUrl(m.chat, 'image').catch(_ => null) || './src/grupos.jpg'  
 
 let nombre
-nombre = `${lenguajeGB.smsAvisoIIG()}*${usuario} HA CAMBIADO EL NOMBRE DEL GRUPO*\n\n🔰 *AHORA EL GRUPO SE LLAMA:*\n${m.messageStubParameters[0]}`
+nombre = `*${usuario} HA CAMBIADO EL NOMBRE DEL GRUPO*\n\n🔰 *AHORA EL GRUPO SE LLAMA:*\n${m.messageStubParameters[0]}`
 
 if (m.messageStubType == 21) {
 await conn.sendMessage(m.chat, { image: { url: pp }, caption: nombre, mentions: tag }, { quoted: fkontak })
