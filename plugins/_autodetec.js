@@ -14,7 +14,8 @@ nombre = `${inf}*${usuario} HA CAMBIADO EL NOMBRE DEL GRUPO*\n\n🔰 *AHORA EL G
 foto = `${inf}*${usuario} HA CAMBIADO LA IMAGEN DEL GRUPO*`
 
 if (m.messageStubType == 21) {
-await this.sendMessage(m.chat, { text: nombre, mentions: [m.sender] }, { quoted: fkontak })   
+//await this.sendMessage(m.chat, { text: nombre, mentions: [m.sender] }, { quoted: fkontak })   
+await conn.sendMessage(m.chat, { image: { url: pp }, caption: nombre, mentions: [m.sender] }, { quoted: fkontak })
   
 } else if (m.messageStubType == 22) {
 await conn.sendMessage(m.chat, { image: { url: pp }, caption: foto, mentions: tag }, { quoted: fkontak })
