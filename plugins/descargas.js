@@ -400,22 +400,22 @@ break
         
 case isCommand15:
 if (!text) return m.reply(lenguajeGB.smsMalused2() + `*${usedPrefix + command} Bellyache*`)
+try{
 let res = await fetch(`https://api.lolhuman.xyz/api/spotifysearch?apikey=${lolkeysapi}&query=${encodeURIComponent(text)}`)
 if (!res.ok) throw await `URL de Spotify no válida / se produjo un error.`
 let json = await res.json()
-//if (json.status != '200') throw `Ocurrió un error, inténtalo de nuevo más tarde.`
 let get_result = json.result
 let ini_txt = `Encontro : *${text}*`
 for (var sh of get_result) {
-ini_txt += `\n\n${lenguajeGB.smsSP1()}\n${sh.title} | ${sh.duration}*\n`
-ini_txt += `${lenguajeGB.smsSP2()}\n${sh.artists}\n`
-//ini_txt += `Duración : ${sh.duration}\n`
-ini_txt += `${lenguajeGB.smsSP3()}\n${sh.link}\n`
-//ini_txt += `${sh.preview_url ? `Preview : ${sh.preview_url}\n` : ''}`
-ini_txt += `───────────────────`
+ini_txt += `\n\n${lenguajeGB.smsSP1()} ${sh.title} | ⏱️ ${sh.duration}*\n`
+ini_txt += `${lenguajeGB.smsSP2()} ${sh.artists}\n`
+ini_txt += `${lenguajeGB.smsSP3()} ${sh.link}\n`
+ini_txt += `⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯`
 }
 await m.reply(wait)
-await m.reply(ini_txt)       
+await m.reply(ini_txt)  
+} catch (e) {
+reportError(e)} 
 break
 }}
 
