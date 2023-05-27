@@ -2,7 +2,7 @@ import fetch from 'node-fetch'
 import fs from 'fs'
 
 let handler = async(m, { conn, text, usedPrefix, command }) => {
-if (!text) return m.reply(lenguajeGB.smsMalused2(), `⊱ *${usedPrefix + command} Bellyache*`)
+if (!text) return m.reply(lenguajeGB.smsMalused2() + `⊱ *${usedPrefix + command} Bellyache*`)
 try {
 let res = await fetch(`https://api.lolhuman.xyz/api/spotifysearch?apikey=${lolkeysapi}&query=${text}`)
 let json = await res.json()
