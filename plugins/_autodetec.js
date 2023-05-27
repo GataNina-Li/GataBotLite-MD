@@ -2,21 +2,23 @@ import { WAMessageStubType } from '@adiwajshing/baileys'
 
 export async function before(m, { conn, participants }) {
 if (!m.messageStubType || !m.isGroup) return
+const fkontak = { "key": { "participants":"0@s.whatsapp.net", "remoteJid": "status@broadcast", "fromMe": false, "id": "Halo" }, "message": { "contactMessage": { "vcard": `BEGIN:VCARD\nVERSION:3.0\nN:Sy;Bot;;;\nFN:y\nitem1.TEL;waid=${m.sender.split('@')[0]}:${m.sender.split('@')[0]}\nitem1.X-ABLabel:Ponsel\nEND:VCARD` }}, "participant": "0@s.whatsapp.net"}  
 let usuario = `@${m.sender.split`@`[0]}`
+let tag = [m.sender, m.messageStubParameters[0]]
 let groupAdmins = participants.filter(p => p.admin)
 const mentionsString = [m.sender, m.messageStubParameters[0], ...groupAdmins.map(v => v.id)]
-let tag = [m.sender, m.messageStubParameters[0]]
-const fkontak = { "key": { "participants":"0@s.whatsapp.net", "remoteJid": "status@broadcast", "fromMe": false, "id": "Halo" }, "message": { "contactMessage": { "vcard": `BEGIN:VCARD\nVERSION:3.0\nN:Sy;Bot;;;\nFN:y\nitem1.TEL;waid=${m.sender.split('@')[0]}:${m.sender.split('@')[0]}\nitem1.X-ABLabel:Ponsel\nEND:VCARD` }}, "participant": "0@s.whatsapp.net"}
+let inf = lenguajeGB['smsAvisoIIG']()
 let pp = await conn.profilePictureUrl(m.chat, 'image').catch(_ => null) || './src/grupos.jpg'  
-
-let nombre
-nombre = `*${usuario} HA CAMBIADO EL NOMBRE DEL GRUPO*\n\n🔰 *AHORA EL GRUPO SE LLAMA:*\n${m.messageStubParameters[0]}`
+let nombre, foto
+nombre = `${inf}*${usuario} HA CAMBIADO EL NOMBRE DEL GRUPO*\n\n🔰 *AHORA EL GRUPO SE LLAMA:*\n${m.messageStubParameters[0]}`
+foto = `${inf}*${usuario} HA CAMBIADO LA IMAGEN DEL GRUPO*`
 
 if (m.messageStubType == 21) {
-await conn.sendMessage(m.chat, { image: { url: pp }, caption: nombre, mentions: tag }, { quoted: fkontak })
+await conn.sendMessage(m.chat, { text: nombre, mentions: tag }, { quoted: fkontak })   
   
 } else if (m.messageStubType == 22) {
-await this.sendMessage(m.chat, { text: `${usuario} 𝙃𝘼𝙎 𝘾𝘼𝙈𝘽𝙄𝘼𝘿𝙊 𝙇𝘼𝙎 𝙁𝙊𝙏𝙊 𝘿𝙀𝙇 𝙂𝙍𝙐𝙋𝙊`, mentions: [m.sender] }, { quoted: fkontak }) 
+await conn.sendMessage(m.chat, { image: { url: pp }, caption: foto, mentions: tag }, { quoted: fkontak })
+  
 } else if (m.messageStubType == 24) {
 await this.sendMessage(m.chat, { text: `${usuario} 𝙉𝙐𝙀𝙑𝘼 𝘿𝙀𝙎𝘾𝙍𝙄𝙋𝘾𝙄𝙊𝙉 𝘿𝙀𝙇 𝙂𝙍𝙐𝙋𝙊 𝙀𝙎:\n\n${m.messageStubParameters[0]}`, mentions: [m.sender] }, { quoted: fkontak })
 } else if (m.messageStubType == 25) {
