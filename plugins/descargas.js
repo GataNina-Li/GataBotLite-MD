@@ -388,6 +388,7 @@ await conn.sendFile(m.chat, thumbnail, 'image.jpg', '💚 *Ｓ Ｐ Ｏ Ｔ Ｉ �
 let aa = await conn.sendMessage(m.chat, { audio: { url: json2.result.link }, fileName: `error.mp3`, mimetype: 'audio/mp4' }, { quoted: m })  
 if (!aa) return conn.sendFile(m.chat, json2.result.link, 'error.mp3', null, m, false, { mimetype: 'audio/mp4' })*/
 if (!text) return m.reply(lenguajeGB.smsMalused2() + `*${usedPrefix + command} Bellyache*`)
+try {
 let link
 if (text.startsWith('https://open.spotify.com/track/')) {
 link = text
