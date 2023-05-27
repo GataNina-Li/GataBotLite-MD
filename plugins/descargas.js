@@ -362,7 +362,6 @@ break
         
 case isCommand14:
 if (!text) return m.reply(lenguajeGB.smsMalused2() + `*${usedPrefix + command} Runaway*\n\n*${usedPrefix + command} https://open.spotify.com/track/23rdcrD0Eky4vYn2TZidxJ*\n\n${lenguajeGB.smsSP0(usedPrefix)}`)
-//try {
 let link
 if (text.startsWith('https://open.spotify.com/track/')) {
 link = text
@@ -401,10 +400,10 @@ break
         
 case isCommand15:
 if (!text) return m.reply(lenguajeGB.smsMalused2() + `*${usedPrefix + command} Bellyache*`)
-try{
 let res = await fetch(`https://api.lolhuman.xyz/api/spotifysearch?apikey=${lolkeysapi}&query=${encodeURIComponent(text)}`)
 let json = await res.json()
 if (json.status != '200') throw `Ocurrió un error, no se encontró resultados. Intente con otro nombre o enlace`
+try{
 let get_result = json.result
 let ini_txt = `🔎 \`\`\`RESULTADO DE: ${text}\`\`\``
 for (var sh of get_result) {
