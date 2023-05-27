@@ -20,6 +20,9 @@ await conn.sendMessage(m.chat, { text: nombre, mentions: [m.sender] }, { quoted:
 } else if (m.messageStubType == 22) {
 await conn.sendMessage(m.chat, { image: { url: pp }, caption: foto, mentions: [m.sender] }, { quoted: fkontak })
   
+} else if (m.messageStubType == 23) {
+		await this.sendMessage(m.chat, { text: `𝘾𝘼𝙈𝘽𝙄𝙊 ${usuario} 𝙀𝙉𝙇𝘼𝘾𝙀 𝘿𝙀𝙇 𝙂𝙍𝙐𝙋𝙊\n𝘼𝙃𝙊𝙍𝘼 𝙀𝙎𝙏𝙀 𝙀𝙎 𝙀𝙇 𝙉𝙐𝙀𝙑𝙊 𝙀𝙉𝙇𝘼𝘾𝙀 𝘿𝙀𝙇 𝙂𝙍𝙐𝙋𝙊:\n${link}`, mentions: [m.sender] }, { quoted: fkontak })
+  
 //} else if (m.messageStubType == 24) {
 //await this.sendMessage(m.chat, { text: `${usuario} 𝙉𝙐𝙀𝙑𝘼 𝘿𝙀𝙎𝘾𝙍𝙄𝙋𝘾𝙄𝙊𝙉 𝘿𝙀𝙇 𝙂𝙍𝙐𝙋𝙊 𝙀𝙎:\n\n${m.messageStubParameters[0]}`, mentions: [m.sender] }, { quoted: fkontak })
 
