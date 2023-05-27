@@ -361,7 +361,7 @@ reportError(e)}
 break
         
 case isCommand14:
-if (!text) return m.reply(lenguajeGB.smsMalused2() + `*${usedPrefix + command} Bellyache*\n\n*${usedPrefix + command} https://open.spotify.com/track/23rdcrD0Eky4vYn2TZidxJ*\n\n_PUEDE USAR *${usedPrefix}spotifysearch* PARA OBTENER EL ENLACE DE SU CANCIÓN ESPECÍFICA_`)
+if (!text) return m.reply(lenguajeGB.smsMalused2() + `*${usedPrefix + command} Runaway*\n\n*${usedPrefix + command} https://open.spotify.com/track/23rdcrD0Eky4vYn2TZidxJ*\n\n🌸 _PUEDE USAR *${usedPrefix}spotifysearch* PARA OBTENER EL ENLACE DE SU CANCIÓN ESPECÍFICA_`)
 try {
 let link
 if (text.startsWith('https://open.spotify.com/track/')) {
