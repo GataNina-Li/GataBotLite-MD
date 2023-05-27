@@ -361,7 +361,7 @@ reportError(e)}
 break
         
 case isCommand14:
-if (!text) return m.reply(lenguajeGB.smsMalused2() + `*${usedPrefix + command} Runaway*\n\n*${usedPrefix + command} https://open.spotify.com/track/23rdcrD0Eky4vYn2TZidxJ*\n\n🌸 _PUEDE USAR *${usedPrefix}spotifysearch* PARA OBTENER EL ENLACE DE SU CANCIÓN ESPECÍFICA_`)
+if (!text) return m.reply(lenguajeGB.smsMalused2() + `*${usedPrefix + command} Runaway*\n\n*${usedPrefix + command} https://open.spotify.com/track/23rdcrD0Eky4vYn2TZidxJ*\n\n${lenguajeGB.smsMalused0()}`)
 try {
 let link
 if (text.startsWith('https://open.spotify.com/track/')) {
@@ -402,10 +402,9 @@ case isCommand15:
 if (!text) return m.reply(lenguajeGB.smsMalused2() + `*${usedPrefix + command} Bellyache*`)
 try{
 let res = await fetch(`https://api.lolhuman.xyz/api/spotifysearch?apikey=${lolkeysapi}&query=${encodeURIComponent(text)}`)
-if (!res.ok) throw await `URL de Spotify no válida / se produjo un error.`
 let json = await res.json()
 let get_result = json.result
-let ini_txt = `Encontro : *${text}*`
+let ini_txt = `🔎 \`\`\`RESULTADO DE: ${text}\`\`\``
 for (var sh of get_result) {
 const duration = sh.duration
 const formatted = formatVideoDuration(duration)
