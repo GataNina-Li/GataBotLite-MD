@@ -9,11 +9,11 @@ let groupAdmins = participants.filter(p => p.admin)
 const mentionsString = [m.sender, m.messageStubParameters[0], ...groupAdmins.map(v => v.id)]
 let inf = lenguajeGB['smsAvisoIIG']()
 let pp = await conn.profilePictureUrl(m.chat, 'image').catch(_ => null) || './src/grupos.jpg'  
-let nombre, foto, newlink, 
+let nombre, foto, edit
 nombre = `${inf}*${usuario} HA CAMBIADO EL NOMBRE DEL GRUPO*\n\n🔰 *AHORA EL GRUPO SE LLAMA:*\n${m.messageStubParameters[0]}`
 foto = `${inf}*${usuario} HA CAMBIADO LA IMAGEN DEL GRUPO*`
-newlink = `${inf}*${usuario} HA RESTABLECIDO EL ENLACE DEL GRUPO*`
-
+edit = `${inf}*${usuario} HA PERMITIDO QUE ${m.messageStubParameters[0] == 'on' ? 'SOLO ADMINS' : 'TODOS'} PUEDAN CONFIGURAR* ${m.messageStubParameters[0]}`
+  
 if (m.messageStubType == 21) {
 await conn.sendMessage(m.chat, { text: nombre, mentions: [m.sender] }, { quoted: fkontak })   
   
@@ -24,13 +24,8 @@ await conn.sendMessage(m.chat, { image: { url: pp }, caption: foto, mentions: [m
 //await this.sendMessage(m.chat, { text: `${usuario} 𝙉𝙐𝙀𝙑𝘼 𝘿𝙀𝙎𝘾𝙍𝙄𝙋𝘾𝙄𝙊𝙉 𝘿𝙀𝙇 𝙂𝙍𝙐𝙋𝙊 𝙀𝙎:\n\n${m.messageStubParameters[0]}`, mentions: [m.sender] }, { quoted: fkontak })
 
 } else if (m.messageStubType == 25) {
-await conn.sendMessage(m.chat, { text: nombre, mentions: [m.sender] }, { quoted: fkontak })  
-  
-} else if (m.messageStubType == 1 || m.messageStubType == 23 || m.messageStubType == 132) {
-await conn.sendMessage(m.chat, { text: newlink, mentions: [m.sender] }, { quoted: fkontak })   
-  
-//await conn.sendMessage(m.chat, { image: { url: pp }, caption: txt6, mentions: mentionsContentM }, { quoted: fkontak2 })
-//await this.sendMessage(m.chat, { text: `🔒 AHORA *${m.messageStubParameters[0] == 'on' ? 'SOLO ADMINS' : 'TODOS'}* PUEDE EDITAR LAS INFORMACION DEL GRUPO.`, mentions: [m.sender] }, { quoted: fkontak })
+await conn.sendMessage(m.chat, { text: edit, mentions: [m.sender] }, { quoted: fkontak })  
+
 } else if (m.messageStubType == 26) {
 await this.sendMessage(m.chat, { text: `EL GRUPO *${m.messageStubParameters[0] == 'on' ? 'ESTA CERRADO 🔒' : 'ESTA ABIERTO 🔓'}*\n ${m.messageStubParameters[0] == 'on' ? 'SOLO ADMINS' : 'TODOS'} PUEDEN ENVIAR MENSAJES.`, mentions: [m.sender] }, { quoted: fkontak })
 /* } else if (m.messageStubType == 28) {
