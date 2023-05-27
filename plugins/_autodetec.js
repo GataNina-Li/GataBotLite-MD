@@ -9,6 +9,8 @@ let groupAdmins = participants.filter(p => p.admin)
 const mentionsString = [m.sender, m.messageStubParameters[0], ...groupAdmins.map(v => v.id)]
 let inf = lenguajeGB['smsAvisoIIG']()
 let pp = await conn.profilePictureUrl(m.chat, 'image').catch(_ => null) || './src/grupos.jpg'  
+let group = m.chat
+let link = 'https://chat.whatsapp.com/' + await conn.groupInviteCode(group)
 let nombre, foto, edit
 nombre = `${inf}*${usuario} HA CAMBIADO EL NOMBRE DEL GRUPO*\n\n🔰 *AHORA EL GRUPO SE LLAMA:*\n${m.messageStubParameters[0]}`
 foto = `${inf}*${usuario} HA CAMBIADO LA IMAGEN DEL GRUPO*`
