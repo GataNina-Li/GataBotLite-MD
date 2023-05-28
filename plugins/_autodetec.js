@@ -9,9 +9,9 @@ let inf = lenguajeGB['smsAvisoIIG']()
 let pp = await conn.profilePictureUrl(m.chat, 'image').catch(_ => null) || './src/grupos.jpg'  
 
 let nombre, foto, edit, newlink, status, admingp, noadmingp
-nombre = `${inf}*${usuario}\nHA CAMBIADO EL NOMBRE DEL GRUPO*\n\n🔰 *AHORA EL GRUPO SE LLAMA:*\n*${m.messageStubParameters[0]}*`
-foto = `${inf}*${usuario}\nHA CAMBIADO LA IMAGEN DE ${groupMetadata.subject}*`
-edit = `${inf}*${usuario}\nHA PERMITIDO QUE ${m.messageStubParameters[0] == 'on' ? 'SOLO ADMINS' : 'TODOS'} PUEDAN CONFIGURAR ${groupMetadata.subject}*`
+nombre = `${inf}*» ${usuario}*\n*HA CAMBIADO EL NOMBRE DEL GRUPO*\n\n🔰 *AHORA EL GRUPO SE LLAMA:*\n*${m.messageStubParameters[0]}*`
+foto = `${inf}*» ${usuario}*\n*HA CAMBIADO LA IMAGEN DE ${groupMetadata.subject}*`
+edit = `${inf}*» ${usuario}*\n*HA PERMITIDO QUE ${m.messageStubParameters[0] == 'on' ? 'SOLO ADMINS' : 'TODOS'} PUEDAN CONFIGURAR ${groupMetadata.subject}*`
 newlink = `${inf}*EL ENLACE DE ${groupMetadata.subject} HA SIDO RESTABLECIDO POR ${usuario}*`
 status = `${inf}*${groupMetadata.subject} HA SIDO ${m.messageStubParameters[0] == 'on' ? 'CERRADO 🔒' : 'ABIERTO 🔓'} POR ${usuario}*\n\n💬 *AHORA ${m.messageStubParameters[0] == 'on' ? 'SOLO ADMINS' : 'TODOS'} PUEDEN ENVIAR MENSAJES*`
 admingp = `${inf}*@${m.messageStubParameters[0].split`@`[0]} AHORA ES ADMIN EN ${groupMetadata.subject}*\n\n✨ *ACCIÓN HECHA POR: ${usuario}*`
