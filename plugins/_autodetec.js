@@ -9,13 +9,13 @@ let inf = lenguajeGB['smsAvisoIIG']()
 let pp = await conn.profilePictureUrl(m.chat, 'image').catch(_ => null) || './src/grupos.jpg'  
 
 let nombre, foto, edit, newlink, status, admingp, noadmingp
-nombre = `${inf}*» ${usuario}*\n*HA CAMBIADO EL NOMBRE DEL GRUPO*\n\n🔰 *AHORA EL GRUPO SE LLAMA:*\n*${m.messageStubParameters[0]}*`
-foto = `${inf}*» ${usuario}*\n*HA CAMBIADO LA IMAGEN DE:*\n*${groupMetadata.subject}*`
-edit = `${inf}*» ${usuario}*\n*HA PERMITIDO QUE ${m.messageStubParameters[0] == 'on' ? 'SOLO ADMINS' : 'TODOS'} PUEDAN CONFIGURAR ${groupMetadata.subject}*`
-newlink = `${inf}*EL ENLACE DE ${groupMetadata.subject} HA SIDO RESTABLECIDO POR:*\n*» ${usuario}*`
-status = `${inf}*${groupMetadata.subject} HA SIDO ${m.messageStubParameters[0] == 'on' ? 'CERRADO 🔒' : 'ABIERTO 🔓'} POR ${usuario}*\n\n💬 *AHORA ${m.messageStubParameters[0] == 'on' ? 'SOLO ADMINS' : 'TODOS'} PUEDEN ENVIAR MENSAJES*`
-admingp = `${inf}*@${m.messageStubParameters[0].split`@`[0]} AHORA ES ADMIN EN*\n*» ${groupMetadata.subject}*\n\n✨ *ACCIÓN HECHA POR:*\n*» ${usuario}*`
-noadmingp = `${inf}*@${m.messageStubParameters[0].split`@`[0]} DEJA DE SER ADMIN EN*\n*» ${groupMetadata.subject}*\n\n✨ *ACCIÓN HECHA POR:*\n*» ${usuario}*`
+nombre = lenguajeGB.smsAutodetec1(inf, usuario, m)
+foto = lenguajeGB.smsAutodetec2(inf, usuario, groupMetadata)
+edit = lenguajeGB.smsAutodetec3(inf, usuario, m, groupMetadata)
+newlink = lenguajeGB.smsAutodetec4(inf, groupMetadata, usuario)
+status = lenguajeGB.smsAutodetec5(inf, groupMetadata, m, usuario)
+admingp = lenguajeGB.smsAutodetec6(inf, m, groupMetadata, usuario)
+noadmingp = lenguajeGB.smsAutodetec7(inf, m, groupMetadata, usuario)
 
 if (chat.detect && m.messageStubType == 21) {
 await conn.sendMessage(m.chat, { text: nombre, mentions: [m.sender] }, { quoted: fkontak })   
