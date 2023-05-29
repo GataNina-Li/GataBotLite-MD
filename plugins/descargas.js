@@ -36,7 +36,7 @@ try{
 const res = await googleImage(text)
 let image = res.getRandom()
 let link = image
-conn.sendFile(m.chat, link, 'error.jpg', `*💞 Resultado de:* ${text}`, m)
+conn.sendFile(m.chat, link, 'error.jpg', `${lenguajeGB.smsImageGg()} ${text}`, m)
 } catch (e) {
 reportError(e)
 } 
