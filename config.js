@@ -33,7 +33,7 @@ Add the language you want GataBotLite-MD to have
   en = English         pt = Português 
   ar = عرب
 */
-global.lenguajeGB = es  //<--- [es, en, ar, id, pt] Escribir el código de Idioma
+global.lenguajeGB = ar  //<--- [es, en, ar, id, pt] Escribir el código de Idioma
  
 //━━━━━━━━━━━━━━━━━━━━ ฅ^•ﻌ•^ฅ
 
