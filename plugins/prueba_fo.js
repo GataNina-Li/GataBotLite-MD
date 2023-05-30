@@ -22,7 +22,7 @@ let handler = async (m, { conn, text }) => {
 █ ▄█▀█● *@${victima.split('@')[0]}*
 *¡Te han cogido!* 😫🍆`.trim();
 
-  await conn.reply(m.chat, coger, m, { mentions: [m.sender, victima + '@s.whatsapp.net', text + '@s.whatsapp.net'] });
+  await conn.reply(m.chat, coger, m, { mentions: [m.sender, victima, text] });
 };
 
 handler.command = /^(coger|follar|prueba34)$/i;
