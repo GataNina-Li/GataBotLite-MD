@@ -12,7 +12,7 @@ await conn.reply(m.chat, coger, m, { mentions: [m.sender, m.user]})
 //m.reply(coger, null, {mentions: conn.parseMention(coger)});
 }
 
-handler.command = /^(coger|follar)$/i;
+handler.command = /^(coger|follar|prueba34)$/i;
 export default handler
 
 
