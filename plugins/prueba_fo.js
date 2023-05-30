@@ -17,14 +17,14 @@ let handler = async (m, { conn, text }) => {
   }
   
 
-  let coger = `🥵 *Acaban de coger a ${m.quoted && m.quoted.fromMe ? text : `@${text.split('@')[0]}`}* 🥵 
+  let coger = `🥵 *Acaban de coger a ${m.quoted && m.quoted.fromMe ? `@${text.split('@')[0]}` : text}* 🥵 
 
-*${m.quoted && m.quoted.fromMe ? text : `@${text.split('@')[0]}`} ¡te han cogido!* 😏
+*${m.quoted && m.quoted.fromMe ? `@${text.split('@')[0]}` : text} ¡te han cogido!* 😏
 
 *${cometido}*
 ●
 █▄
-█ ▄█▀█● *${m.quoted && m.quoted.fromMe ? victima : `@${victima.split('@')[0]}`}
+█ ▄█▀█● *${m.quoted && m.quoted.fromMe ? `@${victima.split('@')[0]}` : victima}*
 *¡Te han cogido!* 😫🍆`.trim();
 
   await conn.reply(m.chat, coger, m, { mentions: [m.sender, victima, text] });
