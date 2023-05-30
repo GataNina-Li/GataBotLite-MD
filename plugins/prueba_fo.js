@@ -3,17 +3,17 @@ let handler = async (m, { conn, text }) => {
   cometido = `@${m.sender.split('@')[0]}`
 
   if (text.length >= 1) {
-  text = text.slice(0).join(" ")  
+  //text = text.slice(0).join(" ")  
 } else if (m.quoted && m.quoted.sender) {
     //victima = m.quoted.sender
     text = m.quoted.sender
   } else if (m.quoted && m.quoted.fromMe) {
     //victima = `${m.mentionedJid.map((user)=>(user === m.sender) ? text : `@${user.split('@')[0]}`).join(', ')}` //m.sender
-    text  //`${m.mentionedJid.map((user)=>(user === m.sender) ? text : `${user.split('@')[0]}`).join(', ')}` //m.sender
+    text = `${text.split('@')[0]}` //`${m.mentionedJid.map((user)=>(user === m.sender) ? text : `${user.split('@')[0]}`).join(', ')}` //m.sender
   }
   
 
-  let coger = `🥵 *Acaban de coger a @${text.split('@')[0]}* 🥵 
+  let coger = `🥵 *Acaban de coger a @${text}* 🥵 
 
 *@${text.split('@')[0]} ¡te han cogido!* 😏
 
