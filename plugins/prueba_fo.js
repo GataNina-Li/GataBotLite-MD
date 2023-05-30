@@ -10,17 +10,17 @@ text = `@${m.quoted.sender.split('@')[0]}`
 text = `${m.mentionedJid.map((user)=>(user === m.sender) ? text.replace('@', '') : `${user.split('@')[0].replace('@', '')}`).join(', ')}`
 }
   
-let coger = `🥵 *Acaban de coger a @${text}* 🥵 
+let coger = `🥵 *Acaban de coger a ${text}* 🥵 
 
-*@${text} ¡te han cogido!* 😏
+*${text} ¡te han cogido!* 😏
 
 *${cometido}*
 ●
 █▄
-█ ▄█▀█● *@${text}*
+█ ▄█▀█● *${text}*
 *¡Te han cogido!* 😫🍆`.trim()
 
-await conn.reply(m.chat, coger, m, { mentions: [m.sender, text + '@s.whatsapp.net'] })
+await conn.reply(m.chat, coger, m, { mentions: [m.sender, ...m.mentionedJid] })
 }
 
 handler.command = /^(coger|follar|prueba34)$/i
