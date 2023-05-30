@@ -12,14 +12,14 @@ let handler = async (m, { conn, text }) => {
     text = m.sender
   }
 
-  let coger = `🥵 *Acaban de coger a ${text.split('@')[0]}* 🥵 
+  let coger = `🥵 *Acaban de coger a @${text.split('@')[0]}* 🥵 
 
-*${text.split('@')[0]} ¡te han cogido!* 😏
+*@${text.split('@')[0]} ¡te han cogido!* 😏
 
 *${cometido}*
 ●
 █▄
-█ ▄█▀█● @${victima.split('@')[0]}
+█ ▄█▀█● *@${victima.split('@')[0]}*
 *¡Te han cogido!* 😫🍆`.trim();
 
   await conn.reply(m.chat, coger, m, { mentions: [m.sender, victima + '@s.whatsapp.net', text + '@s.whatsapp.net'] });
