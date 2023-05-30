@@ -6,18 +6,20 @@ let handler = async (m, { conn, text }) => {
     text = text.slice(0).join(" ")
   } else if (m.quoted && m.quoted.sender) {
     victima = m.quoted.sender
+    text = m.quoted.sender
   } else if (m.quoted && m.quoted.fromMe) {
     victima = m.sender
+    text = m.sender
   }
 
-  let coger = `🥵 *Acaban de coger a ${text}* 🥵 
+  let coger = `🥵 *Acaban de coger a ${text.split('@')[0]}* 🥵 
 
-*${text} ¡te han cogido!* 😏
+*${text.split('@')[0]} ¡te han cogido!* 😏
 
 *${cometido}*
 ●
 █▄
-█ ▄█▀█● @${victima}
+█ ▄█▀█● @${victima.split('@')[0]}
 *¡Te han cogido!* 😫🍆`.trim();
 
   await conn.reply(m.chat, coger, m, { mentions: [m.sender, victima + '@s.whatsapp.net', text + '@s.whatsapp.net'] });
