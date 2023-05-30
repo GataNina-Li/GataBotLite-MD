@@ -5,10 +5,10 @@ let handler = async (m, { conn, text }) => {
   if (text.length >= 1) {
   //text = text.slice(0).join(" ")  
 } else if (m.quoted && m.quoted.sender) {
-    victima = m.quoted.sender
+    //victima = m.quoted.sender
     text = m.quoted.sender
   } else if (m.quoted && m.quoted.fromMe) {
-    victima = `${m.mentionedJid.map((user)=>(user === m.sender) ? text : `@${user.split('@')[0]}`).join(', ')}` //m.sender
+    //victima = `${m.mentionedJid.map((user)=>(user === m.sender) ? text : `@${user.split('@')[0]}`).join(', ')}` //m.sender
     text = `${m.mentionedJid.map((user)=>(user === m.sender) ? text : `@${user.split('@')[0]}`).join(', ')}` //m.sender
   }
   
@@ -20,10 +20,10 @@ let handler = async (m, { conn, text }) => {
 *${cometido}*
 ●
 █▄
-█ ▄█▀█● *${m.quoted && m.quoted.fromMe ? `@${victima.split('@')[0]}` : victima}*
+█ ▄█▀█● *${m.quoted && m.quoted.fromMe ? `@${text.split('@')[0]}` : text}*
 *¡Te han cogido!* 😫🍆`.trim();
 
-  await conn.reply(m.chat, coger, m, { mentions: [...m.mentionedJid] });
+  await conn.reply(m.chat, coger, m, { mentions: [m.sender, victima, text, ...m.mentionedJid] });
 };
 
 handler.command = /^(coger|follar|prueba34)$/i;
