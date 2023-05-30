@@ -3,11 +3,12 @@ let handler = async (m, { conn, text }) => {
   cometido = `@${m.sender.split('@')[0]}`
 
   if (text.length >= 1) {
-    if (m.quoted && m.quoted.fromMe) {
-    text.trm()
-    }else {
-    text = text.slice(0).join(" ")  
-    }} else if (m.quoted && m.quoted.sender) {
+    //if (m.quoted && m.quoted.fromMe) {
+    //text.trm()
+    //}else {
+    //text = text.slice(0).join(" ")  
+    //}
+} else if (m.quoted && m.quoted.sender) {
     victima = m.quoted.sender
     text = m.quoted.sender
   } else if (m.quoted && m.quoted.fromMe) {
