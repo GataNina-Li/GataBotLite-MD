@@ -429,6 +429,7 @@ json = await human.json()
 let videoig = json.result
 let shortUrl1 = await (await fetch(`https://tinyurl.com/api-create.php?url=${args[0]}`)).text()
 let txt1 = `🔗 *URL:* ${shortUrl1}`.trim()
+await m.reply(wait)
 await conn.sendFile(m.chat, videoig, 'error.mp4', txt1, m)        
 } catch (e) {
 reportError(e)} 
