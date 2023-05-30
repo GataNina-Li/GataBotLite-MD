@@ -5,23 +5,22 @@ cometido = `@${m.sender.split('@')[0]}`
 if (text.length >= 1) {
 //text = text.slice(0).join(" ")  
 } else if (m.quoted && m.quoted.sender) {
-text2 = `@${m.quoted.sender.split('@')[0]}`
+text = `@${m.quoted.sender.split('@')[0]}`
 } else if (m.quoted && m.quoted.fromMe) {
-text2 = `${text.replace('@', '')}` //`${m.mentionedJid.map((user)=>(user === m.sender) ? text : `${user.split('@')[0]}`).join(', ')}` //m.sender
+text = `${text.replace('@', '')}` //`${m.mentionedJid.map((user)=>(user === m.sender) ? text : `${user.split('@')[0]}`).join(', ')}` //m.sender
 }
   
+let coger = `🥵 *Acaban de coger a @${text}* 🥵 
 
-let coger = `🥵 *Acaban de coger a @${text2}* 🥵 
-
-*@${text2} ¡te han cogido!* 😏
+*@${text} ¡te han cogido!* 😏
 
 *${cometido}*
 ●
 █▄
-█ ▄█▀█● *@${text2}*
+█ ▄█▀█● *@${text}*
 *¡Te han cogido!* 😫🍆`.trim()
 
-await conn.reply(m.chat, coger, m, { mentions: [m.sender, text2 + '@s.whatsapp.net'] })
+await conn.reply(m.chat, coger, m, { mentions: [m.sender, text + '@s.whatsapp.net'] })
 }
 
 handler.command = /^(coger|follar|prueba34)$/i
