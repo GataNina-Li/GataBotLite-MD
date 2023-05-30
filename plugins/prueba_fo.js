@@ -7,7 +7,7 @@ if (text.length >= 1) {
 } else if (m.quoted && m.quoted.sender) {
 text = `@${m.quoted.sender.split('@')[0]}`
 } else if (m.quoted && m.quoted.fromMe) {
-text = text.split('@')[0] //`${m.mentionedJid.map((user)=>(user === m.sender) ? text : `${user.split('@')[0]}`).join(', ')}` //m.sender
+text = text.replace(/\D/g, '') //`${m.mentionedJid.map((user)=>(user === m.sender) ? text : `${user.split('@')[0]}`).join(', ')}` //m.sender
 }
   
 
