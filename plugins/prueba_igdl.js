@@ -9,10 +9,15 @@ let shortUrl1 = await (await fetch(`https://tinyurl.com/api-create.php?url=${arg
 let txt1 = `🔗 *Url:* ${shortUrl1}`.trim()
 await conn.sendFile(m.chat, videoig, 'error.mp4', txt1, m)*/
   
-const resultss = await instagramGetUrl(args[0]).url_list[0]    
-let shortUrl2 = await (await fetch(`https://tinyurl.com/api-create.php?url=${args[0]}`)).text()
-let txt2 = `🔗 *Url:* ${shortUrl2}`.trim()
-await conn.sendFile(m.chat, resultss, 'error.mp4', txt2, m)
+//const resultss = await instagramGetUrl(args[0]).url_list[0]    
+//let shortUrl2 = await (await fetch(`https://tinyurl.com/api-create.php?url=${args[0]}`)).text()
+//let txt2 = `🔗 *Url:* ${shortUrl2}`.trim()
+//await conn.sendFile(m.chat, resultss, 'error.mp4', txt2, m)
+  
+let res = await instagramGetUrl(args[0])
+    for (let result of res.url_list) {
+    conn.sendFile(m.chat, result, 'instagram.mp4', wm, m)
+  }
   
 }
 handler.command = /^(igdl)$/i
