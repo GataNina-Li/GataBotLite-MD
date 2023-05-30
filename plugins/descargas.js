@@ -22,6 +22,8 @@ const isCommand12 = /^(dalle|openiamage|aiimage|aiimg|aimage|iaimagen|openaimage
 const isCommand13 = /^(openjourney|journey|midjourney)$/i.test(command)
 const isCommand14 = /^(spotify|music)$/i.test(command)
 const isCommand15 = /^(spot(ify)?search)$/i.test(command)
+const isCommand16 = /^(i(nsta)?g(ram)?(dl)?)$/i.test(command)
+
 
 async function reportError(e) {
 await m.reply(lenguajeGB['smsMalError3']() + '\n*' + lenguajeGB.smsMensError1() + '*\n*' + usedPrefix + `${lenguajeGB.lenguaje() == 'es' ? 'reporte' : 'report'}` + '* ' + `${lenguajeGB.smsMensError2()} ` + usedPrefix + command)
@@ -418,9 +420,22 @@ await m.reply(ini_txt)
 } catch (e) {
 reportError(e)} 
 break
+        
+case isCommand16:
+if (!args[0]) throw return m.reply(lenguajeGB.smsMalused2() + `*${usedPrefix + command}* https://www.instagram.com/reel/CrWooCiKGKP/?utm_source=ig_web_copy_link&igshid=MzRlODBiNWFlZA==`)
+try{
+let human = await fetch(`https://api.lolhuman.xyz/api/instagram?apikey=${lolkeysapi}&url=${args[0]}`)
+json = await human.json()
+let videoig = json.result
+let shortUrl1 = await (await fetch(`https://tinyurl.com/api-create.php?url=${args[0]}`)).text()
+let txt1 = `🔗 *URL:* ${shortUrl1}`.trim()
+await conn.sendFile(m.chat, videoig, 'error.mp4', txt1, m)        
+} catch (e) {
+reportError(e)} 
+break
 }}
 
-handler.command = /^(gimage|imagen?|play2?|fgmp3|dlmp3|getaud|yt(a|mp3)?|ytmp3doc|ytadoc|fgmp4|dlmp4|getvid|yt(v|mp4)?|ytmp4doc|ytvdoc|facebook|fb|facebookdl|fbdl|mediafire(dl)?|dlmediafire|ytmax|ytmaxdoc|tiktok|tkdl|dalle|openiamage|aiimage|aiimg|aimage|iaimagen|openaimage|openaiimage|openjourney|journey|midjourney|spotify|music|spot(ify)?search)$/i
+handler.command = /^(gimage|imagen?|play2?|fgmp3|dlmp3|getaud|yt(a|mp3)?|ytmp3doc|ytadoc|fgmp4|dlmp4|getvid|yt(v|mp4)?|ytmp4doc|ytvdoc|facebook|fb|facebookdl|fbdl|mediafire(dl)?|dlmediafire|ytmax|ytmaxdoc|tiktok|tkdl|dalle|openiamage|aiimage|aiimg|aimage|iaimagen|openaimage|openaiimage|openjourney|journey|midjourney|spotify|music|spot(ify)?search|i(nsta)?g(ram)?(dl)?)$/i
 handler.register = true
 export default handler
 
