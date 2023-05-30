@@ -9,7 +9,7 @@ let handler = async (m, { conn, text }) => {
     text = m.quoted.sender
   } else if (m.quoted && m.quoted.fromMe) {
     //victima = `${m.mentionedJid.map((user)=>(user === m.sender) ? text : `@${user.split('@')[0]}`).join(', ')}` //m.sender
-    text = `${m.mentionedJid.map((user)=>(user === m.sender) ? text : `${user.split('@')[0]}`).join(', ')}` //m.sender
+    text  //`${m.mentionedJid.map((user)=>(user === m.sender) ? text : `${user.split('@')[0]}`).join(', ')}` //m.sender
   }
   
 
@@ -23,7 +23,7 @@ let handler = async (m, { conn, text }) => {
 █ ▄█▀█● *@${text.split('@')[0]}*
 *¡Te han cogido!* 😫🍆`.trim();
 
-  await conn.reply(m.chat, coger, m, { mentions: [m.sender, victima, text, ...m.mentionedJid] });
+  await conn.reply(m.chat, coger, m, { mentions: [m.sender, text, ...m.mentionedJid] });
 };
 
 handler.command = /^(coger|follar|prueba34)$/i;
