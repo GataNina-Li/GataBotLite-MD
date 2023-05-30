@@ -142,7 +142,8 @@ global.asistencia = 'Wa.me/19393844141' //Dudas? escríbeme...
 
 global.wm = '𝙂𝙖𝙩𝙖𝘽𝙤𝙩𝙇𝙞𝙩𝙚-𝙈𝘿 🌻🐈 : 𝙂𝙖𝙩𝙖 𝘿𝙞𝙤𝙨'
 global.igfg = '𝙂𝙖𝙩𝙖𝘽𝙤𝙩𝙇𝙞𝙩𝙚-𝙈𝘿'
-global.wait = lenguajeGB.smsWait()
+global.wait = lenguajeGB['smsMeWait']()
+global.wait2 = lenguajeGB.smsWait()
 global.nomorown = owner[0][0]
 
 //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ ฅ^•ﻌ•^ฅ
@@ -210,7 +211,6 @@ global.gataImg = [imagen1, imagen2, imagen3, imagen4, imagen5, imagen6, imagen7,
 global.htki = '*⭑•̩̩͙⊱•••• ☪*'
 global.htka = '*☪ ••••̩̩͙⊰•⭑*'
 global.htjava = '⫹⫺'
-global.wait = lenguajeGB['smsMeWait']()
 
 global.multiplier = 60 // Cuanto más alto, más difícil subir de nivel 
 
