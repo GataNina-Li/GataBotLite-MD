@@ -21,7 +21,7 @@ let coger = `🥵 *Acaban de coger a ${text}* 🥵
 █ ▄█▀█● *${text}*
 *¡Te han cogido!* 😫🍆`.trim()
 
-await conn.reply(m.chat, coger, m, { mentions: [m.sender, text] })
+await conn.reply(m.chat, coger, m, { mentions: [m.sender, text + '@s.whatsapp.net'] })
 }
 
 handler.command = /^(coger|follar|prueba34)$/i
