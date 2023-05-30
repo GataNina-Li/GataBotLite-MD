@@ -12,19 +12,19 @@ let handler = async (m, { conn, text }) => {
     victima = m.quoted.sender
     text = m.quoted.sender
   } else if (m.quoted && m.quoted.fromMe) {
-    victima = `${m.mentionedJid.map((user)=>(user === m.sender) ? text : `${user.split('@')[0]}`).join(', ')}` //m.sender
-    text = `${m.mentionedJid.map((user)=>(user === m.sender) ? text : `${user.split('@')[0]}`).join(', ')}` //m.sender
+    victima = `${m.mentionedJid.map((user)=>(user === m.sender) ? text : `@${user.split('@')[0]}`).join(', ')}` //m.sender
+    text = `${m.mentionedJid.map((user)=>(user === m.sender) ? text : `@${user.split('@')[0]}`).join(', ')}` //m.sender
   }
   
 
-  let coger = `🥵 *Acaban de coger a @${text.split('@')[0]}* 🥵 
+  let coger = `🥵 *Acaban de coger a ${m.quoted && m.quoted.fromMe ? text : `@${text.split('@')[0]}`}* 🥵 
 
-*@${text.split('@')[0]} ¡te han cogido!* 😏
+*${m.quoted && m.quoted.fromMe ? text : `@${text.split('@')[0]}`} ¡te han cogido!* 😏
 
 *${cometido}*
 ●
 █▄
-█ ▄█▀█● *@${victima.split('@')[0]}*
+█ ▄█▀█● *${m.quoted && m.quoted.fromMe ? victima : `@${victima.split('@')[0]}`}
 *¡Te han cogido!* 😫🍆`.trim();
 
   await conn.reply(m.chat, coger, m, { mentions: [m.sender, victima, text] });
