@@ -8,9 +8,10 @@ let handler = async (m, { conn, text }) => {
     victima = m.quoted.sender
     text = m.quoted.sender
   } else if (m.quoted && m.quoted.fromMe) {
-    victima = m.sender
-    text = m.sender
+    victima = `${m.mentionedJid.map((user)=>(user === m.sender) ? text : `${user.split('@')[0]}`).join(', ')}` //m.sender
+    text = `${m.mentionedJid.map((user)=>(user === m.sender) ? text : `${user.split('@')[0]}`).join(', ')}` //m.sender
   }
+  
 
   let coger = `🥵 *Acaban de coger a @${text.split('@')[0]}* 🥵 
 
