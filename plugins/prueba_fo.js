@@ -3,7 +3,8 @@ let handler = async (m, { conn, text }) => {
   cometido = `@${m.sender.split('@')[0]}`
 
   if (text.length >= 1) {
-    text = text.slice(0).join(" ")
+    text = text.join(" ")
+    //text = text.slice(0).join(" ")
   } else if (m.quoted && m.quoted.sender) {
     victima = m.quoted.sender
     text = m.quoted.sender
