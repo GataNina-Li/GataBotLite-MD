@@ -11,7 +11,7 @@ Autor : ${apk_author}
 
 `
 await conn.sendFile(m.chat, apk_icon, 'apk.jpg', apkk, m)
-await conn.sendFile(m.chat, apk_link, 'apk.zip', apk_name, m)
+await conn.sendFile(m.chat, apk_link, 'file.apk', apk_name, m)
 }
 
 handler.command = /^(apkdl|apkdwonload)$/i
