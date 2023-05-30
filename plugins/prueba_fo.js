@@ -1,14 +1,17 @@
 let handler = async (m, {conn, text}) => {
-let coger = `🥵 Acaban de coger a @${text}!🥵 
+let cometido, victima
+cometido = `@${m.sender.split('@')[0]}`
+victima = `${m.mentionedJid.map((user)=>(user === m.sender) ? text : `${user.split('@')[0]}`).join(', ')}`
+let coger = `🥵 Acaban de coger a ${text} !🥵 
     
-@${text} ¡te han cogido! 😏
+${text} ¡te han cogido! 😏
 
-@${m.sender.split('@')[0]}
+${cometido}
 ●
 █▄
-█ ▄█▀█● ${m.mentionedJid.map((user)=>(user === m.sender) ? text : `@${user.split('@')[0]}`).join(', ')}
+█ ▄█▀█● @${victima}
 ¡te han cogido! 😫🍆`.trim()
-await conn.reply(m.chat, coger, m, { mentions: [m.sender, m.user + '@s.whatsapp.net', text + '@s.whatsapp.net']})
+await conn.reply(m.chat, coger, m, { mentions: [m.sender, victima + '@s.whatsapp.net', text + '@s.whatsapp.net']})
 //m.reply(coger, null, {mentions: conn.parseMention(coger)});
 }
 
