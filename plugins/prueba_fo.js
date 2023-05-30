@@ -1,4 +1,4 @@
-let handler = async (m, { conn, text }) => {
+let handler = async (m, { conn, text }) => { 
 let cometido, text2
 cometido = `@${m.sender.split('@')[0]}`
 
