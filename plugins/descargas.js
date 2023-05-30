@@ -425,8 +425,8 @@ case isCommand16:
 if (!args[0]) return m.reply(lenguajeGB.smsMalused2() + `*${usedPrefix + command}* ` + 'https://www.instagram.com/reel/CrWooCiKGKP/?utm_source=ig_web_copy_link&igshid=MzRlODBiNWFlZA==')
 try{
 let human = await fetch(`https://api.lolhuman.xyz/api/instagram?apikey=${lolkeysapi}&url=${args[0]}`)
-json = await human.json()
-let videoig = json.result
+let json3 = await human.json()
+let videoig = json3.result
 let shortUrl1 = await (await fetch(`https://tinyurl.com/api-create.php?url=${args[0]}`)).text()
 let txt1 = `🔗 *URL:* ${shortUrl1}`.trim()
 await m.reply(wait)
