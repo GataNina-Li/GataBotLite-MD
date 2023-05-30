@@ -422,7 +422,7 @@ reportError(e)}
 break
         
 case isCommand16:
-if (!args[0]) throw return m.reply(lenguajeGB.smsMalused2() + `*${usedPrefix + command}* https://www.instagram.com/reel/CrWooCiKGKP/?utm_source=ig_web_copy_link&igshid=MzRlODBiNWFlZA==`)
+if (!args[0]) throw return m.reply(lenguajeGB.smsMalused2() + `*${usedPrefix + command}* ` + 'https://www.instagram.com/reel/CrWooCiKGKP/?utm_source=ig_web_copy_link&igshid=MzRlODBiNWFlZA==')
 try{
 let human = await fetch(`https://api.lolhuman.xyz/api/instagram?apikey=${lolkeysapi}&url=${args[0]}`)
 json = await human.json()
