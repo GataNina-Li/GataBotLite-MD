@@ -10,13 +10,9 @@ let shortUrl1 = await (await fetch(`https://tinyurl.com/api-create.php?url=${arg
 let txt1 = `🔗 *Url:* ${shortUrl1}`.trim()
 await conn.sendFile(m.chat, videoig, 'error.mp4', txt1, m)*/
   
-const resultssss = await instagramdl(args[0])
-          .catch(async (_) => await instagramdlv2(args[0]))
-          .catch(async (_) => await instagramdlv3(args[0]))
-          .catch(async (_) => await instagramdlv4(args[0]));
-        //let shortUrl3 = await (await fetch(`https://tinyurl.com/api-create.php?url=${r.medias[i].url}`)).text();
-        //let txt4 = `🔗 *Url:* ${shortUrl3}`.trim();
-        for (const {url} of resultssss) await conn.sendFile(m.chat, url, "error.mp4", 'rrrrr', m);
+let res = await fg.igdl(args[0])
+    for (let result of res.url_list) {
+    conn.sendFile(m.chat, result, 'igdl.mp4', `✅ Resultado`, m)
 }
 handler.command = /^(igdl)$/i
 export default handler
