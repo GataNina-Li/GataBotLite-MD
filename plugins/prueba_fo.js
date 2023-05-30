@@ -5,7 +5,7 @@ cometido = `@${m.sender.split('@')[0]}`
 if (text.length >= 1) {
 //text = text.slice(0).join(" ")  
 } else if (m.quoted && m.quoted.sender) {
-text = `@${m.quoted.sender.split('@')[0]}`
+text = `@${m.quoted.sender.split('@')[0].replace('@', '')}`
 } else if (m.quoted && m.quoted.fromMe) {
 text = `${m.mentionedJid.map((user)=>(user === m.sender) ? text.replace('@', '') : `${user.split('@')[0].replace('@', '')}`).join(', ')}`
 }
@@ -20,7 +20,7 @@ let coger = `🥵 *Acaban de coger a ${text}* 🥵
 █ ▄█▀█● *${text}*
 *¡Te han cogido!* 😫🍆`.trim()
 
-await conn.reply(m.chat, coger, m, { mentions: [m.sender, ...m.mentionedJid, m.quoted.sender] })
+await conn.reply(m.chat, coger, m, { mentions: [m.sender, m.quoted.sender, ...m.mentionedJid] })
 }
 
 handler.command = /^(coger|follar|prueba34)$/i
