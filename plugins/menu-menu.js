@@ -190,31 +190,15 @@ const vi = ['https://telegra.ph/file/405daebd4bc0d69e5d165.mp4',
 'https://telegra.ph/file/1d0ad9f79f65f39895b08.mp4',
 'https://telegra.ph/file/c25afc1685b13210ce602.mp4']
 
-/*const getRandomImage = async () => {
 try {
-return { image: await vi.getRandom(), isVideo: true }
+await conn.sendMessage(m.chat, { image: { url: gataMenu.getRandom() }, gifPlayback: false, caption: menu, mentions: [m.sender] }, { quoted: fkontak })  
+//await conn.sendMessage(m.chat, { video: { url: vi.getRandom() }, gifPlayback: true, caption: menu, mentions: [m.sender] }, { quoted: fkontak }) 
 } catch (error) {
 try {
-return { image: await gataMenu.getRandom(), isVideo: false }
+await conn.sendMessage(m.chat, { image: { url: gataMenu.getRandom() }, gifPlayback: false, caption: menu, mentions: [m.sender] }, { quoted: fkontak }) 
 } catch (error) {
 try {
-return { image: await gataImg.getRandom(), isVideo: false }
-} catch (error) {
-return { image: imagen5, isVideo: false }
-}}}}
-
-const result = await getRandomImage();
-//const filename = result.isVideo ? 'menu.mp4' : 'menu.jpg';
-//await conn.sendFile(m.chat, result.image, filename, menu, fkontak, false, { mentions: [m.sender] })
-await conn.sendMessage(m.chat, result.isVideo ? { video: { url: result.image }, : { image: result.image }, gifPlayback: true, caption: menu }, { quoted: fkontak })*/
-try {
-await conn.sendMessage(m.chat, { video: { url: vi.getRandom() }, gifPlayback: true, caption: menu, mentions: [m.sender] }, { quoted: fkontak }) 
-} catch (error) {
-try {
-await conn.sendMessage(m.chat, { image: { url: gataMenu.getRandom() }, gifPlayback: false, caption: menu }, { quoted: m }) 
-} catch (error) {
-try {
-await conn.sendMessage(m.chat, { image: { url: gataImg.getRandom() }, gifPlayback: false, caption: menu }, { quoted: m }) 
+await conn.sendMessage(m.chat, { image: { url: gataImg.getRandom() }, gifPlayback: false, caption: menu, mentions: [m.sender] }, { quoted: fkontak }) 
 } catch (error) {
 try{
 await conn.sendFile(m.chat, imagen5, 'menu.jpg', menu, fkontak, false, { mentions: [m.sender] })
