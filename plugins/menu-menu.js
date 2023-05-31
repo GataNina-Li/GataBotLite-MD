@@ -218,7 +218,7 @@ await conn.sendMessage(m.chat, { image: { url: gataImg.getRandom() }, gifPlaybac
 } catch (error) {
 try{
 await conn.sendFile(m.chat, imagen5, 'menu.jpg', menu, fkontak, false, { mentions: [m.sender] })
-}}
+}}}}
 
 } catch (e) {
 await m.reply(lenguajeGB['smsMalError3']() + '\n*' + lenguajeGB.smsMensError1() + '*\n*' + usedPrefix + `${lenguajeGB.lenguaje() == 'es' ? 'reporte' : 'report'}` + '* ' + `${lenguajeGB.smsMensError2()} ` + usedPrefix + command)
