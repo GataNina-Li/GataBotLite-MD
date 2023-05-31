@@ -206,7 +206,7 @@ return { image: imagen5, isVideo: false }
 const result = await getRandomImage();
 const filename = result.isVideo ? 'menu.mp4' : 'menu.jpg';
 //await conn.sendFile(m.chat, result.image, filename, menu, fkontak, false, { mentions: [m.sender] })
-await conn.sendMessage(m.chat, { video: vi.getRandom(), gifPlayback: true, caption: menu }, { quoted: fkontak })
+await conn.sendMessage(m.chat, { video: { url: vi.getRandom() }, gifPlayback: true, caption: menu }, { quoted: fkontak })
 
 } catch (e) {
 await m.reply(lenguajeGB['smsMalError3']() + '\n*' + lenguajeGB.smsMensError1() + '*\n*' + usedPrefix + `${lenguajeGB.lenguaje() == 'es' ? 'reporte' : 'report'}` + '* ' + `${lenguajeGB.smsMensError2()} ` + usedPrefix + command)
