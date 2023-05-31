@@ -224,17 +224,17 @@ const result = await getRandomImage()
 let mediaObject
 
 if (result.isVideo) {
-mediaObject = { video: { url: result.image } }
+mediaObject = { video: { url: result.image } 
 } else {
 if (result.source === 'gataMenu') {
-mediaObject = { image: { url: result.image } }
+mediaObject = { image: { url: result.image } 
 } else if (result.source === 'gataImg') {
-mediaObject = { image: result.image }
+mediaObject = { image: result.image 
 } else {
-mediaObject = { image: result.image }
+mediaObject = { image: result.image 
 }}
 
-await conn.sendMessage(m.chat, mediaObject, { gifPlayback: result.isVideo, quoted: fkontak, caption: menu })
+await conn.sendMessage(m.chat, mediaObject, { gifPlayback: true, caption: menu }, { quoted: fkontak }})
 
 
 } catch (e) {
