@@ -1,3 +1,5 @@
+//CÓDIGO ADAPTADO POR https://github.com/GataNina-Li | @gata_dios
+
 let handler = async (m, { conn, text, usedPrefix, command }) => { 
 let cometido
 cometido = `@${m.sender.split('@')[0]}`
@@ -7,13 +9,9 @@ if (text.length >= 1) {
 } else if (m.quoted && m.quoted.sender) {
 text = `@${m.quoted.sender.split('@')[0].replace('@', '')}`
 } else if (m.quoted && m.quoted.fromMe) {
-//if (text.includes('@') && m.quoted && m.quoted.fromMe) {
 text = `${m.mentionedJid.map((user)=>(user === m.sender) ? text.replace('@', '') : `${user.split('@')[0].replace('@', '')}`).join(', ')}`
-//else {
-//text = `@${m.quoted.sender.split('@')[0].replace('@', '')}`  
-//}
 }
-if (/[a-zA-Z]/.test(text) && !text.includes('@')) return conn.reply(m.chat, `*El mensaje no puede estar sin etiquetar o sin responder a otro mensaje*`, m)
+if (/[a-zA-Z]/.test(text) && !text.includes('@')) return conn.reply(m.chat, `*El mensaje no puede estar sin etiquetar y solo puede etiquetar o responder al mensaje*`, m)
 text = text.match(/[\d@]+/g).join('')
   
 let coger = `🥵 *Acaban de coger a ${text}* 🥵 
