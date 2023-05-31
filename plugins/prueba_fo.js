@@ -12,6 +12,7 @@ text = `${m.mentionedJid.map((user)=>(user === m.sender) ? text.replace('@', '')
 else {
 text = `@${m.quoted.sender.split('@')[0].replace('@', '')}`  
 }}
+if (/[a-zA-Z]/.test(text) && !text.includes('@')) return conn.reply(m.chat, `*El mensaje no puede estar sin etiquetar o sin responder a otro mensaje*`, m)
 text = text.match(/[\d@]+/g).join('')
   
 let coger = `🥵 *Acaban de coger a ${text}* 🥵 
