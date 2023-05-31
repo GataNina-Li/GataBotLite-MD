@@ -27,5 +27,5 @@ let coger = `🥵 *Acaban de coger a ${text}* 🥵
 await conn.reply(m.chat, coger, m, { mentions: [m.sender, text.replace('@', '') + '@s.whatsapp.net'] })
 }
 
-handler.command = /^(coger|follar|prueba34)$/i
+handler.command = /^(coger|follar)$/i
 export default handler
