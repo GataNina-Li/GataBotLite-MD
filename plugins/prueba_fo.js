@@ -7,8 +7,11 @@ if (text.length >= 1) {
 } else if (m.quoted && m.quoted.sender) {
 text = `@${m.quoted.sender.split('@')[0].replace('@', '')}`
 } else if (m.quoted && m.quoted.fromMe) {
+if (text.includes('@') && m.quoted && m.quoted.fromMe) {
 text = `${m.mentionedJid.map((user)=>(user === m.sender) ? text.replace('@', '') : `${user.split('@')[0].replace('@', '')}`).join(', ')}`
-}
+else {
+text = `@${m.quoted.sender.split('@')[0].replace('@', '')}`  
+}}
 text = text.match(/[\d@]+/g).join('')
   
 let coger = `🥵 *Acaban de coger a ${text}* 🥵 
