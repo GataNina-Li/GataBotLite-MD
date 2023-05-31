@@ -190,7 +190,7 @@ const vi = ['https://telegra.ph/file/405daebd4bc0d69e5d165.mp4',
 'https://telegra.ph/file/1d0ad9f79f65f39895b08.mp4',
 'https://telegra.ph/file/c25afc1685b13210ce602.mp4']
 
-const getRandomImage = async () => {
+/*const getRandomImage = async () => {
 try {
 return { image: await vi.getRandom(), isVideo: true }
 } catch (error) {
@@ -204,9 +204,38 @@ return { image: imagen5, isVideo: false }
 }}}}
 
 const result = await getRandomImage();
-const filename = result.isVideo ? 'menu.mp4' : 'menu.jpg';
+//const filename = result.isVideo ? 'menu.mp4' : 'menu.jpg';
 //await conn.sendFile(m.chat, result.image, filename, menu, fkontak, false, { mentions: [m.sender] })
-await conn.sendMessage(m.chat, { video: { url: vi.getRandom() }, gifPlayback: true, caption: menu }, { quoted: fkontak })
+await conn.sendMessage(m.chat, result.isVideo ? { video: { url: result.image }, : { image: result.image }, gifPlayback: true, caption: menu }, { quoted: fkontak })*/
+const getRandomImage = async () => {
+try {
+return { image: await vi.getRandom(), isVideo: true }
+} catch (error) {
+try {
+return { image: await gataMenu.getRandom(), isVideo: false, source: 'gataMenu' }
+} catch (error) {
+try {
+return { image: await gataImg.getRandom(), isVideo: false, source: 'gataImg' }
+} catch (error) {
+return { image: imagen5, isVideo: false, source: 'default' }
+}}}}
+
+const result = await getRandomImage()
+let mediaObject
+
+if (result.isVideo) {
+mediaObject = { video: { url: result.image } }
+} else {
+if (result.source === 'gataMenu') {
+mediaObject = { image: { url: result.image } }
+} else if (result.source === 'gataImg') {
+mediaObject = { image: result.image }
+} else {
+mediaObject = { image: result.image }
+}}
+
+await conn.sendMessage(m.chat, mediaObject, { gifPlayback: result.isVideo, caption: menu, quoted: fkontak })
+
 
 } catch (e) {
 await m.reply(lenguajeGB['smsMalError3']() + '\n*' + lenguajeGB.smsMensError1() + '*\n*' + usedPrefix + `${lenguajeGB.lenguaje() == 'es' ? 'reporte' : 'report'}` + '* ' + `${lenguajeGB.smsMensError2()} ` + usedPrefix + command)
