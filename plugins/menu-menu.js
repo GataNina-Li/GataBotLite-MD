@@ -208,7 +208,7 @@ const result = await getRandomImage();
 //await conn.sendFile(m.chat, result.image, filename, menu, fkontak, false, { mentions: [m.sender] })
 await conn.sendMessage(m.chat, result.isVideo ? { video: { url: result.image }, : { image: result.image }, gifPlayback: true, caption: menu }, { quoted: fkontak })*/
 try {
-await conn.sendMessage(m.chat, { video: { url: vi.getRandom() }, gifPlayback: true, caption: menu }, { quoted: m }, { mentions: [m.sender] }) 
+await conn.sendMessage(m.chat, { video: { url: vi.getRandom() }, gifPlayback: true, caption: menu }, { quoted: fkontak, mentions: [m.sender] }) 
 } catch (error) {
 try {
 await conn.sendMessage(m.chat, { image: { url: gataMenu.getRandom() }, gifPlayback: false, caption: menu }, { quoted: m }) 
