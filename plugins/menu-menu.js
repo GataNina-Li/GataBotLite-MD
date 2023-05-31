@@ -234,7 +234,7 @@ mediaObject = { image: result.image
 mediaObject = { image: result.image 
 }}
 
-await conn.sendMessage(m.chat, mediaObject, { gifPlayback: true, caption: menu }, { quoted: fkontak }})
+await conn.sendMessage(m.chat, mediaObject, { gifPlayback: true, caption: menu, quoted: fkontak }})
 
 
 } catch (e) {
