@@ -1,9 +1,8 @@
 let handler = async (m, { conn, text }) => { 
-let cometido, text2
+let cometido
 cometido = `@${m.sender.split('@')[0]}`
 
 if (text.length >= 1) {
-//text = text.slice(0).join(" ")  
 } else if (m.quoted && m.quoted.sender) {
 text = `@${m.quoted.sender.split('@')[0].replace('@', '')}`
 } else if (m.quoted && m.quoted.fromMe) {
@@ -20,7 +19,7 @@ let coger = `🥵 *Acaban de coger a ${text}* 🥵
 █ ▄█▀█● *${text}*
 *¡Te han cogido!* 😫🍆`.trim()
 
-await conn.reply(m.chat, coger, m, { mentions: [m.sender, text, m.quoted ? m.quoted.sender : ...m.mentionedJid] })
+await conn.reply(m.chat, coger, m, { mentions: [m.sender, m.quoted] })
 }
 
 handler.command = /^(coger|follar|prueba34)$/i
