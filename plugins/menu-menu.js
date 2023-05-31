@@ -207,35 +207,18 @@ const result = await getRandomImage();
 //const filename = result.isVideo ? 'menu.mp4' : 'menu.jpg';
 //await conn.sendFile(m.chat, result.image, filename, menu, fkontak, false, { mentions: [m.sender] })
 await conn.sendMessage(m.chat, result.isVideo ? { video: { url: result.image }, : { image: result.image }, gifPlayback: true, caption: menu }, { quoted: fkontak })*/
-const getRandomImage = async () => {
 try {
-return { image: await vi.getRandom(), isVideo: true }
+await conn.sendMessage(m.chat, { video: { url: vi.getRandom() }, gifPlayback: true, caption: menu }, { quoted: m }) 
 } catch (error) {
 try {
-return { image: await gataMenu.getRandom(), isVideo: false, source: 'gataMenu' }
+await conn.sendMessage(m.chat, { image: { url: gataMenu.getRandom() }, gifPlayback: false, caption: menu }, { quoted: m }) 
 } catch (error) {
 try {
-return { image: await gataImg.getRandom(), isVideo: false, source: 'gataImg' }
+await conn.sendMessage(m.chat, { image: { url: gataImg.getRandom() }, gifPlayback: false, caption: menu }, { quoted: m }) 
 } catch (error) {
-return { image: imagen5, isVideo: false, source: 'default' }
-}}}}
-
-const result = await getRandomImage()
-let mediaObject
-
-if (result.isVideo) {
-mediaObject = { video: { url: result.image } 
-} else {
-if (result.source === 'gataMenu') {
-mediaObject = { image: { url: result.image } 
-} else if (result.source === 'gataImg') {
-mediaObject = { image: result.image 
-} else {
-mediaObject = { image: result.image 
+try{
+await conn.sendFile(m.chat, imagen5, 'menu.jpg', menu, fkontak, false, { mentions: [m.sender] })
 }}
-
-await conn.sendMessage(m.chat, mediaObject, { gifPlayback: true, caption: menu, quoted: fkontak }})
-
 
 } catch (e) {
 await m.reply(lenguajeGB['smsMalError3']() + '\n*' + lenguajeGB.smsMensError1() + '*\n*' + usedPrefix + `${lenguajeGB.lenguaje() == 'es' ? 'reporte' : 'report'}` + '* ' + `${lenguajeGB.smsMensError2()} ` + usedPrefix + command)
