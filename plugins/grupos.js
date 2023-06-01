@@ -144,8 +144,8 @@ let cmd = command.toLowerCase()
 switch (true) {		
 case cmd == "saludar":
 let gif = 'https://pa1.narvii.com/6177/9d35b3265578df4e4092d67c9a7a5619cd1d41d0_hq.gif'
-let sti = await sticker(false, gif, null, null)
-let media = await  sti.download()
+//let sti = await sticker(false, gif, null, null)
+let media = await  gif.download()
 let out = await ffmpeg(media, [
 '-filter_complex', 'color',
 '-pix_fmt', 'yuv420p',
