@@ -7,6 +7,7 @@ const isCommand1 = /^(infogrupo|gro?upinfo|info(gro?up|gc))$/i.test(command)
 const isCommand2 = /^(admins|@admins|dmins)$/i.test(command)
 const isCommand3 = /^(enlace|link(gro?up)?)$/i.test(command)
 const isCommand4 = /^(inspect|inspeccionar|revisar)$/i.test(command)
+const isCommand5 = /^(saludar|abrazar)$/i.test(command)
 
 async function reportError(e) {
 await m.reply(lenguajeGB['smsMalError3']() + '\n*' + lenguajeGB.smsMensError1() + '*\n*' + usedPrefix + `${lenguajeGB.lenguaje() == 'es' ? 'reporte' : 'report'}` + '* ' + `${lenguajeGB.smsMensError2()} ` + usedPrefix + command)
@@ -123,9 +124,35 @@ await conn.sendFile(m.chat, gataImg.getRandom(), 'error.jpg', groupinfo, m)
 reportError(e)
 }   
 break
+    
+case isCommand5:
+let cometido
+cometido = `@${m.sender.split('@')[0]}`
+
+if(!text && !m.quoted) return conn.reply(m.chat, `*Etiquete al usuario o responda al mensaje del usuario usando ${usedPrefix + command}*`, m)
+if (text.length >= 1) {
+} else if (m.quoted && m.quoted.sender) {
+text = `@${m.quoted.sender.split('@')[0].replace('@', '')}`
+} else if (m.quoted && m.quoted.fromMe) {
+text = `${m.mentionedJid.map((user)=>(user === m.sender) ? text.replace('@', '') : `${user.split('@')[0].replace('@', '')}`).join(', ')}`
+}
+if (/[a-zA-Z]/.test(text) && !text.includes('@')) return conn.reply(m.chat, `*El mensaje no puede estar sin etiquetar y solo puede etiquetar o responder al mensaje*`, m)
+text = text.match(/[\d@]+/g).join('')    
+let cmd = command.toLowerCase()
+switch (true) {		
+case cmd == "saludar":
+let accion1 = `*${cometido} ESTÁ 👋 SALUNDANDO A ${text}*`.trim()
+await conn.sendMessage(m.chat, { video: { url: 'https://pa1.narvii.com/6177/9d35b3265578df4e4092d67c9a7a5619cd1d41d0_hq.gif' }, gifPlayback: true, caption: accion1, mentions: [m.sender, text.replace('@', '') + '@s.whatsapp.net'] }, { quoted: m }) 
+
+break
+case cmd == "abrazar":
+
+break
+}    
+break
 }}
 
-handler.command = /^(infogrupo|gro?upinfo|info(gro?up|gc)|admins|@admins|dmins|enlace|link(gro?up)?|inspect|inspeccionar|revisar)$/i
+handler.command = /^(infogrupo|gro?upinfo|info(gro?up|gc)|admins|@admins|dmins|enlace|link(gro?up)?|inspect|inspeccionar|revisar|saludar|abrazar)$/i
 handler.group = true
 handler.register = true
 export default handler
