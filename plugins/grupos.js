@@ -148,9 +148,9 @@ let accion1 = `${conn.getName(m.sender)} está 👋 saludando a ${conn.getName(t
 • ${conn.getName(m.sender)} ➜ ${PhoneNumber('+' + m.sender.replace('@s.whatsapp.net', '')).getNumber('international')}
 • ${conn.getName(text.replace('@', '') + '@s.whatsapp.net')} ➜ ${PhoneNumber('+' + text.replace('@', '') + '@s.whatsapp.net'.replace('@s.whatsapp.net', '')).getNumber('international')}
 
-${wm} : @gata_dios`.trim()
+${packname} : @gata_dios`.trim()
 let stikerM = await sticker(null, gif, accion1)
-await conn.sendFile(m.chat, stikerM, null, { asSticker: true }) 
+await conn.sendFile(m.chat, stikerM, null, { mentions: [m.sender, text.replace('@', '') + '@s.whatsapp.net'] }, m) 
 break
     
 case cmd == "abrazar":
