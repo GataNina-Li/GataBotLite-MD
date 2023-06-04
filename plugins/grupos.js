@@ -161,8 +161,8 @@ link = link.replace(/\.gif$/, '.mp4')
 await m.reply(link)
 let accion1 = `*${cometido} ESTÁ 👋 SALUNDANDO A ${text}*`.trim()
 let media = await response.download()
-await conn.sendMessage(m.chat, { video: media, gifPlayback: true, caption: accion1 }, { quoted: m })
-await conn.sendButtonGif(m.chat, wm, wm, { url: link }, null, null)
+//await conn.sendMessage(m.chat, { video: media, gifPlayback: true, caption: accion1 }, { quoted: m })
+await conn.sendFile(m.chat, link, 'link.gif', m, false, { mimetype: 'video/gif', thumbnail: Buffer.alloc(0) })
 //} catch (e) {
 //await conn.sendMessage(m.chat, { video: { url: link }, gifPlayback: true, caption: accion1, mentions: [m.sender, text.replace('@', '') + '@s.whatsapp.net'] }, { quoted: m }) 
 break
