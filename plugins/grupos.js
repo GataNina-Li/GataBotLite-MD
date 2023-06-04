@@ -140,21 +140,21 @@ text = `${m.mentionedJid.map((user)=>(user === m.sender) ? text.replace('@', '')
 if (/[a-zA-Z]/.test(text) && !text.includes('@')) return conn.reply(m.chat, `*El mensaje no puede estar sin etiquetar y solo puede etiquetar o responder al mensaje*`, m)
 text = text.match(/[\d@]+/g).join('')    
 let cmd = command.toLowerCase()
+let cont, action, body, rege
+rege = /^[-+.()~ 0-9]+$/
 switch (cmd) {	
 case "saludar":
-let gif = ['https://pa1.narvii.com/6177/9d35b3265578df4e4092d67c9a7a5619cd1d41d0_hq.gif',
+cont = ['https://pa1.narvii.com/6177/9d35b3265578df4e4092d67c9a7a5619cd1d41d0_hq.gif',
 'https://media.tenor.com/FJzcVnWgHjgAAAAM/wave.gif',
-'https://tenor.com/es/view/anko-kitashirakawa-tamako-market-wave-hi-hello-gif-16396948',
+'https://media.tenor.com/XMvXpoXRgIUAAAAi/anko-kitashirakawa-tamako-market.gif',
 'https://media.tenor.com/MmTMEtRSIOUAAAAC/nijima-ibuki-d4dj-first-mix.gif',
 'https://media.tenor.com/DDnp-TLMTWQAAAAC/hello-anime.gif'].getRandom()
-let accion1 = `${conn.getName(m.sender)} está 👋 saludando a ${conn.getName(text.replace('@', '') + '@s.whatsapp.net')}
-
-• ${conn.getName(m.sender)} ➜ ${PhoneNumber('+' + m.sender.replace('@s.whatsapp.net', '')).getNumber('international')}
-• ${conn.getName(text.replace('@', '') + '@s.whatsapp.net')} ➜ ${PhoneNumber('+' + text.replace('@', '') + '@s.whatsapp.net'.replace('@s.whatsapp.net', '')).getNumber('international')}
-
-${packname} : @gata_dios`.trim()
-let stikerM = await sticker(null, gif, null, accion1)
-await conn.sendFile(m.chat, stikerM, null, { mentions: [m.sender, text.replace('@', '') + '@s.whatsapp.net'] }, m) 
+action = `${conn.getName(m.sender)} está 👋 saludando a ${conn.getName(text.replace('@', '') + '@s.whatsapp.net')}
+${rege.test(conn.getName(m.sender)) == false || rege.test(conn.getName(text.replace('@', '') + '@s.whatsapp.net')) == false ? 
+`• ${conn.getName(m.sender)} ➜ ${PhoneNumber('+' + m.sender.replace('@s.whatsapp.net', '')).getNumber('international')}
+• ${conn.getName(text.replace('@', '') + '@s.whatsapp.net')} ➜ ${PhoneNumber('+' + text.replace('@', '') + '@s.whatsapp.net'.replace('@s.whatsapp.net', '')).getNumber('international')}` : ``}`.trim()
+body = await sticker(null, cont, null, action)
+await conn.sendFile(m.chat, body, null, { mentions: [m.sender, text.replace('@', '') + '@s.whatsapp.net'] }, m) 
 break
     
 case cmd == "abrazar":
