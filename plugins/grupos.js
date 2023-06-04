@@ -134,7 +134,6 @@ break
 case isCommand5:
 let cometido
 cometido = `@${m.sender.split('@')[0]}`
-
 if(!text && !m.quoted) return conn.reply(m.chat, `*Etiquete al usuario o responda al mensaje del usuario usando ${usedPrefix + command}*`, m)
 if (text.length >= 1) {
 } else if (m.quoted && m.quoted.sender) {
@@ -147,33 +146,23 @@ text = text.match(/[\d@]+/g).join('')
 let cmd = command.toLowerCase()
 switch (true) {	
 case cmd == "saludar":
-let gif = 'https://pa1.narvii.com/6177/9d35b3265578df4e4092d67c9a7a5619cd1d41d0_hq.gif';
-const response = await fetch(gif);
-const buffer = await response.arrayBuffer();
-const { ext, mime } = await fileTypeFromBuffer(buffer);
-let form = new FormData();
-const blob = new Blob([buffer], { type: mime });
-form.append('file', blob, 'tmp.' + ext);
-let res = await fetch('https://telegra.ph/upload', {
-  method: 'POST',
-  body: form
-});
-let img = await res.json();
-if (img.error) throw new Error(img.error);
-let link = 'https://telegra.ph' + img[0].src;
+let gif = 'https://pa1.narvii.com/6177/9d35b3265578df4e4092d67c9a7a5619cd1d41d0_hq.gif'
+const response = await fetch(gif)
+const buffer = await response.arrayBuffer()
+const { ext, mime } = await fileTypeFromBuffer(buffer)
+let form = new FormData()
+const blob = new Blob([buffer], { type: mime })
+form.append('file', blob, 'tmp.' + ext)
+let res = await fetch('https://telegra.ph/upload', { method: 'POST', body: form })
+let img = await res.json()
+if (img.error) throw new Error(img.error)   
+let link = 'https://telegra.ph' + img[0].src
+link = link.replace(/\.gif$/, '.mp4')
 await m.reply(link)
-
-    
-//let gif = 'https://pa1.narvii.com/6177/9d35b3265578df4e4092d67c9a7a5619cd1d41d0_hq.gif'
-//const response = await fetch(gif);
-//const buffer = await response.arrayBuffer()
-//let isTele = /image\/(png|jpe?g|gif)|video\/mp4/.test(buffer)
-//let link = await (isTele ? uploadImage : uploadFile)(buffer)
-//await m.reply(link)
-
-//let accion1 = `*${cometido} ESTÁ 👋 SALUNDANDO A ${text}*`.trim()
-//await conn.sendMessage(m.chat, { video: out, gifPlayback: true, caption: accion1, mentions: [m.sender, text.replace('@', '') + '@s.whatsapp.net'] }, { quoted: m }) 
+let accion1 = `*${cometido} ESTÁ 👋 SALUNDANDO A ${text}*`.trim()
+await conn.sendMessage(m.chat, { video: { url: link }, gifPlayback: true, caption: accion1, mentions: [m.sender, text.replace('@', '') + '@s.whatsapp.net'] }, { quoted: m }) 
 break
+    
 case cmd == "abrazar":
 
 break
