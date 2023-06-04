@@ -141,7 +141,7 @@ if (/[a-zA-Z]/.test(text) && !text.includes('@')) return conn.reply(m.chat, `*El
 text = text.match(/[\d@]+/g).join('')    
 let cmd = command.toLowerCase()
 let cont, action, body, rege
-rege = /^[-+.()~ 0-9]+$/
+rege = /^[-+.(@)~ 0-9]+$/
 switch (cmd) {	
 case "saludar":
 cont = ['https://pa1.narvii.com/6177/9d35b3265578df4e4092d67c9a7a5619cd1d41d0_hq.gif',
@@ -151,7 +151,7 @@ cont = ['https://pa1.narvii.com/6177/9d35b3265578df4e4092d67c9a7a5619cd1d41d0_hq
 'https://media.tenor.com/DDnp-TLMTWQAAAAC/hello-anime.gif'].getRandom()
 action = `${conn.getName(m.sender)} está 👋 saludando a ${conn.getName(text.replace('@', '') + '@s.whatsapp.net')}
 ${rege.test(conn.getName(m.sender)) == false || rege.test(conn.getName(text.replace('@', '') + '@s.whatsapp.net')) == false ? 
-`• ${conn.getName(m.sender)} ➜ ${PhoneNumber('+' + m.sender.replace('@s.whatsapp.net', '')).getNumber('international')}
+`\n\n• ${conn.getName(m.sender)} ➜ ${PhoneNumber('+' + m.sender.replace('@s.whatsapp.net', '')).getNumber('international')}
 • ${conn.getName(text.replace('@', '') + '@s.whatsapp.net')} ➜ ${PhoneNumber('+' + text.replace('@', '') + '@s.whatsapp.net'.replace('@s.whatsapp.net', '')).getNumber('international')}` : ``}`.trim()
 body = await sticker(null, cont, action)
 await conn.sendFile(m.chat, body, null, { mentions: [m.sender, text.replace('@', '') + '@s.whatsapp.net'] }, m) 
