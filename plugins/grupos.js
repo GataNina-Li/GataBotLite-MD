@@ -1,11 +1,7 @@
 import fetch from 'node-fetch'
 import * as baileys from '@adiwajshing/baileys'
+import PhoneNumber from 'awesome-phonenumber'
 import { sticker } from '../lib/sticker.js'
-import { ffmpeg } from '../lib/converter.js'
-import uploadFile from '../lib/uploadFile.js'
-import uploadImage from '../lib/uploadImage.js'
-import { FormData, Blob } from 'formdata-node';
-import { fileTypeFromBuffer } from 'file-type'
 
 let handler = async (m, { conn, command, usedPrefix, args, participants, groupMetadata, text }) => {
 let pp, groupAdmins, listAdmin, owner
@@ -147,7 +143,7 @@ let cmd = command.toLowerCase()
 switch (true) {	
 case cmd == "saludar":
 let gif = 'https://pa1.narvii.com/6177/9d35b3265578df4e4092d67c9a7a5619cd1d41d0_hq.gif'
-let accion1 = `${conn.getName(m.sender)} ESTÁ 👋 SALUNDANDO A ${conn.getName(text.replace('@', '') + '@s.whatsapp.net')}`.trim()
+let accion1 = `${conn.getName(m.sender)} ESTÁ 👋 SALUNDANDO A ${conn.getName(text.replace('@', '') + '@s.whatsapp.net')}\n\n• ${conn.getName(m.sender)} ➜ ${PhoneNumber('+' + m.sender.replace('@s.whatsapp.net', '')).getNumber('international')}\n• ${conn.getName(text.replace('@', '') + '@s.whatsapp.net')} ➜ ${PhoneNumber('+' + text.replace('@s.whatsapp.net', '')).getNumber('international')}`.trim()
 let stikerM = await sticker(null, gif, accion1)
 await conn.sendFile(m.chat, stikerM, 'sticker.webp', '', m, { mentions: [m.sender, text.replace('@', '') + '@s.whatsapp.net'] }) 
 break
