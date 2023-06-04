@@ -160,7 +160,6 @@ let link = 'https://telegra.ph' + img[0].src
 link = link.replace(/\.gif$/, '.mp4')
 await m.reply(link)
 let accion1 = `*${cometido} ESTÁ 👋 SALUNDANDO A ${text}*`.trim()
-let media = await response.download()
 //await conn.sendMessage(m.chat, { video: media, gifPlayback: true, caption: accion1 }, { quoted: m })
 await conn.sendFile(m.chat, link, 'link.gif', m, false, { mimetype: 'video/gif', thumbnail: Buffer.alloc(0) })
 //} catch (e) {
