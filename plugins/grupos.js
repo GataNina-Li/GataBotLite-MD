@@ -162,7 +162,8 @@ await m.reply(link)*/
 let accion1 = `*${cometido} ESTÁ 👋 SALUNDANDO A ${text}*`.trim()
 //await conn.sendFile(m.chat, gif, 'sticker.webp', accion1, m, false, { asSticker: true })
 //await conn.sendFile(m.chat, gif, 'sticker.webp', accion1, m)   
-await conn.sendFile(m.chat, 'https://telegra.ph/file/c9f67f80b5083ec7e3cb5.mp4', 'error.mp4', accion1, m)
+//await conn.sendFile(m.chat, 'https://telegra.ph/file/c9f67f80b5083ec7e3cb5.mp4', 'error.mp4', accion1, m)
+await conn.sendFile(m.chat, gif, 'sticker.webp', '', m)
 //await conn.sendMessage(m.chat, { video: { url: 'https://telegra.ph/file/086f9bf68e6fd49932a51.mp4' }, gifPlayback: true, caption: accion1, mentions: [m.sender, text.replace('@', '') + '@s.whatsapp.net'] }, { quoted: m }) 
 break
     
