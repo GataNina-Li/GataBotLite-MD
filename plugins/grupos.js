@@ -144,17 +144,11 @@ let cont, action, body, rege
 rege = /^[-+.(@)~ 0-9]+$/
 switch (cmd) {	
 case "saludar":
-cont = ['https://pa1.narvii.com/6177/9d35b3265578df4e4092d67c9a7a5619cd1d41d0_hq.gif',
-'https://media.tenor.com/FJzcVnWgHjgAAAAM/wave.gif',
-'https://media.tenor.com/XMvXpoXRgIUAAAAi/anko-kitashirakawa-tamako-market.gif',
-'https://media.tenor.com/MmTMEtRSIOUAAAAC/nijima-ibuki-d4dj-first-mix.gif',
-'https://media.tenor.com/DDnp-TLMTWQAAAAC/hello-anime.gif'].getRandom()
+cont = ['https://pa1.narvii.com/6177/9d35b3265578df4e4092d67c9a7a5619cd1d41d0_hq.gif', 'https://media.tenor.com/FJzcVnWgHjgAAAAM/wave.gif', 'https://media.tenor.com/XMvXpoXRgIUAAAAi/anko-kitashirakawa-tamako-market.gif', 'https://media.tenor.com/MmTMEtRSIOUAAAAC/nijima-ibuki-d4dj-first-mix.gif', 'https://media.tenor.com/DDnp-TLMTWQAAAAC/hello-anime.gif'].getRandom()
 action = `${conn.getName(m.sender)} está 👋 saludando a ${conn.getName(text.replace('@', '') + '@s.whatsapp.net')}
-${rege.test(conn.getName(m.sender)) == true || rege.test(conn.getName(text.replace('@', '') + '@s.whatsapp.net')) == true ? `` :
-`\n\n• ${conn.getName(m.sender)} ➜ ${PhoneNumber('+' + m.sender.replace('@s.whatsapp.net', '')).getNumber('international')}
+${rege.test(conn.getName(m.sender)) == true || rege.test(conn.getName(text.replace('@', '') + '@s.whatsapp.net')) == true ? `` : `\n\n• ${conn.getName(m.sender)} ➜ ${PhoneNumber('+' + m.sender.replace('@s.whatsapp.net', '')).getNumber('international')}
 • ${conn.getName(text.replace('@', '') + '@s.whatsapp.net')} ➜ ${PhoneNumber('+' + text.replace('@', '') + '@s.whatsapp.net'.replace('@s.whatsapp.net', '')).getNumber('international')}`}`.trim()
 body = await sticker(null, cont, action)
-let er = `${conn.getName(text.replace('@', '') + '@s.whatsapp.net')}`
 //await conn.sendFile(m.chat, body, null, { mentions: [m.sender, text.replace('@', '') + '@s.whatsapp.net'] }, m) 
 await conn.sendFile(m.chat, body, 'sticker.webp', '', m, true, { contextInfo: { 'forwardingScore': 200, 'isForwarded': false, externalAdReply:{ showAdAttribution: false, title: `• ${conn.getName(m.sender)}`, body: `👋 Saludando a ${conn.getName(text.replace('@', '') + '@s.whatsapp.net')}`, mediaType: 2, sourceUrl: md, thumbnail: gataImg.getRandom()}}})
 break
