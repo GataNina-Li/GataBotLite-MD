@@ -160,7 +160,9 @@ let link = 'https://telegra.ph' + img[0].src
 link = link.replace(/\.gif$/, '.mp4')
 await m.reply(link)
 let accion1 = `*${cometido} ESTÁ 👋 SALUNDANDO A ${text}*`.trim()
-await conn.sendMessage(m.chat, { video: { url: link }, gifPlayback: true, caption: accion1, mentions: [m.sender, text.replace('@', '') + '@s.whatsapp.net'] }, { quoted: m }) 
+await conn.sendMessage(m.chat, { video: { url: link }, gifPlayback: true, caption: accion1 }, { quoted: m })
+//} catch (e) {
+//await conn.sendMessage(m.chat, { video: { url: link }, gifPlayback: true, caption: accion1, mentions: [m.sender, text.replace('@', '') + '@s.whatsapp.net'] }, { quoted: m }) 
 break
     
 case cmd == "abrazar":
