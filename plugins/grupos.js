@@ -145,6 +145,13 @@ text = text.match(/[\d@]+/g).join('')
 let cmd = command.toLowerCase()
 switch (true) {		
 case cmd == "saludar":
+let gif = 'https://pa1.narvii.com/6177/9d35b3265578df4e4092d67c9a7a5619cd1d41d0_hq.gif'
+let vv = await conn.sendFile(m.chat, gif, 'error.mp4', null, m)
+let mime = vv.mimetype || ''
+let isTele = /image\/(png|jpe?g|gif)|video\/mp4/.test(mime)
+let link = await (isTele ? uploadImage : uploadFile)(vv.buffer)
+await m.reply(link)
+    
 //let gif = 'https://pa1.narvii.com/6177/9d35b3265578df4e4092d67c9a7a5619cd1d41d0_hq.gif'
 //const response = await fetch(gif);
 //const buffer = await response.arrayBuffer()
