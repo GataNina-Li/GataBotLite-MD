@@ -145,7 +145,8 @@ text = `${m.mentionedJid.map((user)=>(user === m.sender) ? text.replace('@', '')
 if (/[a-zA-Z]/.test(text) && !text.includes('@')) return conn.reply(m.chat, `*El mensaje no puede estar sin etiquetar y solo puede etiquetar o responder al mensaje*`, m)
 text = text.match(/[\d@]+/g).join('')    
 let cmd = command.toLowerCase()
-switch (true) {		
+switch (true) {	
+case cmd == "saludar":
 let gif = 'https://pa1.narvii.com/6177/9d35b3265578df4e4092d67c9a7a5619cd1d41d0_hq.gif';
 const response = await fetch(gif);
 const buffer = await response.arrayBuffer();
