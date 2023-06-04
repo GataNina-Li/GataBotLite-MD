@@ -2,6 +2,8 @@ import fetch from 'node-fetch'
 import * as baileys from '@adiwajshing/baileys'
 import { sticker } from '../lib/sticker.js'
 import { ffmpeg } from '../lib/converter.js'
+import uploadFile from '../lib/uploadFile.js'
+import uploadImage from '../lib/uploadImage.js'
 
 let handler = async (m, { conn, command, usedPrefix, args, participants, groupMetadata, text }) => {
 let pp, groupAdmins, listAdmin, owner
@@ -144,18 +146,12 @@ let cmd = command.toLowerCase()
 switch (true) {		
 case cmd == "saludar":
 let gif = 'https://pa1.narvii.com/6177/9d35b3265578df4e4092d67c9a7a5619cd1d41d0_hq.gif'
-//let sti = await sticker(false, gif, null, null)
-let media = await  gif.download()
-let out = await ffmpeg(media, [
-'-filter_complex', 'color',
-'-pix_fmt', 'yuv420p',
-'-crf', '51',
-'-c:a', 'copy',
-'-shortest'
-], 'mp3', 'mp4')
+let isTele = /image\/(png|jpe?g|gif)|video\/mp4/.test(gif)
+let link = await (isTele ? uploadImage : uploadFile)(gif)
+await m.reply(link)
 
-let accion1 = `*${cometido} ESTÁ 👋 SALUNDANDO A ${text}*`.trim()
-await conn.sendMessage(m.chat, { video: out, gifPlayback: true, caption: accion1, mentions: [m.sender, text.replace('@', '') + '@s.whatsapp.net'] }, { quoted: m }) 
+//let accion1 = `*${cometido} ESTÁ 👋 SALUNDANDO A ${text}*`.trim()
+//await conn.sendMessage(m.chat, { video: out, gifPlayback: true, caption: accion1, mentions: [m.sender, text.replace('@', '') + '@s.whatsapp.net'] }, { quoted: m }) 
 
 break
 case cmd == "abrazar":
