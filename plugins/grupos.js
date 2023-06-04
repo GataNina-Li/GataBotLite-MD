@@ -145,16 +145,33 @@ text = text.match(/[\d@]+/g).join('')
 let cmd = command.toLowerCase()
 switch (true) {		
 case cmd == "saludar":
-let gif = 'https://pa1.narvii.com/6177/9d35b3265578df4e4092d67c9a7a5619cd1d41d0_hq.gif'
-const response = await fetch(gif);
-const buffer = await response.arrayBuffer()
-let isTele = /image\/(png|jpe?g|gif)|video\/mp4/.test(buffer)
-let link = await (isTele ? uploadImage : uploadFile)(buffer)
-await m.reply(link)
+//let gif = 'https://pa1.narvii.com/6177/9d35b3265578df4e4092d67c9a7a5619cd1d41d0_hq.gif'
+//const response = await fetch(gif);
+//const buffer = await response.arrayBuffer()
+//let isTele = /image\/(png|jpe?g|gif)|video\/mp4/.test(buffer)
+//let link = await (isTele ? uploadImage : uploadFile)(buffer)
+//await m.reply(link)
 
 //let accion1 = `*${cometido} ESTÁ 👋 SALUNDANDO A ${text}*`.trim()
 //await conn.sendMessage(m.chat, { video: out, gifPlayback: true, caption: accion1, mentions: [m.sender, text.replace('@', '') + '@s.whatsapp.net'] }, { quoted: m }) 
 
+const urlRegex = /(https?:\/\/.*\.(?:png|jpe?g|webp))/i;
+let gif = 'https://pa1.narvii.com/6177/9d35b3265578df4e4092d67c9a7a5619cd1d41d0_hq.gif'
+async function createMediaMessage(gifLink) {
+const response = await fetch(gifLink);
+const buffer = await response.arrayBuffer();
+const mime = response.headers.get('content-type');
+let isTele = /image\/(png|jpe?g|gif)|video\/mp4/.test(mime);
+let link = await (isTele ? uploadImage : uploadFile)(buffer);
+return link
+}
+try {
+let link = await createMediaMessage(gif)
+let mensaje = `Aquí está el enlace del gif: ${gif}\nEnlace subido: ${link}`
+await m.reply(mensaje)
+} catch (error) {
+console.error(error)
+}
 break
 case cmd == "abrazar":
 
