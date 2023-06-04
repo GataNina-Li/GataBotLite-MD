@@ -144,7 +144,7 @@ switch (true) {
 case cmd == "saludar":
 let gif = 'https://pa1.narvii.com/6177/9d35b3265578df4e4092d67c9a7a5619cd1d41d0_hq.gif'
 let accion1 = `${conn.getName(m.sender)} ESTÁ 👋 SALUNDANDO A ${conn.getName(text.replace('@', '') + '@s.whatsapp.net')}\n\n• ${conn.getName(m.sender)} ➜ ${PhoneNumber('+' + m.sender.replace('@s.whatsapp.net', '')).getNumber('international')}\n• ${conn.getName(text.replace('@', '') + '@s.whatsapp.net')} ➜ ${PhoneNumber('+' + text.replace('@', '') + '@s.whatsapp.net'.replace('@s.whatsapp.net', '')).getNumber('international')}`.trim()
-let stikerM = await sticker(null, gif, accion1)
+let stikerM = await sticker(null, gif, accion1, packname)
 await conn.sendFile(m.chat, stikerM, 'sticker.webp', '', m, { mentions: [m.sender, text.replace('@', '') + '@s.whatsapp.net'] }) 
 break
     
