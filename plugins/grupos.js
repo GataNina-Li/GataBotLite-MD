@@ -146,7 +146,7 @@ text = text.match(/[\d@]+/g).join('')
 let cmd = command.toLowerCase()
 switch (true) {	
 case cmd == "saludar":
-let gif = 'https://pa1.narvii.com/6177/9d35b3265578df4e4092d67c9a7a5619cd1d41d0_hq.gif'
+let gif = 'https://telegra.ph/file/086f9bf68e6fd49932a51.mp4'
 const response = await fetch(gif)
 const buffer = await response.arrayBuffer()
 const { ext, mime } = await fileTypeFromBuffer(buffer)
@@ -160,10 +160,7 @@ let link = 'https://telegra.ph' + img[0].src
 link = link.replace(/\.gif$/, '.mp4')
 await m.reply(link)
 let accion1 = `*${cometido} ESTÁ 👋 SALUNDANDO A ${text}*`.trim()
-//await conn.sendMessage(m.chat, { video: media, gifPlayback: true, caption: accion1 }, { quoted: m })
-await conn.sendFile(m.chat, buffer, 'link.gif', wm, m, { gifPlayback: true, mimetype: 'video/gif'})
-//} catch (e) {
-//await conn.sendMessage(m.chat, { video: { url: link }, gifPlayback: true, caption: accion1, mentions: [m.sender, text.replace('@', '') + '@s.whatsapp.net'] }, { quoted: m }) 
+await conn.sendMessage(m.chat, { video: { url: 'https://telegra.ph/file/086f9bf68e6fd49932a51.mp4' }, gifPlayback: true, caption: accion1, mentions: [m.sender, text.replace('@', '') + '@s.whatsapp.net'] }, { quoted: m }) 
 break
     
 case cmd == "abrazar":
