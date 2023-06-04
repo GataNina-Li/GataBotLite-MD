@@ -150,7 +150,7 @@ let accion1 = `${conn.getName(m.sender)} está 👋 saludando a ${conn.getName(t
 
 ${wm} : @gata_dios`.trim()
 let stikerM = await sticker(null, gif, accion1)
-await conn.sendFile(m.chat, stikerM, 'sticker.webp', '', m, { mentions: [m.sender, text.replace('@', '') + '@s.whatsapp.net'] }) 
+await conn.sendFile(m.chat, stikerM, 'sticker.webp', null, { asSticker: true }) 
 break
     
 case cmd == "abrazar":
