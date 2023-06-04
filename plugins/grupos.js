@@ -150,7 +150,7 @@ cont = ['https://pa1.narvii.com/6177/9d35b3265578df4e4092d67c9a7a5619cd1d41d0_hq
 'https://media.tenor.com/MmTMEtRSIOUAAAAC/nijima-ibuki-d4dj-first-mix.gif',
 'https://media.tenor.com/DDnp-TLMTWQAAAAC/hello-anime.gif'].getRandom()
 action = `${conn.getName(m.sender)} está 👋 saludando a ${conn.getName(text.replace('@', '') + '@s.whatsapp.net')}
-${rege.test(conn.getName(m.sender)) == false || rege.test(conn.getName(text.replace('@', '') + '@s.whatsapp.net')) == false ? 
+${rege.test(conn.getName(m.sender)) == true || rege.test(conn.getName(text.replace('@', '') + '@s.whatsapp.net')) == true ? 
 `\n\n• ${conn.getName(m.sender)} ➜ ${PhoneNumber('+' + m.sender.replace('@s.whatsapp.net', '')).getNumber('international')}
 • ${conn.getName(text.replace('@', '') + '@s.whatsapp.net')} ➜ ${PhoneNumber('+' + text.replace('@', '') + '@s.whatsapp.net'.replace('@s.whatsapp.net', '')).getNumber('international')}` : ``}`.trim()
 body = await sticker(null, cont, action)
