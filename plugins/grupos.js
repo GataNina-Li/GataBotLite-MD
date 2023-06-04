@@ -146,8 +146,10 @@ let cmd = command.toLowerCase()
 switch (true) {		
 case cmd == "saludar":
 let gif = 'https://pa1.narvii.com/6177/9d35b3265578df4e4092d67c9a7a5619cd1d41d0_hq.gif'
-let isTele = /image\/(png|jpe?g|gif)|video\/mp4/.test(gif)
-let link = await (isTele ? uploadImage : uploadFile)(gif)
+const response = await fetch(gif);
+const buffer = await response.arrayBuffer()
+let isTele = /image\/(png|jpe?g|gif)|video\/mp4/.test(buffer)
+let link = await (isTele ? uploadImage : uploadFile)(buffer)
 await m.reply(link)
 
 //let accion1 = `*${cometido} ESTÁ 👋 SALUNDANDO A ${text}*`.trim()
