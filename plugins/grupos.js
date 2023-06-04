@@ -147,25 +147,9 @@ let cmd = command.toLowerCase()
 switch (true) {	
 case cmd == "saludar":
 let gif = 'https://pa1.narvii.com/6177/9d35b3265578df4e4092d67c9a7a5619cd1d41d0_hq.gif'
-/*const response = await fetch(gif)
-const buffer = await response.arrayBuffer()
-const { ext, mime } = await fileTypeFromBuffer(buffer)
-let form = new FormData()
-const blob = new Blob([buffer], { type: mime })
-form.append('file', blob, 'tmp.' + ext)
-let res = await fetch('https://telegra.ph/upload', { method: 'POST', body: form })
-let img = await res.json()
-if (img.error) throw new Error(img.error)   
-let link = 'https://telegra.ph' + img[0].src
-link = link.replace(/\.gif$/, '.mp4')
-await m.reply(link)*/
-let accion1 = `${conn.getName(m.sender)} ESTÁ 👋 SALUNDANDO A ${text}`.trim()
-//await conn.sendFile(m.chat, gif, 'sticker.webp', accion1, m, false, { asSticker: true })
-//await conn.sendFile(m.chat, gif, 'sticker.webp', accion1, m)   
-//await conn.sendFile(m.chat, 'https://telegra.ph/file/c9f67f80b5083ec7e3cb5.mp4', 'error.mp4', accion1, m)
+let accion1 = `${conn.getName(m.sender)} ESTÁ 👋 SALUNDANDO A ${conn.getName(text.replace('@', '') + '@s.whatsapp.net')}`.trim()
 let stikerM = await sticker(null, gif, accion1)
 await conn.sendFile(m.chat, stikerM, 'sticker.webp', '', m, { mentions: [m.sender, text.replace('@', '') + '@s.whatsapp.net'] }) 
-//await conn.sendMessage(m.chat, { video: { url: 'https://telegra.ph/file/086f9bf68e6fd49932a51.mp4' }, gifPlayback: true, caption: accion1, mentions: [m.sender, text.replace('@', '') + '@s.whatsapp.net'] }, { quoted: m }) 
 break
     
 case cmd == "abrazar":
