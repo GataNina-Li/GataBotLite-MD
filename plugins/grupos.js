@@ -173,14 +173,6 @@ await m.reply(link)
 
 //let accion1 = `*${cometido} ESTÁ 👋 SALUNDANDO A ${text}*`.trim()
 //await conn.sendMessage(m.chat, { video: out, gifPlayback: true, caption: accion1, mentions: [m.sender, text.replace('@', '') + '@s.whatsapp.net'] }, { quoted: m }) 
-
-let gif = 'https://pa1.narvii.com/6177/9d35b3265578df4e4092d67c9a7a5619cd1d41d0_hq.gif';
-const response = await fetch(gif);
-const buffer = await response.buffer();
-const arrayBuffer = buffer.buffer.slice(buffer.byteOffset, buffer.byteOffset + buffer.byteLength);
-let isTele = /image\/(png|jpe?g|gif)|video\/mp4/.test(response.headers.get('content-type'));
-let link = await (isTele ? uploadImage : uploadFile)(arrayBuffer)
-await m.reply(link)
 break
 case cmd == "abrazar":
 
