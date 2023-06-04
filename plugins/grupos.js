@@ -4,6 +4,8 @@ import { sticker } from '../lib/sticker.js'
 import { ffmpeg } from '../lib/converter.js'
 import uploadFile from '../lib/uploadFile.js'
 import uploadImage from '../lib/uploadImage.js'
+import { FormData, Blob } from 'formdata-node';
+import { fileTypeFromBuffer } from 'file-type'
 
 let handler = async (m, { conn, command, usedPrefix, args, participants, groupMetadata, text }) => {
 let pp, groupAdmins, listAdmin, owner
@@ -144,14 +146,22 @@ if (/[a-zA-Z]/.test(text) && !text.includes('@')) return conn.reply(m.chat, `*El
 text = text.match(/[\d@]+/g).join('')    
 let cmd = command.toLowerCase()
 switch (true) {		
-case cmd == "saludar":
-let gif = 'https://pa1.narvii.com/6177/9d35b3265578df4e4092d67c9a7a5619cd1d41d0_hq.gif'
-let vv = await conn.sendFile(m.chat, gif, 'error.mp4', null, m)
-let media = await vv.download()
-let mime = vv.mimetype || ''
-let isTele = /image\/(png|jpe?g|gif)|video\/mp4/.test(mime)
-let link = await (isTele ? uploadImage : uploadFile)(media)
+let gif = 'https://pa1.narvii.com/6177/9d35b3265578df4e4092d67c9a7a5619cd1d41d0_hq.gif';
+const response = await fetch(gif);
+const buffer = await response.arrayBuffer();
+const { ext, mime } = await fileTypeFromBuffer(buffer);
+let form = new FormData();
+const blob = new Blob([buffer], { type: mime });
+form.append('file', blob, 'tmp.' + ext);
+let res = await fetch('https://telegra.ph/upload', {
+  method: 'POST',
+  body: form
+});
+let img = await res.json();
+if (img.error) throw new Error(img.error);
+let link = 'https://telegra.ph' + img[0].src;
 await m.reply(link)
+
     
 //let gif = 'https://pa1.narvii.com/6177/9d35b3265578df4e4092d67c9a7a5619cd1d41d0_hq.gif'
 //const response = await fetch(gif);
