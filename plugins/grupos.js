@@ -156,7 +156,7 @@ ${rege.test(conn.getName(m.sender)) == true || rege.test(conn.getName(text.repla
 body = await sticker(null, cont, action)
 let er = `${conn.getName(text.replace('@', '') + '@s.whatsapp.net')}`
 //await conn.sendFile(m.chat, body, null, { mentions: [m.sender, text.replace('@', '') + '@s.whatsapp.net'] }, m) 
-await conn.sendFile(m.chat, body, 'sticker.webp', '', null, true, { contextInfo: { 'forwardingScore': 200, 'isForwarded': true, externalAdReply:{ showAdAttribution: false, title: packname, body: `${conn.getName(m.sender)} está 👋 saludando a ${conn.getName(text.replace('@', '') + '@s.whatsapp.net')}`, mediaType: 2, sourceUrl: md, thumbnail: gataImg.getRandom()}}})
+await conn.sendFile(m.chat, body, 'sticker.webp', '', m, true, { contextInfo: { 'forwardingScore': 200, 'isForwarded': true, externalAdReply:{ showAdAttribution: true, title: packname, body: `${conn.getName(m.sender)} está 👋 saludando a ${conn.getName(text.replace('@', '') + '@s.whatsapp.net')}`, mediaType: 2, sourceUrl: md, thumbnail: null}}})
 break
     
 case cmd == "abrazar":
