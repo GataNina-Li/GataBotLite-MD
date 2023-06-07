@@ -11,7 +11,7 @@ import { sizeFormatter } from 'human-readable'
 
 let handler = async (m, { conn, command, usedPrefix, args, text, __dirname, isOwner, isRowner, DevMode }) => {
 let name, _uptime, _muptime, uptime, totalreg, fkontak, rtotalreg, frep, _package, taguser, groups
-const grupo = [nna, nn, nnn, nnnt, nnntt, nnnttt, nnnttt2, nnnttt3, nnnttt4, nnnttt5] 
+const grupo = [nna, nn, nnn, nnnt, nnntt, nnnttt, nnnttt2, nnnttt3, nnnttt4] 
 frep = { contextInfo: { externalAdReply: {title: wm, body: lenguajeGB.smsCreApoyo(), sourceUrl: redesMenu.getRandom(), thumbnail: await(await fetch(gataMenu.getRandom())).buffer() }}}
 fkontak = { "key": { "participants":"0@s.whatsapp.net", "remoteJid": "status@broadcast", "fromMe": false, "id": "Halo" }, "message": { "contactMessage": { "vcard": `BEGIN:VCARD\nVERSION:3.0\nN:Sy;Bot;;;\nFN:y\nitem1.TEL;waid=${m.sender.split('@')[0]}:${m.sender.split('@')[0]}\nitem1.X-ABLabel:Ponsel\nEND:VCARD` }}, "participant": "0@s.whatsapp.net" }
 
@@ -89,13 +89,12 @@ _⭔ ${grupo[0]}_\n
 _⭔ ${grupo[1]}_\n
 _⭔ ${grupo[2]}_\n
 _⭔ ${grupo[3]}_\n
-_⭔ ${grupo[4]}_\n
-_⭔ ${grupo[5]}_\n\n
+_⭔ ${grupo[4]}_\n\n
 ${lenguajeGB.smsGrupoOfc2()}
+_⭔ ${grupo[5]}_\n
 _⭔ ${grupo[6]}_\n
 _⭔ ${grupo[7]}_\n
-_⭔ ${grupo[8]}_\n
-_⭔ ${grupo[9]}_`.trim()
+_⭔ ${grupo[8]}_`.trim()
 await conn.sendFile(m.chat, gataImg.getRandom(), 'gata.jpg', str, fkontak)   
 } catch (e) {
 reportError(e)
