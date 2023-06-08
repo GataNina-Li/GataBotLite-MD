@@ -25,7 +25,7 @@ let str = `${lenguajeGB.smsPerfil0()}
 
 *⎔ ${lenguajeGB.smsPerfil5()}*
 • \`\`\`${sn}\`\`\``.trim()
-await conn.sendFile(m.chat, pp, 'gata.jpg', str, m, false, { mentions: [aa] }) 
+await conn.sendFile(m.chat, gataImg.getRandom(), 'gata.jpg', str, m, false, { mentions: [aa] }) 
 }
 handler.command = /^perfil|profile?$/i
 handler.register = true
