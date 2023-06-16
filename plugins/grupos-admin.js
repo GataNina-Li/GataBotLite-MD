@@ -67,14 +67,14 @@ case isCommand3:
 if (text) {
 global.db.data.chats[m.chat].sWelcome = text
 await conn.reply(m.chat, lenguajeGB['smsSetW'](), fkontak, m)
-} else throw `${lenguajeGB['smsSetW2']()}`  
+} else return m.reply(`${lenguajeGB['smsSetW2']()}`)
 break
   
 case isCommand4:
 if (text) {
 global.db.data.chats[m.chat].sBye = text
 await conn.reply(m.chat, lenguajeGB['smsSetB'](), fkontak, m)
-} else throw `${lenguajeGB['smsSetB2']()}`  
+} else return m.reply(`${lenguajeGB['smsSetB2']()}`) 
 break
   
 case isCommand5:
@@ -101,9 +101,9 @@ let q = m.quoted ? m.quoted : m
 let mime = (q.msg || q).mimetype || q.mediaType || ''
 if (/image/.test(mime)) {
 let img = await q.download()
-if (!img) throw lenguajeGB.smsGrupoPP()
+if (!img) return m.reply(lenguajeGB.smsGrupoPP())
 await conn.updateProfilePicture(m.chat, img).then(_ => m.reply(lenguajeGB.smsGrupoPP2()))
-} else throw lenguajeGB.smsGrupoPP()
+} else return m.reply(lenguajeGB.smsGrupoPP())
 break
   
 case isCommand8:
@@ -151,9 +151,9 @@ let isClose = {
 'cerrar': 'announcement',
 }[(args[0] || '')]
 if (isClose === undefined)
-throw `${lenguajeGB['smsMalused']()}
+return m.reply(`${lenguajeGB['smsMalused']()}
 *⭔ ${usedPrefix + command} ${lenguajeGB.lenguaje() == 'es' ? 'abrir' : 'open'}*
-*⭔ ${usedPrefix + command} ${lenguajeGB.lenguaje() == 'es' ? 'cerrar' : 'close'}*`.trim()
+*⭔ ${usedPrefix + command} ${lenguajeGB.lenguaje() == 'es' ? 'cerrar' : 'close'}*`.trim())
 await conn.groupSettingUpdate(m.chat, isClose)
 if (isClose === 'not_announcement'){
 await conn.sendFile(m.chat, pp, 'error.jpg', lenguajeGB.smsGrupoOpen(), m)}
@@ -164,7 +164,7 @@ break
 case isCommand11:
 if (!(isAdmin || isOwner)) {
 global.dfail('admin', m, conn)
-throw false
+return false
 }
 let pesan = args.join` `
 let oi = `» ${lenguajeGB['smsAddB5']()} ${pesan}`
