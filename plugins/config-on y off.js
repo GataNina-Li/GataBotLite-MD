@@ -252,7 +252,7 @@ ${lenguajeGB.smsParaAdYOw() + ' ' + `${m.isGroup ? chat.antiver ? '✅' : '❌' 
 🌸 \`\`\`${usedPrefix}on/off\`\`\` *${lenguajeGB.lenguaje() == 'es' ? 'antiver' : 'antiviewonce'}*\n
 ${lenguajeGB.smsParaAdYOw() + ' ' + `${m.isGroup ? chat.reaction ? '✅' : '❌' : '🌻'}`}
 🌼 \`\`\`${usedPrefix}on/off\`\`\` *${lenguajeGB.lenguaje() == 'es' ? 'reaccion' : 'reaction'}*`.trim()
-throw false
+return false
 }
 m.reply(`${lenguajeGB['smsAvisoEG']()}*⭔ ${lenguajeGB.smsConfi2bot()}:* _${type}_
 *⭔ ${lenguajeGB.smsConfi3bot()}:* _${isEnable ? lenguajeGB.smsConfi5bot() : lenguajeGB.smsConfi6bot()}_
