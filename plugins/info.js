@@ -318,9 +318,9 @@ reportError(e)
 break
     
 case isCommand12:
-if (!text) throw lenguajeGB.smsReportGB1(usedPrefix, command)
-if (text.length < 8) throw lenguajeGB.smsReportGB2()
-if (text.length > 1000) throw lenguajeGB.smsReportGB3()
+if (!text) return m.reply(lenguajeGB.smsReportGB1(usedPrefix, command))
+if (text.length < 8) return m.reply(lenguajeGB.smsReportGB2())
+if (text.length > 1000) return m.reply(lenguajeGB.smsReportGB3())
 
 let urs = m.sender.split('@')[0]
 for (let i = 0; i < global.owner.length; i++) {
