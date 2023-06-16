@@ -86,7 +86,7 @@ break
 //FUNCIÓN HECHA POR https://github.com/Azami19
 case isCommand4:
 let [, code] = text.match(/chat\.whatsapp\.com\/(?:invite\/)?([0-9A-Za-z]{20,24})/i) || []
-if (!code) throw lenguajeGB.smsMalused() + usedPrefix + command + ' ' + nna 
+if (!code) return m.reply(lenguajeGB.smsMalused() + usedPrefix + command + ' ' + nna)
 try{
 const extractGroupMetadata = (result) => {
 const group = baileys.getBinaryNodeChild(result, 'group')
