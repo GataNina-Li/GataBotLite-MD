@@ -40,9 +40,9 @@ conn.sendFile(m.chat, buff, ran, null, m, true, {
 type: 'audioMessage', 
 ptt: true 
 })})
-} else throw `*RESPONDER A UN AUDIO O NOTA DE VOZ PARA APLICAR EL FILTRO USANDO ${usedPrefix + command}*`
+} else return m.reply(`*RESPONDER A UN AUDIO O NOTA DE VOZ PARA APLICAR EL FILTRO USANDO ${usedPrefix + command}*`)
 } catch (e) {
-throw e
+return console.log(e)
 }}
 handler.command = /^(bass|blown|deep|earrape|fas?t|nightcore|reverse|robot|slow|smooth|tupai|squirrel|chipmunk|audio8d|echo|distortion|reverb|pitch|flanger|apulsator|tremolo|chorus)$/i
 export default handler
