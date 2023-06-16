@@ -88,7 +88,7 @@ break
         
 case isCommand3:
 if (m.fromMe) return
-if (isAdmin) throw lenguajeGB.smsAutoAdmin1()
+if (isAdmin) return m.reply(lenguajeGB.smsAutoAdmin1())
 try {  
 await conn.groupParticipantsUpdate(m.chat, [m.sender], "promote")
 } catch {
@@ -96,8 +96,8 @@ await m.reply(lenguajeGB.smsAutoAdmin2())}
 break
         
 case isCommand4:
-if (!text) throw lenguajeGB.smsBioEd1()
-if (text.length > 139) throw lenguajeGB.smsBioEd2()
+if (!text) return m.reply(lenguajeGB.smsBioEd1())
+if (text.length > 139) return m.reply(lenguajeGB.smsBioEd2())
 try {
 await conn.updateProfileStatus(text).catch(_ => _)
 await conn.reply(m.chat, lenguajeGB.smsBioEd3(), m)
@@ -107,8 +107,8 @@ reportError(e)
 break
         
 case isCommand5:
-if (!text) throw lenguajeGB.smsNameEd1()
-if (text.length > 25) throw lenguajeGB.smsNameEd2()
+if (!text) return m.reply(lenguajeGB.smsNameEd1())
+if (text.length > 25) return m.reply(lenguajeGB.smsNameEd2())
 try {
 await conn.updateProfileStatus(text).catch(_ => _)
 await conn.reply(m.chat, lenguajeGB.smsNameEd3(), m)
@@ -123,10 +123,10 @@ q = m.quoted ? m.quoted : m
 mime = (q.msg || q).mimetype || ''
 if (/image/.test(mime)) {
 img = await q.download()
-if (!img) throw  lenguajeGB.smsFotoEd1(usedPrefix, command)
+if (!img) return m.reply(lenguajeGB.smsFotoEd1(usedPrefix, command))
 await conn.updateProfilePicture(bot, img)
 await conn.reply(m.chat, lenguajeGB.smsFotoEd2(), m)
-} else throw lenguajeGB.smsFotoEd3(usedPrefix, command)        
+} else return m.reply(lenguajeGB.smsFotoEd3(usedPrefix, command))     
 break
         
 case isCommand7:
@@ -212,7 +212,7 @@ case isCommand11:
 user = m.sender.split('@')[0] 
 let link = (m.quoted ? m.quoted.text ? m.quoted.text : text : text) || text
 let [_1, code1] = link.match(linkRegex) || []
-if (!code1) throw lenguajeGB.smsJoin1(usedPrefix, command)
+if (!code1) return m.reply(lenguajeGB.smsJoin1(usedPrefix, command))
 try {      
 if ( isOwner || m.fromMe) {
 await m.reply(lenguajeGB.smsJoin2())
@@ -225,7 +225,7 @@ break
 
 case isCommand12:
 if (!text && !m.quoted) return m.reply(lenguajeGB.smsBCMensaje(usedPrefix, command))
-if (conn.user.jid !== global.conn.user.jid) throw false
+if (conn.user.jid !== global.conn.user.jid) return false
 users = [...new Set([...global.conns.filter(conn => conn.user && conn.state !== 'close').map(conn => conn.user.jid)])]
 if (users.length === 0) {
 await m.reply(lenguajeGB.smsJBCom4())
