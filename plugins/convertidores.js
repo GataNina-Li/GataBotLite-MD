@@ -20,11 +20,11 @@ const isCommand6 = /^(to(voice|tts)?|tts)\b$/i.test(command)
 switch (true) {     
 case isCommand1:
 const notStickerMessage = lenguajeGB.smsToimg()
-if (!m.quoted) throw notStickerMessage
+if (!m.quoted) return m.reply(notStickerMessage)
 try{  
 q = m.quoted || m
 mime = q.mediaType || ''
-if (!/sticker/.test(mime)) throw notStickerMessage
+if (!/sticker/.test(mime)) return m.reply(notStickerMessage)
 media = await q.download()
 out = await webp2png(media).catch(_ => null) || Buffer.alloc(0)
 await conn.sendFile(m.chat, out, 'error.png', null, m)
@@ -38,7 +38,7 @@ break
 case isCommand2:    
 q = m.quoted ? m.quoted : m
 mime = (q.msg || q).mimetype || ''
-if (!mime) throw lenguajeGB.smsConURL()
+if (!mime) return m.reply(lenguajeGB.smsConURL())
 try{ 
 media = await q.download()
 const urlRegex = /(https?:\/\/.*\.(?:png|jpe?g|webp))/i
@@ -77,9 +77,9 @@ return await res.text()}
 break 
 
 case isCommand3:       
-if (!m.quoted) throw lenguajeGB.smsConVIDEO() 
+if (!m.quoted) return m.reply(lenguajeGB.smsConVIDEO())
 mime = m.quoted.mimetype || ''
-if (!/webp|gif/.test(mime)) throw lenguajeGB.smsConVIDEO2() 
+if (!/webp|gif/.test(mime)) return m.reply(lenguajeGB.smsConVIDEO2()) 
 try{ 
 media = await m.quoted.download()
 out = Buffer.alloc(0)
@@ -101,10 +101,10 @@ console.log(e)}
 break 
 
 case isCommand4:       
-if (!m.quoted) throw lenguajeGB.smsConGIF()
+if (!m.quoted) return m.reply(lenguajeGB.smsConGIF())
 q = m.quoted || m
 mime = (q.msg || q).mimetype || ''
-if (!/(mp4)/.test(mime)) throw lenguajeGB.smsConGIF2() + mime
+if (!/(mp4)/.test(mime)) return m.reply(lenguajeGB.smsConGIF2() + mime)
 try{ 
 m.reply(global.wait)
 media = await q.download()
@@ -118,13 +118,13 @@ break
 case isCommand5:       
 q = m.quoted ? m.quoted : m
 mime = (m.quoted ? m.quoted : m.msg).mimetype || ''
-if (!/video|audio/.test(mime)) throw lenguajeGB.smsConVN()
+if (!/video|audio/.test(mime)) return m.reply(lenguajeGB.smsConVN())
 media = await q.download?.()
-if (!media && !/video/.test(mime)) throw lenguajeGB.smsConVN1()
-if (!media && !/audio/.test(mime)) throw lenguajeGB.smsConVN2()
+if (!media && !/video/.test(mime)) return m.reply(lenguajeGB.smsConVN1())
+if (!media && !/audio/.test(mime)) return m.reply(lenguajeGB.smsConVN2())
 let audio = await toPTT(media, 'mp4')
-if (!audio.data && !/audio/.test(mime)) throw lenguajeGB.smsConVN3()
-if (!audio.data && !/video/.test(mime)) throw lenguajeGB.smsConVN4()
+if (!audio.data && !/audio/.test(mime)) return m.reply(lenguajeGB.smsConVN3())
+if (!audio.data && !/video/.test(mime)) return m.reply(lenguajeGB.smsConVN4())
 try{
 let aa = conn.sendFile(m.chat, audio.data, 'error.mp3', '', m, true, { mimetype: 'audio/mp4' })
 if (!aa) return conn.sendMessage(m.chat, { audio: { url: media }, fileName: 'error.mp3', mimetype: 'audio/mp4', ptt: true }, { quoted: m }) 
@@ -148,7 +148,7 @@ try { res = await tts(text, lang) }
 catch (e) {
 //m.reply(e + '')
 text = args.join(' ')
-if (!text) throw lenguajeGB.smsTradc1() + usedPrefix + command + lenguajeGB.smsTradc2() + usedPrefix + command + ' ' + lenguajeGB.smsTradc3() + lenguajeGB.smsTradc4()
+if (!text) return m.reply(lenguajeGB.smsTradc1() + usedPrefix + command + lenguajeGB.smsTradc2() + usedPrefix + command + ' ' + lenguajeGB.smsTradc3() + lenguajeGB.smsTradc4())
 res = await tts(text, defaultLang)
 } finally {
 try{
