@@ -7,15 +7,15 @@ return list[Math.floor(Math.random() * list.length)]
 let tag = `${m.sender.split("@")[0]}`
 let aa = tag + '@s.whatsapp.net'
 let user = global.db.data.users[m.sender]
-if (user.registered === true) throw lenguajeGB.smsVerify0(usedPrefix) + '*'
-if (!Reg.test(text)) throw lenguajeGB.smsVerify1(usedPrefix, command)
+if (user.registered === true) return m.reply(lenguajeGB.smsVerify0(usedPrefix) + '*')
+if (!Reg.test(text)) return m.reply(lenguajeGB.smsVerify1(usedPrefix, command))
 let [_, name, splitter, age] = text.match(Reg)
-if (!name) throw lenguajeGB.smsVerify2()
-if (!age) throw lenguajeGB.smsVerify3()
+if (!name) return m.reply(lenguajeGB.smsVerify2())
+if (!age) return m.reply(lenguajeGB.smsVerify3())
 age = parseInt(age)
-if (age > 50) throw lenguajeGB.smsVerify4()
-if (age < 10) throw lenguajeGB.smsVerify5()
-if (name.length >= 30) throw lenguajeGB.smsVerify6()
+if (age > 50) return m.reply(lenguajeGB.smsVerify4())
+if (age < 10) return m.reply(lenguajeGB.smsVerify5())
+if (name.length >= 30) return m.reply(lenguajeGB.smsVerify6())
 user.name = name + 'ͧͧͧͦꙶͣͤ✓ᚲᴳᴮ'.trim()
 user.age = age
 user.regTime = + new Date
