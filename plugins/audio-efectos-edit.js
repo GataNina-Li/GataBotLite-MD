@@ -12,7 +12,7 @@ function replyToNumber() { m.reply(lenguajeGB.smsControlAudio2(usedPrefix, comma
         
 // -- bass -- //
 if (/edit(ed|ar)?bass/.test(command)) {
-if (!args[0] || !args[1]) throw lenguajeGB.smsAudioEdit1(usedPrefix, command)
+if (!args[0] || !args[1]) return  m.reply(lenguajeGB.smsAudioEdit1(usedPrefix, command))
 if (isNaN(args[0]) || isNaN(args[1])) return replyToNumber()
 if (!mime) return replyToAudio()
 let f, g, width_type, width
@@ -36,7 +36,7 @@ m.reply(`*🎧 ${lenguajeGB.smsControlAudio5()}*\n\`\`\`${set.replace(/:/g, ':\n
         
 // -- vibra -- //
 if (/edit(ed|ar)?vibra/.test(command)) {
-if (!args[0] || !args[1]) throw lenguajeGB.smsAudioEdit2(usedPrefix, command)
+if (!args[0] || !args[1]) return m.reply(lenguajeGB.smsAudioEdit2(usedPrefix, command))
 if (isNaN(args[0]) || isNaN(args[1])) return replyToNumber()  
 if (!mime) return replyToAudio()
 let f, d
@@ -62,7 +62,7 @@ m.reply(`*🎧 ${lenguajeGB.smsControlAudio5()}*\n\`\`\`${set}\`\`\`\n1️⃣ *$
         
 // -- blown -- //        
 if (/edit(ed|ar)?blown/.test(command)) {
-if (!args[0] || !args[1]) throw lenguajeGB.smsAudioEdit3(usedPrefix, command)
+if (!args[0] || !args[1]) return m.reply(lenguajeGB.smsAudioEdit3(usedPrefix, command))
 if (isNaN(args[0]) || isNaN(args[1])) return replyToNumber()  
 if (!mime) return replyToAudio()
 let bit_depth, sample_rate, mix, mix_log
@@ -108,7 +108,7 @@ m.reply(`*🎧 ${lenguajeGB.smsControlAudio5()}*\n\`\`\`${set}\`\`\`\n1️⃣ *$
         
 // -- deep -- //         
 if (/edit(ed|ar)?deep/.test(command)) {
-if (!args[0] || !args[1]) throw lenguajeGB.smsAudioEdit4(usedPrefix, command)
+if (!args[0] || !args[1]) return m.reply(lenguajeGB.smsAudioEdit4(usedPrefix, command))
 let atempo, asetrate
 if (isNaN(args[0]) || isNaN(args[1])) return replyToNumber()  
 if (!mime) return replyToAudio()
@@ -139,7 +139,7 @@ m.reply(`*🎧 ${lenguajeGB.smsControlAudio5()}*\n\`\`\`${set}\`\`\`\n1️⃣ *$
         
 // -- fast -- //     
 if (/edit(ed|ar)?fast/.test(command)) {
-if (!args[0] || !args[1]) throw lenguajeGB.smsAudioEdit6(usedPrefix, command)
+if (!args[0] || !args[1]) return m.reply(lenguajeGB.smsAudioEdit6(usedPrefix, command))
 if (isNaN(args[0]) || isNaN(args[1])) return replyToNumber()  
 if (!mime) return replyToAudio()
 let tempo, setrate
@@ -151,7 +151,7 @@ m.reply(`*🎧 ${lenguajeGB.smsControlAudio5()}*\n\`\`\`${set}\`\`\`\n1️⃣ *$
         
 // -- fat -- //     
 if (/edit(ed|ar)?fat/.test(command)) {
-if (!args[0] || !args[1]) throw lenguajeGB.smsAudioEdit7(usedPrefix, command)
+if (!args[0] || !args[1]) return m.reply(lenguajeGB.smsAudioEdit7(usedPrefix, command))
 if (isNaN(args[0]) || isNaN(args[1])) return replyToNumber()  
 if (!mime) return replyToAudio()
 let tempo, setrate
@@ -163,7 +163,7 @@ m.reply(`*🎧 ${lenguajeGB.smsControlAudio5()}*\n\`\`\`${set}\`\`\`\n1️⃣ *$
               
 // -- nightcore -- //     
 if (/edit(ed|ar)?nightcore/.test(command)) {
-if (!args[0] || !args[1]) throw lenguajeGB.smsAudioEdit8(usedPrefix, command)
+if (!args[0] || !args[1]) return m.reply(lenguajeGB.smsAudioEdit8(usedPrefix, command))
 if (isNaN(args[0]) || isNaN(args[1])) return replyToNumber()  
 if (!mime) return replyToAudio()
 let tempo, setrate, multi
@@ -176,7 +176,7 @@ m.reply(`*🎧 ${lenguajeGB.smsControlAudio5()}*\n\`\`\`${set}\`\`\`\n1️⃣ *$
 
 // -- robot -- //     
 if (/edit(ed|ar)?robot/.test(command)) {
-if (!args[0] || !args[1]) throw lenguajeGB.smsAudioEdit9(usedPrefix, command)
+if (!args[0] || !args[1]) return m.reply(lenguajeGB.smsAudioEdit9(usedPrefix, command))
 if (isNaN(args[0]) || isNaN(args[1])) return replyToNumber()  
 if (!mime) return replyToAudio()
 let win_size, overlap, filter
@@ -188,7 +188,7 @@ m.reply(`*🎧 ${lenguajeGB.smsControlAudio5()}*\n\`\`\`${set}\`\`\`\n1️⃣ *$
 
 // -- slow -- //  
 if (/edit(ed|ar)?slow/.test(command)) {
-if (!args[0] || !args[1]) throw lenguajeGB.smsAudioEdit10(usedPrefix, command)
+if (!args[0] || !args[1]) return m.reply(lenguajeGB.smsAudioEdit10(usedPrefix, command))
 if (isNaN(args[0]) || isNaN(args[1])) return replyToNumber()  
 if (!mime) return replyToAudio()
         
@@ -206,7 +206,7 @@ m.reply(`*🎧 ${lenguajeGB.smsControlAudio5()}*\n\`\`\`${set}\`\`\`\n1️⃣ *$
 
 // -- smooth -- //          
 if (/edit(ed|ar)?smooth/.test(command)) {
-if (!args[0] || !args[1]) throw lenguajeGB.smsAudioEdit11(usedPrefix, command)
+if (!args[0] || !args[1]) return m.reply(lenguajeGB.smsAudioEdit11(usedPrefix, command))
 if (isNaN(args[0]) || isNaN(args[1])) return replyToNumber()
 if (!mime) return replyToAudio()
         
@@ -222,7 +222,7 @@ m.reply(`*🎧 ${lenguajeGB.smsControlAudio5()}*\n\`\`\`${set.replace(/:/g, ':\n
 
 // -- tupai -- //       
 if (/edit(ed|ar)?(tupai|squirrel|chipmunk)/.test(command)) {
-if (!args[0] || !args[1]) throw lenguajeGB.smsAudioEdit12(usedPrefix, command)
+if (!args[0] || !args[1]) return m.reply(lenguajeGB.smsAudioEdit12(usedPrefix, command))
 
 if (isNaN(args[0]) || isNaN(args[1])) return replyToNumber()  
 if (!mime) return replyToAudio()
@@ -240,7 +240,7 @@ m.reply(`*🎧 ${lenguajeGB.smsControlAudio5()}*\n\`\`\`${set}\`\`\`\n1️⃣ *$
 
 //if (/audio8d/.test(command)) set = '-af apulsator=hz=0.125:amount=1'   
 if (/edit(ed|ar)?audio8d/.test(command)) {
-if (!args[0] || !args[1]) throw lenguajeGB.smsAudioEdit13(usedPrefix, command)
+if (!args[0] || !args[1]) return m.reply(lenguajeGB.smsAudioEdit13(usedPrefix, command))
 
 if (isNaN(args[0]) || isNaN(args[1])) return replyToNumber()  
 if (!mime) return replyToAudio()
@@ -274,9 +274,9 @@ conn.sendFile(m.chat, buff, ran, null, m, true, {
 type: 'audioMessage', 
 ptt: true 
 })})
-} else throw lenguajeGB.smsControlAudio4()
+} else return m.reply(lenguajeGB.smsControlAudio4())
 } catch (e) {
-throw e
+return e
 }}
 handler.command = /^(edit(ed|ar)?(bass|vibra|blown|deep|earrape|fas?t|nightcore|robot|slow|smooth|tupai|squirrel|chipmunk|audio8d))$/i
 export default handler
