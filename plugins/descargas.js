@@ -33,7 +33,7 @@ console.log(e)
 
 switch (true) {     
 case isCommand1:
-if (!text) throw lenguajeGB.smsMalused2() + `\n*${usedPrefix + command} Gata*`
+if (!text) return m.reply(lenguajeGB.smsMalused2() + `\n*${usedPrefix + command} Gata*`)
 try{
 const res = await googleImage(text)
 let image = res.getRandom()
@@ -45,9 +45,9 @@ reportError(e)
 break
     
 case isCommand2:
-if (!text) throw lenguajeGB.smsMalused2() + `*${usedPrefix + command} Billie Eilish - Bellyache*`
+if (!text) return m.reply(lenguajeGB.smsMalused2() + `*${usedPrefix + command} Billie Eilish - Bellyache*`)
 let vid = (await yts(text)).all[0]
-if (!vid) throw lenguajeGB.smsMalError2() + `_${lenguajeGB.smsYT6()}_`
+if (!vid) return m.reply(lenguajeGB.smsMalError2() + `_${lenguajeGB.smsYT6()}_`)
 try{
 let { title, description, url, thumbnail, videoId, timestamp, views, published } = vid
 let video = `*◜⋯ ⋯ ⋯ Y O U T U B E ⋯ ⋯ ⋯◞*
@@ -80,7 +80,7 @@ reportError(e)
 break
         
 case isCommand3:
-if (!args[0]) throw lenguajeGB.smsMalused2() + `*${usedPrefix + command} https://youtu.be/ejemplo*\n*${usedPrefix + command} https://www.youtube.com/ejemplo*`
+if (!args[0]) return m.reply(lenguajeGB.smsMalused2() + `*${usedPrefix + command} https://youtu.be/ejemplo*\n*${usedPrefix + command} https://www.youtube.com/ejemplo*`)
 await conn.reply(m.chat, lenguajeGB.smsAvisoEG() + '*' + lenguajeGB.smsYTA1() + '*', m)
 try {
 q = '128kbps'
@@ -102,7 +102,7 @@ reportError(e)
 break
         
 case isCommand4:
-if (!args[0]) throw lenguajeGB.smsMalused2() + `*${usedPrefix + command} https://youtu.be/ejemplo*\n*${usedPrefix + command} https://www.youtube.com/ejemplo*`
+if (!args[0]) return m.reply(lenguajeGB.smsMalused2() + `*${usedPrefix + command} https://youtu.be/ejemplo*\n*${usedPrefix + command} https://www.youtube.com/ejemplo*`)
 await conn.reply(m.chat, lenguajeGB.smsAvisoEG() + '*' + lenguajeGB.smsYTA2() + '*', m)
 try {
 q = '128kbps'
@@ -128,7 +128,7 @@ reportError(e)
 break
         
 case isCommand5:
-if (!args[0]) throw lenguajeGB.smsMalused2() + `*${usedPrefix + command} https://youtu.be/ejemplo*\n*${usedPrefix + command} https://www.youtube.com/ejemplo*`
+if (!args[0]) return m.reply(lenguajeGB.smsMalused2() + `*${usedPrefix + command} https://youtu.be/ejemplo*\n*${usedPrefix + command} https://www.youtube.com/ejemplo*`)
 await conn.reply(m.chat, lenguajeGB.smsAvisoEG() + '*' + lenguajeGB.smsYTV1() + '*', m)
 try {
 qu = args[1] || '360'
@@ -153,7 +153,7 @@ reportError(e)}}
 break
 
 case isCommand6:
-if (!args[0]) throw lenguajeGB.smsMalused2() + `*${usedPrefix + command} https://youtu.be/ejemplo*\n*${usedPrefix + command} https://www.youtube.com/ejemplo*`
+if (!args[0]) return m.reply(lenguajeGB.smsMalused2() + `*${usedPrefix + command} https://youtu.be/ejemplo*\n*${usedPrefix + command} https://www.youtube.com/ejemplo*`)
 await conn.reply(m.chat, lenguajeGB.smsAvisoEG() + '*' + lenguajeGB.smsYTV2() + '*', m)
 try {
 qu = args[1] || '360'
@@ -181,7 +181,7 @@ reportError(e)
 break
         
 case isCommand7:
-if (!text) throw lenguajeGB.smsMalused2() + `\n*${usedPrefix}${command}* https://fb.watch/kAOXy3wf2L/?mibextid=Nif5oz\n\n*${usedPrefix}${command}* https://www.facebook.com/reel/1662783117489590?s=yWDuG2&fs=e&mibextid=Nif5oz`
+if (!text) return m.reply(lenguajeGB.smsMalused2() + `\n*${usedPrefix}${command}* https://fb.watch/kAOXy3wf2L/?mibextid=Nif5oz\n\n*${usedPrefix}${command}* https://www.facebook.com/reel/1662783117489590?s=yWDuG2&fs=e&mibextid=Nif5oz`)
 if (!args[0].match(/www.facebook.com|fb.watch|web.facebook.com|business.facebook.com|video.fb.com/g)) throw lenguajeGB.smsAvisoFG() + lenguajeGB.smsyFBvid1()
 await m.reply(wait)
 let messageType = checkMessageType(args[0])
@@ -228,7 +228,7 @@ reportError(e)}
 break
         
 case isCommand8:
-if (!args[0]) throw lenguajeGB.smsMalused2() + `*${usedPrefix + command} https://www.mediafire.com/file/04kaaqx9oe3tb8b/DOOM_v13_CLONE%255BCOM.FM%255D.apk/file*`
+if (!args[0]) return m.reply(lenguajeGB.smsMalused2() + `*${usedPrefix + command} https://www.mediafire.com/file/04kaaqx9oe3tb8b/DOOM_v13_CLONE%255BCOM.FM%255D.apk/file*`)
 try {  
 let res = await mediafireDl(args[0])
 let { name, date, mime, link, size:peso } = res
@@ -260,7 +260,7 @@ return { name, size, date, mime, link }
 break 
         
 case isCommand9:
-if (!args[0]) throw lenguajeGB.smsMalused2() + `*${usedPrefix + command} https://youtu.be/ejemplo*\n*${usedPrefix + command} https://www.youtube.com/ejemplo*`
+if (!args[0]) return m.reply(lenguajeGB.smsMalused2() + `*${usedPrefix + command} https://youtu.be/ejemplo*\n*${usedPrefix + command} https://www.youtube.com/ejemplo*`)
 await conn.reply(m.chat, lenguajeGB.smsAvisoEG() + '*' + lenguajeGB.smsYTV1() + '*', m)
 try {
 q = ''
@@ -304,7 +304,7 @@ reportError(e)
 break
    
 case isCommand11:
-if (!args[0]) throw lenguajeGB.smsMalused2() + `*${usedPrefix + command} https://youtu.be/ejemplo*\n*${usedPrefix + command} https://www.youtube.com/ejemplo*`
+if (!args[0]) return m.reply(lenguajeGB.smsMalused2() + `*${usedPrefix + command} https://youtu.be/ejemplo*\n*${usedPrefix + command} https://www.youtube.com/ejemplo*`)
 await conn.reply(m.chat, lenguajeGB.smsAvisoEG() + '*' + lenguajeGB.smsYTV2() + '*', m)
 try {
 q = ''
@@ -374,7 +374,7 @@ link = json.result[0].link
 }
 let res2 = await fetch(`https://api.lolhuman.xyz/api/spotify?apikey=${lolkeysapi}&url=${link}`)
 let json2 = await res2.json()
-if (json2.status != '200') throw lenguajeGB.smsSP6()
+if (json2.status != '200') return m.reply(lenguajeGB.smsSP6())
 let { thumbnail, title, artists, link: songLink } = json2.result
 try {
 let spotifyi = `${lenguajeGB.smsSP1()}
@@ -403,7 +403,7 @@ case isCommand15:
 if (!text) return m.reply(lenguajeGB.smsMalused2() + `*${usedPrefix + command} Bellyache*`)
 let res = await fetch(`https://api.lolhuman.xyz/api/spotifysearch?apikey=${lolkeysapi}&query=${encodeURIComponent(text)}`)
 let json = await res.json()
-if (json.status != '200') throw lenguajeGB.smsSP6()
+if (json.status != '200') return m.reply(lenguajeGB.smsSP6())
 try{
 let get_result = json.result
 let ini_txt = `🔎 \`\`\`${text}\`\`\``
