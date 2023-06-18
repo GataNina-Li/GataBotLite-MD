@@ -121,13 +121,12 @@ https://github.com/clhuang/heroku-buildpack-webp-binaries.git
 * Descargar e instala NodeJS [`Aquí`](https://nodejs.org/en/download)
 * Descargar e instala FFmpeg [`Aquí`](https://ffmpeg.org/download.html) (**No olvide agregar FFmpeg a la variable de entorno PATH**)
 * Descargar e instala ImageMagick [`Aquí`](https://imagemagick.org/script/download.php)
-* Descargar e instala Yarn [`Aquí`](https://classic.yarnpkg.com/en/docs/install#windows-stable)
 ```bash
 git clone https://github.com/GataNina-Li/GataBotLite-MD
 npm install -g yarn
 cd GataBotLite-MD
 yarn
-install npm
+npm install 
 npm start
 ```
 ### Instalación de FFmpeg para Windows 
