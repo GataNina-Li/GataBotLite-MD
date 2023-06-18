@@ -123,16 +123,23 @@ https://github.com/clhuang/heroku-buildpack-webp-binaries.git
 * Descargar e instala ImageMagick [`Aquí`](https://imagemagick.org/script/download.php)
 * Descargar e instala Yarn [`Aquí`](https://classic.yarnpkg.com/en/docs/install#windows-stable)
 ```bash
-git clone https://github.com/GataNina-Li/GataBotLite-MD && cd GataBotLite-MD && yarn install && npm install && npm update && node .
+git clone https://github.com/GataNina-Li/GataBotLite-MD
+npm install -g yarn
+cd GataBotLite-MD
+yarn
+install npm
+npm start
 ```
 ### Instalación de FFmpeg para Windows 
-* Descarga cualquiera de las versiones de FFmpeg disponibles haciendo clic en [FFmpeg](https://www.gyan.dev/ffmpeg/builds/).
-* Extraer archivos a `C:\` path.
-* Cambie el nombre de la carpeta extraída a `ffmpeg`.
+* Descarga la siguiente versión de FFmpeg [`Aquí`](https://www.gyan.dev/ffmpeg/builds/ffmpeg-git-full.7z).
+* Extraer FFmpeg con [`7-Zip`](https://www.7-zip.org/download.html)
+* Cambie el nombre de la carpeta extraída a `FFmpeg`.
+* Mover archivos a `C:\` path.
+* Agregar la ruta ejemplo: `C:\ffmpeg\bin` al entorno de variable
 * Ejecute el símbolo del sistema como administrador.
 * Ejecute el siguiente comando:
 ```cmd
-> setx /m PATH "C:\ffmpeg\bin;%PATH%"
+setx /m PATH "C:\ffmpeg\bin;%PATH%"
 ```
 Si tiene éxito, le dará un mensaje como: `SUCCESS: specified value was saved`.
 * Ahora que tiene FFmpeg instalado, verifique que funcionó ejecutando este comando para ver la versión:
