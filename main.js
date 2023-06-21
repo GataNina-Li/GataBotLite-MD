@@ -105,12 +105,12 @@ if (opts['server']) (await import('./server.js')).default(global.conn, PORT)
 
 function clearTmp() {
 try {
-const tmp = [tmpdir(), join(__dirname, './tmp')]
+const tmp =  join(__dirname, 'tmp')
 const filename = []
 tmp.forEach(dirname => readdirSync(dirname).forEach(file => filename.push(join(dirname, file))))
 filename.forEach(file => unlinkSync(file))
 } catch {
-const tmp = [tmpdir(), join(__dirname, './tmp')]
+const tmp =  join(__dirname, 'tmp')
 const filename = []
 tmp.forEach(dirname => readdirSync(dirname).forEach(file => filename.push(join(dirname, file))))
 return filename.map(file => {
