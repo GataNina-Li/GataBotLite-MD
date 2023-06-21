@@ -89,7 +89,7 @@ _⭔ ${grupo[0]}_\n
 _⭔ ${grupo[1]}_\n
 _⭔ ${grupo[2]}_\n
 _⭔ ${grupo[3]}_\n
-_⭔ ${grupo[4]}_
+_⭔ ${grupo[4]}_\n
 _⭔ ${grupo[5]}_\n\n
 ${lenguajeGB.smsGrupoOfc2()}
 _⭔ ${grupo[6]}_\n
