@@ -1,4 +1,4 @@
-process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = '0';
+ process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = '0';
 import './config.js';
 import { createRequire } from "module"; 
 import path, { join } from 'path'
@@ -119,7 +119,7 @@ const stats = statSync(file)
 if (stats.isFile() && (Date.now() - stats.mtimeMs >= 1000 * 60 )) return unlinkSync(file) // 1 minutes
 return false })
 } catch (error2) {
-const tmp =  join(__dirname, 'tmp')
+const tmp = [join(__dirname, 'tmp')]
 const filename = []
 tmp.forEach(dirname => readdirSync(dirname).forEach(file => filename.push(join(dirname, file))))
 filename.forEach(file => unlinkSync(file)) 
