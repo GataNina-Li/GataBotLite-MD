@@ -46,9 +46,10 @@ let resu1 = await ia1.json()
 m.reply(`${resu1.response}`.trim())    
 } catch {
 try {   
-let ia2 = await fetch(`https://api.ibeng.tech/api/info/openai?text=${text}&apikey=tamvan`) //fetch(`https://api.ibeng.tech/api/info/openai?text=${text}&apikey=tamvan`)
+let ia2 = await fetch(`https://api.amosayomide05.cf/gpt/?question=${text}&string_id=${m.sender}`) //fetch(`https://api.ibeng.tech/api/info/openai?text=${text}&apikey=tamvan`)
 let resu2 = await ia2.json()
-m.reply(resu2.data.data.trim())    
+m.reply(resu2.response.trim())    
+//m.reply(resu2.data.data.trim())    
 } catch {      
 try {    
 let ia3 = await fetch(`https://api.lolhuman.xyz/api/openai?apikey=${lolkeysapi}&text=${text}&user=${m.sender}`)
