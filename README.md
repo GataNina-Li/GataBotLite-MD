@@ -116,6 +116,8 @@ https://github.com/jonathanong/heroku-buildpack-ffmpeg-latest.git
 https://github.com/clhuang/heroku-buildpack-webp-binaries.git
 ```
 ## 🌻 INSTALACIÓN PARA WINDOWS/VPS/RDP 🌻
+<a href="https://youtu.be/SaxYKnnZo3E">
+<img src="https://img.shields.io/badge/Tutorial-FF0000?style=for-the-badge&logo=youtube&logoColor=white" alt="Tutorial"> </a>
 
 * Descargar e instala Git [`Aquí`](https://git-scm.com/downloads)
 * Descargar e instala NodeJS [`Aquí`](https://nodejs.org/en/download)
@@ -123,8 +125,8 @@ https://github.com/clhuang/heroku-buildpack-webp-binaries.git
 * Descargar e instala ImageMagick [`Aquí`](https://imagemagick.org/script/download.php)
 ```bash
 git clone https://github.com/GataNina-Li/GataBotLite-MD
-npm install -g yarn
 cd GataBotLite-MD
+npm install -g yarn
 yarn
 npm install 
 npm start
