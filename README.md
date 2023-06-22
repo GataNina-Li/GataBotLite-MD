@@ -147,6 +147,15 @@ Si tiene éxito, le dará un mensaje como: `SUCCESS: specified value was saved`.
 ```cmd
 > ffmpeg -version
 ```
+### Error en usar yarn en PowerShell
+* Si usa la consola PowerShell y recibe este mensaje `No se puede cargar el archivo yarn.ps1 o yarn porque la ejecución de scripts está deshabilitada en este sistema.` al intentar usar `yarn` dentro de la carpeta del Bot puede usar estos comandos para cambiar la Política de ejecución de PowerShell en su sistema:
+> Debe de ejecutar la consola como Administrador
+```cmd
+Get-ExecutionPolicy
+Set-ExecutionPolicy RemoteSigned
+```
+> Aparecerá un mensaje de advertencia preguntando si deseas cambiar la Política de ejecución. Confirma con "Y" y presiona Enter. Luego ya puede volver a ejecutar el comando `yarn`
+
 ### 💠 [`IDIOMAS DISPONIBLES PARA GATABOTLITE`](https://github.com/GataNina-Li/GataBotLite-MD/blob/f406e0f1bba1ca7cd6ee4ef3208e156135a24dce/config.js#L31) 
 #### ✨ Español  [`Editar Idioma`](https://github.com/GataNina-Li/GataBotLite-MD/blob/master/lib/idiomas/espanol.js)
 #### ✨ Inglés (English) [`Edit Language`](https://github.com/GataNina-Li/GataBotLite-MD/blob/master/lib/idiomas/ingles.js)
