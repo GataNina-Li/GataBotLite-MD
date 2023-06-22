@@ -312,18 +312,18 @@ Object.freeze(global.support)
 setInterval(async () => {
 if (stopped == 'close') return
 var a = await clearTmp()        
-console.log(chalk.bold.cyanBright(lenguajeGB.smsClearTmp()))}, 1000 * 60 * 2) 
+console.log(chalk.bold.cyanBright(lenguajeGB.smsClearTmp()))}, 1000 * 60 * 4) 
 
 setInterval(async () => {
 await purgeSession()
-console.log(chalk.bold.cyanBright(lenguajeGB.smspurgeSession()))}, 1000 * 60 * 2)
+console.log(chalk.bold.cyanBright(lenguajeGB.smspurgeSession()))}, 1000 * 60 * 30)
 
 setInterval(async () => {
-await purgeSessionSB()}, 1000 * 60 * 2)
+await purgeSessionSB()}, 1000 * 60 * 30)
 
 setInterval(async () => {
 await purgeOldFiles()
-console.log(chalk.bold.cyanBright(lenguajeGB.smspurgeOldFiles()))}, 1000 * 60 * 2)
+console.log(chalk.bold.cyanBright(lenguajeGB.smspurgeOldFiles()))}, 1000 * 60 * 30)
 
 _quickTest()
 .then(() => conn.logger.info(chalk.bold(lenguajeGB['smsCargando']())))
