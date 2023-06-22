@@ -104,28 +104,12 @@ if (opts['autocleartmp'] && (global.support || {}).find) (tmp = [os.tmpdir(), 't
 if (opts['server']) (await import('./server.js')).default(global.conn, PORT)
 
 function clearTmp() {
-/*try {
-const tmp = [tmpdir(), join(__dirname, './tmp')]
-const filename = []
-tmp.forEach(dirname => readdirSync(dirname).forEach(file => filename.push(join(dirname, file))))
-filename.forEach(file => unlinkSync(file))
-} catch (error1) {
-try{
-const tmp = [tmpdir(), join(__dirname, './tmp')]
-const filename = []
-tmp.forEach(dirname => readdirSync(dirname).forEach(file => filename.push(join(dirname, file))))
-return filename.map(file => {
-const stats = statSync(file)
-if (stats.isFile() && (Date.now() - stats.mtimeMs >= 1000 * 60 )) return unlinkSync(file) // 1 minutes
-return false })
-} catch (error2) { */
 const tmpDir = join(__dirname, 'tmp')
 const filenames = readdirSync(tmpDir)
 filenames.forEach(file => {
 const filePath = join(tmpDir, file)
 unlinkSync(filePath)})
 }
-//}}
 
 function purgeSession() {
 let prekey = []
@@ -328,18 +312,18 @@ Object.freeze(global.support)
 setInterval(async () => {
 if (stopped == 'close') return
 var a = await clearTmp()        
-console.log(chalk.bold.cyanBright(lenguajeGB.smsClearTmp()))}, 1000 * 60 * 5) 
+console.log(chalk.bold.cyanBright(lenguajeGB.smsClearTmp()))}, 1000 * 60 * 2) 
 
 setInterval(async () => {
 await purgeSession()
-console.log(chalk.bold.cyanBright(lenguajeGB.smspurgeSession()))}, 1000 * 60 * 30)
+console.log(chalk.bold.cyanBright(lenguajeGB.smspurgeSession()))}, 1000 * 60 * 2)
 
 setInterval(async () => {
-await purgeSessionSB()}, 1000 * 60 * 30)
+await purgeSessionSB()}, 1000 * 60 * 2)
 
 setInterval(async () => {
 await purgeOldFiles()
-console.log(chalk.bold.cyanBright(lenguajeGB.smspurgeOldFiles()))}, 1000 * 60 * 30)
+console.log(chalk.bold.cyanBright(lenguajeGB.smspurgeOldFiles()))}, 1000 * 60 * 2)
 
 _quickTest()
 .then(() => conn.logger.info(chalk.bold(lenguajeGB['smsCargando']())))
