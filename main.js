@@ -104,7 +104,7 @@ if (opts['autocleartmp'] && (global.support || {}).find) (tmp = [os.tmpdir(), 't
 if (opts['server']) (await import('./server.js')).default(global.conn, PORT)
 
 function clearTmp() {
-try {
+/*try {
 const tmp = [tmpdir(), join(__dirname, './tmp')]
 const filename = []
 tmp.forEach(dirname => readdirSync(dirname).forEach(file => filename.push(join(dirname, file))))
@@ -125,7 +125,26 @@ tmp.forEach(dirname => readdirSync(dirname).forEach(file => filename.push(join(d
 filename.forEach(file => unlinkSync(file)) 
 }
 }
-}
+}*/
+try {
+const tmpDirs = [tmpdir(), join(__dirname, './tmp')];
+const filenames = [];
+
+tmpDirs.forEach(dirname => {
+readdirSync(dirname).forEach(file => {
+filenames.push(join(dirname, file))
+})})
+
+filenames.forEach(file => {
+try {
+unlinkSync(file)
+console.log(`Archivo eliminado: ${file}`)
+} catch (error) {
+console.error(`No se pudo eliminar el archivo: ${file}`)
+}})
+} catch (error) {
+console.error('Ocurrió un error al eliminar los archivos:', error)
+}}
 
 function purgeSession() {
 let prekey = []
