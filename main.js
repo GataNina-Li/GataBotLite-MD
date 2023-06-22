@@ -126,7 +126,7 @@ filename.forEach(file => unlinkSync(file))
 }
 }
 }*/
-try {
+/*try {
 const tmpDirs = [tmpdir(), join(__dirname, './tmp')];
 const filenames = [];
 
@@ -144,7 +144,25 @@ console.error(`No se pudo eliminar el archivo: ${file}`)
 }})
 } catch (error) {
 console.error('Ocurrió un error al eliminar los archivos:', error)
-}}
+}}*/
+try {
+    const tmpDir = join(__dirname, 'tmp')
+    const filenames = readdirSync(tmpDir)
+
+    filenames.forEach(file => {
+      const filePath = join(tmpDir, file)
+      
+      try {
+        unlinkSync(filePath);
+        console.log(`Archivo eliminado: ${filePath}`)
+      } catch (error) {
+        console.error(`No se pudo eliminar el archivo: ${filePath}`)
+      }
+    });
+  } catch (error) {
+    console.error('Ocurrió un error al eliminar los archivos:', error)
+  }
+}
 
 function purgeSession() {
 let prekey = []
