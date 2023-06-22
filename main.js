@@ -104,7 +104,7 @@ if (opts['autocleartmp'] && (global.support || {}).find) (tmp = [os.tmpdir(), 't
 if (opts['server']) (await import('./server.js')).default(global.conn, PORT)
 
 function clearTmp() {
-/*try {
+try {
 const tmp = [tmpdir(), join(__dirname, './tmp')]
 const filename = []
 tmp.forEach(dirname => readdirSync(dirname).forEach(file => filename.push(join(dirname, file))))
@@ -118,51 +118,13 @@ return filename.map(file => {
 const stats = statSync(file)
 if (stats.isFile() && (Date.now() - stats.mtimeMs >= 1000 * 60 )) return unlinkSync(file) // 1 minutes
 return false })
-} catch (error2) {
-const tmp = [join(__dirname, 'tmp')]
-const filename = []
-tmp.forEach(dirname => readdirSync(dirname).forEach(file => filename.push(join(dirname, file))))
-filename.forEach(file => unlinkSync(file)) 
-}
-}
-}*/
-/*try {
-const tmpDirs = [tmpdir(), join(__dirname, './tmp')];
-const filenames = [];
-
-tmpDirs.forEach(dirname => {
-readdirSync(dirname).forEach(file => {
-filenames.push(join(dirname, file))
-})})
-
+} catch (error2) { 
+const tmpDir = join(__dirname, 'tmp')
+const filenames = readdirSync(tmpDir)
 filenames.forEach(file => {
-try {
-unlinkSync(file)
-console.log(`Archivo eliminado: ${file}`)
-} catch (error) {
-console.error(`No se pudo eliminar el archivo: ${file}`)
-}})
-} catch (error) {
-console.error('Ocurrió un error al eliminar los archivos:', error)
-}}*/
-try {
-    const tmpDir = join(__dirname, 'tmp')
-    const filenames = readdirSync(tmpDir)
-
-    filenames.forEach(file => {
-      const filePath = join(tmpDir, file)
-      
-      try {
-        unlinkSync(filePath);
-        console.log(`Archivo eliminado: ${filePath}`)
-      } catch (error) {
-        console.error(`No se pudo eliminar el archivo: ${filePath}`)
-      }
-    });
-  } catch (error) {
-    console.error('Ocurrió un error al eliminar los archivos:', error)
-  }
-}
+const filePath = join(tmpDir, file)
+unlinkSync(filePath)})
+}}}
 
 function purgeSession() {
 let prekey = []
