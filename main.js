@@ -176,11 +176,6 @@ if (update.qr != 0 && update.qr != undefined) {
 console.log(chalk.bold.yellow(lenguajeGB['smsCodigoQR']()))}
 if (connection == 'open') {
 console.log(chalk.bold.green(lenguajeGB['smsConexion']()))
-//let newuser = global.db.data.users[m.sender]
-//let newbot = conn.user.jid.split`@`[0]
-//let newname = conn.getName(conn.user.jid)
-//let totalnew = [newbot, newname, true]
-//newuser.datebot = totalnew
 }
 if (connection == 'close') {
 console.log(chalk.bold.hex('#F15E5E')(lenguajeGB['smsConexionOFF']()))}}
