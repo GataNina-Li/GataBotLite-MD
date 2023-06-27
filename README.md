@@ -104,7 +104,7 @@ pm2 delete all
 <a target="_blank" href="https://replit.com/github/GataNina-Li/GataBotLite-MD"><img alt="Run on Replit" src="https://binbashbanana.github.io/deploy-buttons/buttons/remade/replit.svg"></a>
 > **Note** Agregue estos comandos en Shell para empezar la instalación automática por Replit:
 ```bash
-npm install -g ffmpeg imagemagick git yarn && yarn && npm install && node --no-warnings index.js
+npm install -g ffmpeg imagemagick git yarn && npm i && node --no-warnings index.js
 ```
 ## 🌻 INSTALACIÓN PARA WINDOWS/VPS/RDP 🌻
 <a href="https://youtu.be/SaxYKnnZo3E">
