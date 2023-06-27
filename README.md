@@ -102,18 +102,9 @@ pm2 delete all
 
 ### 🌹 INSTALACIÓN EN REPLIT 🌹
 <a target="_blank" href="https://replit.com/github/GataNina-Li/GataBotLite-MD"><img alt="Run on Replit" src="https://binbashbanana.github.io/deploy-buttons/buttons/remade/replit.svg"></a>
-
-### 🪷 INSTALACIÓN EN HEROKU 🪷
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/GataNina-Li/GataBotLite-MD-Heroku) 
-> 👇 Añada lo siguente al Buildpack: 
+> **Note** Agregue estos comandos en Shell para empezar la instalación automática por Replit:
 ```bash
-heroku/nodejs
-```
-```bash
-https://github.com/jonathanong/heroku-buildpack-ffmpeg-latest.git
-```
-```bash
-https://github.com/clhuang/heroku-buildpack-webp-binaries.git
+npm install -g ffmpeg imagemagick git yarn && npm i && node --no-warnings index.js
 ```
 ## 🌻 INSTALACIÓN PARA WINDOWS/VPS/RDP 🌻
 <a href="https://youtu.be/SaxYKnnZo3E">
