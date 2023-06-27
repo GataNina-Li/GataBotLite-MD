@@ -1,1 +1,1 @@
-run = "npm install -g ffmpeg imagemagick git yarn && yarn && npm install && node --no-warnings index.js"
+run = "npm install -g ffmpeg imagemagick git yarn && npm i && node --no-warnings index.js"
