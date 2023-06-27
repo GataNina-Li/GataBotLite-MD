@@ -40,7 +40,7 @@
 </a>
   
 #### DISPONIBLE EN:
-> - [x] TERMUX, REPLIT, WINDOWS, HEROKU, ZIPPONODES, BOXMINE-HOST
+> - [x] TERMUX, REPLIT, WINDOWS, ZIPPONODES, BOXMINE-HOST
 
 
 [`♻️ App Termux`](https://f-droid.org/es/packages/com.termux/)
