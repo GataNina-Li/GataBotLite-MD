@@ -98,7 +98,8 @@ if (update.qr != 0 && update.qr != undefined) {
 console.log(chalk.bold.yellow(lenguajeGB['smsCodigoQR']()))}
 if (connection == 'open') {
 console.log(chalk.bold.green(lenguajeGB['smsConexion']()))
-} else {
+}
+if (connection == 'close') {
 console.log(chalk.bold.hex('#F15E5E')(lenguajeGB['smsConexionOFF']())) 
 }}
 process.on('uncaughtException', console.error)
@@ -227,7 +228,7 @@ new Promise(resolve => {
 p.on('error', _ => resolve(false))
 })])}))
 let [ffmpeg, ffprobe, ffmpegWebp, convert, magick, gm, find] = test
-//let s = global.support = { ffmpeg, ffprobe, ffmpegWebp, convert, magick, gm, find }
+let s = global.support = { ffmpeg, ffprobe, ffmpegWebp, convert, magick, gm, find }
 Object.freeze(global.support)
 }
 
