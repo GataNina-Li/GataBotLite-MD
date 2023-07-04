@@ -70,9 +70,20 @@ url = 'https://www.youtube.com/watch?v=' + videoId
 let link_web = `https://yt.btch.bz/downloadAudio?URL=${url}&videoName=video`     
 
 let message = await conn.sendMessage(m.chat, { text: video, contextInfo: { externalAdReply: { title: md, body: packname, thumbnailUrl: thumbnail, sourceUrl: link_web, mediaType: 1, showAdAttribution: false, renderLargerThumbnail: true }}})
-await conn.sendMessage(m.chat, { react: { text: `⏳`, key: message.key }})
+//await conn.sendMessage(m.chat, { react: { text: `⏳`, key: message.key }})
 //await conn.sendMessage(m.chat, { react: { text: `⏳`, key: m.key }})
 //m.react(`⏳`)
+let emojis = ['⏳', '⌛'];
+let index = 0
+const interval = setInterval(async () => {
+const emoji = emojis[index]
+const message = await conn.sendMessage(m.chat, { react: { text: emoji, key: message.key }})
+if (message.text !== emoji) {
+clearInterval(interval)
+}
+index = (index + 1) % emojis.length
+}, 1000)
+
 q = '128kbps'
 v = url
 yt = await youtubedl(v).catch(async () => await youtubedlv2(v)).catch(async () => await youtubedlv3(v))
