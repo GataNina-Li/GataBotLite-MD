@@ -73,7 +73,7 @@ yt = await youtubedl(v).catch(async () => await youtubedlv2(v)).catch(async () =
 dl_url = await yt.audio[q].download()
 title = await yt.title
 size = await yt.audio[q].fileSizeH
-let url = 'https://www.youtube.com/watch?v=' + videoId
+url = 'https://www.youtube.com/watch?v=' + videoId
 let link_web = `https://yt.btch.bz/downloadAudio?URL=${url}&videoName=video`    
 try{
 await conn.sendMessage(m.chat, { audio: { url: link_web }, mimetype: 'audio/mpeg'}, { quoted: m })    
