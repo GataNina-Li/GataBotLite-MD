@@ -73,7 +73,7 @@ url = 'https://www.youtube.com/watch?v=' + videoId
 let link_web = `https://yt.btch.bz/downloadAudio?URL=${url}&videoName=video`     
 
 let message = await conn.sendMessage(m.chat, { text: video, contextInfo: { externalAdReply: { title: md, body: packname, thumbnailUrl: thumbnail, sourceUrl: link_web, mediaType: 1, showAdAttribution: false, renderLargerThumbnail: true }}})
-m.react(sending)
+await m.react(sending)
 /*let emojis = ['⏳', '⌛'];
 let index = 0;
 const startTime = Date.now();
@@ -87,22 +87,22 @@ if (emoji === '✅' || elapsedTime >= 5000) {
 clearInterval(interval);
 }}, 1000);*/
 
-let emojis = ['⏳', '⌛']
+let emojis = ['⏳', '⌛'];
 let index = 0
-let firstTimeUsed = false
+let firstTimeUsed = false;
 const interval = setInterval(() => {
-const emoji = emojis[index]
-message.react(emoji)
-index = (index + 1) % emojis.length
-if (emoji === '✅' && firstTimeUsed) {
+const emoji = emojis[index];
+if (firstTimeUsed && emoji == correct) {
 clearInterval(interval)
 }
-if (emoji === '✅' && !firstTimeUsed) {
+if (emoji == correct && !firstTimeUsed) {
 firstTimeUsed = true
-}}, 1000)
-if (firstTimeUsed) {
-message.react('✅')}
-    
+}
+message.react(emoji);
+index = (index + 1) % emojis.length;
+}, 1000)
+if (firstTimeUsed) return message.react(correct)
+
 q = '128kbps'
 v = url
 yt = await youtubedl(v).catch(async () => await youtubedlv2(v)).catch(async () => await youtubedlv3(v))
@@ -110,10 +110,10 @@ dl_url = await yt.audio[q].download()
 title = await yt.title
 size = await yt.audio[q].fileSizeH  
 await conn.sendMessage(m.chat, { audio: { url: link_web }, mimetype: 'audio/mpeg' }, { quoted: m })
-message.react(correct)
-m.react(sent)
+await message.react(correct)
+await m.react(sent)
 if ( typeof title === 'undefined' || typeof description === 'undefined' || typeof url === 'undefined' || typeof thumbnail === 'undefined' || typeof videoId === 'undefined' || typeof timestamp === 'undefined' || typeof views === 'undefined' || typeof published === 'undefined' ) {
-message.react(alert)
+await message.react(alert)
 }
 } catch (e) {
 reportError(e)
