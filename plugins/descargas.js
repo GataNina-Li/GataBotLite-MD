@@ -73,17 +73,17 @@ let message = await conn.sendMessage(m.chat, { text: video, contextInfo: { exter
 //await conn.sendMessage(m.chat, { react: { text: `⏳`, key: message.key }})
 //await conn.sendMessage(m.chat, { react: { text: `⏳`, key: m.key }})
 //m.react(`⏳`)
-if (command == 'play') {
-let emojis = ['⏳', '⌛'];
-let index = 0
-const interval = setInterval(() => {
-const emoji = emojis[index]
-conn.sendMessage(m.chat, { react: { text: emoji, key: message.key }})
-if (message.text !== emoji) {
-clearInterval(interval)
-}
-index = (index + 1) % emojis.length
-}, 1000)}
+//if (command == 'play') {
+//let emojis = ['⏳', '⌛'];
+//let index = 0
+//const interval = setInterval(() => {
+//const emoji = emojis[index]
+//conn.sendMessage(m.chat, { react: { text: emoji, key: message.key }})
+//if (message.text !== emoji) {
+//clearInterval(interval)
+//}
+//index = (index + 1) % emojis.length
+//}, 1000)}
 
 q = '128kbps'
 v = url
