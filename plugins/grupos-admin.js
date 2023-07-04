@@ -236,7 +236,7 @@ let NumeroUser = text.replace(/\D/g, '')
 user = m.sender.split`@`[0]
 let link = 'https://chat.whatsapp.com/' + await conn.groupInviteCode(m.chat)
 pp = await conn.profilePictureUrl(m.chat, 'image').catch(_ => null) || './media/menus/Menu2.jpg' 
-await conn.sendMessage(NumeroUser + '@s.whatsapp.net', { text: lenguajeGB.smsInvite3(NumeroUser, user, groupMetadata, link), contextInfo: { externalAdReply: { title: wm, body: '', thumbnailUrl: pp, sourceUrl: link, mediaType: 1, showAdAttribution: false, renderLargerThumbnail: true }}}, m, {mentions: [NumeroUser + '@s.whatsapp.net', m.sender]})
+await conn.sendMessage(NumeroUser + '@s.whatsapp.net', { text: lenguajeGB.smsInvite3(NumeroUser, user, groupMetadata, link), contextInfo: { externalAdReply: { title: wm, body: '', thumbnailUrl: pp, sourceUrl: link, mediaType: 1, showAdAttribution: false, renderLargerThumbnail: true }}}, { quoted: [NumeroUser + '@s.whatsapp.net', m.sender]})
 //await conn.reply(NumeroUser + '@s.whatsapp.net', lenguajeGB.smsInvite3(NumeroUser, user, groupMetadata, link), null, {mentions: [NumeroUser + '@s.whatsapp.net', m.sender]})
 await conn.reply(m.chat, lenguajeGB.smsInvite4(NumeroUser), m, {mentions: [NumeroUser + '@s.whatsapp.net', m.sender]})    
 break
