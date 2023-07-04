@@ -6,7 +6,7 @@ import yts from 'yt-search'
 import axios from 'axios'
 
 let handler = async (m, { conn, text, usedPrefix, command, args }) => {
-let q, v, yt, dl_url, ttl, size, lolhuman, lolh, n, n2, n3, n4, cap, qu, currentQuality
+let q, v, yt, dl_url, ttl, size, lolhuman, lolh, n, n2, n3, n4, cap, qu, currentQuality, message
 const isCommand1 = /^(gimage|imagen?)$/i.test(command)
 const isCommand2 = /^(play2?)$/i.test(command)
 const isCommand3 = /^(fgmp3|dlmp3|getaud|yt(a|mp3)?)$/i.test(command)
@@ -25,7 +25,7 @@ const isCommand15 = /^(spot(ify)?search)$/i.test(command)
 const isCommand16 = /^(i(nsta)?g(ram)?(dl)?|igimage|igdownload)$/i.test(command)
 
 
-async function reportError(e, messageresult) {
+async function reportError(e, message) {
 let errb = await m.reply(lenguajeGB['smsMalError3']() + '\n*' + lenguajeGB.smsMensError1() + '*\n*' + usedPrefix + `${lenguajeGB.lenguaje() == 'es' ? 'reporte' : 'report'}` + '* ' + `${lenguajeGB.smsMensError2()} ` + usedPrefix + command)
 await console.log(`❗❗ ${lenguajeGB['smsMensError2']()} ${usedPrefix + command} ❗❗`)
 await console.log(e)
@@ -73,7 +73,7 @@ ${url}
 url = 'https://www.youtube.com/watch?v=' + videoId
 let link_web = `https://yt.btch.bz/downloadAudio?URL=${url}&videoName=video`     
 
-let message = await conn.sendMessage(m.chat, { text: video, contextInfo: { externalAdReply: { title: md, body: packname, thumbnailUrl: thumbnail, sourceUrl: link_web, mediaType: 1, showAdAttribution: false, renderLargerThumbnail: true }}})
+message = await conn.sendMessage(m.chat, { text: video, contextInfo: { externalAdReply: { title: md, body: packname, thumbnailUrl: thumbnail, sourceUrl: link_web, mediaType: 1, showAdAttribution: false, renderLargerThumbnail: true }}})
 await m.react(sending)
 await message.react(waitemot)
 setTimeout(() => { message.react(waitemot2) }, 1000)
@@ -91,8 +91,7 @@ if ( typeof title === 'undefined' || typeof description === 'undefined' || typeo
 message.react(alert)
 }
 } catch (e) {
-const messageresult = message
-reportError(e, messageresult)
+reportError(e, message)
 }    
 break
         
