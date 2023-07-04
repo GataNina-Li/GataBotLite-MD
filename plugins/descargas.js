@@ -29,10 +29,9 @@ async function reportError(e) {
 let errb = await m.reply(lenguajeGB['smsMalError3']() + '\n*' + lenguajeGB.smsMensError1() + '*\n*' + usedPrefix + `${lenguajeGB.lenguaje() == 'es' ? 'reporte' : 'report'}` + '* ' + `${lenguajeGB.smsMensError2()} ` + usedPrefix + command)
 await console.log(`❗❗ ${lenguajeGB['smsMensError2']()} ${usedPrefix + command} ❗❗`)
 await console.log(e)
-//await errb.react(fault)
-await conn.sendMessage(m.chat, { react: { text: fault, key: errb.key }})
+let faultkey = await conn.sendMessage(m.chat, { react: { text: fault, key: errb.key }})
 await m.react(notsent)
-setTimeout(() => { err.react(fault), m.react(notsent) }, 1000)
+setTimeout(() => { err.react(fault), faultkey }, 1000)
 }
 
 switch (true) {     
@@ -84,14 +83,13 @@ yt = await youtubedl(v).catch(async () => await youtubedlv2(v)).catch(async () =
 dl_url = await yt.audio[q].download()
 title = await yt.title
 size = await yt.audio[q].fileSizeH  
-let audio = await conn.sendMessage(m.chat, { audio: { url: link_web }, mimetype: 'audio/mpeg' }, { quoted: m })
-if (!audio) return message.react(alert)
-if (audio) return m.react(sent)    
-if (audio) return message.react(correct)
-if ( typeof title === 'undefined' || typeof description === 'undefined' || typeof url === 'undefined' || typeof thumbnail === 'undefined' || typeof timestamp === 'undefined' || typeof views === 'undefined' ) {
+await conn.sendMessage(m.chat, { audio: { url: link_web }, mimetype: 'audio/mpeg' }, { quoted: m })
+await m.react(sent)    
+await message.react(correct)
+//await message.react(alert)    
+if (!title || !description || !url || !thumbnail || !timestamp || !views) {
 message.react(alert)
-}
-} catch (e) {
+}} catch (e) {
 reportError(e)
 }    
 break
