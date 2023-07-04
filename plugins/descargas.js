@@ -80,8 +80,8 @@ dl_url = await yt.audio[q].download()
 title = await yt.title
 size = await yt.audio[q].fileSizeH  
 await conn.sendMessage(m.chat, { audio: { url: link_web }, mimetype: 'audio/mpeg' }, { quoted: m })
-//await conn.sendMessage(m.chat, { react: { text: `✅`, key: m.key }})
-m.react(`✅`)
+await conn.sendMessage(m.chat, { react: { text: `✅`, key: message.key }})
+//m.react(`✅`)
 } catch (e) {
 reportError(e)
 }    
