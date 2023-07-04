@@ -25,7 +25,7 @@ const isCommand15 = /^(spot(ify)?search)$/i.test(command)
 const isCommand16 = /^(i(nsta)?g(ram)?(dl)?|igimage|igdownload)$/i.test(command)
 
 
-async function reportError(e, message.react) {
+async function reportError(e, message) {
 let errb = await m.reply(lenguajeGB['smsMalError3']() + '\n*' + lenguajeGB.smsMensError1() + '*\n*' + usedPrefix + `${lenguajeGB.lenguaje() == 'es' ? 'reporte' : 'report'}` + '* ' + `${lenguajeGB.smsMensError2()} ` + usedPrefix + command)
 await console.log(`❗❗ ${lenguajeGB['smsMensError2']()} ${usedPrefix + command} ❗❗`)
 await console.log(e)
@@ -78,35 +78,6 @@ await m.react(sending)
 await message.react(waitemot)
 setTimeout(() => { message.react(waitemot2) }, 1000)
 
-/*let emojis = ['⏳', '⌛'];
-let index = 0;
-const startTime = Date.now();
-const interval = setInterval(() => {
-const emoji = emojis[index];
-//conn.sendMessage(m.chat, { react: { text: emoji, key: message.key }});
-message.react(emoji)
-index = (index + 1) % emojis.length;
-const elapsedTime = Date.now() - startTime;
-if (emoji === '✅' || elapsedTime >= 5000) {
-clearInterval(interval);
-}}, 1000);*/
-
-/*let emojis = ['⏳', '⌛'];
-let index = 0
-let firstTimeUsed = false;
-const interval = setInterval(() => {
-const emoji = emojis[index];
-if (emoji == message.react ) {
-clearInterval(interval)
-}
-if (emoji == message.react && !firstTimeUsed) {
-firstTimeUsed = true
-}
-message.react(emoji);
-index = (index + 1) % emojis.length;
-}, 1000)
-if (firstTimeUsed) return message.react(correct)*/
-
 q = '128kbps'
 v = url
 yt = await youtubedl(v).catch(async () => await youtubedlv2(v)).catch(async () => await youtubedlv3(v))
@@ -120,7 +91,7 @@ if ( typeof title === 'undefined' || typeof description === 'undefined' || typeo
 message.react(alert)
 }
 } catch (e) {
-reportError(e)
+reportError(e, message)
 }    
 break
         
