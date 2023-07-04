@@ -73,37 +73,19 @@ let message = await conn.sendMessage(m.chat, { text: video, contextInfo: { exter
 //await conn.sendMessage(m.chat, { react: { text: `⏳`, key: message.key }})
 //await conn.sendMessage(m.chat, { react: { text: `⏳`, key: m.key }})
 //m.react(`⏳`)
-/*let emojis = ['⏳', '⌛']
-let index = 0
-const startTime = Date.now()
-const interval = setInterval(() => {
-const emoji = emojis[index]
-conn.sendMessage(m.chat, { react: { text: emoji, key: message.key }})
-index = (index + 1) % emojis.length
-const elapsedTime = Date.now() - startTime
-if (elapsedTime >= 5000) {
-clearInterval(interval)
-}}, 1000)*/
 let emojis = ['⏳', '⌛'];
 let index = 0;
 const startTime = Date.now();
-let botMessageSent = false;
-
 const interval = setInterval(() => {
   const emoji = emojis[index];
-  conn.sendMessage(m.chat, { react: { text: emoji, key: message.key }});
+  //conn.sendMessage(m.chat, { react: { text: emoji, key: message.key }});
+message.react(emoji)
   index = (index + 1) % emojis.length;
   const elapsedTime = Date.now() - startTime;
-  if (elapsedTime >= 5000 || botMessageSent) {
+  if (emoji === '✅' || elapsedTime >= 5000) {
     clearInterval(interval);
   }
 }, 1000);
-
-conn.on('message', (message) => {
-  if (message.fromMe) {
-    botMessageSent = true;
-  }
-});
 
 
 q = '128kbps'
