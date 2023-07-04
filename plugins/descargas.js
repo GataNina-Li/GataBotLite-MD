@@ -25,12 +25,13 @@ const isCommand15 = /^(spot(ify)?search)$/i.test(command)
 const isCommand16 = /^(i(nsta)?g(ram)?(dl)?|igimage|igdownload)$/i.test(command)
 
 
-async function reportError(e) {
+async function reportError(e, message) {
 let err = await m.reply(lenguajeGB['smsMalError3']() + '\n*' + lenguajeGB.smsMensError1() + '*\n*' + usedPrefix + `${lenguajeGB.lenguaje() == 'es' ? 'reporte' : 'report'}` + '* ' + `${lenguajeGB.smsMensError2()} ` + usedPrefix + command)
 console.log(`❗❗ ${lenguajeGB['smsMensError2']()} ${usedPrefix + command} ❗❗`)
 console.log(e)
 err.react(fault)
 m.react(notsent)
+message.react(alert)
 setTimeout(() => { err.react(fault), m.react(notsent) }, 1000)
 }
 
@@ -75,6 +76,8 @@ let link_web = `https://yt.btch.bz/downloadAudio?URL=${url}&videoName=video`
 let message = await conn.sendMessage(m.chat, { text: video, contextInfo: { externalAdReply: { title: md, body: packname, thumbnailUrl: thumbnail, sourceUrl: link_web, mediaType: 1, showAdAttribution: false, renderLargerThumbnail: true }}})
 await m.react(sending)
 await message.react(waitemot)
+setTimeout(() => { message.react(waitemot2) }, 1000)
+
 /*let emojis = ['⏳', '⌛'];
 let index = 0;
 const startTime = Date.now();
