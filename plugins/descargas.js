@@ -84,41 +84,17 @@ if (emoji === '✅' || elapsedTime >= 5000) {
 clearInterval(interval);
 }}, 1000);*/
 
-/*let emojis = ['⏳', '⌛', '✅'];
-let index = 0;
-const startTime = Date.now();
+let emojis = ['⏳', '⌛', '✅'];
+let index = 0
+const startTime = Date.now()
 const interval = setInterval(() => {
-  const emoji = emojis[index];
-  //conn.sendMessage(m.chat, { react: { text: emoji, key: message.key }});
-  message.react(emoji)
-  index = (index + 1) % emojis.length;
-  const elapsedTime = Date.now() - startTime;
-  if ((emoji === '✅' && index === 0) || elapsedTime >= 5000) {
-    clearInterval(interval);
-  }
-}, 1000);*/
-
-const emojis = ['⏳', '⌛', '✅'];
-let index = 0;
-let firstUsage = true;
-
-const interval = setInterval(() => {
-  const emoji = emojis[index];
-  //conn.sendMessage(m.chat, { react: { text: emoji, key: message.key }});
-  message.react(emoji);
-  
-  if (emoji === '✅' && !firstUsage) {
-    clearInterval(interval);
-  }
-
-  if (emoji === '✅' && firstUsage) {
-    firstUsage = false;
-    index = emojis.indexOf('✅'); 
-  } else {
-    index = (index + 1) % 2; 
-  }
-
-}, 1000);
+const emoji = emojis[index]
+message.react(emoji)
+index = (index + 1) % emojis.length;
+const elapsedTime = Date.now() - startTime
+if ((emoji === '✅' && index === 0) || elapsedTime >= 5000) {
+clearInterval(interval);
+}}, 1000)
 
 
 
