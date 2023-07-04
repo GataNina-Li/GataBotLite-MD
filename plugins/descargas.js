@@ -70,22 +70,37 @@ url = 'https://www.youtube.com/watch?v=' + videoId
 let link_web = `https://yt.btch.bz/downloadAudio?URL=${url}&videoName=video`     
 
 let message = await conn.sendMessage(m.chat, { text: video, contextInfo: { externalAdReply: { title: md, body: packname, thumbnailUrl: thumbnail, sourceUrl: link_web, mediaType: 1, showAdAttribution: false, renderLargerThumbnail: true }}})
-//await conn.sendMessage(m.chat, { react: { text: `⏳`, key: message.key }})
-//await conn.sendMessage(m.chat, { react: { text: `⏳`, key: m.key }})
-//m.react(`⏳`)
-let emojis = ['⏳', '⌛'];
+
+/*let emojis = ['⏳', '⌛'];
 let index = 0;
 const startTime = Date.now();
 const interval = setInterval(() => {
-  const emoji = emojis[index];
-  //conn.sendMessage(m.chat, { react: { text: emoji, key: message.key }});
+const emoji = emojis[index];
+//conn.sendMessage(m.chat, { react: { text: emoji, key: message.key }});
 message.react(emoji)
-  index = (index + 1) % emojis.length;
-  const elapsedTime = Date.now() - startTime;
-  if (emoji === '✅' || elapsedTime >= 5000) {
-    clearInterval(interval);
-  }
-}, 1000);
+index = (index + 1) % emojis.length;
+const elapsedTime = Date.now() - startTime;
+if (emoji === '✅' || elapsedTime >= 5000) {
+clearInterval(interval);
+}}, 1000);*/
+
+let emojis = ['⏳', '⌛']
+let index = 0
+let finished = false
+const startTime = Date.now()
+const interval = setInterval(() => {
+if (finished) return
+const emoji = emojis[index]
+message.react(emoji)
+if (emoji === '✅') {
+finished = true
+}
+index = (index + 1) % emojis.length
+const elapsedTime = Date.now() - startTime
+if (elapsedTime >= 5000) {
+clearInterval(interval)
+}}, 1000)
+
 
 
 q = '128kbps'
