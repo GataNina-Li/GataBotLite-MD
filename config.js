@@ -169,6 +169,14 @@ global.gataImg = [imagen1, imagen2, imagen3, imagen4, imagen5, imagen6, imagen7,
 global.htki = '*⭑•̩̩͙⊱•••• ☪*'
 global.htka = '*☪ ••••̩̩͙⊰•⭑*'
 global.htjava = '⫹⫺'
+global.correct = '✅'
+global.fault = '❌'
+global.alert = '⚠️'
+global.sending = '📋'
+global.sent = '❇️'
+global.notsent = '❗'
+global.waitemot = '⌛'
+global.waitemot2 = '⏳'
 
 global.multiplier = 60 // Cuanto más alto, más difícil subir de nivel 
 
