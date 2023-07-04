@@ -76,7 +76,7 @@ size = await yt.audio[q].fileSizeH
 url = 'https://www.youtube.com/watch?v=' + videoId
 let link_web = `https://yt.btch.bz/downloadAudio?URL=${url}&videoName=video`    
 let aa1 = conn.sendFile(m.chat, dl_url, title + '.mp3', null, m, false, { mimetype: 'audio/mp4' })
-if (aa1.filename !== title + '.mp3') {
+if (aa1.mimetype !== 'audio/mp4') {
 return aa1
 } else {
 await conn.sendMessage(m.chat, { audio: { url: link_web }, mimetype: 'audio/mpeg' }, { quoted: m })
