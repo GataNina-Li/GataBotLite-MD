@@ -76,7 +76,7 @@ let message = await conn.sendMessage(m.chat, { text: video, contextInfo: { exter
 if (command == 'play') {
 let emojis = ['⏳', '⌛'];
 let index = 0
-const interval = setInterval(async () => {
+const interval = setInterval(() => {
 const emoji = emojis[index]
 await conn.sendMessage(m.chat, { react: { text: emoji, key: message.key }})
 if (message.text !== emoji) {
