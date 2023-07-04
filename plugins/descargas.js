@@ -86,21 +86,17 @@ clearInterval(interval);
 
 let emojis = ['⏳', '⌛']
 let index = 0
-let finished = false
+let emoji = emojis[index]
 const startTime = Date.now()
 const interval = setInterval(() => {
-if (finished) return
-const emoji = emojis[index]
 message.react(emoji)
-if (emoji === '✅') {
-finished = true
-}
-index = (index + 1) % emojis.length
-const elapsedTime = Date.now() - startTime
-if (elapsedTime >= 5000) {
+const elapsedTime = Date.now() - startTime;
+if (emoji === '✅' || elapsedTime >= 5000) {
 clearInterval(interval)
+} else {
+index = (index + 1) % emojis.length
+emoji = emojis[index]
 }}, 1000)
-
 
 
 q = '128kbps'
