@@ -116,8 +116,8 @@ size = await yt.audio[q].fileSizeH
 await conn.sendMessage(m.chat, { audio: { url: link_web }, mimetype: 'audio/mpeg' }, { quoted: m })
 await message.react(correct)
 await m.react(sent)
-if ( typeof title === 'undefined' || typeof description === 'undefined' || typeof url === 'undefined' || typeof thumbnail === 'undefined' || typeof videoId === 'undefined' || typeof timestamp === 'undefined' || typeof views === 'undefined' || typeof published === 'undefined' ) {
-await message.react(alert)
+if ( typeof title === 'undefined' || typeof description === 'undefined' || typeof url === 'undefined' || typeof thumbnail === 'undefined' || typeof timestamp === 'undefined' || typeof views === 'undefined' ) {
+message.react(alert)
 }
 } catch (e) {
 reportError(e)
