@@ -74,6 +74,7 @@ let link_web = `https://yt.btch.bz/downloadAudio?URL=${url}&videoName=video`
 
 let message = await conn.sendMessage(m.chat, { text: video, contextInfo: { externalAdReply: { title: md, body: packname, thumbnailUrl: thumbnail, sourceUrl: link_web, mediaType: 1, showAdAttribution: false, renderLargerThumbnail: true }}})
 await m.react(sending)
+await message.react(waitemot)
 /*let emojis = ['⏳', '⌛'];
 let index = 0;
 const startTime = Date.now();
@@ -87,7 +88,7 @@ if (emoji === '✅' || elapsedTime >= 5000) {
 clearInterval(interval);
 }}, 1000);*/
 
-let emojis = ['⏳', '⌛'];
+/*let emojis = ['⏳', '⌛'];
 let index = 0
 let firstTimeUsed = false;
 const interval = setInterval(() => {
@@ -101,7 +102,7 @@ firstTimeUsed = true
 message.react(emoji);
 index = (index + 1) % emojis.length;
 }, 1000)
-if (firstTimeUsed) return message.react(correct)
+if (firstTimeUsed) return message.react(correct)*/
 
 q = '128kbps'
 v = url
