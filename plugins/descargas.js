@@ -66,21 +66,17 @@ ${views}
 *◎ URL*
 ${url}
 *◜⋯ ⋯ ⋯ ⬇️ A U D I O ⬇️ ⋯ ⋯ ⋯◞*`.trim()
-await conn.sendFile(m.chat, thumbnail, 'error.jpg', video, m)    
+url = 'https://www.youtube.com/watch?v=' + videoId
+let link_web = `https://yt.btch.bz/downloadAudio?URL=${url}&videoName=video`     
+await conn.sendMessage(m.chat, { text: video, contextInfo: { externalAdReply: { title: md, body: packname, thumbnailUrl: thumbnail, sourceUrl: link_web, mediaType: 1, showAdAttribution: true, renderLargerThumbnail: true }}})
 q = '128kbps'
 v = url
 yt = await youtubedl(v).catch(async () => await youtubedlv2(v)).catch(async () => await youtubedlv3(v))
 dl_url = await yt.audio[q].download()
 title = await yt.title
-size = await yt.audio[q].fileSizeH
-url = 'https://www.youtube.com/watch?v=' + videoId
-let link_web = `https://yt.btch.bz/downloadAudio?URL=${url}&videoName=video`    
-let aa1 = conn.sendFile(m.chat, dl_url, title + '.mp3', null, m, false, { mimetype: 'audio/mp4' })
-if (aa1.mimetype !== 'audio/mp4') {
-return aa1
-} else {
+size = await yt.audio[q].fileSizeH  
 await conn.sendMessage(m.chat, { audio: { url: link_web }, mimetype: 'audio/mpeg' }, { quoted: m })
-}} catch (e) {
+} catch (e) {
 reportError(e)
 }    
 break
