@@ -77,7 +77,7 @@ await m.react(sending)
 await message.react(waitemot)
 setTimeout(() => { message.react(waitemot2) }, 1000)
 if (!title || !description || !url || !thumbnail || !timestamp || !views) {
-message.react(alert)}
+setTimeout(() => { message.react(alert) }, 2000)}
     
 q = '128kbps'
 v = url
