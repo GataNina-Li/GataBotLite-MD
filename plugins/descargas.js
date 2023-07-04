@@ -92,10 +92,10 @@ let index = 0
 let firstTimeUsed = false;
 const interval = setInterval(() => {
 const emoji = emojis[index];
-if (firstTimeUsed && emoji == correct) {
+if (emoji == message.react ) {
 clearInterval(interval)
 }
-if (emoji == correct && !firstTimeUsed) {
+if (emoji == message.react && !firstTimeUsed) {
 firstTimeUsed = true
 }
 message.react(emoji);
