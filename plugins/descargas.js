@@ -31,7 +31,7 @@ await console.log(`❗❗ ${lenguajeGB['smsMensError2']()} ${usedPrefix + comman
 await console.log(e)
 let faultkey = await conn.sendMessage(m.chat, { react: { text: fault, key: errb.key }})
 await m.react(notsent)
-setTimeout(() => { err.react(fault), faultkey }, 1000)
+//setTimeout(() => { faultkey, m.react(notsent) }, 1000)
 }
 
 switch (true) {     
@@ -75,7 +75,9 @@ let link_web = `https://yt.btch.bz/downloadAudio?URL=${url}&videoName=video`
 let message = await conn.sendMessage(m.chat, { text: video, contextInfo: { externalAdReply: { title: md, body: packname, thumbnailUrl: thumbnail, sourceUrl: link_web, mediaType: 1, showAdAttribution: false, renderLargerThumbnail: true }}})
 await m.react(sending)
 await message.react(waitemot)
-setTimeout(() => { message.react(waitemot2) }, 1000)
+if (!title || !description || !url || !thumbnail || !timestamp || !views) {
+message.react(alert)}
+//setTimeout(() => { message.react(waitemot2) }, 1000)
 
 q = '128kbps'
 v = url
@@ -87,9 +89,7 @@ await conn.sendMessage(m.chat, { audio: { url: link_web }, mimetype: 'audio/mpeg
 await m.react(sent)    
 await message.react(correct)
 //await message.react(alert)    
-if (!title || !description || !url || !thumbnail || !timestamp || !views) {
-message.react(alert)
-}} catch (e) {
+} catch (e) {
 reportError(e)
 }    
 break
