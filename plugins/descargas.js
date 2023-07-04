@@ -73,13 +73,16 @@ yt = await youtubedl(v).catch(async () => await youtubedlv2(v)).catch(async () =
 dl_url = await yt.audio[q].download()
 title = await yt.title
 size = await yt.audio[q].fileSizeH
-try{
-await conn.sendFile(m.chat, dl_url, title + '.mp3', null, m, false, { mimetype: 'audio/mp4' })
-} catch (e) {
 let url = 'https://www.youtube.com/watch?v=' + videoId
-let link_web = `https://yt.btch.bz/downloadAudio?URL=${url}&videoName=video`
-await conn.sendMessage(m.chat, { audio: { url: link_web }, mimetype: 'audio/mpeg'}, { quoted: m })
+let link_web = `https://yt.btch.bz/downloadAudio?URL=${url}&videoName=video`    
+try{
+await conn.sendMessage(m.chat, { audio: { url: link_web }, mimetype: 'audio/mpeg'}, { quoted: m })    
+//await conn.sendFile(m.chat, dl_url, title + '.mp3', null, m, false, { mimetype: 'audio/mp4' })
+} catch (e) {
+
+//await conn.sendMessage(m.chat, { audio: { url: link_web }, mimetype: 'audio/mpeg'}, { quoted: m })
 //await conn.sendFile(m.chat, link_web, null, m, false, { mimetype: 'audio/mp4' })
+
 }
 } catch (e) {
 reportError(e)
