@@ -70,7 +70,8 @@ url = 'https://www.youtube.com/watch?v=' + videoId
 let link_web = `https://yt.btch.bz/downloadAudio?URL=${url}&videoName=video`     
 
 await conn.sendMessage(m.chat, { text: video, contextInfo: { externalAdReply: { title: md, body: packname, thumbnailUrl: thumbnail, sourceUrl: link_web, mediaType: 1, showAdAttribution: false, renderLargerThumbnail: true }}})
-await conn.sendMessage(m.chat, { react: { text: `⏳`, key: m.key }})
+//await conn.sendMessage(m.chat, { react: { text: `⏳`, key: m.key }})
+m.react(`⏳`)
 q = '128kbps'
 v = url
 yt = await youtubedl(v).catch(async () => await youtubedlv2(v)).catch(async () => await youtubedlv3(v))
@@ -78,7 +79,8 @@ dl_url = await yt.audio[q].download()
 title = await yt.title
 size = await yt.audio[q].fileSizeH  
 await conn.sendMessage(m.chat, { audio: { url: link_web }, mimetype: 'audio/mpeg' }, { quoted: m })
-await conn.sendMessage(m.chat, { react: { text: `✅`, key: m.key }})
+//await conn.sendMessage(m.chat, { react: { text: `✅`, key: m.key }})
+m.react(`✅`)
 } catch (e) {
 reportError(e)
 }    
