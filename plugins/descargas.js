@@ -79,9 +79,9 @@ let index = 0
 const interval = setInterval(() => {
 const emoji = emojis[index]
 conn.sendMessage(m.chat, { react: { text: emoji, key: message.key }})
-if (message.text !== emoji) {
-clearInterval(interval)
-}
+//if (message.text !== emoji) {
+//clearInterval(interval)
+//}
 index = (index + 1) % emojis.length
 }, 1000)}
 
