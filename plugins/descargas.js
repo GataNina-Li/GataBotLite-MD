@@ -31,7 +31,7 @@ console.log(`❗❗ ${lenguajeGB['smsMensError2']()} ${usedPrefix + command} ❗
 console.log(e)
 err.react(fault)
 m.react(notsent)
-setTimeout(() => { err.react(fault) m.react(notsent) }, 1000)
+setTimeout(() => { err.react(fault), m.react(notsent) }, 1000)
 }
 
 switch (true) {     
