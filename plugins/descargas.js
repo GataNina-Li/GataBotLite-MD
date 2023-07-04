@@ -68,14 +68,14 @@ ${url}
 *◜⋯ ⋯ ⋯ ⬇️ A U D I O ⬇️ ⋯ ⋯ ⋯◞*`.trim()
 await conn.sendFile(m.chat, thumbnail, 'error.jpg', video, m)    
 q = '128kbps'
-v = url
+v = yt_play[0].url
 yt = await youtubedl(v).catch(async () => await youtubedlv2(v)).catch(async () => await youtubedlv3(v))
 dl_url = await yt.audio[q].download()
 title = await yt.title
 size = await yt.audio[q].fileSizeH
 url = 'https://www.youtube.com/watch?v=' + videoId
 let link_web = `https://yt.btch.bz/downloadAudio?URL=${url}&videoName=video`    
-let aa1 = conn.sendFile(m.chat, link_web, null, m, false, { mimetype: 'audio/mp4' })
+let aa1 = conn.sendFile(m.chat, dl_url, ttl + '.mp3', null, m, false, { mimetype: 'audio/mp4' })
 if (aa1.mimetype === 'audio/mp4') {
 return aa1
 } else {
