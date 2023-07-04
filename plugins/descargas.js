@@ -27,11 +27,11 @@ const isCommand16 = /^(i(nsta)?g(ram)?(dl)?|igimage|igdownload)$/i.test(command)
 
 async function reportError(e, message) {
 let err = await m.reply(lenguajeGB['smsMalError3']() + '\n*' + lenguajeGB.smsMensError1() + '*\n*' + usedPrefix + `${lenguajeGB.lenguaje() == 'es' ? 'reporte' : 'report'}` + '* ' + `${lenguajeGB.smsMensError2()} ` + usedPrefix + command)
-console.log(`❗❗ ${lenguajeGB['smsMensError2']()} ${usedPrefix + command} ❗❗`)
-console.log(e)
-err.react(fault)
-m.react(notsent)
-message.react(alert)
+await console.log(`❗❗ ${lenguajeGB['smsMensError2']()} ${usedPrefix + command} ❗❗`)
+await console.log(e)
+await err.react(fault)
+await m.react(notsent)
+await message.react(alert)
 setTimeout(() => { err.react(fault), m.react(notsent) }, 1000)
 }
 
