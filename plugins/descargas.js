@@ -84,31 +84,20 @@ if (emoji === '✅' || elapsedTime >= 5000) {
 clearInterval(interval);
 }}, 1000);*/
 
-let emojis = ['⏳', '⌛'];
+let emojis = ['⏳', '⌛', '✅'];
 let index = 0;
 const startTime = Date.now();
-let canChangeEmoji = true;
-
 const interval = setInterval(() => {
   const emoji = emojis[index];
-
-  
-  if (canChangeEmoji) {
-    message.react(emoji);
-    index = (index + 1) % emojis.length;
-  }
-
+  //conn.sendMessage(m.chat, { react: { text: emoji, key: message.key }});
+  message.react(emoji)
+  index = (index + 1) % emojis.length;
   const elapsedTime = Date.now() - startTime;
-
-  if (emoji === '✅' || elapsedTime >= 5000) {
+  if ((emoji === '✅' && index === 0) || elapsedTime >= 5000) {
     clearInterval(interval);
   }
-
-  
-  if (emoji === '✅') {
-    canChangeEmoji = false;
-  }
 }, 1000);
+
 
 
 
