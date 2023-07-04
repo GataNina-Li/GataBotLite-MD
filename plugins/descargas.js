@@ -84,17 +84,25 @@ if (emoji === '✅' || elapsedTime >= 5000) {
 clearInterval(interval);
 }}, 1000);*/
 
-let emojis = ['⏳', '⌛'];
+let emojis = ['⏳', '⌛']
 let index = 0;
-let emoji = emojis[index];
 const startTime = Date.now();
+let canChangeEmoji = true; 
 const interval = setInterval(() => {
+  const emoji = emojis[index]; 
   message.react(emoji);
+  if (emoji === '✅') {
+    canChangeEmoji = false
+  }
+  if (canChangeEmoji) {
+    index = (index + 1) % emojis.length;
+  }
   const elapsedTime = Date.now() - startTime;
   if (emoji === '✅' || elapsedTime >= 5000) {
     clearInterval(interval);
   }
 }, 1000);
+
 
 
 
