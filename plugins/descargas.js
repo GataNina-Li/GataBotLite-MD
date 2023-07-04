@@ -101,17 +101,25 @@ const interval = setInterval(() => {
 const emojis = ['⏳', '⌛', '✅'];
 let index = 0;
 let firstUsage = true;
+
 const interval = setInterval(() => {
-const emoji = emojis[index];
-message.react(emoji);
-if (emoji === '✅' && !firstUsage) {
-clearInterval(interval)
-}
-if (emoji === '✅' && firstUsage) {
-firstUsage = false
-}
-index = (index + 1) % 2
-}, 1000)
+  const emoji = emojis[index];
+  //conn.sendMessage(m.chat, { react: { text: emoji, key: message.key }});
+  message.react(emoji);
+  
+  if (emoji === '✅' && !firstUsage) {
+    clearInterval(interval);
+  }
+
+  if (emoji === '✅' && firstUsage) {
+    firstUsage = false;
+    index = emojis.indexOf('✅'); 
+  } else {
+    index = (index + 1) % 2; 
+  }
+
+}, 1000);
+
 
 
 q = '128kbps'
