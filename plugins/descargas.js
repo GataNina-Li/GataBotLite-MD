@@ -75,14 +75,10 @@ title = await yt.title
 size = await yt.audio[q].fileSizeH
 url = 'https://www.youtube.com/watch?v=' + videoId
 let link_web = `https://yt.btch.bz/downloadAudio?URL=${url}&videoName=video`    
-try{
-await conn.sendMessage(m.chat, { audio: { url: link_web }, mimetype: 'audio/mpeg'}, { quoted: m })    
-//await conn.sendFile(m.chat, dl_url, title + '.mp3', null, m, false, { mimetype: 'audio/mp4' })
-} catch (e) {
-
-//await conn.sendMessage(m.chat, { audio: { url: link_web }, mimetype: 'audio/mpeg'}, { quoted: m })
-//await conn.sendFile(m.chat, link_web, null, m, false, { mimetype: 'audio/mp4' })
-
+try {
+await conn.sendFile(m.chat, dl_url, title + '.mp3', null, m, false, { mimetype: 'audio/mp4' });
+} catch (error) {
+await conn.sendMessage(m.chat, { audio: { url: link_web }, mimetype: 'audio/mpeg' }, { quoted: m });
 }
 } catch (e) {
 reportError(e)
