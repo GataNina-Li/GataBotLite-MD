@@ -84,7 +84,7 @@ if (emoji === '✅' || elapsedTime >= 5000) {
 clearInterval(interval);
 }}, 1000);*/
 
-let emojis = ['⏳', '⌛', '✅'];
+/*let emojis = ['⏳', '⌛', '✅'];
 let index = 0;
 const startTime = Date.now();
 const interval = setInterval(() => {
@@ -96,11 +96,22 @@ const interval = setInterval(() => {
   if ((emoji === '✅' && index === 0) || elapsedTime >= 5000) {
     clearInterval(interval);
   }
-}, 1000);
+}, 1000);*/
 
-
-
-
+const emojis = ['⏳', '⌛', '✅'];
+let index = 0;
+let firstUsage = true;
+const interval = setInterval(() => {
+const emoji = emojis[index];
+message.react(emoji);
+if (emoji === '✅' && !firstUsage) {
+clearInterval(interval)
+}
+if (emoji === '✅' && firstUsage) {
+firstUsage = false
+}
+index = (index + 1) % 2
+}, 1000)
 
 
 q = '128kbps'
@@ -111,7 +122,7 @@ title = await yt.title
 size = await yt.audio[q].fileSizeH  
 await conn.sendMessage(m.chat, { audio: { url: link_web }, mimetype: 'audio/mpeg' }, { quoted: m })
 await conn.sendMessage(m.chat, { react: { text: `✅`, key: message.key }})
-//m.react(`✅`)
+m.react(`🫶`)
 } catch (e) {
 reportError(e)
 }    
