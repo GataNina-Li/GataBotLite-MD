@@ -77,14 +77,13 @@ let emojis = ['⏳', '⌛']
 let index = 0
 const startTime = Date.now()
 const interval = setInterval(() => {
-const emoji = index === 0 ? emojis[0] : ''
+const emoji = emojis[index]
 conn.sendMessage(m.chat, { react: { text: emoji, key: message.key }})
 index = (index + 1) % emojis.length
 const elapsedTime = Date.now() - startTime
 if (elapsedTime >= 5000) {
 clearInterval(interval)
 }}, 1000)
-
 
 q = '128kbps'
 v = url
