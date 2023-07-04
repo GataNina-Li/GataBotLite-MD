@@ -91,7 +91,8 @@ if ( typeof title === 'undefined' || typeof description === 'undefined' || typeo
 message.react(alert)
 }
 } catch (e) {
-reportError(e, message)
+const messageresult = message
+reportError(e, messageresult)
 }    
 break
         
