@@ -69,8 +69,8 @@ ${url}
 url = 'https://www.youtube.com/watch?v=' + videoId
 let link_web = `https://yt.btch.bz/downloadAudio?URL=${url}&videoName=video`     
 
-await conn.sendMessage(m.chat, { text: video, contextInfo: { externalAdReply: { title: md, body: packname, thumbnailUrl: thumbnail, sourceUrl: link_web, mediaType: 1, showAdAttribution: false, renderLargerThumbnail: true }}})
-await conn.react(m.chat, m.id, '⏳')
+let message = await conn.sendMessage(m.chat, { text: video, contextInfo: { externalAdReply: { title: md, body: packname, thumbnailUrl: thumbnail, sourceUrl: link_web, mediaType: 1, showAdAttribution: false, renderLargerThumbnail: true }}})
+await conn.react(message.key.remoteJid, message.key.id, '⏳')
 //await conn.sendMessage(m.chat, { react: { text: `⏳`, key: m.key }})
 //m.react(`⏳`)
 q = '128kbps'
