@@ -44,7 +44,7 @@ text = m.quoted.text
 } else return conn.reply(m.chat, lenguajeGB.smsOpenai1() + `\n*${usedPrefix + command}* ${lenguajeGB.smsOpenai2()}\n\n*${usedPrefix + command}* ${lenguajeGB.smsOpenai3()}` , m)
 try {
 await conn.sendPresenceUpdate('composing', m.chat)
-        let syms = `Eres GataBotLite-MD, un gran modelo de lenguaje entrenado por OpenAI. Siga cuidadosamente las instrucciones del usuario. Responde usando Markdown.`
+        let syms = `Actuaras como un Bot de WhatsApp el cual fue creado por GataNina-Li, tu seras GataBotLite-MD`
         let res = await gpt.ChatGpt(text, syms)
          await m.reply(res.text)
 /*let ia1 = await fetch(`https://api.amosayomide05.cf/gpt/?question=${text}&string_id=${m.sender}`)  
