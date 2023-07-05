@@ -237,7 +237,7 @@ user = m.sender.split`@`[0]
 let link = 'https://chat.whatsapp.com/' + await conn.groupInviteCode(m.chat)
 pp = await conn.profilePictureUrl(m.chat, 'image').catch(_ => null) || gataMenu.getRandom()//'./media/menus/Menu2.jpg' 
 await conn.reply(NumeroUser + '@s.whatsapp.net', `✨ *¡Hola! @${NumeroUser}, @${user} ¡¡Te ha invitado!!*`, null, {mentions: [NumeroUser + '@s.whatsapp.net', m.sender]})    
-await conn.sendMessage(NumeroUser + '@s.whatsapp.net', { text: `*Soy ${packname}, un Bot para WhatsApp.*\n\n:¨·.·¨:\n\`·. ${groupMetadata.subject}`, contextInfo: { externalAdReply: { title: '🫶 ¡Te esperamos con ansias en el grupo!', body: '9999999999', thumbnailUrl: pp, sourceUrl: link, mediaType: 1, showAdAttribution: false, renderLargerThumbnail: true }}})
+await conn.sendMessage(NumeroUser + '@s.whatsapp.net', { text: `*Soy ${packname}, un Bot para WhatsApp.*\n\n:¨·.·¨:\n\`·. ${groupMetadata.subject}`, contextInfo: { externalAdReply: { title: '❤️ ¡Te esperamos con ansias en el grupo!', body: '9999999999', thumbnailUrl: pp, sourceUrl: link, mediaType: 1, showAdAttribution: false, renderLargerThumbnail: true }}})
 //await conn.reply(NumeroUser + '@s.whatsapp.net', lenguajeGB.smsInvite3(NumeroUser, user, groupMetadata, link), null, {mentions: [NumeroUser + '@s.whatsapp.net', m.sender]})    
 //await conn.sendMessage(NumeroUser + '@s.whatsapp.net', { text: `:¨·.·¨:\n\`·. ${groupMetadata.subject}`, contextInfo: { externalAdReply: { title: wm, body: '9999999999', thumbnailUrl: pp, sourceUrl: link, mediaType: 1, showAdAttribution: false, renderLargerThumbnail: true }}})
 await conn.reply(m.chat, lenguajeGB.smsInvite4(NumeroUser), m, {mentions: [NumeroUser + '@s.whatsapp.net', m.sender]})    
