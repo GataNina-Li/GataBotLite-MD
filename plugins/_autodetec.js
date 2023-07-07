@@ -38,7 +38,7 @@ await conn.sendMessage(m.chat, { text: admingp, mentions: [`${m.sender}`,`${m.me
 } else if (chat.detect && m.messageStubType == 30) {
 await conn.sendMessage(m.chat, { text: noadmingp, mentions: [`${m.sender}`,`${m.messageStubParameters[0]}`] }, { quoted: fkontak })  
 
-} else {
+} else if (m.messageStubType !== 2) {
 console.log({ messageStubType: m.messageStubType,
 messageStubParameters: m.messageStubParameters,
 type: WAMessageStubType[m.messageStubType], 
