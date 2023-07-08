@@ -22,7 +22,7 @@ if (!m.isGroup) {
     global.lenguajeGB = pt
   } else if (userPri.languageUser == '') {
     m.reply('*No se ha detectado un idioma personalizado*');
-    return;
+    //return;
   }
 }
 
