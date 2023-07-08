@@ -514,6 +514,13 @@ handler.command = /^(gimage|imagen?|play?|play2?|fgmp3|dlmp3|getaud|yt(a|mp3)?|y
 handler.register = true
 export default handler
 
+async function cut(url) {
+  url = encodeURIComponent(url)
+  let res = await fetch(`https://api.botcahx.live/api/linkshort/bitly?link=${url}&apikey=${btc}`)
+  if (!res.ok) throw false
+  return await res.text()
+}
+
 async function Draw(propmt) {
 const Blobs = await fetch(
 "https://api-inference.huggingface.co/models/prompthero/openjourney-v2",
