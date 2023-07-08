@@ -96,8 +96,8 @@ break
 
 case isCommand3:
 if (!text) return m.reply(lenguajeGB.smsMalused2() + `*${usedPrefix + command} Billie Eilish - Bellyache*`)
-let vide =  (await youtubeSearch(text)).video[0]
-if (!vide) return m.reply(lenguajeGB.smsMalError2() + `_${lenguajeGB.smsYT6()}_`)
+let vi =  (await youtubeSearch(text)).video[0]
+if (!vi) return m.reply(lenguajeGB.smsMalError2() + `_${lenguajeGB.smsYT6()}_`)
 try{
 let { title, description, url, thumbnail, videoId, timestamp, views, published } = vid
 let video = `*◜⋯ ⋯ ⋯ Y O U T U B E ⋯ ⋯ ⋯◞*
