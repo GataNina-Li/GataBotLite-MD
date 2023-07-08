@@ -9,21 +9,22 @@ import fs from 'fs'
 
 let handler = async (m, { conn, command, usedPrefix, args, text }) => {
 if (!m.isGroup) {
-let userPri = global.db.data.users[m.sender]
-if (userPri.languageUser != '') {
-m.reply('*No se ha detectado un idioma personalizado*')
-return
-} else if (userPri.languageUser == 'es') {
-global.lenguajeGB = es
-} else if (userPri.languageUser == 'en') {
-global.lenguajeGB = en
-} else if (userPri.languageUser == 'id') {
-global.lenguajeGB = id
-} else if (userPri.languageUser == 'ar') {
-global.lenguajeGB = ar
-} else if (userPri.languageUser == 'pt') {
-global.lenguajeGB = pt
-}}
+  let userPri = global.db.data.users[m.sender]
+  if (userPri.languageUser == 'es') {
+    global.lenguajeGB = es
+  } else if (userPri.languageUser == 'en') {
+    global.lenguajeGB = en
+  } else if (userPri.languageUser == 'id') {
+    global.lenguajeGB = id
+  } else if (userPri.languageUser == 'ar') {
+    global.lenguajeGB = ar
+  } else if (userPri.languageUser == 'pt') {
+    global.lenguajeGB = pt
+  } else if (userPri.languageUser == '') {
+    m.reply('*No se ha detectado un idioma personalizado*');
+    return;
+  }
+}
 
 const isCommand1 = /^(googlef?)$/i.test(command)
 const isCommand2 = /(openai|chatgpt|ia|ai)/i.test(command)
