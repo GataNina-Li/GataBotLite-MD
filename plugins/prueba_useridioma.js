@@ -5,8 +5,8 @@ user.languageUser = 'es'
 return m.reply('*Exito*')
 } else {
 user.languageUser = 'en'
-return m.reply('*Error*')
-console.log(user.languageUser)
+await m.reply('*Error*')
+await console.log(user.languageUser)
 }
   
 }
