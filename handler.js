@@ -47,6 +47,7 @@ if (user) {
 if (!isNumber(user.exp)) user.exp = 0
 if (!isNumber(user.money)) user.money = 150
 if (!isNumber(user.limit)) user.limit = 15 
+if (!isNumber(user.languageUser)) user.languageUser = '' 
 if (!('registered' in user)) user.registered = false
 if (!('premium' in user)) user.premium = false    
                     
@@ -69,6 +70,7 @@ age: 0,
 banned: false,
 BannedReason: '',
 Banneduser: false,	
+languageUser: '',
 limit: 15,
 money: 150,
 premium: false,
