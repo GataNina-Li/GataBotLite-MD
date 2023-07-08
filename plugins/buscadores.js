@@ -10,7 +10,7 @@ import fs from 'fs'
 let handler = async (m, { conn, command, usedPrefix, args, text }) => {
 if (!m.isGroup) {
 let userPri = global.db.data.users[m.sender]
-if (userPri.languageUser === '') {
+if (userPri.languageUser == '') {
 m.reply('*No se ha detectado un idioma personalizado*')
 return
 } else if (userPri.languageUser == 'es') {
