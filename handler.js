@@ -47,7 +47,6 @@ if (user) {
 if (!isNumber(user.exp)) user.exp = 0
 if (!isNumber(user.money)) user.money = 150
 if (!isNumber(user.limit)) user.limit = 15 
-if (!isNumber(user.languageUser)) user.languageUser = '' 
 if (!('registered' in user)) user.registered = false
 if (!('premium' in user)) user.premium = false    
                     
@@ -61,6 +60,7 @@ if (!isNumber(user.afk)) user.afk = -1
 if (!('role' in user)) user.role = '*NOVATO(A)* 🪤'
 if (!user.premium) user.premium = false
 if (!user.premium) user.premiumTime = 0
+if (!isNumber(user.languageUser)) user.languageUser = '' 
                                                    		                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
 } else
 global.db.data.users[m.sender] = {		    
