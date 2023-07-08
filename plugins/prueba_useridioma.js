@@ -6,6 +6,7 @@ return m.reply('*Exito*')
 } else {
 user.languageUser = 'en'
 return m.reply('*Error*')
+console.log(user.languageUser)
 }
   
 }
