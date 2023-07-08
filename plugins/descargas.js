@@ -125,24 +125,7 @@ await message.react(waitemot)
 setTimeout(() => { message.react(waitemot2) }, 1000)
 if (!title || !description || !url || !thumbnail || !timestamp || !views) {
 setTimeout(() => { message.react(alert) }, 2000)}
-    
-conn.sendMessage(m.chat, {
-      video: {
-        url: vide,
-        mimetype: 'video/mp4',
-        caption: `╭━❰  ${wm}  ❱━⬣\n┃ 💜 𝙏𝙄𝙏𝙐𝙇𝙊 | 𝙏𝙄𝙏𝙇𝙀\n┃ ${title}\n╰━━━━━❰ *𓃠 ${vs}* ❱━━━━⬣`,  
-        attributes: [
-          {
-            name: 'controls',
-            value: 'true'
-          },
-          {
-            name: 'autoplay',
-            value: 'true'
-          }
-        ]
-      }
-    }, { quoted: m })
+await conn.sendFile(m.chat, vide, 'error.mp4', `${wm}`, m)    
 await m.react(sent)    
 await message.react(correct)
 } catch (e) {
