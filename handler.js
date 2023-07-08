@@ -60,7 +60,6 @@ if (!isNumber(user.afk)) user.afk = -1
 if (!('role' in user)) user.role = '*NOVATO(A)* 🪤'
 if (!user.premium) user.premium = false
 if (!user.premium) user.premiumTime = 0
-if (!isNumber(user.languageUser)) user.languageUser = 0
                                                    		                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
 } else
 global.db.data.users[m.sender] = {		    
@@ -70,7 +69,6 @@ age: 0,
 banned: false,
 BannedReason: '',
 Banneduser: false,	
-languageUser: 0,
 limit: 15,
 money: 150,
 premium: false,
