@@ -1,4 +1,3 @@
-import { es, en, id, ar, pt } from '../lib/idiomas/total-idiomas.js'
 import { googleIt } from '@bochilteam/scraper'  
 import fetch from 'node-fetch'
 import axios from 'axios'
@@ -8,24 +7,6 @@ import gpt from 'api-dylux'
 import fs from 'fs' 
 
 let handler = async (m, { conn, command, usedPrefix, args, text }) => {
-if (!m.isGroup) {
-  let userPri = global.db.data.users[m.sender]
-  if (userPri.languageUser == 'es') {
-    global.lenguajeGB = es
-  } else if (userPri.languageUser == 'en') {
-    global.lenguajeGB = en
-  } else if (userPri.languageUser == 'id') {
-    global.lenguajeGB = id
-  } else if (userPri.languageUser == 'ar') {
-    global.lenguajeGB = ar
-  } else if (userPri.languageUser == 'pt') {
-    global.lenguajeGB = pt
-  } else if (userPri.languageUser == '') {
-    m.reply('*No se ha detectado un idioma personalizado*');
-    //return;
-  }
-}
-
 const isCommand1 = /^(googlef?)$/i.test(command)
 const isCommand2 = /(openai|chatgpt|ia|ai)/i.test(command)
 const isCommand3 = /^(bot|simi|simsimi|alexa|bixby|cortana|siri|okgoogle)$/i.test(command)
