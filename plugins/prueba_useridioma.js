@@ -1,10 +1,10 @@
 let handler = async (m, { conn, command, usedPrefix, args, text }) => {
-let userPri = global.db.data.users[m.sender]
-let idioma = args[0]  
-userPri.languageUser = idioma
-if (userPri.languageUser == idioma) {
+let userPri = global.db.data.users[m.sender] 
+if (userPri.languageUser == 'es') {
+userPri.languageUser = 'es'
 return m.reply('*Exito*')
 } else {
+userPri.languageUser = 'en'
 return m.reply('*Error*')
 }
   
