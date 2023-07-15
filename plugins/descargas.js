@@ -389,9 +389,9 @@ text = m.quoted.text
 } else return conn.reply(m.chat, `${lenguajeGB['smsMalused3']()}\n*${usedPrefix + command} ${lenguajeGB.smsIAimage2()}*`, m)
 await m.reply(wait) 
 try{   
-let response = await fetch(`https://botcahx.cyclic.app/dalle?text=${encodeURIComponent(text)}`)
-let image = await response.buffer()
-await conn.sendFile(m.chat, image, 'image.jpg', lenguajeGB.smsIAimage() + `\n\n_${text}_`, m)
+let response = await fetch(`https://api.lolhuman.xyz/api/diffusion-prompt?apikey=${lolkeysapi}&prompt=${text}`)
+//let image = await response.buffer()
+await conn.sendFile(m.chat, response, 'image.jpg', lenguajeGB.smsIAimage() + `\n\n_${text}_`, m)
 } catch {
 try{
 let res = `https://api.lolhuman.xyz/api/dall-e?apikey=${lolkeysapi}&text=${text}`  
