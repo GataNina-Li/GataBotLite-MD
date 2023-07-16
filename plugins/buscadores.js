@@ -58,7 +58,7 @@ m.reply(resu2.response.trim())
 //m.reply(resu2.data.data.trim())    
 } catch {      
 try {    
-let ia3 = await fetch(`https://api.lolhuman.xyz/api/openai?apikey=${lolkeysapi}&text=${text}&user=${m.sender}`)
+let ia3 = await fetch(`https://api.lolhuman.xyz/api/openai-turbo?apikey=${lolkeysapi}&text=${text}`)
 let resu3 = await ia3.json()
 m.reply(`${resu3.result}`.trim())   
 } catch (e) {
