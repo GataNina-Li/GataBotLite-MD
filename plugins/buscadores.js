@@ -44,12 +44,9 @@ text = m.quoted.text
 } else return conn.reply(m.chat, lenguajeGB.smsOpenai1() + `\n*${usedPrefix + command}* ${lenguajeGB.smsOpenai2()}\n\n*${usedPrefix + command}* ${lenguajeGB.smsOpenai3()}` , m)
 try {
 await conn.sendPresenceUpdate('composing', m.chat)
-        let syms = `Actuaras como un Bot de WhatsApp el cual fue creado por GataNina-Li, tu seras GataBotLite-MD`
-        let res = await gpt.ChatGpt(text, syms)
-         await m.reply(res.text)
-/*let ia1 = await fetch(`https://api.amosayomide05.cf/gpt/?question=${text}&string_id=${m.sender}`)  
-let resu1 = await ia1.json()
-m.reply(`${resu1.response}`.trim())    */
+let syms = `Actuaras como un Bot de WhatsApp el cual fue creado por GataNina-Li, tu seras GataBotLite-MD`
+let res = await gpt.ChatGpt(text, syms)
+await m.reply(res.text)
 } catch {
 try {   
 let ia2 = await fetch(`https://api.amosayomide05.cf/gpt/?question=${text}&string_id=${m.sender}`) //fetch(`https://api.ibeng.tech/api/info/openai?text=${text}&apikey=tamvan`)
@@ -61,9 +58,14 @@ try {
 let ia3 = await fetch(`https://api.lolhuman.xyz/api/openai-turbo?apikey=${lolkeysapi}&text=${text}`)
 let resu3 = await ia3.json()
 m.reply(`${resu3.result}`.trim())   
+} catch {      
+try {    
+let tioress = await fetch(`https://api.lolhuman.xyz/api/openai-turbo?apikey=${lolkeysapi}&text=${text}`)
+let hasill = await tioress.json()
+m.reply(`${hasill.result}`.trim())   
 } catch (e) {
 reportError(e)
-}}} 
+}}}}
 break
     
 case isCommand3:
