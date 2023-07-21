@@ -17,16 +17,16 @@ const handler = async (m, { conn, text }) => {
   const image = await Jimp.create(1200, 800, 0xffffffff);
   const font = await Jimp.loadFont(Jimp.FONT_SANS_32_BLACK);
 
-  
+
   const formattedText = text.replace(/\\n/g, '\n');
 
   
   const lines = formattedText.split('\n');
 
-  
+ 
   let yPosition = 0;
 
- 
+
   lines.forEach((line) => {
     image.print(
       font,
@@ -41,7 +41,10 @@ const handler = async (m, { conn, text }) => {
     );
 
    
-    yPosition += font.getHeight();
+    const textHeight = Jimp.measureTextHeight(font, line);
+
+    
+    yPosition += textHeight;
   });
 
   const buffer = await image.getBufferAsync(Jimp.MIME_JPEG);
