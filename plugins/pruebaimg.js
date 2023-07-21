@@ -272,12 +272,7 @@ const handler = async (m, { conn, text }) => {
 
   lines.forEach((line) => {
     // Dividir la línea si supera el límite de 300 caracteres
-    const splitLines 
-    if (formattedText.length > 150) {  
-     splitLines = splitLine(line, 300)
-    } else {
-     splitLines = splitLine(line, 50)
-    }
+    const splitLines = splitLine(line, 300);
     wrappedLines.push(...splitLines);
 
     // Calcular la altura total del texto
@@ -287,22 +282,11 @@ const handler = async (m, { conn, text }) => {
     });
   });
 
-  let baseWidth;
-  let baseHeight;
-  let imageWidth;
-  let imageHeight;
+  const baseWidth = 1200; // Ancho inicial del lienzo
+  const baseHeight = 800; // Alto inicial del lienzo
 
-  if (formattedText.length > 150) {
-    baseWidth = 3000;
-    baseHeight = 800;
-    imageWidth = baseWidth + Math.floor(300 / 50) * 55;
-    imageHeight = Math.max(baseHeight, totalTextHeight + 100 + Math.floor(300 / 50) * 40);
-  } else {
-    baseWidth = 2000;
-    baseHeight = 400;
-    imageWidth = baseWidth + Math.floor(50 / 50) * 30;
-    imageHeight = Math.max(baseHeight, totalTextHeight + 100 + Math.floor(50 / 50) * 20);
-  }
+  const imageWidth = baseWidth + Math.floor(300 / 50) * 40; // Ajustar el ancho del lienzo en función del límite de caracteres por línea
+  const imageHeight = Math.max(baseHeight, totalTextHeight + 100 + Math.floor(300 / 50) * 4); // Ajustar el alto del lienzo en función del tamaño del texto
 
   // Crear la imagen con el tamaño ajustado
   const image = await Jimp.create(imageWidth, imageHeight, 0xffffffff);
@@ -351,4 +335,3 @@ const splitLine = (line, maxChars) => {
 
 handler.command = /^pruebaimg$/i;
 export default handler;
-
