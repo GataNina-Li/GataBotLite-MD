@@ -272,7 +272,7 @@ const handler = async (m, { conn, text }) => {
 
   lines.forEach((line) => {
     // Dividir la línea si supera el límite de 300 caracteres
-    const splitLines = splitLine(line, 300);
+    const splitLines = splitLine(line, 200);
     wrappedLines.push(...splitLines);
 
     // Calcular la altura total del texto
@@ -282,10 +282,10 @@ const handler = async (m, { conn, text }) => {
     });
   });
 
-  const baseWidth = 3000; // Ancho inicial del lienzo
+  const baseWidth = 4000; // Ancho inicial del lienzo
   const baseHeight = 1000; // Alto inicial del lienzo
 
-  const imageWidth = baseWidth + Math.floor(300 / 50) * 40; // Ajustar el ancho del lienzo en función del límite de caracteres por línea
+  const imageWidth = baseWidth + Math.floor(300 / 50) * 45; // Ajustar el ancho del lienzo en función del límite de caracteres por línea
   const imageHeight = Math.max(baseHeight, totalTextHeight + 100 + Math.floor(300 / 50) * 4); // Ajustar el alto del lienzo en función del tamaño del texto
 
   // Crear la imagen con el tamaño ajustado
