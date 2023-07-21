@@ -75,7 +75,7 @@ const handler = async (m, { conn, text }) => {
   //const imageWidth = 3000;
   //const imageHeight = Math.max(totalTextHeight + 100, 1200); 
 
-  const imageWidth = 1000 + Math.floor(formattedText.length / 100) * 8
+  const imageWidth = 1500 + Math.floor(formattedText.length / 100) * 8
   const imageHeight = Math.max(totalTextHeight + Math.floor(formattedText.length / 100) * 3, 1200)
 
   
