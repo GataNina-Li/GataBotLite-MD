@@ -14,11 +14,11 @@ export default handler*/
 import Jimp from 'jimp'
 
 const handler = async (m, { conn, text }) => {
-  const image = await Jimp.create(1200, 800, 0xffffffff);
-  const font = await Jimp.loadFont(Jimp.FONT_SANS_32_BLACK);
+  const image = await Jimp.create(1200, 800, 0xffffffff)
+  const font = await Jimp.loadFont(Jimp.FONT_SANS_32_BLACK)
 
- 
-  const formattedText = text.replace(/\\n/g, '\n');
+  
+  const formattedText = text.replace(/\\n/g, '\n')
 
   image.print(
     font,
@@ -28,7 +28,7 @@ const handler = async (m, { conn, text }) => {
       text: formattedText,
       alignmentX: Jimp.HORIZONTAL_ALIGN_CENTER,
       alignmentY: Jimp.VERTICAL_ALIGN_MIDDLE,
-      splitText: true, 
+      multiline: true, 
     },
     1200,
     800
@@ -40,4 +40,3 @@ const handler = async (m, { conn, text }) => {
 
 handler.command = /^pruebaimg$/i;
 export default handler;
-
