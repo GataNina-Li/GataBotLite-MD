@@ -265,7 +265,7 @@ const handler = async (m, { conn, text }) => {
 
   const formattedText = text.length > 50 ? '\n' : '\n' + text.replace(/\\n/g, '\n');
 
-  const lines = formattedText.split('\n');
+  const lines = formattedText.split('\n')
 
   let totalTextHeight = 0;
   let wrappedLines = [];
@@ -273,7 +273,7 @@ const handler = async (m, { conn, text }) => {
   lines.forEach((line) => {
     // Dividir la línea si supera el límite de 300 caracteres
   
-    const splitLines = splitLine(line, formattedText.length > 50 ? 100 : 5);
+    const splitLines = splitLine(line, text.length > 50 ? 100 : 5);
     wrappedLines.push(...splitLines)
     
     // Calcular la altura total del texto
@@ -284,7 +284,7 @@ const handler = async (m, { conn, text }) => {
   });
 
   let baseWidth, baseHeight, imageWidth, imageHeight
-  if (formattedText.length > 50) {
+  if (text.length > 50) {
   baseWidth = 1400 // Ancho inicial del lienzo
   baseHeight = 400 // Alto inicial del lienzo
   imageWidth = baseWidth + Math.floor(300 / 50) * 30; // Ajustar el ancho del lienzo en función del límite de caracteres por línea
