@@ -261,19 +261,26 @@ export default handler;*/
 import Jimp from 'jimp';
 
 const handler = async (m, { conn, text }) => {
+  // Cargar la fuente de texto para Jimp
   const font = await Jimp.loadFont(Jimp.FONT_SANS_32_BLACK);
 
+  // Agregar un salto de línea al principio del texto para asegurar que siempre haya un salto de línea al inicio
   const formattedText = '\n' + text.replace(/\\n/g, '\n');
 
+  // Separar el texto en líneas
   const lines = formattedText.split('\n')
 
+  // Variable para almacenar la altura total del texto
   let totalTextHeight = 0;
+  
+  // Array para almacenar las líneas envueltas (divididas) que no superen el límite de caracteres por línea
   let wrappedLines = [];
 
+  // Recorrer cada línea del texto
   lines.forEach((line) => {
-    // Dividir la línea si supera el límite de 300 caracteres
-  
+    // Dividir la línea si supera el límite de 300 caracteres para cada línea
     const splitLines = splitLine(line, text.length > 50 ? 100 : 15);
+    // Agregar las líneas divididas al array de líneas envueltas
     wrappedLines.push(...splitLines)
     
     // Calcular la altura total del texto
@@ -283,23 +290,30 @@ const handler = async (m, { conn, text }) => {
     });
   });
 
-  let baseWidth, baseHeight, imageWidth, imageHeight
+  let baseWidth, baseHeight, imageWidth, imageHeight;
+
+  // Verificar si el total del texto es mayor a 50 caracteres
   if (text.length > 50) {
-  baseWidth = 1400 // Ancho inicial del lienzo
-  baseHeight = 400 // Alto inicial del lienzo
-  imageWidth = baseWidth + Math.floor(300 / 50) * 30; // Ajustar el ancho del lienzo en función del límite de caracteres por línea
-  imageHeight = Math.max(baseHeight, totalTextHeight + 20 + Math.floor(300 / 50) * 4); // Ajustar el alto del lienzo en función del tamaño del texto
+    // Configuración del lienzo para textos largos
+    baseWidth = 1400; // Ancho inicial del lienzo
+    baseHeight = 400; // Alto inicial del lienzo
+    imageWidth = baseWidth + Math.floor(300 / 50) * 30; // Ajustar el ancho del lienzo en función del límite de caracteres por línea
+    imageHeight = Math.max(baseHeight, totalTextHeight + 20 + Math.floor(300 / 50) * 4); // Ajustar el alto del lienzo en función del tamaño del texto
   } else {
-  baseWidth = 400 // Ancho inicial del lienzo
-  baseHeight = 20 // Alto inicial del lienzo
-  imageWidth = baseWidth + Math.floor(300 / 50) * 30; // Ajustar el ancho del lienzo en función del límite de caracteres por línea
-  imageHeight = Math.max(baseHeight, totalTextHeight + 5 + Math.floor(300 / 50) * 4); // Ajustar el alto del lienzo en función del tamaño del texto
+    // Configuración del lienzo para textos cortos
+    baseWidth = 400; // Ancho inicial del lienzo
+    baseHeight = 20; // Alto inicial del lienzo
+    imageWidth = baseWidth + Math.floor(300 / 50) * 30; // Ajustar el ancho del lienzo en función del límite de caracteres por línea
+    imageHeight = Math.max(baseHeight, totalTextHeight + 5 + Math.floor(300 / 50) * 4); // Ajustar el alto del lienzo en función del tamaño del texto
   }
+
   // Crear la imagen con el tamaño ajustado
   const image = await Jimp.create(imageWidth, imageHeight, 0xffffffff);
 
+  // Posición inicial del texto en el lienzo
   let yPosition = 0;
 
+  // Imprimir cada línea de texto en la imagen
   wrappedLines.forEach((line) => {
     image.print(
       font,
@@ -313,11 +327,15 @@ const handler = async (m, { conn, text }) => {
       imageHeight
     );
 
+    // Calcular la altura del texto actual e incrementar la posición Y para la siguiente línea
     const textHeight = Jimp.measureTextHeight(font, line);
     yPosition += textHeight;
   });
 
+  // Obtener el buffer de la imagen en formato JPEG
   const buffer = await image.getBufferAsync(Jimp.MIME_JPEG);
+
+  // Enviar la imagen al chat
   await conn.sendFile(m.chat, buffer, 'img.jpg', 'Mensaje', m);
 };
 
@@ -340,5 +358,7 @@ const splitLine = (line, maxChars) => {
   return lines;
 };
 
+// Definición del comando para activar la función de prueba de la imagen
 handler.command = /^pruebaimg$/i;
 export default handler;
+
