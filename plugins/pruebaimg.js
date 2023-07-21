@@ -261,7 +261,7 @@ export default handler;*/
 import Jimp from 'jimp';
 
 const handler = async (m, { conn, text }) => {
-  const font = await Jimp.loadFont(Jimp.FONT_SANS_39_BLACK);
+  const font = await Jimp.loadFont(Jimp.FONT_SANS_64_BLACK);
 
   const formattedText = text.replace(/\\n/g, '\n');
 
