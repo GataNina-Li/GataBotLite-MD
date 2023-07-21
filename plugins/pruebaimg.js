@@ -272,7 +272,7 @@ const handler = async (m, { conn, text }) => {
 
   lines.forEach((line) => {
     // Dividir la línea si supera el límite de 300 caracteres
-    const splitLines = splitLine(line, 200);
+    const splitLines = splitLine(line, 100);
     wrappedLines.push(...splitLines);
 
     // Calcular la altura total del texto
