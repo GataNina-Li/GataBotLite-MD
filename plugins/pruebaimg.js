@@ -265,7 +265,7 @@ const handler = async (m, { conn, text }) => {
 
   const formattedText = text.replace(/\\n/g, '\n');
 
-  const lines = formattedText.length > 50 ? '\n' : '' formattedText.split('\n');
+  const lines = formattedText.length > 50 ? '\n' : '' + formattedText.split('\n');
 
   let totalTextHeight = 0;
   let wrappedLines = [];
