@@ -282,7 +282,7 @@ const handler = async (m, { conn, text }) => {
     });
   });
 
-  const baseWidth = 1200; // Ancho inicial del lienzo
+  const baseWidth = 3000; // Ancho inicial del lienzo
   const baseHeight = 800; // Alto inicial del lienzo
 
   const imageWidth = baseWidth + Math.floor(300 / 50) * 40; // Ajustar el ancho del lienzo en función del límite de caracteres por línea
