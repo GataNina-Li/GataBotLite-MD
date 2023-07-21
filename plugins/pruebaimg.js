@@ -1,4 +1,4 @@
-/*import Jimp from 'jimp'
+import Jimp from 'jimp'
 
 const handler = async (m, { conn, text }) => {
 const image = await Jimp.create(1200, 800, 0xffffffff)
@@ -9,9 +9,9 @@ await conn.sendFile(m.chat, buffer, 'img.jpg', 'Mensaje', m)
 }
 
 handler.command = /^pruebaimg$/i
-export default handler*/
+export default handler
 
-import Jimp from 'jimp'
+/*import Jimp from 'jimp'
 
 const handler = async (m, { conn, text }) => {
   const image = await Jimp.create(1200, 800, 0xffffffff)
@@ -25,5 +25,5 @@ const handler = async (m, { conn, text }) => {
 }
 
 handler.command = /^pruebaimg$/i
-export default handler
+export default handler*/
 
