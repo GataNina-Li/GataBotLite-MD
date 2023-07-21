@@ -118,7 +118,7 @@ const handler = async (m, { conn, text }) => {
   const formattedText = text.replace(/\\n/g, '\n');
 
   const lines = [];
-  const maxCharsPerLine = 50;
+  const maxCharsPerLine = 100;
   let currentLine = '';
 
   for (let word of formattedText.split(' ')) {
