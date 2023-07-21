@@ -276,7 +276,6 @@ const handler = async (m, { conn, text }) => {
     const splitLines = splitLine(line, formattedText.length > 50 ? 100 : 5);
     wrappedLines.push(...splitLines)
     
-    wrappedLines.push(...splitLines)
     // Calcular la altura total del texto
     splitLines.forEach((splitLine) => {
       const textHeight = Jimp.measureTextHeight(font, splitLine);
