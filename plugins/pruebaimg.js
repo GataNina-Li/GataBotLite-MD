@@ -306,7 +306,7 @@ const handler = async (m, { conn, text }) => {
       0,
       yPosition,
       {
-        text: line,
+        text: '\n' + line,
         alignmentX: Jimp.HORIZONTAL_ALIGN_CENTER,
       },
       imageWidth,
