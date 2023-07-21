@@ -180,7 +180,7 @@ const splitLine = (line, maxChars) => {
 handler.command = /^pruebaimg$/i;
 export default handler;*/
 
-import Jimp from 'jimp';
+/*import Jimp from 'jimp';
 
 const handler = async (m, { conn, text }) => {
   const font = await Jimp.loadFont(Jimp.FONT_SANS_32_BLACK);
@@ -256,4 +256,94 @@ const splitLine = (line, maxChars) => {
 };
 
 handler.command = /^pruebaimg$/i;
+export default handler;*/
+
+import Jimp from 'jimp';
+
+const handler = async (m, { conn, text }) => {
+  const font = await Jimp.loadFont(Jimp.FONT_SANS_32_BLACK);
+
+  const formattedText = text.replace(/\\n/g, '\n');
+
+  const lines = formattedText.split('\n');
+
+  let totalTextHeight = 0;
+  let wrappedLines = [];
+
+  lines.forEach((line) => {
+    // Dividir la línea si supera el límite de 300 caracteres
+    const splitLines = splitLine(line, 300);
+    wrappedLines.push(...splitLines);
+
+    // Calcular la altura total del texto
+    splitLines.forEach((splitLine) => {
+      const textHeight = Jimp.measureTextHeight(font, splitLine);
+      totalTextHeight += textHeight;
+    });
+  });
+
+  let baseWidth;
+  let baseHeight;
+  let imageWidth;
+  let imageHeight;
+
+  if (formattedText.length > 200) {
+    baseWidth = 3000;
+    baseHeight = 800;
+    imageWidth = baseWidth + Math.floor(200 / 50) * 55;
+    imageHeight = Math.max(baseHeight, totalTextHeight + 100 + Math.floor(200 / 50) * 40);
+  } else {
+    baseWidth = 2000;
+    baseHeight = 400;
+    imageWidth = baseWidth + Math.floor(200 / 50) * 30;
+    imageHeight = Math.max(baseHeight, totalTextHeight + 100 + Math.floor(200 / 50) * 20);
+  }
+
+  // Crear la imagen con el tamaño ajustado
+  const image = await Jimp.create(imageWidth, imageHeight, 0xffffffff);
+
+  let yPosition = 0;
+
+  wrappedLines.forEach((line) => {
+    image.print(
+      font,
+      0,
+      yPosition,
+      {
+        text: line,
+        alignmentX: Jimp.HORIZONTAL_ALIGN_CENTER,
+      },
+      imageWidth,
+      imageHeight
+    );
+
+    const textHeight = Jimp.measureTextHeight(font, line);
+    yPosition += textHeight;
+  });
+
+  const buffer = await image.getBufferAsync(Jimp.MIME_JPEG);
+  await conn.sendFile(m.chat, buffer, 'img.jpg', 'Mensaje', m);
+};
+
+// Función para dividir una línea en fragmentos de longitud máxima
+const splitLine = (line, maxChars) => {
+  const lines = [];
+  let currentLine = '';
+  const words = line.split(' ');
+
+  for (let word of words) {
+    if (currentLine.length + word.length <= maxChars) {
+      currentLine += word + ' ';
+    } else {
+      lines.push(currentLine.trim());
+      currentLine = word + ' ';
+    }
+  }
+
+  lines.push(currentLine.trim());
+  return lines;
+};
+
+handler.command = /^pruebaimg$/i;
 export default handler;
+
