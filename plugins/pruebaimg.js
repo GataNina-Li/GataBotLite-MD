@@ -115,37 +115,42 @@ import Jimp from 'jimp';
 const handler = async (m, { conn, text }) => {
   const font = await Jimp.loadFont(Jimp.FONT_SANS_32_BLACK);
 
-  const formattedText = text.replace(/\\n/g, '\n');
+  const paragraphs = text.split('\n\n'); // Separar el texto en párrafos
 
-  const lines = [];
   const maxCharsPerLine = 100;
-  let currentLine = '';
-
-  for (let word of formattedText.split(' ')) {
-    if (currentLine.length + word.length <= maxCharsPerLine) {
-      currentLine += word + ' ';
-    } else {
-      lines.push(currentLine.trim());
-      currentLine = word + ' ';
-    }
-  }
-
-  // Agregar la última línea restante
-  lines.push(currentLine.trim());
 
   let totalTextHeight = 0;
+  let lines = [];
 
-  // Calcular la altura total del texto
-  lines.forEach((line) => {
-    const textHeight = Jimp.measureTextHeight(font, line);
-    totalTextHeight += textHeight;
+  paragraphs.forEach((paragraph) => {
+    const formattedParagraph = paragraph.replace(/\\n/g, '\n');
+
+    // Dividir el párrafo en líneas basándose en el número máximo de caracteres por línea
+    let currentLine = '';
+    for (let word of formattedParagraph.split(' ')) {
+      if (currentLine.length + word.length <= maxCharsPerLine) {
+        currentLine += word + ' ';
+      } else {
+        lines.push(currentLine.trim());
+        currentLine = word + ' ';
+      }
+    }
+
+    // Agregar la última línea restante del párrafo
+    lines.push(currentLine.trim());
+
+    // Calcular la altura total del texto
+    lines.forEach((line) => {
+      const textHeight = Jimp.measureTextHeight(font, line);
+      totalTextHeight += textHeight;
+    });
   });
 
   const baseWidth = 1250;
   const baseHeight = 400;
 
-  const imageWidth = baseWidth + Math.floor(formattedText.length / maxCharsPerLine) * 40;
-  const imageHeight = Math.max(baseHeight, totalTextHeight + 100 + Math.floor(formattedText.length / maxCharsPerLine) * 4);
+  const imageWidth = baseWidth + Math.floor(text.length / maxCharsPerLine) * 40;
+  const imageHeight = Math.max(baseHeight, totalTextHeight + 100 + Math.floor(text.length / maxCharsPerLine) * 4);
 
   // Crear la imagen con el tamaño ajustado
   const image = await Jimp.create(imageWidth, imageHeight, 0xffffffff);
@@ -176,5 +181,3 @@ const handler = async (m, { conn, text }) => {
 
 handler.command = /^pruebaimg$/i;
 export default handler;
-
-
