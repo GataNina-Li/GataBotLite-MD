@@ -286,7 +286,7 @@ const handler = async (m, { conn, text }) => {
   const baseHeight = 400 // Alto inicial del lienzo
 
   const imageWidth = baseWidth + Math.floor(300 / 50) * 30; // Ajustar el ancho del lienzo en función del límite de caracteres por línea
-  const imageHeight = Math.max(baseHeight, totalTextHeight + 100 + Math.floor(300 / 50) * 4); // Ajustar el alto del lienzo en función del tamaño del texto
+  const imageHeight = Math.max(baseHeight, totalTextHeight + 80 + Math.floor(300 / 50) * 4); // Ajustar el alto del lienzo en función del tamaño del texto
 
   // Crear la imagen con el tamaño ajustado
   const image = await Jimp.create(imageWidth, imageHeight, 0xffffffff);
