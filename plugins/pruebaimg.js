@@ -272,7 +272,12 @@ const handler = async (m, { conn, text }) => {
 
   lines.forEach((line) => {
     // Dividir la línea si supera el límite de 300 caracteres
-    const splitLines = splitLine(line, 300);
+    const splitLines 
+    if (formattedText.length > 200) {  
+     splitLines = splitLine(line, 300)
+    } else {
+     splitLines = splitLine(line, 50)
+    }
     wrappedLines.push(...splitLines);
 
     // Calcular la altura total del texto
@@ -295,8 +300,8 @@ const handler = async (m, { conn, text }) => {
   } else {
     baseWidth = 2000;
     baseHeight = 400;
-    imageWidth = baseWidth + Math.floor(200 / 50) * 30;
-    imageHeight = Math.max(baseHeight, totalTextHeight + 100 + Math.floor(200 / 50) * 20);
+    imageWidth = baseWidth + Math.floor(50 / 50) * 30;
+    imageHeight = Math.max(baseHeight, totalTextHeight + 100 + Math.floor(50 / 50) * 20);
   }
 
   // Crear la imagen con el tamaño ajustado
