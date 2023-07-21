@@ -272,9 +272,14 @@ const handler = async (m, { conn, text }) => {
 
   lines.forEach((line) => {
     // Dividir la línea si supera el límite de 300 caracteres
-    const splitLines = splitLine(line, 100);
-    wrappedLines.push(...splitLines);
-
+    const splitLines
+    if (formattedText.length > 50) {
+    splitLines = splitLine(line, 100);
+    wrappedLines.push(...splitLines)
+    } else {
+    splitLines = splitLine(line, 5);
+    wrappedLines.push(...splitLines)
+    }
     // Calcular la altura total del texto
     splitLines.forEach((splitLine) => {
       const textHeight = Jimp.measureTextHeight(font, splitLine);
@@ -282,12 +287,18 @@ const handler = async (m, { conn, text }) => {
     });
   });
 
-  const baseWidth = 1400 // Ancho inicial del lienzo
-  const baseHeight = 400 // Alto inicial del lienzo
-
-  const imageWidth = baseWidth + Math.floor(300 / 50) * 30; // Ajustar el ancho del lienzo en función del límite de caracteres por línea
-  const imageHeight = Math.max(baseHeight, totalTextHeight + 20 + Math.floor(300 / 50) * 4); // Ajustar el alto del lienzo en función del tamaño del texto
-
+  let baseWidth, baseHeight, imageWidth, imageHeight
+  if (formattedText.length > 50) {
+  baseWidth = 1400 // Ancho inicial del lienzo
+  baseHeight = 400 // Alto inicial del lienzo
+  imageWidth = baseWidth + Math.floor(300 / 50) * 30; // Ajustar el ancho del lienzo en función del límite de caracteres por línea
+  imageHeight = Math.max(baseHeight, totalTextHeight + 20 + Math.floor(300 / 50) * 4); // Ajustar el alto del lienzo en función del tamaño del texto
+  } else {
+  baseWidth = 400 // Ancho inicial del lienzo
+  baseHeight = 20 // Alto inicial del lienzo
+  imageWidth = baseWidth + Math.floor(300 / 50) * 30; // Ajustar el ancho del lienzo en función del límite de caracteres por línea
+  imageHeight = Math.max(baseHeight, totalTextHeight + 5 + Math.floor(300 / 50) * 4); // Ajustar el alto del lienzo en función del tamaño del texto
+  }
   // Crear la imagen con el tamaño ajustado
   const image = await Jimp.create(imageWidth, imageHeight, 0xffffffff);
 
