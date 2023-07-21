@@ -273,7 +273,7 @@ const handler = async (m, { conn, text }) => {
   lines.forEach((line) => {
     // Dividir la línea si supera el límite de 300 caracteres
     const splitLines 
-    if (formattedText.length > 200) {  
+    if (formattedText.length > 150) {  
      splitLines = splitLine(line, 300)
     } else {
      splitLines = splitLine(line, 50)
@@ -292,11 +292,11 @@ const handler = async (m, { conn, text }) => {
   let imageWidth;
   let imageHeight;
 
-  if (formattedText.length > 200) {
+  if (formattedText.length > 150) {
     baseWidth = 3000;
     baseHeight = 800;
-    imageWidth = baseWidth + Math.floor(200 / 50) * 55;
-    imageHeight = Math.max(baseHeight, totalTextHeight + 100 + Math.floor(200 / 50) * 40);
+    imageWidth = baseWidth + Math.floor(300 / 50) * 55;
+    imageHeight = Math.max(baseHeight, totalTextHeight + 100 + Math.floor(300 / 50) * 40);
   } else {
     baseWidth = 2000;
     baseHeight = 400;
