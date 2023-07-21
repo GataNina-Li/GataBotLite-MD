@@ -263,9 +263,9 @@ import Jimp from 'jimp';
 const handler = async (m, { conn, text }) => {
   const font = await Jimp.loadFont(Jimp.FONT_SANS_32_BLACK);
 
-  const formattedText = '\n' + text.replace(/\\n/g, '\n');
+  const formattedText = text.replace(/\\n/g, '\n');
 
-  const lines = formattedText.split('\n');
+  const lines = formattedText.length > 50 ? '\n' : '' formattedText.split('\n');
 
   let totalTextHeight = 0;
   let wrappedLines = [];
