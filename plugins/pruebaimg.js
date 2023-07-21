@@ -306,14 +306,14 @@ const handler = async (m, { conn, text }) => {
       0,
       yPosition,
       {
-        text: '\n' + line,
+        text: line,
         alignmentX: Jimp.HORIZONTAL_ALIGN_CENTER,
       },
       imageWidth,
       imageHeight
     );
 
-    const textHeight = Jimp.measureTextHeight(font, line);
+    const textHeight = Jimp.measureTextHeight(font, '\n' + line);
     yPosition += textHeight;
   });
 
