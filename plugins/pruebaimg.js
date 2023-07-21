@@ -54,7 +54,7 @@ const handler = async (m, { conn, text }) => {
 handler.command = /^pruebaimg$/i;
 export default handler;*/
 
-import Jimp from 'jimp';
+/*import Jimp from 'jimp';
 
 const handler = async (m, { conn, text }) => {
   const font = await Jimp.loadFont(Jimp.FONT_SANS_32_BLACK);
@@ -108,5 +108,73 @@ const handler = async (m, { conn, text }) => {
 };
 
 handler.command = /^pruebaimg$/i;
+export default handler;*/
+
+import Jimp from 'jimp';
+
+const handler = async (m, { conn, text }) => {
+  const font = await Jimp.loadFont(Jimp.FONT_SANS_32_BLACK);
+
+  const formattedText = text.replace(/\\n/g, '\n');
+
+  const lines = [];
+  const maxCharsPerLine = 50;
+  let currentLine = '';
+
+  for (let word of formattedText.split(' ')) {
+    if (currentLine.length + word.length <= maxCharsPerLine) {
+      currentLine += word + ' ';
+    } else {
+      lines.push(currentLine.trim());
+      currentLine = word + ' ';
+    }
+  }
+
+  // Agregar la última línea restante
+  lines.push(currentLine.trim());
+
+  let totalTextHeight = 0;
+
+  // Calcular la altura total del texto
+  lines.forEach((line) => {
+    const textHeight = Jimp.measureTextHeight(font, line);
+    totalTextHeight += textHeight;
+  });
+
+  const baseWidth = 1250;
+  const baseHeight = 400;
+
+  const imageWidth = baseWidth + Math.floor(formattedText.length / maxCharsPerLine) * 40;
+  const imageHeight = Math.max(baseHeight, totalTextHeight + 100 + Math.floor(formattedText.length / maxCharsPerLine) * 4);
+
+  // Crear la imagen con el tamaño ajustado
+  const image = await Jimp.create(imageWidth, imageHeight, 0xffffffff);
+
+  let yPosition = 0;
+
+  // Imprimir cada línea de texto en la imagen
+  lines.forEach((line) => {
+    image.print(
+      font,
+      0,
+      yPosition,
+      {
+        text: line,
+        alignmentX: Jimp.HORIZONTAL_ALIGN_CENTER,
+      },
+      imageWidth,
+      imageHeight
+    );
+
+    const textHeight = Jimp.measureTextHeight(font, line);
+    yPosition += textHeight;
+  });
+
+  const buffer = await image.getBufferAsync(Jimp.MIME_JPEG);
+  await conn.sendFile(m.chat, buffer, 'img.jpg', 'Mensaje', m);
+};
+
+handler.command = /^pruebaimg$/i;
 export default handler;
+
 
