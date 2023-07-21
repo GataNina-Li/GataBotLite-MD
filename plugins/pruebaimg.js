@@ -121,8 +121,11 @@ const handler = async (m, { conn, text }) => {
 
   let totalTextHeight = 0;
 
-  const baseWidth = 1250;
-  const baseHeight = 400;
+ // const baseWidth = 1250;
+ // const baseHeight = 400;
+
+   const baseWidth = 500;
+  const baseHeight = 2000;
 
   let imageWidth = baseWidth;
   let imageHeight = baseHeight;
