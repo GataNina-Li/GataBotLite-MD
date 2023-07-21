@@ -193,8 +193,8 @@ const handler = async (m, { conn, text }) => {
   let wrappedLines = [];
 
   lines.forEach((line) => {
-    // Dividir la línea con un límite adecuado para que las palabras no se corten
-    const splitLines = splitLine(line, font, 300);
+    // Dividir la línea si supera el límite de 300 caracteres
+    const splitLines = splitLine(line, 300);
     wrappedLines.push(...splitLines);
 
     // Calcular la altura total del texto
@@ -204,11 +204,11 @@ const handler = async (m, { conn, text }) => {
     });
   });
 
-  const baseWidth = 1250;
-  const baseHeight = 400;
+  const baseWidth = 1200; // Ancho inicial del lienzo
+  const baseHeight = 800; // Alto inicial del lienzo
 
-  const imageWidth = baseWidth + Math.floor(text.length / 50) * 40;
-  const imageHeight = Math.max(baseHeight, totalTextHeight + 100 + Math.floor(text.length / 50) * 4);
+  const imageWidth = baseWidth + Math.floor(300 / 50) * 40; // Ajustar el ancho del lienzo en función del límite de caracteres por línea
+  const imageHeight = Math.max(baseHeight, totalTextHeight + 100 + Math.floor(300 / 50) * 4); // Ajustar el alto del lienzo en función del tamaño del texto
 
   // Crear la imagen con el tamaño ajustado
   const image = await Jimp.create(imageWidth, imageHeight, 0xffffffff);
@@ -236,26 +236,24 @@ const handler = async (m, { conn, text }) => {
   await conn.sendFile(m.chat, buffer, 'img.jpg', 'Mensaje', m);
 };
 
-// Función para dividir una línea en fragmentos de longitud máxima sin cortar palabras
-const splitLine = (line, font, maxChars) => {
-  const words = line.split(' ');
+// Función para dividir una línea en fragmentos de longitud máxima
+const splitLine = (line, maxChars) => {
   const lines = [];
   let currentLine = '';
+  const words = line.split(' ');
+
   for (let word of words) {
-    const testLine = currentLine.length === 0 ? word : currentLine + ' ' + word;
-    const textWidth = Jimp.measureText(font, testLine);
-    if (textWidth <= maxChars) {
-      currentLine = testLine;
+    if (currentLine.length + word.length <= maxChars) {
+      currentLine += word + ' ';
     } else {
-      lines.push(currentLine);
-      currentLine = word;
+      lines.push(currentLine.trim());
+      currentLine = word + ' ';
     }
   }
-  lines.push(currentLine);
+
+  lines.push(currentLine.trim());
   return lines;
 };
 
 handler.command = /^pruebaimg$/i;
 export default handler;
-
-
