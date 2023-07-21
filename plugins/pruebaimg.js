@@ -263,7 +263,7 @@ import Jimp from 'jimp';
 const handler = async (m, { conn, text }) => {
   const font = await Jimp.loadFont(Jimp.FONT_SANS_32_BLACK);
 
-  const formattedText = text.length > 50 ? '\n' : null + text.replace(/\\n/g, '\n');
+  const formattedText = text.length > 50 ? '\n' : '\n' + text.replace(/\\n/g, '\n');
 
   const lines = formattedText.split('\n');
 
