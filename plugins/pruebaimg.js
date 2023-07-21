@@ -263,7 +263,7 @@ import Jimp from 'jimp';
 const handler = async (m, { conn, text }) => {
   const font = await Jimp.loadFont(Jimp.FONT_SANS_32_BLACK);
 
-  const formattedText = text.replace(/\\n/g, '\n');
+  const formattedText = '\n' + text.replace(/\\n/g, '\n');
 
   const lines = formattedText.split('\n')
 
@@ -313,7 +313,7 @@ const handler = async (m, { conn, text }) => {
       imageHeight
     );
 
-    const textHeight = Jimp.measureTextHeight(font, '\n' + line);
+    const textHeight = Jimp.measureTextHeight(font, line);
     yPosition += textHeight;
   });
 
