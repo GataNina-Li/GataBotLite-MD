@@ -71,12 +71,14 @@ const handler = async (m, { conn, text }) => {
     totalTextHeight += textHeight;
   });
 
-  
-  //const imageWidth = 3000;
-  //const imageHeight = Math.max(totalTextHeight + 100, 1200); 
+  const baseWidth = 1600;
+  const baseHeight = 1000;
 
-  const imageWidth = 2500 + Math.floor(formattedText.length / 100) * 8
-  const imageHeight = Math.max(totalTextHeight + 20 + Math.floor(formattedText.length / 100) * 3, 1200)
+  const imageWidth = baseWidth + Math.floor(formattedText.length / 50) * 100;
+  const imageHeight = Math.max(baseHeight, totalTextHeight + 100 + Math.floor(formattedText.length / 50) * 30);
+ 
+  //const imageWidth = 2500 + Math.floor(formattedText.length / 100) * 8
+  //const imageHeight = Math.max(totalTextHeight + 20 + Math.floor(formattedText.length / 100) * 3, 1200)
 
   
   const image = await Jimp.create(imageWidth, imageHeight, 0xffffffff);
