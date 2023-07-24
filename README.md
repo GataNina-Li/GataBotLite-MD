@@ -20,23 +20,13 @@
 </a>
 <a href="https://paypal.me/OficialGD">
 <img src="https://img.shields.io/badge/PayPal-00457C?style=for-the-badge&logo=paypal&logoColor=white">
-</a>
-<a href="https://chat.whatsapp.com/DVhu9S9Zr7cBFFl26N61U3">
-<img src="https://img.shields.io/badge/GataBot Update Group-25D366?style=for-the-badge&logo=whatsapp&logoColor=white">
-</a>
-</a>
-<a href="https://chat.whatsapp.com/IXZ0aBryB1cHjNxe0VIm76">
-<img src="https://img.shields.io/badge/🐈_GataBot_|_Soporte_⚙️-25D366?style=for-the-badge&logo=whatsapp&logoColor=white">
-</a>
 </div>
 
-### ✅ GATABOTLITE OFICIAL
+### Cuentas Oficiales:
+> Al acceder a la plataforma, obtendrás acceso a todos los enlaces oficiales de GataBot. Además, te mantendremos informado con boletines y mensajes exclusivos sobre las últimas novedades. La página se actualiza constantemente para ofrecerte la información más relevante. ¡No te pierdas ninguna actualización y únete a nuestra comunidad ahora mismo!
 
-<a href="http://wa.me/593993684821?text=.menu" target="blank"><img src="https://img.shields.io/badge/1️⃣_𝙂𝙖𝙩𝙖𝘽𝙤𝙩𝙇𝙞𝙩𝙚-𝙈𝘿-25D366?style=for-the-badge&logo=whatsapp&logoColor=white" />
-<a href="http://wa.me/573136855110?text=.menu" target="blank"><img src="https://img.shields.io/badge/2️⃣_𝙂𝙖𝙩𝙖𝘽𝙤𝙩𝙇𝙞𝙩𝙚-𝙈𝘿-25D366?style=for-the-badge&logo=whatsapp&logoColor=white" />
-<a href="http://wa.me/50663323306?text=.menu" target="blank"><img src="https://img.shields.io/badge/3️⃣_𝙂𝙖𝙩𝙖𝘽𝙤𝙩𝙇𝙞𝙩𝙚-𝙈𝘿-25D366?style=for-the-badge&logo=whatsapp&logoColor=white" />
-<a href="http://wa.me/13127783058?text=.menu" target="blank"><img src="https://img.shields.io/badge/4️⃣_𝙂𝙖𝙩𝙖𝘽𝙤𝙩𝙇𝙞𝙩𝙚-𝙈𝘿-25D366?style=for-the-badge&logo=whatsapp&logoColor=white" />
-<a href="http://wa.me/5215582305685?text=.menu" target="blank"><img src="https://img.shields.io/badge/5️⃣_𝙂𝙖𝙩𝙖𝘽𝙤𝙩𝙇𝙞𝙩𝙚-𝙈𝘿-25D366?style=for-the-badge&logo=whatsapp&logoColor=white" />
+<a href="https://www.atom.bio/gatabot/">
+<img src="https://img.shields.io/badge/GataBot_Accounts-000000%7D?style=for-the-badge&logo=biolink&logoColor=white">
 </a>
   
 #### DISPONIBLE EN:
