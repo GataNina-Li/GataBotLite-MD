@@ -432,37 +432,31 @@ break
         
 case isCommand15:
 if (!text) return m.reply(lenguajeGB.smsMalused2() + `*${usedPrefix + command} Runaway*\n\n*${usedPrefix + command} https://open.spotify.com/track/23rdcrD0Eky4vYn2TZidxJ*\n\n${lenguajeGB.smsSP0(usedPrefix)}`)
-let link
-if (text.startsWith('https://open.spotify.com/track/')) {
-link = text
-} else {
-let res = await fetch(`https://api.lolhuman.xyz/api/spotifysearch?apikey=${lolkeysapi}&query=${text}`)
-let json = await res.json()
-link = json.result[0].link
-}
-let res2 = await fetch(`https://api.lolhuman.xyz/api/spotify?apikey=${lolkeysapi}&url=${link}`)
-let json2 = await res2.json()
-if (json2.status != '200') return m.reply(lenguajeGB.smsSP6())
-let { thumbnail, title, artists, link: songLink } = json2.result
 try {
+let resDL = await fetch(`https://api.lolhuman.xyz/api/spotifysearch?apikey=${lolkeysapi}&query=${text}`)
+let jsonDL = await resDL.json()
+let linkDL = jsonDL.result[0].link
+let spty = await spotifydl(linkDL)
+const getRandom = (ext) => {
+return `${Math.floor(Math.random() * 10000)}${ext}`}
+let randomName = getRandom(".mp3")
+const filePath = `./tmp/${randomName}`
+fs.writeFileSync(filePath, spty.audio)
 let spotifyi = `${lenguajeGB.smsSP1()}
-⭔ _${title}_
+⭔ _${spty.data.name}_
 
 ${lenguajeGB.smsSP2()}
-⭔ _${artists}_
+⭔ _${spty.data.artists}_
 
 ${lenguajeGB.smsSP3()}
-⭔ _${link}_
-
-${lenguajeGB.smsSP4()}
-⭔ _${songLink}_
+⭔ _${linkDL}_
 
 ${lenguajeGB.smsSP5()}`
-
 await m.reply(wait)
-await conn.sendFile(m.chat, thumbnail, 'image.jpg', '💚 *Ｓ Ｐ Ｏ Ｔ Ｉ Ｆ Ｙ* 💚\n\n' + spotifyi, m)
-let aa = await conn.sendMessage(m.chat, { audio: { url: json2.result.link }, fileName: `error.mp3`, mimetype: 'audio/mp4' }, { quoted: m })  
-if (!aa) return conn.sendFile(m.chat, json2.result.link, 'error.mp3', null, m, false, { mimetype: 'audio/mp4' })
+await conn.sendFile(m.chat, spty.data.cover_url, 'image.jpg', '💚 *Ｓ Ｐ Ｏ Ｔ Ｉ Ｆ Ｙ* 💚\n\n' + spotifyi, m)
+await conn.sendMessage(m.chat, { audio: fs.readFileSync(`./tmp/${randomName}`), fileName: `${spty.data.name}.mp3`, mimetype: "audio/mp4", }, { quoted: m })    
+//let aa = await conn.sendMessage(m.chat, { audio: { url: json2.result.link }, fileName: `error.mp3`, mimetype: 'audio/mp4' }, { quoted: m })  
+//if (!aa) return conn.sendFile(m.chat, json2.result.link, 'error.mp3', null, m, false, { mimetype: 'audio/mp4' })
 } catch (e) {
 reportError(e)}              
 break
@@ -652,3 +646,10 @@ for (let i = 0; i < result.length; i++) { url.push(result[i].url) }
 let random = url[0];
 let getVideo = await ytMp4(random);
 resolve(getVideo)}).catch(reject)})};
+
+async function spotifydl(url) {
+const credentials = { clientId: 'acc6302297e040aeb6e4ac1fbdfd62c3', clientSecret: '0e8439a1280a43aba9a5bc0a16f3f009' }
+const spotify = new Spotify.default(credentials)
+const res = await spotify.getTrack(url).catch(() => {
+return { error: 'Fallo la descarga' }})
+return { data: res, audio: await spotify.downloadTrack(url) }}
