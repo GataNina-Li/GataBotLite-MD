@@ -1,6 +1,6 @@
 //CÓDIGO ADAPTADO POR https://github.com/GataNina-Li | @gata_dios
 
-let handler = async (m, { conn, text, usedPrefix, command }) => { 
+/*let handler = async (m, { conn, text, usedPrefix, command }) => { 
 let cometido
 cometido = `@${m.sender.split('@')[0]}`
 
@@ -28,4 +28,5 @@ await conn.reply(m.chat, coger, m, { mentions: [m.sender, text.replace('@', '') 
 }
 
 handler.command = /^(coger|follar)$/i
-export default handler
+export default handler*/
+
