@@ -10,14 +10,14 @@ import FormData from "form-data";
    if (!mime) 
      throw `*⚠️ Y LA FOTO?*` 
    if (!/image\/(jpe?g|png)/.test(mime)) 
-     throw `Mime ${mime} tidak support` 
+     throw `⚠️ *Mímica ${mime} No soportada*` 
    else conn.hdr[m.sender] = true; 
-   m.reply("Proses Kak...") 
+   m.reply("*🚀 P R O C E S A N D O*") 
    let img = await q.download?.() 
    let error 
    try { 
      const This = await processing(img, "enhance") 
-     conn.sendFile(m.chat, This, "", "Listo >//<", m) 
+     conn.sendFile(m.chat, This, "", "*🚀 Foto en hd >//<*\n\n_Si la foto no sale en hd vuelva a intentar_", m) 
    } catch (er) { 
      error = true 
    } finally { 
