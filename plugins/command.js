@@ -3,8 +3,8 @@ import axios from 'axios'
  let handler = async (m, {  
  conn, text, command, usedPrefix 
  }) => { 
- if (!text) return m.reply(`Uselo de la siguiente forma *${usedPrefix + command}* <url>\n\n*Ejemplo :* ${usedPrefix + command} https://github.com/GataNina-Li/GataNina-Li`) 
- m.reply("_C A R G A N D O . . ._") 
+ if (!text) return m.reply(`*INGRESE UN ENLACE*\n\nFORMA CORRECTA DE USAR *${usedPrefix + command}* <url>\n\n*EJEMPLO :* ${usedPrefix + command} https://github.com/GataNina-Li`) 
+ m.reply("*🚀 C A R G A N D O . . .*") 
  var phone = await ssweb(text, 'phone') 
  var desktop = await ssweb(text, 'desktop') 
  var tablet = await ssweb(text, 'tablet') 
@@ -52,7 +52,7 @@ import axios from 'axios'
                      }).then(({ data }) => { 
                         let result = { 
                              status: 200, 
-                             author: 'Azamk', 
+                             author: 'Azami', 
                              result: data 
                          } 
                           resolve(result) 
