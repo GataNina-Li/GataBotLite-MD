@@ -1,10 +1,10 @@
 import FormData from "form-data"; 
- import Jimp from "jimp"; 
+import Jimp from "jimp"; 
   
  let handler = async (m, { conn, usedPrefix, command }) => { 
    conn.hdr = conn.hdr ? conn.hdr : {} 
    if (m.sender in conn.hdr) 
-     throw "*⚠️ Todavía hay un proceso que no se ha Terminado. Espere hasta que termine. >//<*" 
+     throw "*⚠️ Todavía hay un proceso que no se ha Terminado. Espere hasta que termine.*" 
    let q = m.quoted ? m.quoted : m 
    let mime = (q.msg || q).mimetype || q.mediaType || "" 
    if (!mime) 
@@ -17,7 +17,7 @@ import FormData from "form-data";
    let error 
    try { 
      const This = await processing(img, "enhance") 
-     conn.sendFile(m.chat, This, "", "*🚀 Foto en hd >//<*\n\n_Si la foto no sale en hd vuelva a intentar_", m) 
+     conn.sendFile(m.chat, This, "", "*🚀 Foto en hd*\n\n_Si la foto no sale en hd vuelva a intentar_", m) 
    } catch (er) { 
      error = true 
    } finally { 
@@ -30,10 +30,9 @@ import FormData from "form-data";
   
  handler.help = ['hd'] 
  handler.tags = ['tools', 'ai'] 
- handler.command = /^(hd)$/i 
-  
- handler.register = true 
- handler.limit = true 
+ handler.command = /^(hd)$/i
+ handler.register = true
+ handler.limit = true
   
  export default handler 
   
