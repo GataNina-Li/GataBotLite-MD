@@ -40,6 +40,7 @@ await m.react(notsent)
 switch (true) {     
 case isCommand1:
 if (!text) return m.reply(lenguajeGB.smsMalused2() + `\n*${usedPrefix + command} Gata*`)
+if (m.text.includes('gore') || m.text.includes('cp')|| m.text.includes('porno')|| m.text.includes('Gore')|| m.text.includes('rule')|| m.text.includes('CP') || m.text.includes('Rule34') || m.text.includes('xxx')) return m.reply('🙄')        
 try{
 const res = await googleImage(text)
 let image = res.getRandom()
