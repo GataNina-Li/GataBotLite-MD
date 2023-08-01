@@ -7,8 +7,8 @@ let res = await fetch(`https://api.xyroinee.xyz/api/search/wattpad?q=${text}&lc=
 let anu = await res.json()
 anu = anu.data.map((v) => `Título: ${v.title}\n*Leídos:* ${v.reads}\n*Votos:* ${v.vote}\n*Capítulos:* ${v.chapter}\n*Enlace:* ${v.link}\n*Description:* ${v.desc}`).join`\n\n°°°°°°°°°°°°°°°°°°°°°°°°°°°°°\n\n`
 // let akuariapiresult2 = await translate(`${anu}`, { to: 'es', autoCorrect: true })
-  
-await conn.sendFile(m.chat, null, 'dorrat.jpg',  anu, m)
+ await m.reply(anu) 
+//await conn.sendFile(m.chat, null, 'dorrat.jpg',  anu, m)
 }
 handler.command = /^(wattpad)$/i
 
