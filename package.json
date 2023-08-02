@@ -50,6 +50,7 @@
   "formdata-node": "^4.3.2",
   "fg-ig": "^0.0.1",
   "glob-fs": "^0.1.7",
+  "google-it": "^1.6.3",
   "human-readable": "^0.2.1",
   "hispamemes": "^1.0.7",
   "hxz-api": "^1.0.1",
