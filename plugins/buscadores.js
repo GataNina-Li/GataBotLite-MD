@@ -1,4 +1,5 @@
-//import { googleIt } from '@bochilteam/scraper'  
+//import { googleIt } from '@bochilteam/scraper'
+import translate from '@vitalets/google-translate-api'
 import googleIt from 'google-it'
 import fetch from 'node-fetch'
 import axios from 'axios'
@@ -34,9 +35,12 @@ try {
 let apiUrl = `https://api.lolhuman.xyz/api/gsearch?apikey=${lolkeysapi}&query=` + encodeURIComponent(text)
 let response = await fetch(apiUrl)
 let data = await response.json() 
-let msg = data.result.map(({ title, link, desc }) => {
-return `*• ${title}*\n_${desc}_\n_${link}_`
-}).join('\n\n')
+let translatedResults = await Promise.all(data.result.map(async ({ title, link, desc }) => {
+let translatedTitle = await translate(title, { to: 'es', autoCorrect: true })
+let translatedDesc = await translate(desc, { to: 'es', autoCorrect: true })
+return `*• ${translatedTitle.text}*\n_${translatedDesc.text}_\n_${link}_`
+}))
+let msg = translatedResults.join('\n\n');
 await m.reply(msg)
 } catch (e) {
 reportError(e)
