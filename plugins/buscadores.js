@@ -37,8 +37,8 @@ let apiUrl = `https://api.lolhuman.xyz/api/gsearch?apikey=${lolkeysapi}&query=` 
 let response = await fetch(apiUrl)
 let data = await response.json() 
 let translatedResults = await Promise.all(data.result.map(async ({ title, link, desc }) => {
-let translatedTitle = await translate(title, { to: global.lenguajeGB || 'en', autoCorrect: true })
-let translatedDesc = await translate(desc, { to: global.lenguajeGB || 'en', autoCorrect: true })
+let translatedTitle = await translate(title, { to: lenguajeGB.lenguaje() || 'en', autoCorrect: true })
+let translatedDesc = await translate(desc, { to: lenguajeGB.lenguaje() || 'en', autoCorrect: true })
 return `*• ${translatedTitle.text}*\n_${translatedDesc.text}_\n_${link}_`
 }))
 let msg = translatedResults.join('\n\n')
