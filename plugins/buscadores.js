@@ -29,7 +29,7 @@ text = args.slice(0).join(" ")
 } else if (m.quoted && m.quoted.text) {
 text = m.quoted.text
 } else return conn.reply(m.chat, lenguajeGB.smsMalused3() + `\n*${usedPrefix + command} Qué es Matemáticas?*`, m)
-/*if (!text) return conn.reply(m.chat, lenguajeGB.smsMalused2() + `\n*${usedPrefix + command} Qué es Matemáticas?*`, m)
+
 try {
 const fetch = (await import('node-fetch')).default
 let full = /f$/i.test(command);
@@ -38,20 +38,20 @@ let apiUrl = `https://api.lolhuman.xyz/api/gsearch?apikey=${lolkeysapi}&query=` 
 let response = await fetch(apiUrl)
 let data = await response.json() 
 let msg = data.result.map(({ title, link, desc }) => {
-return `*${title}*\n_${desc}_\n_${link}_`
+return `*• ${title}*\n_${desc}_\n_${link}_`
 }).join('\n\n')
-m.reply(msg)
+await m.reply(msg)
 } catch (e) {
 reportError(e)
-}*/
+}
 
-let url = 'https://google.com/search?q=' + encodeURIComponent(text)
+/*let url = 'https://google.com/search?q=' + encodeURIComponent(text)
 let search = await googleIt({ query: text })
 let msg = search.map(({ title, link, snippet}) => {
 return `*• ${title}*\n_${snippet}_\n_${link}_`
 }).join`\n\n`
 let img = 'https://wpbr.mx/blog/wp-content/uploads/2015/09/Nuevo-logo-de-google.jpg' || gataMenu.getRandom()
-await conn.sendFile(m.chat, img, '', url + '\n\n' + msg, m)
+await conn.sendFile(m.chat, img, '', url + '\n\n' + msg, m)*/
 break
     
 case isCommand2:
