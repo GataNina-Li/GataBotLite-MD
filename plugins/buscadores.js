@@ -32,7 +32,13 @@ text = args.slice(0).join(" ")
 } else if (m.quoted && m.quoted.text) {
 text = m.quoted.text
 } else return conn.reply(m.chat, lenguajeGB.smsMalused3() + `\n*${usedPrefix + command} Qué es Matemáticas?*`, m)
-
+try {
+let search = await googleIt({ query: text })
+let msg = search.map(({ title, link, snippet}) => {
+return `*• ${title}*\n_${snippet}_\n_${link}_`
+}).join`\n\n`
+await conn.sendFile(m.chat, img, '', url + '\n\n' + msg, m)
+} catch { 
 try {
 let apiUrl = `https://api.lolhuman.xyz/api/gsearch?apikey=${lolkeysapi}&query=` + encodeURIComponent(text)
 let response = await fetch(apiUrl)
@@ -47,14 +53,6 @@ await conn.sendFile(m.chat, img, '', url + '\n\n' + msg, m)
 } catch (e) {
 reportError(e)
 }
-
-/*
-let search = await googleIt({ query: text })
-let msg = search.map(({ title, link, snippet}) => {
-return `*• ${title}*\n_${snippet}_\n_${link}_`
-}).join`\n\n`
-
-await conn.sendFile(m.chat, img, '', url + '\n\n' + msg, m)*/
 break
     
 case isCommand2:
