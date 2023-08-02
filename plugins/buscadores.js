@@ -31,9 +31,6 @@ text = m.quoted.text
 } else return conn.reply(m.chat, lenguajeGB.smsMalused3() + `\n*${usedPrefix + command} Qué es Matemáticas?*`, m)
 
 try {
-const fetch = (await import('node-fetch')).default
-let full = /f$/i.test(command);
-let text = args.join(' ');
 let apiUrl = `https://api.lolhuman.xyz/api/gsearch?apikey=${lolkeysapi}&query=` + encodeURIComponent(text)
 let response = await fetch(apiUrl)
 let data = await response.json() 
