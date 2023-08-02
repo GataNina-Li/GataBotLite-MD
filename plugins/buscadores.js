@@ -1,4 +1,5 @@
 import { googleIt } from '@bochilteam/scraper'  
+import googleIt from 'google-it'
 import fetch from 'node-fetch'
 import axios from 'axios'
 import yts from 'yt-search'
@@ -44,11 +45,12 @@ m.reply(msg)
 reportError(e)
 }*/
 
-//const text = args.join` `
-let API_KEY = "7d3eb92cb730ed676d5afbd6c902ac1f"
-let search = await (await fetch("http://api.serpstack.com/search?access_key=" + API_KEY + "&type=web&query=" + text)).json()
-let caption = search.organic_results.map((v, index) => `${htki + " " + ++index + " " + htka}\n*${v.title || 'Tidak terdeteksi'}*\n  *○ Link:* ${v.url || 'Tidak terdeteksi'}\n  *○ Snippet:* ${v.snippet || 'Tidak terdeteksi'}`).join("\n\n")
-await conn.sendFile(m.chat, null, "", caption, m)
+let url = 'https://google.com/search?q=' + encodeURIComponent(text)
+let search = await googleIt({ query: text })
+let msg = search.map(({ title, link, snippet}) => {
+return `*${title}*\n_${link}_\n_${snippet}_`
+}).join`\n\n`
+m.reply(msg)
 break
     
 case isCommand2:
