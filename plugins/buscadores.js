@@ -37,7 +37,7 @@ let search = await googleIt({ query: text })
 let msg = search.map(({ title, link, snippet}) => {
 return `*• ${title}*\n_${snippet}_\n_${link}_`
 }).join`\n\n`
-await conn.sendFile(m.chat, img, '', url + '\n\n' + msg, m)
+await conn.sendFile(m.chat, img, '', url + '\n\n' + msg, m) 
 } catch { 
 try {
 let apiUrl = `https://api.lolhuman.xyz/api/gsearch?apikey=${lolkeysapi}&query=` + encodeURIComponent(text)
