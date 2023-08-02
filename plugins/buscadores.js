@@ -24,7 +24,7 @@ console.log(e)
 
 switch (true) {     
 case isCommand1:
-const fetch = (await import('node-fetch')).default
+//const fetch = (await import('node-fetch')).default
 let img = 'https://wpbr.mx/blog/wp-content/uploads/2015/09/Nuevo-logo-de-google.jpg' || gataMenu.getRandom()
 let url = 'https://google.com/search?q=' + encodeURIComponent(text)
 if (args.length >= 1) {
