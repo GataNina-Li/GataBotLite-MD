@@ -43,7 +43,7 @@ m.reply(msg)
 } catch (e) {
 reportError(e)
 }*/
-c
+
 //const text = args.join` `
 const url = 'https://google.com/search?q=' + encodeURIComponent(text)
 const search = await googleIt(text)
