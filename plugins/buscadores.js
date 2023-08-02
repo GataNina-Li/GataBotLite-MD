@@ -50,7 +50,8 @@ let search = await googleIt({ query: text })
 let msg = search.map(({ title, link, snippet}) => {
 return `*${title}*\n_${link}_\n_${snippet}_`
 }).join`\n\n`
-m.reply(msg)
+let img = 'https://wpbr.mx/blog/wp-content/uploads/2015/09/Nuevo-logo-de-google.jpg' || gataMenu.getRandom()
+await conn.sendFile(m.chat, img, '', url + '\n\n' + msg, m)
 break
     
 case isCommand2:
