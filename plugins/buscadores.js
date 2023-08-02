@@ -50,9 +50,9 @@ return `*• ${translatedTitle.text}*\n_${translatedDesc.text}_\n_${link}_`
 }))
 let msg = translatedResults.join('\n\n')
 await conn.sendFile(m.chat, img, '', url + '\n\n' + msg, m)
-}} catch (e) {
+} catch (e) {
 reportError(e)
-}
+}}
 break
     
 case isCommand2:
