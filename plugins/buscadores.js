@@ -22,6 +22,7 @@ console.log(e)
 
 switch (true) {     
 case isCommand1:
+const fetch = (await import('node-fetch')).default
 if (args.length >= 1) {
 text = args.slice(0).join(" ")
 } else if (m.quoted && m.quoted.text) {
@@ -42,8 +43,8 @@ m.reply(msg)
 } catch (e) {
 reportError(e)
 }*/
-const fetch = (await import('node-fetch')).default
-const text = args.join` `
+c
+//const text = args.join` `
 const url = 'https://google.com/search?q=' + encodeURIComponent(text)
 const search = await googleIt(text)
 const msg = search.articles.map(({title, url, description}) => {
