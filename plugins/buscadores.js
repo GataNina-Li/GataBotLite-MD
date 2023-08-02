@@ -78,7 +78,7 @@ let hasill = await tioress.json()
 m.reply(`${hasill.result}`.trim())   
 } catch (e) {
 reportError(e)
-}}}}
+}}}
 break
     
 case isCommand3:
