@@ -26,6 +26,7 @@ switch (true) {
 case isCommand1:
 const fetch = (await import('node-fetch')).default
 let img = 'https://wpbr.mx/blog/wp-content/uploads/2015/09/Nuevo-logo-de-google.jpg' || gataMenu.getRandom()
+let url = 'https://google.com/search?q=' + encodeURIComponent(text)
 if (args.length >= 1) {
 text = args.slice(0).join(" ")
 } else if (m.quoted && m.quoted.text) {
@@ -47,7 +48,7 @@ await conn.sendFile(m.chat, img, '', url + '\n\n' + msg, m)
 reportError(e)
 }
 
-/*let url = 'https://google.com/search?q=' + encodeURIComponent(text)
+/*
 let search = await googleIt({ query: text })
 let msg = search.map(({ title, link, snippet}) => {
 return `*• ${title}*\n_${snippet}_\n_${link}_`
