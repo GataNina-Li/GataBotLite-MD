@@ -25,6 +25,7 @@ console.log(e)
 switch (true) {     
 case isCommand1:
 const fetch = (await import('node-fetch')).default
+let img = 'https://wpbr.mx/blog/wp-content/uploads/2015/09/Nuevo-logo-de-google.jpg' || gataMenu.getRandom()
 if (args.length >= 1) {
 text = args.slice(0).join(" ")
 } else if (m.quoted && m.quoted.text) {
@@ -36,12 +37,12 @@ let apiUrl = `https://api.lolhuman.xyz/api/gsearch?apikey=${lolkeysapi}&query=` 
 let response = await fetch(apiUrl)
 let data = await response.json() 
 let translatedResults = await Promise.all(data.result.map(async ({ title, link, desc }) => {
-let translatedTitle = await translate(title, { to: 'es', autoCorrect: true })
-let translatedDesc = await translate(desc, { to: 'es', autoCorrect: true })
+let translatedTitle = await translate(title, { to: global.lenguajeGB || 'en', autoCorrect: true })
+let translatedDesc = await translate(desc, { to: global.lenguajeGB || 'en', autoCorrect: true })
 return `*• ${translatedTitle.text}*\n_${translatedDesc.text}_\n_${link}_`
 }))
-let msg = translatedResults.join('\n\n');
-await m.reply(msg)
+let msg = translatedResults.join('\n\n')
+await conn.sendFile(m.chat, img, '', url + '\n\n' + msg, m)
 } catch (e) {
 reportError(e)
 }
@@ -51,7 +52,7 @@ let search = await googleIt({ query: text })
 let msg = search.map(({ title, link, snippet}) => {
 return `*• ${title}*\n_${snippet}_\n_${link}_`
 }).join`\n\n`
-let img = 'https://wpbr.mx/blog/wp-content/uploads/2015/09/Nuevo-logo-de-google.jpg' || gataMenu.getRandom()
+
 await conn.sendFile(m.chat, img, '', url + '\n\n' + msg, m)*/
 break
     
