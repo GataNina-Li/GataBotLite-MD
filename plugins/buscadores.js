@@ -48,6 +48,7 @@ const fetch = (await import('node-fetch')).default
   try {
     const ss = `https://image.thum.io/get/fullpage/${url}`
     await conn.sendFile(m.chat, ss, 'error.png', url + '\n\n' + msg, m)
+    m.reply(msg)
   } catch {
     m.reply(msg);
   }
