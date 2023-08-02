@@ -22,19 +22,22 @@ console.log(e)
 
 switch (true) {     
 case isCommand1:
-if (!text) return conn.reply(m.chat, lenguajeGB.smsAvisoMG() + lenguajeGB.smsMalused2() + `\n*${usedPrefix + command} Qué es Matemáticas?*` , m)
-try{
+if (!text) return conn.reply(m.chat, lenguajeGB.smsAvisoMG() + lenguajeGB.smsMalused2() + `\n*${usedPrefix + command} Qué es Matemáticas?*`, m)
+try {
 const fetch = (await import('node-fetch')).default
-let full = /f$/i.test(command)
-let text = args.join` `
-let url = 'https://google.com/search?q=' + encodeURIComponent(text)
-let search = await googleIt(text, { limit: 30 });
-let msg = search.articles.map(({ title, url, description }) => { return `*${title}*\n_${url}_\n_${description}_` }).join('\n\n')
+let full = /f$/i.test(command);
+let text = args.join(' ');
+let apiUrl = `https://api.lolhuman.xyz/api/gsearch?apikey=${lolkeysapi}&query=` + encodeURIComponent(text)
+let response = await fetch(apiUrl)
+let data = await response.json() 
+let msg = data.result.map(({ title, link, desc }) => {
+return `*${title}*\n_${desc}_\n_${link}_`
+}).join('\n\n')
 m.reply(msg)
 } catch (e) {
 reportError(e)
-}    
-break 
+}
+break
     
 case isCommand2:
 if (args.length >= 1) {
