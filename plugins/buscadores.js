@@ -22,6 +22,11 @@ console.log(e)
 
 switch (true) {     
 case isCommand1:
+if (args.length >= 1) {
+text = args.slice(0).join(" ")
+} else if (m.quoted && m.quoted.text) {
+text = m.quoted.text
+} else return conn.reply(m.chat, lenguajeGB.smsMalused3() + `\n*${usedPrefix + command} Qué es Matemáticas?*`, m)
 /*if (!text) return conn.reply(m.chat, lenguajeGB.smsMalused2() + `\n*${usedPrefix + command} Qué es Matemáticas?*`, m)
 try {
 const fetch = (await import('node-fetch')).default
@@ -38,20 +43,15 @@ m.reply(msg)
 reportError(e)
 }*/
 const fetch = (await import('node-fetch')).default
-  const text = args.join` `;
-  if (!text) return conn.reply(m.chat, lenguajeGB.smsMalused2() + `\n*${usedPrefix + command} Qué es Matemáticas?*`, m)
-  const url = 'https://google.com/search?q=' + encodeURIComponent(text)
-  const search = await googleIt(text)
-  const msg = search.articles.map(({title, url, description}) => {
-    return `*${title}*\n_${url}_\n_${description}_`
-  }).join('\n\n');
-  try {
-    const ss = `https://image.thum.io/get/fullpage/${url}`
-    await conn.sendFile(m.chat, ss, 'error.png', url + '\n\n' + msg, m)
-    m.reply(msg)
-  } catch {
-    m.reply(msg);
-  }
+const text = args.join` `
+const url = 'https://google.com/search?q=' + encodeURIComponent(text)
+const search = await googleIt(text)
+const msg = search.articles.map(({title, url, description}) => {
+return `*${title}*\n_${desc}_\n_${link}_`
+}).join('\n\n')
+const ss = `https://image.thum.io/get/fullpage/${url}`
+await conn.sendFile(m.chat, ss, 'error.png', url + '\n\n' + msg, m)
+m.reply(msg)
 break
     
 case isCommand2:
