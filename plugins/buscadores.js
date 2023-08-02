@@ -45,14 +45,10 @@ reportError(e)
 }*/
 
 //const text = args.join` `
-const url = 'https://google.com/search?q=' + encodeURIComponent(text)
-const search = await googleIt(text)
-const msg = search.articles.map(({title, url, description}) => {
-return `*${title}*\n_${desc}_\n_${link}_`
-}).join('\n\n')
-const ss = `https://image.thum.io/get/fullpage/${url}`
-await conn.sendFile(m.chat, ss, 'error.png', url + '\n\n' + msg, m)
-m.reply(msg)
+let API_KEY = "7d3eb92cb730ed676d5afbd6c902ac1f"
+let search = await (await fetch("http://api.serpstack.com/search?access_key=" + API_KEY + "&type=web&query=" + text)).json()
+let caption = search.organic_results.map((v, index) => `${htki + " " + ++index + " " + htka}\n*${v.title || 'Tidak terdeteksi'}*\n  *○ Link:* ${v.url || 'Tidak terdeteksi'}\n  *○ Snippet:* ${v.snippet || 'Tidak terdeteksi'}`).join("\n\n")
+await conn.sendFile(m.chat, null, "", caption, m)
 break
     
 case isCommand2:
