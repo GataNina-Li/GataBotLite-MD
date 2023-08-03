@@ -515,8 +515,8 @@ const tweetTitle = tweetData.title
 const tweetVideoUrl = tweetData.media[0].url
 const shortUrl1 = await (await fetch(`https://tinyurl.com/api-create.php?url=${text}`)).text()
 const shortUrl2 = tweetTitle.match(/(https?:\/\/t\.co\/\w+)/i)[0]
-const shortUrl3 = tweetTitle.replace(shortUrl1, '').trim()
-const txt1 = `💙 ${shortUrl3}\n\n🔗 *URL:* ${shortUrl1}\n\n${shortUrl2}`.trim()
+const tweetTitleWithoutUrl = tweetData.title.replace(shortUrl1, '').trim()
+const txt1 = `💙 ${tweetTitleWithoutUrl}\n\n🔗 *URL:* ${shortUrl1}\n\n${shortUrl2}`.trim()
 await conn.sendFile(m.chat, tweetVideoUrl, 'error.mp4', txt1, m)
 } catch (e) {
 reportError(e)} 
