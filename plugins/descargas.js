@@ -26,7 +26,7 @@ const isCommand14 = /^(openjourney|journey|midjourney)$/i.test(command)
 const isCommand15 = /^(spotify|music)$/i.test(command)
 const isCommand16 = /^(spot(ify)?search)$/i.test(command)
 const isCommand17 = /^(i(nsta)?g(ram)?(dl)?|igimage|igdownload)$/i.test(command)
-
+const isCommand18 = /^(twit(t(er(dl)?)?)?)$/i.test(command)
 
 async function reportError(e) {
 let errb = await m.reply(lenguajeGB['smsMalError3']() + '\n*' + lenguajeGB.smsMensError1() + '*\n*' + usedPrefix + `${lenguajeGB.lenguaje() == 'es' ? 'reporte' : 'report'}` + '* ' + `${lenguajeGB.smsMensError2()} ` + usedPrefix + command)
@@ -503,12 +503,25 @@ await conn.sendMessage(m.chat, { image: { url: ig_ }, caption: txt1 }, { quoted:
 reportError(e)} 
 break
 
-//case
-
-//break
+case isCommand18:
+const twitterUrlRegex = /^https?:\/\/(www\.)?twitter\.com\/(\w+)\/status\/(\d+)$/i
+if (!args[0] || !args[0].match(twitterUrlRegex)) return m.reply(lenguajeGB.smsMalused2() + `*${usedPrefix + command}* ` + 'https://twitter.com/gofoodindonesia/status/1229369819511709697')
+try{ 
+const apiUrl = `https://api.lolhuman.xyz/api/twitter?apikey=${apiKey}&url=${encodeURIComponent(text)}`
+const response = await fetch(apiUrl)
+const jsonData = await response.json()
+const tweetData = jsonData.result
+const tweetTitle = tweetData.title
+const tweetVideoUrl = tweetData.media[0].url
+const shortUrl1 = await (await fetch(`https://tinyurl.com/api-create.php?url=${text}`)).text()
+const txt1 = `🔗 *URL:* ${shortUrl1}\n\n${tweetTitle}`.trim()
+await conn.sendFile(m.chat, tweetVideoUrl, 'error.mp4', txt1, m)
+} catch (e) {
+reportError(e)} 
+break
 }}
 
-handler.command = /^(gimage|imagen?|play?|play2?|fgmp3|dlmp3|getaud|yt(a|mp3)?|ytmp3doc|ytadoc|fgmp4|dlmp4|getvid|yt(v|mp4)?|ytmp4doc|ytvdoc|facebook|fb|facebookdl|fbdl|mediafire(dl)?|dlmediafire|ytmax|ytmaxdoc|tiktok|tkdl|dalle|openiamage|aiimage|aiimg|aimage|iaimagen|openaimage|openaiimage|openjourney|journey|midjourney|spotify|music|spot(ify)?search|i(nsta)?g(ram)?(dl)?|igimage|igdownload)$/i
+handler.command = /^(gimage|imagen?|play?|play2?|fgmp3|dlmp3|getaud|yt(a|mp3)?|ytmp3doc|ytadoc|fgmp4|dlmp4|getvid|yt(v|mp4)?|ytmp4doc|ytvdoc|facebook|fb|facebookdl|fbdl|mediafire(dl)?|dlmediafire|ytmax|ytmaxdoc|tiktok|tkdl|dalle|openiamage|aiimage|aiimg|aimage|iaimagen|openaimage|openaiimage|openjourney|journey|midjourney|spotify|music|spot(ify)?search|i(nsta)?g(ram)?(dl)?|igimage|igdownload|twit(t(er(dl)?)?)?)$/i
 handler.register = true
 export default handler
 
