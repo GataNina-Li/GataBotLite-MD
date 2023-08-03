@@ -36,4 +36,4 @@ console.log('El texto no contiene palabras prohibidas.')
 }
 
 handler.command = /^(prueba03)$/i
-export default handler*/
+export default handler
