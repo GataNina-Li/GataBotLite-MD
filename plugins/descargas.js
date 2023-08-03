@@ -94,24 +94,24 @@ await m.react(sent)
 await message.react(correct)}
 
 if (command == 'play2') {
-video = `*◜⋯ ⋯ ⋯ Y O U T U B E ⋯ ⋯ ⋯◞*
+let video = `*◜⋯ ⋯ ⋯ Y O U T U B E ⋯ ⋯ ⋯◞*
 *◎ ${lenguajeGB.smsYT1()}*
-${yt_play2[0].title}
+${yt_play[0].title}
 
 *◎ ${lenguajeGB.smsYT3()}*
-${secondString(yt_play2[0].duration.seconds)}
+${secondString(yt_play[0].duration.seconds)}
 
 *◎ ${lenguajeGB.smsYT4()}*
-${MilesNumber(yt_play2[0].views)}
+${MilesNumber(yt_play[0].views)}
 
 *◎ URL*
-${yt_play2[0].url}
+${yt_play[0].url}
 *◜⋯ ⋯ ⋯ ⬇️ V I D E O ⬇️ ⋯ ⋯ ⋯◞*`.trim()
 //let message = await conn.sendMessage(m.chat, { text: video, contextInfo: { externalAdReply: { title: wm, body: wait2.replace(/\*/g, ''), image: { url: yt_play2[0].thumbnail }, sourceUrl: md, mediaType: 1, showAdAttribution: false, renderLargerThumbnail: true }}})
 await m.react(sending)
 await message.react(waitemot)
 setTimeout(() => { message.react(waitemot2) }, 1000)
-if (!yt_play2[0].title || !yt_play2[0].ago || !yt_play2[0].url|| !secondString(yt_play2[0].duration.seconds) || !MilesNumber(yt_play2[0].views)) { 
+if (!yt_play[0].title || !yt_play[0].ago || !yt_play[0].url|| !secondString(yt_play[0].duration.seconds) || !MilesNumber(yt_play[0].views)) { 
 setTimeout(() => { message.react(alert) }, 2000)}
 let qu = '360'
 let q = qu + 'p'
