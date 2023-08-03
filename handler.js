@@ -1,4 +1,4 @@
-import { generateWAMessageFromContent } from "@adiwajshing/baileys" 
+import { generateWAMessageFromContent } from "@whiskeysockets/baileys" 
 import { smsg } from './lib/simple.js'
 import { format } from 'util'
 import { fileURLToPath } from 'url'
@@ -8,9 +8,9 @@ import chalk from 'chalk'
 import fetch from 'node-fetch' 
 
 /**
- * @type {import('@adiwajshing/baileys')}  
+ * @type {import('@whiskeysockets/baileys')}  
  */
-const { proto } = (await import('@adiwajshing/baileys')).default
+const { proto } = (await import('@whiskeysockets/baileys')).default
 const isNumber = x => typeof x === 'number' && !isNaN(x)
 const delay = ms => isNumber(ms) && new Promise(resolve => setTimeout(function () {
 clearTimeout(this)
@@ -19,7 +19,7 @@ resolve()
  
 /**
  * Handle messages upsert
- * @param {import('@adiwajshing/baileys').BaileysEventMap<unknown>['messages.upsert']} groupsUpdate 
+ * @param {import('@whiskeysockets/baileys').BaileysEventMap<unknown>['messages.upsert']} groupsUpdate 
  */
 export async function handler(chatUpdate) {
 this.msgqueque = this.msgqueque || []
