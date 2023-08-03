@@ -514,7 +514,8 @@ const tweetData = jsonData.result
 const tweetTitle = tweetData.title
 const tweetVideoUrl = tweetData.media[0].url
 const shortUrl1 = await (await fetch(`https://tinyurl.com/api-create.php?url=${text}`)).text()
-const txt1 = `🔗 *URL:* ${shortUrl1}\n\n${tweetTitle}`.trim()
+const shortUrl2 = tweetData.title.match(/(https?:\/\/t\.co\/\w+)/i)[0]
+const txt1 = `💙 ${tweetTitle}\n\n🔗 *URL:* ${shortUrl1}\n\n${shortUrl2}`.trim()
 await conn.sendFile(m.chat, tweetVideoUrl, 'error.mp4', txt1, m)
 } catch (e) {
 reportError(e)} 
