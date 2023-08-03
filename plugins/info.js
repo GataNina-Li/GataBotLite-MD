@@ -1,8 +1,9 @@
-let { MessageType } = (await import('@adiwajshing/baileys')).default 
+//let { MessageType } = (await import('@adiwajshing/baileys')).default 
+let MessageType = (await import(global.baileys)).default
 import { promises } from 'fs'
 import { join } from 'path'
 import fs from 'fs'
-import os, { cpus as _cpus, totalmem, freemem } from 'os';
+import os, { cpus as _cpus, totalmem, freemem } from 'os'; 
 import util from 'util'
 import { performance } from 'perf_hooks'
 import fetch from 'node-fetch'

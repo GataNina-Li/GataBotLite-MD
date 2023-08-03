@@ -1,4 +1,4 @@
-let { downloadContentFromMessage } = (await import('@adiwajshing/baileys'));
+let downloadContentFromMessage = (await import(global.baileys)).default
 
 export async function before(m, { isAdmin, isBotAdmin }) {
 let chat = db.data.chats[m.chat]

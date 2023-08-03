@@ -1,8 +1,9 @@
 import fetch from 'node-fetch'
-import * as baileys from '@adiwajshing/baileys'
+//import * as baileys from '@adiwajshing/baileys'
+let baileys = (await import(global.baileys)).default
 import PhoneNumber from 'awesome-phonenumber'
 import { sticker } from '../lib/sticker.js'
-
+ 
 let handler = async (m, { conn, command, usedPrefix, args, participants, groupMetadata, text }) => {
 let pp, groupAdmins, listAdmin, owner
 const isCommand1 = /^(infogrupo|gro?upinfo|info(gro?up|gc))$/i.test(command)

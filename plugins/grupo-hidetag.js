@@ -1,6 +1,7 @@
-import { generateWAMessageFromContent } from '@adiwajshing/baileys'
+//import { generateWAMessageFromContent } from '@adiwajshing/baileys'
+let generateWAMessageFromContent = (await import(global.baileys)).default
 import * as fs from 'fs'
-let handler = async (m, { conn, text, participants, isOwner, isAdmin }) => {
+let handler = async (m, { conn, text, participants, isOwner, isAdmin }) => { 
 try {  
 let users = participants.map(u => conn.decodeJid(u.id))
 let q = m.quoted ? m.quoted : m || m.text || m.sender

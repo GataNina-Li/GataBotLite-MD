@@ -1,4 +1,4 @@
-import { WAMessageStubType } from '@adiwajshing/baileys'
+let WAMessageStubType = (await import(global.baileys)).default
 
 export async function before(m, { conn, participants, groupMetadata }) {
 if (!m.messageStubType || !m.isGroup) return
