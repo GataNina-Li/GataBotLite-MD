@@ -38,7 +38,7 @@ handler.command = /^(prueba03)$/i
 export default handler */
 
 import translate from '@vitalets/google-translate-api';
-const prohibited = ['poop', 'dick', 'porn', 'gore', 'cum', 'prostitute', 'ass', 'pussy', 'rule34', 'harddick', 'dick', 'penis', 'pornography', 'child porn', 'child pornography', 'cp']
+const prohibited = ['poop', 'dick', 'porn', 'gore', 'cum', 'prostitute', 'ass', 'pussy', 'rule34', 'harddick', 'dick', 'penis', 'pornography', 'child porn', 'child pornography', 'cp', 'cock', 'vagina', 'pussy']
 
 let handler = async (m, { conn, text, usedPrefix, command }) => {
 async function detectProhibitedWords(text) {
