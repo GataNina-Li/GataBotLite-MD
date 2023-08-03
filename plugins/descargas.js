@@ -505,7 +505,7 @@ break
 
 case isCommand18:
 const twitterUrlRegex = /^https?:\/\/(www\.)?twitter\.com\/(\w+)\/status\/(\d+)$/i
-if (!args[0]) return m.reply(lenguajeGB.smsMalused2() + `*${usedPrefix + command}* ` + 'https://twitter.com/gofoodindonesia/status/1229369819511709697')
+if (!args[0].match(twitterUrlRegex)) return m.reply(lenguajeGB.smsMalused2() + `*${usedPrefix + command}* ` + 'https://twitter.com/gofoodindonesia/status/1229369819511709697')
 try{ 
 const apiUrl = `https://api.lolhuman.xyz/api/twitter?apikey=${lolkeysapi}&url=${encodeURIComponent(text)}`
 const response = await fetch(apiUrl)
@@ -515,8 +515,8 @@ const tweetTitle = tweetData.title
 const tweetVideoUrl = tweetData.media[0].url
 const shortUrl1 = await (await fetch(`https://tinyurl.com/api-create.php?url=${text}`)).text()
 const shortUrl2 = tweetTitle.match(/(https?:\/\/t\.co\/\w+)/i)[0]
-const tweetTitleWithoutUrl = tweetData.title.replace(/https?:\/\/t\.co\/\w+/i, '').trim()
-const txt1 = `💙 ${tweetTitleWithoutUrl}\n\n🔗 *URL:* ${shortUrl1}\n\n${shortUrl2}`.trim()
+const tweetTitleWithoutUrl = tweetTitle.replace(/https?:\/\/t\.co\/\w+/i, '').trim()
+const txt1 = `💙 ${tweetTitleWithoutUrl}\n\n🔗 *URL:*\n• _${shortUrl1}_\n\n• _${shortUrl2}_`.trim()
 await conn.sendFile(m.chat, tweetVideoUrl, 'error.mp4', txt1, m)
 } catch (e) {
 reportError(e)} 
