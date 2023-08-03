@@ -94,6 +94,10 @@ await m.react(sent)
 await message.react(correct)}
 
 if (command == 'play2') {
+let vid = (await yts(text)).all[0]
+const yt_play = await search(args.join(" "))
+if (!yt_play) return m.reply(lenguajeGB.smsMalError2() + `_${lenguajeGB.smsYT6()}_`)
+let { title, description, url, thumbnail, videoId, timestamp, views, published } = vid
 let video = `*◜⋯ ⋯ ⋯ Y O U T U B E ⋯ ⋯ ⋯◞*
 *◎ ${lenguajeGB.smsYT1()}*
 ${yt_play[0].title}
@@ -107,7 +111,7 @@ ${MilesNumber(yt_play[0].views)}
 *◎ URL*
 ${yt_play[0].url}
 *◜⋯ ⋯ ⋯ ⬇️ V I D E O ⬇️ ⋯ ⋯ ⋯◞*`.trim()
-//let message = await conn.sendMessage(m.chat, { text: video, contextInfo: { externalAdReply: { title: wm, body: wait2.replace(/\*/g, ''), image: { url: yt_play2[0].thumbnail }, sourceUrl: md, mediaType: 1, showAdAttribution: false, renderLargerThumbnail: true }}})
+let message = await conn.sendMessage(m.chat, { text: video, contextInfo: { externalAdReply: { title: wm, body: wait2.replace(/\*/g, ''), thumbnailUrl: thumbnail, sourceUrl: md, mediaType: 1, showAdAttribution: false, renderLargerThumbnail: true }}})
 await m.react(sending)
 await message.react(waitemot)
 setTimeout(() => { message.react(waitemot2) }, 1000)
