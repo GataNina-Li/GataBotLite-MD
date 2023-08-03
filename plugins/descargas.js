@@ -54,11 +54,11 @@ break
     
 case isCommand2:
 if (!text) return m.reply(lenguajeGB.smsMalused2() + `*${usedPrefix + command} Billie Eilish - Bellyache*`)
-//let vid = (await yts(text)).all[0]
+let vid = (await yts(text)).all[0]
 const yt_play = await search(args.join(" "))
 if (!yt_play) return m.reply(lenguajeGB.smsMalError2() + `_${lenguajeGB.smsYT6()}_`)
 try{
-//let { title, description, url, thumbnail, videoId, timestamp, views, published } = vid
+let { title, description, url, thumbnail, videoId, timestamp, views, published } = vid
 let video = `*◜⋯ ⋯ ⋯ Y O U T U B E ⋯ ⋯ ⋯◞*
 *◎ ${lenguajeGB.smsYT1()}*
 ${yt_play[0].title}
@@ -75,7 +75,7 @@ ${yt_play[0].url}
 //url = 'https://www.youtube.com/watch?v=' + videoId
 //let link_web = `https://yt.btch.bz/downloadAudio?URL=${url}&videoName=video`     
 
-let message = await conn.sendMessage(m.chat, { text: video, contextInfo: { externalAdReply: { title: wm, body: wait2.replace(/\*/g, ''), image: { url: yt_play[0].thumbnail }, sourceUrl: md, mediaType: 1, showAdAttribution: false, renderLargerThumbnail: true }}})
+let message = await conn.sendMessage(m.chat, { text: video, contextInfo: { externalAdReply: { title: wm, body: wait2.replace(/\*/g, ''), image: { url: thumbnail }, sourceUrl: md, mediaType: 1, showAdAttribution: false, renderLargerThumbnail: true }}})
 await m.react(sending)
 await message.react(waitemot)
 setTimeout(() => { message.react(waitemot2) }, 1000)
