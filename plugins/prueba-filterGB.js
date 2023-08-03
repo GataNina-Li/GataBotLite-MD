@@ -1,5 +1,5 @@
-const translate = require('@vitalets/google-translate-api');
-const prohibited = ['caca', 'polla', 'porno', 'porn', 'gore', 'cum', 'semen', 'puta', 'puto', 'culo', 'putita', 'putito', 'pussy'];
+const translate = require('@vitalets/google-translate-api')
+const prohibited = ['caca', 'polla', 'porno', 'porn', 'gore', 'cum', 'semen', 'puta', 'puto', 'culo', 'putita', 'putito', 'pussy']
 
 let handler = async (m, { conn, text, usedPrefix, command }) => { 
 function detectProhibitedWords(text_) {
