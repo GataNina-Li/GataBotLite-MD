@@ -1,4 +1,4 @@
-import translate from '@vitalets/google-translate-api' // Importar la librería @vitalets/google-translate-api para traducciones
+/*import translate from '@vitalets/google-translate-api' // Importar la librería @vitalets/google-translate-api para traducciones
 const prohibited = ['poop', 'dick', 'porn', 'gore', 'cum', 'prostitute', 'ass', 'pussy'] // Lista de palabras prohibidas en inglés
 
 let handler = async (m, { conn, text, usedPrefix, command }) => {
@@ -35,4 +35,31 @@ m.reply('El texto no contiene palabras prohibidas.') // Responder si no se encon
 }
 
 handler.command = /^(prueba03)$/i 
-export default handler 
+export default handler */
+
+import translate from '@vitalets/google-translate-api';
+const prohibited = ['poop', 'dick', 'porn', 'gore', 'cum', 'prostitute', 'ass', 'pussy']
+
+let handler = async (m, { conn, text, usedPrefix, command }) => {
+async function detectProhibitedWords(text) {
+const translatedText = await translate(text, { to: 'en' })
+const lowercaseTranslatedText = translatedText.text.toLowerCase()
+
+if (prohibited.some(word => lowercaseTranslatedText.includes(word))) {
+return m.reply('⚠️😾')
+} else {
+return null
+}}
+
+detectProhibitedWords(text)
+.then(response => {
+if (response) {
+console.log(response)
+} else {
+m.reply('El texto no contiene palabras prohibidas.')
+}})
+}
+
+handler.command = /^(prueba03)$/i 
+export default handler
+
