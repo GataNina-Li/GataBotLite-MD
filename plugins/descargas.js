@@ -119,7 +119,7 @@ if (!yt_play[0].title || !yt_play[0].ago || !yt_play[0].url|| !secondString(yt_p
 setTimeout(() => { message.react(alert) }, 2000)}
 let qu = '360'
 let q = qu + 'p'
-let v = yt_play2[0].url
+let v = yt_play[0].url
 const yt = await youtubedl(v).catch(async _ => await youtubedlv2(v))
 const dl_url = await yt.video[q].download()
 const ttl = await yt.title
