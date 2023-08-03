@@ -83,7 +83,7 @@ setTimeout(() => { message.react(waitemot2) }, 1000)
 if (!yt_play[0].title || !yt_play[0].ago || !yt_play[0].url|| !secondString(yt_play[0].duration.seconds) || !MilesNumber(yt_play[0].views)) { 
 setTimeout(() => { message.react(alert) }, 2000)}
 
-await conn.sendMessage(m.chat, { audio: { url: dl_url }, mimetype: 'audio/mpeg' }, { quoted: m })
+await conn.sendMessage(m.chat, { audio: { url: yt_play[0].url }, mimetype: 'audio/mpeg' }, { quoted: m })
 await m.react(sent)    
 await message.react(correct)}
 
