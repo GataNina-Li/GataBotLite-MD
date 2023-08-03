@@ -1,42 +1,38 @@
-import translate from '@vitalets/google-translate-api'
-const prohibited = ['caca', 'polla', 'porno', 'porn', 'gore', 'semen', 'cum', 'puta', 'puto', 'culo', 'putita', 'putito', 'pussy']
+import translate from '@vitalets/google-translate-api' // Importar la librería @vitalets/google-translate-api para traducciones
+const prohibited = ['poop', 'dick', 'porn', 'gore', 'cum', 'prostitute', 'ass', 'pussy'] // Lista de palabras prohibidas en inglés
 
-let handler = async (m, { conn, text, usedPrefix, command }) => { 
+let handler = async (m, { conn, text, usedPrefix, command }) => {
+// Función para detectar palabras prohibidas
 async function detectProhibitedWords(text) {
-  
-  const lowercaseText = text.toLowerCase();
+const lowercaseText = text.toLowerCase() // Convertir el texto a minúsculas para hacer la detección sin distinguir mayúsculas y minúsculas
 
-  
-  async function translateTextToEnglish(text) {
-    try {
-      const translation = await translate(text, { to: 'en' });
-      return translation.text.toLowerCase();
-    } catch (error) {
-      console.error('Error en la traducción:', error);
-      return null;
-    }
-  }
+// Función para traducir el texto a inglés
+async function translateTextToEnglish(text) {
+try {
+const translation = await translate(text, { to: 'en' }) // Traducir el texto a inglés
+return translation.text.toLowerCase(); // Devolver el texto traducido en minúsculas
+} catch (error) {
+console.error('Error en la traducción:', error)
+return null // En caso de error, devolver null
+}}
 
-  
-  const translatedText = await translateTextToEnglish(text);
+const translatedText = await translateTextToEnglish(text) // Traducir el texto ingresado a inglés
+// Comprobar si alguna de las palabras prohibidas traducidas se encuentra en el texto
+if (prohibited.some(word => translatedText.includes(word))) {
+return m.reply('⚠️😾') // Devolver un mensaje de advertencia si se detecta una palabra prohibida
+} else {
+return null; // Devolver null si no se encontraron palabras prohibidas
+}}
 
-  
-  if (prohibited.some(word => translatedText.includes(word))) {
-    return '⚠️😾';
-  } else {
-    return null; 
-  }
-}
-
+// Invocar la función detectProhibitedWords para realizar la detección
 detectProhibitedWords(text)
-  .then(response => {
-    if (response) {
-      console.log('Se detectó una palabra prohibida:', response);
-    } else {
-      console.log('El texto no contiene palabras prohibidas.');
-    }
-  });
+.then(response => {
+if (response) {
+m.reply('Se detectó una palabra prohibida:', response) // Responder con un mensaje de advertencia si se detecta una palabra prohibida
+} else {
+m.reply('El texto no contiene palabras prohibidas.') // Responder si no se encontraron palabras prohibidas en el texto
+}})
 }
 
-handler.command = /^(prueba03)$/i
-export default handler
+handler.command = /^(prueba03)$/i 
+export default handler 
