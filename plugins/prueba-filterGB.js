@@ -1,15 +1,15 @@
 import translate from '@vitalets/google-translate-api'
-const prohibited = ['caca', 'polla', 'porno', 'porn', 'gore', 'semen', 'puta', 'puto', 'culo', 'putita', 'putito', 'pussy']
+const prohibited = ['caca', 'polla', 'porno', 'porn', 'gore', 'semen', 'cum', 'puta', 'puto', 'culo', 'putita', 'putito', 'pussy']
 
 let handler = async (m, { conn, text, usedPrefix, command }) => { 
 async function detectProhibitedWords(text) {
- 
+  
   const lowercaseText = text.toLowerCase();
 
   
-  async function translateWordToEnglish(word) {
+  async function translateTextToEnglish(text) {
     try {
-      const translation = await translate(word, { to: 'en' });
+      const translation = await translate(text, { to: 'en' });
       return translation.text.toLowerCase();
     } catch (error) {
       console.error('Error en la traducción:', error);
@@ -17,21 +17,16 @@ async function detectProhibitedWords(text) {
     }
   }
 
- 
-  const translationPromises = prohibited.map(translateWordToEnglish);
+  
+  const translatedText = await translateTextToEnglish(text);
 
- 
-  return Promise.all(translationPromises)
-    .then(translatedProhibitedWords => {
-     
-      if (translatedProhibitedWords.some(translatedWord => lowercaseText.includes(translatedWord))) {
-        return '⚠️😾';
-      } else {
-        return null; 
-      }
-    });
+  
+  if (prohibited.some(word => translatedText.includes(word))) {
+    return '⚠️😾';
+  } else {
+    return null; 
+  }
 }
-
 
 detectProhibitedWords(text)
   .then(response => {
@@ -41,7 +36,6 @@ detectProhibitedWords(text)
       console.log('El texto no contiene palabras prohibidas.');
     }
   });
-
 }
 
 handler.command = /^(prueba03)$/i
