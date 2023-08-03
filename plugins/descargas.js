@@ -10,8 +10,8 @@ import Spotify from "spotifydl-x"
 let handler = async (m, { conn, text, usedPrefix, command, args }) => {
 let q, v, yt, dl_url, ttl, size, lolhuman, lolh, n, n2, n3, n4, cap, qu, currentQuality
 const isCommand1 = /^(gimage|imagen?)$/i.test(command)
-const isCommand2 = /^(play?)$/i.test(command)
-const isCommand3 = /^(play2?)$/i.test(command)
+const isCommand2 = /^(play|play2)$/i.test(command)
+//const isCommand3 = /^(play2)$/i.test(command)
 const isCommand4 = /^(fgmp3|dlmp3|getaud|yt(a|mp3)?)$/i.test(command)
 const isCommand5 = /^(ytmp3doc|ytadoc)$/i.test(command)
 const isCommand6 = /^(fgmp4|dlmp4|getvid|yt(v|mp4)?)$/i.test(command)
@@ -54,6 +54,7 @@ break
     
 case isCommand2:
 if (!text) return m.reply(lenguajeGB.smsMalused2() + `*${usedPrefix + command} Billie Eilish - Bellyache*`)
+if (command == 'play') {
 let vid = (await yts(text)).all[0]
 const yt_play = await search(args.join(" "))
 if (!yt_play) return m.reply(lenguajeGB.smsMalError2() + `_${lenguajeGB.smsYT6()}_`)
@@ -81,38 +82,13 @@ await message.react(waitemot)
 setTimeout(() => { message.react(waitemot2) }, 1000)
 if (!yt_play[0].title || !yt_play[0].ago || !yt_play[0].url|| !secondString(yt_play[0].duration.seconds) || !MilesNumber(yt_play[0].views)) { 
 setTimeout(() => { message.react(alert) }, 2000)}
-    
-let q = '128kbps'
-let v = yt_play[0].url
-const yt = await youtubedl(v).catch(async _ => await youtubedlv2(v))
-const dl_url = await yt.audio[q].download()
-const ttl = await yt.title
-const size = await yt.audio[q].fileSizeH
-/*await conn.sendMessage(m.chat, { audio: { url: dl_url }, mimetype: 'audio/mpeg', contextInfo: {
-externalAdReply: {
-title: ttl,
-body: "",
-image: { url: yt_play[0].thumbnail }, 
-mediaType: 1,
-showAdAttribution: true,
-renderLargerThumbnail: true
-}}} , { quoted: m })   */
+
 await conn.sendMessage(m.chat, { audio: { url: dl_url }, mimetype: 'audio/mpeg' }, { quoted: m })
 await m.react(sent)    
-await message.react(correct)
-} catch (e) {
-reportError(e)
-}    
-break
+await message.react(correct)}
 
-case isCommand3:
-if (!text) return m.reply(lenguajeGB.smsMalused2() + `*${usedPrefix + command} Billie Eilish - Bellyache*`)
-//let vi =  (await youtubeSearch(text)).video[0]
-const yt_play2 = await search(args.join(" "))
-if (!yt_play2) return m.reply(lenguajeGB.smsMalError2() + `_${lenguajeGB.smsYT6()}_`)
-try{
-//let { title, description, url, thumbnail, videoId, timestamp, views, published } = vid
-let video = `*◜⋯ ⋯ ⋯ Y O U T U B E ⋯ ⋯ ⋯◞*
+if (command == 'play2') {
+video = `*◜⋯ ⋯ ⋯ Y O U T U B E ⋯ ⋯ ⋯◞*
 *◎ ${lenguajeGB.smsYT1()}*
 ${yt_play2[0].title}
 
@@ -125,10 +101,7 @@ ${MilesNumber(yt_play2[0].views)}
 *◎ URL*
 ${yt_play2[0].url}
 *◜⋯ ⋯ ⋯ ⬇️ V I D E O ⬇️ ⋯ ⋯ ⋯◞*`.trim()
-//url = 'https://www.youtube.com/watch?v=' + videoId
- // let vide = `https://yt.btch.bz/download?URL=${url}&videoName=video`
-
-let message = await conn.sendMessage(m.chat, { text: video, contextInfo: { externalAdReply: { title: wm, body: wait2.replace(/\*/g, ''), image: { url: yt_play2[0].thumbnail }, sourceUrl: md, mediaType: 1, showAdAttribution: false, renderLargerThumbnail: true }}})
+//let message = await conn.sendMessage(m.chat, { text: video, contextInfo: { externalAdReply: { title: wm, body: wait2.replace(/\*/g, ''), image: { url: yt_play2[0].thumbnail }, sourceUrl: md, mediaType: 1, showAdAttribution: false, renderLargerThumbnail: true }}})
 await m.react(sending)
 await message.react(waitemot)
 setTimeout(() => { message.react(waitemot2) }, 1000)
@@ -141,13 +114,11 @@ const yt = await youtubedl(v).catch(async _ => await youtubedlv2(v))
 const dl_url = await yt.video[q].download()
 const ttl = await yt.title
 const size = await yt.video[q].fileSizeH
-await await conn.sendMessage(m.chat, { video: { url: dl_url }, fileName: `${ttl}.mp4`, mimetype: 'video/mp4', caption: `💜 𝙏𝙄𝙏𝙐𝙇𝙊 | 𝙏𝙄𝙏𝙇𝙀\n┃ ${ttl}`, thumbnail: await fetch(yt.thumbnail) }, { quoted: m })
-//await conn.sendFile(m.chat, vide, 'error.mp4', `${wm}`, m)    
+await await conn.sendMessage(m.chat, { video: { url: dl_url }, fileName: `${ttl}.mp4`, mimetype: 'video/mp4', caption: `💜 𝙏𝙄𝙏𝙐𝙇𝙊 | 𝙏𝙄𝙏𝙇𝙀\n┃ ${ttl}`, thumbnail: await fetch(yt.thumbnail) }, { quoted: m }) 
 await m.react(sent)    
 await message.react(correct)
-} catch (e) {
-reportError(e)
-}    
+}} catch (e) {
+reportError(e)}    
 break
             
 case isCommand4:
@@ -523,7 +494,7 @@ reportError(e)}
 break
 }}
 
-handler.command = /^(gimage|imagen?|play?|play2?|fgmp3|dlmp3|getaud|yt(a|mp3)?|ytmp3doc|ytadoc|fgmp4|dlmp4|getvid|yt(v|mp4)?|ytmp4doc|ytvdoc|facebook|fb|facebookdl|fbdl|mediafire(dl)?|dlmediafire|ytmax|ytmaxdoc|tiktok|tkdl|dalle|openiamage|aiimage|aiimg|aimage|iaimagen|openaimage|openaiimage|openjourney|journey|midjourney|spotify|music|spot(ify)?search|i(nsta)?g(ram)?(dl)?|igimage|igdownload|twit(t(er(dl)?)?)?)$/i
+handler.command = /^(gimage|imagen?|play|play2|fgmp3|dlmp3|getaud|yt(a|mp3)?|ytmp3doc|ytadoc|fgmp4|dlmp4|getvid|yt(v|mp4)?|ytmp4doc|ytvdoc|facebook|fb|facebookdl|fbdl|mediafire(dl)?|dlmediafire|ytmax|ytmaxdoc|tiktok|tkdl|dalle|openiamage|aiimage|aiimg|aimage|iaimagen|openaimage|openaiimage|openjourney|journey|midjourney|spotify|music|spot(ify)?search|i(nsta)?g(ram)?(dl)?|igimage|igdownload|twit(t(er(dl)?)?)?)$/i
 handler.register = true
 export default handler
 
