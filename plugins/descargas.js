@@ -481,7 +481,8 @@ await conn.sendFile(m.chat, ig_, 'error.mp4', txt1, m)
 } catch (e) {
 await conn.sendMessage(m.chat, { image: { url: ig_ }, caption: txt1 }, { quoted: m })    
 }} catch (e) {
-reportError(e)} 
+reportError(e)
+m.reply(`${e}`)} 
 break
 
 case isCommand18:
