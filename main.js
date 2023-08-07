@@ -1,4 +1,4 @@
-process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = '0';
+/*process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = '0';
 import './config.js';
 import {createRequire} from 'module';
 import path, {join} from 'path';
@@ -403,3 +403,4 @@ console.log(chalk.bold.cyanBright(lenguajeGB.smspurgeOldFiles()))}, 1000 * 60 * 
 _quickTest()
 .then(() => conn.logger.info(chalk.bold(lenguajeGB['smsCargando']())))
 .catch(console.error)
+*/
