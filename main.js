@@ -153,6 +153,73 @@ if (!opts['test']) {
 
 if (opts['server']) (await import('./server.js')).default(global.conn, PORT)
 
+function clearTmp() {
+  const tmp = [tmpdir(), join(__dirname, './tmp')];
+  const filename = [];
+  tmp.forEach((dirname) => readdirSync(dirname).forEach((file) => filename.push(join(dirname, file))));
+  return filename.map((file) => {
+    const stats = statSync(file);
+    if (stats.isFile() && (Date.now() - stats.mtimeMs >= 1000 * 60 * 3)) return unlinkSync(file); // 3 minutes
+    return false;
+  });
+}
+
+function purgeSession() {
+let prekey = []
+let directorio = readdirSync("./GataBotSession")
+let filesFolderPreKeys = directorio.filter(file => {
+return file.startsWith('pre-key-') || file.startsWith('session-') || file.startsWith('sender-') || file.startsWith('app-')
+})
+prekey = [...prekey, ...filesFolderPreKeys]
+filesFolderPreKeys.forEach(files => {
+unlinkSync(`./GataBotSession/${files}`)
+})
+} 
+
+function purgeSessionSB() {
+try {
+let listaDirectorios = readdirSync('./GataJadiBot/');
+//console.log(listaDirectorios) Nombra las carpetas o archivos
+let SBprekey = []
+listaDirectorios.forEach(directorio => {
+if (statSync(`./GataJadiBot/${directorio}`).isDirectory()) {
+let DSBPreKeys = readdirSync(`./GataJadiBot/${directorio}`).filter(fileInDir => {
+return fileInDir.startsWith('pre-key-') || fileInDir.startsWith('app-') || fileInDir.startsWith('session-')
+})
+SBprekey = [...SBprekey, ...DSBPreKeys]
+DSBPreKeys.forEach(fileInDir => {
+unlinkSync(`./GataJadiBot/${directorio}/${fileInDir}`)
+})
+}
+})
+if (SBprekey.length === 0) {
+console.log(chalk.bold.green(lenguajeGB.smspurgeSessionSB1()))
+} else {
+console.log(chalk.bold.cyanBright(lenguajeGB.smspurgeSessionSB2()))
+}} catch (err){
+console.log(chalk.bold.red(lenguajeGB.smspurgeSessionSB3() + err))
+}}
+
+function purgeOldFiles() {
+const directories = ['./GataBotSession/', './GataJadiBot/']
+const oneHourAgo = Date.now() - (1000 * 60 * 30) //30 min 
+directories.forEach(dir => {
+readdirSync(dir, (err, files) => {
+if (err) throw err
+files.forEach(file => {
+const filePath = path.join(dir, file)
+stat(filePath, (err, stats) => {
+if (err) throw err;
+if (stats.isFile() && stats.mtimeMs < oneHourAgo && file !== 'creds.json') { 
+unlinkSync(filePath, err => {  
+if (err) throw err
+console.log(chalk.bold.green(`${lenguajeGB.smspurgeOldFiles1()} ${file} ${lenguajeGB.smspurgeOldFiles2()}`))
+})
+} else {  
+console.log(chalk.bold.red(`${lenguajeGB.smspurgeOldFiles3()} ${file} ${lenguajeGB.smspurgeOldFiles4()}` + err))
+} }) }) }) })
+}
+
 async function connectionUpdate(update) {
 const { connection, lastDisconnect, isNewLogin } = update
 global.stopped = connection    
@@ -162,10 +229,10 @@ if (code && code !== DisconnectReason.loggedOut && conn?.ws.readyState !== CONNE
 console.log(await global.reloadHandler(true).catch(console.error))
 global.timestamp.connect = new Date
 }
-conn.logger.info(chalk.bold(lenguajeGB['smsCargando']()))
 if (global.db.data == null) loadDatabase()
 if (update.qr != 0 && update.qr != undefined) {
-console.log(chalk.bold.yellow(lenguajeGB['smsCodigoQR']()))}
+await conn.logger.info(chalk.bold(lenguajeGB['smsCargando']()))
+await console.log(chalk.bold.yellow(lenguajeGB['smsCodigoQR']()))}
 if (connection == 'open') {
 console.log(chalk.bold.green(lenguajeGB['smsConexion']()))
 }
@@ -319,7 +386,7 @@ async function _quickTest() {
   Object.freeze(global.support);
 }
 
-function clearTmp() {
+/*function clearTmp() {
 const tmpDir = join(__dirname, 'tmp')
 const filenames = readdirSync(tmpDir)
 filenames.forEach(file => {
@@ -375,7 +442,7 @@ console.log(chalk.bold.red(`${lenguajeGB.smspurgeOldFiles3()} ${file} ${lenguaje
 } else {
 console.log(chalk.bold.green(`${lenguajeGB.smspurgeOldFiles1()} ${file} ${lenguajeGB.smspurgeOldFiles2()}`))
 } }) }
-}) }) }) }
+}) }) }) }*/
 
 //function omitirMessage(messageToOmit) {
 //const originalConsoleLog = console.log
