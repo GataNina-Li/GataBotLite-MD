@@ -143,9 +143,14 @@ conn.isInit = false;
 conn.well = false;
 
 if (!opts['test']) {
-if (global.db) setInterval(async () => {
-if (global.db.data) await global.db.write()
-if (opts['autocleartmp'] && (global.support || {}).find) (tmp = [os.tmpdir(), 'tmp', "GataJadiBot"], tmp.forEach(filename => cp.spawn('find', [filename, '-amin', '2', '-type', 'f', '-delete'])))}, 30 * 1000)}
+  if (global.db) {
+    setInterval(async () => {
+      if (global.db.data) await global.db.write();
+      if (opts['autocleartmp'] && (global.support || {}).find) (tmp = [os.tmpdir(), 'tmp', 'GataJadiBot'], tmp.forEach((filename) => cp.spawn('find', [filename, '-amin', '3', '-type', 'f', '-delete'])));
+    }, 30 * 1000);
+  }
+}
+
 if (opts['server']) (await import('./server.js')).default(global.conn, PORT)
 
 async function connectionUpdate(update) {
@@ -157,6 +162,7 @@ if (code && code !== DisconnectReason.loggedOut && conn?.ws.readyState !== CONNE
 console.log(await global.reloadHandler(true).catch(console.error))
 global.timestamp.connect = new Date
 }
+conn.logger.info(chalk.bold(lenguajeGB['smsCargando']()))
 if (global.db.data == null) loadDatabase()
 if (update.qr != 0 && update.qr != undefined) {
 console.log(chalk.bold.yellow(lenguajeGB['smsCodigoQR']()))}
@@ -389,15 +395,15 @@ console.log(chalk.bold.cyanBright(lenguajeGB.smsClearTmp()))}, 1000 * 60 * 4)
 
 setInterval(async () => {
 await purgeSession()
-console.log(chalk.bold.cyanBright(lenguajeGB.smspurgeSession()))}, 1000 * 60 * 30)
+console.log(chalk.bold.cyanBright(lenguajeGB.smspurgeSession()))}, 1000 * 60 * 20)
 
 setInterval(async () => {
-await purgeSessionSB()}, 1000 * 60 * 30)
+await purgeSessionSB()}, 1000 * 60 * 20)
 
 setInterval(async () => {
 await purgeOldFiles()
-console.log(chalk.bold.cyanBright(lenguajeGB.smspurgeOldFiles()))}, 1000 * 60 * 30)
+console.log(chalk.bold.cyanBright(lenguajeGB.smspurgeOldFiles()))}, 1000 * 60 * 20)
 
 _quickTest()
-.then(() => conn.logger.info(chalk.bold(lenguajeGB['smsCargando']())))
+//.then(() => )
 .catch(console.error)
