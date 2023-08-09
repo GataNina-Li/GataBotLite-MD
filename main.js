@@ -311,6 +311,18 @@ console.log(chalk.bold.green(`${lenguajeGB.smspurgeOldFiles1()} ${file} ${lengua
 } }) }
 }) }) }) }
 
+// Prueba
+function omitirMessage(messageToOmit) {
+const originalConsoleLog = console.log
+console.log = function(message) {
+if (message.includes(messageToOmit)) {
+return
+}}}
+
+setInterval(async () => {
+omitirMessage("Closing stale open session for new outgoing prekey bundle")
+}, 1000) 
+
 setInterval(async () => {
 await clearTmp()        
 console.log(chalk.bold.cyanBright(lenguajeGB.smsClearTmp()))}, 1000 * 60 * 4) 
