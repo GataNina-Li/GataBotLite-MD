@@ -1,23 +1,23 @@
-process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = '0';
-import './config.js';
-import { createRequire } from "module"; 
+process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = '0'
+import './config.js'
+import { createRequire } from "module"
 import path, { join } from 'path'
 import { fileURLToPath, pathToFileURL } from 'url'
 import { platform } from 'process'
-import * as ws from 'ws';
-import { readdirSync, statSync, unlinkSync, existsSync, readFileSync, rmSync, watch } from 'fs';
-import yargs from 'yargs';
-import { spawn } from 'child_process';
-import lodash from 'lodash';
-import chalk from 'chalk';
-import syntaxerror from 'syntax-error';
-import { tmpdir } from 'os';
-import { format } from 'util';
-import P from 'pino';
-import pino from 'pino';
-import { makeWASocket, protoType, serialize } from './lib/simple.js';
-import { Low, JSONFile } from 'lowdb';
-import { mongoDB, mongoDBV2 } from './lib/mongoDB.js';
+import * as ws from 'ws'
+import { readdirSync, statSync, unlinkSync, existsSync, readFileSync, rmSync, watch } from 'fs'
+import yargs from 'yargs'
+import { spawn } from 'child_process'
+import lodash from 'lodash'
+import chalk from 'chalk'
+import syntaxerror from 'syntax-error'
+import { tmpdir } from 'os'
+import { format } from 'util'
+import P from 'pino'
+import pino from 'pino'
+import { makeWASocket, protoType, serialize } from './lib/simple.js'
+import { Low, JSONFile } from 'lowdb'
+import { mongoDB, mongoDBV2 } from './lib/mongoDB.js'
 import store from './lib/store.js'
 const { DisconnectReason, useMultiFileAuthState, MessageRetryMap, fetchLatestBaileysVersion } = await import('@whiskeysockets/baileys')
 const { CONNECTING } = ws
@@ -292,18 +292,18 @@ console.log(chalk.bold.green(`${lenguajeGB.smspurgeOldFiles1()} ${file} ${lengua
 }) }) }) }
 
 // Prueba para omitir el mensaje de cierre de las sessions
-function omitirMessage(messageToOmit) {
-const originalConsoleLog = console.log
-console.log = function(message) {
-if (message.includes(messageToOmit)) {
-return
-}
-originalConsoleLog.apply(console, arguments)
-}}
+//function omitirMessage(messageToOmit) {
+//const originalConsoleLog = console.log
+//console.log = function(message) {
+//if (message.includes(messageToOmit)) {
+//return
+//}
+//originalConsoleLog.apply(console, arguments)
+//}}
 
-setInterval(async () => {
-omitirMessage("Closing stale open session for new outgoing prekey bundle")
-}, 1000) 
+//setInterval(async () => {
+//omitirMessage("Closing stale open session for new outgoing prekey bundle")
+//}, 1000) 
 
 setInterval(async () => {
 await clearTmp()        
