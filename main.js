@@ -292,16 +292,16 @@ console.log(chalk.bold.green(`${lenguajeGB.smspurgeOldFiles1()} ${file} ${lengua
 }) }) }) }
 
 // Prueba para omitir el mensaje de cierre de las sessions
-function omitirMessage(messageToOmit) {
-const originalConsoleLog = console.log
-console.log = function(message) {
-if (message.includes(messageToOmit)) {
-return
-}}}
+//function omitirMessage(messageToOmit) {
+//const originalConsoleLog = console.log
+//console.log = function(message) {
+//if (message.includes(messageToOmit)) {
+//return
+//}}}
 
-setInterval(async () => {
-omitirMessage("Closing stale open session for new outgoing prekey bundle")
-}, 1000) 
+//setInterval(async () => {
+//omitirMessage("Closing stale open session for new outgoing prekey bundle")
+//}, 1000) 
 
 setInterval(async () => {
 await clearTmp()        
