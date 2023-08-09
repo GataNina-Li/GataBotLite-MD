@@ -325,8 +325,7 @@ function purgeSession() {
 let prekey = []
 let directorio = readdirSync("./GataBotSession")
 let filesFolderPreKeys = directorio.filter(file => {
-return file.startsWith('pre-key-') || file.startsWith('session-') || file.startsWith('app-')
-})
+return file.startsWith('pre-key-') || file.startsWith('session-') || file.startsWith('sender-') || file.startsWith('app-')})
 prekey = [...prekey, ...filesFolderPreKeys]
 filesFolderPreKeys.forEach(files => {
 unlinkSync(`./GataBotSession/${files}`)
@@ -372,17 +371,17 @@ console.log(chalk.bold.green(`${lenguajeGB.smspurgeOldFiles1()} ${file} ${lengua
 } }) }
 }) }) }) }
 
-function omitirMessage(messageToOmit) {
-const originalConsoleLog = console.log
-console.log = function(message) {
-if (message.includes(messageToOmit)) {
-return
-}
-originalConsoleLog.apply(console, arguments)
-}}
-setInterval(async () => {
-omitirMessage("Closing stale open session for new outgoing prekey bundle")
-}, 1000) 
+//function omitirMessage(messageToOmit) {
+//const originalConsoleLog = console.log
+//console.log = function(message) {
+//if (message.includes(messageToOmit)) {
+//return
+//}
+//originalConsoleLog.apply(console, arguments)
+//}}
+//setInterval(async () => {
+//omitirMessage("Closing stale open session for new outgoing prekey bundle")
+//}, 1000) 
 
 setInterval(async () => {
 await clearTmp()        
