@@ -338,7 +338,7 @@ console.log(chalk.bold.green(`${lenguajeGB.smspurgeOldFiles1()} ${file} ${lengua
 
 // Prueba para omitir mensaje de keys de cierre de sesiones
 // Por GataNina-Li 😆❤️
-function omitirMessage(messageToOmit) {
+/*function omitirMessage(messageToOmit) {
 const originalConsoleLog = console.log
 console.log = function(...args) {
 const message = args.filter(arg => typeof arg === 'string').join(' ')
@@ -349,7 +349,7 @@ originalConsoleLog.apply(console, args)
 }}
 setInterval(async () => {
 omitirMessage("Closing stale open session for new outgoing prekey bundle")
-}, 1000) 
+}, 1000)*/
 
 setInterval(async () => {
 await clearTmp()        
