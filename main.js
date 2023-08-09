@@ -40,9 +40,7 @@ return createRequire(dir);
 
 global.API = (name, path = '/', query = {}, apikeyqueryname) => (name in global.APIs ? global.APIs[name] : name) + path + (query || apikeyqueryname ? '?' + new URLSearchParams(Object.entries({...query, ...(apikeyqueryname ? {[apikeyqueryname]: global.APIKeys[name in global.APIs ? global.APIs[name] : name]} : {})})) : '')
 
-global.timestamp = {start: new Date};
-global.videoList = [];
-global.videoListXXX = [];
+global.timestamp = {start: new Date}
 
 const __dirname = global.__dirname(import.meta.url);
 
@@ -106,36 +104,39 @@ loadChatgptDB();
 /* ------------------------------------------------*/
 
 global.authFile = `GataBotSession`
-const {state, saveState, saveCreds} = await useMultiFileAuthState(global.authFile);
-const msgRetryCounterMap = (MessageRetryMap) => { };
-const {version} = await fetchLatestBaileysVersion();
+const {state, saveState, saveCreds} = await useMultiFileAuthState(global.authFile)
+const msgRetryCounterMap = (MessageRetryMap) => { }
+const {version} = await fetchLatestBaileysVersion()
 
 const connectionOptions = {
-printQRInTerminal: true,
-patchMessageBeforeSending: (message) => {
-const requiresPatch = !!( message.buttonsMessage || message.templateMessage || message.listMessage );
-if (requiresPatch) {
-message = {viewOnceMessage: {message: {messageContextInfo: {deviceListMetadataVersion: 2, deviceListMetadata: {}}, ...message}}};
-}
-return message
-},
-getMessage: async (key) => {
-if (store) {
-const msg = await store.loadMessage(key.remoteJid, key.id);
-return conn.chats[key.remoteJid] && conn.chats[key.remoteJid].messages[key.id] ? conn.chats[key.remoteJid].messages[key.id].message : undefined;
-}
-return proto.Message.fromObject({});
-},
-msgRetryCounterMap,
-logger: pino({level: 'silent'}),
-auth: {
-creds: state.creds,
-keys: makeCacheableSignalKeyStore(state.keys, pino({level: 'silent'})),
-},
-browser: ['GataBotLite-MD','Edge','107.0.1418.26'],
-version,
-defaultQueryTimeoutMs: undefined,
-}
+  printQRInTerminal: true,
+  patchMessageBeforeSending: (message) => {
+    const requiresPatch = !!( message.buttonsMessage || message.templateMessage || message.listMessage );
+    if (requiresPatch) {
+      message = {viewOnceMessage: {message: {messageContextInfo: {deviceListMetadataVersion: 2, deviceListMetadata: {}}, ...message}}};
+    }
+    return message;
+  },
+  getMessage: async (key) => {
+    if (store) {
+      // console.log(key);
+      // console.log(conn.chats[key.remoteJid] && conn.chats[key.remoteJid].messages[key.id] ? conn.chats[key.remoteJid].messages[key.id].message : undefined);
+      const msg = await store.loadMessage(key.remoteJid, key.id);
+      // console.log(msg);
+      return conn.chats[key.remoteJid] && conn.chats[key.remoteJid].messages[key.id] ? conn.chats[key.remoteJid].messages[key.id].message : undefined;
+    }
+    return proto.Message.fromObject({});
+  },
+  msgRetryCounterMap,
+  logger: pino({level: 'silent'}),
+  auth: {
+    creds: state.creds,
+    keys: makeCacheableSignalKeyStore(state.keys, pino({level: 'silent'})),
+  },
+  browser: ['GataBotLite-MD','Edge','2.0.0'],
+  version,
+  defaultQueryTimeoutMs: undefined,
+};
 
 global.conn = makeWASocket(connectionOptions);
 conn.isInit = false;
