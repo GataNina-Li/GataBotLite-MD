@@ -1,70 +1,91 @@
 process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = '0'
 import './config.js'
-import { createRequire } from "module"
-import path, { join } from 'path'
-import { fileURLToPath, pathToFileURL } from 'url'
-import { platform } from 'process'
+import {createRequire} from 'module'
+import path, {join} from 'path'
+import {fileURLToPath, pathToFileURL} from 'url'
+import {platform} from 'process'
 import * as ws from 'ws'
-import { readdirSync, statSync, unlinkSync, existsSync, readFileSync, rmSync, watch } from 'fs'
+import {readdirSync, statSync, unlinkSync, existsSync, readFileSync, rmSync, watch} from 'fs'
 import yargs from 'yargs'
-import { spawn } from 'child_process'
+import {spawn} from 'child_process'
 import lodash from 'lodash'
 import chalk from 'chalk'
 import syntaxerror from 'syntax-error'
-import { tmpdir } from 'os'
-import { format } from 'util'
+import {tmpdir} from 'os'
+import {format} from 'util'
 import P from 'pino'
 import pino from 'pino'
-import { makeWASocket, protoType, serialize } from './lib/simple.js'
-import { Low, JSONFile } from 'lowdb'
-import { mongoDB, mongoDBV2 } from './lib/mongoDB.js'
+import {makeWASocket, protoType, serialize} from './lib/simple.js'
+import {Low, JSONFile} from 'lowdb'
+import {mongoDB, mongoDBV2} from './lib/mongoDB.js'
 import store from './lib/store.js'
-const { DisconnectReason, useMultiFileAuthState, MessageRetryMap, fetchLatestBaileysVersion } = await import('@whiskeysockets/baileys')
-const { CONNECTING } = ws
-const { chain } = lodash
+const {proto} = (await import('@whiskeysockets/baileys')).default
+const {DisconnectReason, useMultiFileAuthState, MessageRetryMap, fetchLatestBaileysVersion, makeCacheableSignalKeyStore} = await import('@whiskeysockets/baileys')
+const {CONNECTING} = ws
+const {chain} = lodash
 const PORT = process.env.PORT || process.env.SERVER_PORT || 3000
 
 protoType()
 serialize()
 
-global.__filename = function filename(pathURL = import.meta.url, rmPrefix = platform !== 'win32') { return rmPrefix ? /file:\/\/\//.test(pathURL) ? fileURLToPath(pathURL) : pathURL : pathToFileURL(pathURL).toString() }; global.__dirname = function dirname(pathURL) { return path.dirname(global.__filename(pathURL, true)) }; global.__require = function require(dir = import.meta.url) { return createRequire(dir) }
-global.API = (name, path = '/', query = {}, apikeyqueryname) => (name in global.APIs ? global.APIs[name] : name) + path + (query || apikeyqueryname ? '?' + new URLSearchParams(Object.entries({ ...query, ...(apikeyqueryname ? { [apikeyqueryname]: global.APIKeys[name in global.APIs ? global.APIs[name] : name] } : {}) })) : '')
-global.timestamp = { start: new Date }
+global.__filename = function filename(pathURL = import.meta.url, rmPrefix = platform !== 'win32') {
+return rmPrefix ? /file:\/\/\//.test(pathURL) ? fileURLToPath(pathURL) : pathURL : pathToFileURL(pathURL).toString()
+} 
+global.__dirname = function dirname(pathURL) {
+return path.dirname(global.__filename(pathURL, true))
+} 
+global.__require = function require(dir = import.meta.url) {
+return createRequire(dir)
+}
+
+global.API = (name, path = '/', query = {}, apikeyqueryname) => (name in global.APIs ? global.APIs[name] : name) + path + (query || apikeyqueryname ? '?' + new URLSearchParams(Object.entries({...query, ...(apikeyqueryname ? {[apikeyqueryname]: global.APIKeys[name in global.APIs ? global.APIs[name] : name]} : {})})) : '')
+global.timestamp = {start: new Date}
+global.videoList = []
+global.videoListXXX = []
 
 const __dirname = global.__dirname(import.meta.url)
 
 global.opts = new Object(yargs(process.argv.slice(2)).exitProcess(false).parse())
-global.prefix = new RegExp('^[' + (opts['prefix'] || '*/i!#$%+£¢€¥^°=¶∆×÷π√✓©®:;?&.\\-.@').replace(/[|\\{}()[\]^$+*?.\-\^]/g, '\\$&') + ']')
+global.prefix = new RegExp('^[' + (opts['prefix'] || '*/i!#$%+£¢€¥^°=¶∆×÷π√✓©®:;?&.\\-.@aA').replace(/[|\\{}()[\]^$+*?.\-\^]/g, '\\$&') + ']')
 global.db = new Low(/https?:\/\//.test(opts['db'] || '') ? new cloudDBAdapter(opts['db']) : new JSONFile(`${opts._[0] ? opts._[0] + '_' : ''}database.json`))
+
 global.DATABASE = global.db // Backwards Compatibility
 global.loadDatabase = async function loadDatabase() {
-
-if (global.db.READ) return new Promise((resolve) => setInterval(async function () {
+if (global.db.READ) {
+return new Promise((resolve) => setInterval(async function() {
 if (!global.db.READ) {
 clearInterval(this)
 resolve(global.db.data == null ? global.loadDatabase() : global.db.data)
-}
-}, 1 * 1000))
+}}, 1 * 1000))}
+  
 if (global.db.data !== null) return
-global.db.READ = true
+global.db.READ = true;
 await global.db.read().catch(console.error)
-global.db.READ = null
-global.db.data = {
-users: {},
-chats: {},
-stats: {},
-msgs: {},
-sticker: {},
-settings: {},
-...(global.db.data || {})
-}
+global.db.READ = null;
+global.db.data = { users: {}, chats: {}, stats: {}, msgs: {}, sticker: {}, settings: {}, ...(global.db.data || {}), }
 global.db.chain = chain(global.db.data)
 }
 loadDatabase()
 
-if (global.db) setInterval(async () => {
-if (global.db.data) await global.db.write()
-}, 30 * 1000)
+global.chatgpt = new Low(new JSONFile(path.join(__dirname, '/db/chatgpt.json')));
+global.loadChatgptDB = async function loadChatgptDB() {
+if (global.chatgpt.READ) {
+return new Promise((resolve) =>
+setInterval(async function() {
+if (!global.chatgpt.READ) {
+clearInterval(this);
+resolve( global.chatgpt.data === null ? global.loadChatgptDB() : global.chatgpt.data )
+}}, 1 * 1000))}
+if (global.chatgpt.data !== null) return
+global.chatgpt.READ = true
+await global.chatgpt.read().catch(console.error)
+global.chatgpt.READ = null
+global.chatgpt.data = {
+users: {},
+...(global.chatgpt.data || {}),
+}
+global.chatgpt.chain = lodash.chain(global.chatgpt.data)}
+loadChatgptDB()
 
 global.authFile = `GataBotSession`
 const { state, saveState, saveCreds } = await useMultiFileAuthState(global.authFile)
@@ -77,12 +98,14 @@ browser: ['GataBotLite-MD','Edge','107.0.1418.26'],
 
 global.conn = makeWASocket(connectionOptions)
 conn.isInit = false
+//conn.well = false
 
 if (!opts['test']) {
 if (global.db) setInterval(async () => {
 if (global.db.data) await global.db.write()
 if (opts['autocleartmp'] && (global.support || {}).find) (tmp = [os.tmpdir(), 'tmp', "GataJadiBot"], tmp.forEach(filename => cp.spawn('find', [filename, '-amin', '2', '-type', 'f', '-delete'])))}, 30 * 1000)}
-if (opts['server']) (await import('./server.js')).default(global.conn, PORT)
+
+if (opts['server']) (await import('./server.js')).default(global.conn, PORT);
 
 async function connectionUpdate(update) {
 const { connection, lastDisconnect, isNewLogin } = update
@@ -103,7 +126,6 @@ if (connection == 'close') {
 console.log(chalk.bold.hex('#F15E5E')(lenguajeGB['smsConexionOFF']())) 
 }}
 process.on('uncaughtException', console.error)
-
 let isInit = true
 let handler = await import('./handler.js')
 global.reloadHandler = async function (restatConn) {
@@ -129,7 +151,6 @@ conn.ev.off('call', conn.onCall)
 conn.ev.off('connection.update', conn.connectionUpdate)
 conn.ev.off('creds.update', conn.credsUpdate)
 }
-
 //Información para Grupos
 conn.welcome = lenguajeGB['smsWelcome']() 
 conn.bye = lenguajeGB['smsBye']() 
@@ -139,7 +160,6 @@ conn.sDesc = lenguajeGB['smsSdesc']()
 conn.sSubject = lenguajeGB['smsSsubject']() 
 conn.sIcon = lenguajeGB['smsSicon']() 
 conn.sRevoke = lenguajeGB['smsSrevoke']() 
-
 conn.handler = handler.handler.bind(global.conn)
 conn.participantsUpdate = handler.participantsUpdate.bind(global.conn)
 conn.groupsUpdate = handler.groupsUpdate.bind(global.conn)
@@ -148,15 +168,15 @@ conn.onCall = handler.callUpdate.bind(global.conn)
 conn.connectionUpdate = connectionUpdate.bind(global.conn)
 conn.credsUpdate = saveCreds.bind(global.conn, true)
 
-const currentDateTime = new Date();
-const messageDateTime = new Date(conn.ev);
+// No usar esto hasta mejorar el resultado
+const currentDateTime = new Date()
+const messageDateTime = new Date(conn.ev)
 if (currentDateTime >= messageDateTime) {
 let chats = Object.entries(conn.chats).filter(([jid, chat]) => !jid.endsWith('@g.us') && chat.isChats).map(v => v[0])
 //console.log(chats, conn.ev); 
 } else {
 let chats = Object.entries(conn.chats).filter(([jid, chat]) => !jid.endsWith('@g.us') && chat.isChats).map(v => v[0])}
 //console.log(chats, 'Omitiendo mensajes en espera.'); }
-
 conn.ev.on('messages.upsert', conn.handler)
 conn.ev.on('group-participants.update', conn.participantsUpdate)
 conn.ev.on('groups.update', conn.groupsUpdate)
@@ -167,7 +187,6 @@ conn.ev.on('creds.update', conn.credsUpdate)
 isInit = false
 return true
 }
-
 const pluginFolder = global.__dirname(join(__dirname, './plugins/index'))
 const pluginFilter = filename => /\.js$/.test(filename)
 global.plugins = {}
@@ -182,7 +201,6 @@ conn.logger.error(e)
 delete global.plugins[filename]
 }}}
 filesInit().then(_ => Object.keys(global.plugins)).catch(console.error)
-
 global.reload = async (_ev, filename) => {
 if (pluginFilter(filename)) {
 let dir = global.__filename(join(pluginFolder, filename), true)
@@ -231,7 +249,6 @@ let [ffmpeg, ffprobe, ffmpegWebp, convert, magick, gm, find] = test
 let s = global.support = { ffmpeg, ffprobe, ffmpegWebp, convert, magick, gm, find }
 Object.freeze(global.support)
 }
-
 function clearTmp() {
 const tmpDir = join(__dirname, 'tmp')
 const filenames = readdirSync(tmpDir)
@@ -242,10 +259,9 @@ unlinkSync(filePath)})
 
 function purgeSession() {
 let prekey = []
-let directorio = readdirSync("./GataBotSession")
+let directorio = readdirSync(`./${authFile}`)
 let filesFolderPreKeys = directorio.filter(file => {
-return file.startsWith('pre-key-') || file.startsWith('session-') || file.startsWith('app-')
-})
+return file.startsWith('pre-key-') || file.startsWith('session-') || file.startsWith('sender-') || file.startsWith('app-') })
 prekey = [...prekey, ...filesFolderPreKeys]
 filesFolderPreKeys.forEach(files => {
 unlinkSync(`./GataBotSession/${files}`)
@@ -254,29 +270,28 @@ unlinkSync(`./GataBotSession/${files}`)
 
 function purgeSessionSB() {
 try {
-const listaDirectorios = readdirSync('./GataJadiBot/');
-let SBprekey = [];
+const listaDirectorios = readdirSync('./GataJadiBot/')
+let SBprekey = []
 listaDirectorios.forEach(directorio => {
 if (statSync(`./GataJadiBot/${directorio}`).isDirectory()) {
 const DSBPreKeys = readdirSync(`./GataJadiBot/${directorio}`).filter(fileInDir => {
-return fileInDir.startsWith('pre-key-') || fileInDir.startsWith('app-') || fileInDir.startsWith('session-')
-})
-SBprekey = [...SBprekey, ...DSBPreKeys];
+return file.startsWith('pre-key-') || file.startsWith('session-') || file.startsWith('sender-') || file.startsWith('app-') })
+SBprekey = [...SBprekey, ...DSBPreKeys]
 DSBPreKeys.forEach(fileInDir => {
 if (fileInDir !== 'creds.json') {
 unlinkSync(`./GataJadiBot/${directorio}/${fileInDir}`)
 }})
 }})
 if (SBprekey.length === 0) {
-console.log(chalk.bold.green(lenguajeGB.smspurgeSessionSB1()));
+console.log(chalk.bold.green(lenguajeGB.smspurgeSessionSB1()))
 } else {
-console.log(chalk.bold.cyanBright(lenguajeGB.smspurgeSessionSB2()));
+console.log(chalk.bold.cyanBright(lenguajeGB.smspurgeSessionSB2()))
 }} catch (err) {
-console.log(chalk.bold.red(lenguajeGB.smspurgeSessionSB3() + err));
+console.log(chalk.bold.red(lenguajeGB.smspurgeSessionSB3() + err))
 }}
 
 function purgeOldFiles() {
-const directories = ['./GataBotSession/', './GataJadiBot/']
+const directories = [`./${authFile}`, './GataJadiBot/']
 directories.forEach(dir => {
 readdirSync(dir, (err, files) => {
 if (err) throw err
@@ -292,18 +307,17 @@ console.log(chalk.bold.green(`${lenguajeGB.smspurgeOldFiles1()} ${file} ${lengua
 }) }) }) }
 
 // Prueba para omitir el mensaje de cierre de las sessions
-//function omitirMessage(messageToOmit) {
-//const originalConsoleLog = console.log
-//console.log = function(message) {
-//if (message.includes(messageToOmit)) {
-//return
-//}
-//originalConsoleLog.apply(console, arguments)
-//}}
-
-//setInterval(async () => {
-//omitirMessage("Closing stale open session for new outgoing prekey bundle")
-//}, 1000) 
+function omitirMessage(messageToOmit) {
+const originalConsoleLog = console.log
+console.log = function(message) {
+if (message.includes(messageToOmit)) {
+return
+}
+originalConsoleLog.apply(console, arguments)
+}}
+setInterval(async () => {
+omitirMessage("Closing stale open session for new outgoing prekey bundle")
+}, 1000) 
 
 setInterval(async () => {
 await clearTmp()        
@@ -311,14 +325,14 @@ console.log(chalk.bold.cyanBright(lenguajeGB.smsClearTmp()))}, 1000 * 60 * 4)
 
 setInterval(async () => {
 await purgeSession()
-console.log(chalk.bold.cyanBright(lenguajeGB.smspurgeSession()))}, 1000 * 60 * 30)
+console.log(chalk.bold.cyanBright(lenguajeGB.smspurgeSession()))}, 1000 * 60 * 20)
 
 setInterval(async () => {
-await purgeSessionSB()}, 1000 * 60 * 30)
+await purgeSessionSB()}, 1000 * 60 * 20)
 
 setInterval(async () => {
 await purgeOldFiles()
-console.log(chalk.bold.cyanBright(lenguajeGB.smspurgeOldFiles()))}, 1000 * 60 * 30)
+console.log(chalk.bold.cyanBright(lenguajeGB.smspurgeOldFiles()))}, 1000 * 60 * 20)
 
 _quickTest()
 .then(() => conn.logger.info(chalk.bold(lenguajeGB['smsCargando']())))
