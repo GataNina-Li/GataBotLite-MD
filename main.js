@@ -37,42 +37,30 @@ return createRequire(dir);
 };
 
 global.API = (name, path = '/', query = {}, apikeyqueryname) => (name in global.APIs ? global.APIs[name] : name) + path + (query || apikeyqueryname ? '?' + new URLSearchParams(Object.entries({...query, ...(apikeyqueryname ? {[apikeyqueryname]: global.APIKeys[name in global.APIs ? global.APIs[name] : name]} : {})})) : '');
-
 global.timestamp = {start: new Date};
 
 const __dirname = global.__dirname(import.meta.url);
 
 global.opts = new Object(yargs(process.argv.slice(2)).exitProcess(false).parse());
 global.prefix = new RegExp('^[' + (opts['prefix'] || '*/i!#$%+£¢€¥^°=¶∆×÷π√✓©®:;?&.\\-.@aA').replace(/[|\\{}()[\]^$+*?.\-\^]/g, '\\$&') + ']');
-
 global.db = new Low(/https?:\/\//.test(opts['db'] || '') ? new cloudDBAdapter(opts['db']) : new JSONFile(`${opts._[0] ? opts._[0] + '_' : ''}database.json`));
-
 global.DATABASE = global.db; // Backwards Compatibility
 global.loadDatabase = async function loadDatabase() {
-  if (global.db.READ) {
-    return new Promise((resolve) => setInterval(async function() {
-      if (!global.db.READ) {
-        clearInterval(this);
-        resolve(global.db.data == null ? global.loadDatabase() : global.db.data);
-      }
-    }, 1 * 1000));
-  }
-  if (global.db.data !== null) return;
-  global.db.READ = true;
-  await global.db.read().catch(console.error);
-  global.db.READ = null;
-  global.db.data = {
-    users: {},
-    chats: {},
-    stats: {},
-    msgs: {},
-    sticker: {},
-    settings: {},
-    ...(global.db.data || {}),
-  };
-  global.db.chain = chain(global.db.data);
-};
-loadDatabase();
+if (global.db.READ) {
+return new Promise((resolve) => setInterval(async function() {
+if (!global.db.READ) {
+clearInterval(this);
+resolve(global.db.data == null ? global.loadDatabase() : global.db.data)
+}}, 1 * 1000))}
+
+if (global.db.data !== null) return
+global.db.READ = true
+await global.db.read().catch(console.error)
+global.db.READ = null
+global.db.data = { users: {}, chats: {}, stats: {}, msgs: {}, sticker: {}, settings: {}, ...(global.db.data || {}), }
+global.db.chain = chain(global.db.data)
+}
+loadDatabase()
 
 /*------------------------------------------------*/
 
@@ -143,25 +131,23 @@ if (opts['autocleartmp'] && (global.support || {}).find) (tmp = [os.tmpdir(), 't
 if (opts['server']) (await import('./server.js')).default(global.conn, PORT)
 
 async function connectionUpdate(update) {
-  const {connection, lastDisconnect, isNewLogin} = update;
-  global.stopped = connection;
-  if (isNewLogin) conn.isInit = true;
-  const code = lastDisconnect?.error?.output?.statusCode || lastDisconnect?.error?.output?.payload?.statusCode;
-  if (code && code !== DisconnectReason.loggedOut && conn?.ws.socket == null) {
-    console.log(await global.reloadHandler(true).catch(console.error));
-    global.timestamp.connect = new Date;
-  }
-  if (global.db.data == null) loadDatabase();
-  if (update.qr != 0 && update.qr != undefined) {
-   console.log(chalk.bold.yellow(lenguajeGB['smsCodigoQR']()))}
-  if (connection == 'open') {
-   console.log(chalk.bold.yellow(lenguajeGB['smsConexion']()))}
-  if (connection == 'close') {
-   console.log(chalk.bold.yellow(lenguajeGB['smsConexionOFF']()))}
+const {connection, lastDisconnect, isNewLogin} = update
+global.stopped = connection
+if (isNewLogin) conn.isInit = true
+const code = lastDisconnect?.error?.output?.statusCode || lastDisconnect?.error?.output?.payload?.statusCode
+if (code && code !== DisconnectReason.loggedOut && conn?.ws.socket == null) {
+console.log(await global.reloadHandler(true).catch(console.error))
+global.timestamp.connect = new Date
 }
-
-process.on('uncaughtException', console.error);
-// conn.ev.on('messages.update', console.log);
+if (global.db.data == null) loadDatabase()
+if (update.qr != 0 && update.qr != undefined) {
+console.log(chalk.bold.yellow(lenguajeGB['smsCodigoQR']()))}
+if (connection == 'open') {
+console.log(chalk.bold.yellow(lenguajeGB['smsConexion']()))}
+if (connection == 'close') {
+console.log(chalk.bold.yellow(lenguajeGB['smsConexionOFF']()))}
+}
+process.on('uncaughtException', console.error)
 
 let isInit = true;
 let handler = await import('./handler.js');
@@ -369,11 +355,12 @@ console.log(chalk.bold.green(`${lenguajeGB.smspurgeOldFiles1()} ${file} ${lengua
 
 function omitirMessage(messageToOmit) {
 const originalConsoleLog = console.log
-console.log = function(message) {
+console.log = function(...args) {
+const message = args.filter(arg => typeof arg === 'string').join(' ')
 if (message.includes(messageToOmit)) {
 return
 }
-originalConsoleLog.apply(console, arguments)
+originalConsoleLog.apply(console, args)
 }}
 setInterval(async () => {
 omitirMessage("Closing stale open session for new outgoing prekey bundle")
@@ -385,15 +372,15 @@ console.log(chalk.bold.cyanBright(lenguajeGB.smsClearTmp()))}, 1000 * 60 * 4)
 
 setInterval(async () => {
 await purgeSession()
-console.log(chalk.bold.cyanBright(lenguajeGB.smspurgeSession()))}, 1000 * 60 * 30)
+console.log(chalk.bold.cyanBright(lenguajeGB.smspurgeSession()))}, 1000 * 60 * 20)
 
 setInterval(async () => {
-await purgeSessionSB()}, 1000 * 60 * 30)
+await purgeSessionSB()}, 1000 * 60 * 20)
 
 setInterval(async () => {
 await purgeOldFiles()
-console.log(chalk.bold.cyanBright(lenguajeGB.smspurgeOldFiles()))}, 1000 * 60 * 30)
+console.log(chalk.bold.cyanBright(lenguajeGB.smspurgeOldFiles()))}, 1000 * 60 * 20)
 
 _quickTest()
-.then(() => conn.logger.info(chalk.bold(lenguajeGB['smsCargando']())))
+.then(() => await conn.logger.info(chalk.bold(lenguajeGB['smsCargando']())))
 .catch(console.error)
