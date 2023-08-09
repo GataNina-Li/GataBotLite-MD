@@ -1,42 +1,44 @@
-process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = '0';
-import './config.js';
-import {createRequire} from 'module';
-import path, {join} from 'path';
-import {fileURLToPath, pathToFileURL} from 'url';
-import {platform} from 'process';
-import * as ws from 'ws';
-import {readdirSync, statSync, unlinkSync, existsSync, readFileSync, rmSync, watch} from 'fs';
-import yargs from 'yargs';
-import {spawn} from 'child_process';
-import lodash from 'lodash';
-import chalk from 'chalk';
-import syntaxerror from 'syntax-error';
-import {tmpdir} from 'os';
-import {format} from 'util';
-import P from 'pino';
-import pino from 'pino';
-import {makeWASocket, protoType, serialize} from './lib/simple.js';
-import {Low, JSONFile} from 'lowdb';
-import {mongoDB, mongoDBV2} from './lib/mongoDB.js';
-import store from './lib/store.js';
-const {proto} = (await import('@whiskeysockets/baileys')).default;
-const {DisconnectReason, useMultiFileAuthState, MessageRetryMap, fetchLatestBaileysVersion, makeCacheableSignalKeyStore} = await import('@whiskeysockets/baileys');
-const {CONNECTING} = ws;
-const {chain} = lodash;
-const PORT = process.env.PORT || process.env.SERVER_PORT || 3000;
+process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = '0'
+import './config.js'
+import {createRequire} from 'module'
+import path, {join} from 'path'
+import {fileURLToPath, pathToFileURL} from 'url'
+import {platform} from 'process'
+import * as ws from 'ws'
+import {readdirSync, statSync, unlinkSync, existsSync, readFileSync, rmSync, watch} from 'fs'
+import yargs from 'yargs'
+import {spawn} from 'child_process'
+import lodash from 'lodash'
+import chalk from 'chalk'
+import syntaxerror from 'syntax-error'
+import {tmpdir} from 'os'
+import {format} from 'util'
+import P from 'pino'
+import pino from 'pino'
+import {makeWASocket, protoType, serialize} from './lib/simple.js'
+import {Low, JSONFile} from 'lowdb'
+import {mongoDB, mongoDBV2} from './lib/mongoDB.js'
+import store from './lib/store.js'
+const {proto} = (await import('@whiskeysockets/baileys')).default
+const {DisconnectReason, useMultiFileAuthState, MessageRetryMap, fetchLatestBaileysVersion, makeCacheableSignalKeyStore} = await import('@whiskeysockets/baileys')
+const {CONNECTING} = ws
+const {chain} = lodash
+const PORT = process.env.PORT || process.env.SERVER_PORT || 3000
 
-protoType();
-serialize();
+protoType()
+serialize()
 
 global.__filename = function filename(pathURL = import.meta.url, rmPrefix = platform !== 'win32') {
-  return rmPrefix ? /file:\/\/\//.test(pathURL) ? fileURLToPath(pathURL) : pathURL : pathToFileURL(pathURL).toString();
-}; global.__dirname = function dirname(pathURL) {
-  return path.dirname(global.__filename(pathURL, true));
-}; global.__require = function require(dir = import.meta.url) {
-  return createRequire(dir);
-};
+return rmPrefix ? /file:\/\/\//.test(pathURL) ? fileURLToPath(pathURL) : pathURL : pathToFileURL(pathURL).toString()
+}
+global.__dirname = function dirname(pathURL) {
+return path.dirname(global.__filename(pathURL, true))
+}
+global.__require = function require(dir = import.meta.url) {
+return createRequire(dir);
+}
 
-global.API = (name, path = '/', query = {}, apikeyqueryname) => (name in global.APIs ? global.APIs[name] : name) + path + (query || apikeyqueryname ? '?' + new URLSearchParams(Object.entries({...query, ...(apikeyqueryname ? {[apikeyqueryname]: global.APIKeys[name in global.APIs ? global.APIs[name] : name]} : {})})) : '');
+global.API = (name, path = '/', query = {}, apikeyqueryname) => (name in global.APIs ? global.APIs[name] : name) + path + (query || apikeyqueryname ? '?' + new URLSearchParams(Object.entries({...query, ...(apikeyqueryname ? {[apikeyqueryname]: global.APIKeys[name in global.APIs ? global.APIs[name] : name]} : {})})) : '')
 
 global.timestamp = {start: new Date};
 global.videoList = [];
@@ -103,143 +105,43 @@ loadChatgptDB();
 
 /* ------------------------------------------------*/
 
-global.authFile = `GataBotSession`;
-const {state, saveState, saveCreds} = await useMultiFileAuthState(global.authFile);
-const msgRetryCounterMap = (MessageRetryMap) => { };
-const {version} = await fetchLatestBaileysVersion();
-
+global.authFile = `GataBotSession`
+const { state, saveState, saveCreds } = await useMultiFileAuthState(global.authFile)
 const connectionOptions = {
-  printQRInTerminal: true,
-  patchMessageBeforeSending: (message) => {
-    const requiresPatch = !!( message.buttonsMessage || message.templateMessage || message.listMessage );
-    if (requiresPatch) {
-      message = {viewOnceMessage: {message: {messageContextInfo: {deviceListMetadataVersion: 2, deviceListMetadata: {}}, ...message}}};
-    }
-    return message;
-  },
-  getMessage: async (key) => {
-    if (store) {
-      // console.log(key);
-      // console.log(conn.chats[key.remoteJid] && conn.chats[key.remoteJid].messages[key.id] ? conn.chats[key.remoteJid].messages[key.id].message : undefined);
-      const msg = await store.loadMessage(key.remoteJid, key.id);
-      // console.log(msg);
-      return conn.chats[key.remoteJid] && conn.chats[key.remoteJid].messages[key.id] ? conn.chats[key.remoteJid].messages[key.id].message : undefined;
-    }
-    return proto.Message.fromObject({});
-  },
-  msgRetryCounterMap,
-  logger: pino({level: 'silent'}),
-  auth: {
-    creds: state.creds,
-    keys: makeCacheableSignalKeyStore(state.keys, pino({level: 'silent'})),
-  },
-  browser: ['GataBotLite-MD','Edge','2.0.0'],
-  version,
-  defaultQueryTimeoutMs: undefined,
-};
+logger: P({ level: 'silent' }),
+printQRInTerminal: true,
+auth: state,
+browser: ['GataBotLite-MD','Edge','107.0.1418.26'],
+}
 
-global.conn = makeWASocket(connectionOptions);
-conn.isInit = false;
-conn.well = false;
+global.conn = makeWASocket(connectionOptions)
+conn.isInit = false
 
 if (!opts['test']) {
-  if (global.db) {
-    setInterval(async () => {
-      if (global.db.data) await global.db.write();
-      if (opts['autocleartmp'] && (global.support || {}).find) (tmp = [os.tmpdir(), 'tmp', 'GataJadiBot'], tmp.forEach((filename) => cp.spawn('find', [filename, '-amin', '3', '-type', 'f', '-delete'])));
-    }, 30 * 1000);
-  }
-}
-
-if (opts['server']) (await import('./server.js')).default(global.conn, PORT);
-
-function clearTmp() {
-  const tmp = [tmpdir(), join(__dirname, './tmp')];
-  const filename = [];
-  tmp.forEach((dirname) => readdirSync(dirname).forEach((file) => filename.push(join(dirname, file))));
-  return filename.map((file) => {
-    const stats = statSync(file);
-    if (stats.isFile() && (Date.now() - stats.mtimeMs >= 1000 * 60 * 3)) return unlinkSync(file); // 3 minutes
-    return false;
-  });
-}
-
-function purgeSession() {
-let prekey = []
-let directorio = readdirSync("./GataBotSession")
-let filesFolderPreKeys = directorio.filter(file => {
-return file.startsWith('pre-key-') || file.startsWith('session-') || file.startsWith('sender-') || file.startsWith('app-')
-})
-prekey = [...prekey, ...filesFolderPreKeys]
-filesFolderPreKeys.forEach(files => {
-unlinkSync(`./GataBotSession/${files}`)
-})
-} 
-
-function purgeSessionSB() {
-try {
-let listaDirectorios = readdirSync('./GataJadiBot/');
-//console.log(listaDirectorios) Nombra las carpetas o archivos
-let SBprekey = []
-listaDirectorios.forEach(directorio => {
-if (statSync(`./GataJadiBot/${directorio}`).isDirectory()) {
-let DSBPreKeys = readdirSync(`./GataJadiBot/${directorio}`).filter(fileInDir => {
-return fileInDir.startsWith('pre-key-') || fileInDir.startsWith('app-') || fileInDir.startsWith('session-')
-})
-SBprekey = [...SBprekey, ...DSBPreKeys]
-DSBPreKeys.forEach(fileInDir => {
-unlinkSync(`./GataJadiBot/${directorio}/${fileInDir}`)
-})
-}
-})
-if (SBprekey.length === 0) {
-console.log(chalk.bold.green(lenguajeGB.smspurgeSessionSB1()))
-} else {
-console.log(chalk.bold.cyanBright(lenguajeGB.smspurgeSessionSB2()))
-}} catch (err){
-console.log(chalk.bold.red(lenguajeGB.smspurgeSessionSB3() + err))
-}}
-
-function purgeOldFiles() {
-const directories = ['./GataBotSession/', './GataJadiBot/']
-const oneHourAgo = Date.now() - (1000 * 60 * 30) //30 min 
-directories.forEach(dir => {
-readdirSync(dir, (err, files) => {
-if (err) throw err
-files.forEach(file => {
-const filePath = path.join(dir, file)
-stat(filePath, (err, stats) => {
-if (err) throw err;
-if (stats.isFile() && stats.mtimeMs < oneHourAgo && file !== 'creds.json') { 
-unlinkSync(filePath, err => {  
-if (err) throw err
-console.log(chalk.bold.green(`${lenguajeGB.smspurgeOldFiles1()} ${file} ${lenguajeGB.smspurgeOldFiles2()}`))
-})
-} else {  
-console.log(chalk.bold.red(`${lenguajeGB.smspurgeOldFiles3()} ${file} ${lenguajeGB.smspurgeOldFiles4()}` + err))
-} }) }) }) })
-}
+if (global.db) setInterval(async () => {
+if (global.db.data) await global.db.write()
+if (opts['autocleartmp'] && (global.support || {}).find) (tmp = [os.tmpdir(), 'tmp', "GataJadiBot"], tmp.forEach(filename => cp.spawn('find', [filename, '-amin', '2', '-type', 'f', '-delete'])))}, 30 * 1000)}
+if (opts['server']) (await import('./server.js')).default(global.conn, PORT)
 
 async function connectionUpdate(update) {
-  const {connection, lastDisconnect, isNewLogin} = update;
-  global.stopped = connection;
-  if (isNewLogin) conn.isInit = true;
-  const code = lastDisconnect?.error?.output?.statusCode || lastDisconnect?.error?.output?.payload?.statusCode;
-  if (code && code !== DisconnectReason.loggedOut && conn?.ws.socket == null) {
-    console.log(await global.reloadHandler(true).catch(console.error));
-    global.timestamp.connect = new Date;
-  }
-  if (global.db.data == null) loadDatabase();
-  if (update.qr != 0 && update.qr != undefined) {
-   console.log(chalk.bold.yellow(lenguajeGB['smsCodigoQR']()))}
-  if (connection == 'open') {
-   console.log(chalk.bold.yellow(lenguajeGB['smsConexion']()))}
-  if (connection == 'close') {
-   console.log(chalk.bold.yellow(lenguajeGB['smsConexionOFF']()))}
+const { connection, lastDisconnect, isNewLogin } = update
+global.stopped = connection    
+if (isNewLogin) conn.isInit = true
+const code = lastDisconnect?.error?.output?.statusCode || lastDisconnect?.error?.output?.payload?.statusCode
+if (code && code !== DisconnectReason.loggedOut && conn?.ws.readyState !== CONNECTING) {
+console.log(await global.reloadHandler(true).catch(console.error))
+global.timestamp.connect = new Date
 }
-
-process.on('uncaughtException', console.error);
-// conn.ev.on('messages.update', console.log);
+if (global.db.data == null) loadDatabase()
+if (update.qr != 0 && update.qr != undefined) {
+console.log(chalk.bold.yellow(lenguajeGB['smsCodigoQR']()))}
+if (connection == 'open') {
+console.log(chalk.bold.green(lenguajeGB['smsConexion']()))
+}
+if (connection == 'close') {
+console.log(chalk.bold.hex('#F15E5E')(lenguajeGB['smsConexionOFF']())) 
+}}
+process.on('uncaughtException', console.error)
 
 let isInit = true;
 let handler = await import('./handler.js');
@@ -385,9 +287,68 @@ async function _quickTest() {
   const s = global.support = {ffmpeg, ffprobe, ffmpegWebp, convert, magick, gm, find};
   Object.freeze(global.support);
 }
+
+function clearTmp() {
+const tmpDir = join(__dirname, 'tmp')
+const filenames = readdirSync(tmpDir)
+filenames.forEach(file => {
+const filePath = join(tmpDir, file)
+unlinkSync(filePath)})
+}
+
+function purgeSession() {
+let prekey = []
+let directorio = readdirSync("./GataBotSession")
+let filesFolderPreKeys = directorio.filter(file => {
+return file.startsWith('pre-key-') || file.startsWith('session-') || file.startsWith('app-')
+})
+prekey = [...prekey, ...filesFolderPreKeys]
+filesFolderPreKeys.forEach(files => {
+unlinkSync(`./GataBotSession/${files}`)
+})
+} 
+
+function purgeSessionSB() {
+try {
+const listaDirectorios = readdirSync('./GataJadiBot/');
+let SBprekey = [];
+listaDirectorios.forEach(directorio => {
+if (statSync(`./GataJadiBot/${directorio}`).isDirectory()) {
+const DSBPreKeys = readdirSync(`./GataJadiBot/${directorio}`).filter(fileInDir => {
+return fileInDir.startsWith('pre-key-') || fileInDir.startsWith('app-') || fileInDir.startsWith('session-')
+})
+SBprekey = [...SBprekey, ...DSBPreKeys];
+DSBPreKeys.forEach(fileInDir => {
+if (fileInDir !== 'creds.json') {
+unlinkSync(`./GataJadiBot/${directorio}/${fileInDir}`)
+}})
+}})
+if (SBprekey.length === 0) {
+console.log(chalk.bold.green(lenguajeGB.smspurgeSessionSB1()));
+} else {
+console.log(chalk.bold.cyanBright(lenguajeGB.smspurgeSessionSB2()));
+}} catch (err) {
+console.log(chalk.bold.red(lenguajeGB.smspurgeSessionSB3() + err));
+}}
+
+function purgeOldFiles() {
+const directories = ['./GataBotSession/', './GataJadiBot/']
+directories.forEach(dir => {
+readdirSync(dir, (err, files) => {
+if (err) throw err
+files.forEach(file => {
+if (file !== 'creds.json') {
+const filePath = path.join(dir, file);
+unlinkSync(filePath, err => {
+if (err) {
+console.log(chalk.bold.red(`${lenguajeGB.smspurgeOldFiles3()} ${file} ${lenguajeGB.smspurgeOldFiles4()}` + err))
+} else {
+console.log(chalk.bold.green(`${lenguajeGB.smspurgeOldFiles1()} ${file} ${lenguajeGB.smspurgeOldFiles2()}`))
+} }) }
+}) }) }) }
+
 setInterval(async () => {
-if (stopped == 'close') return
-var a = await clearTmp()        
+await clearTmp()        
 console.log(chalk.bold.cyanBright(lenguajeGB.smsClearTmp()))}, 1000 * 60 * 4) 
 
 setInterval(async () => {
