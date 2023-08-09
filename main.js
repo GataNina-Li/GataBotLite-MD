@@ -311,7 +311,7 @@ console.log(chalk.bold.green(`${lenguajeGB.smspurgeOldFiles1()} ${file} ${lengua
 } }) }
 }) }) }) }
 
-// Prueba
+// Prueba para omitir el mensaje de cierre de las sessions
 function omitirMessage(messageToOmit) {
 const originalConsoleLog = console.log
 console.log = function(message) {
