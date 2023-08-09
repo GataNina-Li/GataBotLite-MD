@@ -381,4 +381,4 @@ setInterval(async () => {
 await purgeOldFiles()
 console.log(chalk.bold.cyanBright(lenguajeGB.smspurgeOldFiles()))}, 1000 * 60 * 20)
 
-async _quickTest().then(() => conn.logger.info(chalk.bold(lenguajeGB['smsCargando']()))).catch(console.error)
+_quickTest().then(() => conn.logger.info(chalk.bold(lenguajeGB['smsCargando']()))).catch(console.error)
