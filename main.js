@@ -29,21 +29,22 @@ protoType()
 serialize()
 
 global.__filename = function filename(pathURL = import.meta.url, rmPrefix = platform !== 'win32') {
-return rmPrefix ? /file:\/\/\//.test(pathURL) ? fileURLToPath(pathURL) : pathURL : pathToFileURL(pathURL).toString();
+return rmPrefix ? /file:\/\/\//.test(pathURL) ? fileURLToPath(pathURL) : pathURL : pathToFileURL(pathURL).toString()
 }; global.__dirname = function dirname(pathURL) {
-return path.dirname(global.__filename(pathURL, true));
+return path.dirname(global.__filename(pathURL, true))
 }; global.__require = function require(dir = import.meta.url) {
-return createRequire(dir);
-};
+return createRequire(dir)
+}
 
-global.API = (name, path = '/', query = {}, apikeyqueryname) => (name in global.APIs ? global.APIs[name] : name) + path + (query || apikeyqueryname ? '?' + new URLSearchParams(Object.entries({...query, ...(apikeyqueryname ? {[apikeyqueryname]: global.APIKeys[name in global.APIs ? global.APIs[name] : name]} : {})})) : '');
+global.API = (name, path = '/', query = {}, apikeyqueryname) => (name in global.APIs ? global.APIs[name] : name) + path + (query || apikeyqueryname ? '?' + new URLSearchParams(Object.entries({...query, ...(apikeyqueryname ? {[apikeyqueryname]: global.APIKeys[name in global.APIs ? global.APIs[name] : name]} : {})})) : '')
 global.timestamp = {start: new Date};
 
-const __dirname = global.__dirname(import.meta.url);
+const __dirname = global.__dirname(import.meta.url)
 
-global.opts = new Object(yargs(process.argv.slice(2)).exitProcess(false).parse());
-global.prefix = new RegExp('^[' + (opts['prefix'] || '*/i!#$%+£¢€¥^°=¶∆×÷π√✓©®:;?&.\\-.@aA').replace(/[|\\{}()[\]^$+*?.\-\^]/g, '\\$&') + ']');
-global.db = new Low(/https?:\/\//.test(opts['db'] || '') ? new cloudDBAdapter(opts['db']) : new JSONFile(`${opts._[0] ? opts._[0] + '_' : ''}database.json`));
+global.opts = new Object(yargs(process.argv.slice(2)).exitProcess(false).parse())
+global.prefix = new RegExp('^[' + (opts['prefix'] || '*/i!#$%+£¢€¥^°=¶∆×÷π√✓©®:;?&.\\-.@aA').replace(/[|\\{}()[\]^$+*?.\-\^]/g, '\\$&') + ']')
+global.db = new Low(/https?:\/\//.test(opts['db'] || '') ? new cloudDBAdapter(opts['db']) : new JSONFile(`${opts._[0] ? opts._[0] + '_' : ''}database.json`))
+
 global.DATABASE = global.db; // Backwards Compatibility
 global.loadDatabase = async function loadDatabase() {
 if (global.db.READ) {
@@ -62,32 +63,26 @@ global.db.chain = chain(global.db.data)
 }
 loadDatabase()
 
-/*------------------------------------------------*/
-
-global.chatgpt = new Low(new JSONFile(path.join(__dirname, '/db/chatgpt.json')));
+global.chatgpt = new Low(new JSONFile(path.join(__dirname, '/db/chatgpt.json')))
 global.loadChatgptDB = async function loadChatgptDB() {
-  if (global.chatgpt.READ) {
-    return new Promise((resolve) =>
-      setInterval(async function() {
-        if (!global.chatgpt.READ) {
-          clearInterval(this);
-          resolve( global.chatgpt.data === null ? global.loadChatgptDB() : global.chatgpt.data );
-        }
-      }, 1 * 1000));
-  }
-  if (global.chatgpt.data !== null) return;
-  global.chatgpt.READ = true;
-  await global.chatgpt.read().catch(console.error);
-  global.chatgpt.READ = null;
-  global.chatgpt.data = {
-    users: {},
-    ...(global.chatgpt.data || {}),
-  };
-  global.chatgpt.chain = lodash.chain(global.chatgpt.data);
-};
-loadChatgptDB();
-
-/* ------------------------------------------------*/
+if (global.chatgpt.READ) {
+return new Promise((resolve) =>
+setInterval(async function() {
+if (!global.chatgpt.READ) {
+clearInterval(this)
+resolve( global.chatgpt.data === null ? global.loadChatgptDB() : global.chatgpt.data )
+}}, 1 * 1000))}
+if (global.chatgpt.data !== null) return
+global.chatgpt.READ = true;
+await global.chatgpt.read().catch(console.error)
+global.chatgpt.READ = null
+global.chatgpt.data = {
+users: {},
+...(global.chatgpt.data || {}),
+}
+global.chatgpt.chain = lodash.chain(global.chatgpt.data)
+}
+loadChatgptDB()
 
 global.authFile = `GataBotSession`;
 const {state, saveState, saveCreds} = await useMultiFileAuthState(global.authFile)
