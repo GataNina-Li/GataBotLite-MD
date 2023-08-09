@@ -1,46 +1,46 @@
-process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = '0'
-import './config.js'
-import {createRequire} from 'module'
-import path, {join} from 'path'
-import {fileURLToPath, pathToFileURL} from 'url'
-import {platform} from 'process'
-import * as ws from 'ws'
-import {readdirSync, statSync, unlinkSync, existsSync, readFileSync, rmSync, watch} from 'fs'
-import yargs from 'yargs'
-import {spawn} from 'child_process'
-import lodash from 'lodash'
-import chalk from 'chalk'
-import syntaxerror from 'syntax-error'
-import {tmpdir} from 'os'
-import {format} from 'util'
-import P from 'pino'
-import pino from 'pino'
-import {makeWASocket, protoType, serialize} from './lib/simple.js'
-import {Low, JSONFile} from 'lowdb'
-import {mongoDB, mongoDBV2} from './lib/mongoDB.js'
-import store from './lib/store.js'
-const {proto} = (await import('@whiskeysockets/baileys')).default
-const {DisconnectReason, useMultiFileAuthState, MessageRetryMap, fetchLatestBaileysVersion, makeCacheableSignalKeyStore} = await import('@whiskeysockets/baileys')
-const {CONNECTING} = ws
-const {chain} = lodash
-const PORT = process.env.PORT || process.env.SERVER_PORT || 3000
+process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = '0';
+import './config.js';
+import {createRequire} from 'module';
+import path, {join} from 'path';
+import {fileURLToPath, pathToFileURL} from 'url';
+import {platform} from 'process';
+import * as ws from 'ws';
+import {readdirSync, statSync, unlinkSync, existsSync, readFileSync, rmSync, watch} from 'fs';
+import yargs from 'yargs';
+import {spawn} from 'child_process';
+import lodash from 'lodash';
+import chalk from 'chalk';
+import syntaxerror from 'syntax-error';
+import {tmpdir} from 'os';
+import {format} from 'util';
+import P from 'pino';
+import pino from 'pino';
+import {makeWASocket, protoType, serialize} from './lib/simple.js';
+import {Low, JSONFile} from 'lowdb';
+import {mongoDB, mongoDBV2} from './lib/mongoDB.js';
+import store from './lib/store.js';
+const {proto} = (await import('@whiskeysockets/baileys')).default;
+const {DisconnectReason, useMultiFileAuthState, MessageRetryMap, fetchLatestBaileysVersion, makeCacheableSignalKeyStore} = await import('@whiskeysockets/baileys');
+const {CONNECTING} = ws;
+const {chain} = lodash;
+const PORT = process.env.PORT || process.env.SERVER_PORT || 3000;
 
-protoType()
-serialize()
+protoType();
+serialize();
 
 global.__filename = function filename(pathURL = import.meta.url, rmPrefix = platform !== 'win32') {
-return rmPrefix ? /file:\/\/\//.test(pathURL) ? fileURLToPath(pathURL) : pathURL : pathToFileURL(pathURL).toString()
-}
-global.__dirname = function dirname(pathURL) {
-return path.dirname(global.__filename(pathURL, true))
-}
-global.__require = function require(dir = import.meta.url) {
-return createRequire(dir);
-}
+  return rmPrefix ? /file:\/\/\//.test(pathURL) ? fileURLToPath(pathURL) : pathURL : pathToFileURL(pathURL).toString();
+}; global.__dirname = function dirname(pathURL) {
+  return path.dirname(global.__filename(pathURL, true));
+}; global.__require = function require(dir = import.meta.url) {
+  return createRequire(dir);
+};
 
-global.API = (name, path = '/', query = {}, apikeyqueryname) => (name in global.APIs ? global.APIs[name] : name) + path + (query || apikeyqueryname ? '?' + new URLSearchParams(Object.entries({...query, ...(apikeyqueryname ? {[apikeyqueryname]: global.APIKeys[name in global.APIs ? global.APIs[name] : name]} : {})})) : '')
+global.API = (name, path = '/', query = {}, apikeyqueryname) => (name in global.APIs ? global.APIs[name] : name) + path + (query || apikeyqueryname ? '?' + new URLSearchParams(Object.entries({...query, ...(apikeyqueryname ? {[apikeyqueryname]: global.APIKeys[name in global.APIs ? global.APIs[name] : name]} : {})})) : '');
 
-global.timestamp = {start: new Date}
+global.timestamp = {start: new Date};
+global.videoList = [];
+global.videoListXXX = [];
 
 const __dirname = global.__dirname(import.meta.url);
 
@@ -103,10 +103,10 @@ loadChatgptDB();
 
 /* ------------------------------------------------*/
 
-global.authFile = `GataBotSession`
-const {state, saveState, saveCreds} = await useMultiFileAuthState(global.authFile)
-const msgRetryCounterMap = (MessageRetryMap) => { }
-const {version} = await fetchLatestBaileysVersion()
+global.authFile = `GataBotSession`;
+const {state, saveState, saveCreds} = await useMultiFileAuthState(global.authFile);
+const msgRetryCounterMap = (MessageRetryMap) => { };
+const {version} = await fetchLatestBaileysVersion();
 
 const connectionOptions = {
   printQRInTerminal: true,
@@ -151,7 +151,7 @@ if (!opts['test']) {
   }
 }
 
-if (opts['server']) (await import('./server.js')).default(global.conn, PORT)
+if (opts['server']) (await import('./server.js')).default(global.conn, PORT);
 
 function clearTmp() {
   const tmp = [tmpdir(), join(__dirname, './tmp')];
@@ -221,25 +221,25 @@ console.log(chalk.bold.red(`${lenguajeGB.smspurgeOldFiles3()} ${file} ${lenguaje
 }
 
 async function connectionUpdate(update) {
-const { connection, lastDisconnect, isNewLogin } = update
-global.stopped = connection    
-if (isNewLogin) conn.isInit = true
-const code = lastDisconnect?.error?.output?.statusCode || lastDisconnect?.error?.output?.payload?.statusCode
-if (code && code !== DisconnectReason.loggedOut && conn?.ws.readyState !== CONNECTING) {
-console.log(await global.reloadHandler(true).catch(console.error))
-global.timestamp.connect = new Date
+  const {connection, lastDisconnect, isNewLogin} = update;
+  global.stopped = connection;
+  if (isNewLogin) conn.isInit = true;
+  const code = lastDisconnect?.error?.output?.statusCode || lastDisconnect?.error?.output?.payload?.statusCode;
+  if (code && code !== DisconnectReason.loggedOut && conn?.ws.socket == null) {
+    console.log(await global.reloadHandler(true).catch(console.error));
+    global.timestamp.connect = new Date;
+  }
+  if (global.db.data == null) loadDatabase();
+  if (update.qr != 0 && update.qr != undefined) {
+   console.log(chalk.bold.yellow(lenguajeGB['smsCodigoQR']()))}
+  if (connection == 'open') {
+   console.log(chalk.bold.yellow(lenguajeGB['smsConexion']()))}
+  if (connection == 'close') {
+   console.log(chalk.bold.yellow(lenguajeGB['smsConexionOFF']()))}
 }
-if (global.db.data == null) loadDatabase()
-if (update.qr != 0 && update.qr != undefined) {
-await conn.logger.info(chalk.bold(lenguajeGB['smsCargando']()))
-await console.log(chalk.bold.yellow(lenguajeGB['smsCodigoQR']()))}
-if (connection == 'open') {
-console.log(chalk.bold.green(lenguajeGB['smsConexion']()))
-}
-if (connection == 'close') {
-console.log(chalk.bold.hex('#F15E5E')(lenguajeGB['smsConexionOFF']())) 
-}}
-process.on('uncaughtException', console.error)
+
+process.on('uncaughtException', console.error);
+// conn.ev.on('messages.update', console.log);
 
 let isInit = true;
 let handler = await import('./handler.js');
@@ -385,92 +385,19 @@ async function _quickTest() {
   const s = global.support = {ffmpeg, ffprobe, ffmpegWebp, convert, magick, gm, find};
   Object.freeze(global.support);
 }
-
-/*function clearTmp() {
-const tmpDir = join(__dirname, 'tmp')
-const filenames = readdirSync(tmpDir)
-filenames.forEach(file => {
-const filePath = join(tmpDir, file)
-unlinkSync(filePath)})
-}
-
-function purgeSession() {
-let prekey = []
-let directorio = readdirSync("./GataBotSession")
-let filesFolderPreKeys = directorio.filter(file => {
-return file.startsWith('pre-key-') || file.startsWith('session-') || file.startsWith('sender-') || file.startsWith('app-')})
-prekey = [...prekey, ...filesFolderPreKeys]
-filesFolderPreKeys.forEach(files => {
-unlinkSync(`./GataBotSession/${files}`)
-})
-} 
-
-function purgeSessionSB() {
-try {
-const listaDirectorios = readdirSync('./GataJadiBot/');
-let SBprekey = [];
-listaDirectorios.forEach(directorio => {
-if (statSync(`./GataJadiBot/${directorio}`).isDirectory()) {
-const DSBPreKeys = readdirSync(`./GataJadiBot/${directorio}`).filter(fileInDir => {
-return fileInDir.startsWith('pre-key-') || fileInDir.startsWith('app-') || fileInDir.startsWith('session-')
-})
-SBprekey = [...SBprekey, ...DSBPreKeys];
-DSBPreKeys.forEach(fileInDir => {
-if (fileInDir !== 'creds.json') {
-unlinkSync(`./GataJadiBot/${directorio}/${fileInDir}`)
-}})
-}})
-if (SBprekey.length === 0) {
-console.log(chalk.bold.green(lenguajeGB.smspurgeSessionSB1()));
-} else {
-console.log(chalk.bold.cyanBright(lenguajeGB.smspurgeSessionSB2()));
-}} catch (err) {
-console.log(chalk.bold.red(lenguajeGB.smspurgeSessionSB3() + err));
-}}
-
-function purgeOldFiles() {
-const directories = ['./GataBotSession/', './GataJadiBot/']
-directories.forEach(dir => {
-readdirSync(dir, (err, files) => {
-if (err) throw err
-files.forEach(file => {
-if (file !== 'creds.json') {
-const filePath = path.join(dir, file);
-unlinkSync(filePath, err => {
-if (err) {
-console.log(chalk.bold.red(`${lenguajeGB.smspurgeOldFiles3()} ${file} ${lenguajeGB.smspurgeOldFiles4()}` + err))
-} else {
-console.log(chalk.bold.green(`${lenguajeGB.smspurgeOldFiles1()} ${file} ${lenguajeGB.smspurgeOldFiles2()}`))
-} }) }
-}) }) }) }*/
-
-//function omitirMessage(messageToOmit) {
-//const originalConsoleLog = console.log
-//console.log = function(message) {
-//if (message.includes(messageToOmit)) {
-//return
-//}
-//originalConsoleLog.apply(console, arguments)
-//}}
-//setInterval(async () => {
-//omitirMessage("Closing stale open session for new outgoing prekey bundle")
-//}, 1000) 
-
 setInterval(async () => {
-await clearTmp()        
+if (stopped == 'close') return
+var a = await clearTmp()        
 console.log(chalk.bold.cyanBright(lenguajeGB.smsClearTmp()))}, 1000 * 60 * 4) 
 
 setInterval(async () => {
 await purgeSession()
-console.log(chalk.bold.cyanBright(lenguajeGB.smspurgeSession()))}, 1000 * 60 * 20)
-
+console.log(chalk.bold.cyanBright(lenguajeGB.smspurgeSession()))}, 1000 * 60 * 30)
 setInterval(async () => {
-await purgeSessionSB()}, 1000 * 60 * 20)
-
+await purgeSessionSB()}, 1000 * 60 * 30)
 setInterval(async () => {
 await purgeOldFiles()
-console.log(chalk.bold.cyanBright(lenguajeGB.smspurgeOldFiles()))}, 1000 * 60 * 20)
-
+console.log(chalk.bold.cyanBright(lenguajeGB.smspurgeOldFiles()))}, 1000 * 60 * 30)
 _quickTest()
-//.then(() => )
+.then(() => conn.logger.info(chalk.bold(lenguajeGB['smsCargando']())))
 .catch(console.error)
