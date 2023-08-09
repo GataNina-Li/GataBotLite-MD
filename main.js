@@ -106,16 +106,40 @@ loadChatgptDB();
 /* ------------------------------------------------*/
 
 global.authFile = `GataBotSession`
-const { state, saveState, saveCreds } = await useMultiFileAuthState(global.authFile)
+const {state, saveState, saveCreds} = await useMultiFileAuthState(global.authFile);
+const msgRetryCounterMap = (MessageRetryMap) => { };
+const {version} = await fetchLatestBaileysVersion();
+
 const connectionOptions = {
-logger: P({ level: 'silent' }),
 printQRInTerminal: true,
-auth: state,
+patchMessageBeforeSending: (message) => {
+const requiresPatch = !!( message.buttonsMessage || message.templateMessage || message.listMessage );
+if (requiresPatch) {
+message = {viewOnceMessage: {message: {messageContextInfo: {deviceListMetadataVersion: 2, deviceListMetadata: {}}, ...message}}};
+}
+return message
+},
+getMessage: async (key) => {
+if (store) {
+const msg = await store.loadMessage(key.remoteJid, key.id);
+return conn.chats[key.remoteJid] && conn.chats[key.remoteJid].messages[key.id] ? conn.chats[key.remoteJid].messages[key.id].message : undefined;
+}
+return proto.Message.fromObject({});
+},
+msgRetryCounterMap,
+logger: pino({level: 'silent'}),
+auth: {
+creds: state.creds,
+keys: makeCacheableSignalKeyStore(state.keys, pino({level: 'silent'})),
+},
 browser: ['GataBotLite-MD','Edge','107.0.1418.26'],
+version,
+defaultQueryTimeoutMs: undefined,
 }
 
-global.conn = makeWASocket(connectionOptions)
-conn.isInit = false
+global.conn = makeWASocket(connectionOptions);
+conn.isInit = false;
+conn.well = false;
 
 if (!opts['test']) {
 if (global.db) setInterval(async () => {
