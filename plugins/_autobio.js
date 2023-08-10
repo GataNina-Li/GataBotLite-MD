@@ -7,14 +7,11 @@ let _muptime
 if (process.send) { process.send('uptime')
 _muptime = await new Promise(resolve => { process.once('message', resolve) 
 setTimeout(resolve, 2000) }) * 1000}
-try{
 let uptime = clockString(_uptime)
 let bio = `${global.packname} ⁝⁝ ✅ ${uptime} ⌛ ⁝⁝ 𓃠 ${lenguajeGB.lenguaje() == 'es' ? '#estado #menu #serbot #grupos #creadora' : '#status #menu #jadibot #groupsgb #owner'} 💻` 
 await this.updateProfileStatus(bio).catch(_ => _)
 setting.status = new Date() * 1
-} catch (e) {
-reportError(e)
-}} 
+} 
 export default handler
 
 function clockString(ms) {
