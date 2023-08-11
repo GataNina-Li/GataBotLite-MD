@@ -145,9 +145,9 @@ console.log(chalk.bold.yellow(lenguajeGB['smsConexion']()))}
 const files = fs.readdirSync(authFile) // Utilizar readdirSync
 if (connection == 'close') {
 setTimeout(async () => {
-if (files.includes('creds.json') && connection == 'close') {
+if (connection == 'close') {
 console.log(chalk.bold.yellow(lenguajeGB['smsConexionOFF']()))
-}}, 8000)
+}}, 15000)
 try {
 if (files.length === 0) {
 console.log(chalk.bold.yellow(lenguajeGB['smsConexionOFF']()))
