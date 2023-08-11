@@ -353,17 +353,17 @@ omitirMessage("Closing stale open session for new outgoing prekey bundle")
 
 setInterval(async () => {
 await clearTmp()        
-console.log(chalk.bold.cyanBright(lenguajeGB.smsClearTmp()))}, 1000 * 60 * 4) 
+console.log(chalk.bold.cyanBright(lenguajeGB.smsClearTmp()))}, 1000 * 60 * 4) // 4 min 
 
 setInterval(async () => {
 await purgeSession()
-console.log(chalk.bold.cyanBright(lenguajeGB.smspurgeSession()))}, 1000 * 60 * 20)
+console.log(chalk.bold.cyanBright(lenguajeGB.smspurgeSession()))}, 1000 * 60 * 10) // 10 min
 
 setInterval(async () => {
-await purgeSessionSB()}, 1000 * 60 * 20)
+await purgeSessionSB()}, 1000 * 60 * 10)
 
 setInterval(async () => {
 await purgeOldFiles()
-console.log(chalk.bold.cyanBright(lenguajeGB.smspurgeOldFiles()))}, 1000 * 60 * 20)
+console.log(chalk.bold.cyanBright(lenguajeGB.smspurgeOldFiles()))}, 1000 * 60 * 10)
 
 _quickTest().then(() => conn.logger.info(chalk.bold(lenguajeGB['smsCargando']()))).catch(console.error)
