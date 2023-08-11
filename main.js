@@ -141,8 +141,10 @@ if (connection == 'open') {
 console.log(chalk.bold.yellow(lenguajeGB['smsConexion']()))}
 if (connection == 'close') {
 const files = fs.readdirSync(authFile) // Utilizar readdirSync  
-if (files.includes('creds.json') && global.reloadHandler(false) === false) {
-console.log(chalk.bold.yellow(lenguajeGB['smsConexionOFF']()))}
+global.reloadHandler(true) ? '' : console.log(chalk.bold.yellow(lenguajeGB['smsConexionOFF']()))
+  
+//if (files.includes('creds.json') && global.reloadHandler(false) === false) {
+//console.log(chalk.bold.yellow(lenguajeGB['smsConexionOFF']()))}
 }}
 process.on('uncaughtException', console.error)
 
