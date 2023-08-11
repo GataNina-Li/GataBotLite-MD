@@ -142,15 +142,13 @@ console.log(chalk.bold.yellow(lenguajeGB['smsConexion']()))}
 //if (connection == 'close') {
 //console.log(chalk.bold.yellow(lenguajeGB['smsConexionOFF']()))}
 //}
-if (connection == 'close') {
 try {
-await fs.promises.access(global.authFile) // Utilizar fs.promises.access()
-const files = await fs.readdir(global.authFile)
+//fs.accessSync(authFile) // Utilizar fs.accessSync()
+const files = fs.readdirSync(authFile) // Utilizar readdirSync
 if (files.length === 0) {
 console.log(chalk.bold.yellow(lenguajeGB['smsConexionOFF']()))
 }} catch (error) {
 console.error('Error:', error)
-console.log(chalk.bold.yellow('La conexión está apagada debido a la falta de datos de sesión.'))
 }}}
 process.on('uncaughtException', console.error)
 
