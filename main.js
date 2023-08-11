@@ -144,15 +144,13 @@ console.log(chalk.bold.yellow(lenguajeGB['smsConexion']()))}
 //}
 if (connection == 'close') {
 try {
-const folderExists = await fs.access(global.authFile)
-if (folderExists) {
+await fs.promises.access(global.authFile) // Utilizar fs.promises.access()
 const files = await fs.readdir(global.authFile)
 if (files.length === 0) {
 console.log(chalk.bold.yellow(lenguajeGB['smsConexionOFF']()))
-}} else {
-console.log(chalk.bold.yellow('La conexión está apagada debido a la falta de datos de sesión.'))
 }} catch (error) {
 console.error('Error:', error)
+console.log(chalk.bold.yellow('La conexión está apagada debido a la falta de datos de sesión.'))
 }}}
 process.on('uncaughtException', console.error)
 
