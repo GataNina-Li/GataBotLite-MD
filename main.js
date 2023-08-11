@@ -131,7 +131,7 @@ global.stopped = connection
 if (isNewLogin) conn.isInit = true
 const code = lastDisconnect?.error?.output?.statusCode || lastDisconnect?.error?.output?.payload?.statusCode
 if (code && code !== DisconnectReason.loggedOut && conn?.ws.socket == null) {
-//console.log(await global.reloadHandler(true).catch(console.error))
+console.log(await global.reloadHandler(true).catch(console.error))
 global.timestamp.connect = new Date
 }
 if (global.db.data == null) loadDatabase()
@@ -141,7 +141,7 @@ if (connection == 'open') {
 console.log(chalk.bold.yellow(lenguajeGB['smsConexion']()))}
 if (connection == 'close') {
 const files = fs.readdirSync(authFile) // Utilizar readdirSync  
-if (files.includes('creds.json') && !global.reloadHandler(true)) {
+if (files.includes('creds.json') && connection == 'close') {
 console.log(chalk.bold.yellow(lenguajeGB['smsConexionOFF']()))}
 }}
 process.on('uncaughtException', console.error)
@@ -315,11 +315,11 @@ unlinkSync(`./GataJadiBot/${directorio}/${fileInDir}`)
 }})
 }})
 if (SBprekey.length === 0) {
-console.log(chalk.bold.green(lenguajeGB.smspurgeSessionSB1()));
+console.log(chalk.bold.green(lenguajeGB.smspurgeSessionSB1()))
 } else {
-console.log(chalk.bold.cyanBright(lenguajeGB.smspurgeSessionSB2()));
+console.log(chalk.bold.cyanBright(lenguajeGB.smspurgeSessionSB2()))
 }} catch (err) {
-console.log(chalk.bold.red(lenguajeGB.smspurgeSessionSB3() + err));
+console.log(chalk.bold.red(lenguajeGB.smspurgeSessionSB3() + err))
 }}
 
 function purgeOldFiles() {
@@ -368,4 +368,4 @@ setInterval(async () => {
 await purgeOldFiles()
 console.log(chalk.bold.cyanBright(lenguajeGB.smspurgeOldFiles()))}, 1000 * 60 * 10)
 
-_quickTest().then(() => conn.logger.info(chalk.bold(lenguajeGB['smsCargando']()))).catch(console.error)
+_quickTest().then(() => conn.logger.info(chalk.bold(lenguajeGB['smsCargando']().trim()))).catch(console.error)
