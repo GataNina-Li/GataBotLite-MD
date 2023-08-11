@@ -144,9 +144,11 @@ console.log(chalk.bold.yellow(lenguajeGB['smsConexion']()))}
 //}
 const files = fs.readdirSync(authFile) // Utilizar readdirSync
 if (connection == 'close') {
-if (files.length > 0) return console.log(chalk.bold.yellow(lenguajeGB['smsConexionOFF']())) 
+setTimeout(async () => {
+if (files.includes('creds.json') && connection == 'close') {
+console.log(chalk.bold.yellow(lenguajeGB['smsConexionOFF']()))
+}}, 3000)
 try {
-//fs.accessSync(authFile) // Utilizar fs.accessSync()
 if (files.length === 0) {
 console.log(chalk.bold.yellow(lenguajeGB['smsConexionOFF']()))
 }} catch (error) {
