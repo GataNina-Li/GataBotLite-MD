@@ -142,6 +142,7 @@ console.log(chalk.bold.yellow(lenguajeGB['smsConexion']()))}
 //if (connection == 'close') {
 //console.log(chalk.bold.yellow(lenguajeGB['smsConexionOFF']()))}
 //}
+if (connection == 'close') {
 try {
 //fs.accessSync(authFile) // Utilizar fs.accessSync()
 const files = fs.readdirSync(authFile) // Utilizar readdirSync
