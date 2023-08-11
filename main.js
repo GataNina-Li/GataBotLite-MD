@@ -139,9 +139,21 @@ if (update.qr != 0 && update.qr != undefined) {
 console.log(chalk.bold.yellow(lenguajeGB['smsCodigoQR']()))}
 if (connection == 'open') {
 console.log(chalk.bold.yellow(lenguajeGB['smsConexion']()))}
+//if (connection == 'close') {
+//console.log(chalk.bold.yellow(lenguajeGB['smsConexionOFF']()))}
+//}
 if (connection == 'close') {
-console.log(chalk.bold.yellow(lenguajeGB['smsConexionOFF']()))}
-}
+try {
+const folderExists = await fs.access(global.authFile)
+if (folderExists) {
+const files = await fs.readdir(global.authFile)
+if (files.length === 0) {
+console.log(chalk.bold.yellow(lenguajeGB['smsConexionOFF']()))
+}} else {
+console.log(chalk.bold.yellow('La conexión está apagada debido a la falta de datos de sesión.'))
+}} catch (error) {
+console.error('Error:', error)
+}}}
 process.on('uncaughtException', console.error)
 
 let isInit = true
