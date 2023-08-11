@@ -131,7 +131,7 @@ global.stopped = connection
 if (isNewLogin) conn.isInit = true
 const code = lastDisconnect?.error?.output?.statusCode || lastDisconnect?.error?.output?.payload?.statusCode
 if (code && code !== DisconnectReason.loggedOut && conn?.ws.socket == null) {
-console.log(await global.reloadHandler(true).catch(console.error))
+//console.log(await global.reloadHandler(true).catch(console.error))
 global.timestamp.connect = new Date
 }
 if (global.db.data == null) loadDatabase()
@@ -139,21 +139,11 @@ if (update.qr != 0 && update.qr != undefined) {
 console.log(chalk.bold.yellow(lenguajeGB['smsCodigoQR']()))}
 if (connection == 'open') {
 console.log(chalk.bold.yellow(lenguajeGB['smsConexion']()))}
-//if (connection == 'close') {
-//console.log(chalk.bold.yellow(lenguajeGB['smsConexionOFF']()))}
-//}
-const files = fs.readdirSync(authFile) // Utilizar readdirSync
 if (connection == 'close') {
-setTimeout(async () => {
-if (connection == 'close') {
-console.log(chalk.bold.yellow(lenguajeGB['smsConexionOFF']()))
-}}, 15000)
-try {
-if (files.length === 0) {
-console.log(chalk.bold.yellow(lenguajeGB['smsConexionOFF']()))
-}} catch (error) {
-console.error('Error:', error)
-}}}
+const files = fs.readdirSync(authFile) // Utilizar readdirSync  
+if (files.includes('creds.json') && !global.reloadHandler(true)) {
+console.log(chalk.bold.yellow(lenguajeGB['smsConexionOFF']()))}
+}
 process.on('uncaughtException', console.error)
 
 let isInit = true
