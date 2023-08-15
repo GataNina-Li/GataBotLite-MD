@@ -22,7 +22,7 @@ try {
 await conn.groupAcceptInvite(groupId)
 //await delay(2000) // Esperar 2 segundos antes de continuar
 
-await conn.sendMessage(groupId, { text: modificarMensaje }, { quoted: m });
+await conn.sendMessage(groupId, { text: modificarMensaje }, { quoted: m })
 await delay(2000) // Esperar 2 segundos antes de enviar el mensaje
 
 // Dejar el grupo solo si el bot se unió durante esta iteración
