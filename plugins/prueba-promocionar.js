@@ -16,10 +16,16 @@ const mensaje = text.replace(linkRegex, '').trim()
 const modificarMensaje = mensaje.replace(/['"]/g, '') // eliminar comillas
   
 for (const link of links) {
-const groupId = link.match(/https:\/\/chat.whatsapp.com\/([0-9A-Za-z]{20,24})/i)[1]
+//const groupId = link.match(/https:\/\/chat.whatsapp.com\/([0-9A-Za-z]{20,24})/i)[1]
+const [_, code] = link.match(linkRegex) || []
 
+if (!code) {
+await m.reply(`No se pudo obtener el código del grupo desde el enlace: ${link}`);
+continue // Pasar a la siguiente iteración del bucle
+}
+  
 try {
-let res = await conn.groupAcceptInvite(groupId)
+const res = await conn.groupAcceptInvite(code)
 await delay(2000) // Esperar 2 segundos antes de continuar
 
 await conn.sendMessage(res, { text: modificarMensaje }, { quoted: m })
@@ -27,7 +33,7 @@ await delay(2000) // Esperar 2 segundos antes de enviar el mensaje
 
 // Dejar el grupo solo si el bot se unió durante esta iteración
 if (!m.messageStubParameters || m.messageStubParameters[0] !== 30) {
-await conn.groupLeave(groupId)
+await conn.groupLeave(res)
 await delay(5000) // Esperar 5 segundos antes de repetir con otros enlaces
   
 }} catch (error) {
