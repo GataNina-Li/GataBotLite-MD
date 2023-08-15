@@ -32,7 +32,7 @@ try {
 const res = await conn.groupAcceptInvite(code)
 await delay(2000); // Esperar 4 segundos antes de continuar
       
-await conn.sendMessage(res, { text: md + `\n\n` + text + `\n\nsiguierme el Instagram\n` + ig, mentions: (await conn.groupMetadata(m.chat)).participants.map(v => v.id) }, { quoted: fkontak });
+await conn.sendMessage(res, { text: md + `\n\n` + text + `\n\nsiguierme el Instagram\n` + ig, mentions: (await conn.groupMetadata(res)).participants.map(v => v.id) }, { quoted: fkontak });
 await delay(2000) // Esperar 2 segundos antes de enviar el mensaje
 
 // Dejar el grupo solo si el bot se unió durante esta iteración
