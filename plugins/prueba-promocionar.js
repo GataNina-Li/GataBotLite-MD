@@ -19,18 +19,18 @@ try {
 for (const link of links) {
 const groupId = link.match(/https:\/\/chat.whatsapp.com\/([0-9A-Za-z]{20,24})/i)[1]
 
-try {
+//try {
 await conn.groupAcceptInvite(groupId)
 await delay(2000); // 2 segundos
-} catch (error) {
-if (error.message.includes("conflict")) {
-await conn.sendMessage(groupId, { text: `No puedo unirme al grupo ${groupId} ya que se debe aprobar la solicitud de unión` }, { quoted: m })
-continue // Saltar a la siguiente iteración del bucle
-}
-return error // Lanzar otro error si no es "conflict"
-}
+//} catch (error) {
+//if (message.includes("conflict")) {
+//await conn.sendMessage(groupId, { text: `No puedo unirme al grupo ${groupId} ya que se debe aprobar la solicitud de unión` }, { quoted: m })
+//continue // Saltar a la siguiente iteración del bucle
+//}
+//return error // Lanzar otro error si no es "conflict"
+//}
 
-await conn.sendMessage(groupId, { text: modificarMensaje })
+await conn.sendMessage(groupId, { text: modificarMensaje }, { quoted: m })
 await delay(2000) // enviar mensaje en 2 segundos
 
 // Dejar el grupo solo si el bot se unió durante esta iteración
