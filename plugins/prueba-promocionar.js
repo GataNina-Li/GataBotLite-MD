@@ -15,7 +15,6 @@ const links = text.match(linkRegex)
 const mensaje = text.replace(linkRegex, '').trim()
 const modificarMensaje = mensaje.replace(/['"]/g, '') // eliminar comillas
 
-try {
 for (const link of links) {
 const groupId = link.match(/https:\/\/chat.whatsapp.com\/([0-9A-Za-z]{20,24})/i)[1]
 
