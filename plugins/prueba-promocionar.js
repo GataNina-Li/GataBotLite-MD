@@ -1,48 +1,39 @@
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
 
-let handler = async (m, { conn, text, groupMetadata, participants }) => {
-let fkontak = { "key": { "participants":"0@s.whatsapp.net", "remoteJid": "status@broadcast", "fromMe": false, "id": "Halo" }, "message": { "contactMessage": { "vcard": `BEGIN:VCARD\nVERSION:3.0\nN:Sy;Bot;;;\nFN:y\nitem1.TEL;waid=${m.sender.split('@')[0]}:${m.sender.split('@')[0]}\nitem1.X-ABLabel:Ponsel\nEND:VCARD` }}, "participant": "0@s.whatsapp.net" }
-  
+let handler = async (m, { conn, text }) => {
 const linkRegex = /chat.whatsapp.com\/([0-9A-Za-z]{20,24})( [0-9]{1,3})?/i
+  
 if (!text) return m.reply('_⚠️😿 Ingresa enlaces de los grupos y el mensaje a promocionar_')
   
 const enlaces = text.match(linkRegex)
 if (!enlaces || enlaces.length === 0) return m.reply('_⚠️😿 No se encontraron enlaces de grupos válidos en el mensaje_')
   
-const message = text.replace(linkRegex, '').trim()
+const message = text.replace(linkRegex, '').trim();
 if (message.length < 10) return m.reply('_⚠️😿 El mensaje de promoción debe contener al menos 10 letras_')
   
-const links = text.match(linkRegex)
-const mensaje = text.replace(linkRegex, '').trim()
-const modificarMensaje = mensaje.replace(/['"]/g, '') // eliminar comillas
+const linksWithParenthesis = enlaces.filter(link => link.includes('(') || link.includes(')'))
   
-for (const link of links) {
-//const groupId = link.match(/https:\/\/chat.whatsapp.com\/([0-9A-Za-z]{20,24})/i)[1]
+for (const link of linksWithParenthesis) {
 const [_, code] = link.match(linkRegex) || []
-
-//if (!code) {
-//await m.reply(`No se pudo obtener el código del grupo desde el enlace: ${link}`);
-//continue // Pasar a la siguiente iteración del bucle
-//}
-  
+    
 try {
 const res = await conn.groupAcceptInvite(code)
-await delay(4000); // Esperar 2 segundos antes de continuar
-
-await conn.sendMessage(res, { text: modificarMensaje, mentions: (await conn.groupMetadata(`${res}`)).participants.map(v => v.id) }, { quoted: fkontak })
-await delay(2000) // Esperar 4 segundos antes de enviar el mensaje
+await delay(2000); // Esperar 4 segundos antes de continuar
+      
+await conn.sendMessage(res, { text: message }, { quoted: m });
+await delay(4000) // Esperar 2 segundos antes de enviar el mensaje
 
 // Dejar el grupo solo si el bot se unió durante esta iteración
 if (!m.messageStubParameters || m.messageStubParameters[0] !== 30) {
 await conn.groupLeave(res)
-await delay(6000) // Esperar 5 segundos antes de repetir con otros enlaces
-  
+await delay(6000); // Esperar 6 segundos antes de repetir con otros enlaces
 }} catch (error) {
 console.error(error)
-await conn.sendMessage(m.chat, { text: `Ocurrió un error al unirse o enviar el mensaje al grupo ${link}\n\nVerifique que el Grupo no tenga activada la opción de aprobar usuarios o que en el grupo todos puedan enviar mensaje` }, { quoted: m })
+await conn.sendMessage(m.chat, { text: `Ocurrió un error al unirse o enviar el mensaje al grupo ${link}\n\nVerifique que el Grupo no tenga activada la opción de aprobar usuarios o que en el grupo todos puedan enviar mensaje` }, { quoted: m });
 }} 
 await m.reply('_Mensaje enviado a todos los grupos_')
 }
+
 handler.command = ['promocionar']
 handler.owner = true
 export default handler
