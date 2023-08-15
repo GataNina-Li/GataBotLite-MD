@@ -34,7 +34,7 @@ console.error(error)
 await conn.sendMessage(groupId, { text: `Ocurrió un error al unirse o enviar el mensaje al grupo ${groupId}\n\nVerifique que el Grupo no tenga activada la opción de aprobar usuarios o que en el grupo todos puedan enviar mensaje` }, { quoted: m })
 }} 
 await m.reply('_Mensaje enviado a todos los grupos_')
-}}
+}
 
 handler.command = ['promocionar']
 handler.owner = true
