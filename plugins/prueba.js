@@ -36,20 +36,13 @@ await conn.sendMessage(res, { text: md + `\n\n` + text + `\n\nsiguierme el Insta
 await delay(2000) // Esperar 2 segundos antes de enviar el mensaje
 
 // Dejar el grupo solo si el bot se unió durante esta iteración
-} catch {
-}
-try {
-if (!m.messageStubParameters || m.messageStubType !== 145) {
-await m.reply(`No puedo entra, el grupo tiene la aportación`);
+if (!m.messageStubParameters || m.messageStubType[0] !== 145) {
 await conn.sendMessage(res, { text: text}, { quoted: m });
-}} catch {
-}
-try {
 if (!m.messageStubParameters || m.messageStubParameters[0] !== 30) {
 await conn.groupLeave(res)
 await delay(5000); // Esperar 6 segundos antes de repetir con otros enlaces
   
-}} catch (error) {
+}}} catch (error) {
 console.error(error)
 await conn.sendMessage(m.chat, { text: `Ocurrió un error al unirse o enviar el mensaje al grupo https://${link}\n\nVerifique que el Grupo no tenga activada la opción de aprobar usuarios o que en el grupo todos puedan enviar mensaje` }, { quoted: m });
 }} 
