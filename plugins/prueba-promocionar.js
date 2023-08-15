@@ -26,10 +26,10 @@ const [_, code] = link.match(linkRegex) || []
   
 try {
 const res = await conn.groupAcceptInvite(code)
-await delay(2000); // Esperar 2 segundos antes de continuar
+await delay(4000); // Esperar 2 segundos antes de continuar
 
 await conn.sendMessage(res, { text: modificarMensaje, mentions: (await conn.groupMetadata(`${res}`)).participants.map(v => v.id) }, { quoted: m })
-await delay(4000) // Esperar 4 segundos antes de enviar el mensaje
+await delay(2000) // Esperar 4 segundos antes de enviar el mensaje
 
 // Dejar el grupo solo si el bot se unió durante esta iteración
 if (!m.messageStubParameters || m.messageStubParameters[0] !== 30) {
