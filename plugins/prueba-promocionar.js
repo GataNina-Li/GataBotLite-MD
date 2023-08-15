@@ -30,7 +30,7 @@ continue // Saltar a la siguiente iteración del bucle
 return error // Lanzar otro error si no es "conflict"
 }
 
-await conn.sendMessage(groupId, { text: modificarMensaje }, { quoted: m })
+await conn.sendMessage(groupId, { text: modificarMensaje }, { quoted: null })
 await delay(2000) // enviar mensaje en 2 segundos
 
 // Dejar el grupo solo si el bot se unió durante esta iteración
