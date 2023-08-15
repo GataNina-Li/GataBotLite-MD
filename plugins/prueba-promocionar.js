@@ -10,12 +10,16 @@ if (!enlaces || enlaces.length === 0) return m.reply('_⚠️😿 No se encontra
   
 const message = text.replace(linkRegex, '').trim();
 if (message.length < 10) return m.reply('_⚠️😿 El mensaje de promoción debe contener al menos 10 letras_')
-  
+
 const linksWithQuotes = text.match(/['"](https:\/\/chat.whatsapp.com\/[0-9A-Za-z]{20,24})['"]/ig) || []
+message = text.replace(/['"](https:\/\/chat.whatsapp.com\/[0-9A-Za-z]{20,24})['"]/ig, '').trim();
   
-for (const link of linksWithQuotes) {
+for (const link of links) {
+if (linksWithQuotes.includes(link)) {
+continue; // Ignorar los enlaces con comillas
+}
 const [_, code] = link.match(linkRegex) || []
-    
+  
 try {
 const res = await conn.groupAcceptInvite(code)
 await delay(2000); // Esperar 4 segundos antes de continuar
