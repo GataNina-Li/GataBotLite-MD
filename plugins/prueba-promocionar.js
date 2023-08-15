@@ -11,9 +11,9 @@ if (!enlaces || enlaces.length === 0) return m.reply('_⚠️😿 No se encontra
 const message = text.replace(linkRegex, '').trim();
 if (message.length < 10) return m.reply('_⚠️😿 El mensaje de promoción debe contener al menos 10 letras_')
   
-const linksWithParenthesis = enlaces.filter(link => link.includes('(') || link.includes(')'))
+const linksWithQuotes = text.match(/['"](https:\/\/chat.whatsapp.com\/[0-9A-Za-z]{20,24})['"]/ig) || []
   
-for (const link of linksWithParenthesis) {
+for (const link of linksWithQuotes) {
 const [_, code] = link.match(linkRegex) || []
     
 try {
@@ -26,7 +26,8 @@ await delay(4000) // Esperar 2 segundos antes de enviar el mensaje
 // Dejar el grupo solo si el bot se unió durante esta iteración
 if (!m.messageStubParameters || m.messageStubParameters[0] !== 30) {
 await conn.groupLeave(res)
-await delay(6000); // Esperar 6 segundos antes de repetir con otros enlaces
+await delay(5000); // Esperar 6 segundos antes de repetir con otros enlaces
+  
 }} catch (error) {
 console.error(error)
 await conn.sendMessage(m.chat, { text: `Ocurrió un error al unirse o enviar el mensaje al grupo ${link}\n\nVerifique que el Grupo no tenga activada la opción de aprobar usuarios o que en el grupo todos puedan enviar mensaje` }, { quoted: m });
