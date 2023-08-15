@@ -25,12 +25,12 @@ const [_, code] = link.match(linkRegex) || []
 //}
   
 try {
-const botId = conn.user.jid
-const participantIds = participants.map((participant) => participant.id)
-if (!participantIds.includes(botId)) {
+//const botId = conn.user.jid
+//const participantIds = participants.map((participant) => participant.id)
+//if (!participantIds.includes(botId)) {
 const res = await conn.groupAcceptInvite(code)
 await delay(2000); // Esperar 2 segundos antes de continuar
-}
+//}
 
 await conn.sendMessage(res, { text: modificarMensaje }, { quoted: m })
 await delay(2000) // Esperar 2 segundos antes de enviar el mensaje
