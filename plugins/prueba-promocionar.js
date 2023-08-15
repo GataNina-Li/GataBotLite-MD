@@ -14,7 +14,7 @@ if (message.length < 10) return m.reply('_⚠️😿 El mensaje de promoción de
 const linksWithQuotes = text.match(/['"](https:\/\/chat.whatsapp.com\/[0-9A-Za-z]{20,24})['"]/ig) || []
 message = text.replace(/['"](https:\/\/chat.whatsapp.com\/[0-9A-Za-z]{20,24})['"]/ig, '').trim();
   
-for (const link of links) {
+for (const link of enlaces) {
 if (linksWithQuotes.includes(link)) {
 continue; // Ignorar los enlaces con comillas
 }
