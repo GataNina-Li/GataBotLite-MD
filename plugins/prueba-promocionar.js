@@ -12,7 +12,7 @@ let message = text.replace(linkRegex, '').trim();
 if (message.length < 10) return m.reply('_⚠️😿 El mensaje de promoción debe contener al menos 10 letras_')
 
 const linksWithQuotes = text.match(/['"](https:\/\/chat.whatsapp.com\/[0-9A-Za-z]{20,24})['"]/ig) || []
-const mensaje = text.replace(/https:\/\/chat.whatsapp.com\/[0-9A-Za-z]{20,24}(?![^'"]*['"]).*?("|')(https:\/\/chat.whatsapp.com\/[0-9A-Za-z]{20,24})\1/g, '$2\n').trim()
+const mensaje = message.replace(/https:\/\/chat.whatsapp.com\/[0-9A-Za-z]{20,24}(?![^'"]*['"]).*?("|')(https:\/\/chat.whatsapp.com\/[0-9A-Za-z]{20,24})\1/g, '$2\n').trim();
 const modificarMensaje = mensaje.replace(/['"]/g, '')
   
 for (const link of enlaces) {
@@ -23,7 +23,7 @@ const res = await conn.groupAcceptInvite(code)
 await delay(2000); // Esperar 4 segundos antes de continuar
       
 await conn.sendMessage(res, { text: modificarMensaje }, { quoted: m });
-await delay(4000) // Esperar 2 segundos antes de enviar el mensaje
+await delay(2000) // Esperar 2 segundos antes de enviar el mensaje
 
 // Dejar el grupo solo si el bot se unió durante esta iteración
 if (!m.messageStubParameters || m.messageStubParameters[0] !== 30) {
