@@ -14,7 +14,7 @@ if (message.length < 10) return m.reply('_⚠️😿 El mensaje de promoción de
 const linksWithQuotes = text.match(/['"](https:\/\/chat.whatsapp.com\/[0-9A-Za-z]{20,24})['"]/ig) || []
 //const mensaje = text.replace(linkRegex, '').trim()
 //const modificarMensaje = mensaje.replace(/['"]/g, '')
-message = text
+message = message
 .split(' ')
 .filter(link => linksWithQuotes.includes(link))
 .map(link => link.replace(/['"]/, ''))
