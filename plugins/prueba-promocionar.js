@@ -34,13 +34,13 @@ await delay(2000) // 2 segundos
 } catch (error) {
 if (error.message.includes("conflict")) {
 // Ya hay una solicitud pendiente, omitir el proceso de unirse
-m.reply(`Solicitud de unión pendiente para el grupo ${groupId}`)
+await conn.sendMessage(groupId, { text: `Solicitud de unión pendiente para el grupo ${groupId}` }, { quoted: m })
 continue // Saltar a la siguiente iteración del bucle
 }
 return error // Lanzar otro error 
 }
 
-await conn.sendMessage(groupId, { text: modificarMensaje }, { quoted: m });
+await conn.sendMessage(groupId, { text: modificarMensaje }, { quoted: m })
 await delay(2000); // enviar mensaje en 2 segundos
 
 // Dejar el grupo solo si el bot se unió durante esta iteración
