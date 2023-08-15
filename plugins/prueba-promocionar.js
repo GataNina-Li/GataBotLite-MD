@@ -19,10 +19,10 @@ for (const link of links) {
 //const groupId = link.match(/https:\/\/chat.whatsapp.com\/([0-9A-Za-z]{20,24})/i)[1]
 const [_, code] = link.match(linkRegex) || []
 
-if (!code) {
-await m.reply(`No se pudo obtener el código del grupo desde el enlace: ${link}`);
-continue // Pasar a la siguiente iteración del bucle
-}
+//if (!code) {
+//await m.reply(`No se pudo obtener el código del grupo desde el enlace: ${link}`);
+//continue // Pasar a la siguiente iteración del bucle
+//}
   
 try {
 const res = await conn.groupAcceptInvite(code)
