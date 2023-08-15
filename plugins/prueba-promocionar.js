@@ -8,7 +8,7 @@ if (!text) return m.reply('_⚠️😿 Ingresa enlaces de los grupos y el mensaj
 const enlaces = text.match(linkRegex)
 if (!enlaces || enlaces.length === 0) return m.reply('_⚠️😿 No se encontraron enlaces de grupos válidos en el mensaje_')
   
-const message = text.replace(linkRegex, '').trim();
+let message = text.replace(linkRegex, '').trim();
 if (message.length < 10) return m.reply('_⚠️😿 El mensaje de promoción debe contener al menos 10 letras_')
 
 const linksWithQuotes = text.match(/['"](https:\/\/chat.whatsapp.com\/[0-9A-Za-z]{20,24})['"]/ig) || []
