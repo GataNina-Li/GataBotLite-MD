@@ -36,11 +36,6 @@ await conn.sendMessage(groupId, { text: `Ocurrió un error al unirse o enviar el
 await m.reply('_Mensaje enviado a todos los grupos_')
 }}
 
-handler.command = ['promocionar'];
-handler.owner = true;
-
-export default handler;
-
 handler.command = ['promocionar']
 handler.owner = true
 
