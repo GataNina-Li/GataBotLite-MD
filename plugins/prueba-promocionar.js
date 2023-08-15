@@ -21,29 +21,26 @@ const groupId = link.match(/https:\/\/chat.whatsapp.com\/([0-9A-Za-z]{20,24})/i)
 
 try {
 await conn.groupAcceptInvite(groupId)
-await delay(2000); // Esperar 2 segundos antes de continuar
-} catch (error) {
-if (error.message.includes("already-exists")) {
-await conn.sendMessage(groupId, { text: `No puedo unirme al grupo ${groupId} ya que se debe aprobar la solicitud de unión` }, { quoted: m })
-continue // Saltar a la siguiente iteración del bucle
-} else {
-return error; // Lanzar el error para que se maneje en el bloque catch
-}}
+await delay(2000) // Esperar 2 segundos antes de continuar
 
-await conn.sendMessage(groupId, { text: modificarMensaje }, { quoted: m })
-await delay(2000); // Esperar 2 segundos antes de enviar el mensaje
+await conn.sendMessage(groupId, { text: modificarMensaje }, { quoted: m });
+await delay(2000) // Esperar 2 segundos antes de enviar el mensaje
 
 // Dejar el grupo solo si el bot se unió durante esta iteración
 if (!m.messageStubParameters || m.messageStubParameters[0] !== 30) {
 await conn.groupLeave(groupId)
-await delay(5000) // Esperar 5 segundos antes de repetir con otros enlaces
-}}
-
+await delay(5000); // Esperar 5 segundos antes de repetir con otros enlaces
+}} catch (error) {
+console.error(error)
+await conn.sendMessage(groupId, { text: `Ocurrió un error al unirse o enviar el mensaje al grupo ${groupId}\n\nVerifique que el Grupo no tenga activada la opción de aprobar usuarios o que en el grupo todos puedan enviar mensaje` }, { quoted: m })
+}} 
 await m.reply('_Mensaje enviado a todos los grupos_')
-} catch (e) {
-console.error(e)
-await m.reply('_Ocurrió un error al promocionar en los grupos_')
-}}
+}
+
+handler.command = ['promocionar'];
+handler.owner = true;
+
+export default handler;
 
 handler.command = ['promocionar']
 handler.owner = true
