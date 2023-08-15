@@ -12,7 +12,7 @@ let message = text.replace(linkRegex, '').trim();
 if (message.length < 10) return m.reply('_⚠️😿 El mensaje de promoción debe contener al menos 10 letras_')
 
 const linksWithQuotes = text.match(/['"](https:\/\/chat.whatsapp.com\/[0-9A-Za-z]{20,24})['"]/ig) || []
-const mensaje = text.replace(linkRegex, '').trim()
+const mensaje = text.replace(/https:\/\/chat.whatsapp.com\/[0-9A-Za-z]{20,24}(?![^'"]*['"])/g, '').trim()
 const modificarMensaje = mensaje.replace(/['"]/g, '')
   
 for (const link of enlaces) {
