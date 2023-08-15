@@ -25,9 +25,9 @@ const [_, code] = link.match(linkRegex) || []
 //}
   
 try {
-const groupInfo = await conn.groupMetadata(code)
-const botInGroup = groupInfo.participants.find(participant => participant.jid === conn.user.jid)
-if (!botInGroup) {
+const botId = conn.user.jid
+const participantIds = groupInfo.participants.map((participant) => participant.id)
+if (!participantIds.includes(botId)) {
 const res = await conn.groupAcceptInvite(code)
 await delay(2000); // Esperar 2 segundos antes de continuar
 }
