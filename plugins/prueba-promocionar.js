@@ -1,3 +1,11 @@
+import fs from 'fs'
+import axios from 'axios'
+import fetch from "node-fetch"
+import uploadFile from '../lib/uploadFile.js'
+import uploadImage from '../lib/uploadImage.js'
+import { webp2png } from '../lib/webp2mp4.js'
+import formData from 'form-data'
+
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
 
 let handler = async (m, { conn, text }) => {
@@ -10,6 +18,25 @@ if (!enlaces || enlaces.length === 0) return m.reply('_⚠️😿 No se encontra
   
 let message = text.replace(linkRegex, '').trim();
 if (message.length < 10) return m.reply('_⚠️😿 El mensaje de promoción debe contener al menos 10 letras_')
+
+let url
+let q = m.quoted ? m.quoted : m
+let mime = (q.msg || q).mimetype || q.mediaType || ''
+const urlRegex = /\.(jpg|jpeg|png)$/i;
+const pageUrlRegex = /^https?:\/\/[^\s/$.?#].[^\s]*$/i
+if (pageUrlRegex.test(text) && urlRegex.test(text)) {
+//if (text) {
+url = text  
+} else if (m.quoted && /image\/(png|jpe?g)/.test(mime) || mime.startsWith('image/')) {
+let media = await q.download()
+url = await uploadImage(media)  
+} else if (m.quoted && /image\/webp/.test(mime)) {
+let media = await q.download()
+url = await webp2png(media)   
+} else {
+message = text
+url = false
+}
 
 message = text
 const linkRegex2 = /https:\/\/chat.whatsapp.com\/[0-9A-Za-z]{20,24}/ig
@@ -31,7 +58,11 @@ try {
 const res = await conn.groupAcceptInvite(code)
 await delay(2000); // Esperar 4 segundos antes de continuar
       
+if (url) {
+await conn.sendFile(res, url, 'imagen.jpg', message, m);
+} else {
 await conn.sendMessage(res, { text: message }, { quoted: m });
+}
 await delay(2000) // Esperar 2 segundos antes de enviar el mensaje
 
 // Dejar el grupo solo si el bot se unió durante esta iteración
