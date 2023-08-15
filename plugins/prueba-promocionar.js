@@ -20,7 +20,7 @@ for (const link of links) {
 const groupId = link.match(/https:\/\/chat.whatsapp.com\/([0-9A-Za-z]{20,24})/i)[1]
 
 // Verificar si ya hay una solicitud pendiente de unión
-const pendingRequests = await conn.groupInviteLinks(groupId);
+const pendingRequests = await conn.groupAcceptInvite(groupId)
 const existingRequest = pendingRequests.find(req => req.id === groupId)
 if (existingRequest) {
 m.reply(`Ya hay una solicitud de unión pendiente para el grupo ${groupId}`)
