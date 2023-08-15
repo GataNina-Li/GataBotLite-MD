@@ -38,9 +38,12 @@ await conn.sendMessage(m.chat, { text: admingp, mentions: [`${m.sender}`,`${m.me
 } else if (chat.detect && m.messageStubType == 30) {
 await conn.sendMessage(m.chat, { text: noadmingp, mentions: [`${m.sender}`,`${m.messageStubParameters[0]}`] }, { quoted: fkontak })  
 
+} else if (chat.detect && m.messageStubType == 145) {
+await conn.sendMessage(m.chat, { text: 'Se ha activado el modo de aprobación para unirse al grupo.', mentions: [m.sender] })
+
 } else {
-//console.log({ messageStubType: m.messageStubType,
-//messageStubParameters: m.messageStubParameters,
-//type: WAMessageStubType[m.messageStubType], 
-//})
+console.log({ messageStubType: m.messageStubType,
+messageStubParameters: m.messageStubParameters,
+type: WAMessageStubType[m.messageStubType], 
+})
 }}
