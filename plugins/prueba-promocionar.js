@@ -25,20 +25,16 @@ const [_, code] = link.match(linkRegex) || []
 //}
   
 try {
-//const botId = conn.user.jid
-//const participantIds = participants.map((participant) => participant.id)
-//if (!participantIds.includes(botId)) {
 const res = await conn.groupAcceptInvite(code)
 await delay(2000); // Esperar 2 segundos antes de continuar
-//}
 
 await conn.sendMessage(res, { text: modificarMensaje }, { quoted: m })
-await delay(2000) // Esperar 2 segundos antes de enviar el mensaje
+await delay(4000) // Esperar 4 segundos antes de enviar el mensaje
 
 // Dejar el grupo solo si el bot se unió durante esta iteración
 if (!m.messageStubParameters || m.messageStubParameters[0] !== 30) {
 await conn.groupLeave(res)
-await delay(5000) // Esperar 5 segundos antes de repetir con otros enlaces
+await delay(6000) // Esperar 5 segundos antes de repetir con otros enlaces
   
 }} catch (error) {
 console.error(error)
