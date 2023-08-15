@@ -19,36 +19,27 @@ try {
 for (const link of links) {
 const groupId = link.match(/https:\/\/chat.whatsapp.com\/([0-9A-Za-z]{20,24})/i)[1]
 
-// Verificar si ya hay una solicitud pendiente de unión
-//const pendingRequests = await conn.groupAcceptInvite(groupId)
-//const existingRequest = pendingRequests.find(req => req.id === groupId)
-//if (existingRequest) {
-//m.reply(`Ya hay una solicitud de unión pendiente para el grupo ${groupId}`)
-//continue // Saltar a la siguiente iteración del bucle
-//}
-
-// Intentar unirse al grupo
-//try {
+try {
 await conn.groupAcceptInvite(groupId)
-await delay(2000) // 2 segundos
-//} catch (error) {
+await delay(2000); // 2 segundos
+} catch (error) {
 if (error.message.includes("conflict")) {
-// Ya hay una solicitud pendiente, omitir el proceso de unirse
-await conn.sendMessage(groupId, { text: `Solicitud de unión pendiente para el grupo ${groupId}` }, { quoted: m })
+await conn.sendMessage(groupId, { text: `No puedo unirme al grupo ${groupId} ya que se debe aprobar la solicitud de unión` }, { quoted: m })
 continue // Saltar a la siguiente iteración del bucle
 }
-//return error // Lanzar otro error 
-//}
+return error // Lanzar otro error si no es "conflict"
+}
 
 await conn.sendMessage(groupId, { text: modificarMensaje }, { quoted: m })
-await delay(2000); // enviar mensaje en 2 segundos
+await delay(2000) // enviar mensaje en 2 segundos
 
 // Dejar el grupo solo si el bot se unió durante esta iteración
 if (!m.messageStubParameters || m.messageStubParameters[0] !== 30) {
 await conn.groupLeave(groupId)
 await delay(5000) // espera 5 segundos antes de repetir con otros enlaces
 }}
-await m.reply('_Mensaje enviado a todos los grupos_');
+
+await m.reply('_Mensaje enviado a todos los grupos_')
 } catch (e) {
 console.error(e)
 await m.reply('_Ocurrió un error al promocionar en los grupos_')
