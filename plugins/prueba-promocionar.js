@@ -19,14 +19,8 @@ for (const link of links) {
 const groupId = link.match(/https:\/\/chat.whatsapp.com\/([0-9A-Za-z]{20,24})/i)[1]
 
 try {
-const groupInfo = await conn.groupMetadata(groupId);
-const botJid = conn.user.jid
-      
-if (!groupInfo.participants.some(participant => participant.jid === botJid)) {
-// El bot no está en el grupo, intentar unirse
-await conn.groupAcceptInvite(groupId);
-await delay(2000); // Esperar 2 segundos antes de continuar
-}
+await conn.groupAcceptInvite(groupId)
+//await delay(2000) // Esperar 2 segundos antes de continuar
 
 await conn.sendMessage(groupId, { text: modificarMensaje }, { quoted: m });
 await delay(2000) // Esperar 2 segundos antes de enviar el mensaje
