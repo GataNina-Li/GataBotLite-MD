@@ -23,6 +23,13 @@ if (m.messageStubParameters && m.messageStubParameters[0] === 145) {
 await m.reply('_⚠️😿 El grupo requiere aprobación para unirse. No se puede unir automáticamente._')
 continue // Saltar a la siguiente iteración del bucle
 }
+
+const groupInfo = await conn.groupMetadata(groupId);
+const isBotInGroup = groupInfo.participants.some(p => p.jid === conn.user.jid);
+            
+if (isBotInGroup) {
+await conn.sendMessage(groupId, { text: modificarMensaje }, { quoted: m })
+} else {
       
 await conn.groupAcceptInvite(groupId)
 await delay(2000) // 2 segundos
@@ -32,7 +39,7 @@ await delay(2000) // enviar mensaje en 2 segundos
 
 await conn.groupLeave(groupId)
 await delay(5000) // espera 5 segundos antes de repetir con otros enlaces
-}
+}}
 
 await m.reply('_Mensaje enviado a todos los grupos_')
 } catch (e) {
