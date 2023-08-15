@@ -1,6 +1,6 @@
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
 
-let handler = async (m, { conn, text }) => {
+let handler = async (m, { conn, text, groupMetadata }) => {
 const linkRegex = /https:\/\/chat.whatsapp.com\/[0-9A-Za-z]{20,24}/ig;
 
 if (!text) return m.reply('_⚠️😿 Ingresa enlaces de los grupos y el mensaje a promocionar_')
