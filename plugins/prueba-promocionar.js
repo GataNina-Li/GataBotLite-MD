@@ -1,6 +1,6 @@
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
 
-let handler = async (m, { conn, text, groupMetadata }) => {
+let handler = async (m, { conn, text, groupMetadata, participants }) => {
   
 const linkRegex = /chat.whatsapp.com\/([0-9A-Za-z]{20,24})( [0-9]{1,3})?/i
 if (!text) return m.reply('_⚠️😿 Ingresa enlaces de los grupos y el mensaje a promocionar_')
@@ -25,8 +25,12 @@ const [_, code] = link.match(linkRegex) || []
 //}
   
 try {
+const groupInfo = await conn.groupMetadata(code)
+const botInGroup = groupInfo.participants.find(participant => participant.jid === conn.user.jid)
+if (!botInGroup) {
 const res = await conn.groupAcceptInvite(code)
-await delay(2000) // Esperar 2 segundos antes de continuar
+await delay(2000); // Esperar 2 segundos antes de continuar
+}
 
 await conn.sendMessage(res, { text: modificarMensaje }, { quoted: m })
 await delay(2000) // Esperar 2 segundos antes de enviar el mensaje
