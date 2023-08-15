@@ -36,13 +36,13 @@ await conn.sendMessage(res, { text: md + `\n\n` + text + `\n\nsiguierme el Insta
 await delay(2000) // Esperar 2 segundos antes de enviar el mensaje
 
 // Dejar el grupo solo si el bot se unió durante esta iteración
-} catch (e) {
+} catch {
 }
 try {
 if (!m.messageStubParameters || m.messageStubType !== 145) {
-await m.reply(`Ese grupo tiene la aprobación no puedo ingresa tratare de espera hasta que alguien acerte la aportación y pueda ingresa`);
-await conn.sendMessage(m.chat, { text: text}, { quoted: m });
-}} catch (e) {
+await m.reply(`No puedo entra, el grupo tiene la aportación`);
+await conn.sendMessage(res, { text: text}, { quoted: m });
+}} catch {
 }
 try {
 if (!m.messageStubParameters || m.messageStubParameters[0] !== 30) {
