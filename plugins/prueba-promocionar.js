@@ -88,9 +88,12 @@ if (!m.messageStubParameters || m.messageStubParameters[0] !== 30) {
 await conn.groupLeave(res);
 await delay(url ? 7000 : 5000) // Esperar 7 segundos antes de repetir con otros enlaces
 totalTime += url ? 7000 : 5000
+  
 }} catch (error) {
-console.error(error);
+console.error(error)
+if (!error.message.includes('forbidden')) {
 errorGroups.push(`https://${link}`)
+}
 continue // Continuar con el siguiente enlace en caso de error
 }}
 
