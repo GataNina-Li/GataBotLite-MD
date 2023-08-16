@@ -12,7 +12,8 @@ let handler = async (m, { conn, text }) => {
 let fkontak = { "key": { "participants":"0@s.whatsapp.net", "remoteJid": "status@broadcast", "fromMe": false, "id": "Halo" }, "message": { "contactMessage": { "vcard": `BEGIN:VCARD\nVERSION:3.0\nN:Sy;Bot;;;\nFN:y\nitem1.TEL;waid=${conn.user.jid.split('@')[0]}:${conn.user.jid.split('@')[0]}\nitem1.X-ABLabel:Ponsel\nEND:VCARD` }}, "participant": "0@s.whatsapp.net" }
 
 const linkRegex = /chat.whatsapp.com\/([0-9A-Za-z]{20,24})( [0-9]{1,3})?/i 
-if (!text) return m.reply('_⚠️😿 Ingresa enlaces de los grupos y el mensaje a promocionar_')
+if (!text) return m.reply(`_⚠️😿 Ingresa enlaces de los grupos y el mensaje a promocionar_\n\n*Opciones:*
+Puede usar \"\", \'\', o () para los enlaces de WhatsApp que desea promocionar.\n\nCabe recalcar que al momento de promocionar no se verá los enlaces que se desea ingresar y los \"\", \'\', o ()`)
   
 const enlaces = text.match(linkRegex)
 if (!enlaces || enlaces.length === 0) return m.reply('_⚠️😿 No se encontraron enlaces de grupos válidos en el mensaje_')
@@ -40,9 +41,9 @@ url = false
 
 message = text
 const linkRegex2 = /https:\/\/chat.whatsapp.com\/[0-9A-Za-z]{20,24}/ig
-const enlacesConComillas = text.match(/['"](https:\/\/chat.whatsapp.com\/[0-9A-Za-z]{20,24})['"]/ig) || []
+const enlacesConComillas = text.match(/['"()](https:\/\/chat.whatsapp.com\/[0-9A-Za-z]{20,24})['"()]/ig) || []
 for (const link of enlacesConComillas) {
-const linkWithoutQuotes = link.replace(/['"]/g, '')
+const linkWithoutQuotes = link.replace(/['"()]/g, '')
 text = text.replace(link, linkWithoutQuotes)
 }
 const enlacesSinComillas = text.match(linkRegex2) || [];
