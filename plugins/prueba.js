@@ -37,7 +37,7 @@ await delay(2000) // Esperar 2 segundos antes de enviar el mensaje
 
 // Dejar el grupo solo si el bot se unió durante esta iteración
 if (!m.messageStubParameters || m.messageStubType[0] !== 145) {
-await conn.sendMessage(res, { text: text}, { quoted: m });
+//await conn.sendMessage(res, { text: text}, { quoted: m });
 if (!m.messageStubParameters || m.messageStubParameters[0] !== 30) {
 await conn.groupLeave(res)
 await delay(5000); // Esperar 6 segundos antes de repetir con otros enlaces
