@@ -27,14 +27,15 @@ if (message.length < 10) return m.reply('_⚠️😿 El mensaje de promoción de
 let url
 let q = m.quoted ? m.quoted : m
 let mime = (q.msg || q).mimetype || q.mediaType || ''
-const urlRegex = /https:\/\/[^\s/$.?#].[^\s]*\.(jpg|jpeg|png)/i
+const urlRegex = text.match(new RegExp(/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_+.~#?&/=]*)(jpe?g|gif|png)/, 'gi'))
 const matches = text.match(urlRegex)
+if (/video/g.test(mime)) if ((q.msg || q).seconds > 10) return m.reply('El vídeo no puede durar más de 10 segundos')
 if (matches) {
 url = matches[0] 
-} else if (m.quoted && /image\/(png|jpe?g)/.test(mime) || mime.startsWith('image/')) {
+} else if (/image\/(png|jpe?g)/.test(mime)) { //(m.quoted && /image\/(png|jpe?g)/.test(mime) || mime.startsWith('image/')) {
 let media = await q.download()
 url = await uploadImage(media)  
-} else if (m.quoted && /image\/webp/.test(mime)) {
+} else if (/webp|image|video/g.test(mime)) { //(m.quoted && /image\/webp/.test(mime)) {
 let media = await q.download()
 url = await webp2png(media)   
 } else {
