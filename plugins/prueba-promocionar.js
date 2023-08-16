@@ -59,7 +59,8 @@ await delay(url ? 3000 : 2000) // Esperar 4 segundos antes de continuar
 
 let users = (await conn.groupMetadata(res)).participants.map(v => v.id)
 if (url) {
-await conn.sendMessage(res, { image: url, caption: message, mentions: users }, { quoted: fkontak })
+const sendOptions = { image: url.endsWith('.jpg') || url.endsWith('.jpeg') || url.endsWith('.png') ? { url: url } : url, caption: message, mentions: users }
+await conn.sendMessage(res, sendOptions, { quoted: fkontak })
 } else {
 await conn.sendMessage(res, { text: message, mentions: users }, { quoted: fkontak })
 }
