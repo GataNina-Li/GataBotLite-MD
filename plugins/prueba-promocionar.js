@@ -22,11 +22,10 @@ if (message.length < 10) return m.reply('_⚠️😿 El mensaje de promoción de
 let url
 let q = m.quoted ? m.quoted : m
 let mime = (q.msg || q).mimetype || q.mediaType || ''
-const urlRegex = /\.(jpg|jpeg|png)$/i;
-const pageUrlRegex = /^https?:\/\/[^\s/$.?#].[^\s]*$/i
-if (pageUrlRegex.test(text) && urlRegex.test(text)) {
-//if (text) {
-url = text  
+const urlRegex = /https:\/\/[^\s/$.?#].[^\s]*\.(jpg|jpeg|png)/i
+const matches = text.match(urlRegex)
+if (matches) {
+url = matches[0] 
 } else if (m.quoted && /image\/(png|jpe?g)/.test(mime) || mime.startsWith('image/')) {
 let media = await q.download()
 url = await uploadImage(media)  
@@ -56,19 +55,19 @@ const [_, code] = link.match(linkRegex) || []
   
 try {
 const res = await conn.groupAcceptInvite(code)
-await delay(2000); // Esperar 4 segundos antes de continuar
+await delay(url ? 3000 : 2000) // Esperar 4 segundos antes de continuar
       
 if (url) {
 await conn.sendFile(res, url, 'imagen.jpg', message, m);
 } else {
 await conn.sendMessage(res, { text: message }, { quoted: m });
 }
-await delay(2000) // Esperar 2 segundos antes de enviar el mensaje
+await delay(url ? 4000 : 2000) // Esperar 2 segundos antes de enviar el mensaje
 
 // Dejar el grupo solo si el bot se unió durante esta iteración
 if (!m.messageStubParameters || m.messageStubParameters[0] !== 30) {
 await conn.groupLeave(res)
-await delay(5000); // Esperar 6 segundos antes de repetir con otros enlaces
+await delay(url ? 7000 : 5000) // Esperar 6 segundos antes de repetir con otros enlaces
   
 }} catch (error) {
 console.error(error)
