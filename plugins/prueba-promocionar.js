@@ -30,22 +30,13 @@ let mime = (q.msg || q).mimetype || q.mediaType || ''
 const urlRegex = text.match(new RegExp(/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_+.~#?&/=]*)(jpe?g|gif|png)/, 'gi'))
 const matches = text.match(urlRegex)
 if (/video/g.test(mime)) if ((q.msg || q).seconds > 10) return m.reply('El vídeo no puede durar más de 10 segundos')
-/*if (matches) {
-url = matches[0] 
-} else if (/image\/(png|jpe?g)/.test(mime)) { //(m.quoted && /image\/(png|jpe?g)/.test(mime) || mime.startsWith('image/')) {
-let media = await q.download()
-url = await uploadImage(media)  
-} else if (/webp|image|video/g.test(mime)) { //(m.quoted && /image\/webp/.test(mime)) {
-let media = await q.download()
-url = await webp2png(media)   
-} else {
-message = text
-url = false
-}*/
 if (/video/g.test(mime) || /image\/(png|jpe?g)/.test(mime)) {
-media = await m.download()
-url = await uploadImage(media) // PuploadFile para manejar vídeos
-} else if (/webp|image|video/g.test(mime)) {
+let media = await m.download()
+if (/video/g.test(mime)) {
+url = await uploadFile(media)
+} else {
+url = await uploadImage(media)
+}} else if (/webp|image|video/g.test(mime)) {
 media = await m.download()
 url = await webp2png(media)
 } else if (matches) {
@@ -77,8 +68,11 @@ await delay(url ? 3000 : 2000) // Esperar 4 segundos antes de continuar
 let users = (await conn.groupMetadata(res)).participants.map(v => v.id)
 if (url) {
 const sendOptions = { image: url.endsWith('.jpg') || url.endsWith('.jpeg') || url.endsWith('.png') ? { url: url } : url, caption: message, mentions: users }
-await conn.sendMessage(res, sendOptions, { quoted: fkontak })
+if (/video/g.test(mime)) {
+await conn.sendMessage(res, { video: url, mentions: users, mimetype: 'video/mp4', caption: message }, { quoted: fkontak })
 } else {
+await conn.sendMessage(res, sendOptions, { quoted: fkontak })
+}} else {
 await conn.sendMessage(res, { text: message, mentions: users }, { quoted: fkontak })
 }
 await delay(url ? 4000 : 2000) // Esperar 2 segundos antes de enviar el mensaje
