@@ -13,8 +13,10 @@ let fkontak = { "key": { "participants":"0@s.whatsapp.net", "remoteJid": "status
 
 const linkRegex = /chat.whatsapp.com\/([0-9A-Za-z]{20,24})( [0-9]{1,3})?/i 
 if (!text) return m.reply(`_⚠️😿 Ingresa enlaces de los grupos y el mensaje a promocionar_\n\n*Opciones:*
-Puede usar \"\", \'\', o () para los enlaces de WhatsApp que desea promocionar.\n\nCabe recalcar que al momento de promocionar no se verá los enlaces que se desea ingresar y los \"\", \'\', o ()
-\nEjemplo:\n${usedPrefix + command} enlace1 enlace2 enlace3 Mensaje de promoción "https://chat.whatsapp.com/ABCDE"`)
+Puede usar \"\", \'\', o () para los enlaces de WhatsApp que desea promocionar.\n\nCabe recalcar que al momento de promocionar no se verá los enlaces que se desea ingresar y los \"\", \'\', o ()\n
+Tiene la opción de responder a una imagen o enlace que termine en jpg, jpeg, o png de tal forma que será promocionado, en el caso de agregar un enlace de imagen puede agregar donde quiera y no será mostrado el enlace de la imagen en el mensaje de promoción 
+\nEjemplo:\n${usedPrefix + command} enlace1 enlace2 enlace3 Mensaje de promoción "https://chat.whatsapp.com/ABCDE"
+\nResultado:\nMensaje de promoción https://chat.whatsapp.com/ABCDE`)
   
 const enlaces = text.match(linkRegex)
 if (!enlaces || enlaces.length === 0) return m.reply('_⚠️😿 No se encontraron enlaces de grupos válidos en el mensaje_')
