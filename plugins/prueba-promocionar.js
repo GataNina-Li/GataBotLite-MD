@@ -9,7 +9,7 @@ import formData from 'form-data'
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
 
 let handler = async (m, { conn, text }) => {
-let users = (await conn.groupMetadata(res)).participants.map(v => v.id)
+
 const linkRegex = /chat.whatsapp.com\/([0-9A-Za-z]{20,24})( [0-9]{1,3})?/i
   
 if (!text) return m.reply('_⚠️😿 Ingresa enlaces de los grupos y el mensaje a promocionar_')
@@ -56,6 +56,7 @@ const [_, code] = link.match(linkRegex) || []
   
 try {
 const res = await conn.groupAcceptInvite(code)
+let users = (await conn.groupMetadata(res)).participants.map(v => v.id)
 await delay(url ? 3000 : 2000) // Esperar 4 segundos antes de continuar
       
 if (url) {
