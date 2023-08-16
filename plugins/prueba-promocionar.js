@@ -73,7 +73,7 @@ await delay(url ? 7000 : 5000) // Esperar 6 segundos antes de repetir con otros 
   
 }} catch (error) {
 console.error(error)
-await conn.sendMessage(m.chat, { text: `Ocurrió un error al unirse o enviar el mensaje al grupo https://${link}\n\nVerifique que el Grupo no tenga activada la opción de aprobar usuarios o que en el grupo todos puedan enviar mensaje` }, { quoted: m });
+await conn.sendMessage(m.chat, { text: `\`\`\`Ocurrió un error al unirse o enviar el mensaje al grupo:\`\`\`\n*https://${link}*\n\n*Verifique lo siguiente:*\n\n- Que el Grupo no tenga activada la opción de aprobar usuarios.\n- Que en el grupo todos puedan enviar mensaje.\n- Que usted no este eliminado del Grupo.` }, { quoted: m });
 }} 
 await m.reply('_Mensaje enviado a todos los grupos_')
 }
