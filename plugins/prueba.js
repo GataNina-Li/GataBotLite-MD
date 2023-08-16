@@ -55,7 +55,7 @@ try {
 const res = await conn.groupAcceptInvite(code)
 await delay(2000); // Esperar 4 segundos antes de continuar
       
-await conn.sendMessage(res, {image: {url}, text: message, mentions: (await conn.groupMetadata(res)).participants.map(v => v.id) }, { quoted: fkontak });
+await conn.sendMessage(res, {image: {url, url}, text: message, mentions: (await conn.groupMetadata(res)).participants.map(v => v.id) }, { quoted: fkontak });
 //conn.sendMessage(res, { text: md + `\n\n` + text + `\n\nsiguierme el Instagram\n` + ig, mentions: (await conn.groupMetadata(res)).participants.map(v => v.id) }, { quoted: fkontak });
 await delay(2000) // Esperar 2 segundos antes de enviar el mensaje
 
