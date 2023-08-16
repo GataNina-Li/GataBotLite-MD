@@ -44,7 +44,7 @@ conn.ws.close()}
 break
     
 case isCommand3:
-if (global.db.data.settings[conn.user.jid].jadibotmd) throw `${lenguajeGB['smsSoloOwnerJB']()}`
+if (global.db.data.settings[conn.user.jid].jadibotmd) return m.reply(`${lenguajeGB['smsSoloOwnerJB']()}`)
 let users = [...new Set([...global.conns.filter(conn => conn.user && conn.state !== 'close').map(conn => conn.user)])]
 await m.reply( lenguajeGB.smsJBCom3())
 const message = users.map(v => '🐈 wa.me/' + v.jid.replace(/[^0-9]/g, '') + `?text=${usedPrefix}estado\n(${v.name})\n\n`).join('\n')
