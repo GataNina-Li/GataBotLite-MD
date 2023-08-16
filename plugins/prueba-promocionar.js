@@ -59,11 +59,16 @@ text = text.replace(link, '')
 }
 message = text.replace(/['"()]/g, '').replace(url, '').trim() 
  
+let totalTime = 0;
+let errorGroups = [];
+
 for (const link of enlaces) {
-const [_, code] = link.match(linkRegex) || []  
+const [_, code] = link.match(linkRegex) || []
+
 try {
 const res = await conn.groupAcceptInvite(code)
-await delay(url ? 3000 : 2000) // Esperar 4 segundos antes de continuar
+await delay(url ? 3000 : 2000) // Esperar 3 segundos antes de continuar
+totalTime += url ? 3000 : 2000
 
 let users = (await conn.groupMetadata(res)).participants.map(v => v.id)
 if (url) {
@@ -75,18 +80,27 @@ await conn.sendMessage(res, sendOptions, { quoted: fkontak })
 }} else {
 await conn.sendMessage(res, { text: message, mentions: users }, { quoted: fkontak })
 }
-await delay(url ? 4000 : 2000) // Esperar 2 segundos antes de enviar el mensaje
+await delay(url ? 4000 : 2000) // Esperar 4 segundos antes de enviar el mensaje
+totalTime += url ? 4000 : 2000;
 
 // Dejar el grupo solo si el bot se unió durante esta iteración
 if (!m.messageStubParameters || m.messageStubParameters[0] !== 30) {
-await conn.groupLeave(res)
-await delay(url ? 7000 : 5000) // Esperar 6 segundos antes de repetir con otros enlaces
-  
+await conn.groupLeave(res);
+await delay(url ? 7000 : 5000) // Esperar 7 segundos antes de repetir con otros enlaces
+totalTime += url ? 7000 : 5000
 }} catch (error) {
-console.error(error)
-await conn.sendMessage(m.chat, { text: `\`\`\`Ocurrió un error al unirse o enviar el mensaje al grupo:\`\`\`\n*https://${link}*\n\n*Verifique lo siguiente:*\n\n- Que el Grupo no tenga activada la opción de aprobar usuarios.\n- Que en el grupo todos puedan enviar mensaje.\n- Que usted no este eliminado del Grupo.` }, { quoted: m });
-}} 
-await m.reply('_Mensaje enviado a todos los grupos_')
+console.error(error);
+errorGroups.push(`https://${link}`)
+continue // Continuar con el siguiente enlace en caso de error
+}}
+
+if (errorGroups.length > 0) {
+await conn.sendMessage(m.chat, {
+text: `Ocurrieron errores al unirse o enviar mensajes en los siguientes grupos:\n\n${errorGroups.join("\n")}\n\nVerifique los siguientes puntos:\n- Que los grupos no tengan activada la opción de aprobar usuarios.\n- Que en los grupos todos puedan enviar mensajes.\n- Que usted no esté eliminado de los grupos.`,
+mentions: [m.sender],
+})
+}
+await m.reply(`_Mensaje enviado a todos los grupos_. Tiempo total: ${totalTime / 1000} segundos`)
 }
 
 handler.command = ['promocionar']
