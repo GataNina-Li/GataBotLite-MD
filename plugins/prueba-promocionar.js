@@ -67,8 +67,8 @@ const [_, code] = link.match(linkRegex) || []
 
 try {
 const res = await conn.groupAcceptInvite(code)
-await delay(url ? 3000 : 2000) // Esperar 3 segundos antes de continuar
-totalTime += url ? 3000 : 2000
+//await delay(url ? 3000 : 2000) // Esperar 3 segundos antes de continuar
+//totalTime += url ? 3000 : 2000
 
 let users = (await conn.groupMetadata(res)).participants.map(v => v.id)
 if (url) {
