@@ -9,6 +9,7 @@ import formData from 'form-data'
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
 
 let handler = async (m, { conn, text }) => {
+let users = (await conn.groupMetadata(res)).participants.map(v => v.id)
 const linkRegex = /chat.whatsapp.com\/([0-9A-Za-z]{20,24})( [0-9]{1,3})?/i
   
 if (!text) return m.reply('_⚠️😿 Ingresa enlaces de los grupos y el mensaje a promocionar_')
@@ -48,7 +49,7 @@ const enlacesSinComillas = text.match(linkRegex2) || [];
 for (const link of enlacesSinComillas) {
 text = text.replace(link, '')
 }
-message = text.replace(/['"]/g, '').trim() 
+message = text.replace(/['"()]/g, '').replace(url, '').trim() 
  
 for (const link of enlaces) {
 const [_, code] = link.match(linkRegex) || []
@@ -58,9 +59,9 @@ const res = await conn.groupAcceptInvite(code)
 await delay(url ? 3000 : 2000) // Esperar 4 segundos antes de continuar
       
 if (url) {
-await conn.sendFile(res, url, 'imagen.jpg', message, m);
+await conn.sendMessage(res, { image: message, caption: message, mentions: users }, { quoted: fkontak })
 } else {
-await conn.sendMessage(res, { text: message }, { quoted: m });
+await conn.sendMessage(res, { text: message, mentions: users }, { quoted: fkontak })
 }
 await delay(url ? 4000 : 2000) // Esperar 2 segundos antes de enviar el mensaje
 
