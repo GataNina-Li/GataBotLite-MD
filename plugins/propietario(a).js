@@ -1,5 +1,6 @@
 import fs from 'fs' 
 import { execSync } from 'child_process'
+import { spawn } from 'child_process'
 let linkRegex = /chat.whatsapp.com\/([0-9A-Za-z]{20,24})/i
 let handler = async (m, { conn, command, usedPrefix, text, isAdmin, isOwner, isROwner, participants, groupMetadata  }) => {
 let fkontak, who, user, number, bot, bant, ownerNumber, aa, users, usr, q, mime, img
@@ -19,6 +20,7 @@ const isCommand12 = /^(bcbot|bcsubbot|bcsubot)$/i.test(command)
 const isCommand13 = /^((broadcast|bc)(group|grup|gc))$/i.test(command)
 const isCommand14 = /^(broadcastchats?|bcc(hats?)?)$/i.test(command)
 const isCommand15 = /^(broadcastall|bc)$/i.test(command)
+const isCommand16 = /^(reiniciar|restart)$/i.test(command)
 
 async function reportError(e) {
 await m.reply(lenguajeGB['smsMalError3']() + '\n*' + lenguajeGB.smsMensError1() + '*\n*' + usedPrefix + `${lenguajeGB.lenguaje() == 'es' ? 'reporte' : 'report'}` + '* ' + `${lenguajeGB.smsMensError2()} ` + usedPrefix + command)
@@ -344,10 +346,16 @@ await m.reply(`${lenguajeGB.smsBCbot1()}
 \`\`\`${lenguajeGB.smsBCbot3()} >>   ${totalGroups2}\`\`\`
 \`\`\`${lenguajeGB.smsBCbot4()} >>   ${total2}\`\`\`\n\n*${lenguajeGB.smsBCbot5()} ${time2}*\n${totalPri2 >= 500000 ? `\n*${lenguajeGB.smsBCbot6()}*` : ''}`)        
 break
-        
+case isCommand16:
+if (!process.send) throw 'Dont: node main.js\nDo: node index.js';
+if (conn.user.jid == conn.user.jid) {
+//conn.readMessages([m.key])
+await m.reply(lenguajeGB.smsreiniciar()) 
+process.send('reset');
+} else throw 'eh'
+break
 }}
-
-handler.command = /^(backup|respaldo|copia|ban(user|usuario|earuser|earusuario)|seradmin|autoadmin|tenerpoder|(set|cambiar|nueva|new)(bio|botbio|biobot)|(set|cambiar|nuev(a|o)?|new)(name|botname|namebot|nombre|nombrebot|botnombre)|(set|cambiar|nueva|new)(ppbot|botpp|fotobot|botfoto)|update|actualizar|ups|banchat|banearchat|block|unblock|bloquear|desbloquear|restablecerdatos|borrardatos|deletedatauser|join|nuevogrupo|newgrupo|unete|bcbot|bcsubbot|bcsubot|(broadcast|bc)(group|grup|gc)|broadcastchats?|bcc(hats?)?|broadcastall|bc)$/i
+handler.command = /^(backup|respaldo|copia|ban(user|usuario|earuser|earusuario)|seradmin|autoadmin|tenerpoder|(set|cambiar|nueva|new)(bio|botbio|biobot)|(set|cambiar|nuev(a|o)?|new)(name|botname|namebot|nombre|nombrebot|botnombre)|(set|cambiar|nueva|new)(ppbot|botpp|fotobot|botfoto)|update|actualizar|ups|banchat|banearchat|block|unblock|bloquear|desbloquear|restablecerdatos|borrardatos|deletedatauser|join|nuevogrupo|newgrupo|unete|bcbot|bcsubbot|bcsubot|(broadcast|bc)(group|grup|gc)|broadcastchats?|bcc(hats?)?|broadcastall|bc|reiniciar|restart)$/i
 handler.owner = true
 
 export default handler
