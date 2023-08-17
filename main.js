@@ -15,6 +15,7 @@ import {tmpdir} from 'os'
 import {format} from 'util'
 import P from 'pino'
 import pino from 'pino'
+import {Boom} from '@hapi/boom';
 import {makeWASocket, protoType, serialize} from './lib/simple.js'
 import {Low, JSONFile} from 'lowdb'
 import {mongoDB, mongoDBV2} from './lib/mongoDB.js'
@@ -139,12 +140,39 @@ if (update.qr != 0 && update.qr != undefined) {
 console.log(chalk.bold.yellow(lenguajeGB['smsCodigoQR']()))}
 if (connection == 'open') {
 console.log(chalk.bold.yellow(lenguajeGB['smsConexion']()))}
-if (connection == 'close') {
-const files = fs.readdirSync(authFile) // Utilizar readdirSync  
+let reason = new Boom(lastDisconnect?.error)?.output?.statusCode;
+if (connection === 'close') {
+if (reason === DisconnectReason.badSession) {
+conn.logger.error(chalk.bold.yellow(lenguajeGB['smsConexion']()));
+ //process.exit();
+} else if (reason === DisconnectReason.connectionClosed) {
+conn.logger.warn(lenguajeGB['smsConexioncerrar']());
+process.send('reset');
+} else if (reason === DisconnectReason.connectionLost) {
+conn.logger.warn(lenguajeGB['smsConexionperdida']());
+process.send('reset');
+} else if (reason === DisconnectReason.connectionReplaced) {
+conn.logger.error(lenguajeGB['smsConexionreem']());
+//process.exit();
+} else if (reason === DisconnectReason.loggedOut) {
+conn.logger.error(chalk.bold.yellow(lenguajeGB['smsConexion']()));
+//process.exit();
+} else if (reason === DisconnectReason.restartRequired) {
+conn.logger.info(lenguajeGB['smsConexionreinicio']());
+//process.send('reset');
+} else if (reason === DisconnectReason.timedOut) {
+conn.logger.warn(lenguajeGB['smsConexiontiem']());
+process.send('reset');
+} else {
+conn.logger.warn(lenguajeGB['smsConexiondescon']());
+//process.exit();
+}}}
+//if (connection == 'close') {
+//const files = fs.readdirSync(authFile) // Utilizar readdirSync  
 //if (files.includes('creds.json') && connection !== 'open') return console.log(chalk.bold.yellow(lenguajeGB['smsConexionOFF']()))
 //if (files.includes('creds.json') && global.reloadHandler(false) === false) {
-//console.log(chalk.bold.yellow(lenguajeGB['smsConexionOFF']()))}
-}}
+//console.log(chalk.bold.yellow(lenguajeGB['smsConexionOFF']()))}}}
+
 process.on('uncaughtException', console.error)
 
 let isInit = true

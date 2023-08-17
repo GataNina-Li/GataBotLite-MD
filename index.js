@@ -72,9 +72,11 @@ let args = [join(__dirname, file), ...process.argv.slice(2)]
   
 setupMaster({
 exec: args[0],
-args: args.slice(1), })
+args: args.slice(1),
+})
 let p = fork()
 p.on('message', data => {
+//console.log('ACTIVIDAD ACTULIZADA:', data)
 switch (data) {
 case 'reset':
 p.process.kill()
@@ -83,24 +85,23 @@ start.apply(this, arguments)
 break
 case 'uptime':
 p.send(process.uptime())
-break }})
+break
+}})
 p.on('exit', (_, code) => {
 isRunning = false
 console.error('⚠️ Error Inesperado ⚠️', code)
-  
-p.process.kill()
-isRunning = false
-start.apply(this, arguments)
-  
-if (process.env.pm_id) {
-process.exit(1)
-} else {
-process.exit()
-}
+if (code === 0) return
+watchFile(args[0], () => {
+unwatchFile(args[0])
+start(file)
+})
 })
 let opts = new Object(yargs(process.argv.slice(2)).exitProcess(false).parse())
 if (!opts['test'])
 if (!rl.listenerCount()) rl.on('line', line => {
 p.emit('message', line.trim())
-})}
+})
+//console.log(p)
+}
+
 start('main.js')
