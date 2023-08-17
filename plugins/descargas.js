@@ -1,4 +1,5 @@
 import { youtubedl, youtubeSearch, youtubedlv2, tiktokdl } from '@bochilteam/scraper'  
+const regex = /(?:https|git)(?::\/\/|@)github\.com[\/:]([^\/:]+)\/(.+)/i;
 import { facebook } from "@xct007/frieren-scraper"
 import { googleImage } from '@bochilteam/scraper'
 import fetch from "node-fetch"
@@ -27,6 +28,7 @@ const isCommand15 = /^(spotify|music)$/i.test(command)
 const isCommand16 = /^(spot(ify)?search)$/i.test(command)
 const isCommand17 = /^(i(nsta)?g(ram)?(dl)?|igimage|igdownload)$/i.test(command)
 const isCommand18 = /^((dl)?tw(it(ter(dl|x)?)?)?|x|t?tx)$/i.test(command)
+const isCommand19 = /^(gitclone|Gitclone)$/i.test(command)
 
 async function reportError(e) {
 let errb = await m.reply(lenguajeGB['smsMalError3']() + '\n*' + lenguajeGB.smsMensError1() + '*\n*' + usedPrefix + `${lenguajeGB.lenguaje() == 'es' ? 'reporte' : 'report'}` + '* ' + `${lenguajeGB.smsMensError2()} ` + usedPrefix + command)
@@ -502,9 +504,20 @@ await conn.sendFile(m.chat, tweetVideoUrl, 'error.mp4', txt1, m)
 } catch (e) {
 reportError(e)} 
 break
+
+case isCommand19:
+if (!text) return m.reply(lenguajeGB.smsMalused2() + `*${usedPrefix + command}* ${md}`)
+if (!regex.test(args[0])) throw 'LINK INCORRECTO';
+let [_, user, repo] = args[0].match(regex) || [];
+repo = repo.replace(/.git$/, '');
+const url = `https://api.github.com/repos/${user}/${repo}/zipball`;
+const filename = (await fetch(url, {method: 'HEAD'})).headers.get('content-disposition').match(/attachment; filename=(.*)/)[1];
+m.reply(lenguajeGB.smsGitclone());
+conn.sendFile(m.chat, url, filename, null, m);
+break
 }}
 
-handler.command = /^(gimage|imagen?|play|play2|fgmp3|dlmp3|getaud|yt(a|mp3)?|ytmp3doc|ytadoc|fgmp4|dlmp4|getvid|yt(v|mp4)?|ytmp4doc|ytvdoc|facebook|fb|facebookdl|fbdl|mediafire(dl)?|dlmediafire|ytmax|ytmaxdoc|tiktok|tkdl|dalle|openiamage|aiimage|aiimg|aimage|iaimagen|openaimage|openaiimage|openjourney|journey|midjourney|spotify|music|spot(ify)?search|i(nsta)?g(ram)?(dl)?|igimage|igdownload|(dl)?tw(it(ter(dl|x)?)?)?|x|t?tx)$/i
+handler.command = /^(gimage|imagen?|play|play2|fgmp3|dlmp3|getaud|yt(a|mp3)?|ytmp3doc|ytadoc|fgmp4|dlmp4|getvid|yt(v|mp4)?|ytmp4doc|ytvdoc|facebook|fb|facebookdl|fbdl|mediafire(dl)?|dlmediafire|ytmax|ytmaxdoc|tiktok|tkdl|dalle|openiamage|aiimage|aiimg|aimage|iaimagen|openaimage|openaiimage|openjourney|journey|midjourney|spotify|music|spot(ify)?search|i(nsta)?g(ram)?(dl)?|igimage|igdownload|(dl)?tw(it(ter(dl|x)?)?)?|x|t?tx|gitclone|Gitclone)$/i
 handler.register = true
 export default handler
 

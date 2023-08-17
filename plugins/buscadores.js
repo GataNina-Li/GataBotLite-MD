@@ -14,6 +14,7 @@ const isCommand2 = /(openai|chatgpt|ia|ai)/i.test(command)
 const isCommand3 = /^(bot|simi|simsimi|alexa|bixby|cortana|siri|okgoogle)$/i.test(command)
 const isCommand4 = /^(githubstalk|usuariogithub|usergithub)$/i.test(command)
 const isCommand5 = /^(yt(s|search))$/i.test(command)
+const isCommand6 = /^(translate|traducir|trad)$/i.test(command)
 
 let fkontak = { "key": { "participants":"0@s.whatsapp.net", "remoteJid": "status@broadcast", "fromMe": false, "id": "Halo" }, "message": { "contactMessage": { "vcard": `BEGIN:VCARD\nVERSION:3.0\nN:Sy;Bot;;;\nFN:y\nitem1.TEL;waid=${m.sender.split('@')[0]}:${m.sender.split('@')[0]}\nitem1.X-ABLabel:Ponsel\nEND:VCARD` }}, "participant": "0@s.whatsapp.net" }
 async function reportError(e) {
@@ -169,9 +170,33 @@ await conn.sendFile(m.chat, tes[0].thumbnail, 'yts.jpeg', teks, m)
 reportError(e)
 }          
 break
-}}
 
-handler.command = /^(googlef?|openai|chatgpt|ia|ai|bot|simi|simsimi|alexa|bixby|cortana|siri|okgoogle|githubstalk|usuariogithub|usergithub|(yt(s|search)))$/i
+case isCommand6:
+let msg = (lenguajeGB.smsMalused2() + `*${usedPrefix + command}* es Hello`)
+if (!args || !args[0]) return m.reply(msg)
+let lang = args[0];
+let text = args.slice(1).join(' ');
+const defaultLang = 'es';
+if ((args[0] || '').length !== 2) {
+lang = defaultLang;
+text = args.join(' ');
+}
+if (!text && m.quoted && m.quoted.text) text = m.quoted.text;
+try {
+const result = await translate(`${text}`, {to: lang, autoCorrect: true});
+await m.reply(result.text);
+} catch {
+try {
+const lol = await fetch(`https://api.lolhuman.xyz/api/translate/auto/${lang}?apikey=${lolkeysapi}&text=${text}`);
+const loll = await lol.json();
+const result2 = loll.result.translated;
+await m.reply(result2);
+} catch (e) {
+reportError(e)
+}}
+break 
+}}
+handler.command = /^(googlef?|openai|chatgpt|ia|ai|bot|simi|simsimi|alexa|bixby|cortana|siri|okgoogle|githubstalk|usuariogithub|usergithub|(yt(s|search)|(translate|traducir|trad)))$/i
 handler.register = true
 export default handler 
 
