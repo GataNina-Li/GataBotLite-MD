@@ -85,7 +85,7 @@ totalTime += url ? 4000 : 2000;
 
 // Dejar el grupo solo si el bot se unió durante esta iteración
 if (!m.messageStubParameters || m.messageStubParameters[0] !== 30) {
-await conn.groupLeave(res);
+await conn.groupLeave(res)
 await delay(url ? 7000 : 5000) // Esperar 7 segundos antes de repetir con otros enlaces
 totalTime += url ? 7000 : 5000
   
