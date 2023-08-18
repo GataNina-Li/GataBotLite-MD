@@ -6,7 +6,14 @@ import axios from 'axios'
 import yts from 'yt-search'
 import cheerio from 'cheerio'
 import gpt from 'api-dylux'
+import gtts from 'node-gtts'
+import {readFileSync, unlinkSync} from 'fs';
+import {join} from 'path'
 import fs from 'fs' 
+import {Configuration, OpenAIApi} from 'openai';
+const configuration = new Configuration({organization: global.openai_org_id, apiKey: global.openai_key});
+const openaiii = new OpenAIApi(configuration);
+const idioma = 'es'
 
 let handler = async (m, { conn, command, usedPrefix, args, text }) => {
 const isCommand1 = /^(googlef?)$/i.test(command)
@@ -15,6 +22,7 @@ const isCommand3 = /^(bot|simi|simsimi|alexa|bixby|cortana|siri|okgoogle)$/i.tes
 const isCommand4 = /^(githubstalk|usuariogithub|usergithub)$/i.test(command)
 const isCommand5 = /^(yt(s|search))$/i.test(command)
 const isCommand6 = /^(translate|traducir|trad)$/i.test(command)
+const isCommand7 = /^(openaivoz|chatgptvoz|iavoz|robotvoz|openai2voz|chatgpt2voz|ia2voz|robot2voz|gatavoz|GataBotvoz|gptvoz|ai_voz|ai_voce)$/i.test(command)
 
 let fkontak = { "key": { "participants":"0@s.whatsapp.net", "remoteJid": "status@broadcast", "fromMe": false, "id": "Halo" }, "message": { "contactMessage": { "vcard": `BEGIN:VCARD\nVERSION:3.0\nN:Sy;Bot;;;\nFN:y\nitem1.TEL;waid=${m.sender.split('@')[0]}:${m.sender.split('@')[0]}\nitem1.X-ABLabel:Ponsel\nEND:VCARD` }}, "participant": "0@s.whatsapp.net" }
 async function reportError(e) {
@@ -170,10 +178,9 @@ await conn.sendFile(m.chat, tes[0].thumbnail, 'yts.jpeg', teks, m)
 reportError(e)
 }          
 break
-
 case isCommand6:
-let msg = (lenguajeGB.smsMalused2() + `*${usedPrefix + command}* es Hello`)
-if (!args || !args[0]) return m.reply(msg)
+if (!text) throw `${lenguajeGB.smsMalused2()}\n*${usedPrefix + command}* es Hello`
+try {
 let lang = args[0];
 let text = args.slice(1).join(' ');
 const defaultLang = 'es';
@@ -181,8 +188,7 @@ if ((args[0] || '').length !== 2) {
 lang = defaultLang;
 text = args.join(' ');
 }
-if (!text && m.quoted && m.quoted.text) text = m.quoted.text;
-try {
+//if (!text && m.quoted && m.quoted.text) text = m.quoted.text;
 const result = await translate(`${text}`, {to: lang, autoCorrect: true});
 await m.reply(result.text);
 } catch {
@@ -195,8 +201,29 @@ await m.reply(result2);
 reportError(e)
 }}
 break 
+
+case isCommand7:
+if (!text) throw `*${lenguajeGB['smsOpenai1']()} ${usedPrefix + command}* ${lenguajeGB.smsOpenai2()}\n\n*${usedPrefix + command}* ${lenguajeGB.smsOpenai3()}`
+try {
+conn.sendPresenceUpdate('recording', m.chat);
+const botIA222 = await openaiii.createCompletion({model: 'text-davinci-003', prompt: text, temperature: 0.3, max_tokens: 4097, stop: ['Ai:', 'Human:'], top_p: 1, frequency_penalty: 0.2, presence_penalty: 0});
+if (botIA222.data.choices[0].text == 'error' || botIA222.data.choices[0].text == '' || !botIA222.data.choices[0].text) return XD; // causar error undefined para usar otra api
+const audio2 = await tts(botIA222.data.choices[0].text, idioma);
+await conn.sendMessage(m.chat, {audio: audio2, fileName: 'error.mp3', mimetype: 'audio/mpeg', ptt: true}, {quoted: m});    
+} catch {
+try {
+const tioress22 = await fetch(`https://api.lolhuman.xyz/api/openai?apikey=${lolkeysapi}&text=${text}&user=${m.sender}`);
+const hasill22 = await tioress22.json();
+if (hasill22.result == 'error' || hasill22.result == '' || !hasill22.result) return 
+const hasill22_result = await translate(`${hasill22.result}`, {to: idioma, autoCorrect: true});
+const audio7 = await tts(hasill22_result.text, idioma);
+await conn.sendMessage(m.chat, {audio: audio7, fileName: 'error.mp3', mimetype: 'audio/mpeg', ptt: true}, {quoted: m});            
+} catch (e) {
+reportError(e)
 }}
-handler.command = /^(googlef?|openai|chatgpt|ia|ai|bot|simi|simsimi|alexa|bixby|cortana|siri|okgoogle|githubstalk|usuariogithub|usergithub|(yt(s|search)|(translate|traducir|trad)))$/i
+break        
+}}
+handler.command = /^(googlef?|openai|chatgpt|ia|ai|bot|simi|simsimi|alexa|bixby|cortana|siri|okgoogle|githubstalk|usuariogithub|usergithub|(yt(s|search)|(openaivoz|chatgptvoz|iavoz|robotvoz|openai2voz|chatgpt2voz|ia2voz|robot2voz|gatavoz|GataBotvoz|gptvoz|ai_voz|ai_voce)|(translate|traducir|trad)))$/i
 handler.register = true
 export default handler 
 
@@ -226,4 +253,19 @@ let hasil = {
  updated_at: data.updated_at
 }
 resolve(hasil)})})  
+}
+
+async function tts(text = 'error', lang = 'es') {
+  return new Promise((resolve, reject) => {
+    try {
+      const tts = gtts(lang);
+      const filePath = join(global.__dirname(import.meta.url), '../tmp', (1 * new Date) + '.wav');
+      tts.save(filePath, text, () => {
+        resolve(readFileSync(filePath));
+        unlinkSync(filePath);
+      });
+    } catch (e) {
+      reject(e);
+    }
+  });
 }
