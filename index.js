@@ -27,14 +27,6 @@ const hexColors = ['#3456ff', '#f80', '#f00808', '#fefe62', '#ff00ff', '#00ffff'
 const randomIndex = Math.floor(Math.random() * hexColors.length)
 return hexColors[randomIndex]}
 
-function getRandomGradient() {  
-const useRandomHexColors = Math.random() < 0.5; // 50% colors
-if (useRandomHexColors) {
-return [getRandomHexColor(), getRandomHexColor()]
-} else {
-return [getRandomColor(), getRandomColor()];
-}}
-
 const options = {
  font: 'block',
  align: 'center',
@@ -45,6 +37,14 @@ const options = {
  space: true,
  maxLength: '0',
 }
+
+function getRandomGradient() {  
+const useRandomHexColors = Math.random() < 0.5; // 50% colors
+if (useRandomHexColors) {
+return [getRandomHexColor(), getRandomHexColor()]
+} else {
+return [getRandomColor(), getRandomColor()];
+}}
 cfonts.say('gatabot\nlite\nmd'.trim(), options)
 
 } catch (err) {
