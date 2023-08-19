@@ -90,6 +90,7 @@ break
 p.on('exit', (_, code) => {
 isRunning = false
 if (!process.send) {
+let options = { font: 'block', align: 'center', colors: getRandomGradient(), background: 'transparent', letterSpacing: 1, lineHeight: 1, space: true, maxLength: '0', }
 cfonts.say('reiniciando'.trim(), options)
 //console.error('REINICANDO...', code)
 } else {
