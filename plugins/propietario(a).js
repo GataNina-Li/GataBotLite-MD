@@ -346,14 +346,17 @@ await m.reply(`${lenguajeGB.smsBCbot1()}
 \`\`\`${lenguajeGB.smsBCbot3()} >>   ${totalGroups2}\`\`\`
 \`\`\`${lenguajeGB.smsBCbot4()} >>   ${total2}\`\`\`\n\n*${lenguajeGB.smsBCbot5()} ${time2}*\n${totalPri2 >= 500000 ? `\n*${lenguajeGB.smsBCbot6()}*` : ''}`)        
 break
+        
 case isCommand16:
-if (!process.send) throw 'Dont: node main.js\nDo: node index.js';
-if (conn.user.jid == conn.user.jid) {
+//if (!process.send)  ' ERROR AL INTENTAR EJECUTAR node index.js'
+try{
 //conn.readMessages([m.key])
 await m.reply(lenguajeGB.smsreiniciar()) 
-process.send('reset');
-} else throw 'eh'
+process.send('reset')
+} catch (e) {
+reportError(e)}  
 break
+        
 }}
 handler.command = /^(backup|respaldo|copia|ban(user|usuario|earuser|earusuario)|seradmin|autoadmin|tenerpoder|(set|cambiar|nueva|new)(bio|botbio|biobot)|(set|cambiar|nuev(a|o)?|new)(name|botname|namebot|nombre|nombrebot|botnombre)|(set|cambiar|nueva|new)(ppbot|botpp|fotobot|botfoto)|update|actualizar|ups|banchat|banearchat|block|unblock|bloquear|desbloquear|restablecerdatos|borrardatos|deletedatauser|join|nuevogrupo|newgrupo|unete|bcbot|bcsubbot|bcsubot|(broadcast|bc)(group|grup|gc)|broadcastchats?|bcc(hats?)?|broadcastall|bc|reiniciar|restart)$/i
 handler.owner = true
