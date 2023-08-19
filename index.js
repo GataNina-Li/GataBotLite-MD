@@ -90,11 +90,9 @@ break
 p.on('exit', (_, code) => {
 isRunning = false
 if (!process.send) {
-let options = { font: 'block', align: 'center', colors: getRandomGradient(), background: 'transparent', letterSpacing: 1, lineHeight: 1, space: true, maxLength: '0', }
-cfonts.say('reiniciando'.trim(), options)
-//console.error('REINICANDO...', code)
+console.log(chalk.bold.magenta('❇️ RESETTING... ❇️'))
 } else {
-console.error('⚠️ Error Inesperado ⚠️', code)}
+console.error('⚠️ ERROR ⚠️', code)}
 if (code === 0) return
 watchFile(args[0], () => {
 unwatchFile(args[0])
