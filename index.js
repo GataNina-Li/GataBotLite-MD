@@ -89,7 +89,10 @@ break
 }})
 p.on('exit', (_, code) => {
 isRunning = false
-console.error('⚠️ Error Inesperado ⚠️', code)
+if (!process.send) {
+console.error('REINICANDO...', code)
+} else {
+console.error('⚠️ Error Inesperado ⚠️', code)}
 if (code === 0) return
 watchFile(args[0], () => {
 unwatchFile(args[0])
