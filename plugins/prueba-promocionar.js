@@ -72,7 +72,7 @@ await delay(url ? 3000 : 2000) // Esperar 3 segundos antes de continuar
 totalTime += url ? 3000 : 2000
 chat.welcome = false
 
-//let users = (await conn.groupMetadata(res)).participants.map(v => v.id)
+let users = (await conn.groupMetadata(res)).participants.map(v => v.id)
 if (url) {
 const sendOptions = { image: url.endsWith('.jpg') || url.endsWith('.jpeg') || url.endsWith('.png') ? { url: url } : url, caption: message, mentions: users }
 if (/video/g.test(mime)) {
