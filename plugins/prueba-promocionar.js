@@ -9,6 +9,7 @@ import formData from 'form-data'
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
 
 let handler = async (m, { conn, text, usedPrefix, command, groupMetadata, participants }) => {
+let chat = global.db.data.chats[m.chat]
 let fkontak = { "key": { "participants":"0@s.whatsapp.net", "remoteJid": "status@broadcast", "fromMe": false, "id": "Halo" }, "message": { "contactMessage": { "vcard": `BEGIN:VCARD\nVERSION:3.0\nN:Sy;Bot;;;\nFN:y\nitem1.TEL;waid=${conn.user.jid.split('@')[0]}:${conn.user.jid.split('@')[0]}\nitem1.X-ABLabel:Ponsel\nEND:VCARD` }}, "participant": "0@s.whatsapp.net" }
 
 const linkRegex = /chat.whatsapp.com\/([0-9A-Za-z]{20,24})( [0-9]{1,3})?/i 
@@ -69,16 +70,17 @@ try {
 const res = await conn.groupAcceptInvite(code)
 await delay(url ? 3000 : 2000) // Esperar 3 segundos antes de continuar
 totalTime += url ? 3000 : 2000
+chat.welcome = false
 
 //let users = (await conn.groupMetadata(res)).participants.map(v => v.id)
 if (url) {
-const sendOptions = { image: url.endsWith('.jpg') || url.endsWith('.jpeg') || url.endsWith('.png') ? { url: url } : url, caption: message }
+const sendOptions = { image: url.endsWith('.jpg') || url.endsWith('.jpeg') || url.endsWith('.png') ? { url: url } : url, caption: message, mentions: users }
 if (/video/g.test(mime)) {
-await conn.sendMessage(res, { video: url, mimetype: 'video/mp4', caption: message }, { quoted: fkontak })
+await conn.sendMessage(res, { video: url, mimetype: 'video/mp4', caption: message, mentions: users }, { quoted: fkontak })
 } else {
 await conn.sendMessage(res, sendOptions, { quoted: fkontak })
 }} else {
-await conn.sendMessage(res, { text: message }, { quoted: fkontak }) //, mentions: users
+await conn.sendMessage(res, { text: message, mentions: users }, { quoted: fkontak }) //, mentions: users
 }
 await delay(url ? 4000 : 2000) // Esperar 4 segundos antes de enviar el mensaje
 totalTime += url ? 4000 : 2000;
@@ -88,6 +90,7 @@ if (!m.messageStubParameters || m.messageStubParameters[0] !== 30) {
 await conn.groupLeave(res)
 await delay(url ? 7000 : 5000) // Esperar 7 segundos antes de repetir con otros enlaces
 totalTime += url ? 7000 : 5000
+chat.welcome = true
   
 }} catch (error) {
 console.error(error)
