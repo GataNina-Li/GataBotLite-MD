@@ -2,6 +2,7 @@ import fs from 'fs'
 import { execSync } from 'child_process'
 import { spawn } from 'child_process'
 let linkRegex = /chat.whatsapp.com\/([0-9A-Za-z]{20,24})/i
+
 let handler = async (m, { conn, command, usedPrefix, text, isAdmin, isOwner, isROwner, participants, groupMetadata  }) => {
 let fkontak, who, user, number, bot, bant, ownerNumber, aa, users, usr, q, mime, img
 fkontak = { "key": { "participants":"0@s.whatsapp.net", "remoteJid": "status@broadcast", "fromMe": false, "id": "Halo" }, "message": { "contactMessage": { "vcard": `BEGIN:VCARD\nVERSION:3.0\nN:Sy;Bot;;;\nFN:y\nitem1.TEL;waid=${conn.user.jid.split('@')[0]}:${conn.user.jid.split('@')[0]}\nitem1.X-ABLabel:Ponsel\nEND:VCARD` }}, "participant": "0@s.whatsapp.net" }
@@ -348,9 +349,7 @@ await m.reply(`${lenguajeGB.smsBCbot1()}
 break
         
 case isCommand16:
-//if (!process.send)  ' ERROR AL INTENTAR EJECUTAR node index.js'
 try{
-//conn.readMessages([m.key])
 await m.reply(lenguajeGB.smsreiniciar()) 
 process.send('reset')
 } catch (e) {
