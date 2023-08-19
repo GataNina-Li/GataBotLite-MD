@@ -70,7 +70,6 @@ try {
 const res = await conn.groupAcceptInvite(code)
 await delay(url ? 3000 : 2000) // Esperar 3 segundos antes de continuar
 totalTime += url ? 3000 : 2000
-chat.welcome = false
 
 let users = (await conn.groupMetadata(res)).participants.map(v => v.id)
 if (url) {
@@ -82,15 +81,16 @@ await conn.sendMessage(res, sendOptions, { quoted: fkontak })
 }} else {
 await conn.sendMessage(res, { text: message, mentions: users }, { quoted: fkontak }) //, mentions: users
 }
+chat.welcome = false
 await delay(url ? 4000 : 2000) // Esperar 4 segundos antes de enviar el mensaje
-totalTime += url ? 4000 : 2000;
+totalTime += url ? 4000 : 2000
 
 // Dejar el grupo solo si el bot se unió durante esta iteración
 if (!m.messageStubParameters || m.messageStubParameters[0] !== 30) {
 await conn.groupLeave(res)
 await delay(url ? 7000 : 5000) // Esperar 7 segundos antes de repetir con otros enlaces
 totalTime += url ? 7000 : 5000
-chat.welcome = true
+//chat.welcome = true
   
 }} catch (error) {
 console.error(error)
