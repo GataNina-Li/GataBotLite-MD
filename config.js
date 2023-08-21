@@ -13,9 +13,9 @@ import { en, es, id, ar, pt } from './lib/idiomas/total-idiomas.js'
 // EN ➜ Add the Bot number as priority first
 // EN ➜ If you want to receive reports you must use the three parameters (Number, name and true)
 global.owner = [
-['593993684821', '𝙂𝙖𝙩𝙖𝘽𝙤𝙩𝙇𝙞𝙩𝙚-𝙈𝘿 🌻🐈', true],
-['595975740803', '𝙊𝙬𝙣𝙚𝙧 💖🐈', true], 
-['593968585383'], ['5492266466080'], ['5492266613038']]
+['50238504122', '𝗟𝗢𝗕𝗜𝗧𝗢 𝗛𝗔𝗖𝗞 𝗕𝗢𝗧', true],
+['5493815446614', '𝗧𝗛𝗘 𝗡𝗜𝗡𝗜𝗧𝗢 𝗩𝗜𝗣', true], 
+['593985582288', '𝗧𝗛𝗘 𝗖𝗛𝗜𝗡𝗔 𝗩𝗜𝗣', true], 
 
 global.mods = [] 
 global.prems = []
@@ -78,21 +78,21 @@ global.fetch = fetch
 global.axios = axios
 global.moment = moment	
 
-global.packname = '𝙂𝙖𝙩𝙖𝘽𝙤𝙩𝙇𝙞𝙩𝙚-𝙈𝘿 🌻🐈'
-global.author = '𝙂𝙖𝙩𝙖 𝘿𝙞𝙤𝙨'
+global.packname = '𝗟𝗢𝗕𝗜𝗧𝗢-𝗠𝗢𝗗𝗭'
+global.author = '𝗟𝗢𝗕𝗢 𝘿𝙞𝙤𝙨'
 
 // ES ➜ Está parte es para mostrar el contacto de alguien al usar #contacto
 // EN ➜ This part is to display someone's contact using #contact
 global.official = [ 
-['18059196237', 'Gata Dios 💻', 1], 
-['5492266466080', '𝗗𝗲𝘀𝗮𝗿𝗿𝗼𝗹𝗹𝗮𝗱𝗼𝗿 𝗢𝗳𝗶𝗰𝗶𝗮𝗹 💻', 1],  
-['59894808483', '𝗖𝘂𝘀𝘁𝗼𝗺𝗲𝗿 𝗦𝘂𝗽𝗽𝗼𝗿𝘁 𝗢𝗳𝗶𝗰𝗶𝗮𝗹 🥏', 1],
-['5521989092076', '𝗗𝗲𝘀𝗮𝗿𝗿𝗼𝗹𝗹𝗮𝗱𝗼𝗿𝗮 𝗢𝗳𝗶𝗰𝗶𝗮𝗹 💻', 1]] 
+['50238504122', '𝐋𝐨𝐛𝐢𝐭𝐨 💻', 1], 
+['50238504122', '𝗗𝗲𝘀𝗮𝗿𝗿𝗼𝗹𝗹𝗮𝗱𝗼𝗿 𝗢𝗳𝗶𝗰𝗶𝗮𝗹 💻', 1],  
+['50238504122', '𝗖𝘂𝘀𝘁𝗼𝗺𝗲𝗿 𝗦𝘂𝗽𝗽𝗼𝗿𝘁 𝗢𝗳𝗶𝗰𝗶𝗮𝗹 🥏', 1],
+['50238504122', '𝗗𝗲𝘀𝗮𝗿𝗿𝗼𝗹𝗹𝗮𝗱𝗼𝗿𝗮 𝗢𝗳𝗶𝗰𝗶𝗮𝗹 💻', 1]] 
 
-global.mail = '' //agrega tú correo
-global.desc = '' //agrega una descripción corta
-global.desc2 = '' //agrega una descripción larga (Solo se aplicará si su whasapp no tiene descripción)
-global.country = '' //agrega tú país ejemplo: 🇪🇨
+global.mail = "'junior123modz@gmail.com"
+global.desc = ''𝗕𝗢𝗧 𝗟𝗢𝗕𝗜𝗧𝗢 𝗛𝗔𝗖𝗞"
+global.desc2 = '' //
+global.country = ''🇬🇹"
 
 global.vs = '1.0.2'
 global.vsJB = '4.0'
@@ -118,8 +118,8 @@ global.nnnttt4 = 'https://chat.whatsapp.com/J8HOf2T3QYeKu3UN9UBkT6' //Grupo 9 CO
 global.paypal = 'https://paypal.me/OficialGD'
 global.asistencia = 'Wa.me/19393844141' //Dudas? escríbeme...
 
-global.wm = '𝙂𝙖𝙩𝙖𝘽𝙤𝙩𝙇𝙞𝙩𝙚-𝙈𝘿 🌻🐈 : 𝙂𝙖𝙩𝙖 𝘿𝙞𝙤𝙨'
-global.igfg = '𝙂𝙖𝙩𝙖𝘽𝙤𝙩𝙇𝙞𝙩𝙚-𝙈𝘿'
+global.wm = '𝙇𝙊𝘽𝙄𝙏𝙊-𝘽𝙊𝙏 : 𝙇𝙊𝘽𝙊 𝘿𝙞𝙤𝙨'
+global.igfg = '𝙇𝙊𝘽𝙊-𝘽𝙊𝙏-𝙑𝙄𝙋'
 global.wait = lenguajeGB['smsMeWait']()
 global.wait2 = lenguajeGB.smsWait()
 global.nomorown = owner[0][0]
@@ -184,3 +184,4 @@ unwatchFile(file)
 console.log(chalk.bold.greenBright(lenguajeGB['smsConfigBot']().trim()))
 import(`${file}?update=${Date.now()}`)
 })
+
