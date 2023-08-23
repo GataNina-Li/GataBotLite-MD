@@ -85,7 +85,7 @@ global.chatgpt.chain = lodash.chain(global.chatgpt.data)
 }
 loadChatgptDB()
 
-global.authFile = `GataBotSession`;
+global.authFile = `FOXBotSession`;
 const {state, saveState, saveCreds} = await useMultiFileAuthState(global.authFile)
 const msgRetryCounterMap = (MessageRetryMap) => { }
 const {version} = await fetchLatestBaileysVersion()
@@ -111,7 +111,7 @@ auth: {
 creds: state.creds,
 keys: makeCacheableSignalKeyStore(state.keys, pino({level: 'silent'})),
 },
-browser: ['GataBotLite-MD','Edge','2.0.0'],
+browser: ['FOX-MD','Edge','2.0.0'],
 version,
 defaultQueryTimeoutMs: undefined,
 }
@@ -123,7 +123,7 @@ conn.well = false
 if (!opts['test']) {
 if (global.db) setInterval(async () => {
 if (global.db.data) await global.db.write()
-if (opts['autocleartmp'] && (global.support || {}).find) (tmp = [os.tmpdir(), 'tmp', "GataJadiBot"], tmp.forEach(filename => cp.spawn('find', [filename, '-amin', '2', '-type', 'f', '-delete'])))}, 30 * 1000)}
+if (opts['autocleartmp'] && (global.support || {}).find) (tmp = [os.tmpdir(), 'tmp', "FOXBot"], tmp.forEach(filename => cp.spawn('find', [filename, '-amin', '2', '-type', 'f', '-delete'])))}, 30 * 1000)}
 if (opts['server']) (await import('./server.js')).default(global.conn, PORT)
 
 async function connectionUpdate(update) {
@@ -318,29 +318,29 @@ unlinkSync(filePath)})
 
 function purgeSession() {
 let prekey = []
-let directorio = readdirSync("./GataBotSession")
+let directorio = readdirSync("./FOXBotSession")
 let filesFolderPreKeys = directorio.filter(file => {
 return file.startsWith('pre-key-') || file.startsWith('session-') || file.startsWith('sender-') || file.startsWith('app-')
 })
 prekey = [...prekey, ...filesFolderPreKeys]
 filesFolderPreKeys.forEach(files => {
-unlinkSync(`./GataBotSession/${files}`)
+unlinkSync(`./FOXBotSession/${files}`)
 })
 } 
 
 function purgeSessionSB() {
 try {
-const listaDirectorios = readdirSync('./GataJadiBot/');
+const listaDirectorios = readdirSync('./FOXBot/');
 let SBprekey = [];
 listaDirectorios.forEach(directorio => {
-if (statSync(`./GataJadiBot/${directorio}`).isDirectory()) {
-const DSBPreKeys = readdirSync(`./GataJadiBot/${directorio}`).filter(fileInDir => {
+if (statSync(`./FOXBot/${directorio}`).isDirectory()) {
+const DSBPreKeys = readdirSync(`./FOXBot/${directorio}`).filter(fileInDir => {
 return fileInDir.startsWith('pre-key-') || fileInDir.startsWith('app-') || fileInDir.startsWith('session-')
 })
 SBprekey = [...SBprekey, ...DSBPreKeys];
 DSBPreKeys.forEach(fileInDir => {
 if (fileInDir !== 'creds.json') {
-unlinkSync(`./GataJadiBot/${directorio}/${fileInDir}`)
+unlinkSync(`./FOXBot/${directorio}/${fileInDir}`)
 }})
 }})
 if (SBprekey.length === 0) {
@@ -352,7 +352,7 @@ console.log(chalk.bold.red(lenguajeGB.smspurgeSessionSB3() + err))
 }}
 
 function purgeOldFiles() {
-const directories = ['./GataBotSession/', './GataJadiBot/']
+const directories = ['./FOXBotSession/', './FOXBot/']
 directories.forEach(dir => {
 readdirSync(dir, (err, files) => {
 if (err) throw err
@@ -368,7 +368,7 @@ console.log(chalk.bold.green(`${lenguajeGB.smspurgeOldFiles1()} ${file} ${lengua
 }) }) }) }
 
 // Prueba para omitir mensaje de keys de cierre de sesiones
-// Por GataNina-Li 😆❤️
+// Por CEHunter ⚡😉
 /*function omitirMessage(messageToOmit) {
 const originalConsoleLog = console.log
 console.log = function(...args) {

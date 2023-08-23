@@ -15,7 +15,7 @@ const rl = createInterface(process.stdin, process.stdout)
 
 try {
 const startColor = chalk.rgb(Math.floor(Math.random() * 256), Math.floor(Math.random() * 256), Math.floor(Math.random() * 256));
-console.log(startColor('❤️ Iniciando...'));
+console.log(startColor('⚡ Iniciando...'));
 
 function getRandomColor() {
 const colors = ['system', 'black', 'red', 'green', 'yellow', 'blue', 'magenta', 'cyan', 'white', 'gray', 'redBright', 'greenBright', 'yellowBright', 'blueBright', 'magentaBright', 'cyanBright', 'whiteBright', 'candy'];
@@ -45,16 +45,16 @@ return [getRandomHexColor(), getRandomHexColor()]
 } else {
 return [getRandomColor(), getRandomColor()];
 }}
-cfonts.say('gatabot\nlite\nmd'.trim(), options)
+cfonts.say('foxbot\nmd'.trim(), options)
 
 } catch (err) {
-say('GataBot\nLite\nMD', {
+say('FOXBot\nMD', {
  font: 'chrome',
  align: 'center',
  gradient: ['red', 'magenta']
 })}
 
-say(`Project Author:\nGataNina-Li (@gata_dios)\n\nDevelopers:\nelrebelde21 (Mario)\nAzamiJs (Azami)\nDIEGO-OFC (Diego)`.trim(), {
+say(`Project Author:\nCEHunter (@the_cefox)\n\nDevelopers:\nCEHunter (thecelion)`.trim(), {
  font: 'console',
  align: 'center',
  colors: ['candy']
