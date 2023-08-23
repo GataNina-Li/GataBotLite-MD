@@ -13,9 +13,7 @@
 ### 🌼 INSTALACIÓN MANUAL - TERMUX 🌼
 ```bash
 termux-setup-storage
-apt update
-apt upgrade
-pkg install -y git nodejs ffmpeg imagemagick yarn
+apt update -y && apt upgrade -y && pkg install -y git nodejs ffmpeg imagemagick yarn
 git clone https://github.com/thecelion/FOX-MD 
 cd FOX-MD
 yarn install
