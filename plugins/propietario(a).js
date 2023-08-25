@@ -1,7 +1,7 @@
 import fs from 'fs' 
 import { execSync } from 'child_process'
 import { spawn } from 'child_process'
-import chalk from "chalk"
+import chalk from "chalk" 
 let linkRegex = /chat.whatsapp.com\/([0-9A-Za-z]{20,24})/i
 
 let handler = async (m, { conn, command, usedPrefix, text, isAdmin, isOwner, isROwner, participants, groupMetadata  }) => {
