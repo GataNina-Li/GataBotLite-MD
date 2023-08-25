@@ -29,7 +29,8 @@ let url, media
 let q = m.quoted ? m.quoted : m
 let mime = (q.msg || q).mimetype || q.mediaType || ''
 const urlRegex = text.match(new RegExp(/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_+.~#?&/=]*)(jpe?g|gif|png)/, 'gi'))
-const matches = text.match(urlRegex)
+let matches = text.match(urlRegex)
+matches = matches[0]
 if (/video/g.test(mime)) if ((q.msg || q).seconds > 10) return m.reply('El vídeo no puede durar más de 10 segundos')
 if (/video/g.test(mime) || /image\/(png|jpe?g)/.test(mime)) {
 let media = await m.download()
