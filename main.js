@@ -164,7 +164,7 @@ conn.logger.info(lenguajeGB['smsConexionreinicio']());
 conn.logger.warn(lenguajeGB['smsConexiontiem']());
 process.send('reset');
 } else {
-conn.logger.warn(lenguajeGB['smsConexiondescon'](reason));
+conn.logger.warn(lenguajeGB['smsConexiondescon'](reason, connection));
 //process.exit();
 }}}
 //if (connection == 'close') {
