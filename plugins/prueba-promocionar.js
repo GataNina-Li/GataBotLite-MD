@@ -65,13 +65,13 @@ url = false
 
 let message2 = ''
 message = text
-const linkRegex2 = /['"()]*(https:\/\/chat.whatsapp.com\/[0-9A-Za-z]{20,24}|\S+\.(jpg|jpeg|png|gif|mp4))['"()]*(?=\s|$)/ig
+const linkRegex2 = /['"()]*(https:\/\/chat.whatsapp.com\/[0-9A-Za-z]{20,24}|\S+\.(jpg|jpeg|png|gif))['"()]*(?=\s|$)/ig
 const enlacesConSignos = text.match(linkRegex2) || []
 let currentIndex = 0
 for (const linkWithSigns of enlacesConSignos) {
 const linkWithoutSigns = linkWithSigns.replace(/['"()]/g, '')
 const linkIndex = text.indexOf(linkWithSigns, currentIndex)
-const isImageLink = linkWithSigns.match(/\.(jpg|jpeg|png|gif|mp4)/i)
+const isImageLink = linkWithSigns.match(/\.(jpg|jpeg|png|gif)/i)
 if (isImageLink && linkWithSigns.includes('[') && linkWithSigns.includes(']')) {
 message2 += text.substring(currentIndex, linkIndex + linkWithSigns.length)
 } else {
