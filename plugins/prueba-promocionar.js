@@ -12,7 +12,7 @@ let handler = async (m, { conn, text, usedPrefix, command, groupMetadata, partic
 let chat = global.db.data.chats[m.chat]
 let fkontak = { "key": { "participants":"0@s.whatsapp.net", "remoteJid": "status@broadcast", "fromMe": false, "id": "Halo" }, "message": { "contactMessage": { "vcard": `BEGIN:VCARD\nVERSION:3.0\nN:Sy;Bot;;;\nFN:y\nitem1.TEL;waid=${conn.user.jid.split('@')[0]}:${conn.user.jid.split('@')[0]}\nitem1.X-ABLabel:Ponsel\nEND:VCARD` }}, "participant": "0@s.whatsapp.net" }
 
-const linkRegex = /chat.whatsapp.com\/([0-9A-Za-z]{20,24})( [0-9]{1,3})?/i 
+let linkRegex = /chat.whatsapp.com\/([0-9A-Za-z]{20,24})( [0-9]{1,3})?/i 
 if (!text) return m.reply(`_⚠️😿 Ingresa enlaces de los grupos y el mensaje a promocionar_\n\n*Opciones:*
 Puede usar \"\", \'\', o () para los enlaces de WhatsApp que desea promocionar.\n\nCabe recalcar que al momento de promocionar no se verá los enlaces que se desea ingresar y los \"\", \'\', o ()\n
 Tiene la opción de responder a una imagen o enlace que termine en jpg, jpeg, o png de tal forma que será promocionado, en el caso de agregar un enlace de imagen puede agregar donde quiera y no será mostrado el enlace de la imagen en el mensaje de promoción 
