@@ -9,9 +9,10 @@ import formData from 'form-data'
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
 
 let handler = async (m, { conn, text, usedPrefix, command, groupMetadata, participants }) => {
-let chat = global.db.data.chats[m.chat]
 let fkontak = { "key": { "participants":"0@s.whatsapp.net", "remoteJid": "status@broadcast", "fromMe": false, "id": "Halo" }, "message": { "contactMessage": { "vcard": `BEGIN:VCARD\nVERSION:3.0\nN:Sy;Bot;;;\nFN:y\nitem1.TEL;waid=${conn.user.jid.split('@')[0]}:${conn.user.jid.split('@')[0]}\nitem1.X-ABLabel:Ponsel\nEND:VCARD` }}, "participant": "0@s.whatsapp.net" }
-chat.welcome = false 
+let res = text ? text : m.chat  
+let chat = global.db.data.chats[m.chat]
+chat.welcome = false
   
 let linkRegex = /chat.whatsapp.com\/([0-9A-Za-z]{20,24})( [0-9]{1,3})?/i 
 if (!text) return m.reply(`_⚠️😿 Ingresa enlaces de los grupos y el mensaje a promocionar_\n\n*Opciones:*
