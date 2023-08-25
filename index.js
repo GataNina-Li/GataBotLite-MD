@@ -89,10 +89,7 @@ break
 }})
 p.on('exit', (_, code) => {
 isRunning = false
-if (!process.send) {
-console.log(chalk.bold.magenta('❇️ RESETTING... ❇️'))
-} else {
-console.error('⚠️ ERROR ⚠️', code)}
+console.error('⚠️ ERROR ⚠️', code)
 if (code === 0) return
 watchFile(args[0], () => {
 unwatchFile(args[0])
