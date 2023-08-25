@@ -48,20 +48,22 @@ url = false
 }
 
 message = text
-const linkRegex2 = /https:\/\/chat.whatsapp.com\/[0-9A-Za-z]{20,24}/ig
-const enlacesConComillas = text.match(/['"()](https:\/\/chat.whatsapp.com\/[0-9A-Za-z]{20,24})['"()]/ig) || []
-for (const link of enlacesConComillas) {
-const linkWithoutQuotes = link.replace(/['"()]/g, '')
-text = text.replace(link, linkWithoutQuotes)
+linkRegex = /['"()]*(https:\/\/chat.whatsapp.com\/[0-9A-Za-z]{20,24}|\S+\.(jpg|jpeg|png|gif|mp4))['"()]*(?=\s|$)/ig
+const enlacesConSignos = text.match(linkRegex) || []
+let currentIndex = 0
+for (const linkWithSigns of enlacesConSignos) {
+const linkWithoutSigns = linkWithSigns.replace(/['"()]/g, '')
+const linkIndex = text.indexOf(linkWithSigns, currentIndex)
+message += text.substring(currentIndex, linkIndex)
+if (linkWithoutSigns !== linkWithSigns) {
+message += linkWithoutSigns
 }
-const enlacesSinComillas = text.match(linkRegex2) || [];
-for (const link of enlacesSinComillas) {
-text = text.replace(link, '')
+currentIndex = linkIndex + linkWithSigns.length
 }
-message = text.replace(/['"()]/g, '').replace(url, '').trim() 
- 
-let totalTime = 0;
-let errorGroups = [];
+message += text.substring(currentIndex).replace(/^\s+/, '').trim()
+
+let totalTime = 0
+let errorGroups = []
 
 for (const link of enlaces) {
 const [_, code] = link.match(linkRegex) || []
