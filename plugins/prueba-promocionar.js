@@ -75,13 +75,13 @@ totalTime += url ? 3000 : 2000
 
 let users = (await conn.groupMetadata(res)).participants.map(v => v.id)
 if (url) {
-const sendOptions = { image: url.endsWith('.jpg') || url.endsWith('.jpeg') || url.endsWith('.png') ? { url: url } : url, caption: message, mentions: users }
+const sendOptions = { image: url.endsWith('.jpg') || url.endsWith('.jpeg') || url.endsWith('.png') ? { url: url } : url, caption: message /*mentions: users */ }
 if (/video/g.test(mime)) {
-await conn.sendMessage(res, { video: url, mimetype: 'video/mp4', caption: message, mentions: users }, { quoted: fkontak })
+await conn.sendMessage(res, { video: url, mimetype: 'video/mp4', caption: message /*mentions: users */ }, { quoted: fkontak })
 } else {
 await conn.sendMessage(res, sendOptions, { quoted: fkontak })
 }} else {
-await conn.sendMessage(res, { text: message, mentions: users }, { quoted: fkontak }) //, mentions: users
+await conn.sendMessage(res, { text: message /*mentions: users */ }, { quoted: fkontak }) //, mentions: users
 }
 chat.welcome = false
 await delay(url ? 4000 : 2000) // Esperar 4 segundos antes de enviar el mensaje
