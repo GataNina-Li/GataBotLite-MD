@@ -28,9 +28,8 @@ if (message.length < 10) return m.reply('_⚠️😿 El mensaje de promoción de
 let url, media
 let q = m.quoted ? m.quoted : m
 let mime = (q.msg || q).mimetype || q.mediaType || ''
-const urlRegex = text.match(new RegExp(/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_+.~#?&/=]*)(jpe?g|gif|png)/, 'gi'))
-let matches = text.match(urlRegex)
-matches = matches[0]
+const urlRegex = new RegExp(/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_+.~#?&/=]*)(jpe?g|gif|png)/, 'gi')
+const matches = text.match(urlRegex)
 if (/video/g.test(mime)) if ((q.msg || q).seconds > 10) return m.reply('El vídeo no puede durar más de 10 segundos')
 if (/video/g.test(mime) || /image\/(png|jpe?g)/.test(mime)) {
 let media = await m.download()
@@ -48,34 +47,29 @@ message = text
 url = false
 }
 
+let message2 = ''
 message = text
-const linkRegex2 = /['"()]*(https:\/\/chat.whatsapp.com\/[0-9A-Za-z]{20,24}|\S+\.(jpg|jpeg|png|gif|mp4))['"()]*(?=\s|$)/ig;
+const linkRegex2 = /['"()]*(https:\/\/chat.whatsapp.com\/[0-9A-Za-z]{20,24}|\S+\.(jpg|jpeg|png|gif|mp4))['"()]*(?=\s|$)/ig
 const enlacesConSignos = text.match(linkRegex2) || []
-
-let currentIndex = 0; // Para rastrear la posición actual en el texto
-
+let currentIndex = 0
 for (const linkWithSigns of enlacesConSignos) {
-  const linkWithoutSigns = linkWithSigns.replace(/['"()]/g, '')
-  const linkIndex = text.indexOf(linkWithSigns, currentIndex)
-  
-  // Agregar el texto entre los enlaces al mensaje final
-  message += text.substring(currentIndex, linkIndex)
-  
-  // Agregar el enlace corregido al mensaje final
-  if (
-    (linkWithoutSigns !== linkWithSigns) &&
-    linkWithSigns.match(/['"()]/)
-  ) {
-    message += linkWithoutSigns
-  } else if (!linkWithSigns.match(/['"()]/)) {
-    message = message.trim(); // Eliminar espacio adicional si se elimina un enlace sin símbolos
-  }
-  
-  currentIndex = linkIndex + linkWithSigns.length
+const linkWithoutSigns = linkWithSigns.replace(/['"()]/g, '')
+const linkIndex = text.indexOf(linkWithSigns, currentIndex)
+const isImageLink = linkWithSigns.match(/\.(jpg|jpeg|png|gif|mp4)/i)
+if (isImageLink && linkWithSigns.includes('[') && linkWithSigns.includes(']')) {
+message2 += text.substring(currentIndex, linkIndex + linkWithSigns.length)
+} else {
+message2 += text.substring(currentIndex, linkIndex)
+if ((linkWithoutSigns !== linkWithSigns) && linkWithSigns.match(/['"()]/)) {
+message2 += linkWithoutSigns
+} else if (!linkWithSigns.match(/['"()]/)) {
+message2 = message2.trim();
+}}
+currentIndex = linkIndex + linkWithSigns.length
 }
-
-const remainingText = text.substring(currentIndex)
-message += remainingText;
+const remainingText = text.substring(currentIndex);
+message2 += remainingText;
+message = message2.replace(/\[|\]/g, '')
 
 let totalTime = 0
 let errorGroups = []
