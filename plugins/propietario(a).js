@@ -1,6 +1,7 @@
 import fs from 'fs' 
 import { execSync } from 'child_process'
 import { spawn } from 'child_process'
+import chalk from "chalk"
 let linkRegex = /chat.whatsapp.com\/([0-9A-Za-z]{20,24})/i
 
 let handler = async (m, { conn, command, usedPrefix, text, isAdmin, isOwner, isROwner, participants, groupMetadata  }) => {
@@ -351,6 +352,7 @@ break
 case isCommand16:
 try{
 await m.reply(lenguajeGB.smsreiniciar()) 
+console.log(chalk.bold.magenta('❇️ RESETTING... ❇️'))
 process.send('reset')
 } catch (e) {
 reportError(e)}  
