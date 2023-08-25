@@ -9,17 +9,31 @@ import formData from 'form-data'
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
 
 let handler = async (m, { conn, text, usedPrefix, command, groupMetadata, participants }) => {
-let fkontak = { "key": { "participants":"0@s.whatsapp.net", "remoteJid": "status@broadcast", "fromMe": false, "id": "Halo" }, "message": { "contactMessage": { "vcard": `BEGIN:VCARD\nVERSION:3.0\nN:Sy;Bot;;;\nFN:y\nitem1.TEL;waid=${conn.user.jid.split('@')[0]}:${conn.user.jid.split('@')[0]}\nitem1.X-ABLabel:Ponsel\nEND:VCARD` }}, "participant": "0@s.whatsapp.net" }
-let res = text ? text : m.chat  
 let chat = global.db.data.chats[m.chat]
-chat.welcome = false
+let fkontak = { "key": { "participants":"0@s.whatsapp.net", "remoteJid": "status@broadcast", "fromMe": false, "id": "Halo" }, "message": { "contactMessage": { "vcard": `BEGIN:VCARD\nVERSION:3.0\nN:Sy;Bot;;;\nFN:y\nitem1.TEL;waid=${conn.user.jid.split('@')[0]}:${conn.user.jid.split('@')[0]}\nitem1.X-ABLabel:Ponsel\nEND:VCARD` }}, "participant": "0@s.whatsapp.net" }
+chat.welcome = false 
   
 let linkRegex = /chat.whatsapp.com\/([0-9A-Za-z]{20,24})( [0-9]{1,3})?/i 
-if (!text) return m.reply(`_⚠️😿 Ingresa enlaces de los grupos y el mensaje a promocionar_\n\n*Opciones:*
-Puede usar \"\", \'\', o () para los enlaces de WhatsApp que desea promocionar.\n\nCabe recalcar que al momento de promocionar no se verá los enlaces que se desea ingresar y los \"\", \'\', o ()\n
-Tiene la opción de responder a una imagen o enlace que termine en jpg, jpeg, o png de tal forma que será promocionado, en el caso de agregar un enlace de imagen puede agregar donde quiera y no será mostrado el enlace de la imagen en el mensaje de promoción 
-\nEjemplo:\n${usedPrefix + command} enlace1 enlace2 enlace3 Mensaje de promoción "https://chat.whatsapp.com/ABCDE"
-\nResultado:\nMensaje de promoción https://chat.whatsapp.com/ABCDE`)
+if (!text) return m.reply(`
+_⚠️😿 Ingresa enlaces de los grupos y el mensaje a promocionar_
+
+*Opciones:*
+
+- Puede usar \"\", \'\', o () para los enlaces de WhatsApp que desea promocionar, pero que no ingresará el Bot en dichos grupos. (Cabe recalcar que al momento de promocionar, los enlaces que no contenga \"\", \'\', o () no se verá dichos enlaces en la promoción, pero si ingresará al grupo).
+*Ejemplo:* ${usedPrefix + command} https://chat.whatsapp.com/ABCDE485493 https://chat.whatsapp.com/ABCDE398394fj43o Mensaje de promoción "https://chat.whatsapp.com/ABCDE"
+*Resultado:* Mensaje de promoción https://chat.whatsapp.com/ABCDE
+
+- Sí desea agregar una imagen al mensaje, puede agregar la url (jpg, jpeg, png o gif) al final del mensaje o responder a una imagen. (En el caso de que sea url (texto), dicho enlace de imagen no se mostrará en la promoción).
+*Ejemplo:* ${usedPrefix + command} https://chat.whatsapp.com/ABCDE485493 https://chat.whatsapp.com/ABCDE398394fj43o Mensaje de promoción "https://chat.whatsapp.com/ABCDE" https://images.ecestaticos.com/FVdcvD11qPRi-JWDH3USTiXDmeQ=/0x0.jpg
+*Resultado:* Mensaje de promoción https://chat.whatsapp.com/ABCDE 
+
+- En el caso que desee agregar una url de imagen y que se muestre en la promoción debe de usar [ ] para que se muestre la url en la promoción. (Es necesario recalcar que los [ ] no se mostrarán, y en caso que la url contenga \"\", \'\', o () se mostrará en la promoción).
+*Ejemplo:* ${usedPrefix + command} https://chat.whatsapp.com/ABCDE485493 https://chat.whatsapp.com/ABCDE398394fj43o Mensaje de promoción "https://chat.whatsapp.com/ABCDE" [https://images.ecestaticos.com/FVdcvD11(qPRi-JWDH3USTiXDmeQ=/0x0.jpg]
+*Resultado:* Mensaje de promoción https://chat.whatsapp.com/ABCDE https://images.ecestaticos.com/FVdcvD11(qPRi-JWDH3USTiXDmeQ=/0x0.jpg
+
+- Puede agregar número ilimitado de texto, enlaces y url. (En el caso de la url, si no ha respodido a una imagen se usará la primera url para el mensaje de promoción)
+
+- Sí ha respondido a una imagen y el mensaje contine una url de imagen, se tomará como prioridad la url para que forme parte del mensaje de promoción.`)
   
 const enlaces = text.match(linkRegex)
 if (!enlaces || enlaces.length === 0) return m.reply('_⚠️😿 No se encontraron enlaces de grupos válidos en el mensaje_')
@@ -71,7 +85,7 @@ currentIndex = linkIndex + linkWithSigns.length
 }
 const remainingText = text.substring(currentIndex);
 message2 += remainingText;
-message = message2.replace(/\[|\]/g, '')
+message = message2.replace(/\[|\]/g, '').trim()
 
 let totalTime = 0
 let errorGroups = []
@@ -84,6 +98,8 @@ const res = await conn.groupAcceptInvite(code)
 await delay(url ? 3000 : 2000) // Esperar 3 segundos antes de continuar
 totalTime += url ? 3000 : 2000
 
+
+
 let users = (await conn.groupMetadata(res)).participants.map(v => v.id)
 if (url) {
 const sendOptions = { image: url.endsWith('.jpg') || url.endsWith('.jpeg') || url.endsWith('.png') ? { url: url } : url, caption: message /*mentions: users */ }
@@ -92,9 +108,10 @@ await conn.sendMessage(res, { video: url, mimetype: 'video/mp4', caption: messag
 } else {
 await conn.sendMessage(res, sendOptions, { quoted: fkontak })
 }} else {
+let chat = global.db.data.chats[m.chat]
+chat.welcome = false
 await conn.sendMessage(res, { text: message /*mentions: users */ }, { quoted: fkontak }) //, mentions: users
 }
-chat.welcome = false
 await delay(url ? 4000 : 2000) // Esperar 4 segundos antes de enviar el mensaje
 totalTime += url ? 4000 : 2000
 
@@ -122,6 +139,6 @@ mentions: [m.sender],
 await m.reply(`_Mensaje enviado a todos los grupos_. Tiempo total: ${totalTime / 1000} segundos`)
 }
 
-handler.command = ['promocionar']
+handler.command = /^(promocionar)$/i
 handler.owner = true
 export default handler
