@@ -48,8 +48,8 @@ url = false
 }
 
 message = text
-linkRegex = /['"()]*(https:\/\/chat.whatsapp.com\/[0-9A-Za-z]{20,24}|\S+\.(jpg|jpeg|png|gif|mp4))['"()]*(?=\s|$)/ig
-const enlacesConSignos = text.match(linkRegex) || []
+let linkRegex2 = /['"()]*(https:\/\/chat.whatsapp.com\/[0-9A-Za-z]{20,24}|\S+\.(jpg|jpeg|png|gif|mp4))['"()]*(?=\s|$)/ig
+const enlacesConSignos = text.match(linkRegex2) || []
 let currentIndex = 0
 for (const linkWithSigns of enlacesConSignos) {
 const linkWithoutSigns = linkWithSigns.replace(/['"()]/g, '')
