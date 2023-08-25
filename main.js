@@ -139,40 +139,29 @@ if (global.db.data == null) loadDatabase()
 if (update.qr != 0 && update.qr != undefined) {
 console.log(chalk.bold.yellow(lenguajeGB['smsCodigoQR']()))}
 if (connection == 'open') {
-console.log(chalk.bold.yellow(lenguajeGB['smsConexion']()))}
-let reason = new Boom(lastDisconnect?.error)?.output?.statusCode;
+console.log(chalk.bold.greenBright(lenguajeGB['smsConexion']()))}
+let reason = new Boom(lastDisconnect?.error)?.output?.statusCode
 if (connection === 'close') {
 if (reason === DisconnectReason.badSession) {
-conn.logger.error(chalk.bold.yellow(lenguajeGB['smsConexion']()));
- //process.exit();
+console.log(chalk.bold.cyanBright(lenguajeGB['smsConexionOFF']()))
 } else if (reason === DisconnectReason.connectionClosed) {
-conn.logger.warn(lenguajeGB['smsConexioncerrar']());
-process.send('reset');
+console.log(chalk.bold.magentaBright(lenguajeGB['smsConexioncerrar']()))
+process.send('reset')
 } else if (reason === DisconnectReason.connectionLost) {
-conn.logger.warn(lenguajeGB['smsConexionperdida']());
-process.send('reset');
+console.log(chalk.bold.blueBright(lenguajeGB['smsConexionperdida']()))
+process.send('reset')
 } else if (reason === DisconnectReason.connectionReplaced) {
-conn.logger.error(lenguajeGB['smsConexionreem']());
-//process.exit();
+console.log(chalk.bold.yellowBright(lenguajeGB['smsConexionreem']()))
 } else if (reason === DisconnectReason.loggedOut) {
-conn.logger.error(chalk.bold.yellow(lenguajeGB['smsConexion']()));
-//process.exit();
+console.log(chalk.bold.redBright(lenguajeGB['smsConexionOFF']()))
 } else if (reason === DisconnectReason.restartRequired) {
-conn.logger.info(lenguajeGB['smsConexionreinicio']());
-//process.send('reset');
+console.log(chalk.bold.cyanBright(lenguajeGB['smsConexionreinicio']()))
 } else if (reason === DisconnectReason.timedOut) {
-conn.logger.warn(lenguajeGB['smsConexiontiem']());
-process.send('reset');
+console.log(chalk.bold.yellowBright(lenguajeGB['smsConexiontiem']()))
+process.send('reset')
 } else {
-conn.logger.warn(lenguajeGB['smsConexiondescon'](reason, connection));
-//process.exit();
+console.log(chalk.bold.redBright(lenguajeGB['smsConexiondescon'](reason, connection)))
 }}}
-//if (connection == 'close') {
-//const files = fs.readdirSync(authFile) // Utilizar readdirSync  
-//if (files.includes('creds.json') && connection !== 'open') return console.log(chalk.bold.yellow(lenguajeGB['smsConexionOFF']()))
-//if (files.includes('creds.json') && global.reloadHandler(false) === false) {
-//console.log(chalk.bold.yellow(lenguajeGB['smsConexionOFF']()))}}}
-
 process.on('uncaughtException', console.error)
 
 let isInit = true
@@ -366,21 +355,6 @@ console.log(chalk.bold.red(`${lenguajeGB.smspurgeOldFiles3()} ${file} ${lenguaje
 console.log(chalk.bold.green(`${lenguajeGB.smspurgeOldFiles1()} ${file} ${lenguajeGB.smspurgeOldFiles2()}`))
 } }) }
 }) }) }) }
-
-// Prueba para omitir mensaje de keys de cierre de sesiones
-// Por GataNina-Li 😆❤️
-/*function omitirMessage(messageToOmit) {
-const originalConsoleLog = console.log
-console.log = function(...args) {
-const message = args.filter(arg => typeof arg === 'string').join(' ')
-if (message.includes(messageToOmit)) {
-return
-}
-originalConsoleLog.apply(console, args)
-}}
-setInterval(async () => {
-omitirMessage("Closing stale open session for new outgoing prekey bundle")
-}, 1000)*/
 
 setInterval(async () => {
 await clearTmp()        
