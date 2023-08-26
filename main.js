@@ -153,7 +153,7 @@ msgRetryCounterCache, connectTimeoutMs: 60_000, defaultQueryTimeoutMs: 0, keepAl
 syncFullHistory: true, markOnlineOnConnect: true  
 } 
   
-global.conn = makeWaSocket(connectionOptions)
+global.conn = makeWASocket(connectionOptions)
 store.bind(conn.ev)  
 conn.isInit = false  
   
