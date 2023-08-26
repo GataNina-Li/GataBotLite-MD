@@ -66,8 +66,8 @@ global.timestamp = { start: new Date }
   
 const _dirname = global._dirname(import.meta.url)  
 global.opts = new Object(yargs(process.argv.slice(2)).exitProcess(false).parse())  
-const symbolRegex = /^[^\w\s\d]/ 
-const emojiRegex = /^(\p{Emoji}|[\uFE0F\u200D])/u  
+const symbolRegex = /^[^\w\s\d]/; 
+const emojiRegex = /^(\p{Emoji}|[\uFE0F\u200D])/u; 
 global.db = new Low(/https?:\/\//.test(opts['db'] || '') ? new cloudDBAdapter(opts['db']) : new JSONFile(`${opts.[0] ? opts.[0] + '_' : ''}database.json`))  
   
 global.DATABASE = global.db  
