@@ -80,6 +80,7 @@
 "spotifydl-x": "^0.3.5",
 "syntax-error": "^1.4.0",
 "terminal-image": "^2.0.0",
+"readline-sync": "1.4.10",
 "url-regex-safe": "^3.0.0",
 "wa-sticker-formatter": "^4.3.2",
 "yargs": "^17.3.1",
