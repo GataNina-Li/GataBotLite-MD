@@ -25,6 +25,7 @@ global.prems = []
 //  es = Español      id = Bahasa Indonesia       ar = عرب
 //  en = English      pt = Português 
 global.lenguajeGB = es  //<-- Predeterminado en idioma Español 
+global.languageLen = ""
 
 // ES ➜ Consigue Apikey en https://platform.openai.com/account/api-keys
 global.openai_key = 'sk-0'
