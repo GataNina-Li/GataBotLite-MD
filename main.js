@@ -125,17 +125,27 @@ const configPath = path.join(__dirname, 'config.js')
 let configContent = fs.readFileSync(configPath, 'utf8')
 
 if (!global.languageLen) {
-const selectedLanguage = readlineSync.question('Ingrese el idioma (es, en, pt, ar, id): ')
+console.log('\nSeleccione un idioma:')
+console.log('1 = "es" (Español)')
+console.log('2 = "en" (English)')
+console.log('3 = "pt" (Português)')
+console.log('4 = "ar" (عرب / Arab)')
+console.log('5 = "id" (Indonesia)')
+console.log('6 = Omitir / Skip\n')
+const selectedOption = readlineSync.questionInt('Ingrese el número de la opción: ')
 
-if (supportedLanguages.includes(selectedLanguage)) {
-configContent = configContent.replace('global.languageLen = ""', `global.languageLen = "${selectedLanguage}";`)
+if (selectedOption >= 1 && selectedOption <= 5) {
+const selectedLanguage = supportedLanguages[selectedOption - 1]
+configContent = configContent.replace('global.languageLen = ""', `global.languageLen = "${selectedLanguage}"`)
 fs.writeFileSync(configPath, configContent, 'utf8');
-console.log(`Se ha configurado languageLen en config.js con el valor "${selectedLanguage}".`)
+console.log(`\nSe ha configurado el idioma como "${selectedLanguage}".`)
+} else if (selectedOption === 6) {
+console.log('\nOmitiendo la configuración del idioma.')
 } else {
-console.log('Idioma no válido.')
+console.log('\nOpción no válida.')
 process.exit(1)
 }} else {
-console.log('La variable languageLen ya tiene un valor configurado en config.js.')
+console.log('\nEl idioma ya está configurado.')
 }
 
 
