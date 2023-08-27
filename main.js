@@ -202,16 +202,13 @@ function questionAsync(question) {
   });
 }
 
-async function registroNumber() {
+async function main() {
   console.log('Escriba el número que será propietario, ejemplo: +593 99 000 0000');
   console.log('Si piensa agregar varios números separados por ",", ejemplo: +593 99 000 0000, +52 1 000 000 0000, +598 00 000 000');
   
   let phoneNumberInput = '';
-  while (phoneNumberInput !== '0' && phoneNumberInput !== '"0"') {
+  while (phoneNumberInput === '') {
     phoneNumberInput = await questionAsync('Si desea omitir, escriba "0": ');
-    if (phoneNumberInput.trim() === '') {
-      console.log('Debe proporcionar una entrada válida.');
-    }
   }
   
   rl.close();
@@ -233,7 +230,7 @@ async function registroNumber() {
   }
 }
 
-registroNumber();
+main();
 
 
 
