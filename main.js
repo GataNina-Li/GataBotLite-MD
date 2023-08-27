@@ -153,15 +153,7 @@ process.exit(1)
 
 
 
-const rl = readline.createInterface({
-  input: process.stdin,
-  output: process.stdout
-});
-
-//const configPath = path.join(__dirname, 'config.js');
-//let configContent = fs.readFileSync(configPath, 'utf8');
-
-async function main() {
+async function procesarEntrada() {
   console.log('Escriba el número que será propietario, ejemplo: +593 99 000 0000');
   console.log('Si piensa agregar varios números separados por ",", ejemplo: +593 99 000 0000, +52 1 000 000 0000, +598 00 000 000');
 
@@ -186,12 +178,24 @@ async function main() {
   rl.close();
 }
 
-function questionAsync(question) {
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+//const configPath = path.join(__dirname, 'config.js');
+//let configContent = fs.readFileSync(configPath, 'utf8');
+
+async function questionAsync(question) {
   return new Promise(resolve => {
     rl.question(question, answer => {
       resolve(answer);
     });
   });
+}
+
+async function main() {
+  await procesarEntrada();
 }
 
 main();
