@@ -150,7 +150,7 @@ console.log('\nEl idioma ya está configurado.\n')
 }*/
 
 const supportedLanguages = ['es', 'en', 'pt', 'ar', 'id'];
-const configPath = path.join(__dirname, 'config.js');
+//const configPath = path.join(__dirname, 'config.js');
 let configContent = fs.readFileSync(configPath, 'utf8');
 
 if (!global.languageLen) {
