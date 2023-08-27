@@ -196,23 +196,11 @@ const rl = readline.createInterface({
 //const configPath = path.join(__dirname, 'config.js');
 //let configContent = fs.readFileSync(configPath, 'utf8');
 
-function questionAsync(question) {
-  return new Promise((resolve) => {
-    rl.question(question, (answer) => {
-      resolve(answer);
-    });
-  });
-}
-
 async function main() {
   console.log('Escriba el número que será propietario, ejemplo: +593 99 000 0000');
   console.log('Si piensa agregar varios números separados por ",", ejemplo: +593 99 000 0000, +52 1 000 000 0000, +598 00 000 000');
 
-  let phoneNumberInput = '';
-  while (phoneNumberInput === '') {
-    phoneNumberInput = await questionAsync('Si desea omitir, escriba "0": ');
-  }
-  rl.close();
+  const phoneNumberInput = await askQuestion('Si desea omitir, escriba "0": ');
 
   if (phoneNumberInput !== '0' && phoneNumberInput !== '"0"') {
     const cleanedNumbers = phoneNumberInput.split(',').map(number => number.replace(/[\s+\-()]/g, '').trim());
@@ -229,9 +217,16 @@ async function main() {
   } else {
     console.log('\nSe ha omitido la adición de número/s como propietario/s.');
   }
+  
+  rl.close();
+}
 
-  // Aquí puedes colocar el código que deseas ejecutar después de completar la entrada.
-  console.log('Continuando con el código...');
+function askQuestion(question) {
+  return new Promise((resolve) => {
+    rl.question(question, (answer) => {
+      resolve(answer);
+    });
+  });
 }
 
 main();
