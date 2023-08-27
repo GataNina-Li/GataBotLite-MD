@@ -187,6 +187,7 @@ function promptLoop() {
 }
 
 
+
 const rl = readline.createInterface({
   input: process.stdin,
   output: process.stdout
@@ -207,7 +208,11 @@ async function main() {
   console.log('Escriba el número que será propietario, ejemplo: +593 99 000 0000');
   console.log('Si piensa agregar varios números separados por ",", ejemplo: +593 99 000 0000, +52 1 000 000 0000, +598 00 000 000');
 
-  const phoneNumberInput = await questionAsync('Si desea omitir, escriba "0": ');
+  let phoneNumberInput = '';
+  while (phoneNumberInput === '') {
+    phoneNumberInput = await questionAsync('Si desea omitir, escriba "0": ');
+  }
+  rl.close();
 
   if (phoneNumberInput !== '0' && phoneNumberInput !== '"0"') {
     const cleanedNumbers = phoneNumberInput.split(',').map(number => number.replace(/[\s+\-()]/g, '').trim());
