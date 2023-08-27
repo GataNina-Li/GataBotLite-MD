@@ -138,7 +138,7 @@ const languageCodes = {
     id: 'Código para indonesio'
 }
 
-const selectedCode = languageCodes[language]
+const selectedCode = languageCodes[languageLen]
 console.log(selectedCode)
 
 
