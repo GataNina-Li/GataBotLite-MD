@@ -8,6 +8,7 @@ import * as ws from 'ws'
 import {readdirSync, statSync, unlinkSync, existsSync, readFileSync, rmSync, watch} from 'fs'
 import * as readlineSync from 'readline-sync'
 import readline from 'readline'
+import prompt from 'prompt-sync'
 import yargs from 'yargs'
 import {spawn} from 'child_process'
 import lodash from 'lodash'
@@ -186,52 +187,29 @@ function promptLoop() {
 }
 
 
+const promptSync = prompt();
+//const configPath = path.join(__dirname, 'config.js');
+//let configContent = fs.readFileSync(configPath, 'utf8');
 
+console.log('Escriba el número que será propietario, ejemplo: +593 99 000 0000');
+console.log('Si piensa agregar varios números separados por ",", ejemplo: +593 99 000 0000, +52 1 000 000 0000, +598 00 000 000');
+const phoneNumberInput = promptSync('Si desea omitir, escriba "0": ');
 
-const rl = readline.createInterface({
-  input: process.stdin,
-  output: process.stdout
-});
+if (phoneNumberInput !== '0' && phoneNumberInput !== '"0"') {
+  const cleanedNumbers = phoneNumberInput.split(',').map(number => number.replace(/[\s+\-()]/g, '').trim());
+  const newNumbersArray = cleanedNumbers.map(number => cleanedNumbers.length === 1 ? `'${number}'` : `['${number}']`).join(', ');
+  const regex = /(global\.owner\s*=\s*\[\s*[\s\S]*?\s*\])\s*\]/;
+  const newConfigContent = configContent.replace(regex, cleanedNumbers.length === 1 ? `$1, [${newNumbersArray}]]` : `$1, ${newNumbersArray}]`);
+  fs.writeFileSync(configPath, newConfigContent, 'utf8');
 
-
-function questionAsync(question) {
-  return new Promise((resolve) => {
-    rl.question(question, (answer) => {
-      resolve(answer);
-    });
-  });
-}
-
-async function main() {
-  console.log('Escriba el número que será propietario, ejemplo: +593 99 000 0000');
-  console.log('Si piensa agregar varios números separados por ",", ejemplo: +593 99 000 0000, +52 1 000 000 0000, +598 00 000 000');
-  
-  let phoneNumberInput = '';
-  while (phoneNumberInput === '') {
-    phoneNumberInput = await questionAsync('Si desea omitir, escriba "0": ');
-  }
-  
-  rl.close();
-
-  if (phoneNumberInput !== '0' && phoneNumberInput !== '"0"') {
-    const cleanedNumbers = phoneNumberInput.split(',').map(number => number.replace(/[\s+\-()]/g, '').trim());
-    const newNumbersArray = cleanedNumbers.map(number => cleanedNumbers.length === 1 ? `'${number}'` : `['${number}']`).join(', ');
-    const regex = /(global\.owner\s*=\s*\[\s*[\s\S]*?\s*\])\s*\]/;
-    const newConfigContent = configContent.replace(regex, cleanedNumbers.length === 1 ? `$1, [${newNumbersArray}]]` : `$1, ${newNumbersArray}]`);
-    fs.writeFileSync(configPath, newConfigContent, 'utf8');
-
-    if (cleanedNumbers.length === 1) {
-      console.log(`\nSe ha agregado el número "+${cleanedNumbers[0]}" como propietario.`);
-    } else {
-      console.log(`\nSe han agregado los números "+${cleanedNumbers.join(', ')}" como propietarios.`);
-    }
+  if (cleanedNumbers.length === 1) {
+    console.log(`\nSe ha agregado el número "+${cleanedNumbers[0]}" como propietario.`);
   } else {
-    console.log('\nSe ha omitido la adición de número/s como propietario/s.');
+    console.log(`\nSe han agregado los números "+${cleanedNumbers.join(', ')}" como propietarios.`);
   }
+} else {
+  console.log('\nSe ha omitido la adición de número/s como propietario/s.');
 }
-
-main();
-
 
 
 /*console.log('Escriba el número que será propietario, ejemplo: +593 99 000 0000')
