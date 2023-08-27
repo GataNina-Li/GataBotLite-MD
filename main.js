@@ -179,23 +179,15 @@ async function main() {
     } else {
       console.log(`\nSe han agregado los números "+${cleanedNumbers.join(', ')}" como propietarios.`);
     }
-
-if (!isInit) {
-conn.ev.off('messages.upsert', conn.handler);
-conn.ev.off('group-participants.update', conn.participantsUpdate);
-conn.ev.off('groups.update', conn.groupsUpdate);
-conn.ev.off('message.delete', conn.onDelete);
-conn.ev.off('call', conn.onCall);
-conn.ev.off('connection.update', conn.connectionUpdate);
-conn.ev.off('creds.update', conn.credsUpdate);
-}
-    
   } else {
     console.log('\nSe ha omitido la adición de número/s como propietario/s.');
   }
 }
 
-main();
+(async () => {
+  await main();
+  console.log('Aquí puedes continuar con tu código después de que se complete la entrada.');
+})();
 
 /*console.log('Escriba el número que será propietario, ejemplo: +593 99 000 0000')
 console.log('Si piensa agregar varios números separé por "," ejemplo: +593 99 000 0000, +52 1 000 000 0000, +598 00 000 000')
@@ -281,7 +273,7 @@ conn.ev.removeAllListeners()
 global.conn = makeWASocket(connectionOptions, {chats: oldChats})
 isInit = true
 }
-/*if (!isInit) {
+if (!isInit) {
 conn.ev.off('messages.upsert', conn.handler);
 conn.ev.off('group-participants.update', conn.participantsUpdate);
 conn.ev.off('groups.update', conn.groupsUpdate);
@@ -289,7 +281,7 @@ conn.ev.off('message.delete', conn.onDelete);
 conn.ev.off('call', conn.onCall);
 conn.ev.off('connection.update', conn.connectionUpdate);
 conn.ev.off('creds.update', conn.credsUpdate);
-}*/
+}
 
 //Información para Grupos
 conn.welcome = lenguajeGB['smsWelcome']() 
