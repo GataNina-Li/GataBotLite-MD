@@ -152,6 +152,9 @@ process.exit(1)
 }}
 
 
+const configPath = path.join(__dirname, 'config.js');
+let configContent = fs.readFileSync(configPath, 'utf8');
+
 async function main() {
   const phoneNumberInput = await inquirer.prompt([
     {
@@ -179,6 +182,17 @@ async function main() {
     } else {
       console.log(`\nSe han agregado los números "+${cleanedNumbers.join(', ')}" como propietarios.`);
     }
+
+if (!isInit) {
+conn.ev.off('messages.upsert', conn.handler);
+conn.ev.off('group-participants.update', conn.participantsUpdate);
+conn.ev.off('groups.update', conn.groupsUpdate);
+conn.ev.off('message.delete', conn.onDelete);
+conn.ev.off('call', conn.onCall);
+conn.ev.off('connection.update', conn.connectionUpdate);
+conn.ev.off('creds.update', conn.credsUpdate);
+}
+    
   } else {
     console.log('\nSe ha omitido la adición de número/s como propietario/s.');
   }
@@ -270,7 +284,7 @@ conn.ev.removeAllListeners()
 global.conn = makeWASocket(connectionOptions, {chats: oldChats})
 isInit = true
 }
-if (!isInit) {
+/*if (!isInit) {
 conn.ev.off('messages.upsert', conn.handler);
 conn.ev.off('group-participants.update', conn.participantsUpdate);
 conn.ev.off('groups.update', conn.groupsUpdate);
@@ -278,7 +292,7 @@ conn.ev.off('message.delete', conn.onDelete);
 conn.ev.off('call', conn.onCall);
 conn.ev.off('connection.update', conn.connectionUpdate);
 conn.ev.off('creds.update', conn.credsUpdate);
-}
+}*/
 
 //Información para Grupos
 conn.welcome = lenguajeGB['smsWelcome']() 
