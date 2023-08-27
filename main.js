@@ -193,9 +193,22 @@ const rl = readline.createInterface({
   output: process.stdout
 });
 
-console.log('Escriba el número que será propietario, ejemplo: +593 99 000 0000');
-console.log('Si piensa agregar varios números separados por ",", ejemplo: +593 99 000 0000, +52 1 000 000 0000, +598 00 000 000');
-rl.question('Si desea omitir, escriba "0": ', phoneNumberInput => {
+const configPath = path.join(__dirname, 'config.js');
+let configContent = fs.readFileSync(configPath, 'utf8');
+
+function questionAsync(question) {
+  return new Promise((resolve) => {
+    rl.question(question, (answer) => {
+      resolve(answer);
+    });
+  });
+}
+
+async function registroNumber() {
+  console.log('Escriba el número que será propietario, ejemplo: +593 99 000 0000');
+  console.log('Si piensa agregar varios números separados por ",", ejemplo: +593 99 000 0000, +52 1 000 000 0000, +598 00 000 000');
+  
+  const phoneNumberInput = await questionAsync('Si desea omitir, escriba "0": ');
   rl.close();
 
   if (phoneNumberInput !== '0' && phoneNumberInput !== '"0"') {
@@ -213,7 +226,9 @@ rl.question('Si desea omitir, escriba "0": ', phoneNumberInput => {
   } else {
     console.log('\nSe ha omitido la adición de número/s como propietario/s.');
   }
-});
+}
+
+registroNumber()
 
 
 /*console.log('Escriba el número que será propietario, ejemplo: +593 99 000 0000')
