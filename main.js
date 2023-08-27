@@ -118,7 +118,7 @@ version,
 defaultQueryTimeoutMs: undefined,
 }
 
-const supportedLanguages = ['es', 'en', 'pt', 'ar', 'id']
+/*const supportedLanguages = ['es', 'en', 'pt', 'ar', 'id']
 const configPath = path.join(__dirname, 'config.js')
 let configContent = fs.readFileSync(configPath, 'utf8')
 
@@ -146,7 +146,44 @@ console.log('\nOpción no válida.\n')
 process.exit(1)
 }} else {
 console.log('\nEl idioma ya está configurado.\n')
+}*/
+
+const supportedLanguages = ['es', 'en', 'pt', 'ar', 'id'];
+const configPath = path.join(__dirname, 'config.js');
+let configContent = fs.readFileSync(configPath, 'utf8');
+
+if (!global.languageLen) {
+    promptLoop();
+} else {
+    console.log('\nEl idioma ya está configurado.\n');
 }
+
+function promptLoop() {
+    console.log('\nSeleccione un idioma:');
+    console.log('1 = "es" (Español)');
+    console.log('2 = "en" (English)');
+    console.log('3 = "pt" (Português)');
+    console.log('4 = "ar" (عرب / Arab)');
+    console.log('5 = "id" (Indonesia)');
+    console.log('6 = Omitir / Skip\n');
+
+    const options = ['es', 'en', 'pt', 'ar', 'id'];
+    const selectedOptionIndex = readlineSync.keyInSelect(options, 'Ingrese el número de la opción: ', { cancel: false });
+
+    if (selectedOptionIndex >= 1 && selectedOptionIndex <= 5) {
+        const selectedLanguage = supportedLanguages[selectedOptionIndex];
+        configContent = configContent.replace('global.languageLen = ""', 'global.languageLen = true');
+        configContent = configContent.replace('global.lenguajeGB = es', `global.lenguajeGB = ${selectedLanguage}`);
+        fs.writeFileSync(configPath, configContent, 'utf8');
+        console.log(`\nSe ha configurado el idioma como "${selectedLanguage}".\n`);
+    } else if (selectedOptionIndex === 6) {
+        console.log('\nOmitiendo la configuración del idioma.\n');
+    } else {
+        console.log('\nOpción no válida.\n');
+        process.exit(1);
+    }
+}
+
 
 console.log('Escriba el número que será propietario, ejemplo: +593 99 000 0000')
 console.log('Si piensa agregar varios números separé por "," ejemplo: +593 99 000 0000, +52 1 000 000 0000, +598 00 000 000')
