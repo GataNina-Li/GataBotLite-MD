@@ -187,7 +187,7 @@ async function main() {
 (async () => {
   await main();
   console.log('Aquí puedes continuar con tu código después de que se complete la entrada.');
-})();
+})()
 
 /*console.log('Escriba el número que será propietario, ejemplo: +593 99 000 0000')
 console.log('Si piensa agregar varios números separé por "," ejemplo: +593 99 000 0000, +52 1 000 000 0000, +598 00 000 000')
@@ -218,6 +218,10 @@ if (opts['autocleartmp'] && (global.support || {}).find) (tmp = [os.tmpdir(), 't
 if (opts['server']) (await import('./server.js')).default(global.conn, PORT)
 
 async function connectionUpdate(update) {
+(async () => {
+  await main()
+  //console.log('Aquí puedes continuar con tu código después de que se complete la entrada.');
+
 const {connection, lastDisconnect, isNewLogin} = update
 global.stopped = connection
 if (isNewLogin) conn.isInit = true
@@ -253,6 +257,8 @@ process.send('reset')
 } else {
 console.log(chalk.bold.redBright(lenguajeGB['smsConexiondescon'](reason, connection)))
 }}}
+
+})()
 process.on('uncaughtException', console.error)
 
 let isInit = true
