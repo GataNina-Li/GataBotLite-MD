@@ -9,6 +9,7 @@ import {readdirSync, statSync, unlinkSync, existsSync, readFileSync, rmSync, wat
 import * as readlineSync from 'readline-sync'
 import readline from 'readline'
 import prompt from 'prompt-sync'
+import inquirer from 'inquirer'
 import yargs from 'yargs'
 import {spawn} from 'child_process'
 import lodash from 'lodash'
