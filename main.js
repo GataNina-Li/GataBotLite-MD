@@ -14,6 +14,7 @@ import lodash from 'lodash'
 import chalk from 'chalk'
 import syntaxerror from 'syntax-error'
 import {tmpdir} from 'os'
+import fs from 'fs'
 import {format} from 'util'
 import P from 'pino'
 import pino from 'pino'
@@ -120,26 +121,22 @@ defaultQueryTimeoutMs: undefined,
 
 
 const supportedLanguages = ['es', 'en', 'pt', 'ar', 'id']
-if (languageLen === "") {
+const configPath = path.join(__dirname, 'config.js')
+let configContent = fs.readFileSync(configPath, 'utf8')
+
+if (!global.languageLen) {
 const selectedLanguage = readlineSync.question('Ingrese el idioma (es, en, pt, ar, id): ')
 
 if (supportedLanguages.includes(selectedLanguage)) {
-languageLen = selectedLanguage;
+configContent = configContent.replace('global.languageLen = ""', `global.languageLen = "${selectedLanguage}";`)
+fs.writeFileSync(configPath, configContent, 'utf8');
+console.log(`Se ha configurado languageLen en config.js con el valor "${selectedLanguage}".`)
 } else {
 console.log('Idioma no válido.')
-process.exit(1);
-}}
-
-const languageCodes = {
-    es: 'Código para español',
-    en: 'Código para inglés',
-    pt: 'Código para portugués',
-    ar: 'Código para árabe',
-    id: 'Código para indonesio'
+process.exit(1)
+}} else {
+console.log('La variable languageLen ya tiene un valor configurado en config.js.')
 }
-
-const selectedCode = languageCodes[languageLen]
-console.log(selectedCode)
 
 
 global.conn = makeWASocket(connectionOptions)
