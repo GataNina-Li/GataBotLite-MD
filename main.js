@@ -152,9 +152,6 @@ process.exit(1)
 }}
 
 
-const configPath = path.join(__dirname, 'config.js');
-let configContent = fs.readFileSync(configPath, 'utf8');
-
 async function main() {
   const phoneNumberInput = await inquirer.prompt([
     {
