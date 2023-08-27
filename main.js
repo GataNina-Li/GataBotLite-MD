@@ -142,7 +142,7 @@ if (selectedOptionIndex >= 0 && selectedOptionIndex <= 4) {
 const selectedLanguage = supportedLanguages[selectedOptionIndex]
 configContent = configContent.replace('global.languageLen = ""', 'global.languageLen = true')
 configContent = configContent.replace('global.lenguajeGB = es', `global.lenguajeGB = ${selectedLanguage}`)
-fs.writeFileSync(configPath, configContent, 'utf8');
+fs.writeFileSync(configPath, configContent, 'utf8')
 console.log(`\nSe ha configurado el idioma como "${selectedLanguage}".\n`)
 } else if (selectedOptionIndex === 5) {
 console.log('\nOmitiendo la configuración del idioma.\n')
@@ -150,41 +150,6 @@ console.log('\nOmitiendo la configuración del idioma.\n')
 console.log('\nOpción no válida.\n')
 process.exit(1)
 }}
-
-
-async function main() {
-  const phoneNumberInput = await inquirer.prompt([
-    {
-      type: 'input',
-      name: 'phoneNumber',
-      message: 'Escriba el número que será propietario:',
-      validate: value => {
-        if (value === '' || value.trim() === '0') {
-          return 'Debe proporcionar un número o escribir "0".';
-        }
-        return true;
-      }
-    }
-  ]);
-
-  if (phoneNumberInput.phoneNumber !== '0') {
-    const cleanedNumbers = phoneNumberInput.phoneNumber.split(',').map(number => number.replace(/[\s+\-()]/g, '').trim());
-    const newNumbersArray = cleanedNumbers.map(number => cleanedNumbers.length === 1 ? `'${number}'` : `['${number}']`).join(', ');
-    const regex = /(global\.owner\s*=\s*\[\s*[\s\S]*?\s*\])\s*\]/;
-    const newConfigContent = configContent.replace(regex, cleanedNumbers.length === 1 ? `$1, [${newNumbersArray}]]` : `$1, ${newNumbersArray}]`);
-    fs.writeFileSync(configPath, newConfigContent, 'utf8');
-
-    if (cleanedNumbers.length === 1) {
-      console.log(`\nSe ha agregado el número "+${cleanedNumbers[0]}" como propietario.`);
-    } else {
-      console.log(`\nSe han agregado los números "+${cleanedNumbers.join(', ')}" como propietarios.`);
-    }
-  } else {
-    console.log('\nSe ha omitido la adición de número/s como propietario/s.');
-  }
-}
-
-
 
 /*console.log('Escriba el número que será propietario, ejemplo: +593 99 000 0000')
 console.log('Si piensa agregar varios números separé por "," ejemplo: +593 99 000 0000, +52 1 000 000 0000, +598 00 000 000')
@@ -203,7 +168,6 @@ console.log(`\nSe han agregado los números "+${cleanedNumbers.join(', ')}" como
 console.log('\nSe ha omitido la adición de número/s como propietario/s.')
 }*/
 
-
 global.conn = makeWASocket(connectionOptions)
 conn.isInit = false
 conn.well = false
@@ -215,10 +179,6 @@ if (opts['autocleartmp'] && (global.support || {}).find) (tmp = [os.tmpdir(), 't
 if (opts['server']) (await import('./server.js')).default(global.conn, PORT)
 
 async function connectionUpdate(update) {
-(async () => {
-  await main()
-  //console.log('Aquí puedes continuar con tu código después de que se complete la entrada.');
-
 const {connection, lastDisconnect, isNewLogin} = update
 global.stopped = connection
 if (isNewLogin) conn.isInit = true
@@ -254,11 +214,7 @@ process.send('reset')
 } else {
 console.log(chalk.bold.redBright(lenguajeGB['smsConexiondescon'](reason, connection)))
 }}
-
-})()
 }
-
-
 process.on('uncaughtException', console.error)
 
 let isInit = true
@@ -306,22 +262,6 @@ conn.onDelete = handler.deleteUpdate.bind(global.conn);
 conn.onCall = handler.callUpdate.bind(global.conn);
 conn.connectionUpdate = connectionUpdate.bind(global.conn);
 conn.credsUpdate = saveCreds.bind(global.conn, true);
-
-/*  const currentDateTime = new Date();
-const messageDateTime = new Date(conn.ev * 1000);
-if (currentDateTime.getTime() - messageDateTime.getTime() <= 300000) {
-//  console.log('Leyendo mensaje entrante:', conn.ev);
-  Object.keys(conn.chats).forEach(jid => {
-    conn.chats[jid].isBanned = false;
-    conn.chats[jid].isWelcome = false;
-  });
-} else {
-// console.log(conn.chats, `Omitiendo mensajes en espera.`, conn.ev); 
-Object.keys(conn.chats).forEach(jid => {
-conn.chats[jid].isBanned = true;
-conn.chats[jid].isWelcomd = true;
-})
-}*/
 
 conn.ev.on('messages.upsert', conn.handler);
 conn.ev.on('group-participants.update', conn.participantsUpdate);
