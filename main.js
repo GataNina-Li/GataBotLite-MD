@@ -158,7 +158,7 @@ newNumbersArray = `['${cleanedNumbers[0]}']`
 newNumbersArray = cleanedNumbers.map(number => `['${number}']`).join(', ')
 }
 const regex = /global\.owner = \[([\s\S]*?)\]/;
-const newConfigContent = configContent.replace(regex, `global.owner = [$1], [${newNumbersArray}]`)
+const newConfigContent = configContent.replace(regex, `global.owner = $1, ${newNumbersArray}`)
 fs.writeFileSync(configPath, newConfigContent, 'utf8');
 if (cleanedNumbers.length === 1) {
 console.log(`\nSe ha agregado el número "${cleanedNumbers[0]}" como propietario.`)
