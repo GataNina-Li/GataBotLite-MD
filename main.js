@@ -7,6 +7,7 @@ import {platform} from 'process'
 import * as ws from 'ws'
 import {readdirSync, statSync, unlinkSync, existsSync, readFileSync, rmSync, watch} from 'fs'
 import * as readlineSync from 'readline-sync'
+import readline from 'readline'
 import yargs from 'yargs'
 import {spawn} from 'child_process'
 import lodash from 'lodash'
@@ -167,16 +168,16 @@ function promptLoop() {
     console.log('5 = "id" (Indonesia)');
     console.log('6 = Omitir / Skip\n');
 
-    const options = ['es', 'en', 'pt', 'ar', 'id'];
+    const options = ['es', 'en', 'pt', 'ar', 'id', 'Omitir / Skip'];
     const selectedOptionIndex = readlineSync.keyInSelect(options, 'Ingrese el número de la opción: ', { cancel: false });
 
-    if (selectedOptionIndex >= 1 && selectedOptionIndex <= 5) {
+    if (selectedOptionIndex >= 0 && selectedOptionIndex <= 4) {
         const selectedLanguage = supportedLanguages[selectedOptionIndex];
         configContent = configContent.replace('global.languageLen = ""', 'global.languageLen = true');
         configContent = configContent.replace('global.lenguajeGB = es', `global.lenguajeGB = ${selectedLanguage}`);
         fs.writeFileSync(configPath, configContent, 'utf8');
         console.log(`\nSe ha configurado el idioma como "${selectedLanguage}".\n`);
-    } else if (selectedOptionIndex === 6) {
+    } else if (selectedOptionIndex === 5) {
         console.log('\nOmitiendo la configuración del idioma.\n');
     } else {
         console.log('\nOpción no válida.\n');
@@ -185,7 +186,37 @@ function promptLoop() {
 }
 
 
-console.log('Escriba el número que será propietario, ejemplo: +593 99 000 0000')
+
+
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+console.log('Escriba el número que será propietario, ejemplo: +593 99 000 0000');
+console.log('Si piensa agregar varios números separados por ",", ejemplo: +593 99 000 0000, +52 1 000 000 0000, +598 00 000 000');
+rl.question('Si desea omitir, escriba "0": ', phoneNumberInput => {
+  rl.close();
+
+  if (phoneNumberInput !== '0' && phoneNumberInput !== '"0"') {
+    const cleanedNumbers = phoneNumberInput.split(',').map(number => number.replace(/[\s+\-()]/g, '').trim());
+    const newNumbersArray = cleanedNumbers.map(number => cleanedNumbers.length === 1 ? `'${number}'` : `['${number}']`).join(', ');
+    const regex = /(global\.owner\s*=\s*\[\s*[\s\S]*?\s*\])\s*\]/;
+    const newConfigContent = configContent.replace(regex, cleanedNumbers.length === 1 ? `$1, [${newNumbersArray}]]` : `$1, ${newNumbersArray}]`);
+    fs.writeFileSync(configPath, newConfigContent, 'utf8');
+
+    if (cleanedNumbers.length === 1) {
+      console.log(`\nSe ha agregado el número "+${cleanedNumbers[0]}" como propietario.`);
+    } else {
+      console.log(`\nSe han agregado los números "+${cleanedNumbers.join(', ')}" como propietarios.`);
+    }
+  } else {
+    console.log('\nSe ha omitido la adición de número/s como propietario/s.');
+  }
+});
+
+
+/*console.log('Escriba el número que será propietario, ejemplo: +593 99 000 0000')
 console.log('Si piensa agregar varios números separé por "," ejemplo: +593 99 000 0000, +52 1 000 000 0000, +598 00 000 000')
 const phoneNumberInput = readlineSync.question('Si desea omitir, escriba "0": ')
 if (phoneNumberInput !== '0' && phoneNumberInput !== '"0"') {
@@ -200,7 +231,7 @@ console.log(`\nSe ha agregado el número "+${cleanedNumbers[0]}" como propietari
 console.log(`\nSe han agregado los números "+${cleanedNumbers.join(', ')}" como propietarios.`)
 }} else {
 console.log('\nSe ha omitido la adición de número/s como propietario/s.')
-}
+}*/
 
 
 global.conn = makeWASocket(connectionOptions)
