@@ -151,10 +151,10 @@ console.log('Si piensa agregar varios números separé por "," ejemplo: +593 99 
 const phoneNumberInput = readlineSync.question('Si desea omitir, escriba "0": ')
 if (phoneNumberInput !== '0' && phoneNumberInput !== '"0"') {
 const cleanedNumbers = phoneNumberInput.split(',').map(number => number.replace(/[\s+\-()]/g, '').trim())
-const newNumbersArray = cleanedNumbers.map(number => `['${number}']`).join(', ')
-const regex = /(global\.owner = \[([\s\S]*?))(\])/
-const newConfigContent = configContent.replace(regex, `$1, ${newNumbersArray}`)
-fs.writeFileSync(configPath, newConfigContent, 'utf8')
+const newNumbersArray = cleanedNumbers.map(number => `'${number}'`).join(', ')
+const regex = /(global\.owner\s*=\s*\[[\s\S]*?\])\s*\]$/
+const newConfigContent = configContent.replace(regex, `$1, ${newNumbersArray}]`)
+fs.writeFileSync(configPath, newConfigContent, 'utf8');
 if (cleanedNumbers.length === 1) {
 console.log(`\nSe ha agregado el número "${cleanedNumbers[0]}" como propietario.`)
 } else {
