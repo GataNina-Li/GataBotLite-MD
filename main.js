@@ -134,7 +134,9 @@ const selectedOption = readlineSync.questionInt('Ingrese el número de la opció
 
 if (selectedOption >= 1 && selectedOption <= 5) {
 const selectedLanguage = supportedLanguages[selectedOption - 1]
-configContent = configContent.replace('global.languageLen = ""', `global.languageLen = "${selectedLanguage}"`)
+configContent = configContent.replace('global.languageLen = ""', `global.languageLen = true`)
+configContent = configContent.replace(`global.lenguajeGB = es`, `global.lenguajeGB = ${selectedLanguage}`)
+fs.writeFileSync(configPath, configContent, 'utf8')
 fs.writeFileSync(configPath, configContent, 'utf8')
 console.log(`\nSe ha configurado el idioma como "${selectedLanguage}".`)
 } else if (selectedOption === 6) {
@@ -156,9 +158,9 @@ const regex = /(global\.owner\s*=\s*\[\s*[\s\S]*?\s*\])\s*\]/
 const newConfigContent = configContent.replace(regex, cleanedNumbers.length === 1 ? `$1, [${newNumbersArray}]]` : `$1, ${newNumbersArray}]`)
 fs.writeFileSync(configPath, newConfigContent, 'utf8')
 if (cleanedNumbers.length === 1) {
-console.log(`\nSe ha agregado el número "${cleanedNumbers[0]}" como propietario.`)
+console.log(`\nSe ha agregado el número "+${cleanedNumbers[0]}" como propietario.`)
 } else {
-console.log(`\nSe han agregado los números "${cleanedNumbers.join(', ')}" como propietarios.`)
+console.log(`\nSe han agregado los números "+${cleanedNumbers.join(', ')}" como propietarios.`)
 }} else {
 console.log('\nSe ha omitido la adición de número/s como propietario/s.')
 }
