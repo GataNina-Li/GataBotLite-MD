@@ -148,12 +148,17 @@ console.log('\nEl idioma ya está configurado.\n')
 
 console.log('Escriba el número que será propietario, ejemplo: +593 99 000 0000')
 console.log('Si piensa agregar varios números separé por "," ejemplo: +593 99 000 0000, +52 1 000 000 0000, +598 00 000 000')
-const phoneNumberInput = readlineSync.question('Si desea omitir, escriba "0": ')
 if (phoneNumberInput !== '0' && phoneNumberInput !== '"0"') {
 const cleanedNumbers = phoneNumberInput.split(',').map(number => number.replace(/[\s+\-()]/g, '').trim())
-const newNumbersArray = cleanedNumbers.map(number => `['${number}']`).join(', ')
-configContent = configContent.replace(/global\.owner = \[([\s\S]*?)\]/, `global.owner = [[$1], ${newNumbersArray}]`)
-fs.writeFileSync(configPath, configContent, 'utf8')
+let newNumbersArray = ''
+if (cleanedNumbers.length === 1) {
+newNumbersArray = `['${cleanedNumbers[0]}']`
+} else {
+newNumbersArray = cleanedNumbers.map(number => `['${number}']`).join(', ')
+}
+const regex = /global\.owner = \[([\s\S]*?)\]/;
+const newConfigContent = configContent.replace(regex, `global.owner = [[$1], ${newNumbersArray}]`)
+fs.writeFileSync(configPath, newConfigContent, 'utf8');
 if (cleanedNumbers.length === 1) {
 console.log(`\nSe ha agregado el número "${cleanedNumbers[0]}" como propietario.`)
 } else {
