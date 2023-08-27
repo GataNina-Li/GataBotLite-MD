@@ -184,10 +184,7 @@ async function main() {
   }
 }
 
-(async () => {
-  await main();
-  console.log('Aquí puedes continuar con tu código después de que se complete la entrada.');
-})()
+
 
 /*console.log('Escriba el número que será propietario, ejemplo: +593 99 000 0000')
 console.log('Si piensa agregar varios números separé por "," ejemplo: +593 99 000 0000, +52 1 000 000 0000, +598 00 000 000')
