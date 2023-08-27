@@ -119,7 +119,6 @@ defaultQueryTimeoutMs: undefined,
 }
 
 
-const supportedLanguages = ['es', 'en', 'pt', 'ar', 'id']
 const configPath = path.join(__dirname, 'config.js')
 let configContent = fs.readFileSync(configPath, 'utf8')
 
@@ -136,15 +135,31 @@ const selectedOption = readlineSync.questionInt('Ingrese el número de la opció
 if (selectedOption >= 1 && selectedOption <= 5) {
 const selectedLanguage = supportedLanguages[selectedOption - 1]
 configContent = configContent.replace('global.languageLen = ""', `global.languageLen = "${selectedLanguage}"`)
-fs.writeFileSync(configPath, configContent, 'utf8');
+fs.writeFileSync(configPath, configContent, 'utf8')
 console.log(`\nSe ha configurado el idioma como "${selectedLanguage}".`)
 } else if (selectedOption === 6) {
-console.log('\nOmitiendo la configuración del idioma.')
+console.log('\nOmitiendo la configuración del idioma.\n')
 } else {
-console.log('\nOpción no válida.')
+console.log('\nOpción no válida.\n')
 process.exit(1)
 }} else {
-console.log('\nEl idioma ya está configurado.')
+console.log('\nEl idioma ya está configurado.\n')
+}
+
+console.log('Escriba el número que será propietario, ejemplo: +593 99 000 0000')
+console.log('Si piensa agregar varios números separé por "," ejemplo: +593 99 000 0000, +52 1 000 000 0000, +598 00 000 000')
+const phoneNumberInput = readlineSync.question('Si desea omitir, escriba "0": ')
+if (phoneNumberInput !== '0' && phoneNumberInput !== '"0"') {
+const cleanedNumbers = phoneNumberInput.split(',').map(number => number.replace(/[\s+\-()]/g, '').trim())
+const newNumbersArray = cleanedNumbers.map(number => `['${number}']`).join(', ')
+configContent = configContent.replace(/global\.owner = \[([\s\S]*?)\]/, `global.owner = [[$1], ${newNumbersArray}]`)
+fs.writeFileSync(configPath, configContent, 'utf8')
+if (cleanedNumbers.length === 1) {
+console.log(`\nSe ha agregado el número "${cleanedNumbers[0]}" como propietario.`)
+} else {
+console.log(`\nSe han agregado los números "${cleanedNumbers.join(', ')}" como propietarios.`)
+}} else {
+console.log('\nSe ha omitido la adición de número/s como propietario/s.')
 }
 
 
