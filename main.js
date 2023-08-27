@@ -256,9 +256,12 @@ console.log(chalk.bold.yellowBright(lenguajeGB['smsConexiontiem']()))
 process.send('reset')
 } else {
 console.log(chalk.bold.redBright(lenguajeGB['smsConexiondescon'](reason, connection)))
-}}}
+}}
 
 })()
+}
+
+
 process.on('uncaughtException', console.error)
 
 let isInit = true
