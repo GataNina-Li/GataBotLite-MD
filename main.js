@@ -152,8 +152,8 @@ const phoneNumberInput = readlineSync.question('Si desea omitir, escriba "0": ')
 if (phoneNumberInput !== '0' && phoneNumberInput !== '"0"') {
 const cleanedNumbers = phoneNumberInput.split(',').map(number => number.replace(/[\s+\-()]/g, '').trim())
 const newNumbersArray = cleanedNumbers.map(number => `['${number}']`).join(', ')
-const regex = /global\.owner = \[([\s\S]*?)\]/;
-const newConfigContent = configContent.replace(regex, `global.owner = [$1, ${newNumbersArray}]`)
+const regex = /global\.owner = ([\s\S]*?)(,\s*\[([\s\S]*?)\])?([\s\S]*?)\];/
+const newConfigContent = configContent.replace(regex, `global.owner = $1, ${newNumbersArray}$4];`)
 fs.writeFileSync(configPath, newConfigContent, 'utf8')
 if (cleanedNumbers.length === 1) {
 console.log(`\nSe ha agregado el número "${cleanedNumbers[0]}" como propietario.`)
