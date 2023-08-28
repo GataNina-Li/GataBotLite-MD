@@ -127,7 +127,7 @@ let configContent = fs.readFileSync(configPath, 'utf8')
 if (!global.languageLen) {
 promptLoop()
 } else {
-console.log(chalk.bold.greenBright('✅ El idioma ya está configurado.'))}
+console.log(chalk.bold.greenBright(lenguajeGB.languageSave()))}
 function promptLoop() {
 console.log(`
 ╭⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯ 𓃠             
@@ -146,22 +146,23 @@ console.log(`
 ⬇️  ⬇️  ⬇️`.trim())
 const options = ['es', 'en', 'pt', 'ar', 'id', 'Omitir / Skip']
 const formattedOptions = options.map(option => chalk.bold.blueBright(option))
-const selectedOptionIndex = readlineSync.keyInSelect(formattedOptions, `${chalk.bold.magentaBright('Escriba el número de la opción:')} `, { cancel: false })
+const selectedOptionIndex = readlineSync.keyInSelect(formattedOptions, `${chalk.bold.magentaBright('Write the number of the option.\nEscriba el número de la opción.')} `, { cancel: false })
 if (selectedOptionIndex >= 0 && selectedOptionIndex <= 4) {
 const selectedLanguage = supportedLanguages[selectedOptionIndex]
 configContent = configContent.replace('global.languageLen = ""', 'global.languageLen = true')
 configContent = configContent.replace('global.lenguajeGB = es', `global.lenguajeGB = ${selectedLanguage}`)
 fs.writeFileSync(configPath, configContent, 'utf8')
-console.log(chalk.bold.cyanBright(`\n❇️ Se ha configurado el idioma como "${selectedLanguage}".\n`))
+console.log(chalk.bold.cyanBright(lenguajeGB.languageRegister(selectedLanguage)))
 } else if (selectedOptionIndex === 5) {
 configContent = configContent.replace('global.languageLen = ""', 'global.languageLen = true')
 fs.writeFileSync(configPath, configContent, 'utf8')
-console.log(chalk.bold.cyanBright(`\n🆗 Omitiendo la configuración del idioma.\n`))
+console.log(chalk.bold.cyanBright(`\n🆗 Ignoring language settings.`))
+console.log(chalk.bold.cyanBright(`🆗 Omitiendo la configuración del idioma.\n`))
 } else {
-console.log(chalk.bold.redBright(`\n❌ Opción no válida. Recuerde escribir sólo el número de la opción.\n`))
+console.log(chalk.bold.redBright(`\n❌ Invalid option. Remember to write only the number of the option.`))
+console.log(chalk.bold.redBright(`❌ Opción no válida. Recuerde escribir sólo el número de la opción.\n`))
 process.send('reset')
 }}
-
 
 /*const rl = readline.createInterface({ input: process.stdin, output: process.stdout })
 async function main() {
