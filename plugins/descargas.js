@@ -100,7 +100,20 @@ const dl_url = await yt.audio[q].download()
 //const ttl = await yt.title
 const size = await yt.audio[q].fileSizeH
 
-await conn.sendMessage(m.chat, { audio: { url: dl_audio_url }, mimetype: 'audio/mpeg' }, { quoted: m })
+//await conn.sendMessage(m.chat, { audio: { url: dl_audio_url }, mimetype: 'audio/mpeg' }, { quoted: m })
+let lolhuman = await fetch(`https://api.lolhuman.xyz/api/ytaudio2?apikey=${lolkeysapi}&url=${yt_play[0].url}`)    
+let lolh = await lolhuman.json()
+let n = lolh.result.title || 'error'
+await conn.sendMessage(m.chat, { audio: { url: lolh.result.link}, mimetype: 'audio/mpeg', contextInfo: {
+externalAdReply: {
+title: n,
+body: "",
+thumbnailUrl: yt_play[0].thumbnail, 
+mediaType: 1,
+showAdAttribution: true,
+renderLargerThumbnail: true
+}}} , { quoted: m })   
+    
 await m.react(sent)    
 await message.react(correct)}
 
