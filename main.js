@@ -165,8 +165,7 @@ async function main() {
       const cleanedNumbers = phoneNumberInput.split(',').map(number => number.replace(/[\s+\-()]/g, '').trim());
       const newNumbersArray = cleanedNumbers.map(number => cleanedNumbers.length === 1 ? `'${number}'` : `['${number}']`).join(', ');
       const regex = /(global\.owner\s*=\s*\[\s*[\s\S]*?\s*\])\s*\]/;
-      const newConfigContent = configContent.replace(regex, cleanedNumbers.length === 1 ? `$1, [${newNumbersArray}]]` : `$1, ${newNumbersArray}]`);
-      fs.writeFileSync(configPath, newConfigContent, 'utf8');
+      configContent = configContent.replace(regex, cleanedNumbers.length === 1 ? `$1, [${newNumbersArray}]]` : `$1, ${newNumbersArray}]`);
       configContent = configContent.replace('global.registerNumber = ""', 'global.registerNumber = true');
       fs.writeFileSync(configPath, configContent, 'utf8');
 
