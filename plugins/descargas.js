@@ -57,15 +57,9 @@ break
     
 case isCommand2:
 if (!text) return m.reply(lenguajeGB.smsMalused2() + `*${usedPrefix + command} Billie Eilish - Bellyache*`)
-try{  
-const apiUrl = `https://api.lolhuman.xyz/api/ytaudio2?apikey=${lolkeysapi}&query=${text}`
-const response = await fetch(apiUrl)
-const apiResponse = await response.json() 
-const dl_audio_url = apiResponse.result.link
-let dl_video_url //= apiResponse.result.video.link
-const ttl = apiResponse.result.title   
+try{   
     
-if (command == 'play') {
+//if (command == 'play') {
 let vid = (await yts(text)).all[0]
 const yt_play = await search(args.join(" "))
 if (!yt_play) return m.reply(lenguajeGB.smsMalError2() + `_${lenguajeGB.smsYT6()}_`)
@@ -84,7 +78,14 @@ ${MilesNumber(yt_play[0].views)}
 ${yt_play[0].url}
 *◜⋯ ⋯ ⋯ ⬇️ A U D I O ⬇️ ⋯ ⋯ ⋯◞*`.trim()
 //url = 'https://www.youtube.com/watch?v=' + videoId
-//let link_web = `https://yt.btch.bz/downloadAudio?URL=${url}&videoName=video`     
+//let link_web = `https://yt.btch.bz/downloadAudio?URL=${url}&videoName=video`  
+
+const apiUrl = `https://api.lolhuman.xyz/api/ytaudio2?apikey=${lolkeysapi}&query=${yt_play[0].url}`
+const response = await fetch(apiUrl)
+const apiResponse = await response.json() 
+const dl_audio_url = apiResponse.result.link
+let dl_video_url //= apiResponse.result.video.link
+const ttl = apiResponse.result.title  
 
 let message = await conn.sendMessage(m.chat, { text: video, contextInfo: { externalAdReply: { title: wm, body: wait2.replace(/\*/g, ''), thumbnailUrl: thumbnail, sourceUrl: md, mediaType: 1, showAdAttribution: false, renderLargerThumbnail: true }}})
 await m.react(sending)
@@ -103,7 +104,7 @@ setTimeout(() => { message.react(alert) }, 2000)}
 //await conn.sendMessage(m.chat, {audio: {url: dl_audio_url}, fileName: `${ttl}.mp3`, mimetype: 'audio/mpeg'}, {quoted: m})  
 await conn.sendMessage(m.chat, { audio: { url: dl_audio_url }, mimetype: 'audio/mpeg' }, { quoted: m })
 await m.react(sent)    
-await message.react(correct)}
+await message.react(correct)//}
 
 if (command == 'play2') {
 let vid = (await yts(text)).all[0]
