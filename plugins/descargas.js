@@ -76,10 +76,10 @@ ${MilesNumber(yt_play[0].views)}
 *◎ URL*
 ${yt_play[0].url}
 *◜⋯ ⋯ ⋯ ⬇️ A U D I O ⬇️ ⋯ ⋯ ⋯◞*`.trim()
-//url = 'https://www.youtube.com/watch?v=' + videoId
+url = 'https://www.youtube.com/watch?v=' + videoId
 //let link_web = `https://yt.btch.bz/downloadAudio?URL=${url}&videoName=video`  
 
-const apiUrl = `https://api.akuari.my.id/downloader/yt1?link=${yt_play[0].url}`
+const apiUrl = `https://api.akuari.my.id/downloader/yt1?link=${url}`
 const response = await fetch(apiUrl)
 const apiResponse = await response.json() 
 const dl_audio_url = apiResponse.urldl_audio.link
