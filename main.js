@@ -153,7 +153,7 @@ const selectedLanguage = supportedLanguages[selectedOptionIndex]
 configContent = configContent.replace('global.languageLen = ""', 'global.languageLen = true')
 configContent = configContent.replace('global.lenguajeGB = es', `global.lenguajeGB = ${selectedLanguage}`)
 fs.writeFileSync(configPath, configContent, 'utf8')
-console.log(chalk.bold.cyanBright(lenguajeGB.languageRegister(selectedLanguage)))
+console.log(chalk.bold.cyanBright(lenguajeGB.languageRegisterr(selectedLanguage)))
 } else if (selectedOptionIndex === 5) {
 configContent = configContent.replace('global.languageLen = ""', 'global.languageLen = true')
 fs.writeFileSync(configPath, configContent, 'utf8')
