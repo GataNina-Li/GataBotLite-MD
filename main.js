@@ -127,94 +127,84 @@ let configContent = fs.readFileSync(configPath, 'utf8')
 if (!global.languageLen) {
 promptLoop()
 } else {
-console.log('\nEl idioma ya está configurado.\n')}
+console.log(chalk.bold.greenBright('✅ El idioma ya está configurado.'))}
 function promptLoop() {
-console.log('\nSeleccione un idioma:')
-console.log('1 = "es" (Español)')
-console.log('2 = "en" (English)')
-console.log('3 = "pt" (Português)')
-console.log('4 = "ar" (عرب / Arab)')
-console.log('5 = "id" (Indonesia)')
-console.log('6 = Omitir / Skip\n')
+console.log(`
+╭⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯ 𓃠             
+┆ • ${chalk.bold.magentaBright('Select a language.')}
+┆ • ${chalk.bold.magentaBright('Seleccione un idioma.')}
+╰⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯ 𓃠           
+┆ ${chalk.bold.cyanBright('1')} → ${chalk.bold.greenBright('"es" (Español)')}
+┆ ${chalk.bold.cyanBright('2')} → ${chalk.bold.greenBright('"en" (English)')}
+┆ ${chalk.bold.cyanBright('3')} → ${chalk.bold.greenBright('"pt" (Português)')}
+┆ ${chalk.bold.cyanBright('4')} → ${chalk.bold.greenBright('"ar" (عرب / Arab)')}
+┆ ${chalk.bold.cyanBright('5')} → ${chalk.bold.greenBright('"id" (Indonesia)')}
+┆ ${chalk.bold.cyanBright('6')} → ${chalk.bold.greenBright('(Omitir / Skip)')}
+╰⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯ 𓃠         
+⚠️ ${chalk.bold.yellowBright('If you choose to skip, you will not have the opportunity to change the language later through the console.')}
+⚠️ ${chalk.bold.yellowBright('Si elige omitir, no tendrá oportunidad de cambiar el idioma más tarde a través de la consola.')}\n
+⬇️  ⬇️  ⬇️`.trim())
 const options = ['es', 'en', 'pt', 'ar', 'id', 'Omitir / Skip']
-const selectedOptionIndex = readlineSync.keyInSelect(options, 'Ingrese el número de la opción: ', { cancel: false })
+const selectedOptionIndex = readlineSync.keyInSelect(chalk.bold.blueBright(options), `${chalk.bold.magentaBright('Ingrese el número de la opción:')} `, { cancel: false })
 if (selectedOptionIndex >= 0 && selectedOptionIndex <= 4) {
 const selectedLanguage = supportedLanguages[selectedOptionIndex]
 configContent = configContent.replace('global.languageLen = ""', 'global.languageLen = true')
 configContent = configContent.replace('global.lenguajeGB = es', `global.lenguajeGB = ${selectedLanguage}`)
 fs.writeFileSync(configPath, configContent, 'utf8')
-console.log(`\nSe ha configurado el idioma como "${selectedLanguage}".\n`)
+console.log(chalk.bold.magentaBright(`\n❇️ Se ha configurado el idioma como "${selectedLanguage}".\n`))
 } else if (selectedOptionIndex === 5) {
 configContent = configContent.replace('global.languageLen = ""', 'global.languageLen = true')
 fs.writeFileSync(configPath, configContent, 'utf8')
-console.log('\nOmitiendo la configuración del idioma.\n')
+console.log(chalk.bold.magentaBright(`\n🆗 Omitiendo la configuración del idioma.\n`))
 } else {
-console.log('\nOpción no válida.\n')
-process.exit(1)
+console.log(chalk.bold.redBright(`\n❌ Opción no válida. Recuerde escribir sólo el número de la opción.\n`))
+process.send('reset')
 }}
 
 
-const rl = readline.createInterface({ input: process.stdin, output: process.stdout });
+/*const rl = readline.createInterface({ input: process.stdin, output: process.stdout })
 async function main() {
 if (registerNumber === "" || registerNumber === null || registerNumber === false) {
-        
 setTimeout(() => {
-        if (registerNumber === "") {
-          configContent = configContent.replace('global.registerNumber = ""', 'global.registerNumber = true');
-          fs.writeFileSync(configPath, configContent, 'utf8');
-          console.log('\nTiempo agotado o se ha omitido la adición de número/s como propietario/s.');
-          rl.close();
-        }
-      }, 60000);
- // } else {
-//console.log('\nEl registro de número ya se ha realizado o se ha omitido previamente.');
- //   rl.close();
- // }}
-          
-    console.log('Escriba el número que será propietario, ejemplo: +593 99 000 0000');
-    console.log('Si piensa agregar varios números separados por ",", ejemplo: +593 99 000 0000, +52 1 000 000 0000, +598 00 000 000');
-    
-    const phoneNumberInput = await questionAsync('Si desea omitir, escriba "0": ')
-    
-
-    if (phoneNumberInput !== '0' && phoneNumberInput !== '"0"' && phoneNumberInput !== '') {
-      const cleanedNumbers = phoneNumberInput.split(',').map(number => number.replace(/[\s+\-()]/g, '').trim());
-      const newNumbersArray = cleanedNumbers.map(number => cleanedNumbers.length === 1 ? `'${number}'` : `['${number}']`).join(', ');
-      const regex = /(global\.owner\s*=\s*\[\s*[\s\S]*?\s*\])\s*\]/;
-      configContent = configContent.replace(regex, cleanedNumbers.length === 1 ? `$1, [${newNumbersArray}]]` : `$1, ${newNumbersArray}]`);
-      configContent = configContent.replace('global.registerNumber = ""', 'global.registerNumber = true');
-      fs.writeFileSync(configPath, configContent, 'utf8');
-
-      if (cleanedNumbers.length === 1) {
-        console.log(`\nSe ha agregado el número "+${cleanedNumbers[0]}" como propietario.`);
-      } else {
-        console.log(`\nSe han agregado los números "+${cleanedNumbers.join(', ')}" como propietarios.`);
-      }
-    
-    } else {
-    configContent = configContent.replace('global.registerNumber = ""', 'global.registerNumber = true');
-     fs.writeFileSync(configPath, configContent, 'utf8');
-      console.log('\nSe ha omitido la adición de número/s como propietario/s.');
-    }} else {
-    console.log('\nEl registro de número ya se ha realizado o se ha omitido previamente.');
-    rl.close();
-  }}
-
-    
-
-
+if (registerNumber === "") {
+configContent = configContent.replace('global.registerNumber = ""', 'global.registerNumber = true')
+fs.writeFileSync(configPath, configContent, 'utf8')
+console.log('\nTiempo agotado o se ha omitido la adición de número/s como propietario/s.')
+rl.close()
+}}, 60000)
+// } else {
+//console.log('\nEl registro de número ya se ha realizado o se ha omitido previamente.')
+//   rl.close();
+// }}
+console.log('Escriba el número que será propietario, ejemplo: +593 99 000 0000')
+console.log('Si piensa agregar varios números separados por ",", ejemplo: +593 99 000 0000, +52 1 000 000 0000, +598 00 000 000')
+const phoneNumberInput = await questionAsync('Si desea omitir, escriba "0": ')
+if (phoneNumberInput !== '0' && phoneNumberInput !== '"0"' && phoneNumberInput !== '') {
+const cleanedNumbers = phoneNumberInput.split(',').map(number => number.replace(/[\s+\-()]/g, '').trim())
+const newNumbersArray = cleanedNumbers.map(number => cleanedNumbers.length === 1 ? `'${number}'` : `['${number}']`).join(', ')
+const regex = /(global\.owner\s*=\s*\[\s*[\s\S]*?\s*\])\s*\]/
+configContent = configContent.replace(regex, cleanedNumbers.length === 1 ? `$1, [${newNumbersArray}]]` : `$1, ${newNumbersArray}]`)
+configContent = configContent.replace('global.registerNumber = ""', 'global.registerNumber = true')
+fs.writeFileSync(configPath, configContent, 'utf8')
+if (cleanedNumbers.length === 1) {
+console.log(`\nSe ha agregado el número "+${cleanedNumbers[0]}" como propietario.`)
+} else {
+console.log(`\nSe han agregado los números "+${cleanedNumbers.join(', ')}" como propietarios.`)
+}} else {
+configContent = configContent.replace('global.registerNumber = ""', 'global.registerNumber = true')
+fs.writeFileSync(configPath, configContent, 'utf8')
+console.log('\nSe ha omitido la adición de número/s como propietario/s.')
+}} else {
+console.log('\nEl registro de número ya se ha realizado o se ha omitido previamente.')
+rl.close()
+}}
 function questionAsync(question) {
-  return new Promise(resolve => {
-    rl.question(question, answer => {
-      resolve(answer);
-    });
-  });
-}
-
-main();
-
-
-
+return new Promise(resolve => {
+rl.question(question, answer => {
+resolve(answer);
+})
+})}
+main()*/
 
 /*console.log('Escriba el número que será propietario, ejemplo: +593 99 000 0000')
 console.log('Si piensa agregar varios números separé por "," ejemplo: +593 99 000 0000, +52 1 000 000 0000, +598 00 000 000')
