@@ -155,6 +155,8 @@ process.exit(1)
 
 
 const rl = readline.createInterface({ input: process.stdin, output: process.stdout });
+  
+  if (registerNumber === "" || registerNumber === null || registerNumber === false) {
 
 async function main() {
 setTimeout(() => {
@@ -169,8 +171,7 @@ setTimeout(() => {
     console.log('\nEl registro de número ya se ha realizado o se ha omitido previamente.');
     rl.close();
   }}
-  
-  if (registerNumber === "" || registerNumber === null || registerNumber === false) {
+          
     console.log('Escriba el número que será propietario, ejemplo: +593 99 000 0000');
     console.log('Si piensa agregar varios números separados por ",", ejemplo: +593 99 000 0000, +52 1 000 000 0000, +598 00 000 000');
     
