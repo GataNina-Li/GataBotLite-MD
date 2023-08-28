@@ -82,16 +82,23 @@ let message = await conn.sendMessage(m.chat, { text: video, contextInfo: { exter
 await m.react(sending)
 await message.react(waitemot)
 setTimeout(() => { message.react(waitemot2) }, 1000)
-if (!yt_play[0].title || !yt_play[0].ago || !yt_play[0].url|| !secondString(yt_play[0].duration.seconds) || !MilesNumber(yt_play[0].views)) { 
+if (apiResponse.status !== 200) { 
 setTimeout(() => { message.react(alert) }, 2000)}
-
-let q = '128kbps'
-let v = yt_play[0].url
-const yt = await youtubedl(v).catch(async _ => await youtubedlv2(v))
-const dl_url = await yt.audio[q].download()
-const ttl = await yt.title
-const size = await yt.audio[q].fileSizeH
-await conn.sendMessage(m.chat, { audio: { url: dl_url }, mimetype: 'audio/mpeg' }, { quoted: m })
+const apiUrl = `https://api.lolhuman.xyz/api/ytplay?apikey=${lolkeysapi}&query=${text}`
+const response = await fetch(apiUrl)
+const apiResponse = await response.json() 
+const yt = apiResponse.result
+const dl_audio_url = yt.audio.link
+const dl_video_url = yt.video.link
+const ttl = yt.title
+//let q = '128kbps'
+//let v = yt_play[0].url
+//const yt = await youtubedl(v).catch(async _ => await youtubedlv2(v))
+//const dl_url = await yt.audio[q].download()
+//const ttl = await yt.title
+//const size = await yt.audio[q].fileSizeH
+    
+await conn.sendMessage(m.chat, { audio: { url: dl_audio_url }, mimetype: 'audio/mpeg' }, { quoted: m })
 await m.react(sent)    
 await message.react(correct)}
 
@@ -117,16 +124,16 @@ let message = await conn.sendMessage(m.chat, { text: video, contextInfo: { exter
 await m.react(sending)
 await message.react(waitemot)
 setTimeout(() => { message.react(waitemot2) }, 1000)
-if (!yt_play[0].title || !yt_play[0].ago || !yt_play[0].url|| !secondString(yt_play[0].duration.seconds) || !MilesNumber(yt_play[0].views)) { 
+if (apiResponse.status !== 200) { 
 setTimeout(() => { message.react(alert) }, 2000)}
-let qu = '360'
-let q = qu + 'p'
-let v = yt_play[0].url
-const yt = await youtubedl(v).catch(async _ => await youtubedlv2(v))
-const dl_url = await yt.video[q].download()
-const ttl = await yt.title
-const size = await yt.video[q].fileSizeH
-await await conn.sendMessage(m.chat, { video: { url: dl_url }, fileName: `${ttl}.mp4`, mimetype: 'video/mp4', caption: `💜 ${ttl}`, thumbnail: await fetch(yt.thumbnail) }, { quoted: m }) 
+//let qu = '360'
+//let q = qu + 'p'
+//let v = yt_play[0].url
+//const yt = await youtubedl(v).catch(async _ => await youtubedlv2(v))
+//const dl_url = await yt.video[q].download()
+//const ttl = await yt.title
+//const size = await yt.video[q].fileSizeH
+await await conn.sendMessage(m.chat, { video: { url: dl_video_url }, fileName: `${ttl}.mp4`, mimetype: 'video/mp4', caption: `💜 ${ttl}`, thumbnail: await fetch(yt.thumbnail) }, { quoted: m }) 
 await m.react(sent)    
 await message.react(correct)
 }} catch (e) {
