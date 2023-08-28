@@ -62,7 +62,7 @@ const apiUrl = `https://api.lolhuman.xyz/api/ytaudio2?apikey=${lolkeysapi}&query
 const response = await fetch(apiUrl)
 const apiResponse = await response.json() 
 const dl_audio_url = apiResponse.result.link
-const dl_video_url //= apiResponse.result.video.link
+let dl_video_url //= apiResponse.result.video.link
 const ttl = apiResponse.result.title   
     
 if (command == 'play') {
