@@ -159,7 +159,7 @@ async function main() {
 if (registerNumber === "" || registerNumber === null || registerNumber === false) {
         
 setTimeout(() => {
-        if (!registerNumber) {
+        if (registerNumber === "") {
           configContent = configContent.replace('global.registerNumber = ""', 'global.registerNumber = true');
           fs.writeFileSync(configPath, configContent, 'utf8');
           console.log('\nTiempo agotado o se ha omitido la adición de número/s como propietario/s.');
