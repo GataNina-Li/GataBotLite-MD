@@ -25,7 +25,10 @@ global.prems = []
 //  es = Español      id = Bahasa Indonesia       ar = عرب
 //  en = English      pt = Português 
 global.lenguajeGB = es  //<-- Predeterminado en idioma Español 
+
+// confirmación en el ajuste de idioma y owner en la consola
 global.languageLen = ""
+global.registerNumber = ""
 
 // ES ➜ Consigue Apikey en https://platform.openai.com/account/api-keys
 global.openai_key = 'sk-0'
