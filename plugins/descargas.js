@@ -91,7 +91,7 @@ setTimeout(() => { message.react(alert) }, 2000)}
 //const dl_url = await yt.audio[q].download()
 //const ttl = await yt.title
 //const size = await yt.audio[q].fileSizeH
-const apiUrl = `https://api.lolhuman.xyz/api/ytplay?apikey=${lolkeysapi}&query=${yt_play[0].title}`
+const apiUrl = `https://api.lolhuman.xyz/api/ytplay?apikey=GataDios&query=melukis%20senja`
 const response = await fetch(apiUrl)
 const apiResponse = await response.json() 
 //const yt = apiResponse.result
@@ -99,8 +99,8 @@ const dl_audio_url = apiResponse.result.audio.link
 const dl_video_url = apiResponse.result.video.link
 ttl = apiResponse.result.title   
     
-await conn.sendMessage(m.chat, {audio: {url: dl_audio_url}, fileName: `${ttl}.mp3`, mimetype: 'audio/mpeg'}, {quoted: m})  
-//await conn.sendMessage(m.chat, { audio: { url: dl_audio_url }, mimetype: 'audio/mpeg' }, { quoted: m })
+//await conn.sendMessage(m.chat, {audio: {url: dl_audio_url}, fileName: `${ttl}.mp3`, mimetype: 'audio/mpeg'}, {quoted: m})  
+await conn.sendMessage(m.chat, { audio: { url: dl_audio_url }, mimetype: 'audio/mpeg' }, { quoted: m })
 await m.react(sent)    
 await message.react(correct)}
 
