@@ -145,7 +145,8 @@ console.log(`
 ⚠️ ${chalk.bold.yellowBright('Si elige omitir, no tendrá oportunidad de cambiar el idioma más tarde a través de la consola.')}\n
 ⬇️  ⬇️  ⬇️`.trim())
 const options = ['es', 'en', 'pt', 'ar', 'id', 'Omitir / Skip']
-const selectedOptionIndex = readlineSync.keyInSelect(chalk.bold.blueBright(options), `${chalk.bold.magentaBright('Ingrese el número de la opción:')} `, { cancel: false })
+const formattedOptions = options.map(option => chalk.bold.blueBright(option))
+const selectedOptionIndex = readlineSync.keyInSelect(formattedOptions, `${chalk.bold.magentaBright('Ingrese el número de la opción:')} `, { cancel: false })
 if (selectedOptionIndex >= 0 && selectedOptionIndex <= 4) {
 const selectedLanguage = supportedLanguages[selectedOptionIndex]
 configContent = configContent.replace('global.languageLen = ""', 'global.languageLen = true')
