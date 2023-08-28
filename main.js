@@ -167,7 +167,7 @@ setTimeout(() => {
   } else {
     console.log('\nEl registro de número ya se ha realizado o se ha omitido previamente.');
     rl.close();
-  }
+  }}
   
   if (registerNumber === "" || registerNumber === null || registerNumber === false) {
     console.log('Escriba el número que será propietario, ejemplo: +593 99 000 0000');
@@ -195,7 +195,7 @@ setTimeout(() => {
     }
 
     
-}
+
 
 function questionAsync(question) {
   return new Promise(resolve => {
