@@ -183,12 +183,12 @@ async function main() {
     }
 
     setTimeout(() => {
-      if (registerNumber === true) return;
+      if (!registerNumber) {
       configContent = configContent.replace('global.registerNumber = ""', 'global.registerNumber = true');
       fs.writeFileSync(configPath, configContent, 'utf8');
       console.log('\nTiempo agotado o se ha omitido la adición de número/s como propietario/s.');
       rl.close();
-    }, 60000);
+      }}, 60000)
   } else {
     console.log('\nEl registro de número ya se ha realizado o se ha omitido previamente.');
     rl.close();
