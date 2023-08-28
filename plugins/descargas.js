@@ -58,12 +58,11 @@ break
 case isCommand2:
 if (!text) return m.reply(lenguajeGB.smsMalused2() + `*${usedPrefix + command} Billie Eilish - Bellyache*`)
 try{  
-const apiUrl = `https://api.lolhuman.xyz/api/ytplay?apikey=GataDios&query=melukis%20senja`
+const apiUrl = `https://api.lolhuman.xyz/api/ytaudio2?apikey=${lolkeysapi}&query=${text}`
 const response = await fetch(apiUrl)
 const apiResponse = await response.json() 
-//const yt = apiResponse.result
-const dl_audio_url = apiResponse.result.audio.link
-const dl_video_url = apiResponse.result.video.link
+const dl_audio_url = apiResponse.result.link
+const dl_video_url //= apiResponse.result.video.link
 ttl = apiResponse.result.title   
     
 if (command == 'play') {
