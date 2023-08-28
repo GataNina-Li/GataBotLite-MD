@@ -17,6 +17,7 @@ import chalk from 'chalk'
 import syntaxerror from 'syntax-error'
 import {tmpdir} from 'os'
 import fs from 'fs'
+import { watchFile, unwatchFile } from 'fs'  
 import {format} from 'util'
 import P from 'pino'
 import pino from 'pino'
@@ -466,3 +467,10 @@ await purgeOldFiles()
 console.log(chalk.bold.cyanBright(lenguajeGB.smspurgeOldFiles()))}, 1000 * 60 * 10)
 
 _quickTest().then(() => conn.logger.info(chalk.bold(lenguajeGB['smsCargando']().trim()))).catch(console.error)
+
+let file = fileURLToPath(import.meta.url)
+watchFile(file, () => {
+unwatchFile(file)
+console.log(chalk.bold.greenBright("SE ACTUALIZÓ 'main.js' CON ÉXITO".trim()))
+import(`${file}?update=${Date.now()}`)
+})
