@@ -172,7 +172,7 @@ if (registerNumber === "" || registerNumber === null || registerNumber === false
           
     console.log('Escriba el número que será propietario, ejemplo: +593 99 000 0000');
     console.log('Si piensa agregar varios números separados por ",", ejemplo: +593 99 000 0000, +52 1 000 000 0000, +598 00 000 000');
-    rl.close()
+    //rl.close()
     const phoneNumberInput = await questionAsync('Si desea omitir, escriba "0": ')
 
     if (phoneNumberInput !== '0' && phoneNumberInput !== '"0"' && phoneNumberInput !== '') {
@@ -193,7 +193,7 @@ if (registerNumber === "" || registerNumber === null || registerNumber === false
       fs.writeFileSync(configPath, configContent, 'utf8');
       console.log('\nSe ha omitido la adición de número/s como propietario/s.');
     }
-}
+
     
 
 
