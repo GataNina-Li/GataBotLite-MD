@@ -63,7 +63,7 @@ const response = await fetch(apiUrl)
 const apiResponse = await response.json() 
 const dl_audio_url = apiResponse.result.link
 const dl_video_url //= apiResponse.result.video.link
-ttl = apiResponse.result.title   
+const ttl = apiResponse.result.title   
     
 if (command == 'play') {
 let vid = (await yts(text)).all[0]
