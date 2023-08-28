@@ -80,7 +80,7 @@ ${yt_play[0].url}
 //url = 'https://www.youtube.com/watch?v=' + videoId
 //let link_web = `https://yt.btch.bz/downloadAudio?URL=${url}&videoName=video`  
 
-const apiUrl = `https://api.lolhuman.xyz/api/ytaudio2?apikey=${lolkeysapi}&query=${yt_play[0].url}`
+const apiUrl = `https://api.lolhuman.xyz/api/ytaudio2?apikey=${lolkeysapi}&url=${yt_play[0].url}`
 const response = await fetch(apiUrl)
 const apiResponse = await response.json() 
 const dl_audio_url = apiResponse.result.link
