@@ -101,7 +101,7 @@ const size = await yt.audio[q].fileSizeH
 
 await conn.sendMessage(m.chat, { audio: { url: dl_url }, mimetype: 'audio/mpeg' }, { quoted: m })
 await m.react(sent)    
-await message.react(correct)//}
+await message.react(correct)}
 
 if (command == 'play2') {
 let vid = (await yts(text)).all[0]
