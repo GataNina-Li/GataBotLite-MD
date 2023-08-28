@@ -121,7 +121,7 @@ browser: ['GataBotLite-MD','Edge','2.0.0'],
 version,
 defaultQueryTimeoutMs: undefined,
 }
-
+ 
 const supportedLanguages = ['es', 'en', 'pt', 'ar', 'id']
 const configPath = path.join(__dirname, 'config.js')
 let configContent = fs.readFileSync(configPath, 'utf8')
