@@ -146,5 +146,10 @@ Set-ExecutionPolicy RemoteSigned
 ----
 > **Note** The translations are not perfect, it is only a reference, if you want to collaborate with the language or with another that is not on the list, contact me [`Contact me`](https://wa.me/50660400020?text=Hola%20❤️%20Gata%20Dios,%20deseo%20colaborar%20con%20las%20traducciones%20de%20GataBot.%20Hello%20Gata%20Dios,%20I%20want%20to%20collaborate%20with%20the%20translations%20of%20GataBot%20😻.)
 
-### 🌟 CREADORA 
+### 😸 CREADORA 
 [![GataNina-Li](https://github.com/GataNina-Li.png?size=100)](https://github.com/GataNina-Li) 
+
+### 😸 DESARROLLADORES
+<a href="https://github.com/GataNina-Li/GataBot-MD/graphs/contributors">
+<img src="https://contrib.rocks/image?repo=GataNina-Li/GataBot-MD" /> 
+</a>
