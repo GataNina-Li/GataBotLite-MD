@@ -57,8 +57,8 @@ break
     
 case isCommand2:
 if (!text) return m.reply(lenguajeGB.smsMalused2() + `*${usedPrefix + command} Billie Eilish - Bellyache*`)
-try{   
 if (command == 'play') {
+try{      
 let vid = (await yts(text)).all[0]
 const yt_play = await search(args.join(" "))
 if (!yt_play) return m.reply(lenguajeGB.smsMalError2() + `_${lenguajeGB.smsYT6()}_`)
