@@ -130,23 +130,23 @@ promptLoop()
 console.log(chalk.bold.greenBright('✅ El idioma ya está configurado.'))}
 function promptLoop() {
 console.log(`
-╭⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯ 𓃠             
+╭⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯ 𓃠             
 ┆ • ${chalk.bold.magentaBright('Select a language.')}
 ┆ • ${chalk.bold.magentaBright('Seleccione un idioma.')}
-╰⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯ 𓃠           
+╰⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯ 𓃠           
 ┆ ${chalk.bold.cyanBright('1')} → ${chalk.bold.greenBright('"es" (Español)')}
 ┆ ${chalk.bold.cyanBright('2')} → ${chalk.bold.greenBright('"en" (English)')}
 ┆ ${chalk.bold.cyanBright('3')} → ${chalk.bold.greenBright('"pt" (Português)')}
 ┆ ${chalk.bold.cyanBright('4')} → ${chalk.bold.greenBright('"ar" (عرب / Arab)')}
 ┆ ${chalk.bold.cyanBright('5')} → ${chalk.bold.greenBright('"id" (Indonesia)')}
 ┆ ${chalk.bold.cyanBright('6')} → ${chalk.bold.greenBright('(Omitir / Skip)')}
-╰⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯ 𓃠         
+╰⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯ 𓃠         
 ⚠️ ${chalk.bold.yellowBright('If you choose to skip, you will not have the opportunity to change the language later through the console.')}
 ⚠️ ${chalk.bold.yellowBright('Si elige omitir, no tendrá oportunidad de cambiar el idioma más tarde a través de la consola.')}\n
 ⬇️  ⬇️  ⬇️`.trim())
 const options = ['es', 'en', 'pt', 'ar', 'id', 'Omitir / Skip']
 const formattedOptions = options.map(option => chalk.bold.blueBright(option))
-const selectedOptionIndex = readlineSync.keyInSelect(formattedOptions, `${chalk.bold.magentaBright('Ingrese el número de la opción:')} `, { cancel: false })
+const selectedOptionIndex = readlineSync.keyInSelect(formattedOptions, `${chalk.bold.magentaBright('Escriba el número de la opción:')} `, { cancel: false })
 if (selectedOptionIndex >= 0 && selectedOptionIndex <= 4) {
 const selectedLanguage = supportedLanguages[selectedOptionIndex]
 configContent = configContent.replace('global.languageLen = ""', 'global.languageLen = true')
