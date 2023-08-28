@@ -145,6 +145,8 @@ configContent = configContent.replace('global.lenguajeGB = es', `global.lenguaje
 fs.writeFileSync(configPath, configContent, 'utf8')
 console.log(`\nSe ha configurado el idioma como "${selectedLanguage}".\n`)
 } else if (selectedOptionIndex === 5) {
+configContent = configContent.replace('global.languageLen = ""', 'global.languageLen = true')
+fs.writeFileSync(configPath, configContent, 'utf8')
 console.log('\nOmitiendo la configuración del idioma.\n')
 } else {
 console.log('\nOpción no válida.\n')
