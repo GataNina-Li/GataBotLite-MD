@@ -157,6 +157,18 @@ process.exit(1)
 const rl = readline.createInterface({ input: process.stdin, output: process.stdout });
 
 async function main() {
+setTimeout(() => {
+      if (!registerNumber) {
+      configContent = configContent.replace('global.registerNumber = ""', 'global.registerNumber = true');
+      fs.writeFileSync(configPath, configContent, 'utf8');
+      console.log('\nTiempo agotado o se ha omitido la adición de número/s como propietario/s.');
+      }}, 60000)
+    rl.close()
+  } else {
+    console.log('\nEl registro de número ya se ha realizado o se ha omitido previamente.');
+    rl.close();
+  }
+  
   if (registerNumber === "" || registerNumber === null || registerNumber === false) {
     console.log('Escriba el número que será propietario, ejemplo: +593 99 000 0000');
     console.log('Si piensa agregar varios números separados por ",", ejemplo: +593 99 000 0000, +52 1 000 000 0000, +598 00 000 000');
@@ -182,17 +194,7 @@ async function main() {
       console.log('\nSe ha omitido la adición de número/s como propietario/s.');
     }
 
-    setTimeout(() => {
-      if (!registerNumber) {
-      configContent = configContent.replace('global.registerNumber = ""', 'global.registerNumber = true');
-      fs.writeFileSync(configPath, configContent, 'utf8');
-      console.log('\nTiempo agotado o se ha omitido la adición de número/s como propietario/s.');
-      rl.close();
-      }}, 60000)
-  } else {
-    console.log('\nEl registro de número ya se ha realizado o se ha omitido previamente.');
-    rl.close();
-  }
+    
 }
 
 function questionAsync(question) {
