@@ -102,7 +102,7 @@ const size = await yt.audio[q].fileSizeH
 
 const dataRE = await fetch(`https://api.akuari.my.id/downloader/youtube?link=${yt_play[0].url}`)
 const dataRET = await dataRE.json()
-await conn.sendMessage(m.chat, { audio: { url: dataRET.mp3[1].url }, mimetype: 'audio/mpeg', contextInfo: {
+await conn.sendMessage(m.chat, { audio: { url: dataRET.dl_audio }, mimetype: 'audio/mpeg', contextInfo: {
 externalAdReply: {
 title: yt_play[0].title,
 body: "",
