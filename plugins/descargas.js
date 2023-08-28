@@ -79,12 +79,12 @@ ${yt_play[0].url}
 url = 'https://www.youtube.com/watch?v=' + videoId
 //let link_web = `https://yt.btch.bz/downloadAudio?URL=${url}&videoName=video`  
 
-const apiUrl = `https://api.akuari.my.id/downloader/yt1?link=${url}`
-const response = await fetch(apiUrl)
-const apiResponse = await response.json() 
-const dl_audio_url = apiResponse.urldl_audio.link
-let dl_video_url = apiResponse.urldl_video.link
-ttl = apiResponse.info.title  
+//const apiUrl = `https://api.akuari.my.id/downloader/yt1?link=${url}`
+//const response = await fetch(apiUrl)
+//const apiResponse = await response.json() 
+//const dl_audio_url = apiResponse.urldl_audio.link
+//let dl_video_url = apiResponse.urldl_video.link
+//ttl = apiResponse.info.title  
 
 let message = await conn.sendMessage(m.chat, { text: video, contextInfo: { externalAdReply: { title: wm, body: wait2.replace(/\*/g, ''), thumbnailUrl: thumbnail, sourceUrl: md, mediaType: 1, showAdAttribution: false, renderLargerThumbnail: true }}})
 await m.react(sending)
@@ -97,16 +97,11 @@ let q = '128kbps'
 let v = yt_play[0].url
 const yt = await youtubedl(v).catch(async _ => await youtubedlv2(v))
 const dl_url = await yt.audio[q].download()
-//const ttl = await yt.title
+const ttl = await yt.title
 const size = await yt.audio[q].fileSizeH
-
-//await conn.sendMessage(m.chat, { audio: { url: dl_audio_url }, mimetype: 'audio/mpeg' }, { quoted: m })
-let lolhuman = await fetch(`https://api.lolhuman.xyz/api/ytaudio2?apikey=${lolkeysapi}&url=${yt_play[0].url}`)    
-let lolh = await lolhuman.json()
-let n = lolh.result.title || 'error'
-await conn.sendMessage(m.chat, { audio: { url: lolh.result.link}, mimetype: 'audio/mpeg', contextInfo: {
+await conn.sendMessage(m.chat, { audio: { url: dl_url }, mimetype: 'audio/mpeg', contextInfo: {
 externalAdReply: {
-title: n,
+title: ttl,
 body: "",
 thumbnailUrl: yt_play[0].thumbnail, 
 mediaType: 1,
