@@ -192,7 +192,10 @@ if (registerNumber === "" || registerNumber === null || registerNumber === false
       configContent = configContent.replace('global.registerNumber = ""', 'global.registerNumber = true');
       fs.writeFileSync(configPath, configContent, 'utf8');
       console.log('\nSe ha omitido la adición de número/s como propietario/s.');
-    }
+    }} else {
+  console.log('\nEl registro de número ya se ha realizado o se ha omitido previamente.');
+  rl.close();
+}
 
     
 
