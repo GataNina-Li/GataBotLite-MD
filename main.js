@@ -157,7 +157,7 @@ process.exit(1)
 const rl = readline.createInterface({ input: process.stdin, output: process.stdout });
 async function main() {
 if (registerNumber === "" || registerNumber === null || registerNumber === false) {
-setTimeout(() => {
+/*setTimeout(() => {
         if (!registerNumber) {
           configContent = configContent.replace('global.registerNumber = ""', 'global.registerNumber = true');
           fs.writeFileSync(configPath, configContent, 'utf8');
@@ -168,12 +168,12 @@ setTimeout(() => {
   } else {
     console.log('\nEl registro de número ya se ha realizado o se ha omitido previamente.');
     rl.close();
-  }}
+  }}*/
           
     console.log('Escriba el número que será propietario, ejemplo: +593 99 000 0000');
     console.log('Si piensa agregar varios números separados por ",", ejemplo: +593 99 000 0000, +52 1 000 000 0000, +598 00 000 000');
-    
-    const phoneNumberInput = await questionAsync('Si desea omitir, escriba "0": ');
+    rl.close()
+    const phoneNumberInput = await questionAsync('Si desea omitir, escriba "0": ')
 
     if (phoneNumberInput !== '0' && phoneNumberInput !== '"0"' && phoneNumberInput !== '') {
       const cleanedNumbers = phoneNumberInput.split(',').map(number => number.replace(/[\s+\-()]/g, '').trim());
