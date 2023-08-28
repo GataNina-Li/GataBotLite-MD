@@ -57,6 +57,14 @@ break
 case isCommand2:
 if (!text) return m.reply(lenguajeGB.smsMalused2() + `*${usedPrefix + command} Billie Eilish - Bellyache*`)
 try{
+const apiUrl = `https://api.lolhuman.xyz/api/ytplay?apikey=${lolkeysapi}&query=${text}`
+const response = await fetch(apiUrl)
+const apiResponse = await response.json() 
+//const yt = apiResponse.result
+const dl_audio_url = apiResponse.result.audio.link
+const dl_video_url = apiResponse.result.video.link
+ttl = apiResponse.result.title   
+    
 if (command == 'play') {
 let vid = (await yts(text)).all[0]
 const yt_play = await search(args.join(" "))
@@ -84,13 +92,6 @@ await message.react(waitemot)
 setTimeout(() => { message.react(waitemot2) }, 1000)
 if (apiResponse.status !== 200) { 
 setTimeout(() => { message.react(alert) }, 2000)}
-const apiUrl = `https://api.lolhuman.xyz/api/ytplay?apikey=${lolkeysapi}&query=${text}`
-const response = await fetch(apiUrl)
-const apiResponse = await response.json() 
-const yt = apiResponse.result
-const dl_audio_url = yt.audio.link
-const dl_video_url = yt.video.link
-const ttl = yt.title
 //let q = '128kbps'
 //let v = yt_play[0].url
 //const yt = await youtubedl(v).catch(async _ => await youtubedlv2(v))
