@@ -112,17 +112,18 @@ showAdAttribution: true,
 renderLargerThumbnail: true
 }}} , { quoted: m })  */
 
-let humanLol = await fetch(`https://api.lolhuman.xyz/api/ytplay?apikey=${lolkeysapi}&query=${yt_play[0].title}`)
-let humanRET = await humanLol.json()
-await conn.sendMessage(m.chat, { audio: { url: humanRET.result.audio.link }, mimetype: 'audio/mpeg', contextInfo: {
+let lolhuman = await fetch(`https://api.lolhuman.xyz/api/ytaudio2?apikey=${lolkeysapi}&url=${yt_play[0].url}`)    
+let lolh = await lolhuman.json()
+let n = lolh.result.title || 'error'
+await conn.sendMessage(m.chat, { audio: { url: lolh.result.link}, mimetype: 'audio/mpeg', contextInfo: {
 externalAdReply: {
-title: yt_play[0].title,
+title: n,
 body: "",
 thumbnailUrl: yt_play[0].thumbnail, 
 mediaType: 1,
 showAdAttribution: true,
 renderLargerThumbnail: true
-}}} , { quoted: m })       
+}}} , { quoted: m })   
     
 await m.react(sent)    
 await message.react(correct)}
