@@ -161,12 +161,14 @@ async function main() {
     
     const phoneNumberInput = await questionAsync('Si desea omitir, escriba "0": ');
 
-    if (phoneNumberInput !== '0' && phoneNumberInput !== '"0"') {
+    if (phoneNumberInput !== '0' && phoneNumberInput !== '"0"' && phoneNumberInput !== '') {
       const cleanedNumbers = phoneNumberInput.split(',').map(number => number.replace(/[\s+\-()]/g, '').trim());
       const newNumbersArray = cleanedNumbers.map(number => cleanedNumbers.length === 1 ? `'${number}'` : `['${number}']`).join(', ');
       const regex = /(global\.owner\s*=\s*\[\s*[\s\S]*?\s*\])\s*\]/;
       const newConfigContent = configContent.replace(regex, cleanedNumbers.length === 1 ? `$1, [${newNumbersArray}]]` : `$1, ${newNumbersArray}]`);
       fs.writeFileSync(configPath, newConfigContent, 'utf8');
+      configContent = configContent.replace('global.registerNumber = ""', 'global.registerNumber = true');
+      fs.writeFileSync(configPath, configContent, 'utf8');
 
       if (cleanedNumbers.length === 1) {
         console.log(`\nSe ha agregado el número "+${cleanedNumbers[0]}" como propietario.`);
