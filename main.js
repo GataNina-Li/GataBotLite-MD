@@ -166,10 +166,7 @@ setTimeout(() => {
           rl.close();
         }
       }, 60000);
-  } else {
-    console.log('\nEl registro de número ya se ha realizado o se ha omitido previamente.');
-    rl.close();
-  }}
+  
           
     console.log('Escriba el número que será propietario, ejemplo: +593 99 000 0000');
     console.log('Si piensa agregar varios números separados por ",", ejemplo: +593 99 000 0000, +52 1 000 000 0000, +598 00 000 000');
@@ -195,7 +192,10 @@ setTimeout(() => {
     configContent = configContent.replace('global.registerNumber = ""', 'global.registerNumber = true');
      fs.writeFileSync(configPath, configContent, 'utf8');
       console.log('\nSe ha omitido la adición de número/s como propietario/s.');
-    }
+    }} else {
+    console.log('\nEl registro de número ya se ha realizado o se ha omitido previamente.');
+    rl.close();
+  }}
 
     
 
