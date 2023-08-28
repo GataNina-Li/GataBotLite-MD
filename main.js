@@ -152,11 +152,11 @@ const selectedLanguage = supportedLanguages[selectedOptionIndex]
 configContent = configContent.replace('global.languageLen = ""', 'global.languageLen = true')
 configContent = configContent.replace('global.lenguajeGB = es', `global.lenguajeGB = ${selectedLanguage}`)
 fs.writeFileSync(configPath, configContent, 'utf8')
-console.log(chalk.bold.magentaBright(`\n❇️ Se ha configurado el idioma como "${selectedLanguage}".\n`))
+console.log(chalk.bold.cyanBright(`\n❇️ Se ha configurado el idioma como "${selectedLanguage}".\n`))
 } else if (selectedOptionIndex === 5) {
 configContent = configContent.replace('global.languageLen = ""', 'global.languageLen = true')
 fs.writeFileSync(configPath, configContent, 'utf8')
-console.log(chalk.bold.magentaBright(`\n🆗 Omitiendo la configuración del idioma.\n`))
+console.log(chalk.bold.cyanBright(`\n🆗 Omitiendo la configuración del idioma.\n`))
 } else {
 console.log(chalk.bold.redBright(`\n❌ Opción no válida. Recuerde escribir sólo el número de la opción.\n`))
 process.send('reset')
