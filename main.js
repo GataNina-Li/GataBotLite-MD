@@ -153,14 +153,24 @@ process.exit(1)
 
 
 
-async function procesarEntrada() {
-  console.log('Escriba el número que será propietario, ejemplo: +593 99 000 0000');
-  console.log('Si piensa agregar varios números separados por ",", ejemplo: +593 99 000 0000, +52 1 000 000 0000, +598 00 000 000');
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
 
-  const phoneNumberInput = await questionAsync('Si desea omitir, escriba "0": ');
+function questionAsync(question) {
+  return new Promise(resolve => {
+    rl.question(question, answer => {
+      resolve(answer);
+    });
+  });
+}
 
-  if (phoneNumberInput !== '0' && phoneNumberInput !== '"0"') {
-    const cleanedNumbers = phoneNumberInput.split(',').map(number => number.replace(/[\s+\-()]/g, '').trim());
+const phoneNumberInput = questionAsync('Escriba el número que será propietario, ejemplo: +593 99 000 0000\nSi desea omitir, escriba "0": ');
+
+phoneNumberInput.then(input => {
+  if (input !== '0' && input !== '"0"') {
+    const cleanedNumbers = input.split(',').map(number => number.replace(/[\s+\-()]/g, '').trim());
     const newNumbersArray = cleanedNumbers.map(number => cleanedNumbers.length === 1 ? `'${number}'` : `['${number}']`).join(', ');
     const regex = /(global\.owner\s*=\s*\[\s*[\s\S]*?\s*\])\s*\]/;
     const newConfigContent = configContent.replace(regex, cleanedNumbers.length === 1 ? `$1, [${newNumbersArray}]]` : `$1, ${newNumbersArray}]`);
@@ -176,29 +186,7 @@ async function procesarEntrada() {
   }
 
   rl.close();
-}
-
-const rl = readline.createInterface({
-  input: process.stdin,
-  output: process.stdout
 });
-
-//const configPath = path.join(__dirname, 'config.js');
-//let configContent = fs.readFileSync(configPath, 'utf8');
-
-async function questionAsync(question) {
-  return new Promise(resolve => {
-    rl.question(question, answer => {
-      resolve(answer);
-    });
-  });
-}
-
-async function main() {
-  await procesarEntrada();
-}
-
-main();
 
 /*console.log('Escriba el número que será propietario, ejemplo: +593 99 000 0000')
 console.log('Si piensa agregar varios números separé por "," ejemplo: +593 99 000 0000, +52 1 000 000 0000, +598 00 000 000')
