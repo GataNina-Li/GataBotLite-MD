@@ -155,10 +155,8 @@ process.exit(1)
 
 
 const rl = readline.createInterface({ input: process.stdin, output: process.stdout });
-  
-  if (registerNumber === "" || registerNumber === null || registerNumber === false) {
-
 async function main() {
+if (registerNumber === "" || registerNumber === null || registerNumber === false) {
 setTimeout(() => {
         if (!registerNumber) {
           configContent = configContent.replace('global.registerNumber = ""', 'global.registerNumber = true');
