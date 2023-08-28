@@ -98,8 +98,8 @@ setTimeout(() => { message.react(alert) }, 2000)}
 //const dl_url = await yt.audio[q].download()
 //const ttl = await yt.title
 //const size = await yt.audio[q].fileSizeH
-    
-await conn.sendMessage(m.chat, { audio: { url: dl_audio_url }, mimetype: 'audio/mpeg' }, { quoted: m })
+await conn.sendMessage(m.chat, {audio: {url: dl_audio_url}, fileName: `${ttl}.mp3`, mimetype: 'audio/mpeg'}, {quoted: m})  
+//await conn.sendMessage(m.chat, { audio: { url: dl_audio_url }, mimetype: 'audio/mpeg' }, { quoted: m })
 await m.react(sent)    
 await message.react(correct)}
 
