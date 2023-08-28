@@ -162,7 +162,7 @@ setTimeout(() => {
       configContent = configContent.replace('global.registerNumber = ""', 'global.registerNumber = true');
       fs.writeFileSync(configPath, configContent, 'utf8');
       console.log('\nTiempo agotado o se ha omitido la adición de número/s como propietario/s.');
-      }}, 60000)
+      }, 60000)
     rl.close()
   } else {
     console.log('\nEl registro de número ya se ha realizado o se ha omitido previamente.');
@@ -193,7 +193,7 @@ setTimeout(() => {
       fs.writeFileSync(configPath, configContent, 'utf8');
       console.log('\nSe ha omitido la adición de número/s como propietario/s.');
     }
-
+}
     
 
 
