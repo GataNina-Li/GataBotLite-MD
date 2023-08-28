@@ -157,7 +157,8 @@ process.exit(1)
 const rl = readline.createInterface({ input: process.stdin, output: process.stdout });
 
 async function main() {
-(!registerNumber) {
+setTimeout(() => {
+        if (!registerNumber) {
           configContent = configContent.replace('global.registerNumber = ""', 'global.registerNumber = true');
           fs.writeFileSync(configPath, configContent, 'utf8');
           console.log('\nTiempo agotado o se ha omitido la adición de número/s como propietario/s.');
