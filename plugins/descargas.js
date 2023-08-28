@@ -115,7 +115,7 @@ await conn.sendMessage(m.chat, { audio: { url: ress.url }, mimetype: 'audio/mpeg
 } catch { 
 await conn.sendMessage(m.chat, { audio: { url: dl_audio_url }, mimetype: 'audio/mpeg' }, { quoted: m })
 } catch {
-}}}}}
+}}}}
 await m.react(sent)    
 await message.react(correct)}
 
