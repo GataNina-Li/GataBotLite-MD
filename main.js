@@ -157,13 +157,13 @@ process.exit(1)
 const rl = readline.createInterface({ input: process.stdin, output: process.stdout });
 
 async function main() {
-setTimeout(() => {
-      if (!registerNumber) {
-      configContent = configContent.replace('global.registerNumber = ""', 'global.registerNumber = true');
-      fs.writeFileSync(configPath, configContent, 'utf8');
-      console.log('\nTiempo agotado o se ha omitido la adición de número/s como propietario/s.');
-      }, 60000)
-    rl.close()
+(!registerNumber) {
+          configContent = configContent.replace('global.registerNumber = ""', 'global.registerNumber = true');
+          fs.writeFileSync(configPath, configContent, 'utf8');
+          console.log('\nTiempo agotado o se ha omitido la adición de número/s como propietario/s.');
+          rl.close();
+        }
+      }, 60000);
   } else {
     console.log('\nEl registro de número ya se ha realizado o se ha omitido previamente.');
     rl.close();
@@ -193,7 +193,7 @@ setTimeout(() => {
       fs.writeFileSync(configPath, configContent, 'utf8');
       console.log('\nSe ha omitido la adición de número/s como propietario/s.');
     }
-}
+
     
 
 
