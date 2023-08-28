@@ -90,8 +90,9 @@ let message = await conn.sendMessage(m.chat, { text: video, contextInfo: { exter
 await m.react(sending)
 await message.react(waitemot)
 setTimeout(() => { message.react(waitemot2) }, 1000)
-if (apiResponse.status !== 200) { 
-setTimeout(() => { message.react(alert) }, 2000)}
+//if (apiResponse.status !== 200) { 
+//setTimeout(() => { message.react(alert) }, 2000)}
+    
 let q = '128kbps'
 let v = yt_play[0].url
 const yt = await youtubedl(v).catch(async _ => await youtubedlv2(v))
@@ -125,8 +126,8 @@ let message = await conn.sendMessage(m.chat, { text: video, contextInfo: { exter
 await m.react(sending)
 await message.react(waitemot)
 setTimeout(() => { message.react(waitemot2) }, 1000)
-if (apiResponse.status !== 200) { 
-setTimeout(() => { message.react(alert) }, 2000)}
+//if (apiResponse.status !== 200) { 
+//setTimeout(() => { message.react(alert) }, 2000)}
 //let qu = '360'
 //let q = qu + 'p'
 //let v = yt_play[0].url
