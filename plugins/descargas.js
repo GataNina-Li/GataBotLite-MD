@@ -57,8 +57,8 @@ break
     
 case isCommand2:
 if (!text) return m.reply(lenguajeGB.smsMalused2() + `*${usedPrefix + command} Billie Eilish - Bellyache*`)
-if (command == 'play') {
-try{      
+try{    
+if (command == 'play') { 
 let vid = (await yts(text)).all[0]
 const yt_play = await search(args.join(" "))
 if (!yt_play) return m.reply(lenguajeGB.smsMalError2() + `_${lenguajeGB.smsYT6()}_`)
@@ -114,7 +114,7 @@ let ress = await ytdl.chooseFormat(infoo.formats, { filter: 'audioonly' })
 await conn.sendMessage(m.chat, { audio: { url: ress.url }, mimetype: 'audio/mpeg' }, { quoted: m })   
 } catch { 
 await conn.sendMessage(m.chat, { audio: { url: dl_audio_url }, mimetype: 'audio/mpeg' }, { quoted: m })
-}}}}}
+}}}}
 await m.react(sent)    
 await message.react(correct)}
 
