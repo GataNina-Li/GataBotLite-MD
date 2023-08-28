@@ -100,7 +100,7 @@ const dl_url = await yt.audio[q].download()
 const ttl = await yt.title
 const size = await yt.audio[q].fileSizeH
 
-const dataRE = await fetch(`https://api.akuari.my.id/downloader/youtube?link=${yt_play[0].url}`)
+/*const dataRE = await fetch(`https://api.akuari.my.id/downloader/youtube?link=${yt_play[0].url}`)
 const dataRET = await dataRE.json()
 await conn.sendMessage(m.chat, { audio: { url: dataRET.dl_audio }, mimetype: 'audio/mpeg', contextInfo: {
 externalAdReply: {
@@ -110,7 +110,19 @@ thumbnailUrl: yt_play[0].thumbnail,
 mediaType: 1,
 showAdAttribution: true,
 renderLargerThumbnail: true
-}}} , { quoted: m })   
+}}} , { quoted: m })  */
+
+let humanLol = await fetch(`https://api.lolhuman.xyz/api/ytplay?apikey=${lolkeysapi}&query=${yt_play[0].title}`)
+let humanRET = await humanLol.json()
+await conn.sendMessage(m.chat, { audio: { url: humanRET.result.audio.link }, mimetype: 'audio/mpeg', contextInfo: {
+externalAdReply: {
+title: yt_play[0].title,
+body: "",
+thumbnailUrl: yt_play[0].thumbnail, 
+mediaType: 1,
+showAdAttribution: true,
+renderLargerThumbnail: true
+}}} , { quoted: m })       
     
 await m.react(sent)    
 await message.react(correct)}
