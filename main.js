@@ -193,7 +193,7 @@ if (registerNumber === "" || registerNumber === null || registerNumber === false
       fs.writeFileSync(configPath, configContent, 'utf8');
       console.log('\nSe ha omitido la adición de número/s como propietario/s.');
     }
-
+}
     
 
 
