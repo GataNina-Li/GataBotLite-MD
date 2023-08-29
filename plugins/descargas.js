@@ -142,20 +142,9 @@ await message.react(waitemot)
 setTimeout(() => { message.react(waitemot2) }, 1000)
 //if (apiResponse.status !== 200) { 
 //setTimeout(() => { message.react(alert) }, 2000)}
-let qu = '360'
-let q = qu + 'p'
-let v = yt_play[0].url
-const yt = await youtubedl(v).catch(async _ => await youtubedlv2(v))
-const dl_url = await yt.video[q].download()
-//const ttl = await yt.title
-const size = await yt.video[q].fileSizeH
-let apiUrl = `https://api.akuari.my.id/downloader/yt1?link=${yt_play[0].url}`
-let response = await fetch(apiUrl)
-let apiResponse = await response.json() 
-let dl_audio_url = apiResponse.urldl_audio.link
-let dl_video_url = apiResponse.urldl_video.link
-ttl = apiResponse.info.title 
-await await conn.sendMessage(m.chat, { video: { url: dl_url }, fileName: `${ttl}.mp4`, mimetype: 'video/mp4', caption: `💜 ${ttl}`, thumbnail: await fetch(thumbnail) }, { quoted: m }) 
+let mediaa = await ytMp4(yt_play[0].url)
+await conn.sendMessage(m.chat, { video: { url: mediaa.result }, fileName: `error.mp4`, caption: `_${wm}_`, thumbnail: mediaa.thumb, mimetype: 'video/mp4' }, { quoted: m }) 
+//await await conn.sendMessage(m.chat, { video: { url: dl_url }, fileName: `${ttl}.mp4`, mimetype: 'video/mp4', caption: `💜 ${ttl}`, thumbnail: await fetch(thumbnail) }, { quoted: m }) 
 await m.react(sent)    
 await message.react(correct)
 }} catch (e) {
