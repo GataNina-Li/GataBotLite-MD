@@ -155,7 +155,7 @@ let apiResponse = await response.json()
 let dl_audio_url = apiResponse.urldl_audio.link
 let dl_video_url = apiResponse.urldl_video.link
 ttl = apiResponse.info.title 
-await await conn.sendMessage(m.chat, { video: { url: dl_video_url }, fileName: `${ttl}.mp4`, mimetype: 'video/mp4', caption: `💜 ${ttl}`, thumbnail: await fetch(yt.thumbnail) }, { quoted: m }) 
+await await conn.sendMessage(m.chat, { video: { url: dl_video_url }, fileName: `${ttl}.mp4`, mimetype: 'video/mp4', caption: `💜 ${ttl}`, thumbnail: await fetch(thumbnail) }, { quoted: m }) 
 await m.react(sent)    
 await message.react(correct)
 }} catch (e) {
