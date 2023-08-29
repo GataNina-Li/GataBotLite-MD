@@ -537,7 +537,7 @@ sourceUrl: `https://github.com/GataNina-Li/GataBotLite-MD`}}})
 if (!regex.test(args[0])) throw 'LINK INCORRECTO';
 let [_, user, repo] = args[0].match(regex) || [];
 repo = repo.replace(/.git$/, '');
-let url = `https://api.github.com/repos/${user}/${repo}/zipball`;
+url = `https://api.github.com/repos/${user}/${repo}/zipball`;
 const filename = (await fetch(url, {method: 'HEAD'})).headers.get('content-disposition').match(/attachment; filename=(.*)/)[1];
 conn.sendFile(m.chat, url, filename, null, m);
 break
