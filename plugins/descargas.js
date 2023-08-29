@@ -161,7 +161,7 @@ size = await yt.audio[q].fileSizeH
 await conn.sendFile(m.chat, dl_url, ttl + '.mp3', null, m, false, { mimetype: 'audio/mp4' })
 } catch {
 try {*/
-lolhuman = await fetch(`https://api.lolhuman.xyz/api/ytaudio?apikey=${lolkeysapi}&url=${args[0]}`)    
+lolhuman = await fetch(`https://api.lolhuman.xyz/api/ytaudio?apikey=${lolkeysapi}&url=${text}`)    
 lolh = await lolhuman.json()
 n = lolh.result.title || 'error'
 await conn.sendMessage(m.chat, { audio: { url: lolh.result.link.link }, fileName: `${n}.mp3`, mimetype: 'audio/mp4' }, { quoted: m }) 
