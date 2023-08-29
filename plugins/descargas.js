@@ -208,7 +208,7 @@ yt = await youtubedl(v).catch(async (_) => await youtubedlv2(v))
 dl_url = await yt.video[q].download()
 ttl = await yt.title
 size = await yt.video[q].fileSizeH
-await conn.sendMessage(m.chat, { video: { url: dl_url }, fileName: `${ttl}.mp4`, mimetype: 'video/mp4', caption: `*💫 ${ttl}*\n*⚖️ ${size}*`, thumbnail: await fetch(yt.thumbnail) }, { quoted: m })
+await conn.sendMessage(m.chat, { video: { url: dl_url }, fileName: `${ttl}.mp4`, mimetype: 'video/mp4', caption: `*💫 ${ttl}*${size !== undefined ? `\n*⚖️ ${size}*` : ''}`, thumbnail: await fetch(yt.thumbnail) }, { quoted: m })
 } catch {
 try {
 lolhuman = await fetch(`https://api.lolhuman.xyz/api/ytvideo2?apikey=${lolkeysapi}&url=${args[0]}`)    
