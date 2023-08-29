@@ -78,14 +78,12 @@ ${yt_play[0].url}
 *◜⋯ ⋯ ⋯ ⬇️ A U D I O ⬇️ ⋯ ⋯ ⋯◞*`.trim()
 url = 'https://www.youtube.com/watch?v=' + videoId
 //let link_web = `https://yt.btch.bz/downloadAudio?URL=${url}&videoName=video`  
-
 let apiUrl = `https://api.akuari.my.id/downloader/yt1?link=${url}`
 let response = await fetch(apiUrl)
 let apiResponse = await response.json() 
 let dl_audio_url = apiResponse.urldl_audio.link
 let dl_video_url = apiResponse.urldl_video.link
 ttl = apiResponse.info.title  
-
 let message = await conn.sendMessage(m.chat, { text: video, contextInfo: { externalAdReply: { title: wm, body: wait2.replace(/\*/g, ''), thumbnailUrl: thumbnail, sourceUrl: md, mediaType: 1, showAdAttribution: false, renderLargerThumbnail: true }}})
 await m.react(sending)
 await message.react(waitemot)
@@ -117,7 +115,6 @@ await conn.sendMessage(m.chat, { audio: { url: dl_audio_url }, mimetype: 'audio/
 }}}
 await m.react(sent)    
 await message.react(correct)}
-
 if (command == 'play2') {
 let vid = (await yts(text)).all[0]
 const yt_play = await search(args.join(" "))
@@ -143,7 +140,7 @@ setTimeout(() => { message.react(waitemot2) }, 1000)
 //if (apiResponse.status !== 200) { 
 //setTimeout(() => { message.react(alert) }, 2000)}
 let mediaa = await ytMp4(yt_play[0].url)
-await conn.sendMessage(m.chat, { video: { url: mediaa.result }, fileName: `error.mp4`, caption: `_${wm}_`, thumbnail: mediaa.thumb, mimetype: 'video/mp4' }, { quoted: m }) 
+await conn.sendMessage(m.chat, { video: { url: mediaa.result }, fileName: `error.mp4`, caption: `${wm}`, thumbnail: mediaa.thumb, mimetype: 'video/mp4' }, { quoted: m }) 
 //await await conn.sendMessage(m.chat, { video: { url: dl_url }, fileName: `${ttl}.mp4`, mimetype: 'video/mp4', caption: `💜 ${ttl}`, thumbnail: await fetch(thumbnail) }, { quoted: m }) 
 await m.react(sent)    
 await message.react(correct)
@@ -164,10 +161,10 @@ size = await yt.audio[q].fileSizeH
 await conn.sendFile(m.chat, dl_url, ttl + '.mp3', null, m, false, { mimetype: 'audio/mp4' })
 } catch {
 try {
-lolhuman = await fetch(`https://api.lolhuman.xyz/api/ytaudio2?apikey=${lolkeysapi}&url=${args[0]}`)    
+lolhuman = await fetch(`https://api.lolhuman.xyz/api/ytaudio?apikey=${lolkeysapi}&url=${args[0]}`)    
 lolh = await lolhuman.json()
 n = lolh.result.title || 'error'
-await conn.sendMessage(m.chat, { audio: { url: lolh.result.link }, fileName: `${n}.mp3`, mimetype: 'audio/mp4' }, { quoted: m }) 
+await conn.sendMessage(m.chat, { audio: { url: lolh.result.link.link }, fileName: `${n}.mp3`, mimetype: 'audio/mp4' }, { quoted: m }) 
 } catch (e) {
 reportError(e)
 }}       
