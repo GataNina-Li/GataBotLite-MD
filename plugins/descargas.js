@@ -533,9 +533,9 @@ sourceUrl: `https://github.com/GataNina-Li/GataBotLite-MD`}}})
 if (!regex.test(args[0])) throw 'LINK INCORRECTO';
 let [_, user, repo] = args[0].match(regex) || [];
 repo = repo.replace(/.git$/, '');
-url = `https://api.github.com/repos/${user}/${repo}/zipball`;
-const filename = (await fetch(url, {method: 'HEAD'})).headers.get('content-disposition').match(/attachment; filename=(.*)/)[1];
-conn.sendFile(m.chat, url, filename, null, m);
+let urlrepo = `https://api.github.com/repos/${user}/${repo}/zipball`;
+const filename = (await fetch(urlrepo, {method: 'HEAD'})).headers.get('content-disposition').match(/attachment; filename=(.*)/)[1];
+conn.sendFile(m.chat, urlrepo, filename, null, m);
 break
 }}
 handler.command = /^(gimage|imagen?|play|play2|fgmp3|dlmp3|getaud|yt(a|mp3)?|ytmp3doc|ytadoc|fgmp4|dlmp4|getvid|yt(v|mp4)?|ytmp4doc|ytvdoc|facebook|fb|facebookdl|fbdl|mediafire(dl)?|dlmediafire|ytmax|ytmaxdoc|tiktok|tkdl|dalle|openiamage|aiimage|aiimg|aimage|iaimagen|openaimage|openaiimage|openjourney|journey|midjourney|spotify|music|spot(ify)?search|i(nsta)?g(ram)?(dl)?|igimage|igdownload|(dl)?tw(it(ter(dl|x)?)?)?|x|t?tx|gitclone|clonarepo|clonarrepo|repoclonar)$/i
