@@ -161,14 +161,9 @@ size = await yt.audio[q].fileSizeH
 await conn.sendFile(m.chat, dl_url, ttl + '.mp3', null, m, false, { mimetype: 'audio/mp4' })
 } catch {
 try {*/
-let q = '128kbps'
-let v = text
-const yt = await youtubedl(v).catch(async _ => await youtubedlv2(v))
-const dl_url = await yt.audio[q].download()
-const ttl = await yt.title
-const size = await yt.audio[q].fileSizeH
-await conn.sendFile(m.chat, dl_url, ttl + '.mp3', null, m, false, { mimetype: 'audio/mp4' })
-    
+const dataRE = await fetch(`https://api.akuari.my.id/downloader/youtube?link=${text}`)
+const dataRET = await dataRE.json()
+await conn.sendMessage(m.chat, { audio: { url: dataRET.dl_audio }, mimetype: 'audio/mpeg' }, { quoted: m })   
 //lolhuman = await fetch(`https://api.lolhuman.xyz/api/ytaudio?apikey=${lolkeysapi}&url=${text}`)    
 //lolh = await lolhuman.json()
 //n = lolh.result.title || 'error'
