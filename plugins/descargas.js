@@ -152,7 +152,7 @@ case isCommand4:
 if (!args[0]) return m.reply(lenguajeGB.smsMalused2() + `*${usedPrefix + command} https://youtu.be/ejemplo*\n*${usedPrefix + command} https://www.youtube.com/ejemplo*`)
 await conn.reply(m.chat, lenguajeGB.smsAvisoEG() + '*' + lenguajeGB.smsYTA1() + '*', m)
 try {
-q = '128kbps'
+/*q = '128kbps'
 v = args[0]
 yt = await youtubedl(v).catch(async _ => await youtubedlv2(v)).catch(async _ => await youtubedlv3(v))
 dl_url = await yt.audio[q].download()
@@ -160,7 +160,7 @@ ttl = await yt.title
 size = await yt.audio[q].fileSizeH
 await conn.sendFile(m.chat, dl_url, ttl + '.mp3', null, m, false, { mimetype: 'audio/mp4' })
 } catch {
-try {
+try {*/
 lolhuman = await fetch(`https://api.lolhuman.xyz/api/ytaudio?apikey=${lolkeysapi}&url=${args[0]}`)    
 lolh = await lolhuman.json()
 n = lolh.result.title || 'error'
