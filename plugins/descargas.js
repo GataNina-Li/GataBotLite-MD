@@ -181,7 +181,7 @@ await conn.reply(m.chat, lenguajeGB.smsAvisoEG() + '*' + lenguajeGB.smsYTA2() + 
 let vid = (await yts(text)).all[0]
 const yt_play = await search(args.join(" "))
 //if (!yt_play) return m.reply(lenguajeGB.smsMalError2() + `_${lenguajeGB.smsYT6()}_`)
-let { title, description, url, thumbnail, videoId, timestamp, views, published } = vid
+let { title, description, url:url, thumbnail, videoId, timestamp, views, published } = vid
 try {
 let searchh = await yts(text)
 let __res = searchh.all.map(v => v).filter(v => v.type == "video")
