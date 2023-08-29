@@ -167,7 +167,7 @@ n = lolh.result.title || 'error'
 await conn.sendMessage(m.chat, { audio: { url: lolh.result.link.link }, fileName: `${n}.mp3`, mimetype: 'audio/mp4' }, { quoted: m }) 
 } catch (e) {
 reportError(e)
-}}       
+}//}       
 break
         
 case isCommand5:
