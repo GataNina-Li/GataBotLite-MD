@@ -217,7 +217,7 @@ n = lolh.result.title || 'error'
 n2 = lolh.result.link
 n3 = lolh.result.size
 n4 = lolh.result.thumbnail
-await conn.sendMessage(m.chat, { video: { url: n2 }, fileName: `${n}.mp4`, mimetype: 'video/mp4', caption: `*💫 ${n}*\n*⚖️ ${n3}*`, thumbnail: await fetch(n4) }, { quoted: m })
+await conn.sendMessage(m.chat, { video: { url: n2 }, fileName: `${n}.mp4`, mimetype: 'video/mp4', caption: `*💫 ${n}*${n3 !== undefined ? `\n*⚖️ ${n3}*` : ''}`, thumbnail: await fetch(n4) }, { quoted: m })
 } catch (e) {
 reportError(e)}}     
 break
