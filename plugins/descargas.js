@@ -152,7 +152,7 @@ case isCommand4:
 if (!args[0]) return m.reply(lenguajeGB.smsMalused2() + `*${usedPrefix + command} https://youtu.be/ejemplo*\n*${usedPrefix + command} https://www.youtube.com/ejemplo*`)
 await conn.reply(m.chat, lenguajeGB.smsAvisoEG() + '*' + lenguajeGB.smsYTA1() + '*', m)
 try {
-/*q = '128kbps'
+q = '128kbps'
 v = args[0]
 yt = await youtubedl(v).catch(async _ => await youtubedlv2(v)).catch(async _ => await youtubedlv3(v))
 dl_url = await yt.audio[q].download()
@@ -160,7 +160,7 @@ ttl = await yt.title
 size = await yt.audio[q].fileSizeH
 await conn.sendFile(m.chat, dl_url, ttl + '.mp3', null, m, false, { mimetype: 'audio/mp4' })
 } catch {
-try {*/
+try {
 let searchh = await yts(text)
 let __res = searchh.all.map(v => v).filter(v => v.type == "video")
 let infoo = await ytdl.getInfo('https://youtu.be/' + __res[0].videoId)
@@ -172,21 +172,22 @@ await conn.sendMessage(m.chat, { audio: { url: ress.url }, mimetype: 'audio/mpeg
 //await conn.sendMessage(m.chat, { audio: { url: lolh.result.link.link }, fileName: `${n}.mp3`, mimetype: 'audio/mp4' }, { quoted: m }) 
 } catch (e) {
 reportError(e)
-}//}       
+}}       
 break
         
 case isCommand5:
 if (!args[0]) return m.reply(lenguajeGB.smsMalused2() + `*${usedPrefix + command} https://youtu.be/ejemplo*\n*${usedPrefix + command} https://www.youtube.com/ejemplo*`)
 await conn.reply(m.chat, lenguajeGB.smsAvisoEG() + '*' + lenguajeGB.smsYTA2() + '*', m)
+let vid = (await yts(text)).all[0]
+const yt_play = await search(args.join(" "))
+//if (!yt_play) return m.reply(lenguajeGB.smsMalError2() + `_${lenguajeGB.smsYT6()}_`)
+let { title, description, url, thumbnail, videoId, timestamp, views, published } = vid
 try {
-q = '128kbps'
-v = args[0]
-yt = await youtubedl(v).catch(async _ => await youtubedlv2(v)).catch(async _ => await youtubedlv3(v))
-dl_url = await yt.audio[q].download()
-ttl = await yt.title
-size = await yt.audio[q].fileSizeH
-cap = `🎼 *AUDIO* 🎼\n\n*⎔ ${ttl}*\n\n*⎔ ${size}*`.trim()
-await conn.sendMessage(m.chat, { document: { url: dl_url }, caption: cap, mimetype: 'audio/mpeg', fileName: `${ttl}.mp3`}, { quoted: m })
+let searchh = await yts(text)
+let __res = searchh.all.map(v => v).filter(v => v.type == "video")
+let infoo = await ytdl.getInfo('https://youtu.be/' + __res[0].videoId)
+let ress = await ytdl.chooseFormat(infoo.formats, { filter: 'audioonly' })
+await conn.sendMessage(m.chat, { document: { url: ress.url }, caption: description, mimetype: 'audio/mpeg', fileName: `${title}.mp3`}, { quoted: m })
 } catch {
 try {
 lolhuman = await fetch(`https://api.lolhuman.xyz/api/ytaudio2?apikey=${lolkeysapi}&url=${args[0]}`)   
