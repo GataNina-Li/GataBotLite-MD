@@ -180,8 +180,7 @@ if (!args[0]) return m.reply(lenguajeGB.smsMalused2() + `*${usedPrefix + command
 await conn.reply(m.chat, lenguajeGB.smsAvisoEG() + '*' + lenguajeGB.smsYTA2() + '*', m)
 let vid = (await yts(text)).all[0]
 const yt_play = await search(args.join(" "))
-//if (!yt_play) return m.reply(lenguajeGB.smsMalError2() + `_${lenguajeGB.smsYT6()}_`)
-let { title, description, url:url, thumbnail, videoId, timestamp, views, published } = vid
+let { title, description, url, thumbnail, videoId, timestamp, views, published } = vid
 try {
 let searchh = await yts(text)
 let __res = searchh.all.map(v => v).filter(v => v.type == "video")
@@ -538,7 +537,7 @@ sourceUrl: `https://github.com/GataNina-Li/GataBotLite-MD`}}})
 if (!regex.test(args[0])) throw 'LINK INCORRECTO';
 let [_, user, repo] = args[0].match(regex) || [];
 repo = repo.replace(/.git$/, '');
-const url = `https://api.github.com/repos/${user}/${repo}/zipball`;
+let url = `https://api.github.com/repos/${user}/${repo}/zipball`;
 const filename = (await fetch(url, {method: 'HEAD'})).headers.get('content-disposition').match(/attachment; filename=(.*)/)[1];
 conn.sendFile(m.chat, url, filename, null, m);
 break
