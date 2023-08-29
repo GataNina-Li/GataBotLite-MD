@@ -79,10 +79,10 @@ ${yt_play[0].url}
 url = 'https://www.youtube.com/watch?v=' + videoId
 //let link_web = `https://yt.btch.bz/downloadAudio?URL=${url}&videoName=video`  
 
-const apiUrl = `https://api.akuari.my.id/downloader/yt1?link=${url}`
-const response = await fetch(apiUrl)
-const apiResponse = await response.json() 
-const dl_audio_url = apiResponse.urldl_audio.link
+let apiUrl = `https://api.akuari.my.id/downloader/yt1?link=${url}`
+let response = await fetch(apiUrl)
+let apiResponse = await response.json() 
+let dl_audio_url = apiResponse.urldl_audio.link
 let dl_video_url = apiResponse.urldl_video.link
 ttl = apiResponse.info.title  
 
@@ -149,6 +149,12 @@ setTimeout(() => { message.react(waitemot2) }, 1000)
 //const dl_url = await yt.video[q].download()
 //const ttl = await yt.title
 //const size = await yt.video[q].fileSizeH
+let apiUrl = `https://api.akuari.my.id/downloader/yt1?link=${yt_play[0].url}`
+let response = await fetch(apiUrl)
+let apiResponse = await response.json() 
+let dl_audio_url = apiResponse.urldl_audio.link
+let dl_video_url = apiResponse.urldl_video.link
+ttl = apiResponse.info.title 
 await await conn.sendMessage(m.chat, { video: { url: dl_video_url }, fileName: `${ttl}.mp4`, mimetype: 'video/mp4', caption: `💜 ${ttl}`, thumbnail: await fetch(yt.thumbnail) }, { quoted: m }) 
 await m.react(sent)    
 await message.react(correct)
