@@ -138,7 +138,7 @@ try {
 if (global.conn.user.jid == conn.user.jid) {
 let stdout = execSync('git pull' + (m.fromMe && text ? ' ' + text : ''))
 await conn.reply(m.chat, stdout.toString(), m)}
-//} catch {
+} catch {
 var update = execSync('git remote set-url origin' + md + '.git && git pull')
 await m.reply(update.toString())
 } catch {
