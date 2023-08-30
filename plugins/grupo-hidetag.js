@@ -1,4 +1,4 @@
-import {generateWAMessageFromContent} from '@whiskeysockets/baileys';
+import {generateWAMessageFromContent} from '@whiskeysockets/baileys'
 import * as fs from 'fs';
 const handler = async (m, {conn, text, participants, isOwner, isAdmin}) => {
 try {
