@@ -141,9 +141,7 @@ await conn.reply(m.chat, stdout.toString(), m)}
 } catch {
 var update = execSync('git remote set-url origin' + md + '.git && git pull')
 await m.reply(update.toString())
-} catch {
-await m.reply(`${fg}`) 
-}}
+}        
 break
         
 case isCommand8:
