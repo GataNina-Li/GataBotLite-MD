@@ -8,10 +8,11 @@ text = args.slice(0).join(" ")
 text = m.quoted.text
 } else return  
 const users = participants.map((u) => conn.decodeJid(u.id))
-const q = m.quoted ? m.quoted : m || m.text || m.sender
-const c = m.quoted ? await m.getQuotedObj() : m.msg || m.text || m.sender
-const msg = conn.cMod(m.chat, generateWAMessageFromContent(m.chat, {[m.quoted ? q.mtype : 'extendedTextMessage']: m.quoted ? c.message[q.mtype] : {text: '' || c}}, {quoted: m, userJid: conn.user.id}), text || q.text, conn.user.jid, {mentions: users})
-await conn.relayMessage(m.chat, msg.message, { messageId: msg.key.id })
+await conn.sendMessage(m.chat, { text: text, mentions: users }, { quoted: m }) 
+//const q = m.quoted ? m.quoted : m || m.text || m.sender
+//const c = m.quoted ? await m.getQuotedObj() : m.msg || m.text || m.sender
+//const msg = conn.cMod(m.chat, generateWAMessageFromContent(m.chat, {[m.quoted ? q.mtype : 'extendedTextMessage']: m.quoted ? c.message[q.mtype] : {text: '' || c}}, {quoted: m, userJid: conn.user.id}), text || q.text, conn.user.jid, {mentions: users})
+//await conn.relayMessage(m.chat, msg.message, { messageId: msg.key.id })
 } catch {
 
 // [ By @NeKosmic || https://github.com/NeKosmic/ ]
