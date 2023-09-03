@@ -1,14 +1,14 @@
-import { watchFile, unwatchFile } from 'fs'  
+import { watchFile, unwatchFile } from 'fs' 
 import chalk from 'chalk'
 import { fileURLToPath } from 'url'
 import fs from 'fs'
 import cheerio from 'cheerio'
 import fetch from 'node-fetch'
 import axios from 'axios'
-import moment from 'moment-timezone' 
-import { en, es, id, ar, pt } from './lib/idiomas/total-idiomas.js' 
+import moment from 'moment-timezone'
+import { en, es, id, ar, pt } from './lib/idiomas/total-idiomas.js'
 
-// ES ➜ Agregué primero el número del Bot como prioridad  
+// ES ➜ Agregué primero el número del Bot como prioridad
 // ES ➜ Si desea recibir reportes debe de usar los tres parámetros (Número, nombre y true)
 // EN ➜ Add the Bot number as priority first
 // EN ➜ If you want to receive reports you must use the three parameters (Number, name and true)
