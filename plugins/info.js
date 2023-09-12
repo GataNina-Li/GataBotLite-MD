@@ -9,6 +9,7 @@ import { performance } from 'perf_hooks'
 import fetch from 'node-fetch'
 import osu from 'node-os-utils'
 import { sizeFormatter } from 'human-readable'
+import ws from 'ws';
 
 let handler = async (m, { conn, command, usedPrefix, args, text, __dirname, isOwner, isRowner, DevMode }) => {
 let name, _uptime, _muptime, uptime, totalreg, fkontak, rtotalreg, frep, _package, taguser, groups
@@ -191,7 +192,7 @@ _uptime = process.uptime() * 1000
 uptime = clockString(_uptime) 
 totalreg = Object.keys(global.db.data.users).length
 rtotalreg = Object.values(global.db.data.users).filter(user => user.registered == true).length
-let totaljadibot = [...new Set([...global.conns.filter(conn => conn.user && conn.state !== 'close').map(conn => conn.user)])] 
+let totaljadibot = [...new Set([...global.conns.filter((conn) => conn.user && conn.ws.socket && conn.ws.socket.readyState !== ws.CLOSED).map((conn) => conn)])];
 const chats = Object.entries(conn.chats).filter(([id, data]) => id && data.isChats)
 //const groupsIn = chats.filter(([id]) => id.endsWith('@g.us'))
 groups = chats.filter(([id]) => id.endsWith('@g.us'))
