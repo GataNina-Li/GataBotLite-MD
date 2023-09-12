@@ -22,7 +22,8 @@ resolve()
  * @param {import('@whiskeysockets/baileys').BaileysEventMap<unknown>['messages.upsert']} groupsUpdate 
  */
 export async function handler(chatUpdate) {
-this.msgqueque = this.msgqueque || []
+this.msgqueque = this.msgqueque || [];
+this.uptime = this.uptime || Date.now();
 if (!chatUpdate)
 return
 this.pushMessage(chatUpdate.messages).catch(console.error)
@@ -84,16 +85,16 @@ if (typeof chat !== 'object')
 global.db.data.chats[m.chat] = {}
                 
 if (chat) {
-if (!('isBanned' in chat)) chat.isBanned = false                    
-if (!('welcome' in chat)) chat.welcome = true                    
+if (!('isBanned' in chat)) chat.isBanned = false    
+if (!('welcome' in chat)) chat.welcome = true            
 if (!('detect' in chat)) chat.detect = true                    
-if (!('sWelcome' in chat)) chat.sWelcome = ''                    
+if (!('sWelcome' in chat)) chat.sWelcome = ''            
 if (!('sBye' in chat)) chat.sBye = ''                    
-if (!('sPromote' in chat)) chat.sPromote = ''                    
+if (!('sPromote' in chat)) chat.sPromote = ''              
 if (!('sDemote' in chat)) chat.sDemote = '' 
-if (!('delete' in chat)) chat.delete = true                        
+if (!('delete' in chat)) chat.delete = true                  
 if (!('antiver' in chat)) chat.viewonce = true         
-if (!('modoadmin' in chat)) chat.modoadmin = false           
+if (!('modoadmin' in chat)) chat.modoadmin = false     
 if (!('antiLink' in chat)) chat.antiLink = false
 if (!('antiLink2' in chat)) chat.antiLink2 = false    
 if (!('antiTiktok' in chat)) chat.antiTiktok = false
@@ -107,7 +108,6 @@ if (!('antiTraba' in chat)) chat.antiTraba = true
 if (!('antitoxic' in chat)) chat.antitoxic = true 
 if (!('reaction' in chat)) chat.reaction = true
 if (!isNumber(chat.expired)) chat.expired = 0
-
 } else
 global.db.data.chats[m.chat] = {
 isBanned: false,
@@ -137,7 +137,6 @@ expired: 0,
             
 let settings = global.db.data.settings[this.user.jid]
 if (typeof settings !== 'object') global.db.data.settings[this.user.jid] = {}
-	
 if (settings) {
 if (!('self' in settings)) settings.self = false
 if (!('autoread' in settings)) settings.autoread = false
@@ -146,7 +145,6 @@ if (!('antiCall' in settings)) settings.antiCall = true
 if (!('antiPrivate' in settings)) settings.antiPrivate = false
 if (!('autoread2' in settings)) settings.autoread2 = false
 if (!('jadibotmd' in settings)) settings.jadibotmd = true  
-
 } else global.db.data.settings[this.user.jid] = {
 self: false,
 autoread: false,
@@ -156,7 +154,6 @@ antiCall: true,
 antiPrivate: false,
 jadibotmd: true,
 }
-	
 } catch (e) {
 console.error(e)
 }
@@ -573,9 +570,13 @@ let prep = generateWAMessageFromContent(m.chat, { extendedTextMessage: { text: m
 if (msg) return conn.relayMessage(m.chat, prep.message, { messageId: prep.key.id })
 }
 
-let file = global.__filename(import.meta.url, true)
+const file = global.__filename(import.meta.url, true);
 watchFile(file, async () => {
-unwatchFile(file)
+unwatchFile(file);
 console.log(chalk.bold.greenBright(lenguajeGB['smsHandler']()))
-if (global.reloadHandler) console.log(await global.reloadHandler())
-})
+if (global.reloadHandler) console.log(await global.reloadHandler());
+if (global.conns && global.conns.length > 0 ) {
+const users = [...new Set([...global.conns.filter((conn) => conn.user && conn.ws.socket && conn.ws.socket.readyState !== ws.CLOSED).map((conn) => conn)])];
+for (const userr of users) {
+userr.subreloadHandler(false)
+}}});
