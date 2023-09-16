@@ -14,7 +14,7 @@ import { en, es, id, ar, pt } from './lib/idiomas/total-idiomas.js'
 // EN ➜ If you want to receive reports you must use the three parameters (Number, name and true)
 global.owner = [
 ['593993684821', '𝙂𝙖𝙩𝙖𝘽𝙤𝙩𝙇𝙞𝙩𝙚-𝙈𝘿 🌻🐈', true],
-['595975740803', '𝙊𝙬𝙣𝙚𝙧 💖🐈', true], 
+['5521979491850', '𝙊𝙬𝙣𝙚𝙧 💖🐈', true], 
 ['593968585383'], ['5492266466080'], ['5217294888993'], ['5492266613038'], ['51906662557']]
 
 global.mods = [] 
@@ -24,7 +24,7 @@ global.prems = []
 // EN ➜ Add the language code which GataBot will use
 //  es = Español      id = Bahasa Indonesia       ar = عرب
 //  en = English      pt = Português 
-global.lenguajeGB = es  //<-- Predeterminado en idioma Español 
+global.lenguajeGB = pt  //<-- Predeterminado en idioma Español 
 
 // confirmación en el ajuste de idioma y owner en la consola
 global.languageLen = ""
@@ -96,7 +96,7 @@ global.official = [
 global.mail = '' //agrega tú correo
 global.desc = '' //agrega una descripción corta
 global.desc2 = '' //agrega una descripción larga (Solo se aplicará si su whasapp no tiene descripción)
-global.country = '' //agrega tú país ejemplo: 🇪🇨
+global.country = '' //agrega tú país ejemplo: 🇧🇷
 
 global.vs = '1.3.2-(beta)'
 global.vsJB = '4.0'
