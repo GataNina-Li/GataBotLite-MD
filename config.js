@@ -99,7 +99,7 @@ global.desc2 = '' //agrega una descripción larga (Solo se aplicará si su whasa
 global.country = '' //agrega tú país ejemplo: 🇪🇨
 
 global.vs = '1.3.2-(beta)'
-global.vsJB = '4.0'
+global.vsJB = '4.5 (Beta)'
 
 global.gt = '𝙂𝙖𝙩𝙖𝘽𝙤𝙩𝙇𝙞𝙩𝙚-𝙈𝘿'
 global.yt = 'https://youtube.com/@gatadios'
