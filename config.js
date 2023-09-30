@@ -108,6 +108,7 @@ global.ig = 'https://www.instagram.com/gata_dios'
 global.md = 'https://github.com/GataNina-Li/GataBotLite-MD'
 global.fb = 'https://www.facebook.com/groups/872989990425789/'
 
+global.n2 = 'https://whatsapp.com/channel/0029Va4QjH7DeON0ePwzjS1A' //CANAL GATABOT
 global.nna = 'https://chat.whatsapp.com/DVhu9S9Zr7cBFFl26N61U3' //UPDATE GATABOT
 global.nn2 = 'https://chat.whatsapp.com/HLXJUIznsbHJ3LF6pTgmh6' //UPDATE 2
 global.nna2 = 'https://chat.whatsapp.com/JRFOdyjNqhwEJcDQoBCHzL' //Help
@@ -166,7 +167,7 @@ global.img21 = 'https://i.imgur.com/3fJTaX6.jpeg'
 global.img21 = 'https://i.imgur.com/akofqcE.jpeg' //paypal
 
 global.welgata = [ig, yt2, yt2, ig, md, ig, yt, paypal, yt2, yt2, ig, fb]
-global.redesMenu = [nna, nn, nnn, nnnt, nnntt, nnnttt, nnnttt1, nnnttt2, nnnttt3, nnnttt4, md, ig, paypal, yt, asistencia, fb]
+global.redesMenu = [n2, nna, nn, nnn, nnnt, nnntt, nnnttt, nnnttt1, nnnttt2, nnnttt3, nnnttt4, md, ig, paypal, yt, asistencia, fb]
 global.gataMenu = [img, img2, img6, img7, img8, img9, img13, img14, img15, img17, img18, img19, img20, img21]
 global.gataImg = [imagen1, imagen2, imagen3, imagen4, imagen5, imagen6, imagen7, imagen8, imagen9, imagen10, imagen11, imagen12, imagen13]
 
