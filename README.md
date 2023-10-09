@@ -34,7 +34,7 @@
 
 
 [`♻️ App Termux`](https://f-droid.org/es/packages/com.termux/)
-### 🌸 INSTALACIÓN AUTOMÁTICA - TERMUX 🌸
+### 🌸 INSTALACIÓN AUTOMÁTICA 🌸
 <a href="https://youtu.be/tzM0f_N8BII">
 <img src="https://img.shields.io/badge/Tutorial-FF0000?style=for-the-badge&logo=youtube&logoColor=white" alt="Tutorial"> </a>
 
