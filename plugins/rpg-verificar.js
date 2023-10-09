@@ -1,4 +1,3 @@
-//import { en, es, id, ar, pt } from '../lib/idiomas/total-idiomas.js'
 import { createHash } from 'crypto'
 let Reg = /\|?(.*)([.|] *?)([0-9]*)$/i
 let handler = async function (m, { conn, text, usedPrefix, command }) {
@@ -8,7 +7,6 @@ return list[Math.floor(Math.random() * list.length)]
 let tag = `${m.sender.split("@")[0]}`
 let aa = tag + '@s.whatsapp.net'
 let user = global.db.data.users[m.sender]
-//let [_, name, splitter, age] = text.match(Reg)
   
 if (command == 'verificar') {  
 if (user.registered === true) return m.reply(lenguajeGB.smsVerify0(usedPrefix) + '*')
@@ -33,10 +31,17 @@ const nombresIdiomas = {
 }
 let listaIdiomasTexto = ''
 codigosIdiomas.forEach((codigo, index) => {
-listaIdiomasTexto += `[ ${index + 1} ] » ${nombresIdiomas[codigo]}\n`
+listaIdiomasTexto += `\`\`\`[ ${index + 1} ] » ${nombresIdiomas[codigo]}\`\`\`\n`
 })
-let genText = `🌟 *SELECCIONA EL IDIOMA EL CUAL VA INTERACTUAR GATABOT CONTIGO*
-${listaIdiomasTexto}`
+let genText = `🌟 *NUEVA FUNCIÓN - MULTI LENGUAJE DINÁMICO (BETA)*\n
+🫶 *SELECCIONA EL IDIOMA EL CUAL VA INTERACTUAR GATABOT CONTIGO*
+
+👉 *ESCRIBA EL NÚMERO PARA ELEGIR EL IDIOMA, EJEMPLO:*
+✓ \`\`\`${usedPrefix}idiomagb 2️⃣\`\`\`\n✓ \`\`\`${usedPrefix}idiomagb 2\`\`\`
+
+${listaIdiomasTexto}
+
+❇️ *SU REGISTRO ESTÁ EN PAUSA, COMPLETE EL IDIOMA PARA CONTINUAR*`
 await conn.sendMessage(m.chat, { text: genText }, { quoted: m })	
 }  
 if (command == 'idiomagb') { 
