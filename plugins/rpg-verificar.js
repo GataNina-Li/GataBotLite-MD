@@ -49,7 +49,6 @@ let idioma = ''
 function asignarIdioma(text) {
 if (!text) return conn.sendMessage(m.chat, { text: `${lenguajeGB['smsAvisoAG']()}*ESCRIBA UN NÚMERO PARA ELEGIR EL IDIOMA, EJEMPLO:*\n\n✓ \`\`\`${usedPrefix}idiomagb 2️⃣\`\`\`\n✓ \`\`\`${usedPrefix}idiomagb 2\`\`\`` }, { quoted: m })	 
 var emojiANumero = { "0️⃣": "0", "1️⃣": "1", "2️⃣": "2", "3️⃣": "3", "4️⃣": "4", "5️⃣": "5", "6️⃣": "6", "7️⃣": "7", "8️⃣": "8", "9️⃣": "9" }
-function asignarIdentidad(text) {
 text = text.replace(/[\d️⃣]/g, function(match) {
 return emojiANumero[match] || match
 })
@@ -89,7 +88,7 @@ user.regTime = + new Date
 user.registered = true
 let sn = createHash('md5').update(m.sender).digest('hex').slice(0, 6)	
 let who = m.mentionedJid && m.mentionedJid[0] ? m.mentionedJid[0] : m.quoted ? m.quoted.sender : m.fromMe ? conn.user.jid : m.sender
-let pp = conn.profilePictureUrl(who, 'image').catch(_ => gataMenu.getRandom())
+let pp = await conn.profilePictureUrl(who, 'image').catch(_ => gataMenu.getRandom())
 let caption = `${lenguajeGB.smsVerify7()}
 
 *⎔ ${lenguajeGB.smsPerfil1()}* 
