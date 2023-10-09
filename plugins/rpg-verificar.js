@@ -44,7 +44,7 @@ ${listaIdiomasTexto}
 await conn.sendMessage(m.chat, { text: genText }, { quoted: m })	
 }  
 if (command == 'idiomagb') {
-if (!user.name || !user.age) return return conn.sendMessage(m.chat, { text: `${lenguajeGB['smsAvisoFG']()}*REGISTRE SU NOMBRE Y EDAD PARA PODER USAR ESTE COMANDO*` }, { quoted: m }) 
+if (!user.name || !user.age) return conn.sendMessage(m.chat, { text: `${lenguajeGB['smsAvisoFG']()}*REGISTRE SU NOMBRE Y EDAD PARA PODER USAR ESTE COMANDO*` }, { quoted: m }) 
 let idioma = ''
 function asignarIdioma(text) {
 if (!text) return conn.sendMessage(m.chat, { text: `${lenguajeGB['smsAvisoAG']()}*ESCRIBA EL NÚMERO EL CUÁL SELECCIONARÁ EL IDIOMA, EJEMPLO:*\n\n✓ \`\`\`${usedPrefix}idiomagb 2️⃣\`\`\`\n✓ \`\`\`${usedPrefix}idiomagb 2\`\`\`` }, { quoted: m })	 
