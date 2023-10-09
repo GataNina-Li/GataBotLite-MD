@@ -57,7 +57,7 @@ if (command == 'idiomagb') {
     } else {
         return conn.reply(m.chat, `${lenguajeGB['smsAvisoAG']()}*RECUERDA USAR EL EMOJI NUMÉRICO PARA SELECCIONAR EL IDIOMA, EJEMPLO*\n\n✓ \`\`\`${usedPrefix}idiomagb 2️⃣\`\`\`\n✓ \`\`\`${usedPrefix}idiomagb 2\`\`\``, m);
     }
-}
+
 
 if (!user.GBLanguage) return
 m.reply(`Idioma configurado como: ${user.userLanguage}`)
