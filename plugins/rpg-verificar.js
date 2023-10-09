@@ -23,8 +23,6 @@ if (name.length >= 30) return m.reply(lenguajeGB.smsVerify6())
 user.name = name + 'ͧͧͧͦꙶͣͤ✓ᚲᴳᴮ'.trim()
 user.age = age
 
-
-
 const codigosIdiomas = ['es', 'en', 'pt', 'id', 'ar']
 const nombresIdiomas = {
 'es': 'Español',
@@ -40,6 +38,7 @@ listaIdiomasTexto += `[ ${index + 1} ] » ${nombresIdiomas[codigo]}\n`
 let genText = `🌟 *SELECCIONA EL IDIOMA EL CUAL VA INTERACTUAR GATABOT CONTIGO*
 ${listaIdiomasTexto}`
 await conn.sendMessage(m.chat, { text: genText }, { quoted: m })	
+text = ''  
 }  
 if (command == 'idiomagb') { 
 function asignarIdioma(text) {
@@ -70,7 +69,6 @@ return conn.reply(m.chat, `${lenguajeGB['smsAvisoAG']()}*RECUERDE USAR EL EMOJI 
 }}
 asignarIdioma(text)
 
-  
 if (!user.GBLanguage) return
 m.reply(`Idioma configurado como: ${user.userLanguage}`)
 user.regTime = + new Date
