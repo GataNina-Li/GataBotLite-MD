@@ -45,23 +45,23 @@ if (text < 1 || text > 5) return conn.reply(m.chat, `${lenguajeGB['smsAvisoFG'](
 switch (text) {
 case "1️⃣":
 case "1":
-user.userLanguage = 'es'
+user.GBLanguage = 'es'
 break
 case "2️⃣":
 case "2":
-user.userLanguage = 'en'
+user.GBLanguage = 'en'
 break
 case "3️⃣":
 case "3":
-user.userLanguage = 'pt'
+user.GBLanguage = 'pt'
 break
 case "4️⃣":
 case "4":
-user.userLanguage = 'id'
+user.GBLanguage = 'id'
 break   
 case "5️⃣":
 case "5":
-user.userLanguage = 'ar'
+user.GBLanguage = 'ar'
 break
 default:
 return conn.reply(m.chat, `${lenguajeGB['smsAvisoAG']()}*RECUERDE USAR EL EMOJI NUMÉRICO, EMOJI DE GÉNERO O TEXTO NUMÉRICO PARA SELECCIONAR EL IDIOMA, EJEMPLO*\n\n✓ \`\`\`${usedPrefix}idiomagb 2️⃣\`\`\`\n✓ \`\`\`${usedPrefix}idiomagb 2\`\`\``, m)
@@ -69,7 +69,7 @@ return conn.reply(m.chat, `${lenguajeGB['smsAvisoAG']()}*RECUERDE USAR EL EMOJI 
 asignarIdioma(text)
 
   
-if (!user.userLanguage) return
+if (!user.GBLanguage) return
 m.reply(`Idioma configurado como: ${user.userLanguage}`)
 user.regTime = + new Date
 user.registered = true
