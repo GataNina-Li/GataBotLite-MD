@@ -78,7 +78,7 @@ case "5":
 idioma = 'ar'
 break
 default:
-//if (text == 0 || text > 5) return
+if (text == 0 || text > 5) return
 return conn.reply(m.chat, `${lenguajeGB['smsAvisoAG']()}*RECUERDE USAR EL EMOJI NUMÉRICO O TEXTO NUMÉRICO PARA SELECCIONAR EL IDIOMA, EJEMPLO*\n\n✓ \`\`\`${usedPrefix}idiomagb 2️⃣\`\`\`\n✓ \`\`\`${usedPrefix}idiomagb 2\`\`\``, m)
 }}
 asignarIdioma(text)
