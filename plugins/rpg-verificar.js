@@ -89,7 +89,7 @@ user.regTime = + new Date
 user.registered = true
 let sn = createHash('md5').update(m.sender).digest('hex').slice(0, 6)	
 let who = m.mentionedJid && m.mentionedJid[0] ? m.mentionedJid[0] : m.quoted ? m.quoted.sender : m.fromMe ? conn.user.jid : m.sender
-let pp = await conn.profilePictureUrl(who, 'image').catch(_ => gataMenu.getRandom())
+let pp = conn.profilePictureUrl(who, 'image').catch(_ => gataMenu.getRandom())
 let caption = `${lenguajeGB.smsVerify7()}
 
 *⎔ ${lenguajeGB.smsPerfil1()}* 
