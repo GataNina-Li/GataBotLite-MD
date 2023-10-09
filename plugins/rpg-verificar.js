@@ -83,7 +83,7 @@ return conn.reply(m.chat, `${lenguajeGB['smsAvisoAG']()}*RECUERDE USAR EL EMOJI 
 }}
 asignarIdioma(text)
 user.GBLanguage = idioma
-if (text == 0 || text > 5 || regex.test(text)) return
+if (regex.test(text) || text == 0 || text > 5) return
 m.reply(`Idioma configurado como: ${user.GBLanguage}`)
 user.regTime = + new Date
 user.registered = true
