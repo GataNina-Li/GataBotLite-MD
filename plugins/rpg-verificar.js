@@ -23,53 +23,40 @@ if (name.length >= 30) return m.reply(lenguajeGB.smsVerify6())
 user.name = name + 'ͧͧͧͦꙶͣͤ✓ᚲᴳᴮ'.trim()
 user.age = age
 
-const codigosIdiomas = ['es', 'en', 'pt', 'id', 'ar']
+const codigosIdiomas = ['es', 'en', 'pt', 'id', 'ar'];
 const nombresIdiomas = {
-'es': 'Español',
-'en': 'Inglés',
-'pt': 'Portugués',
-'id': 'Indonesio',
-'ar': 'Árabe'
-}
-let listaIdiomasTexto = ''
+    'es': 'Español',
+    'en': 'Inglés',
+    'pt': 'Portugués',
+    'id': 'Indonesio',
+    'ar': 'Árabe'
+};
+
+const emojiNumerico = {
+    '1️⃣': '1',
+    '2️⃣': '2',
+    '3️⃣': '3',
+    '4️⃣': '4',
+    '5️⃣': '5'
+};
+
+let listaIdiomasTexto = '';
 codigosIdiomas.forEach((codigo, index) => {
-listaIdiomasTexto += `[ ${index + 1} ] » ${nombresIdiomas[codigo]}\n`
-})
-let genText = `🌟 *SELECCIONA EL IDIOMA EL CUAL VA INTERACTUAR GATABOT CONTIGO*
-${listaIdiomasTexto}`
-await conn.sendMessage(m.chat, { text: genText }, { quoted: m })	
-text = ''  
-}  
-if (command == 'idiomagb') { 
-let idioma = ''
-function asignarIdioma(text) {
-//if (text < 1 || text > 5) return conn.reply(m.chat, `${lenguajeGB['smsAvisoFG']()}*"${text}" NO ES VÁLIDO PARA ELEGIR, RECUERDE USAR EL EMOJI NUMÉRICO O TEXTO NUMÉRICO PARA SELECCIONAR EL IDIOMA, EJEMPLO*\n\n✓ \`\`\`${usedPrefix}idiomagb 2️⃣\`\`\`\n✓ \`\`\`${usedPrefix}idiomagb 2\`\`\``, m) 
-switch (text) {
-case "1️⃣":
-case "1":
-idioma = 'es'
-break
-case "2️⃣":
-case "2":
-idioma = 'en'
-break
-case "3️⃣":
-case "3":
-idioma = 'pt'
-break
-case "4️⃣":
-case "4":
-idioma = 'id'
-break   
-case "5️⃣":
-case "5":
-idioma = 'ar'
-break
-default:
-return conn.reply(m.chat, `${lenguajeGB['smsAvisoAG']()}*RECUERDE USAR EL EMOJI NUMÉRICO, EMOJI DE GÉNERO O TEXTO NUMÉRICO PARA SELECCIONAR EL IDIOMA, EJEMPLO*\n\n✓ \`\`\`${usedPrefix}idiomagb 2️⃣\`\`\`\n✓ \`\`\`${usedPrefix}idiomagb 2\`\`\``, m)
-}}
-asignarIdioma(text)
-user.GBLanguage = idioma
+    listaIdiomasTexto += `[ ${index + 1} ] » ${nombresIdiomas[codigo]}\n`;
+});
+
+let genText = `🌟 *SELECCIONA EL IDIOMA CON EL QUE GATABOT INTERACTUARÁ CONTIGO* \n${listaIdiomasTexto}`;
+
+
+if (command == 'idiomagb') {
+    let idioma = '';
+    if (emojiNumerico[text]) {
+        idioma = codigosIdiomas[emojiNumerico[text] - 1];
+        user.GBLanguage = idioma;
+    } else {
+        return conn.reply(m.chat, `${lenguajeGB['smsAvisoAG']()}*RECUERDA USAR EL EMOJI NUMÉRICO PARA SELECCIONAR EL IDIOMA, EJEMPLO*\n\n✓ \`\`\`${usedPrefix}idiomagb 2️⃣\`\`\`\n✓ \`\`\`${usedPrefix}idiomagb 2\`\`\``, m);
+    }
+}
 
 if (!user.GBLanguage) return
 m.reply(`Idioma configurado como: ${user.userLanguage}`)
