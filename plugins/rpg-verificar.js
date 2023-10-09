@@ -30,15 +30,16 @@ const nombresIdiomas = {
 'ar': 'Árabe'
 }
 let listaIdiomasTexto = ''
+listaIdiomasTexto += '*----------------*' 
 codigosIdiomas.forEach((codigo, index) => {
-listaIdiomasTexto += `\`\`\`[ ${index + 1} ] » ${nombresIdiomas[codigo]}\`\`\`\n`
+listaIdiomasTexto += `| \`\`\`[ ${index + 1} ] » ${nombresIdiomas[codigo]}\`\`\`\n`
 })
+listaIdiomasTexto += '*----------------*'    
 let genText = `🌟 *NUEVA FUNCIÓN - MULTI LENGUAJE DINÁMICO (BETA)*\n
-🫶 *SELECCIONA EL IDIOMA EL CUAL VA INTERACTUAR GATABOT CONTIGO*
 👉 *ESCRIBA EL NÚMERO PARA ELEGIR EL IDIOMA, EJEMPLO:*
 ✓ \`\`\`${usedPrefix}idiomagb 2️⃣\`\`\`\n✓ \`\`\`${usedPrefix}idiomagb 2\`\`\`\n
 ${listaIdiomasTexto}
-⚠️ *TENGA EN CONSIDERACIÓN QUE EL IDIOMA QUE SELECCIONE ${packname} SE ENCARGARÁ DE INTERACTUAR EN DICHO IDIOMA, SI SU IDIOMA NO APARECE SOLICITE QUE SE AGREGUE*\n${ig}\n\n
+⚠️ *TENGA EN CONSIDERACIÓN QUE EL IDIOMA QUE SELECCIONE ${packname} SE ENCARGARÁ DE INTERACTUAR EN DICHO IDIOMA, SI SU IDIOMA NO APARECE SOLICITE QUE SE AGREGUE*\n${ig}\n
 ❇️ *SU REGISTRO ESTÁ EN PAUSA, COMPLETE EL IDIOMA PARA CONTINUAR*`
 await conn.sendMessage(m.chat, { text: genText }, { quoted: m })	
 } 
