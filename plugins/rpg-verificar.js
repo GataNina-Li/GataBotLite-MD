@@ -40,8 +40,8 @@ ${listaIdiomasTexto}`
 await conn.sendMessage(m.chat, { text: genText }, { quoted: m })	
   
 if (command == 'idiomagb') {  
-function asignarGenero(text) {
-if (text == 0 && text > 3) return conn.reply(m.chat, `${lenguajeGB['smsAvisoFG']()}*"${text}" NO ES VÁLIDO PARA ELEGIR, RECUERDE USAR EL EMOJI NUMÉRICO O TEXTO NUMÉRICO PARA SELECCIONAR EL IDIOMA, EJEMPLO*\n\n✓ \`\`\`${usedPrefix}idiomagb 2️⃣\`\`\`\n✓ \`\`\`${usedPrefix}idiomagb 2\`\`\``, m) 
+function asignarIdioma(text) {
+if (text == 0 && text > 5) return conn.reply(m.chat, `${lenguajeGB['smsAvisoFG']()}*"${text}" NO ES VÁLIDO PARA ELEGIR, RECUERDE USAR EL EMOJI NUMÉRICO O TEXTO NUMÉRICO PARA SELECCIONAR EL IDIOMA, EJEMPLO*\n\n✓ \`\`\`${usedPrefix}idiomagb 2️⃣\`\`\`\n✓ \`\`\`${usedPrefix}idiomagb 2\`\`\``, m) 
 switch (text) {
 case "1️⃣":
 case "1":
@@ -66,10 +66,10 @@ break
 default:
 return conn.reply(m.chat, `${lenguajeGB['smsAvisoAG']()}*RECUERDE USAR EL EMOJI NUMÉRICO, EMOJI DE GÉNERO O TEXTO NUMÉRICO PARA SELECCIONAR EL IDIOMA, EJEMPLO*\n\n✓ \`\`\`${usedPrefix}idiomagb 2️⃣\`\`\`\n✓ \`\`\`${usedPrefix}idiomagb 2\`\`\``, m)
 }}
-asignarGenero(text)
+asignarIdioma(text)
 
   
-if (user.userLanguage) {
+if (!user.userLanguage) return
 m.reply(`Idioma configurado como: ${user.userLanguage}`)
 user.regTime = + new Date
 user.registered = true
@@ -96,6 +96,6 @@ await conn.sendFile(m.chat, gataImg.getRandom(), 'gata.jpg', caption, m, false, 
 await m.reply(lenguajeGB.smsVerify8(usedPrefix)) 
 await m.reply(`${sn}`) 
 }
-}}
+}
 handler.command = ['verify', 'verificar', 'reg', 'register', 'idiomagb'] ///^(verify|verificar|reg(ister)?|idiomagb)$/i
 export default handler
