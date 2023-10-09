@@ -2,13 +2,14 @@ import { en, es, id, ar, pt } from '../lib/idiomas/total-idiomas.js'
 import { createHash } from 'crypto'
 let Reg = /\|?(.*)([.|] *?)([0-9]*)$/i
 let handler = async function (m, { conn, text, usedPrefix, command }) {
-if (/^(verify|verificar|reg(ister)?)$/i.test(command)) {
 function pickRandom(list) {
 return list[Math.floor(Math.random() * list.length)]
 }
 let tag = `${m.sender.split("@")[0]}`
 let aa = tag + '@s.whatsapp.net'
 let user = global.db.data.users[m.sender]
+  
+if (/^(verify|verificar|reg(ister)?)$/i.test(command)) { 
 if (user.registered === true) return m.reply(lenguajeGB.smsVerify0(usedPrefix) + '*')
 if (!Reg.test(text)) return m.reply(lenguajeGB.smsVerify1(usedPrefix, command))
 let [_, name, splitter, age] = text.match(Reg)
