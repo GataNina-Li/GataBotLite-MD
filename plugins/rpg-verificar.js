@@ -1,5 +1,5 @@
 import { createHash } from 'crypto' 
-let Reg = /\|?(.*)([.|] *?)([0-9]*)$/i
+let Reg = /\|?(.*)([.|] *?)([0-9]*)$/i 
 let handler = async function (m, { conn, text, usedPrefix, command }) {
 function pickRandom(list) {
 return list[Math.floor(Math.random() * list.length)]
