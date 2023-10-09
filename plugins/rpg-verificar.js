@@ -97,6 +97,6 @@ await conn.sendFile(m.chat, gataImg.getRandom(), 'gata.jpg', caption, m, false, 
 await m.reply(lenguajeGB.smsVerify8(usedPrefix)) 
 await m.reply(`${sn}`) 
 }
-}
+}}
 handler.command = /^(verify|verificar|reg(ister)?|idiomagb)$/i
 export default handler
