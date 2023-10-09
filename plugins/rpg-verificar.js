@@ -21,13 +21,13 @@ user.name = name + 'ͧͧͧͦꙶͣͤ✓ᚲᴳᴮ'.trim()
 user.age = age
   
 if (user.name && user.age) {
-const codigosIdiomas = [es, en, pt, id, ar]
+const codigosIdiomas = ['es', 'en', 'pt', 'id', 'ar']
 const nombresIdiomas = {
-es: 'Español',
-en: 'Inglés',
-pt: 'Portugués',
-id: 'Indonesio',
-ar: 'Árabe'
+'es': 'Español',
+'en': 'Inglés',
+'pt': 'Portugués',
+'id': 'Indonesio',
+'ar': 'Árabe'
 }
 let listaIdiomasTexto = ''
 codigosIdiomas.forEach((codigo, index) => {
@@ -42,23 +42,23 @@ if (text == 0 && text > 3) return conn.reply(m.chat, `${lenguajeGB['smsAvisoFG']
 switch (text) {
 case "1️⃣":
 case "1":
-user.userLanguage = codigosIdiomas[0]
+user.userLanguage = es
 break
 case "2️⃣":
 case "2":
-user.userLanguage = codigosIdiomas[1]
+user.userLanguage = en
 break
 case "3️⃣":
 case "3":
-user.userLanguage = codigosIdiomas[2]
+user.userLanguage = pt
 break
 case "4️⃣":
 case "4":
-user.userLanguage = codigosIdiomas[3]
+user.userLanguage = id
 break   
 case "5️⃣":
 case "5":
-user.userLanguage = codigosIdiomas[4]
+user.userLanguage = ar
 break
 default:
 return conn.reply(m.chat, `${lenguajeGB['smsAvisoAG']()}*RECUERDE USAR EL EMOJI NUMÉRICO, EMOJI DE GÉNERO O TEXTO NUMÉRICO PARA SELECCIONAR EL IDIOMA, EJEMPLO*\n\n✓ \`\`\`${usedPrefix}idiomagb 2️⃣\`\`\`\n✓ \`\`\`${usedPrefix}idiomagb 2\`\`\``, m)
