@@ -65,7 +65,7 @@ return conn.reply(m.chat, `${lenguajeGB['smsAvisoAG']()}*RECUERDE USAR EL EMOJI 
 }}
 asignarGenero(text)
 }  
-}
+
 if (user.userLanguage) {
 m.reply(`Idioma configurado como: ${user.userLanguage}`)
 user.regTime = + new Date
@@ -93,6 +93,6 @@ await conn.sendFile(m.chat, gataImg.getRandom(), 'gata.jpg', caption, m, false, 
 await m.reply(lenguajeGB.smsVerify8(usedPrefix)) 
 await m.reply(`${sn}`) 
 }
-}
+}}
 handler.command = /^(verify|verificar|reg(ister)?|idiomagb)$/i
 export default handler
