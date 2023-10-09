@@ -32,13 +32,7 @@ const nombresIdiomas = {
     'ar': 'Árabe'
 };
 
-const emojiNumerico = {
-    '1️⃣': '1',
-    '2️⃣': '2',
-    '3️⃣': '3',
-    '4️⃣': '4',
-    '5️⃣': '5'
-};
+
 
 let listaIdiomasTexto = '';
 codigosIdiomas.forEach((codigo, index) => {
@@ -50,6 +44,14 @@ await conn.sendMessage(m.chat, { text: genText }, { quoted: m })
 }
 
 if (command == 'idiomagb') {
+const emojiNumerico = {
+    '1️⃣': '1',
+    '2️⃣': '2',
+    '3️⃣': '3',
+    '4️⃣': '4',
+    '5️⃣': '5'
+};
+  
     let idioma = '';
     if (emojiNumerico[text]) {
         idioma = codigosIdiomas[emojiNumerico[text] - 1];
