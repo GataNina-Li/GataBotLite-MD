@@ -52,8 +52,8 @@ return emojiANumero[match] || match
 let idioma = ''
 function asignarIdioma(text) { 
 if (!text) return conn.sendMessage(m.chat, { text: `${lenguajeGB['smsAvisoAG']()}*ESCRIBA UN NÚMERO PARA ELEGIR EL IDIOMA, EJEMPLO:*\n\n✓ \`\`\`${usedPrefix}idiomagb 2️⃣\`\`\`\n✓ \`\`\`${usedPrefix}idiomagb 2\`\`\`` }, { quoted: m })	 
-if (regex.test(text)) return conn.sendMessage(m.chat, { text: `${lenguajeGB['smsAvisoFG']()}*"${text}" NO ES VÁLIDO PARA ELEGIR EL IDIOMA, EJEMPLO:*\n\n✓ \`\`\`${usedPrefix}idiomagb 2️⃣\`\`\`\n✓ \`\`\`${usedPrefix}idiomagb 2\`\`\`` }, { quoted: m })	 
-if (text == 0 || (text > 5 && text)) {
+//if (regex.test(text)) return conn.sendMessage(m.chat, { text: `${lenguajeGB['smsAvisoFG']()}*"${text}" NO ES VÁLIDO PARA ELEGIR EL IDIOMA, EJEMPLO:*\n\n✓ \`\`\`${usedPrefix}idiomagb 2️⃣\`\`\`\n✓ \`\`\`${usedPrefix}idiomagb 2\`\`\`` }, { quoted: m })	 
+if (text < 1 || (text > 5 && text)) {
 conn.reply(m.chat, `${lenguajeGB['smsAvisoFG']()}*"${text}" NO ES VÁLIDO PARA ELEGIR, RECUERDE USAR EL EMOJI NUMÉRICO O TEXTO NUMÉRICO PARA SELECCIONAR EL IDIOMA, EJEMPLO*\n\n✓ \`\`\`${usedPrefix}idiomagb 2️⃣\`\`\`\n✓ \`\`\`${usedPrefix}idiomagb 2\`\`\``, m) 
 }
 switch (text) {
@@ -78,13 +78,12 @@ case "5":
 idioma = 'ar'
 break
 default:
-if (text == 0 || text > 5) return
+//if (text == 0 || text > 5) return
 return conn.reply(m.chat, `${lenguajeGB['smsAvisoAG']()}*RECUERDE USAR EL EMOJI NUMÉRICO, EMOJI DE GÉNERO O TEXTO NUMÉRICO PARA SELECCIONAR EL IDIOMA, EJEMPLO*\n\n✓ \`\`\`${usedPrefix}idiomagb 2️⃣\`\`\`\n✓ \`\`\`${usedPrefix}idiomagb 2\`\`\``, m)
-return
 }}
 asignarIdioma(text)
 user.GBLanguage = idioma
-if (text == 0 || text > 5) return
+if (text == 0 || text > 5 || regex.test(text)) return
 m.reply(`Idioma configurado como: ${user.GBLanguage}`)
 user.regTime = + new Date
 user.registered = true
