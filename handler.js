@@ -53,11 +53,12 @@ if (!('premium' in user)) user.premium = false
                     
 if (!user.registered) {		                    	 
 if (!('name' in user)) user.name = m.name
-if (!('GBLanguage' in user)) user.GBLanguage = m.GBLanguage
+//if (!('GBLanguage' in user)) user.GBLanguage = m.GBLanguage
 if (!isNumber(user.regTime)) user.regTime = -1
 if (!isNumber(user.age)) user.age = 0
 }
-		                    		    
+
+if (!isNumber(user.GBLanguage)) user.GBLanguage = 0
 if (!isNumber(user.afk)) user.afk = -1
 if (!('role' in user)) user.role = '*NOVATO(A)* 🪤'
 if (!user.premium) user.premium = false
@@ -76,7 +77,7 @@ money: 150,
 premium: false,
 premiumTime: 0,
 name: m.name,
-GBLanguage: m.GBLanguage,
+GBLanguage: 0,
 regTime: -1,
 registered: false,
 role: '*NOVATO(A)* 🪤',
