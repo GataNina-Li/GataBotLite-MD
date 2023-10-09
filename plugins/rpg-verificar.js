@@ -30,13 +30,13 @@ const nombresIdiomas = {
 'ar': 'Árabe'
 }
 let listaIdiomasTexto = ''
-listaIdiomasTexto += '*╭┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄*\n' 
+listaIdiomasTexto += '*╭┄┄┄┄┄┄┄┄┄┄┄┄┄┄*\n' 
 listaIdiomasTexto += '*┆ 🌐 IDIOMA DINÁMICO 🌐*\n' 
-listaIdiomasTexto += ' *⊢┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄*\n' 
+listaIdiomasTexto += ' *⊢┄┄┄┄┄┄┄┄┄┄┄┄┄┄*\n' 
 codigosIdiomas.forEach((codigo, index) => {
 listaIdiomasTexto += `*┆* \`\`\`[ ${index + 1} ] » ${nombresIdiomas[codigo]}\`\`\`\n`
 })
-listaIdiomasTexto += '*╰┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄*\n'    
+listaIdiomasTexto += '*╰┄┄┄┄┄┄┄┄┄┄┄┄┄┄*\n'    
 let genText = `🌟 *NUEVA FUNCIÓN - MULTI LENGUAJE DINÁMICO (BETA)*\n
 👉 *ESCRIBA EL NÚMERO PARA ELEGIR EL IDIOMA, EJEMPLO:*
 ✓ \`\`\`${usedPrefix}idiomagb 2️⃣\`\`\`\n✓ \`\`\`${usedPrefix}idiomagb 2\`\`\`\n
