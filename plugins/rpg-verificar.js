@@ -10,7 +10,7 @@ let aa = tag + '@s.whatsapp.net'
 let user = global.db.data.users[m.sender]
 let [_, name, splitter, age] = text.match(Reg)
   
-if (/^(verify|verificar|reg(ister)?)$/i.test(command)) { 
+if (command == 'verificar') {  
 if (user.registered === true) return m.reply(lenguajeGB.smsVerify0(usedPrefix) + '*')
 if (!Reg.test(text)) return m.reply(lenguajeGB.smsVerify1(usedPrefix, command))
 if (!name) return m.reply(lenguajeGB.smsVerify2())
@@ -23,7 +23,7 @@ user.name = name + 'ͧͧͧͦꙶͣͤ✓ᚲᴳᴮ'.trim()
 user.age = age
  
 
-if (command.toLowerCase() == 'idiomagb') {  
+if (command == 'idiomagb') {  
 const codigosIdiomas = ['es', 'en', 'pt', 'id', 'ar']
 const nombresIdiomas = {
 'es': 'Español',
