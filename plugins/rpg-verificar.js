@@ -46,7 +46,8 @@ codigosIdiomas.forEach((codigo, index) => {
 });
 
 let genText = `🌟 *SELECCIONA EL IDIOMA CON EL QUE GATABOT INTERACTUARÁ CONTIGO* \n${listaIdiomasTexto}`;
-
+await conn.sendMessage(m.chat, { text: genText }, { quoted: m })
+}
 
 if (command == 'idiomagb') {
     let idioma = '';
