@@ -8,8 +8,40 @@ let tag = `${m.sender.split("@")[0]}`
 let aa = tag + '@s.whatsapp.net'
 let user = global.db.data.users[m.sender]
   
-user 
-}  
+if (command == 'verificar') {  
+if (user.registered === true) return m.reply(lenguajeGB.smsVerify0(usedPrefix) + '*')
+if (!Reg.test(text)) return m.reply(lenguajeGB.smsVerify1(usedPrefix, command))
+let [_, name, splitter, age] = text.match(Reg)  
+if (!name) return m.reply(lenguajeGB.smsVerify2())
+if (!age) return m.reply(lenguajeGB.smsVerify3())
+age = parseInt(age)
+if (age > 50) return m.reply(lenguajeGB.smsVerify4())
+if (age < 10) return m.reply(lenguajeGB.smsVerify5())
+if (name.length >= 30) return m.reply(lenguajeGB.smsVerify6())
+user.name = name + 'ͧͧͧͦꙶͣͤ✓ᚲᴳᴮ'.trim()
+user.age = age
+
+const codigosIdiomas = ['es', 'en', 'pt', 'id', 'ar']
+const nombresIdiomas = {
+'es': 'Español',
+'en': 'Inglés',
+'pt': 'Portugués',
+'id': 'Indonesio',
+'ar': 'Árabe'
+}
+let listaIdiomasTexto = ''
+codigosIdiomas.forEach((codigo, index) => {
+listaIdiomasTexto += `\`\`\`[ ${index + 1} ] » ${nombresIdiomas[codigo]}\`\`\`\n`
+})
+let genText = `🌟 *NUEVA FUNCIÓN - MULTI LENGUAJE DINÁMICO (BETA)*\n
+🫶 *SELECCIONA EL IDIOMA EL CUAL VA INTERACTUAR GATABOT CONTIGO*
+👉 *ESCRIBA EL NÚMERO PARA ELEGIR EL IDIOMA, EJEMPLO:*
+✓ \`\`\`${usedPrefix}idiomagb 2️⃣\`\`\`\n✓ \`\`\`${usedPrefix}idiomagb 2\`\`\`
+${listaIdiomasTexto}
+❇️ *SU REGISTRO ESTÁ EN PAUSA, COMPLETE EL IDIOMA PARA CONTINUAR*`
+await conn.sendMessage(m.chat, { text: genText }, { quoted: m })	
+} 
+  
 if (command == 'idiomagb') {
 if (!user.name || !user.age) return conn.sendMessage(m.chat, { text: `${lenguajeGB['smsAvisoFG']()}*REGISTRE SU NOMBRE Y EDAD PARA PODER USAR ESTE COMANDO*` }, { quoted: m })   
 var emojiANumero = { "0️⃣": "0", "1️⃣": "1", "2️⃣": "2", "3️⃣": "3", "4️⃣": "4", "5️⃣": "5", "6️⃣": "6", "7️⃣": "7", "8️⃣": "8", "9️⃣": "9" }
