@@ -97,5 +97,5 @@ await m.reply(lenguajeGB.smsVerify8(usedPrefix))
 await m.reply(`${sn}`) 
 }
 }}
-handler.command = /^(verify|verificar|reg(ister)?|idiomagb)$/i
+handler.command = ['verify', 'verificar', 'reg', 'register', 'idiomagb'] ///^(verify|verificar|reg(ister)?|idiomagb)$/i
 export default handler
