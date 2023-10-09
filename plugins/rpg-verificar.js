@@ -1,3 +1,4 @@
+import { en, es, id, ar, pt } from './lib/idiomas/total-idiomas.js'
 import { createHash } from 'crypto'
 let Reg = /\|?(.*)([.|] *?)([0-9]*)$/i
 let handler = async function (m, { conn, text, usedPrefix, command }) {
@@ -18,6 +19,55 @@ if (age < 10) return m.reply(lenguajeGB.smsVerify5())
 if (name.length >= 30) return m.reply(lenguajeGB.smsVerify6())
 user.name = name + 'ͧͧͧͦꙶͣͤ✓ᚲᴳᴮ'.trim()
 user.age = age
+  
+if (user.name && user.age) {
+const codigosIdiomas = [es, en, pt, id, ar]
+const nombresIdiomas = {
+es: 'Español',
+en: 'Inglés',
+pt: 'Portugués',
+id: 'Indonesio',
+ar: 'Árabe'
+}
+let listaIdiomasTexto = ''
+codigosIdiomas.forEach((codigo, index) => {
+listaIdiomasTexto += `[ ${index + 1} ] » ${nombresIdiomas[codigo]}\n`
+})
+let genText = `🌟 *SELECCIONA EL IDIOMA EL CUAL VA INTERACTUAR GATABOT CONTIGO*
+${listaIdiomasTexto}`
+if (!text) return conn.sendMessage(m.chat, { text: genText }, { quoted: m })	  
+if (command == 'idiomagb') {
+function asignarGenero(text) {
+if (text == 0 && text > 3) return conn.reply(m.chat, `${lenguajeGB['smsAvisoFG']()}*"${text}" NO ES VÁLIDO PARA ELEGIR, RECUERDE USAR EL EMOJI NUMÉRICO O TEXTO NUMÉRICO PARA SELECCIONAR EL IDIOMA, EJEMPLO*\n\n✓ \`\`\`${usedPrefix}idiomagb 2️⃣\`\`\`\n✓ \`\`\`${usedPrefix}idiomagb 2\`\`\``, m) 
+switch (text) {
+case "1️⃣":
+case "1":
+user.userLanguage = codigosIdiomas[0]
+break
+case "2️⃣":
+case "2":
+user.userLanguage = codigosIdiomas[1]
+break
+case "3️⃣":
+case "3":
+user.userLanguage = codigosIdiomas[2]
+break
+case "4️⃣":
+case "4":
+user.userLanguage = codigosIdiomas[3]
+break   
+case "5️⃣":
+case "5":
+user.userLanguage = codigosIdiomas[4]
+break
+default:
+return conn.reply(m.chat, `${lenguajeGB['smsAvisoAG']()}*RECUERDE USAR EL EMOJI NUMÉRICO, EMOJI DE GÉNERO O TEXTO NUMÉRICO PARA SELECCIONAR EL IDIOMA, EJEMPLO*\n\n✓ \`\`\`${usedPrefix}idiomagb 2️⃣\`\`\`\n✓ \`\`\`${usedPrefix}idiomagb 2\`\`\``, m)
+}}
+asignarGenero(text)
+}  
+}
+if (user.userLanguage) {
+m.reply(`Idioma configurado como: ${user.userLanguage}`)
 user.regTime = + new Date
 user.registered = true
 let sn = createHash('md5').update(m.sender).digest('hex').slice(0, 6)	
@@ -43,5 +93,6 @@ await conn.sendFile(m.chat, gataImg.getRandom(), 'gata.jpg', caption, m, false, 
 await m.reply(lenguajeGB.smsVerify8(usedPrefix)) 
 await m.reply(`${sn}`) 
 }
-handler.command = /^(verify|verificar|reg(ister)?)$/i
+}
+handler.command = /^(verify|verificar|reg(ister)?|idiomagb)$/i
 export default handler
