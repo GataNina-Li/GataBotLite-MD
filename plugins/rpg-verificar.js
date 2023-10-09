@@ -23,6 +23,8 @@ if (name.length >= 30) return m.reply(lenguajeGB.smsVerify6())
 user.name = name + 'ͧͧͧͦꙶͣͤ✓ᚲᴳᴮ'.trim()
 user.age = age
 
+if (command == 'idiomagb') {
+
 const codigosIdiomas = ['es', 'en', 'pt', 'id', 'ar'];
 const nombresIdiomas = {
     'es': 'Español',
@@ -33,6 +35,13 @@ const nombresIdiomas = {
 };
 
 
+const emojiNumerico = {
+    '1️⃣': '1',
+    '2️⃣': '2',
+    '3️⃣': '3',
+    '4️⃣': '4',
+    '5️⃣': '5'
+};
 
 let listaIdiomasTexto = '';
 codigosIdiomas.forEach((codigo, index) => {
@@ -43,14 +52,7 @@ let genText = `🌟 *SELECCIONA EL IDIOMA CON EL QUE GATABOT INTERACTUARÁ CONTI
 await conn.sendMessage(m.chat, { text: genText }, { quoted: m })
 }
 
-if (command == 'idiomagb') {
-const emojiNumerico = {
-    '1️⃣': '1',
-    '2️⃣': '2',
-    '3️⃣': '3',
-    '4️⃣': '4',
-    '5️⃣': '5'
-};
+
   
     let idioma = '';
     if (emojiNumerico[text]) {
