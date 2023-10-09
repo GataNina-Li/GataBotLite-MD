@@ -23,7 +23,7 @@ user.name = name + 'ͧͧͧͦꙶͣͤ✓ᚲᴳᴮ'.trim()
 user.age = age
 }  
 
-if (command.toLowerCase() == 'idiomagb') {
+if (command.toLowerCase() == 'idiomagb') {  
 const codigosIdiomas = ['es', 'en', 'pt', 'id', 'ar']
 const nombresIdiomas = {
 'es': 'Español',
@@ -38,9 +38,8 @@ listaIdiomasTexto += `[ ${index + 1} ] » ${nombresIdiomas[codigo]}\n`
 })
 let genText = `🌟 *SELECCIONA EL IDIOMA EL CUAL VA INTERACTUAR GATABOT CONTIGO*
 ${listaIdiomasTexto}`
-await conn.sendMessage(m.chat, { text: genText }, { quoted: m })	
-//return  
-  
+if (!user.userLanguage) await conn.sendMessage(m.chat, { text: genText }, { quoted: m })	
+
 function asignarGenero(text) {
 if (text == 0 && text > 3) return conn.reply(m.chat, `${lenguajeGB['smsAvisoFG']()}*"${text}" NO ES VÁLIDO PARA ELEGIR, RECUERDE USAR EL EMOJI NUMÉRICO O TEXTO NUMÉRICO PARA SELECCIONAR EL IDIOMA, EJEMPLO*\n\n✓ \`\`\`${usedPrefix}idiomagb 2️⃣\`\`\`\n✓ \`\`\`${usedPrefix}idiomagb 2\`\`\``, m) 
 switch (text) {
