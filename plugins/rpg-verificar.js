@@ -22,7 +22,7 @@ if (age < 10) return m.reply(lenguajeGB.smsVerify5())
 if (name.length >= 30) return m.reply(lenguajeGB.smsVerify6())
 user.name = name + 'ͧͧͧͦꙶͣͤ✓ᚲᴳᴮ'.trim()
 user.age = age
-} 
+
 
 if (command == 'idiomagb') { 
 const codigosIdiomas = ['es', 'en', 'pt', 'id', 'ar']
@@ -40,9 +40,9 @@ listaIdiomasTexto += `[ ${index + 1} ] » ${nombresIdiomas[codigo]}\n`
 let genText = `🌟 *SELECCIONA EL IDIOMA EL CUAL VA INTERACTUAR GATABOT CONTIGO*
 ${listaIdiomasTexto}`
 await conn.sendMessage(m.chat, { text: genText }, { quoted: m })	
-  
+}  
 function asignarIdioma(text) {
-if (text < 1 || text > 5) return conn.reply(m.chat, `${lenguajeGB['smsAvisoFG']()}*"${text}" NO ES VÁLIDO PARA ELEGIR, RECUERDE USAR EL EMOJI NUMÉRICO O TEXTO NUMÉRICO PARA SELECCIONAR EL IDIOMA, EJEMPLO*\n\n✓ \`\`\`${usedPrefix}idiomagb 2️⃣\`\`\`\n✓ \`\`\`${usedPrefix}idiomagb 2\`\`\``, m) 
+//if (text < 1 || text > 5) return conn.reply(m.chat, `${lenguajeGB['smsAvisoFG']()}*"${text}" NO ES VÁLIDO PARA ELEGIR, RECUERDE USAR EL EMOJI NUMÉRICO O TEXTO NUMÉRICO PARA SELECCIONAR EL IDIOMA, EJEMPLO*\n\n✓ \`\`\`${usedPrefix}idiomagb 2️⃣\`\`\`\n✓ \`\`\`${usedPrefix}idiomagb 2\`\`\``, m) 
 switch (text) {
 case "1️⃣":
 case "1":
@@ -83,10 +83,10 @@ let caption = `${lenguajeGB.smsVerify7()}
 • @${tag}
 
 *⎔ ${lenguajeGB.smsPerfil2()}* 
-• ${name}
+• ${user.name}
 
 *⎔ ${lenguajeGB.smsPerfil3()}*
-• ${age}
+• ${user.age}
 
 *⎔ ${lenguajeGB.smsVerify9()}*
 • 'ͧͧͧͦꙶͣͤ✓ᚲᴳᴮ'
