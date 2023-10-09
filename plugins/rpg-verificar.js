@@ -32,7 +32,7 @@ const nombresIdiomas = {
 let listaIdiomasTexto = ''
 listaIdiomasTexto += '*╭┄┄┄┄┄┄┄┄┄┄┄┄┄┄୭̥⋆*｡*\n' 
 listaIdiomasTexto += '*┆ 🌐 IDIOMA DINÁMICO 🌐*\n' 
-listaIdiomasTexto += ' *┆┄┄┄┄┄┄┄┄┄┄┄┄┄┄୭̥⋆*｡*\n' 
+listaIdiomasTexto += '*┆┄┄┄┄┄┄┄┄┄┄┄┄┄┄୭̥⋆*｡*\n' 
 codigosIdiomas.forEach((codigo, index) => {
 listaIdiomasTexto += `*┆* \`\`\`[ ${index + 1} ] » ${nombresIdiomas[codigo]}\`\`\`\n`
 })
