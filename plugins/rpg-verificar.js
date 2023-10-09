@@ -1,4 +1,4 @@
-import { en, es, id, ar, pt } from './lib/idiomas/total-idiomas.js'
+import { en, es, id, ar, pt } from '../lib/idiomas/total-idiomas.js'
 import { createHash } from 'crypto'
 let Reg = /\|?(.*)([.|] *?)([0-9]*)$/i
 let handler = async function (m, { conn, text, usedPrefix, command }) {
