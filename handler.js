@@ -53,6 +53,7 @@ if (!('premium' in user)) user.premium = false
                     
 if (!user.registered) {		                    	 
 if (!('name' in user)) user.name = m.name
+if (!('userLanguage' in user)) user.userLanguage = m.userLanguage
 if (!isNumber(user.regTime)) user.regTime = -1
 if (!isNumber(user.age)) user.age = 0
 }
@@ -75,6 +76,7 @@ money: 150,
 premium: false,
 premiumTime: 0,
 name: m.name,
+userLanguage: m.userLanguage,
 regTime: -1,
 registered: false,
 role: '*NOVATO(A)* 🪤',
