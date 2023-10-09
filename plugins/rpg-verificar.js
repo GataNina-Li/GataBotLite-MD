@@ -21,9 +21,9 @@ if (age < 10) return m.reply(lenguajeGB.smsVerify5())
 if (name.length >= 30) return m.reply(lenguajeGB.smsVerify6())
 user.name = name + 'ͧͧͧͦꙶͣͤ✓ᚲᴳᴮ'.trim()
 user.age = age
-return
 }  
 
+if (command.toLowerCase() == 'idiomagb') {  
 const codigosIdiomas = ['es', 'en', 'pt', 'id', 'ar']
 const nombresIdiomas = {
 'es': 'Español',
@@ -40,7 +40,7 @@ let genText = `🌟 *SELECCIONA EL IDIOMA EL CUAL VA INTERACTUAR GATABOT CONTIGO
 ${listaIdiomasTexto}`
 if (!user.userLanguage) await conn.sendMessage(m.chat, { text: genText }, { quoted: m })	
 return
-if (command.toLowerCase() == 'idiomagb') {  
+
 function asignarGenero(text) {
 if (text == 0 && text > 3) return conn.reply(m.chat, `${lenguajeGB['smsAvisoFG']()}*"${text}" NO ES VÁLIDO PARA ELEGIR, RECUERDE USAR EL EMOJI NUMÉRICO O TEXTO NUMÉRICO PARA SELECCIONAR EL IDIOMA, EJEMPLO*\n\n✓ \`\`\`${usedPrefix}idiomagb 2️⃣\`\`\`\n✓ \`\`\`${usedPrefix}idiomagb 2\`\`\``, m) 
 switch (text) {
@@ -68,7 +68,7 @@ default:
 return conn.reply(m.chat, `${lenguajeGB['smsAvisoAG']()}*RECUERDE USAR EL EMOJI NUMÉRICO, EMOJI DE GÉNERO O TEXTO NUMÉRICO PARA SELECCIONAR EL IDIOMA, EJEMPLO*\n\n✓ \`\`\`${usedPrefix}idiomagb 2️⃣\`\`\`\n✓ \`\`\`${usedPrefix}idiomagb 2\`\`\``, m)
 }}
 asignarGenero(text)
-}  
+}}  
 if (user.name && user.age) {
 if (user.userLanguage) {
 m.reply(`Idioma configurado como: ${user.userLanguage}`)
@@ -97,6 +97,6 @@ await conn.sendFile(m.chat, gataImg.getRandom(), 'gata.jpg', caption, m, false, 
 await m.reply(lenguajeGB.smsVerify8(usedPrefix)) 
 await m.reply(`${sn}`) 
 }
-}}
+}
 handler.command = /^(verify|verificar|reg(ister)?|idiomagb)$/i
 export default handler
