@@ -70,7 +70,7 @@ return conn.reply(m.chat, `${lenguajeGB['smsAvisoAG']()}*RECUERDE USAR EL EMOJI 
 asignarIdioma(text)
 user.GBLanguage = idioma
 
-m.reply(`Idioma configurado como: ${user.userLanguage}`)
+m.reply(`Idioma configurado como: ${user.GBLanguage}`)
 user.regTime = + new Date
 user.registered = true
 let sn = createHash('md5').update(m.sender).digest('hex').slice(0, 6)	
