@@ -41,33 +41,35 @@ await conn.sendMessage(m.chat, { text: genText }, { quoted: m })
 text = ''  
 }  
 if (command == 'idiomagb') { 
+let idioma = ''
 function asignarIdioma(text) {
 //if (text < 1 || text > 5) return conn.reply(m.chat, `${lenguajeGB['smsAvisoFG']()}*"${text}" NO ES VÁLIDO PARA ELEGIR, RECUERDE USAR EL EMOJI NUMÉRICO O TEXTO NUMÉRICO PARA SELECCIONAR EL IDIOMA, EJEMPLO*\n\n✓ \`\`\`${usedPrefix}idiomagb 2️⃣\`\`\`\n✓ \`\`\`${usedPrefix}idiomagb 2\`\`\``, m) 
 switch (text) {
 case "1️⃣":
 case "1":
-user.GBLanguage = 'es'
+idioma = 'es'
 break
 case "2️⃣":
 case "2":
-user.GBLanguage = 'en'
+idioma = 'en'
 break
 case "3️⃣":
 case "3":
-user.GBLanguage = 'pt'
+idioma = 'pt'
 break
 case "4️⃣":
 case "4":
-user.GBLanguage = 'id'
+idioma = 'id'
 break   
 case "5️⃣":
 case "5":
-user.GBLanguage = 'ar'
+idioma = 'ar'
 break
 default:
 return conn.reply(m.chat, `${lenguajeGB['smsAvisoAG']()}*RECUERDE USAR EL EMOJI NUMÉRICO, EMOJI DE GÉNERO O TEXTO NUMÉRICO PARA SELECCIONAR EL IDIOMA, EJEMPLO*\n\n✓ \`\`\`${usedPrefix}idiomagb 2️⃣\`\`\`\n✓ \`\`\`${usedPrefix}idiomagb 2\`\`\``, m)
 }}
 asignarIdioma(text)
+user.GBLanguage = idioma
 
 if (!user.GBLanguage) return
 m.reply(`Idioma configurado como: ${user.userLanguage}`)
