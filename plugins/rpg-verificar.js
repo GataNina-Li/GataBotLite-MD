@@ -1,4 +1,4 @@
-import { en, es, id, ar, pt } from '../lib/idiomas/total-idiomas.js'
+//import { en, es, id, ar, pt } from '../lib/idiomas/total-idiomas.js'
 import { createHash } from 'crypto'
 let Reg = /\|?(.*)([.|] *?)([0-9]*)$/i
 let handler = async function (m, { conn, text, usedPrefix, command }) {
@@ -47,23 +47,23 @@ if (text == 0 && text > 3) return conn.reply(m.chat, `${lenguajeGB['smsAvisoFG']
 switch (text) {
 case "1️⃣":
 case "1":
-user.userLanguage = es
+user.userLanguage = 'es'
 break
 case "2️⃣":
 case "2":
-user.userLanguage = en
+user.userLanguage = 'en'
 break
 case "3️⃣":
 case "3":
-user.userLanguage = pt
+user.userLanguage = 'pt'
 break
 case "4️⃣":
 case "4":
-user.userLanguage = id
+user.userLanguage = 'id'
 break   
 case "5️⃣":
 case "5":
-user.userLanguage = ar
+user.userLanguage = 'ar'
 break
 default:
 return conn.reply(m.chat, `${lenguajeGB['smsAvisoAG']()}*RECUERDE USAR EL EMOJI NUMÉRICO, EMOJI DE GÉNERO O TEXTO NUMÉRICO PARA SELECCIONAR EL IDIOMA, EJEMPLO*\n\n✓ \`\`\`${usedPrefix}idiomagb 2️⃣\`\`\`\n✓ \`\`\`${usedPrefix}idiomagb 2\`\`\``, m)
@@ -71,7 +71,7 @@ return conn.reply(m.chat, `${lenguajeGB['smsAvisoAG']()}*RECUERDE USAR EL EMOJI 
 asignarGenero(text)
 }  
 if (user.userLanguage) {
-m.reply(`Idioma configurado como: ${JSON.stringify(user.userLanguage)}`)
+m.reply(`Idioma configurado como: ${user.userLanguage}`)
 user.regTime = + new Date
 user.registered = true
 let sn = createHash('md5').update(m.sender).digest('hex').slice(0, 6)	
