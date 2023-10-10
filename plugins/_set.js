@@ -1,4 +1,4 @@
-import { en, es, id, ar, pt } from "./idiomas/total-idiomas.js"
+import { en, es, id, ar, pt } from "../idiomas/total-idiomas.js"
 let handler = m => m
 handler.before = async function (m, { conn }) {
 let user = global.db.data.users[m.sender]
