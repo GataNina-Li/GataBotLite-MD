@@ -24,7 +24,7 @@ global.prems = []
 // EN ➜ Add the language code which GataBot will use
 //  es = Español      id = Bahasa Indonesia       ar = عرب
 //  en = English      pt = Português 
-//global.lenguajeGB = es  //<-- Predeterminado en idioma Español 
+global.lenguajeGB = es  //<-- Predeterminado en idioma Español 
 
 // confirmación en el ajuste de idioma y owner en la consola
 global.languageLen = ""
@@ -127,8 +127,8 @@ global.asistencia = 'Wa.me/19393844141' //Dudas? escríbeme...
 
 global.wm = '𝙂𝙖𝙩𝙖𝘽𝙤𝙩𝙇𝙞𝙩𝙚-𝙈𝘿 🌻🐈 : 𝙂𝙖𝙩𝙖 𝘿𝙞𝙤𝙨'
 global.igfg = '𝙂𝙖𝙩𝙖𝘽𝙤𝙩𝙇𝙞𝙩𝙚-𝙈𝘿'
-global.wait = ''//lenguajeGB['smsMeWait']()
-global.wait2 = ''//lenguajeGB.smsWait()
+global.wait = lenguajeGB['smsMeWait']()
+global.wait2 = lenguajeGB.smsWait()
 global.nomorown = owner[0][0]
 
 global.imagen1 = fs.readFileSync('./media/menus/Menu3.jpg')
