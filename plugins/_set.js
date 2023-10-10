@@ -4,6 +4,7 @@ handler.before = async function (m, { conn }) {
 let user = global.db.data.users[m.sender]
   
 //setInterval(() => {
+if(m.text) {
 if (user.GBLanguage == 'es') {
 global.lenguajeGB = es
 } else if (user.GBLanguage == 'en') {
@@ -17,6 +18,6 @@ global.lenguajeGB = id
 } else {
 global.lenguajeGB = es
 //}}, 1000)
-}}
+}}}
 
 export default handler
