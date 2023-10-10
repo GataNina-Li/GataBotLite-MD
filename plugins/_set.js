@@ -1,4 +1,4 @@
-import { en, es, id, ar, pt } from '../lib/idiomas/total-idiomas.js'
+import { en, es, id, ar, pt } from '../lib/idiomas/total-idiomas.js' 
 export async function before(m, { conn }) {
 let user = global.db.data.users[m.sender]
 
