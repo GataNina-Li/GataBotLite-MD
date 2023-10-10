@@ -1,23 +1,21 @@
 import { en, es, id, ar, pt } from '../lib/idiomas/total-idiomas.js'
-let handler = m => m
-handler.before = async function (m, { conn }) {
+export async function before(m, { conn }) {
 let user = global.db.data.users[m.sender]
-  
-//setInterval(() => {
-if(m.text) {
-if (user.GBLanguage == 'es') {
-global.lenguajeGB = es
-} else if (user.GBLanguage == 'en') {
-global.lenguajeGB = en
-} else if (user.GBLanguage == 'pt') {
-global.lenguajeGB = pt
-} else if (user.GBLanguage == 'ar') {
-global.lenguajeGB = ar
-} else if (user.GBLanguage == 'id') {
-global.lenguajeGB = id
-} else {
-global.lenguajeGB = es
-//}}, 1000)
-}}}
 
-export default handler
+let idioma = ''
+if (user.GBLanguage == 'es') {
+idioma = es
+} else if (user.GBLanguage == 'en') {
+idioma = en
+} else if (user.GBLanguage == 'pt') {
+idioma = pt
+} else if (user.GBLanguage == 'ar') {
+idioma = ar
+} else if (user.GBLanguage == 'id') {
+idioma = id
+} else {
+idioma = es
+}
+global.lenguajeGB = idioma
+
+}
