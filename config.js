@@ -25,7 +25,7 @@ global.prems = []
 //  es = Español      id = Bahasa Indonesia       ar = عرب
 //  en = English      pt = Português 
 global.lenguajeGB = es  //<-- Predeterminado en idioma Español 
-let user = global.db.data.users[m.sender]
+
 // confirmación en el ajuste de idioma y owner en la consola
 global.languageLen = ""
 global.registerNumber = ""
