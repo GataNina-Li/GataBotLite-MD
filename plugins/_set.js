@@ -1,8 +1,8 @@
 import { en, es, id, ar, pt } from '../lib/idiomas/total-idiomas.js' 
 export async function before(m, { conn }) {
 let user = global.db.data.users[m.sender]
-
 let idioma = ''
+if (m.text) {
 if (user.GBLanguage == 'es') {
 idioma = es
 } else if (user.GBLanguage == 'en') {
@@ -17,5 +17,5 @@ idioma = id
 idioma = es
 }
 global.lenguajeGB = idioma
-
+  }
 }
