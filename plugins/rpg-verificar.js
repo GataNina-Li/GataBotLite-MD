@@ -15,9 +15,12 @@ let who = m.mentionedJid && m.mentionedJid[0] ? m.mentionedJid[0] : m.fromMe ? c
 let pp
 try {
 pp = await conn.profilePictureUrl(who, 'image')
-} catch (error) {
+if (pp === null || pp === undefined) {
+pp = gataImg.getRandom()
+}} catch (error) {
 pp = gataImg.getRandom()
 }
+
 //let pp = await conn.profilePictureUrl(who, 'image').catch((_) => gataImg.getRandom())
 function pickRandom(list) {
 return list[Math.floor(Math.random() * list.length)]
@@ -127,7 +130,7 @@ let caption = `${lenguajeGB.smsVerify7()}
 
 *⎔ ${lenguajeGB.smsPerfil5()}*
 • \`\`\`${sn}\`\`\``.trim()
-await conn.sendFile(m.chat, pp || gataImg.getRandom(), 'gata.jpg', caption, m, false, { mentions: [aa] }) 
+await conn.sendFile(m.chat, pp, 'gata.jpg', caption, m, false, { mentions: [aa] }) 
 await m.reply(lenguajeGB.smsVerify8(usedPrefix)) 
 await m.reply(`${sn}`) 
 }
