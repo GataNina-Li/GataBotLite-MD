@@ -1,8 +1,8 @@
 import { createHash } from 'crypto'   
 let Reg = /\|?(.*)([.|] *?)([0-9]*)$/i 
 
-let codigoIdiomas = ['es', 'en', 'pt', 'id', 'ar']
-let nombreIdiomas = {
+let codigosIdiomas = ['es', 'en', 'pt', 'id', 'ar']
+let nombresIdiomas = {
 'es': 'Español',
 'en': 'English',
 'pt': 'Português',
@@ -88,10 +88,10 @@ return conn.reply(m.chat, `${lenguajeGB['smsAvisoAG']()}*RECUERDE USAR EL EMOJI 
 asignarIdioma(text)
 user.GBLanguage = idioma
 if (!user.GBLanguage) return m.reply(`${lenguajeGB['smsAvisoFG']()}*NO SE LOGRÓ CONFIGURAR EL IDIOMA, INTENTE DE NUEVO POR FAVOR*`)
-if (codigoIdiomas.includes(user.GBLanguage)) {
-nombreIdioma = nombreIdiomas[user.GBLanguage]
+if (codigosIdiomas.includes(user.GBLanguage)) {
+nombresIdioma = nombresIdiomas[user.GBLanguage]
 } else {
-nombreIdioma = `IDIOMA NO DETECTADO`
+nombresIdioma = `IDIOMA NO DETECTADO`
 }  
 m.reply(`${lenguajeGB['smsAvisoIIG']()}*EN CASO QUE QUIERA CAMBIAR O ELIMINAR EL IDIOMA DEBE DE ELIMINAR SU REGISTRO PRIMERO*`)
 user.regTime = + new Date
@@ -102,7 +102,7 @@ let pp = await conn.profilePictureUrl(who, 'image').catch(_ => gataMenu.getRando
 let caption = `${lenguajeGB.smsVerify7()}
 
 *⎔ IDIOMA* 
-• ${nombreIdioma}
+• ${nombresIdioma}
 
 *⎔ ${lenguajeGB.smsPerfil1()}* 
 • @${tag}
