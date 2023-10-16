@@ -1,8 +1,8 @@
 import { createHash } from 'crypto'   
 let Reg = /\|?(.*)([.|] *?)([0-9]*)$/i 
 
-let codigosIdiomas = ['es', 'en', 'pt', 'id', 'ar']
-let nombresIdiomas = {
+let codigoIdiomas = ['es', 'en', 'pt', 'id', 'ar']
+let nombreIdiomas = {
 'es': 'Español',
 'en': 'English',
 'pt': 'Português',
@@ -88,8 +88,8 @@ return conn.reply(m.chat, `${lenguajeGB['smsAvisoAG']()}*RECUERDE USAR EL EMOJI 
 asignarIdioma(text)
 user.GBLanguage = idioma
 if (!user.GBLanguage) return m.reply(`${lenguajeGB['smsAvisoFG']()}*NO SE LOGRÓ CONFIGURAR EL IDIOMA, INTENTE DE NUEVO POR FAVOR*`)
-if (codigosIdiomas.includes(user.GBLanguage)) {
-nombreIdioma = nombresIdiomas[user.GBLanguage]
+if (codigoIdiomas.includes(user.GBLanguage)) {
+nombreIdioma = nombreIdiomas[user.GBLanguage]
 } else {
 nombreIdioma = `IDIOMA NO DETECTADO`
 }  
