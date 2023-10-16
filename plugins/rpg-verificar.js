@@ -8,7 +8,7 @@ let nombresIdiomas = {
 'en': 'English',
 'pt': 'Português',
 'id': 'Bahasa Indonesia',
-'ar': 'عرب'
+'ar': 'Arab (عرب)'
 }
   
 let who = m.mentionedJid && m.mentionedJid[0] ? m.mentionedJid[0] : m.fromMe ? conn.user.jid : m.sender
