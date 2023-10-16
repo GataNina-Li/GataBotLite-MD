@@ -89,9 +89,9 @@ asignarIdioma(text)
 user.GBLanguage = idioma
 if (!user.GBLanguage) return m.reply(`${lenguajeGB['smsAvisoFG']()}*NO SE LOGRÓ CONFIGURAR EL IDIOMA, INTENTE DE NUEVO POR FAVOR*`)
 if (codigosIdiomas.includes(user.GBLanguage)) {
-nombresIdioma = nombresIdiomas[user.GBLanguage]
+nombresIdiomas = nombresIdiomas[user.GBLanguage]
 } else {
-nombresIdioma = `IDIOMA NO DETECTADO`
+nombresIdiomas = `IDIOMA NO DETECTADO`
 }  
 m.reply(`${lenguajeGB['smsAvisoIIG']()}*EN CASO QUE QUIERA CAMBIAR O ELIMINAR EL IDIOMA DEBE DE ELIMINAR SU REGISTRO PRIMERO*`)
 user.regTime = + new Date
@@ -102,7 +102,7 @@ let pp = await conn.profilePictureUrl(who, 'image').catch(_ => gataMenu.getRando
 let caption = `${lenguajeGB.smsVerify7()}
 
 *⎔ IDIOMA* 
-• ${nombresIdioma}
+• ${nombresIdiomas}
 
 *⎔ ${lenguajeGB.smsPerfil1()}* 
 • @${tag}
