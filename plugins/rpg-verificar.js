@@ -129,4 +129,4 @@ await m.reply(`${sn}`)
 handler.command = /^(verify|verificar|reg(ister)?|idiomagb)$/i
 export default handler
 
-const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
+//const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
