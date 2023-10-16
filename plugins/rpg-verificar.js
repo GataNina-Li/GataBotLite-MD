@@ -7,6 +7,15 @@ return list[Math.floor(Math.random() * list.length)]
 let tag = `${m.sender.split("@")[0]}`
 let aa = tag + '@s.whatsapp.net'
 let user = global.db.data.users[m.sender]
+
+let codigosIdiomas = ['es', 'en', 'pt', 'id', 'ar']
+let nombresIdiomas = {
+'es': 'Español',
+'en': 'English',
+'pt': 'Português',
+'id': 'Bahasa Indonesia',
+'ar': 'عرب'
+}
   
 if (/^(verify|verificar|reg(ister)?)$/i.test(command)) {
 if (user.registered === true) return m.reply(lenguajeGB.smsVerify0(usedPrefix) + '*')
@@ -21,14 +30,6 @@ if (name.length >= 30) return m.reply(lenguajeGB.smsVerify6())
 user.name = name + 'ͧͧͧͦꙶͣͤ✓ᚲᴳᴮ'.trim()
 user.age = age
 
-let codigosIdiomas = ['es', 'en', 'pt', 'id', 'ar']
-let nombresIdiomas = {
-'es': 'Español',
-'en': 'English',
-'pt': 'Português',
-'id': 'Bahasa Indonesia',
-'ar': 'عرب'
-}
 let listaIdiomasTexto = ''
 listaIdiomasTexto += '*╭┄┄┄┄┄┄┄┄┄┄┄┄┄┄୭̥⋆*｡*\n' 
 listaIdiomasTexto += '*┆ 🌐 IDIOMA DINÁMICO 🌐*\n' 
