@@ -12,13 +12,7 @@ let nombresIdiomas = {
 }
   
 let who = m.mentionedJid && m.mentionedJid[0] ? m.mentionedJid[0] : m.fromMe ? conn.user.jid : m.sender
-let pp = ''
-pp = await conn.profilePictureUrl(m.sender, 'image').catch((_) => global.img)
-if (!pp) {
-pp = gataMenu.getRandom()
-}
-//let pp = await conn.profilePictureUrl(who, 'image').catch((_) => global.img)
-//const pp2 = await conn.getFile(pp)
+let pp = await conn.profilePictureUrl(who, 'image').catch(_ => gataMenu.getRandom())
   
 function pickRandom(list) {
 return list[Math.floor(Math.random() * list.length)]
@@ -103,7 +97,6 @@ nombresIdiomas = nombresIdiomas[user.GBLanguage]
 nombresIdiomas = `IDIOMA NO DETECTADO`
 }  
 await m.reply(`${lenguajeGB['smsAvisoIIG']()}*EN CASO QUE QUIERA CAMBIAR O ELIMINAR EL IDIOMA DEBE DE ELIMINAR SU REGISTRO PRIMERO*`)
-//await delay(2000)
 user.regTime = + new Date
 user.registered = true
 let sn = createHash('md5').update(m.sender).digest('hex').slice(0, 6)	
@@ -129,12 +122,9 @@ let caption = `${lenguajeGB.smsVerify7()}
 *⎔ ${lenguajeGB.smsPerfil5()}*
 • \`\`\`${sn}\`\`\``.trim()
 await conn.sendFile(m.chat, pp, 'gata.jpg', caption, m, false, { mentions: [aa] }) 
-//await conn.sendMessage(m.chat, { image: pp, caption: caption, mentions: [aa] }, { quoted: m })
 await m.reply(lenguajeGB.smsVerify8(usedPrefix)) 
 await m.reply(`${sn}`) 
 }
 }
 handler.command = /^(verify|verificar|reg(ister)?|idiomagb)$/i
 export default handler
-
-//const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
