@@ -12,7 +12,7 @@ let nombresIdiomas = {
 }
   
 let who = m.mentionedJid && m.mentionedJid[0] ? m.mentionedJid[0] : m.fromMe ? conn.user.jid : m.sender
-let pp = await conn.profilePictureUrl(who, 'image').catch((_) => gataMenu.getRandom())
+let pp = await conn.profilePictureUrl(who, 'image').catch((_) => gataImg.getRandom())
 function pickRandom(list) {
 return list[Math.floor(Math.random() * list.length)]
 } 
@@ -96,6 +96,7 @@ nombresIdiomas = nombresIdiomas[user.GBLanguage]
 nombresIdiomas = `IDIOMA NO DETECTADO`
 }  
 await m.reply(`${lenguajeGB['smsAvisoIIG']()}*EN CASO QUE QUIERA CAMBIAR O ELIMINAR EL IDIOMA DEBE DE ELIMINAR SU REGISTRO PRIMERO*`)
+await delay(2000)
 user.regTime = + new Date
 user.registered = true
 let sn = createHash('md5').update(m.sender).digest('hex').slice(0, 6)	
@@ -127,3 +128,5 @@ await m.reply(`${sn}`)
 }
 handler.command = /^(verify|verificar|reg(ister)?|idiomagb)$/i
 export default handler
+
+const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
