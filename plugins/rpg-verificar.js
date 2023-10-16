@@ -1,12 +1,5 @@
 import { createHash } from 'crypto'   
 let Reg = /\|?(.*)([.|] *?)([0-9]*)$/i 
-let handler = async function (m, { conn, text, usedPrefix, command }) {
-function pickRandom(list) {
-return list[Math.floor(Math.random() * list.length)]
-} 
-let tag = `${m.sender.split("@")[0]}`
-let aa = tag + '@s.whatsapp.net'
-let user = global.db.data.users[m.sender]
 
 let codigosIdiomas = ['es', 'en', 'pt', 'id', 'ar']
 let nombresIdiomas = {
@@ -16,6 +9,14 @@ let nombresIdiomas = {
 'id': 'Bahasa Indonesia',
 'ar': 'عرب'
 }
+
+let handler = async function (m, { conn, text, usedPrefix, command }) {
+function pickRandom(list) {
+return list[Math.floor(Math.random() * list.length)]
+} 
+let tag = `${m.sender.split("@")[0]}`
+let aa = tag + '@s.whatsapp.net'
+let user = global.db.data.users[m.sender]
   
 if (/^(verify|verificar|reg(ister)?)$/i.test(command)) {
 if (user.registered === true) return m.reply(lenguajeGB.smsVerify0(usedPrefix) + '*')
