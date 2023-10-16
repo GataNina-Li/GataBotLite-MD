@@ -13,7 +13,7 @@ let nombresIdiomas = {
   
 let who = m.mentionedJid && m.mentionedJid[0] ? m.mentionedJid[0] : m.fromMe ? conn.user.jid : m.sender
 let pp = ''
-pp = await conn.profilePictureUrl(who, 'image')
+pp = await conn.profilePictureUrl(m.sender, 'image').catch((_) => global.img)
 if (!pp) {
 pp = gataMenu.getRandom()
 }
