@@ -1,6 +1,7 @@
 import { createHash } from 'crypto'   
 let Reg = /\|?(.*)([.|] *?)([0-9]*)$/i 
 
+let handler = async function (m, { conn, text, usedPrefix, command }) {
 let codigosIdiomas = ['es', 'en', 'pt', 'id', 'ar']
 let nombresIdiomas = {
 'es': 'Español',
@@ -9,8 +10,7 @@ let nombresIdiomas = {
 'id': 'Bahasa Indonesia',
 'ar': 'عرب'
 }
-
-let handler = async function (m, { conn, text, usedPrefix, command }) {
+  
 let who = m.mentionedJid && m.mentionedJid[0] ? m.mentionedJid[0] : m.fromMe ? conn.user.jid : m.sender
 let pp = await conn.profilePictureUrl(who, 'image').catch((_) => gataMenu.getRandom())
 function pickRandom(list) {
