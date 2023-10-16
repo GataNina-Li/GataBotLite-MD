@@ -1,5 +1,8 @@
 import { en, es, id, ar, pt } from '../lib/idiomas/total-idiomas.js'  
 export async function before(m, { conn }) {
+global.wait = lenguajeGB['smsMeWait']()
+global.wait2 = lenguajeGB.smsWait()
+  
 let user = global.db.data.users[m.sender]
 
 if (user.GBLanguage == 'es') {
