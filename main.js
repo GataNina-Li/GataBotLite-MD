@@ -147,7 +147,7 @@ console.log(`
 ⬇️  ⬇️  ⬇️`.trim())
 const options = ['es', 'en', 'pt', 'ar', 'id', 'Omitir / Skip']
 const formattedOptions = options.map(option => chalk.bold.blueBright(option))
-const selectedOptionIndex = readlineSync.keyInSelect(formattedOptions, `${chalk.bold.magentaBright('Write the number of the option.\nEscriba el número de la opción.')} `, { cancel: false })
+const selectedOptionIndex = readlineSync.keyInSelect(formattedOptions, `${chalk.bold.magentaBright('Write the number of the option.\nEscriba el número de la opción.\n--->')} `, { cancel: false })
 if (selectedOptionIndex >= 0 && selectedOptionIndex <= 4) {
 const selectedLanguage = supportedLanguages[selectedOptionIndex]
 configContent = configContent.replace('global.languageLen = ""', 'global.languageLen = true')
