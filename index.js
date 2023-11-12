@@ -60,7 +60,7 @@ say(`Project Author:\nGataNina-Li (@gata_dios)\n\nDevelopers:\nelrebelde21 (Mari
  colors: ['candy']
 })
 
-var isRunning = false
+let isRunning = false
 /**
 * Start a js file
 * @param {String} file `path/to/file`
@@ -68,15 +68,13 @@ var isRunning = false
 function start(file) {
 if (isRunning) return
 isRunning = true
-let args = [join(__dirname, file), ...process.argv.slice(2)]
-  
+const args = [join(__dirname, file), ...process.argv.slice(2)]
+
 setupMaster({
 exec: args[0],
-args: args.slice(1),
-})
-let p = fork()
-p.on('message', data => {
-//console.log('ACTIVIDAD ACTULIZADA:', data)
+args: args.slice(1)})
+const p = fork()
+p.on('message', (data) => {
 switch (data) {
 case 'reset':
 p.process.kill()
@@ -86,22 +84,24 @@ break
 case 'uptime':
 p.send(process.uptime())
 break
-}})
+}
+})
 p.on('exit', (_, code) => {
+isRunning = false;
+console.error('⚠️ ERROR ⚠️ >> ', code)
+p.process.kill()
 isRunning = false
-console.error('⚠️ ERROR ⚠️', code)
-if (code === 0) return
-watchFile(args[0], () => {
-unwatchFile(args[0])
-start(file)
-})
-})
-let opts = new Object(yargs(process.argv.slice(2)).exitProcess(false).parse())
-if (!opts['test'])
-if (!rl.listenerCount()) rl.on('line', line => {
+start.apply(this, arguments)
+if (process.env.pm_id) {
+process.exit(1)
+} else {
+process.exit()
+}})
+const opts = new Object(yargs(process.argv.slice(2)).exitProcess(false).parse())
+if (!opts['test']) {
+if (!rl.listenerCount()) {
+rl.on('line', (line) => {
 p.emit('message', line.trim())
 })
-//console.log(p)
-}
-
+}}}
 start('main.js')
