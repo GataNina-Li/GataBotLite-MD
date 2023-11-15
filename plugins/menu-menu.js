@@ -81,123 +81,130 @@ let menu = `*〲🝯☃️⁘ ${user.registered === true ? user.name : `👉 ${u
 *┆*
 *╰:･ﾟ✧ *:･ﾟ✧ *:･ﾟ✧:･ﾟ✧ *:･ﾟ✧ *:･ﾟ✧*
 
+*╭●⇢ ⚡ ${lenguajeGB.smsMenuTotal5()} ⚡*
+*┆*
+*┆* \`\`\`${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'img «sticker»' : 'toimg «sticker»'}\`\`\`
+*┆* \`\`\`${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'url «imagen»' : 'tourl «image»'}\`\`\`
+*┆* \`\`\`${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'mp4 «sticker»' : 'tovideo «sticker»'}\`\`\`
+*┆* \`\`\`${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'gif «video»' : 'togif «video»'}\`\`\`
+*┆* \`\`\`${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'mp3 «video o audio»' : 'tovn «video or audio»'}\`\`\`
+*┆* \`\`\`${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'tts «texto»' : 'totts «text»'}\`\`\`
+*┆*
+*╰:･ﾟ✧ *:･ﾟ✧ *:･ﾟ✧:･ﾟ✧ *:･ﾟ✧ *:･ﾟ✧*
 
-*╰ ㊂ ▸▸ _${lenguajeGB.smsMenuTotal5()}_ ◂◂*
-*│* ┊
-*│* ┊▸ ✦ _${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'img *sticker*' : 'toimg *sticker*'}_
-*│* ┊▸ ✦ _${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'url *imagen*' : 'tourl *image*'}_
-*│* ┊▸ ✦ _${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'mp4 *sticker*' : 'tovideo *sticker*'}_
-*│* ┊▸ ✦ _${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'gif *video*' : 'togif *video*'}_
-*│* ┊▸ ✦ _${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'mp3 *video o audio*' : 'tovn *video or audio*'}_
-*│* ┊▸ ✦ _${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'tts *texto*' : 'totts *text*'}_
-*│* ╰∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙ ∙ ∙ ∙ ∙ 
-*│*
-*╰ ㊂ ▸▸ _${lenguajeGB.smsMenuTotal6()}_ ◂◂*
-*│* ┊
-*│* ┊▸ ✦ _${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'infogrupo' : 'groupinfo'}_
-*│* ┊▸ ✦ _${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'admins' : 'dmins'}_
-*│* ┊▸ ✦ _${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'enlace' : 'linkgroup'}_
-*│* ┊▸ ✦ _${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'inspeccionar *enlace*' : 'inspect *link*'}_
-*│* ╰∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙ ∙ ∙ ∙ ∙ 
-*│*
-*╰ ㊂ ▸▸ _${lenguajeGB.smsMenuTotal7()}_ ◂◂*
-*│* ┊
-*│* ┊▸ ✦ _${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'notificar *texto*' : 'hidetag'}_
-*│* ┊▸ ✦ _${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'sacar *tag*' : 'kick *tag*'}_
-*│* ┊▸ ✦ _${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'invitar *número*' : 'invite *number*'}_
-*│* ┊▸ ✦ _${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'daradmin *tag*' : 'promote *tag*'}_
-*│* ┊▸ ✦ _${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'quitaradmin *tag*' : 'demote *tag*'}_
-*│* ┊▸ ✦ _${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'prohibir *tag*' : 'deprive *tag*'}_
-*│* ┊▸ ✦ _${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'desprohibir *tag*' : 'undeprive *tag*'}_
-*│* ┊▸ ✦ _${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'editarwelcome *texto*' : 'setwelcome'}_
-*│* ┊▸ ✦ _${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'editarbye *texto*' : 'setbye'}_
-*│* ┊▸ ✦ _${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'cambiardesc *texto*' : 'setdesc'}_
-*│* ┊▸ ✦ _${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'cambiarnombre *texto*' : 'setname'}_
-*│* ┊▸ ✦ _${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'cambiarpp *imagen*' : 'setppgc *image*'}_
-*│* ┊▸ ✦ _${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'nuevoenlace' : 'resetlink'}_
-*│* ┊▸ ✦ _${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'grupo abrir' : 'group open'}_
-*│* ┊▸ ✦ _${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'grupo cerrar' : 'group close'}_
-*│* ┊▸ ✦ _${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'invocar' : 'tagall'}_
-*│* ╰∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙ ∙ ∙ ∙ ∙ 
-*│*
-*╰ ㊂ ▸▸ _${lenguajeGB.smsMenuTotal8()}_ ◂◂*
-*│* ┊
-*│* ┊▸ ✦ _${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'editarbass' : 'editbass'}_
-*│* ┊▸ ✦ _${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'editarvibra' : 'editvibra'}_
-*│* ┊▸ ✦ _${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'editarblown' : 'editblown'}_
-*│* ┊▸ ✦ _${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'editardeep' : 'editdeep'}_
-*│* ┊▸ ✦ _${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'editarearrape' : 'editearrape'}_
-*│* ┊▸ ✦ _${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'editarfast' : 'editfast'}_
-*│* ┊▸ ✦ _${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'editarfat' : 'editfat'}_
-*│* ┊▸ ✦ _${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'editarnightcore' : 'editnightcore'}_
-*│* ┊▸ ✦ _${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'editarrobot' : 'editrobot'}_
-*│* ┊▸ ✦ _${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'editarslow' : 'editslow'}_
-*│* ┊▸ ✦ _${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'editarsmooth' : 'editsmooth'}_
-*│* ┊▸ ✦ _${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'editartupai' : 'edittupai'}_
-*│* ┊▸ ✦ _${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'editaraudio8d' : 'editaudio8d'}_
-*│* ╰∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙ ∙ ∙ ∙ ∙ 
-*│*
-*╰ ㊂ ▸▸ _${lenguajeGB.smsMenuTotal9()}_ ◂◂*
-*│* ┊
-*│* ┊▸ ✦ _${usedPrefix}bass_
-*│* ┊▸ ✦ _${usedPrefix}blown_
-*│* ┊▸ ✦ _${usedPrefix}deep_
-*│* ┊▸ ✦ _${usedPrefix}earrape_
-*│* ┊▸ ✦ _${usedPrefix}fast_
-*│* ┊▸ ✦ _${usedPrefix}fat_
-*│* ┊▸ ✦ _${usedPrefix}nightcore_
-*│* ┊▸ ✦ _${usedPrefix}reverse_
-*│* ┊▸ ✦ _${usedPrefix}robot_
-*│* ┊▸ ✦ _${usedPrefix}slow_
-*│* ┊▸ ✦ _${usedPrefix}smooth_
-*│* ┊▸ ✦ _${usedPrefix}tupai_
-*│* ┊▸ ✦ _${usedPrefix}audio8d_
-*│* ┊▸ ✦ _${usedPrefix}echo_
-*│* ┊▸ ✦ _${usedPrefix}distortion_
-*│* ┊▸ ✦ _${usedPrefix}pitch_
-*│* ┊▸ ✦ _${usedPrefix}reverb_
-*│* ┊▸ ✦ _${usedPrefix}flanger_
-*│* ┊▸ ✦ _${usedPrefix}apulsator_
-*│* ┊▸ ✦ _${usedPrefix}tremolo_
-*│* ┊▸ ✦ _${usedPrefix}chorus_
-*│* ╰∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙ ∙ ∙ ∙ ∙
-*│*
-*╰ ㊂ ▸▸ _${lenguajeGB.smsMenuTotal10()}_ ◂◂*
-*│* ┊ 
-*│* ┊▸ ✦ _on_
-*│* ┊▸ ✦ _off_
-*│* ╰∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙ ∙ ∙ ∙ ∙
-*│*
-*╰ ㊂ ▸▸ _${lenguajeGB.smsMenuTotal11()}_ ◂◂*
-*│* ┊ 
-*│* ┊▸ ✦ _${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'verificar *nombre.edad*' : 'verify *name.age*'}_
-*│* ┊▸ ✦ _${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'anulareg *id de registro*' : 'unreg *id registration*'}_
-*│* ┊▸ ✦ _${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'idregistro' : 'idregister'}_
-*│* ╰∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙ ∙ ∙ ∙ ∙
-*│*
-*╰ ㊂ ▸▸ _${lenguajeGB.smsMenuTotal12()}_ ◂◂*
-*│* ┊ 
-*│* ┊▸ ✦ _${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'respaldo' : 'backup'}_
-*│* ┊▸ ✦ _${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'banusuario *@tag*' : 'banuser *@tag*'}_
-*│* ┊▸ ✦ _${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'desbanusuario *@tag*' : 'unbanuser *@tag*'}_
-*│* ┊▸ ✦ _${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'tenerpoder' : 'autoadmin'}_
-*│* ┊▸ ✦ _${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'nuevabiobot *texto*' : 'setbiobot *texto*'}_
-*│* ┊▸ ✦ _${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'nuevonombrebot *texto*' : 'setbiobot *texto*'}_
-*│* ┊▸ ✦ _${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'nuevafotobot *imagen*' : 'setppbot *image*'}_
-*│* ┊▸ ✦ _${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'actualizar' : 'update'}_
-*│* ┊▸ ✦ _${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'banearchat' : 'banchat'}_
-*│* ┊▸ ✦ _${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'desbanearchat' : 'unbanchat'}_
-*│* ┊▸ ✦ _${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'salir' : 'leave'}_
-*│* ┊▸ ✦ _${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'bloquear *@tag*' : 'block *@tag*'}_
-*│* ┊▸ ✦ _${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'desbloquear *@tag*' : 'unblock *@tag*'}_
-*│* ┊▸ ✦ _${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'obtenercodigo *nombre de archivo*' : 'getplugin *filename*'}_
-*│* ┊▸ ✦ _${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'borrardatos *número*' : 'deletedatauser *number*'}_
-*│* ┊▸ ✦ _${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'unete *enlace*' : 'join *link*'}_
-*│* ┊▸ ✦ _${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'bcsubbot *texto*' : 'bcsubbot *text*'}_
-*│* ┊▸ ✦ _${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'bcc *texto*' : 'bcchats *text*'}_
-*│* ┊▸ ✦ _${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'bcgc *texto*' : 'broadcastgc *text*'}_
-*│* ┊▸ ✦ _${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'bc *texto*' : 'broadcastall *text*'}_
-*│* ╰∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙ ∙ ∙ ∙ ∙
+*╭●⇢ ⛱️ ${lenguajeGB.smsMenuTotal6()} ⛱️*
+*┆*
+*┆* \`\`\`${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'infogrupo' : 'groupinfo'}\`\`\`
+*┆* \`\`\`${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'admins' : 'dmins'}\`\`\`
+*┆* \`\`\`${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'enlace' : 'linkgroup'}\`\`\`
+*┆* \`\`\`${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'inspeccionar «enlace»' : 'inspect «link»'}\`\`\`
+*┆*
+*╰:･ﾟ✧ *:･ﾟ✧ *:･ﾟ✧:･ﾟ✧ *:･ﾟ✧ *:･ﾟ✧*
+
+*╭●⇢ 🌺 ${lenguajeGB.smsMenuTotal7()} 🌺*
+*┆*
+*┆* \`\`\`${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'notificar «texto»' : 'hidetag'}\`\`\`
+*┆* \`\`\`${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'sacar «tag»' : 'kick «tag»'}\`\`\`
+*┆* \`\`\`${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'invitar «número»' : 'invite «number»'}\`\`\`
+*┆* \`\`\`${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'daradmin «tag»' : 'promote «tag»'}\`\`\`
+*┆* \`\`\`${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'quitaradmin «tag»' : 'demote «tag»'}\`\`\`
+*┆* \`\`\`${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'prohibir «tag»' : 'deprive «tag»'}\`\`\`
+*┆* \`\`\`${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'desprohibir «tag»' : 'undeprive «tag»'}\`\`\`
+*┆* \`\`\`${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'editarwelcome «texto»' : 'setwelcome'}\`\`\`
+*┆* \`\`\`${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'editarbye «texto»' : 'setbye'}\`\`\`
+*┆* \`\`\`${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'cambiardesc «texto»' : 'setdesc'}\`\`\`
+*┆* \`\`\`${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'cambiarnombre «texto»' : 'setname'}\`\`\`
+*┆* \`\`\`${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'cambiarpp «imagen»' : 'setppgc «image»'}\`\`\`
+*┆* \`\`\`${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'nuevoenlace' : 'resetlink'}\`\`\`
+*┆* \`\`\`${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'grupo abrir' : 'group open'}\`\`\`
+*┆* \`\`\`${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'grupo cerrar' : 'group close'}\`\`\`
+*┆* \`\`\`${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'invocar' : 'tagall'}\`\`\`
+*┆*
+*╰:･ﾟ✧ *:･ﾟ✧ *:･ﾟ✧:･ﾟ✧ *:･ﾟ✧ *:･ﾟ✧*
+
+*╭●⇢ 🩵 ${lenguajeGB.smsMenuTotal8()} 🩵*
+*┆*
+*┆* \`\`\`${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'editarbass' : 'editbass'}\`\`\`
+*┆* \`\`\`${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'editarvibra' : 'editvibra'}\`\`\`
+*┆* \`\`\`${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'editarblown' : 'editblown'}\`\`\`
+*┆* \`\`\`${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'editardeep' : 'editdeep'}\`\`\`
+*┆* \`\`\`${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'editarearrape' : 'editearrape'}\`\`\`
+*┆* \`\`\`${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'editarfast' : 'editfast'}\`\`\`
+*┆* \`\`\`${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'editarfat' : 'editfat'}\`\`\`
+*┆* \`\`\`${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'editarnightcore' : 'editnightcore'}\`\`\`
+*┆* \`\`\`${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'editarrobot' : 'editrobot'}\`\`\`
+*┆* \`\`\`${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'editarslow' : 'editslow'}\`\`\`
+*┆* \`\`\`${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'editarsmooth' : 'editsmooth'}\`\`\`
+*┆* \`\`\`${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'editartupai' : 'edittupai'}\`\`\`
+*┆* \`\`\`${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'editaraudio8d' : 'editaudio8d'}\`\`\`
+*┆*
+*╰:･ﾟ✧ *:･ﾟ✧ *:･ﾟ✧:･ﾟ✧ *:･ﾟ✧ *:･ﾟ✧*
+
+*╭●⇢ 🍄 ${lenguajeGB.smsMenuTotal9()} 🍄*
+*┆*
+*┆* \`\`\`${usedPrefix}bass\`\`\`
+*┆* \`\`\`${usedPrefix}blown\`\`\`
+*┆* \`\`\`${usedPrefix}deep\`\`\`
+*┆* \`\`\`${usedPrefix}earrape\`\`\`
+*┆* \`\`\`${usedPrefix}fast\`\`\`
+*┆* \`\`\`${usedPrefix}fat\`\`\`
+*┆* \`\`\`${usedPrefix}nightcore\`\`\`
+*┆* \`\`\`${usedPrefix}reverse\`\`\`
+*┆* \`\`\`${usedPrefix}robot\`\`\`
+*┆* \`\`\`${usedPrefix}slow\`\`\`
+*┆* \`\`\`${usedPrefix}smooth\`\`\`
+*┆* \`\`\`${usedPrefix}tupai\`\`\`
+*┆* \`\`\`${usedPrefix}audio8d\`\`\`
+*┆* \`\`\`${usedPrefix}echo\`\`\`
+*┆* \`\`\`${usedPrefix}distortion\`\`\`
+*┆* \`\`\`${usedPrefix}pitch\`\`\`
+*┆* \`\`\`${usedPrefix}reverb\`\`\`
+*┆* \`\`\`${usedPrefix}flanger\`\`\`
+*┆* \`\`\`${usedPrefix}apulsator\`\`\`
+*┆* \`\`\`${usedPrefix}tremolo\`\`\`
+*┆* \`\`\`${usedPrefix}chorus\`\`\`
+*┆*
+*╰:･ﾟ✧ *:･ﾟ✧ *:･ﾟ✧:･ﾟ✧ *:･ﾟ✧ *:･ﾟ✧*
+
+*╭●⇢ ⚙️ ${lenguajeGB.smsMenuTotal10()} ⚙️*
+*┆*
+*┆* \`\`\`on\`\`\`
+*┆* \`\`\`off\`\`\`
+*┆*
+*╰:･ﾟ✧ *:･ﾟ✧ *:･ﾟ✧:･ﾟ✧ *:･ﾟ✧ *:･ﾟ✧*
+
+*╭●⇢ 💌 ${lenguajeGB.smsMenuTotal11()} 💌*
+*┆*
+*┆* \`\`\`${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'verificar «nombre.edad»' : 'verify «name.age»'}\`\`\`
+*┆* \`\`\`${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'anulareg «id de registro»' : 'unreg «id registration»'}\`\`\`
+*┆* \`\`\`${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'idregistro' : 'idregister'}\`\`\`
+*┆*
+*╰:･ﾟ✧ *:･ﾟ✧ *:･ﾟ✧:･ﾟ✧ *:･ﾟ✧ *:･ﾟ✧*
+
+*╭●⇢ 👑 ${lenguajeGB.smsMenuTotal12()} 👑*
+*┆*
+*┆* \`\`\`${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'respaldo' : 'backup'}\`\`\`
+*┆* \`\`\`${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'banusuario «@tag»' : 'banuser «@tag»'}\`\`\`
+*┆* \`\`\`${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'desbanusuario «@tag»' : 'unbanuser «@tag»'}\`\`\`
+*┆* \`\`\`${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'tenerpoder' : 'autoadmin'}\`\`\`
+*┆* \`\`\`${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'nuevabiobot «texto»' : 'setbiobot «texto»'}\`\`\`
+*┆* \`\`\`${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'nuevonombrebot «texto»' : 'setbiobot «texto»'}\`\`\`
+*┆* \`\`\`${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'nuevafotobot «imagen»' : 'setppbot «image»'}\`\`\`
+*┆* \`\`\`${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'actualizar' : 'update'}\`\`\`
+*┆* \`\`\`${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'banearchat' : 'banchat'}\`\`\`
+*┆* \`\`\`${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'desbanearchat' : 'unbanchat'}\`\`\`
+*┆* \`\`\`${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'salir' : 'leave'}\`\`\`
+*┆* \`\`\`${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'bloquear «@tag»' : 'block «@tag»'}\`\`\`
+*┆* \`\`\`${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'desbloquear «@tag»' : 'unblock «@tag»'}\`\`\`
+*┆* \`\`\`${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'obtenercodigo «nombre de archivo»' : 'getplugin «filename»'}\`\`\`
+*┆* \`\`\`${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'borrardatos «número»' : 'deletedatauser «number»'}\`\`\`
+*┆* \`\`\`${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'unete «enlace»' : 'join «link»'}\`\`\`
+*┆* \`\`\`${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'bcsubbot «texto»' : 'bcsubbot «text»'}\`\`\`
+*┆* \`\`\`${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'bcc «texto»' : 'bcchats «text»'}\`\`\`
+*┆* \`\`\`${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'bcgc «texto»' : 'broadcastgc «text»'}\`\`\`
+*┆* \`\`\`${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'bc «texto»' : 'broadcastall «text»'}\`\`\`
+*┆*
+*╰:･ﾟ✧ *:･ﾟ✧ *:･ﾟ✧:･ﾟ✧ *:･ﾟ✧ *:･ﾟ✧*
  `.trim()
     
 const vi = ['https://telegra.ph/file/405daebd4bc0d69e5d165.mp4',
