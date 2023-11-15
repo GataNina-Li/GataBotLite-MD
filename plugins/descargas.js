@@ -84,7 +84,7 @@ let response = await fetch(apiUrl)
 let apiResponse = await response.json() 
 let dl_audio_url = apiResponse.result.audio.link
 let dl_video_url = apiResponse.result.video.link
-ttl = apiResponse.info.title  
+ttl = apiResponse.result.title  
 let message = await conn.sendMessage(m.chat, { text: video, contextInfo: { externalAdReply: { title: wm, body: wait2.replace(/\*/g, ''), thumbnailUrl: thumbnail, sourceUrl: md, mediaType: 1, showAdAttribution: false, renderLargerThumbnail: true }}})
 await m.react(sending)
 await message.react(waitemot)
