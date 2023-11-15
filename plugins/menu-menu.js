@@ -20,9 +20,9 @@ let menu = `*〲🝯☃️⁘ ${user.registered === true ? user.name : `👉 ${u
  *╰🜙🜙🜙🜙《 @${m.sender.split("@")[0]} 》*
 
 *╭┈🎄┈🎄┈🎄┈🎄┈🎄┈🎄┈╮*
-*⠸⋑* ${packname}${conn.user.jid == global.conn.user.jid ? '' : `\n🌨️🐈🌨️ *>>* 𝗚𝗕 - 𝗦𝗨𝗕 𝗕𝗢𝗧 ⇢ *@${global.conn.user.jid.split`@`[0]}*`}
-*❄️ 🝆 ${vs} ㎇ 🝆 ❄️*
-*╰┈🎄┈🎄┈🎄┈🎄┈🎄┈🎄┈╯*
+*┆⠸⋑* ${packname}
+*┆❄️ 🝆 ${vs} ㎇ 🝆 ❄️*
+*╰┈🎄┈🎄┈🎄┈🎄┈🎄┈🎄┈╯*${conn.user.jid == global.conn.user.jid ? '' : `🌨️🐈🌨️ *>>* 𝗚𝗕 - 𝗦𝗨𝗕 𝗕𝗢𝗧 ⇢ *@${global.conn.user.jid.split`@`[0]}*`}
 
 *╭●⇢ 🌟 ${lenguajeGB.smsMenuTotal1()} 🌟*
 *┆*
@@ -41,15 +41,15 @@ let menu = `*〲🝯☃️⁘ ${user.registered === true ? user.name : `👉 ${u
 *┆*
 *╰:･ﾟ✧ *:･ﾟ✧ *:･ﾟ✧:･ﾟ✧ *:･ﾟ✧ *:･ﾟ✧*
 
-*│*
-*╰ ㊂ ▸▸ _${lenguajeGB.smsMenuTotal2()}_ ◂◂*
-*│* ┊
-*│* ┊▸ ✦ _${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'serbot' : 'jadibot'}_
-*│* ┊▸ ✦ _${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'bots' : 'subsbots'}_
-*│* ┊▸ ✦ _${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'pausarsb' : 'pausesb'}_
-*│* ┊▸ ✦ _${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'eliminarsesion' : 'delsession'}_
-*│* ╰∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙ ∙ ∙ ∙ ∙  
-*│*
+*╭●⇢ 🪅 ${lenguajeGB.smsMenuTotal2()} 🪅
+*┆*
+*┆* \`\`\`${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'serbot' : 'jadibot'}\`\`\`
+*┆* \`\`\`${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'bots' : 'subsbots'}\`\`\`
+*┆* \`\`\`${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'pausarsb' : 'pausesb'}\`\`\`
+*┆* \`\`\`${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'eliminarsesion' : 'delsession'}\`\`\`
+*┆*
+*╰:･ﾟ✧ *:･ﾟ✧ *:･ﾟ✧:･ﾟ✧ *:･ﾟ✧ *:･ﾟ✧*
+
 *╰ ㊂ ▸▸ _${lenguajeGB.smsMenuTotal3()}_ ◂◂*
 *│* ┊
 *│* ┊▸ ✦ _${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'google *texto*' : 'googlef *text*'}_
