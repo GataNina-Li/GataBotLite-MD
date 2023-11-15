@@ -78,11 +78,12 @@ ${yt_play[0].url}
 *◜⋯ ⋯ ⋯ ⬇️ A U D I O ⬇️ ⋯ ⋯ ⋯◞*`.trim()
 url = 'https://www.youtube.com/watch?v=' + videoId
 //let link_web = `https://yt.btch.bz/downloadAudio?URL=${url}&videoName=video`  
-let apiUrl = `https://api.akuari.my.id/downloader/yt1?link=${url}`
+//let apiUrl = `https://api.akuari.my.id/downloader/yt1?link=${url}`
+let apiUrl = `https://api.lolhuman.xyz/api/ytplay?apikey=${lolkeysapi}&query=${url}`
 let response = await fetch(apiUrl)
 let apiResponse = await response.json() 
-let dl_audio_url = apiResponse.urldl_audio.link
-let dl_video_url = apiResponse.urldl_video.link
+let dl_audio_url = apiResponse.result.audio.link
+let dl_video_url = apiResponse.result.video.link
 ttl = apiResponse.info.title  
 let message = await conn.sendMessage(m.chat, { text: video, contextInfo: { externalAdReply: { title: wm, body: wait2.replace(/\*/g, ''), thumbnailUrl: thumbnail, sourceUrl: md, mediaType: 1, showAdAttribution: false, renderLargerThumbnail: true }}})
 await m.react(sending)
