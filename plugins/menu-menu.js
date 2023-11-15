@@ -52,7 +52,7 @@ let menu = `*〲🝯☃️⁘ ${user.registered === true ? user.name : `👉 ${u
 
 *╭●⇢ 🔎 ${lenguajeGB.smsMenuTotal3()} 🔍*
 *┆*
-*┆* \`\`\`${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'google *texto*' : 'googlef *text*'}\`\`\`
+*┆* \`\`\`${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'google «texto»' : 'googlef *text*'}\`\`\`
 *┆* \`\`\`${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'bot *texto*' : 'simsimi *text*'}\`\`\`
 *┆* \`\`\`${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'ia *texto*' : 'chatgpt *text*'}\`\`\`
 *┆* \`\`\`${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'yts *texto*' : 'yts *text*'}\`\`\`
