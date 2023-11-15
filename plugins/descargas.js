@@ -141,10 +141,10 @@ setTimeout(() => { message.react(waitemot2) }, 1000)
 //if (apiResponse.status !== 200) { 
 //setTimeout(() => { message.react(alert) }, 2000)}
 //let mediaa = await ytMp4(yt_play[0].url)
-let apiUrl = `https://api.lolhuman.xyz/api/ytvideo?apikey=${lolkeysapi}&url=${url}`
+let apiUrl = `https://api.lolhuman.xyz/api/ytplay?apikey=${lolkeysapi}&query=${url}`
 let response = await fetch(apiUrl)
 let apiResponse = await response.json() 
-let dl_video_url = apiResponse.result.link.link
+let dl_video_url = apiResponse.result.video.link
 let dl_pp_url = apiResponse.result.thumbnail
 await conn.sendMessage(m.chat, { video: { url: dl_video_url }, fileName: `error.mp4`, caption: `${wm}`, thumbnail: dl_pp_url, mimetype: 'video/mp4' }, { quoted: m }) 
 //await await conn.sendMessage(m.chat, { video: { url: dl_url }, fileName: `${ttl}.mp4`, mimetype: 'video/mp4', caption: `💜 ${ttl}`, thumbnail: await fetch(thumbnail) }, { quoted: m }) 
