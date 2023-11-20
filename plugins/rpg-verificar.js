@@ -23,7 +23,7 @@ let tag = `${m.sender.split("@")[0]}`
 let aa = tag + '@s.whatsapp.net'
 let user = global.db.data.users[m.sender]
   
-if (/^(verify|verificar|reg(ister)?)$/i.test(command)) {
+//if (/^(verify|verificar|reg(ister)?)$/i.test(command)) {
 if (user.registered === true) return m.reply(lenguajeGB.smsVerify0(usedPrefix) + '*')
 if (!Reg.test(text)) return m.reply(lenguajeGB.smsVerify1(usedPrefix, command))
 let [_, name, splitter, age] = text.match(Reg)  
@@ -134,7 +134,7 @@ await m.reply(lenguajeGB.smsVerify8(usedPrefix))
 await m.reply(`${sn}`)
 userData.confirmacion = false
 userData.codeMessage = 0
-}}}
+}}//}
 handler.command = /^(verify|verificar|reg(ister)?|idiomagb)$/i
 export default handler
 
