@@ -57,7 +57,7 @@ ${listaIdiomasTexto}
 await conn.sendMessage(m.chat, { text: genText }, { quoted: m })
 }
 
-handler.before = async (m, user, nombresIdiomas) => {
+handler.before = async (m, user, nombresIdiomas, tag, pp, aa) => {
 const sender = m.sender
 registro[sender] = registro[sender] ?? {
 confirmacion: false,
