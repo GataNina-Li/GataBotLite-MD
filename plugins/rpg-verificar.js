@@ -138,7 +138,7 @@ await m.reply(lenguajeGB.smsVerify8(usedPrefix))
 await m.reply(`${sn}`)
 userData.confirmacion = false
 userData.codeMessage = 0
-}}}
+}}
 handler.command = /^(verify|verificar|reg(ister)?|idiomagb)$/i
 export default handler
 
