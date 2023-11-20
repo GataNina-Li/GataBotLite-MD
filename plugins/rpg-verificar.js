@@ -54,6 +54,8 @@ ${listaIdiomasTexto}
 ❇️ *SU REGISTRO ESTÁ EN PAUSA, COMPLETE EL IDIOMA PARA CONTINUAR*
 
 \`\`\`Id: ${randomCode}\`\`\``
+await conn.sendMessage(m.chat, { text: genText }, { quoted: m })
+
 const sender = m.sender
 registro[sender] = registro[sender] ?? {
 confirmacion: false,
