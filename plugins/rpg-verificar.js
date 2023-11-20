@@ -58,7 +58,7 @@ await conn.sendMessage(m.chat, { text: genText }, { quoted: m })
 }
 
 //handler.before = async (m) => {
-handler.before = async function (m, { user, nombresIdiomas, tag, pp, aa, usedPrefix }) {
+handler.before = async (m) => {
 const sender = m.sender
 registro[sender] = registro[sender] ?? {
 confirmacion: false,
@@ -109,7 +109,9 @@ userData.confirmacion = true
 user.GBLanguage = languageCodes[5]
 clearTimeout(timeout)
 }
+}
 
+handler = async function (m, { conn, text, usedPrefix, command }) {
 if (userData.confirmacion === true) {
 await m.reply(`${lenguajeGB['smsAvisoIIG']()}*EN CASO QUE QUIERA CAMBIAR O ELIMINAR EL IDIOMA DEBE DE ELIMINAR SU REGISTRO PRIMERO*`)
 user.regTime = + new Date
