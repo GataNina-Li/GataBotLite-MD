@@ -1,6 +1,7 @@
 import { createHash } from 'crypto'  
 import fetch from 'node-fetch'
 let Reg = /\|?(.*)([.|] *?)([0-9]*)$/i 
+const registro = {}
 
 let handler = async function (m, { conn, text, usedPrefix, command }) {
 let codigosIdiomas = ['es', 'en', 'pt', 'id', 'ar']
@@ -35,6 +36,7 @@ if (name.length >= 30) return m.reply(lenguajeGB.smsVerify6())
 user.name = name + 'ͧͧͧͦꙶͣͤ✓ᚲᴳᴮ'.trim()
 user.age = age
 
+const randomCode = generateRandomCode(5)
 let listaIdiomasTexto = ''
 listaIdiomasTexto += '*╭┄┄┄┄┄┄┄┄┄┄┄┄┄┄୭̥⋆*｡*\n' 
 listaIdiomasTexto += '*┆ 🌐 IDIOMA DINÁMICO 🌐*\n' 
@@ -49,55 +51,59 @@ let genText = `🌟 *MULTI LENGUAJE DINÁMICO*\n
 ${listaIdiomasTexto}
 
 🍄 *AL SELECCIONAR SU IDIOMA, NO IMPORTA DONDE ${packname} ESTÉ, LE RESPONDERÁ EN SU IDIOMA.*
-❇️ *SU REGISTRO ESTÁ EN PAUSA, COMPLETE EL IDIOMA PARA CONTINUAR*`
-await conn.sendMessage(m.chat, { text: genText }, { quoted: m })	
-} 
-  
-if (command == 'idiomagb') {	
-if (!user.name || !user.age) return conn.sendMessage(m.chat, { text: `${lenguajeGB['smsAvisoFG']()}*REGISTRE SU NOMBRE Y EDAD PARA PODER USAR ESTE COMANDO*` }, { quoted: m })   
-var emojiANumero = { "0️⃣": "0", "1️⃣": "1", "2️⃣": "2", "3️⃣": "3", "4️⃣": "4", "5️⃣": "5", "6️⃣": "6", "7️⃣": "7", "8️⃣": "8", "9️⃣": "9" }
-text = text.replace(/[\u{0030}-\u{0039}]\u{FE0F}\u{20E3}/gu, function(match) {
-return emojiANumero[match] || match
-})
-let idioma = ''
-function asignarIdioma(text) { 
-if (!text) return conn.sendMessage(m.chat, { text: `${lenguajeGB['smsAvisoAG']()}*ESCRIBA UN NÚMERO PARA ELEGIR EL IDIOMA, EJEMPLO:*\n\n✓ \`\`\`${usedPrefix}idiomagb 2️⃣\`\`\`\n✓ \`\`\`${usedPrefix}idiomagb 2\`\`\`` }, { quoted: m })	  
-if (text < 1 || (text > 5 && text)) {
-conn.reply(m.chat, `${lenguajeGB['smsAvisoFG']()}*"${text}" NO ES VÁLIDO PARA ELEGIR, RECUERDE USAR EL EMOJI NUMÉRICO O TEXTO NUMÉRICO PARA SELECCIONAR EL IDIOMA, EJEMPLO:*\n\n✓ \`\`\`${usedPrefix}idiomagb 2️⃣\`\`\`\n✓ \`\`\`${usedPrefix}idiomagb 2\`\`\``, m) 
+❇️ *SU REGISTRO ESTÁ EN PAUSA, COMPLETE EL IDIOMA PARA CONTINUAR*
+
+\`\`\`Id: ${randomCode}\`\`\``
+const sender = m.sender
+registro[sender] = registro[sender] ?? {
+confirmacion: false,
+codeMessage: randomCode,
 }
-switch (text) {
-case "1️⃣":
-case "1":
-idioma = 'es'
-break
-case "2️⃣":
-case "2":
-idioma = 'en'
-break
-case "3️⃣":
-case "3":
-idioma = 'pt'
-break
-case "4️⃣":
-case "4":
-idioma = 'id'
-break   
-case "5️⃣":
-case "5":
-idioma = 'ar'
-break
-default:
-if (text == 0 || text > 5) return
-return conn.reply(m.chat, `${lenguajeGB['smsAvisoAG']()}*RECUERDE USAR EL EMOJI NUMÉRICO O TEXTO NUMÉRICO PARA SELECCIONAR EL IDIOMA, EJEMPLO*\n\n✓ \`\`\`${usedPrefix}idiomagb 2️⃣\`\`\`\n✓ \`\`\`${usedPrefix}idiomagb 2\`\`\``, m)
-}}
-asignarIdioma(text)
-user.GBLanguage = idioma
-if (!user.GBLanguage) return m.reply(`${lenguajeGB['smsAvisoFG']()}*NO SE LOGRÓ CONFIGURAR EL IDIOMA, INTENTE DE NUEVO POR FAVOR*`)
-if (codigosIdiomas.includes(user.GBLanguage)) {
-nombresIdiomas = nombresIdiomas[user.GBLanguage]
-} else {
-nombresIdiomas = `IDIOMA NO DETECTADO`
-}  
+const userData = registro[sender]
+const languageCodes = {
+1: 'es',
+2: 'en',
+3: 'pt',
+4: 'id',
+5: 'ar',
+}
+let timeout 
+timeout = setTimeout(() => {
+userData.confirmacion = true
+conn.sendMessage(m.chat, { text: `*TIEMPO AGOTADO: SE UTILIZARÁ EL IDIOMA PREDETERMINADO.*`, mentions: [m.sender]}, {quoted: m})
+registro.confirmacion = true
+}, 60 * 1000)
+
+if (/(^1|es)$/i.test(m.text) && m.quoted && m.quoted.text.includes(userData.codeMessage)) {
+userData.confirmacion = true
+user.GBLanguage = languageCodes[1]
+clearTimeout(timeout)
+}
+
+if (/(^2|en)$/i.test(m.text) && m.quoted && m.quoted.text.includes(userData.codeMessage)) {
+userData.confirmacion = true
+user.GBLanguage = languageCodes[2]
+clearTimeout(timeout)
+}
+
+if (/(^3|pt)$/i.test(m.text) && m.quoted && m.quoted.text.includes(userData.codeMessage)) {
+user.GBLanguage = languageCodes[3]
+clearTimeout(timeout)
+}
+
+if (/(^4|id)$/i.test(m.text) && m.quoted && m.quoted.text.includes(userData.codeMessage)) {
+userData.confirmacion = true
+user.GBLanguage = languageCodes[4]
+clearTimeout(timeout)
+}
+
+if (/(^5|ar)$/i.test(m.text) && m.quoted && m.quoted.text.includes(userData.codeMessage)) {
+userData.confirmacion = true
+user.GBLanguage = languageCodes[5]
+clearTimeout(timeout)
+}
+
+if (userData.confirmacion === true) {
 await m.reply(`${lenguajeGB['smsAvisoIIG']()}*EN CASO QUE QUIERA CAMBIAR O ELIMINAR EL IDIOMA DEBE DE ELIMINAR SU REGISTRO PRIMERO*`)
 user.regTime = + new Date
 user.registered = true
@@ -123,8 +129,20 @@ let caption = `${lenguajeGB.smsVerify7()}
 • \`\`\`${sn}\`\`\``.trim()
 await conn.sendFile(m.chat, pp, 'gata.jpg', caption, m, false, { mentions: [aa] }) 
 await m.reply(lenguajeGB.smsVerify8(usedPrefix)) 
-await m.reply(`${sn}`) 
-}
-}
+await m.reply(`${sn}`)
+userData.confirmacion = false
+userData.codeMessage = 0
+}}}}
 handler.command = /^(verify|verificar|reg(ister)?|idiomagb)$/i
 export default handler
+
+function generateRandomCode(length) {
+const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
+let code = ''
+for (let i = 0; i < length; i++) {
+const randomIndex = Math.floor(Math.random() * characters.length)
+code += characters.charAt(randomIndex)
+}
+return code
+}
+
