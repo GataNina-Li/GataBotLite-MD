@@ -59,8 +59,9 @@ await conn.sendMessage(m.chat, { text: genText }, { quoted: m })
 const sender = m.sender
 registro[sender] = registro[sender] ?? {
 confirmacion: false,
-codeMessage: randomCode,
+codeMessage: 0,
 }
+userData.codeMessage = randomCode
 const userData = registro[sender]
 const languageCodes = {
 1: 'es',
