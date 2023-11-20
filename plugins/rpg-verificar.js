@@ -107,7 +107,6 @@ userData.confirmacion = true
 user.GBLanguage = languageCodes[5]
 clearTimeout(timeout)
 }
-}
 
 if (userData.confirmacion === true) {
 await m.reply(`${lenguajeGB['smsAvisoIIG']()}*EN CASO QUE QUIERA CAMBIAR O ELIMINAR EL IDIOMA DEBE DE ELIMINAR SU REGISTRO PRIMERO*`)
@@ -138,7 +137,7 @@ await m.reply(lenguajeGB.smsVerify8(usedPrefix))
 await m.reply(`${sn}`)
 userData.confirmacion = false
 userData.codeMessage = 0
-}}
+}}}
 handler.command = /^(verify|verificar|reg(ister)?|idiomagb)$/i
 export default handler
 
