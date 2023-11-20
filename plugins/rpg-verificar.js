@@ -109,6 +109,12 @@ clearTimeout(timeout)
 }
 
 if (userData.confirmacion === true) {
+if (codigosIdiomas.includes(user.GBLanguage)) {
+nombresIdiomas = nombresIdiomas[user.GBLanguage]
+} else {
+nombresIdiomas = `IDIOMA NO DETECTADO`
+}
+  
 await m.reply(`${lenguajeGB['smsAvisoIIG']()}*EN CASO QUE QUIERA CAMBIAR O ELIMINAR EL IDIOMA DEBE DE ELIMINAR SU REGISTRO PRIMERO*`)
 user.regTime = + new Date
 user.registered = true
