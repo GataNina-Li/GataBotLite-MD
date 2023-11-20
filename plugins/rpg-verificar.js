@@ -111,7 +111,7 @@ clearTimeout(timeout)
 }
 }
 
-handler = async function (m, { conn, text, usedPrefix, command }) {
+handler = async function (m, { conn, text, usedPrefix, command, userData }) {
 if (userData.confirmacion === true) {
 await m.reply(`${lenguajeGB['smsAvisoIIG']()}*EN CASO QUE QUIERA CAMBIAR O ELIMINAR EL IDIOMA DEBE DE ELIMINAR SU REGISTRO PRIMERO*`)
 user.regTime = + new Date
