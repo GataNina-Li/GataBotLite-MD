@@ -58,7 +58,7 @@ await conn.sendMessage(m.chat, { text: genText }, { quoted: m })
 }
 
 //handler.before = async (m) => {
-handler.before = async function(m, { user, nombresIdiomas, tag, pp, aa, usedPrefix } ) {
+handler.before = async function (m, { user, nombresIdiomas, tag, pp, aa, usedPrefix }) {
 const sender = m.sender
 registro[sender] = registro[sender] ?? {
 confirmacion: false,
