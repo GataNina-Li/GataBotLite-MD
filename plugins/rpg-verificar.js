@@ -2,6 +2,7 @@ import { createHash } from 'crypto'
 import fetch from 'node-fetch'
 let Reg = /\|?(.*)([.|] *?)([0-9]*)$/i 
 const registro = {}
+const randomCode = generateRandomCode(5)
 
 let handler = async function (m, { conn, text, usedPrefix, command }) {
 let codigosIdiomas = ['es', 'en', 'pt', 'id', 'ar']
@@ -36,7 +37,6 @@ if (name.length >= 30) return m.reply(lenguajeGB.smsVerify6())
 user.name = name + 'ͧͧͧͦꙶͣͤ✓ᚲᴳᴮ'.trim()
 user.age = age
 
-const randomCode = generateRandomCode(5)
 let listaIdiomasTexto = ''
 listaIdiomasTexto += '*╭┄┄┄┄┄┄┄┄┄┄┄┄┄┄୭̥⋆*｡*\n' 
 listaIdiomasTexto += '*┆ 🌐 IDIOMA DINÁMICO 🌐*\n' 
