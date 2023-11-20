@@ -55,9 +55,7 @@ ${listaIdiomasTexto}
 
 \`\`\`Id: ${randomCode}\`\`\``
 await conn.sendMessage(m.chat, { text: genText }, { quoted: m })
-}
 
-//handler.before = async (m) => {
 handler.before = async (m) => {
 const sender = m.sender
 registro[sender] = registro[sender] ?? {
@@ -111,7 +109,6 @@ clearTimeout(timeout)
 }
 }
 
-handler = async function (m, { conn, text, usedPrefix, command, userData }) {
 if (userData.confirmacion === true) {
 await m.reply(`${lenguajeGB['smsAvisoIIG']()}*EN CASO QUE QUIERA CAMBIAR O ELIMINAR EL IDIOMA DEBE DE ELIMINAR SU REGISTRO PRIMERO*`)
 user.regTime = + new Date
@@ -141,7 +138,7 @@ await m.reply(lenguajeGB.smsVerify8(usedPrefix))
 await m.reply(`${sn}`)
 userData.confirmacion = false
 userData.codeMessage = 0
-}}//}
+}}}
 handler.command = /^(verify|verificar|reg(ister)?|idiomagb)$/i
 export default handler
 
