@@ -4,7 +4,9 @@ let Reg = /\|?(.*)([.|] *?)([0-9]*)$/i
 const registro = {}
 const randomCode = generateRandomCode(5)
 
-let handler = async function (m, { conn, text, usedPrefix, command }) {
+let handler = m => m
+//let handler = async function (m, { conn, text, usedPrefix, command }) {
+handler.before = async function (m, { conn, text, usedPrefix, command }) {
 let codigosIdiomas = ['es', 'en', 'pt', 'id', 'ar']
 let nombresIdiomas = {
 'es': 'Español',
@@ -55,9 +57,7 @@ ${listaIdiomasTexto}
 
 \`\`\`Id: ${randomCode}\`\`\``
 await conn.sendMessage(m.chat, { text: genText }, { quoted: m })
-}
 
-handler.before = async (m, user, nombresIdiomas, tag, pp, aa, usedPrefix) => {
 const sender = m.sender
 registro[sender] = registro[sender] ?? {
 confirmacion: false,
