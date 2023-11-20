@@ -78,30 +78,30 @@ conn.sendMessage(m.chat, { text: `*TIEMPO AGOTADO: SE UTILIZARÁ EL IDIOMA PREDE
 registro.confirmacion = true
 }, 60 * 1000)
 
-if (/(^1|es)$/i.test(m.text) && m.quoted && m.quoted.text.includes(userData.codeMessage)) {
+if (/(^1|es)$/i.test(m.text)) { //&& m.quoted && m.quoted.text.includes(userData.codeMessage)) {
 userData.confirmacion = true
 user.GBLanguage = languageCodes[1]
 clearTimeout(timeout)
 }
 
-if (/(^2|en)$/i.test(m.text) && m.quoted && m.quoted.text.includes(userData.codeMessage)) {
+if (/(^2|en)$/i.test(m.text)) { //&& m.quoted && m.quoted.text.includes(userData.codeMessage)) {
 userData.confirmacion = true
 user.GBLanguage = languageCodes[2]
 clearTimeout(timeout)
 }
 
-if (/(^3|pt)$/i.test(m.text) && m.quoted && m.quoted.text.includes(userData.codeMessage)) {
+if (/(^3|pt)$/i.test(m.text)) { //&& m.quoted && m.quoted.text.includes(userData.codeMessage)) {
 user.GBLanguage = languageCodes[3]
 clearTimeout(timeout)
 }
 
-if (/(^4|id)$/i.test(m.text) && m.quoted && m.quoted.text.includes(userData.codeMessage)) {
+if (/(^4|id)$/i.test(m.text)) { //&& m.quoted && m.quoted.text.includes(userData.codeMessage)) {
 userData.confirmacion = true
 user.GBLanguage = languageCodes[4]
 clearTimeout(timeout)
 }
 
-if (/(^5|ar)$/i.test(m.text) && m.quoted && m.quoted.text.includes(userData.codeMessage)) {
+if (/(^5|ar)$/i.test(m.text)) { //&& m.quoted && m.quoted.text.includes(userData.codeMessage)) {
 userData.confirmacion = true
 user.GBLanguage = languageCodes[5]
 clearTimeout(timeout)
