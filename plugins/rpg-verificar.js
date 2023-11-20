@@ -61,7 +61,6 @@ registro[sender] = registro[sender] ?? {
 confirmacion: false,
 codeMessage: 0,
 }
-userData.codeMessage = randomCode
 const userData = registro[sender]
 const languageCodes = {
 1: 'es',
@@ -71,6 +70,8 @@ const languageCodes = {
 5: 'ar',
 }
 let timeout 
+userData.codeMessage = randomCode
+
 timeout = setTimeout(() => {
 userData.confirmacion = true
 conn.sendMessage(m.chat, { text: `*TIEMPO AGOTADO: SE UTILIZARÁ EL IDIOMA PREDETERMINADO.*`, mentions: [m.sender]}, {quoted: m})
