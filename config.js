@@ -14,7 +14,7 @@ import { en, es, id, ar, pt } from './lib/idiomas/total-idiomas.js'
 // EN ➜ If you want to receive reports you must use the three parameters (Number, name and true)
 global.owner = [
 ['17013901778', '𝙊𝙬𝙣𝙚𝙧 💖🐈', true], //𝙂𝙖𝙩𝙖𝘽𝙤𝙩𝙇𝙞𝙩𝙚-𝙈𝘿 🌻🐈
-['584124172474', '𝙊𝙬𝙣𝙚𝙧 💖🐈', true]', true], 
+['584124172474', '𝙊𝙬𝙣𝙚𝙧 💖🐈', true]', true], //𝙂𝙖𝙩𝙖𝘽𝙤𝙩𝙇𝙞𝙩𝙚-𝙈𝘿 🌻🐈
 ['593968585383'], ['5492266466080'], ['5217294888993'], ['5492266613038'], ['51948705559']]
 
 global.mods = [] 
