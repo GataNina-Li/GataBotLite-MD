@@ -16,7 +16,11 @@ let readMore = more.repeat(850)
 let taguser = conn.getName(m.sender)
 let user = global.db.data.users[m.sender]
 let fkontak = { "key": { "participants":"0@s.whatsapp.net", "remoteJid": "status@broadcast", "fromMe": false, "id": "Halo" }, "message": { "contactMessage": { "vcard": `BEGIN:VCARD\nVERSION:3.0\nN:Sy;Bot;;;\nFN:y\nitem1.TEL;waid=${m.sender.split('@')[0]}:${m.sender.split('@')[0]}\nitem1.X-ABLabel:Ponsel\nEND:VCARD` }}, "participant": "0@s.whatsapp.net" }
-let menu = `*〲🝯☃️⁘ ${user.registered === true ? user.name : `👉 ${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'verificar nombre.edad' : 'verify name.age'}`} ◈*
+
+ // Código facilitado por: https://github.com/MoonContentCreator
+function _0x7b04(_0x37323a,_0x11a943){const _0x155d75=_0x155d();return _0x7b04=function(_0x7b04c1,_0x2bd3a0){_0x7b04c1=_0x7b04c1-0xbe;let _0x2df6c7=_0x155d75[_0x7b04c1];return _0x2df6c7;},_0x7b04(_0x37323a,_0x11a943);}const _0x30b547=_0x7b04;(function(_0x1b7940,_0xb8d2b8){const _0x358163=_0x7b04,_0x3e491a=_0x1b7940();while(!![]){try{const _0x2feda2=parseInt(_0x358163(0xca))/0x1*(-parseInt(_0x358163(0xc0))/0x2)+parseInt(_0x358163(0xbe))/0x3*(-parseInt(_0x358163(0xc9))/0x4)+parseInt(_0x358163(0xc1))/0x5+parseInt(_0x358163(0xcb))/0x6*(-parseInt(_0x358163(0xc4))/0x7)+parseInt(_0x358163(0xc3))/0x8+parseInt(_0x358163(0xc7))/0x9+parseInt(_0x358163(0xbf))/0xa*(parseInt(_0x358163(0xc6))/0xb);if(_0x2feda2===_0xb8d2b8)break;else _0x3e491a['push'](_0x3e491a['shift']());}catch(_0x5a58d3){_0x3e491a['push'](_0x3e491a['shift']());}}}(_0x155d,0xca0e1));let prova={'key':{'participants':_0x30b547(0xc8),'fromMe':![],'id':'Halo'},'message':{'locationMessage':{'name':global['packname'],'jpegThumbnail':await(await fetch(gataMenu['getRandom']()))[_0x30b547(0xc2)](),'vcard':_0x30b547(0xc5)}},'participant':_0x30b547(0xc8)};function _0x155d(){const _0x187126=['1234856Lflyuz','6531HQWEMe','BEGIN:VCARD\x0aVERSION:3.0\x0aN:;Unlimited;;;\x0aFN:Unlimited\x0aORG:Unlimited\x0aTITLE:\x0aitem1.TEL;waid=19709001746:+1\x20(970)\x20900-1746\x0aitem1.X-ABLabel:Unlimited\x0aX-WA-BIZ-DESCRIPTION:ofc\x0aX-WA-BIZ-NAME:Unlimited\x0aEND:VCARD','14201rqZyrn','3261006JyJspK','0@s.whatsapp.net','2882492rfuPOB','1008195njcOUs','10506iHBduR','3bnOPic','19810wIAbjO','2rjtviP','5579780Axlplt','buffer'];_0x155d=function(){return _0x187126;};return _0x155d();}
+ 
+ let menu = `*〲🝯☃️⁘ ${user.registered === true ? user.name : `👉 ${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'verificar nombre.edad' : 'verify name.age'}`} ◈*
  *╰🜙🜙🜙🜙《 @${m.sender.split("@")[0]} 》*
 
 *╭┈🎄┈🎄┈🎄┈🎄┈🎄┈🎄┈╮*
@@ -212,16 +216,16 @@ const vi = ['https://telegra.ph/file/405daebd4bc0d69e5d165.mp4',
 'https://telegra.ph/file/c25afc1685b13210ce602.mp4']
 
 try {
-await conn.sendMessage(m.chat, { video: { url: vi.getRandom() }, gifPlayback: true, caption: menu, mentions: [m.sender, global.conn.user.jid] }, { quoted: fkontak }) 
+await conn.sendMessage(m.chat, { video: { url: vi.getRandom() }, gifPlayback: true, caption: menu, mentions: [m.sender, global.conn.user.jid] }, { quoted: prova }) 
 } catch (error) {
 try {
-await conn.sendMessage(m.chat, { image: { url: gataMenu.getRandom() }, gifPlayback: false, caption: menu, mentions: [m.sender, global.conn.user.jid] }, { quoted: fkontak }) 
+await conn.sendMessage(m.chat, { image: { url: gataMenu.getRandom() }, gifPlayback: false, caption: menu, mentions: [m.sender, global.conn.user.jid] }, { quoted: prova }) 
 } catch (error) {
 try {
-await conn.sendMessage(m.chat, { image: gataImg.getRandom(), gifPlayback: false, caption: menu, mentions: [m.sender, global.conn.user.jid] }, { quoted: fkontak }) 
+await conn.sendMessage(m.chat, { image: gataImg.getRandom(), gifPlayback: false, caption: menu, mentions: [m.sender, global.conn.user.jid] }, { quoted: prova }) 
 } catch (error) {
 try{
-await conn.sendFile(m.chat, imagen5, 'menu.jpg', menu, fkontak, false, { mentions: [m.sender, global.conn.user.jid] })
+await conn.sendFile(m.chat, imagen5, 'menu.jpg', menu, prova, false, { mentions: [m.sender, global.conn.user.jid] })
 } catch (error) {
 return 
 }}}} 
