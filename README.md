@@ -108,7 +108,7 @@ npm install -g ffmpeg imagemagick git yarn && npm i && node --no-warnings index.
 
 - [x] **Configuración** <details><summary>**Ajustes del Servidor - GataBot-MD**</summary><img src="https://i.imgur.com/tD3NQSR.jpeg"></details>
 ----
-### CAFIREXOS 
+### 🔵 CAFIREXOS 
 > Optimice la implementación de **GataBot** mediante la integración en un servicio de alojamiento de alto rendimiento.
 
 <a href="https://www.cafirexos.com"><img src="https://grxcwmcwbxwj.objectstorage.sa-saopaulo-1.oci.customer-oci.com/n/grxcwmcwbxwj/b/cafirexos/o/logos%2Flogo.png" height="125px"></a>
