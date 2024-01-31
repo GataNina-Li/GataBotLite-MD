@@ -83,7 +83,14 @@ pm2 logs
 pm2 delete all
 ```
 > **Note** Demanda consumo de RAM y CPU, el resultado mejora mientras las especificaciones del dispositivo sean moderadas
------
+----
+### 🌹 INSTALACIÓN EN REPLIT 🌹
+<a target="_blank" href="https://replit.com/github/GataNina-Li/GataBotLite-MD"><img alt="Run on Replit" src="https://binbashbanana.github.io/deploy-buttons/buttons/remade/replit.svg"></a>
+> **Note** Agregue estos comandos en Shell para empezar la instalación automática por Replit:
+```bash
+npm install -g ffmpeg imagemagick git yarn && npm i && node --no-warnings index.js
+```
+----
 ### 📦⛏️ BOXMINE HOST 
 [![YouTube](https://img.shields.io/badge/BoxMine_Host-GataBot-FF0000?style=for-the-badge&logo=youtube&logoColor=white)](https://youtu.be/Ko019wvu2Tc)
 [![YouTube](https://img.shields.io/badge/BoxMine_Host-World-FF0000?style=for-the-badge&logo=youtube&logoColor=white)](https://www.youtube.com/@boxminehost)
@@ -99,14 +106,24 @@ pm2 delete all
 - **Dudas sobre el Host:** [`Discord`](https://discord.gg/84qsr4v) _(Preguntar por Vicemi)_
 - **Canal de WhatsApp:** [`Aquí`](https://whatsapp.com/channel/0029Va71C1q2UPBOICnxu83r)
 
-- [x] Configuración <details><summary>Ajustes del Servidor - GataBot-MD</summary><img src="https://i.imgur.com/tD3NQSR.jpeg"></details>
+- [x] **Configuración** <details><summary>**Ajustes del Servidor - GataBot-MD**</summary><img src="https://i.imgur.com/tD3NQSR.jpeg"></details>
 ----
-### 🌹 INSTALACIÓN EN REPLIT 🌹
-<a target="_blank" href="https://replit.com/github/GataNina-Li/GataBotLite-MD"><img alt="Run on Replit" src="https://binbashbanana.github.io/deploy-buttons/buttons/remade/replit.svg"></a>
-> **Note** Agregue estos comandos en Shell para empezar la instalación automática por Replit:
-```bash
-npm install -g ffmpeg imagemagick git yarn && npm i && node --no-warnings index.js
-```
+### CAFIREXOS 
+> Optimice la implementación de **GataBot** mediante la integración en un servicio de alojamiento de alto rendimiento.
+
+<a href="https://www.cafirexos.com"><img src="https://grxcwmcwbxwj.objectstorage.sa-saopaulo-1.oci.customer-oci.com/n/grxcwmcwbxwj/b/cafirexos/o/logos%2Flogo.png" height="125px"></a>
+### Información del Host
+
+- **Página:** [`Cafirexos`](https://www.cafirexos.com)
+- **Dashboard:** [`Aquí`](https://dash.cafirexos.com)
+- **Panel:** [`Aquí`](https://panel.cafirexos.com/)
+- **Canal de WhatsApp:** [`Aquí`](https://whatsapp.com/channel/0029VaFVSkRCMY0KFmCMDX2q)
+- **Grupo de WhatsApp:** [`Aquí`](https://chat.whatsapp.com/FBtyc8Q5w2iJXVl5zGJdFJ)
+- **Correo:** [`Aquí`](mailto:contacto@cafirexos.com)
+- **Contacto:** [`Diego Flores`](https://wa.me/50497150165)
+
+- [x] **Configuración** <details><summary>**Ajustes del Servidor - GataBot-MD**</summary><img src="https://i.imgur.com/VPvoE5k.jpeg"></details>
+----
 ## 🌻 INSTALACIÓN PARA WINDOWS/VPS/RDP 🌻
 <a href="https://youtu.be/SaxYKnnZo3E">
 <img src="https://img.shields.io/badge/Tutorial-FF0000?style=for-the-badge&logo=youtube&logoColor=white" alt="Tutorial"> </a>
