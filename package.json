@@ -12,7 +12,7 @@
     
 "scripts": {
 "start": "node index.js",
-"qr": "node index.js qr",
+"qr": "node index.js qr", 
 "code": "node index.js code",
 "vortexus": "bash vortexus.sh",   
 "test": "node test.js",
