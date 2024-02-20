@@ -14,13 +14,18 @@ import { en, es, id, ar, pt } from './lib/idiomas/total-idiomas.js'
 // EN ➜ If you want to receive reports you must use the three parameters (Number, name and true)
 global.owner = [
 ['5492266466080', '𝙊𝙬𝙣𝙚𝙧 💖🐈', true], //𝙂𝙖𝙩𝙖𝘽𝙤𝙩𝙇𝙞𝙩𝙚-𝙈𝘿 🌻🐈
-['573183650526', '𝙂𝘽 𝘼𝙨𝙞𝙨𝙩𝙚𝙣𝙘𝙞𝙖 💖🐈', true],
-['51982233590', '𝙂𝘽 Develooper 💖🐈', true],
+['593968263524', '𝙂𝘽 𝘼𝙨𝙞𝙨𝙩𝙚𝙣𝙘𝙞𝙖 💖🐈', true],
 ['593968585383'], ['5217294888993'], ['5492266613038'], ["51906662557"], ['51948705559'], ['5492964650915']]
 
 global.mods = [] 
 global.prems = []
-   
+
+// ❰❰ methodCode ❱❱
+// [ES] > Agregue el número del Bot en "botNumberCode" si desea recibir código de 8 dígitos sin registrar el número en la consola.
+// [EN] > Add the Bot number in "botNumberCode" if you want to receive 8-digit code without registering the number in the console.
+global.botNumberCode = "" //example: "+59309090909"
+global.confirmCode = "" // No tocar esto : Do not touch this line
+
 // ES ➜ Agregue el código de idioma el cual usará GataBot  
 // EN ➜ Add the language code which GataBot will use
 //  es = Español      id = Bahasa Indonesia       ar = عرب
