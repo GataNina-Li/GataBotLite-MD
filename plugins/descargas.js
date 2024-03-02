@@ -207,9 +207,9 @@ await conn.sendMessage(m.chat, { video: { url: n2 }, fileName: `${n}.mp4`, mimet
 await m.react(sent)    
 await message.react(correct)*/
 //}}}   
-}} catch (e) {
+} catch (e) {
 reportError(e)
-}
+}}
 break
             
 case isCommand4:
