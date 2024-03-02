@@ -177,7 +177,7 @@ let videoURL = `https://api.cafirexos.com/api/v1/ytmp4?url=${yt_play[0].url}`
 await conn.sendMessage(m.chat, { video: videoURL.data, mimetype: 'video/mp4', fileName: 'error.mp4' }, { quoted: m })
 await m.react(sent)    
 await message.react(correct)
-} catch {   
+/*} catch {   
 try {
 let qu = '360'
 let q = qu + 'p'
@@ -205,9 +205,8 @@ let n3 = lolh.result.size
 let n4 = lolh.result.thumbnail
 await conn.sendMessage(m.chat, { video: { url: n2 }, fileName: `${n}.mp4`, mimetype: 'video/mp4', caption: `\`${wm}\``, thumbnail: await fetch(n4) }, { quoted: m })
 await m.react(sent)    
-await message.react(correct)
-} catch {
-}}}}   
+await message.react(correct)*/
+//}}}   
 }} catch (e) {
 reportError(e)
 }
