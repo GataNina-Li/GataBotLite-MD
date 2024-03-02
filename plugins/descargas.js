@@ -172,6 +172,12 @@ await message.react(correct)
 }  
 if (command == 'play2') {
 try {
+let videoURL = `https://api.cafirexos.com/api/v1/ytmp4?url=${yt_play[0].url}`
+await conn.sendMessage(m.chat, { video: videoURL.data, fileName: `${ttl}.mp4`, mimetype: 'video/mp4', caption: `${wm}`, thumbnail: await fetch(yt.thumbnail) }, { quoted: m })
+await m.react(sent)    
+await message.react(correct)
+} catch {   
+try {
 let qu = '360'
 let q = qu + 'p'
 let v = yt_play[0].url
@@ -179,7 +185,7 @@ const yt = await youtubedl(v).catch(async _ => await youtubedlv2(v))
 const dl_url = await yt.video[q].download()
 const ttl = await yt.title
 const size = await yt.video[q].fileSizeH
-await await conn.sendMessage(m.chat, { video: { url: dl_url }, fileName: `${ttl}.mp4`, mimetype: 'video/mp4', caption: `${wm}`, thumbnail: await fetch(yt.thumbnail) }, { quoted: m })
+await conn.sendMessage(m.chat, { video: { url: dl_url }, fileName: `${ttl}.mp4`, mimetype: 'video/mp4', caption: `${wm}`, thumbnail: await fetch(yt.thumbnail) }, { quoted: m })
 await m.react(sent)    
 await message.react(correct)
 } catch {   
@@ -200,7 +206,7 @@ await conn.sendMessage(m.chat, { video: { url: n2 }, fileName: `${n}.mp4`, mimet
 await m.react(sent)    
 await message.react(correct)
 } catch {
-}}}    
+}}}}   
 }} catch (e) {
 reportError(e)
 }
