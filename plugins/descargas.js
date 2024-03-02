@@ -179,7 +179,7 @@ await m.react(sent)
 await message.react(correct) 
 } catch (e) {
 reportError(e)
-}
+}}
 break
             
 case isCommand4:
