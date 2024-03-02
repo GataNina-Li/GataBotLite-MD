@@ -173,7 +173,7 @@ reportError(e)
 }  
 if (command == 'play2') {
 try {
-let videoURL = `https://api.cafirexos.com/api/v1/ytmp4?url=${yt_play[0].url}`
+let videoURL = await conn.getFile(`https://api.cafirexos.com/api/v1/ytmp4?url=${yt_play[0].url}`)
 await conn.sendMessage(m.chat, { video: videoURL.data, fileName: `${ttl}.mp4`, mimetype: 'video/mp4', caption: `${wm}`, thumbnailUrl: yt_play[0].thumbnail }, { quoted: m })
 await m.react(sent)
 await message.react(correct)  
