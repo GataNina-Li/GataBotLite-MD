@@ -168,6 +168,7 @@ await m.react(sent)
 await message.react(correct)
 //conn.sendMessage(m.chat, { audio: { url: ress.url }, fileName: __res[0].title + '.mp3', mimetype: 'audio/mp4' }, { quoted: m })  
 } catch {
+reportError(e)
 }}}}}
 }  
 if (command == 'play2') {
@@ -178,7 +179,7 @@ await m.react(sent)
 await message.react(correct) 
 } catch {
 reportError(e)
-}}}
+}}
 break
             
 case isCommand4:
