@@ -190,8 +190,8 @@ if (!args[0]) return m.reply(lenguajeGB.smsMalused2() + `*${usedPrefix + command
 await conn.reply(m.chat, lenguajeGB.smsAvisoEG() + '*' + lenguajeGB.smsYTA1() + '*', m)
 try {
 let audioURL = await conn.getFile(`https://api.cafirexos.com/api/v1/ytmp3?url=${text}`)
-//await conn.sendFile(m.chat, audioURL, ttl + '.mp3', null, m, false, { mimetype: 'audio/mp4' })
-await conn.sendMessage(m.chat, { audio: { url: audioURL }, mimetype: 'audio/mpeg' }, { quoted: m }) 
+await conn.sendMessage(m.chat, { audio: audioURL, mimetype: 'audio/mpeg', fileName: ttl + `.mp3`}, {quoted: m})
+//await conn.sendMessage(m.chat, { audio: { url: audioURL }, mimetype: 'audio/mpeg' }, { quoted: m }) 
 } catch (e) {
 reportError(e)
 }       
