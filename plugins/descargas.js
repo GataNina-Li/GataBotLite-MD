@@ -204,12 +204,13 @@ break
 case isCommand5:
 if (!args[0]) return m.reply(lenguajeGB.smsMalused2() + `*${usedPrefix + command} https://youtu.be/ejemplo*\n*${usedPrefix + command} https://www.youtube.com/ejemplo*`)
 await conn.reply(m.chat, lenguajeGB.smsAvisoEG() + '*' + lenguajeGB.smsYTA2() + '*', m)
-let vid = (await yts(text)).all[0]
-const yt_play = await search(args.join(" "))
-let { title, description, url, thumbnail, videoId, timestamp, views, published } = vid
-try {
-let videoURL = await conn.getFile(`https://api.cafirexos.com/api/v1/ytmp4?url=${yt_play[0].url}`)
-await conn.sendMessage(m.chat, { document: videoURL, caption: description, mimetype: 'audio/mpeg', fileName: `${title}.mp3`}, { quoted: m })
+let q = '128kbps'
+let v = text
+const yt = await youtubedl(v).catch(async _ => await youtubedlv2(v))
+const dl_url = await yt.audio[q].download()
+const ttl = await yt.title    
+let audioBuffer = await getBuffer(`https://api.cafirexos.com/api/v1/ytmp3?url=${text}`)
+await conn.sendMessage(m.chat, {document: audioBuffer, mimetype: 'audio/mpeg', fileName: ttl + `.mp3`}, {quoted: m});   
 } catch (e) {
 reportError(e)
 }         
