@@ -190,17 +190,11 @@ if (!args[0]) return m.reply(lenguajeGB.smsMalused2() + `*${usedPrefix + command
 await conn.reply(m.chat, lenguajeGB.smsAvisoEG() + '*' + lenguajeGB.smsYTA1() + '*', m)
 try {
 let audioURL = await conn.getFile(`https://api.cafirexos.com/api/v1/ytmp3?url=${yt_play[0].url}`)
-await conn.sendFile(m.chat, audioURL, ttl + '.mp3', null, m, false, { mimetype: 'audio/mp4' })
-} catch {
-try {
-let searchh = await yts(text)
-let __res = searchh.all.map(v => v).filter(v => v.type == "video")
-let infoo = await ytdl.getInfo('https://youtu.be/' + __res[0].videoId)
-let ress = await ytdl.chooseFormat(infoo.formats, { filter: 'audioonly' })
-await conn.sendMessage(m.chat, { audio: { url: ress.url }, mimetype: 'audio/mpeg' }, { quoted: m })  
+//await conn.sendFile(m.chat, audioURL, ttl + '.mp3', null, m, false, { mimetype: 'audio/mp4' })
+await conn.sendMessage(m.chat, { audio: audioURL, mimetype: 'audio/mpeg' }, { quoted: m }) 
 } catch (e) {
 reportError(e)
-}}       
+}       
 break
         
 case isCommand5:
@@ -212,18 +206,9 @@ let { title, description, url, thumbnail, videoId, timestamp, views, published }
 try {
 let videoURL = await conn.getFile(`https://api.cafirexos.com/api/v1/ytmp4?url=${yt_play[0].url}`)
 await conn.sendMessage(m.chat, { document: videoURL, caption: description, mimetype: 'audio/mpeg', fileName: `${title}.mp3`}, { quoted: m })
-} catch {
-try {
-lolhuman = await fetch(`https://api.lolhuman.xyz/api/ytaudio2?apikey=${lolkeysapi}&url=${args[0]}`)   
-lolh = await lolhuman.json()
-n = lolh.result.title || 'error'
-n2 = lolh.result.link
-n3 = lolh.result.size
-cap = `🎧 *AUDIO* 🎧\n\n*⎔ ${n}*\n\n*⎔ ${n3}*`.trim()
-await conn.sendMessage(m.chat, { document: { url: n2 }, caption: cap2, mimetype: 'audio/mpeg', fileName: `${n}.mp3`}, {quoted: m})
 } catch (e) {
 reportError(e)
-}}         
+}         
 break
         
 case isCommand6:
