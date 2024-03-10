@@ -229,150 +229,37 @@ case isCommand6:
 if (!args[0]) return m.reply(lenguajeGB.smsMalused2() + `*${usedPrefix + command} https://youtu.be/ejemplo*\n*${usedPrefix + command} https://www.youtube.com/ejemplo*`)
 await conn.reply(m.chat, lenguajeGB.smsAvisoEG() + '*' + lenguajeGB.smsYTV1() + '*', m)
 try {
-qu = '360'
-q = qu + 'p';
-v = args[0]
-yt = await youtubedl(v).catch(async (_) => await youtubedlv2(v))
-dl_url = await yt.video[q].download()
-ttl = await yt.title
-size = await yt.video[q].fileSizeH
-await conn.sendMessage(m.chat, { video: { url: dl_url }, fileName: `${ttl}.mp4`, mimetype: 'video/mp4', caption: `*💫 ${ttl}*${size !== undefined ? `\n*⚖️ ${size}*` : ''}`, thumbnail: await fetch(yt.thumbnail) }, { quoted: m })
-} catch {
-try {
-lolhuman = await fetch(`https://api.lolhuman.xyz/api/ytvideo2?apikey=${lolkeysapi}&url=${args[0]}`)    
-lolh = await lolhuman.json()
-n = lolh.result.title || 'error'
-n2 = lolh.result.link
-n3 = lolh.result.size
-n4 = lolh.result.thumbnail
-await conn.sendMessage(m.chat, { video: { url: n2 }, fileName: `${n}.mp4`, mimetype: 'video/mp4', caption: `*💫 ${n}*${n3 !== undefined ? `\n*⚖️ ${n3}*` : ''}`, thumbnail: await fetch(n4) }, { quoted: m })
+let videoURL = await conn.getFile(`https://api.cafirexos.com/api/v1/ytmp4?url=${text.trim()}`)
+await conn.sendMessage(m.chat, { video: videoURL.data, fileName: `${ttl}.mp4`, mimetype: 'video/mp4', caption: `${wm}`, thumbnailUrl: yt_play[0].thumbnail }, { quoted: m })
 } catch (e) {
-reportError(e)}}     
+reportError(e)}     
 break
 
 case isCommand7:
 if (!args[0]) return m.reply(lenguajeGB.smsMalused2() + `*${usedPrefix + command} https://youtu.be/ejemplo*\n*${usedPrefix + command} https://www.youtube.com/ejemplo*`)
 //await conn.reply(m.chat, lenguajeGB.smsAvisoEG() + '*' + lenguajeGB.smsYTV2() + '*', m)
 try { 
-const yt_play = await search(args.join(' '))
-let additionalText = ''
-if (command === 'play3' || command == 'playaudiodoc'  || command === 'ytvdoc' || command === 'ytmp4doc') {
-additionalText = ' A U D I O ⬇️'
-} else if (command === 'play4' || command == 'playvideodoc') {
-additionalText = '⬇️ V I D E O ⬇️'
-}
-let texto1 = `*◜⋯ ⋯ ⋯ Y O U T U B E ⋯ ⋯ ⋯◞*
-*◎ ${lenguajeGB.smsYT1()}*
-${yt_play[0].title}
- 
-*◎ ${lenguajeGB.smsYT3()}*
-${secondString(yt_play[0].duration.seconds)}
-
-*◎ ${lenguajeGB.smsYT4()}*
-${MilesNumber(yt_play[0].views)}
-
-*◎ URL*
-${yt_play[0].url}
-*◜⋯ ⋯ ⋯ ${additionalText} ⋯ ⋯ ⋯◞*`  
-let message = await conn.sendMessage(m.chat, { text: texto1, contextInfo: { externalAdReply: { title: wm, body: wait2.replace(/\*/g, ''), thumbnailUrl: yt_play[0].thumbnail, sourceUrl: md, mediaType: 1, showAdAttribution: false, renderLargerThumbnail: true }}})
-await m.react(sending)
-await message.react(waitemot)
-setTimeout(() => { message.react(waitemot2) }, 1000)
-//if (apiResponse.status !== 200) { 
-//setTimeout(() => { message.react(alert) }, 2000)}
-if (command == 'play3' || command == 'playaudiodoc') {
-try {
-const q = '128kbps';
-const v = yt_play[0].url;
-const yt = await youtubedl(v).catch(async (_) => await youtubedlv2(v));
-const dl_url = await yt.audio[q].download();
-const ttl = await yt.title;
-const size = await yt.audio[q].fileSizeH;
-let cap = `📡 *VIDEO* 📡\n\n*⎔ ${ttl}*\n\n*⎔ ${size}*`.trim()
-await conn.sendMessage(m.chat, { document: { url: dl_url }, caption: cap, mimetype: 'audio/mpeg', contextInfo: {
+const streamPipeline = promisify(pipeline)
+const videoUrl = text
+const videoInfo = await ytdl.getInfo(videoUrl)
+const { videoDetails } = videoInfo
+const { title, thumbnails, lengthSeconds, viewCount, uploadDate } = videoDetails
+const thumbnail = thumbnails[0].url
+const videoStream = ytdl(videoUrl, { filter: 'audioandvideo', quality: 'highest', })
+const writableStream = fs.createWriteStream(`tmp/${title}.mp4`)
+await streamPipeline(videoStream, writableStream);
+let docVid = { video: { url: `tmp/${title}.mp4` }, mimetype: 'video/mp4', fileName: `${title}`, contextInfo: {
 externalAdReply: {
-title: ttl,
-body: "",
-thumbnailUrl: yt_play[0].thumbnail, 
-mediaType: 1,
 showAdAttribution: true,
-renderLargerThumbnail: true
-}}} , { quoted: m })   
+mediaType: 2,
+mediaUrl: videoUrl,
+title: title,
+sourceUrl: videoUrl,
+thumbnail: await (await conn.getFile(thumbnail)).data
+}}}
+await conn.sendMessage(m.chat, docVid, { quoted: m })
 await m.react(sent)    
 await message.react(correct)
-} catch {
-try {
-const lolhuman = await fetch(`https://api.lolhuman.xyz/api/ytaudio2?apikey=${lolkeysapi}&url=${yt_play[0].url}`);
-const lolh = await lolhuman.json();
-const n = lolh.result.title || 'error';
-await conn.sendMessage(m.chat, { document: { url: lolh.result.link }, caption: `📡 *VIDEO* 📡\n\n*⎔ ${n}`, fileName: `${n}.mp3`, mimetype: 'audio/mpeg', contextInfo: {
-externalAdReply: {
-title: n, 
-body: "",
-thumbnailUrl: yt_play[0].thumbnail, 
-mediaType: 1,
-showAdAttribution: true,
-renderLargerThumbnail: true
-}}} , { quoted: m })   
-await m.react(sent)    
-await message.react(correct)
-//await conn.sendMessage(m.chat, {document: {url: lolh.result.link}, caption: `╭━❰  ${wm}  ❱━⬣\n┃📥 YOUTUBE DL 📥\n┃ও *TÍTULO | TITLE:* \n┃» ${n}\n┃﹘﹘﹘﹘﹘﹘﹘﹘﹘﹘﹘﹘\n┃ও *PESO | SIZE:*\n┃» ${n2}\n╰━━━━━❰ *𓃠 ${vs}* ❱━━━━⬣`, fileName: `${n}.mp3`, mimetype: 'audio/mpeg'}, {quoted: m});
-} catch {
-try {
-const searchh = await yts(yt_play[0].url);
-const __res = searchh.all.map((v) => v).filter((v) => v.type == 'video');
-const infoo = await ytdl.getInfo('https://youtu.be/' + __res[0].videoId);
-const ress = await ytdl.chooseFormat(infoo.formats, {filter: 'audioonly'});
-await conn.sendMessage(m.chat, { document: { url: ress.url }, fileName: __res[0].title + '.mp3', mimetype: 'audio/mpeg', contextInfo: {
-externalAdReply: {
-title: __res[0].title,
-body: "",
-thumbnailUrl: yt_play[0].thumbnail, 
-mediaType: 1,
-showAdAttribution: true,
-renderLargerThumbnail: true
-}}} , { quoted: m })   
-await m.react(sent)    
-await message.react(correct)
-} catch {
-}}}}
-if (command == 'play4' || command == 'playvideodoc') {
-try {
-const qu = '360';
-const q = qu + 'p';
-const v = yt_play[0].url;
-const yt = await youtubedl(v).catch(async (_) => await youtubedlv2(v));
-const dl_url = await yt.video[q].download();
-const ttl = await yt.title;
-const size = await yt.video[q].fileSizeH;
-await conn.sendMessage(m.chat, { document: { url: dl_url }, caption: `📡 *VIDEO* 📡\n\n*⎔ ${ttl}*\n⎔ ${size}`, fileName: `${ttl}.mp3`, mimetype: 'audio/mpeg', contextInfo: {
-externalAdReply: {
-title: ttl,
-body: "",
-thumbnailUrl: yt_play[0].thumbnail, 
-mediaType: 1,
-showAdAttribution: true,
-renderLargerThumbnail: true
-}}} , { quoted: m })   
-await m.react(sent)    
-await message.react(correct)
-} catch {
-try {
-const mediaa = await ytMp4(yt_play[0].url);
-await await conn.sendMessage(m.chat, {document: {url: dl_url}, caption: cap, mimetype: 'video/mp4', fileName: ttl + `.mp4`}, {quoted: m});
-} catch {
-try {
-const lolhuman = await fetch(`https://api.lolhuman.xyz/api/ytvideo2?apikey=${lolkeysapi}&url=${yt_play[0].url}`);
-const lolh = await lolhuman.json();
-const n = lolh.result.title || 'error';
-const n2 = lolh.result.link;
-const n3 = lolh.result.size;
-const n4 = lolh.result.thumbnail;
-await conn.sendMessage(m.chat, {document: {url: n2}, fileName: `${n}.mp4`, mimetype: 'video/mp4', caption: `📡 *VIDEO* 📡\n\n*⎔ ${n}\n⎔ ${n3}`, thumbnail: await fetch(n4)}, {quoted: m});
-await m.react(sent)    
-await message.react(correct)
-} catch {
-}}}}
 } catch (e) {
 reportError(e)
 }
