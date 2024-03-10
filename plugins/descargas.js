@@ -229,7 +229,11 @@ case isCommand6:
 if (!args[0]) return m.reply(lenguajeGB.smsMalused2() + `*${usedPrefix + command} https://youtu.be/ejemplo*\n*${usedPrefix + command} https://www.youtube.com/ejemplo*`)
 await conn.reply(m.chat, lenguajeGB.smsAvisoEG() + '*' + lenguajeGB.smsYTV1() + '*', m)
 try {
-let videoURL = await conn.getFile(`https://api.cafirexos.com/api/v1/ytmp4?url=${text.trim()}`)
+let q = '128kbps'
+let v = text.trim()
+const yt = await youtubedl(v).catch(async _ => await youtubedlv2(v))
+ttl = await yt.title    
+let videoURL = await conn.getFile(`https://api.cafirexos.com/api/v1/ytmp4?url=${v}`)
 await conn.sendMessage(m.chat, { video: videoURL.data, fileName: `${ttl}.mp4`, mimetype: 'video/mp4', caption: `${wm}`, thumbnailUrl: yt_play[0].thumbnail }, { quoted: m })
 } catch (e) {
 reportError(e)}     
@@ -237,7 +241,7 @@ break
 
 case isCommand7:
 if (!args[0]) return m.reply(lenguajeGB.smsMalused2() + `*${usedPrefix + command} https://youtu.be/ejemplo*\n*${usedPrefix + command} https://www.youtube.com/ejemplo*`)
-//await conn.reply(m.chat, lenguajeGB.smsAvisoEG() + '*' + lenguajeGB.smsYTV2() + '*', m)
+await conn.reply(m.chat, lenguajeGB.smsAvisoEG() + '*' + lenguajeGB.smsYTV2() + '*', m)
 try { 
 const streamPipeline = promisify(pipeline)
 const videoUrl = text
