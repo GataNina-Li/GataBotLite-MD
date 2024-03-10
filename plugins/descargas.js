@@ -229,6 +229,7 @@ case isCommand6:
 if (!args[0]) return m.reply(lenguajeGB.smsMalused2() + `*${usedPrefix + command} https://youtu.be/ejemplo*\n*${usedPrefix + command} https://www.youtube.com/ejemplo*`)
 await conn.reply(m.chat, lenguajeGB.smsAvisoEG() + '*' + lenguajeGB.smsYTV1() + '*', m)
 try {
+const yt_play = await search(args.join(" "))
 let q = '128kbps'
 let v = text.trim()
 const yt = await youtubedl(v).catch(async _ => await youtubedlv2(v))
