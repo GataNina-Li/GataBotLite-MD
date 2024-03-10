@@ -213,6 +213,7 @@ const ttl = await yt.title
 let audioBuffer = await getBuffer(`https://api.cafirexos.com/api/v1/ytmp3?url=${text.trim()}`)
 //await conn.sendMessage(m.chat, { document: audioBuffer.data, mimetype: 'audio/mpeg', fileName: ttl + `.mp3`}, {quoted: m}) 
 await conn.sendMessage(m.chat, { document: { url: audioBuffer.data }, caption: ttl + `.mp3`, mimetype: 'audio/mpeg' }, { quoted: m }) */
+try {
 let streamPipeline = promisify(pipeline)
 let videoUrl = text
 let videoInfo = await ytdl.getInfo(videoUrl)
