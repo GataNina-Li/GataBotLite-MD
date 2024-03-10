@@ -206,13 +206,6 @@ break
 case isCommand5:
 if (!args[0]) return m.reply(lenguajeGB.smsMalused2() + `*${usedPrefix + command} https://youtu.be/ejemplo*\n*${usedPrefix + command} https://www.youtube.com/ejemplo*`)
 await conn.reply(m.chat, lenguajeGB.smsAvisoEG() + '*' + lenguajeGB.smsYTA2() + '*', m)
-/*let q = '128kbps'
-let v = text
-const yt = await youtubedl(v).catch(async _ => await youtubedlv2(v))
-const ttl = await yt.title    
-let audioBuffer = await getBuffer(`https://api.cafirexos.com/api/v1/ytmp3?url=${text.trim()}`)
-//await conn.sendMessage(m.chat, { document: audioBuffer.data, mimetype: 'audio/mpeg', fileName: ttl + `.mp3`}, {quoted: m}) 
-await conn.sendMessage(m.chat, { document: { url: audioBuffer.data }, caption: ttl + `.mp3`, mimetype: 'audio/mpeg' }, { quoted: m }) */
 try {
 let streamPipeline = promisify(pipeline)
 let videoUrl = text
@@ -226,7 +219,7 @@ let writableStream = fs.createWriteStream(`${tmpDir}/${title}.mp3`)
 await streamPipeline(audioStream, writableStream)
 let audioD = `${tmpDir}/${title}.mp3`
 let info = `Título: ${title}\nTiempo: ${lengthSeconds}s\nVistas: ${viewCount}\nSubido: ${uploadDate}`
-await conn.sendMessage(m.chat, { document: { url: audioD }, mimetype: 'audio/mpeg', fileName: `${title}.mp3`, caption: info }, { quoted: m })
+await conn.sendMessage(m.chat, { document: { url: audioD }, mimetype: 'audio/mpeg', fileName: title, caption: null }, { quoted: m })
 } catch (e) {
 reportError(e)
 }         
