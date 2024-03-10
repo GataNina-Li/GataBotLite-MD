@@ -5,6 +5,9 @@ import { googleImage } from '@bochilteam/scraper'
 import fetch from "node-fetch"
 import yts from "yt-search"
 import ytdl from 'ytdl-core'
+import { pipeline } from 'stream'
+import { promisify } from 'util'
+import os from 'os'
 import axios from 'axios'
 import Spotify from "spotifydl-x"
 
@@ -203,13 +206,26 @@ break
 case isCommand5:
 if (!args[0]) return m.reply(lenguajeGB.smsMalused2() + `*${usedPrefix + command} https://youtu.be/ejemplo*\n*${usedPrefix + command} https://www.youtube.com/ejemplo*`)
 await conn.reply(m.chat, lenguajeGB.smsAvisoEG() + '*' + lenguajeGB.smsYTA2() + '*', m)
-let q = '128kbps'
+/*let q = '128kbps'
 let v = text
 const yt = await youtubedl(v).catch(async _ => await youtubedlv2(v))
 const ttl = await yt.title    
 let audioBuffer = await getBuffer(`https://api.cafirexos.com/api/v1/ytmp3?url=${text.trim()}`)
 //await conn.sendMessage(m.chat, { document: audioBuffer.data, mimetype: 'audio/mpeg', fileName: ttl + `.mp3`}, {quoted: m}) 
-await conn.sendMessage(m.chat, { document: { url: audioBuffer.data }, caption: ttl + `.mp3`, mimetype: 'audio/mpeg' }, { quoted: m })  
+await conn.sendMessage(m.chat, { document: { url: audioBuffer.data }, caption: ttl + `.mp3`, mimetype: 'audio/mpeg' }, { quoted: m }) */
+let streamPipeline = promisify(pipeline)
+let videoUrl = text
+let videoInfo = await ytdl.getInfo(videoUrl)
+let { videoDetails } = videoInfo
+let { title, thumbnails, lengthSeconds, viewCount, uploadDate } = videoDetails
+let thumbnail = thumbnails[0].url
+let audioStream = ytdl(videoUrl, { filter: 'audioonly', quality: 'highestaudio', })
+let tmpDir = os.tmpdir()
+let writableStream = fs.createWriteStream(`${tmpDir}/${title}.mp3`)
+await streamPipeline(audioStream, writableStream)
+let dl_url = `${tmpDir}/${title}.mp3`
+let info = `Título: ${title}\nTiempo: ${lengthSeconds}s\nVistas: ${viewCount}\nSubido: ${uploadDate}`
+await conn.sendMessage(m.chat, { document: { url: dl_url }, mimetype: 'audio/mpeg', fileName: `${title}.mp3`, caption: info }, { quoted: m })
 } catch (e) {
 reportError(e)
 }         
