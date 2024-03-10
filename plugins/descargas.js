@@ -189,7 +189,7 @@ case isCommand4:
 if (!args[0]) return m.reply(lenguajeGB.smsMalused2() + `*${usedPrefix + command} https://youtu.be/ejemplo*\n*${usedPrefix + command} https://www.youtube.com/ejemplo*`)
 await conn.reply(m.chat, lenguajeGB.smsAvisoEG() + '*' + lenguajeGB.smsYTA1() + '*', m)
 try {
-let audioURL = await conn.getFile(`https://api.cafirexos.com/api/v1/ytmp3?url=${yt_play[0].url}`)
+let audioURL = await conn.getFile(`https://api.cafirexos.com/api/v1/ytmp3?url=${text}`)
 //await conn.sendFile(m.chat, audioURL, ttl + '.mp3', null, m, false, { mimetype: 'audio/mp4' })
 await conn.sendMessage(m.chat, { audio: audioURL, mimetype: 'audio/mpeg' }, { quoted: m }) 
 } catch (e) {
