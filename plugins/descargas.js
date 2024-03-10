@@ -232,7 +232,7 @@ try {
 let q = '128kbps'
 let v = text.trim()
 const yt = await youtubedl(v).catch(async _ => await youtubedlv2(v))
-ttl = await yt.title    
+const ttl = await yt.title    
 let videoURL = await conn.getFile(`https://api.cafirexos.com/api/v1/ytmp4?url=${v}`)
 await conn.sendMessage(m.chat, { video: videoURL.data, fileName: `${ttl}.mp4`, mimetype: 'video/mp4', caption: `${wm}`, thumbnailUrl: yt_play[0].thumbnail }, { quoted: m })
 } catch (e) {
