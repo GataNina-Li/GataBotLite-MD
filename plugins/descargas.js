@@ -207,8 +207,9 @@ let q = '128kbps'
 let v = text
 const yt = await youtubedl(v).catch(async _ => await youtubedlv2(v))
 const ttl = await yt.title    
-let audioBuffer = await conn.getFile(`https://api.cafirexos.com/api/v1/ytmp3?url=${text.trim()}`)
-await conn.sendMessage(m.chat, { document: audioBuffer.data, mimetype: 'audio/mpeg', fileName: ttl + `.mp3`}, {quoted: m}) 
+let audioBuffer = await getBuffer(`https://api.cafirexos.com/api/v1/ytmp3?url=${text.trim()}`)
+//await conn.sendMessage(m.chat, { document: audioBuffer.data, mimetype: 'audio/mpeg', fileName: ttl + `.mp3`}, {quoted: m}) 
+await conn.sendMessage(m.chat, { document: { url: audioBuffer.data }, caption: ttl + `.mp3`, mimetype: 'audio/mpeg' }, { quoted: m })  
 } catch (e) {
 reportError(e)
 }         
