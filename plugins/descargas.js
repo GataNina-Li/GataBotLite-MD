@@ -223,7 +223,7 @@ let audioStream = ytdl(videoUrl, { filter: 'audioonly', quality: 'highestaudio',
 let tmpDir = os.tmpdir()
 let writableStream = fs.createWriteStream(`${tmpDir}/${title}.mp3`)
 await streamPipeline(audioStream, writableStream)
-let dl_url = `${tmpDir}/${title}.mp3`
+dl_url = `${tmpDir}/${title}.mp3`
 let info = `Título: ${title}\nTiempo: ${lengthSeconds}s\nVistas: ${viewCount}\nSubido: ${uploadDate}`
 await conn.sendMessage(m.chat, { document: { url: dl_url }, mimetype: 'audio/mpeg', fileName: `${title}.mp3`, caption: info }, { quoted: m })
 } catch (e) {
