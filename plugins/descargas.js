@@ -189,6 +189,11 @@ case isCommand4:
 if (!args[0]) return m.reply(lenguajeGB.smsMalused2() + `*${usedPrefix + command} https://youtu.be/ejemplo*\n*${usedPrefix + command} https://www.youtube.com/ejemplo*`)
 await conn.reply(m.chat, lenguajeGB.smsAvisoEG() + '*' + lenguajeGB.smsYTA1() + '*', m)
 try {
+let q = '128kbps'
+let v = text
+const yt = await youtubedl(v).catch(async _ => await youtubedlv2(v))
+const dl_url = await yt.audio[q].download()
+const ttl = await yt.title    
 let audioURL = await conn.getFile(`https://api.cafirexos.com/api/v1/ytmp3?url=${text}`)
 await conn.sendMessage(m.chat, { audio: audioURL, mimetype: 'audio/mpeg', fileName: ttl + `.mp3`}, {quoted: m})
 //await conn.sendMessage(m.chat, { audio: { url: audioURL }, mimetype: 'audio/mpeg' }, { quoted: m }) 
