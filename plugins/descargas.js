@@ -192,9 +192,8 @@ try {
 let q = '128kbps'
 let v = text
 const yt = await youtubedl(v).catch(async _ => await youtubedlv2(v))
-const dl_url = await yt.audio[q].download()
 const ttl = await yt.title    
-let audioBuffer = await getBuffer(`https://api.cafirexos.com/api/v1/ytmp3?url=${text}`)
+let audioBuffer = await getBuffer(`https://api.cafirexos.com/api/v1/ytmp3?url=${text.trim()}`)
 await conn.sendMessage(m.chat, { audio: audioBuffer, mimetype: 'audio/mpeg', fileName: ttl + `.mp3`}, {quoted: m})
 } catch (e) {
 reportError(e)
@@ -207,10 +206,9 @@ await conn.reply(m.chat, lenguajeGB.smsAvisoEG() + '*' + lenguajeGB.smsYTA2() + 
 let q = '128kbps'
 let v = text
 const yt = await youtubedl(v).catch(async _ => await youtubedlv2(v))
-const dl_url = await yt.audio[q].download()
 const ttl = await yt.title    
-let audioBuffer = await getBuffer(`https://api.cafirexos.com/api/v1/ytmp3?url=${text}`)
-await conn.sendMessage(m.chat, {document: audioBuffer, mimetype: 'audio/mpeg', fileName: ttl + `.mp3`}, {quoted: m});   
+let audioBuffer = await getBuffer(`https://api.cafirexos.com/api/v1/ytmp3?url=${text.trim()}`)
+await conn.sendMessage(m.chat, { document: audioBuffer, mimetype: 'audio/mpeg', fileName: ttl + `.mp3`}, {quoted: m}) 
 } catch (e) {
 reportError(e)
 }         
