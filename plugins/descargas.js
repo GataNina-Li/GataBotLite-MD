@@ -1,7 +1,7 @@
 import { youtubedl, youtubeSearch, youtubedlv2, tiktokdl } from '@bochilteam/scraper'  
 const regex = /(?:https|git)(?::\/\/|@)github\.com[\/:]([^\/:]+)\/(.+)/i;
 import { facebook } from "@xct007/frieren-scraper"
-import { googleImage } from '@bochilteam/scraper'
+import { googleImage, mediafiredl } from '@bochilteam/scraper'
 import fetch from "node-fetch"
 import yts from "yt-search"
 import ytdl from 'ytdl-core'
@@ -321,7 +321,7 @@ break
 case isCommand9:
 if (!args[0]) return m.reply(lenguajeGB.smsMalused2() + `*${usedPrefix + command} https://www.mediafire.com/file/04kaaqx9oe3tb8b/DOOM_v13_CLONE%255BCOM.FM%255D.apk/file*`)
 try {  
-let res = await mediafireDl(args[0])
+let res = await mediafiredl(args[0])  
 let { name, date, mime, link, size:peso } = res
 let caption = `
 🗂️ ${name}
