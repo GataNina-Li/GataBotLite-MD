@@ -439,13 +439,27 @@ const s = global.support = {ffmpeg, ffprobe, ffmpegWebp, convert, magick, gm, fi
 Object.freeze(global.support);
 }
 
-function clearTmp() {
+/*function clearTmp() {
 const tmpDir = join(__dirname, 'tmp')
 const filenames = readdirSync(tmpDir)
 filenames.forEach(file => {
 const filePath = join(tmpDir, file)
 unlinkSync(filePath)})
-}
+}*/
+
+function clearTmp() {
+const tmpDir = join(__dirname, 'tmp')
+const filenames = readdirSync(tmpDir)
+filenames.forEach(file => {
+const filePath = join(tmpDir, file)
+if (file.includes('file-gb')) {
+setTimeout(() => {
+unlinkSync(filePath)
+console.log(`El archivo ${file} se ha eliminado.`);
+}, 60000)
+} else {
+unlinkSync(filePath)}
+})}
 
 function purgeSession() {
 let prekey = []
