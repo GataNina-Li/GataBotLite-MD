@@ -280,8 +280,8 @@ console.error('Error:', error)
 videoResult()
 
 //let message = await conn.sendMessage(m.chat, { document: { url: `tmp/${title}_file-gb.mp4` }, mimetype: 'video/mp4', fileName: title, caption: null }, { quoted: m })
-await m.react(sent)    
-await message.react(correct)
+//await m.react(sent)    
+//await message.react(correct)
 } catch (e) {
 reportError(e)
 }
