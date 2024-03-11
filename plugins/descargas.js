@@ -255,25 +255,31 @@ const videoStream = ytdl(videoUrl, { filter: 'videoonly', quality: 'lowestvideo'
 //await streamPipeline(videoStream, writableStream)    
 
 async function crearWritableStreamAsync(title) {
-const filePath = `tmp/${title}_file-gb.mp4`;
-const writableStream = fs.createWriteStream(filePath);
+const filePath = `tmp/${title}_file-gb.mp4`
+const writableStream = fs.createWriteStream(filePath)
 return writableStream
 }
-
 async function transferirDatos(videoStream, writableStream) {
 await streamPipeline(videoStream, writableStream)
 }
-
 async function fileVideo(title) {
 const writableStream = await crearWritableStreamAsync(title)
 await transferirDatos(videoStream, writableStream)
 }
-
-fileVideo(title).catch(error => {
+let message
+async function enviarMensaje(title) {
+message = await conn.sendMessage(m.chat, { document: { url: `tmp/${title}_file-gb.mp4` }, mimetype: 'video/mp4', fileName: title, caption: null }, { quoted: m })
+}
+async function videoResult() {
+try {
+await fileVideo(title)
+await enviarMensaje(title)
+} catch (error) {
 console.error('Error:', error)
-})
+}}
+videoResult()
 
-let message = await conn.sendMessage(m.chat, { document: { url: `tmp/${title}_file-gb.mp4` }, mimetype: 'video/mp4', fileName: title, caption: null }, { quoted: m })
+//let message = await conn.sendMessage(m.chat, { document: { url: `tmp/${title}_file-gb.mp4` }, mimetype: 'video/mp4', fileName: title, caption: null }, { quoted: m })
 await m.react(sent)    
 await message.react(correct)
 } catch (e) {
