@@ -256,14 +256,13 @@ const videoStream = ytdl(videoUrl, { filter: 'videoonly', quality: 'lowestvideo'
 async function crearWritableStreamAsync(title) {
 const filePath = `tmp/${title}_file-gb.mp4`
 const writableStream = fs.createWriteStream(filePath)
-return filePath 
+return writableStream 
 }
 async function fileVideo() {
-const filePath = await crearWritableStreamAsync(title)
+const writableStream = await crearWritableStreamAsync(title)
+await streamPipeline(videoStream, writableStream)    
 }
 fileVideo()
-    
-await streamPipeline(videoStream, writableStream)
 
 let message = await conn.sendMessage(m.chat, { document: { url: `tmp/${title}_file-gb.mp4` }, mimetype: 'video/mp4', fileName: title, caption: null }, { quoted: m })
 await m.react(sent)    
