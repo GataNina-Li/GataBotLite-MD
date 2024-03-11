@@ -456,7 +456,7 @@ if (file.includes('file-gb')) {
 setTimeout(() => {
 unlinkSync(filePath)
 console.log(`El archivo ${file} se ha eliminado.`);
-}, 60000)
+}, 1200000) // 20 min
 } else {
 unlinkSync(filePath)}
 })}
