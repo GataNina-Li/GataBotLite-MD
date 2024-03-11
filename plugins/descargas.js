@@ -253,17 +253,8 @@ const thumbnail = thumbnails[0].url
 const videoStream = ytdl(videoUrl, { filter: 'videoonly', quality: 'highestvideo', })
 const writableStream = fs.createWriteStream(`tmp/${title}.mp4`)
 await streamPipeline(videoStream, writableStream);
-/*let docVid = { video: { url: `tmp/${title}.mp4` }, mimetype: 'video/mp4', fileName: `${title}`, contextInfo: {
-externalAdReply: {
-showAdAttribution: true,
-mediaType: 2,
-mediaUrl: videoUrl,
-title: title,
-sourceUrl: videoUrl,
-thumbnail: await (await conn.getFile(thumbnail)).data
-}}}
-await conn.sendMessage(m.chat, docVid, { quoted: m })*/
-let message = await conn.sendMessage(m.chat, { document: { url: `tmp/${title}.mp4` }, mimetype: 'video/mp4', fileName: title, caption: null }, { quoted: m })
+
+let message = await conn.sendMessage(m.chat, { document: { url: `tmp/${title}file-gb.mp4` }, mimetype: 'video/mp4', fileName: title, caption: null }, { quoted: m })
 await m.react(sent)    
 await message.react(correct)
 } catch (e) {
