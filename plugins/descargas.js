@@ -256,7 +256,7 @@ const videoStream = ytdl(videoUrl, { filter: 'videoonly', quality: 'lowestvideo'
 async function crearWritableStreamAsync(title) {
 const filePath = `tmp/${title}_file-gb.mp4`
 const writableStream = fs.createWriteStream(filePath)
-return writableStream 
+return filePath 
 }
 async function fileVideo() {
 const writableStream = await crearWritableStreamAsync(title)
