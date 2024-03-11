@@ -250,10 +250,7 @@ const videoInfo = await ytdl.getInfo(videoUrl)
 const { videoDetails } = videoInfo
 const { title, thumbnails, lengthSeconds, viewCount, uploadDate } = videoDetails
 const thumbnail = thumbnails[0].url
-const videoStream = ytdl(videoUrl, { filter: 'videoonly', quality: 'lowestvideo', })
-//const writableStream = fs.createWriteStream(`tmp/${title}_file-gb.mp4`)
-//await streamPipeline(videoStream, writableStream)    
-
+const videoStream = ytdl(videoUrl, { filter: 'videoonly', quality: 'highestvideo', })
 async function crearWritableStreamAsync() {
 const filePath = `tmp/${title}_file-gb.mp4`
 const writableStream = fs.createWriteStream(filePath)
@@ -276,12 +273,7 @@ await enviarMensaje()
 await m.react(sent)
 await message.react(correct)
 }
-videoResult(m).catch(error => {
-console.error('Error:', error)
-})
-    
-//let message = await conn.sendMessage(m.chat, { document: { url: `tmp/${title}_file-gb.mp4` }, mimetype: 'video/mp4', fileName: title, caption: null }, { quoted: m })
-
+videoResult(m)
 } catch (e) {
 reportError(e)
 }
