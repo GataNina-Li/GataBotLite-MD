@@ -367,27 +367,41 @@ break
 case isCommand10:
 if (!args[0]) return m.reply(lenguajeGB.smsMalused2() + `*${usedPrefix + command} https://youtu.be/ejemplo*\n*${usedPrefix + command} https://www.youtube.com/ejemplo*`)
 await conn.reply(m.chat, lenguajeGB.smsAvisoEG() + '*' + lenguajeGB.smsYTV1() + '*', m)
-try {
-q = ''
-v = args[0]
-yt = await youtubedl(v).catch(async _ => await youtubedlv2(v)).catch(async _ => await youtubedlv3(v))
-  let quality = null
-let qualities = ['2160p', '1440p', '1080p', '720p', '480p', '360p', '240p', '144p']
-
-for (let i = 0; i < qualities.length; i++) {
-currentQuality = qualities[i]
-  
-if (yt.video[currentQuality]) {
-dl_url = await yt.video[currentQuality].download();
-size = currentQuality
-quality = currentQuality
-break
-}}
-ttl = await yt.title;
-await conn.sendMessage(m.chat, { video: { url: dl_url }, fileName: `${ttl}.mp4`, mimetype: 'video/mp4', caption: `*🌻 ${ttl}*\n*🔱 ${size == '720p' ? 'HD' : size == '1080p' ? 'FULL HD' : size == '1440p' ? '2K' : '4K'}*`, thumbnail: await fetch(yt.thumbnail) }, { quoted: m })
+try { 
+const streamPipeline = promisify(pipeline)
+const videoUrl = text
+const videoInfo = await ytdl.getInfo(videoUrl)
+const { videoDetails } = videoInfo
+const { title, thumbnails, lengthSeconds, viewCount, uploadDate } = videoDetails
+const thumbnail = thumbnails[0].url
+const videoStream = ytdl(videoUrl, { filter: 'audioandvideo', quality: 'highest', })
+async function crearWritableStreamAsync() {
+const filePath = `tmp/${title}.mp4`
+const writableStream = fs.createWriteStream(filePath)
+return writableStream
+}
+async function transferirDatos(videoStream, writableStream) {
+await streamPipeline(videoStream, writableStream)
+}
+async function fileVideo() {
+const writableStream = await crearWritableStreamAsync(title)
+await transferirDatos(videoStream, writableStream)
+}
+let message
+async function enviarMensaje() {
+message = await conn.sendMessage(m.chat, { document: { url: `tmp/${title}.mp4` }, mimetype: 'video/mp4', fileName: title, caption: null }, { quoted: m })
+//await conn.sendMessage(m.chat, { video: videoURL.data, fileName: `${ttl}.mp4`, mimetype: 'video/mp4', caption: `${wm}`, thumbnailUrl: yt_play[0].thumbnail }, { quoted: m })
+}
+async function videoResult(m) {
+await fileVideo()
+await enviarMensaje()
+await m.react(sent)
+await message.react(correct)
+}
+videoResult(m)
 } catch (e) {
 reportError(e)
-}        
+}
 break
 
 //codigo adaptado por https://github.com/elrebelde21
