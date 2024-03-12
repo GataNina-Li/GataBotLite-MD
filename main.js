@@ -439,27 +439,13 @@ const s = global.support = {ffmpeg, ffprobe, ffmpegWebp, convert, magick, gm, fi
 Object.freeze(global.support);
 }
 
-/*function clearTmp() {
-const tmpDir = join(__dirname, 'tmp')
-const filenames = readdirSync(tmpDir)
-filenames.forEach(file => {
-const filePath = join(tmpDir, file)
-unlinkSync(filePath)})
-}*/
-
 function clearTmp() {
 const tmpDir = join(__dirname, 'tmp')
 const filenames = readdirSync(tmpDir)
 filenames.forEach(file => {
 const filePath = join(tmpDir, file)
-if (file.includes('file-gb')) {
-setTimeout(() => {
-unlinkSync(filePath)
-console.log(`El archivo ${file} se ha eliminado.`);
-}, 1200000) // 20 min
-} else {
-unlinkSync(filePath)}
-})}
+unlinkSync(filePath)})
+}
 
 function purgeSession() {
 let prekey = []
@@ -512,10 +498,10 @@ console.log(chalk.bold.green(`${lenguajeGB.smspurgeOldFiles1()} ${file} ${lengua
 } }) }
 }) }) }) }
 
-//setInterval(async () => {
-//if (stopped === 'close' || !conn || !conn.user) return
-//await clearTmp()
-//console.log(chalk.bold.cyanBright(lenguajeGB.smsClearTmp()))}, 1000 * 60 * 4) // 4 min 
+setInterval(async () => {
+if (stopped === 'close' || !conn || !conn.user) return
+await clearTmp()
+console.log(chalk.bold.cyanBright(lenguajeGB.smsClearTmp()))}, 1000 * 60 * 5) // 5 min 
 
 setInterval(async () => {
 if (stopped === 'close' || !conn || !conn.user) return
