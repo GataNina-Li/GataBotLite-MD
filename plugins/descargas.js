@@ -389,7 +389,7 @@ await transferirDatos(videoStream, writableStream)
 }
 let message
 async function enviarMensaje() {
-message = await conn.sendMessage(m.chat, { document: { url: `tmp/${title}.mp4` }, mimetype: 'video/mp4', fileName: title, caption: null }, { quoted: m })
+message = await conn.sendMessage(m.chat, { video: { url: `tmp/${title}.mp4` }, mimetype: 'video/mp4', fileName: title, caption: null }, { quoted: m })
 }
 async function videoResult(m) {
 await fileVideo()
