@@ -25,7 +25,7 @@ const isCommand5 = /^(yt(s|search))$/i.test(command)
 const isCommand6 = /^(translate|traducir|trad)$/i.test(command)
 const isCommand7 = /^(openaivoz|chatgptvoz|iavoz|robotvoz|openai2voz|chatgpt2voz|ia2voz|robot2voz|gatavoz|GataBotvoz|gptvoz|ai_voz|ai_voce)$/i.test(command)
 const isCommand8 = /^(gemini|bard)$/i.test(command)
-const isCommand9 = /^(bing|bingia|iabing)$/i.test(command)
+const isCommand9 = /^(bing|bingia|iabing|copilot)$/i.test(command)
     
 let fkontak = { "key": { "participants":"0@s.whatsapp.net", "remoteJid": "status@broadcast", "fromMe": false, "id": "Halo" }, "message": { "contactMessage": { "vcard": `BEGIN:VCARD\nVERSION:3.0\nN:Sy;Bot;;;\nFN:y\nitem1.TEL;waid=${m.sender.split('@')[0]}:${m.sender.split('@')[0]}\nitem1.X-ABLabel:Ponsel\nEND:VCARD` }}, "participant": "0@s.whatsapp.net" }
 async function reportError(e) {
@@ -252,7 +252,7 @@ reportError(e)
 break 
         
 }}
-handler.command = /^(googlef?|openai|chatgpt|ia|ai|bot|simi|simsimi|alexa|bixby|cortana|siri|okgoogle|githubstalk|usuariogithub|usergithub|(yt(s|search)|(openaivoz|chatgptvoz|iavoz|robotvoz|openai2voz|chatgpt2voz|ia2voz|robot2voz|gatavoz|GataBotvoz|gptvoz|ai_voz|ai_voce)|(translate|traducir|trad))|gemini|bard|bing|bingia|iabing)$/i
+handler.command = /^(googlef?|openai|chatgpt|ia|ai|bot|simi|simsimi|alexa|bixby|cortana|siri|okgoogle|githubstalk|usuariogithub|usergithub|(yt(s|search)|(openaivoz|chatgptvoz|iavoz|robotvoz|openai2voz|chatgpt2voz|ia2voz|robot2voz|gatavoz|GataBotvoz|gptvoz|ai_voz|ai_voce)|(translate|traducir|trad))|gemini|bard|bing|bingia|iabing|copilot)$/i
 handler.register = true
 export default handler 
 
