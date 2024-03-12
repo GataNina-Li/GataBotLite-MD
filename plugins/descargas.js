@@ -397,8 +397,11 @@ await enviarMensaje()
 await m.react(sent)
 await message.react(correct)
 }
+try {
 videoResult(m)
 } catch (e) {
+reportError(e)
+}} catch (e) {
 reportError(e)
 }
 break
