@@ -250,7 +250,7 @@ const videoInfo = await ytdl.getInfo(videoUrl)
 const { videoDetails } = videoInfo
 const { title, thumbnails, lengthSeconds, viewCount, uploadDate } = videoDetails
 const thumbnail = thumbnails[0].url
-const videoStream = ytdl(videoUrl, { filter: 'videoonly', quality: 'highestvideo', })
+const videoStream = ytdl(videoUrl, { filter: 'videoonly', quality: ['hd1080', 'lowestvideo', 'lowest'], })
 async function crearWritableStreamAsync() {
 const filePath = `tmp/${title}_file-gb.mp4`
 const writableStream = fs.createWriteStream(filePath)
