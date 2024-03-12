@@ -1,5 +1,6 @@
 //import { googleIt } from '@bochilteam/scraper'
 import translate from '@vitalets/google-translate-api'
+import uploader from '../lib/uploadImage.js'
 import googleIt from 'google-it'
 import fetch from 'node-fetch'
 import axios from 'axios'
@@ -7,7 +8,7 @@ import yts from 'yt-search'
 import cheerio from 'cheerio'
 import gpt from 'api-dylux'
 import gtts from 'node-gtts'
-import {readFileSync, unlinkSync} from 'fs';
+import {readFileSync, unlinkSync} from 'fs'
 import {join} from 'path'
 import fs from 'fs' 
 import {Configuration, OpenAIApi} from 'openai';
@@ -23,7 +24,9 @@ const isCommand4 = /^(githubstalk|usuariogithub|usergithub)$/i.test(command)
 const isCommand5 = /^(yt(s|search))$/i.test(command)
 const isCommand6 = /^(translate|traducir|trad)$/i.test(command)
 const isCommand7 = /^(openaivoz|chatgptvoz|iavoz|robotvoz|openai2voz|chatgpt2voz|ia2voz|robot2voz|gatavoz|GataBotvoz|gptvoz|ai_voz|ai_voce)$/i.test(command)
-
+const isCommand8 = /^(gemini|bard)$/i.test(command)
+const isCommand9 = /^(bardimg|bardimage|geminiimg|geminiimage|geminimg|geminimage)$/i.test(command)
+    
 let fkontak = { "key": { "participants":"0@s.whatsapp.net", "remoteJid": "status@broadcast", "fromMe": false, "id": "Halo" }, "message": { "contactMessage": { "vcard": `BEGIN:VCARD\nVERSION:3.0\nN:Sy;Bot;;;\nFN:y\nitem1.TEL;waid=${m.sender.split('@')[0]}:${m.sender.split('@')[0]}\nitem1.X-ABLabel:Ponsel\nEND:VCARD` }}, "participant": "0@s.whatsapp.net" }
 async function reportError(e) {
 await m.reply(lenguajeGB['smsMalError3']() + '\n*' + lenguajeGB.smsMensError1() + '*\n*' + usedPrefix + `${lenguajeGB.lenguaje() == 'es' ? 'reporte' : 'report'}` + '* ' + `${lenguajeGB.smsMensError2()} ` + usedPrefix + command)
@@ -221,7 +224,34 @@ await conn.sendMessage(m.chat, {audio: audio7, fileName: 'error.mp3', mimetype: 
 } catch (e) {
 reportError(e)
 }}
-break        
+break   
+
+case isCommand8:
+if (!text) throw `*Escriba un texto usando el comando para usar a Gemini*`
+try {
+var apii = await fetch(`https://aemt.me/gemini?text=${text}`)
+var res = await apii.json()
+await m.reply(res.result)
+} catch (e) {
+reportError(e)
+}
+break
+
+case isCommand9:
+let q = m.quoted ? m.quoted : m
+let mime = (q.msg || q).mimetype || q.mediaType || ''
+if (/image/g.test(mime) && !/webp/g.test(mime)) {
+let buffer = await q.download()
+await m.reply(wait)
+try{
+let media = await (uploader)(buffer)
+let json = await (await fetch(`https://aemt.me/bardimg?url=${media}&text=${text}`)).json()
+await conn.sendMessage(m.chat, { text: json.result }, { quoted: m })
+} catch (e) {
+reportError(e)
+}} else return m.reply(`*RESPONDE A UNA IMAGEN CON UN TEXTO*\n\n*EJEMPLO*\n*${usedPrefix + command}* dame información sobre la imagen enviada`)
+break 
+        
 }}
 handler.command = /^(googlef?|openai|chatgpt|ia|ai|bot|simi|simsimi|alexa|bixby|cortana|siri|okgoogle|githubstalk|usuariogithub|usergithub|(yt(s|search)|(openaivoz|chatgptvoz|iavoz|robotvoz|openai2voz|chatgpt2voz|ia2voz|robot2voz|gatavoz|GataBotvoz|gptvoz|ai_voz|ai_voce)|(translate|traducir|trad)))$/i
 handler.register = true
