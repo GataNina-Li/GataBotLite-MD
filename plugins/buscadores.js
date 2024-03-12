@@ -228,10 +228,10 @@ break
 
 case isCommand8:
 if (!text) throw `*Escriba un texto usando el comando para usar a Gemini*`
+await conn.sendPresenceUpdate('composing', m.chat)       
 try {
 var apii = await fetch(`https://aemt.me/gemini?text=${text}`)
 var res = await apii.json()
-await conn.sendPresenceUpdate('composing', m.chat);
 await m.reply(res.result)
 } catch (e) {
 reportError(e)
@@ -239,12 +239,13 @@ reportError(e)
 break
 
 case isCommand9:
+if (!text) throw `*Escriba un texto usando el comando para usar Copilot*`
+await conn.sendPresenceUpdate('composing', m.chat)
 try {
-const API_URL = `https://aemt.me/bingai?text=${encodeURIComponent(text)}`
-const response = await fetch(API_URL)
+const API_COPILOT = `https://aemt.me/bingai?text=${encodeURIComponent(text)}`
+const response = await fetch(API_COPILOT)
 const data = await response.json()
 const respuestaAPI = data.result
-await conn.sendPresenceUpdate('composing', m.chat)
 await conn.reply(m.chat, respuestaAPI, m)
 } catch (e) {
 reportError(e)
