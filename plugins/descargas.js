@@ -251,7 +251,10 @@ const { videoDetails } = videoInfo
 const { title, thumbnails, lengthSeconds, viewCount, uploadDate } = videoDetails
 const thumbnail = thumbnails[0].url
 const videoStream = ytdl(videoUrl, { filter: 'videoonly', quality: 'lowestvideo', })
-async function crearWritableStreamAsync() {
+const writableStream = fs.createWriteStream(`tmp/${title}.mp4`)
+await streamPipeline(videoStream, writableStream)  
+await conn.sendMessage(m.chat, { document: { url: `tmp/${title}.mp4` }, mimetype: 'video/mp4', fileName: title, caption: null }, { quoted: m })
+/*async function crearWritableStreamAsync() {
 const filePath = `tmp/${title}.mp4`
 const writableStream = fs.createWriteStream(filePath)
 return writableStream
@@ -273,7 +276,7 @@ await enviarMensaje()
 await m.react(sent)
 await message.react(correct)
 }
-videoResult(m)
+videoResult(m)*/
 } catch (e) {
 reportError(e)
 }
