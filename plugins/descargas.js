@@ -470,6 +470,11 @@ text = args.slice(0).join(" ")
 text = m.quoted.text
 } else return conn.reply(m.chat, `${lenguajeGB['smsMalused3']()}\n*${usedPrefix + command} ${lenguajeGB.smsIAimage2()}*`, m)
 await m.reply(wait) 
+try {
+let responseDalle = await fetch(`https://aemt.me/dalle?text=${text}`)
+//let imageDALLE = await responseDalle.buffer()
+await conn.sendFile(m.chat, responseDalle, 'image.jpg', lenguajeGB.smsIAimage() + `\n\n_${text}_`, m)
+} catch {
 try{   
 let response = await fetch(`https://api.lolhuman.xyz/api/diffusion-prompt?apikey=${lolkeysapi}&prompt=${text}`)
 let image = await response.buffer()
@@ -478,7 +483,7 @@ await conn.sendFile(m.chat, image, 'image.jpg', lenguajeGB.smsIAimage() + `\n\n_
 try{
 let res = `https://api.lolhuman.xyz/api/dall-e?apikey=${lolkeysapi}&text=${text}`  
 await conn.sendFile(m.chat, res, 'image.jpg', lenguajeGB.smsIAimage() + `\n\n_${text}_`, m)
-} catch (e) {
+}} catch (e) {
 reportError(e)} 
 }        
 break
