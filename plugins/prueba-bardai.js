@@ -5,6 +5,7 @@ const bardAi = new BardAI()
 var handler = async (m, { conn, text, command, usedPrefix }) => {
 let message = m
 let arguments = text
+  
 let inputText
 if (arguments.length >= 1) {
 inputText = arguments.slice(0).join(" ")
