@@ -1,0 +1,24 @@
+import fetch from 'node-fetch' 
+let handler = async function (m, { conn, text, usedPrefix }) {
+const apiUrl = `https://lookup.binlist.net/${text}`
+fetch(apiUrl).then(response => {
+if (!response.ok) {
+return console.log('La página no esta funcionando actualmente')
+}
+return response.json()
+}).then(data => {
+const formattedResult = `
+📇| BIN: ${userInput}
+💳| MARCA: ${data.scheme}
+🏧| TIPO: ${data.type}
+🌐| PAIS: ${data.country.name}
+🏁| BANDERA: ${data.country.emoji}
+🏦| BANCO: ${data.bank.name}
+`
+m.reply(formattedResult.trim())
+}).catch(error => {
+console.error('Error:', error)
+})
+}
+handler.command = /^(bin|card)$/i
+export default handler
