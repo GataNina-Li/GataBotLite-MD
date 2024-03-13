@@ -8,7 +8,7 @@ return console.log('La página no esta funcionando actualmente')
 return response.json()
 }).then(data => {
 const formattedResult = `
-📇| BIN: ${userInput}
+📇| BIN: ${text}
 💳| MARCA: ${data.scheme}
 🏧| TIPO: ${data.type}
 🌐| PAIS: ${data.country.name}
