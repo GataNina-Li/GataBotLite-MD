@@ -470,10 +470,10 @@ text = args.slice(0).join(" ")
 text = m.quoted.text
 } else return conn.reply(m.chat, `${lenguajeGB['smsMalused3']()}\n*${usedPrefix + command} ${lenguajeGB.smsIAimage2()}*`, m)
 await m.reply(wait) 
-//try {
-//let urlDALLE = `https://aemt.me/dalle?text=${text}`
-//await conn.sendFile(m.chat, await (await fetch(urlDALLE)).buffer(), 'image.jpg', lenguajeGB.smsIAimage() + `\n\n_${text}_`, m)
-//} catch {
+try {
+let urlDALLE = `https://aemt.me/dalle?text=${text}`
+await conn.sendFile(m.chat, await (await fetch(urlDALLE)).buffer(), 'image.jpg', lenguajeGB.smsIAimage() + `\n\n_${text}_`, m)
+} catch {
 try{   
 let response = await fetch(`https://api.lolhuman.xyz/api/diffusion-prompt?apikey=${lolkeysapi}&prompt=${text}`)
 let image = await response.buffer()
@@ -484,7 +484,7 @@ let res = `https://api.lolhuman.xyz/api/dall-e?apikey=${lolkeysapi}&text=${text}
 await conn.sendFile(m.chat, res, 'image.jpg', lenguajeGB.smsIAimage() + `\n\n_${text}_`, m)
 } catch (e) {
 reportError(e)} 
-}//}      
+}}      
 break
         
 case isCommand14:
