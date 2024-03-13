@@ -483,9 +483,9 @@ await conn.sendFile(m.chat, image, 'image.jpg', lenguajeGB.smsIAimage() + `\n\n_
 try{
 let res = `https://api.lolhuman.xyz/api/dall-e?apikey=${lolkeysapi}&text=${text}`  
 await conn.sendFile(m.chat, res, 'image.jpg', lenguajeGB.smsIAimage() + `\n\n_${text}_`, m)
-}} catch (e) {
+} catch (e) {
 reportError(e)} 
-}        
+}}      
 break
         
 case isCommand14:
