@@ -5,14 +5,12 @@ const bardAi = new BardAI()
 var handler = async (m, { conn, text, command, usedPrefix }) => {
 let message = m  
 let inputText
-if (text.length >= 1) {
-inputText = text.slice(0).join(" ")
-} else {
+
 if (message.quoted && message.quoted.text) {
 inputText = message.quoted.text
 } else {
 return message.reply("Agregué un texto")
-}}
+}
 let quotedMessage = message.quoted ? message.quoted : message
 let mimeType = (quotedMessage.msg || quotedMessage).mimetype || ''
 await message.react('💬')
