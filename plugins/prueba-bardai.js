@@ -3,12 +3,10 @@ import BardAI from '../lib/bard.js'
 
 const bardAi = new BardAI()
 var handler = async (m, { conn, text, command, usedPrefix }) => {
-let message = m
-let arguments = text
-  
+let message = m  
 let inputText
-if (arguments.length >= 1) {
-inputText = arguments.slice(0).join(" ")
+if (text.length >= 1) {
+inputText = text.slice(0).join(" ")
 } else {
 if (message.quoted && message.quoted.text) {
 inputText = message.quoted.text
