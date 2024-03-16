@@ -1,4 +1,5 @@
-import { youtubedl, youtubeSearch, youtubedlv2, tiktokdl } from '@bochilteam/scraper'  
+import { youtubedl, youtubeSearch, youtubedlv2, tiktokdl } from '@bochilteam/scraper' 
+import uploader from '../lib/uploadImage.js'
 const regex = /(?:https|git)(?::\/\/|@)github\.com[\/:]([^\/:]+)\/(.+)/i;
 import { facebook } from "@xct007/frieren-scraper"
 import { googleImage, mediafiredl } from '@bochilteam/scraper'
@@ -32,6 +33,7 @@ const isCommand16 = /^(spot(ify)?search)$/i.test(command)
 const isCommand17 = /^(i(nsta)?g(ram)?(dl)?|igimage|igdownload)$/i.test(command)
 const isCommand18 = /^((dl)?tw(it(ter(dl|x)?)?)?|x|t?tx)$/i.test(command)
 const isCommand19 = /^(gitclone|clonarepo|clonarrepo|repoclonar)$/i.test(command)
+const isCommand20 = /^(bardimg|bardimage|geminiimg|geminiimage|geminimg|geminimage)$/i.test(command)
 
 async function reportError(e) {
 let errb = await m.reply(lenguajeGB['smsMalError3']() + '\n*' + lenguajeGB.smsMensError1() + '*\n*' + usedPrefix + `${lenguajeGB.lenguaje() == 'es' ? 'reporte' : 'report'}` + '* ' + `${lenguajeGB.smsMensError2()} ` + usedPrefix + command)
@@ -606,8 +608,23 @@ let urlrepo = `https://api.github.com/repos/${user}/${repo}/zipball`;
 const filename = (await fetch(urlrepo, {method: 'HEAD'})).headers.get('content-disposition').match(/attachment; filename=(.*)/)[1];
 conn.sendFile(m.chat, urlrepo, filename, null, m);
 break
+
+case isCommand20:
+try {
+let q = m.quoted ? m.quoted : m
+let mime = (q.msg || q).mimetype || q.mediaType || ''
+if (/image/g.test(mime) && !/webp/g.test(mime)) {
+let buffer = await q.download()
+await m.reply(wait)
+let media = await (uploader)(buffer)
+let json = await (await fetch(`https://aemt.me/bardimg?url=${media}&text=${text}`)).json()
+await conn.sendMessage(m.chat, { text: json.result }, { quoted: m })
+} else return m.reply(`*RESPONDE A UNA IMAGEN CON UN TEXTO*\n\n*EJEMPLO*\n*${usedPrefix + command}* describe esta imagen`)
+} catch (e) {
+reportError(e)}
+break
 }}
-handler.command = /^(gimage|imagen?|play|play2|fgmp3|dlmp3|getaud|yt(a|mp3)?|ytmp3doc|ytadoc|fgmp4|dlmp4|getvid|yt(v|mp4)?|ytmp4doc|ytvdoc|facebook|fb|facebookdl|fbdl|mediafire(dl)?|dlmediafire|ytmax|ytmaxdoc|tiktok|tkdl|dalle|openiamage|aiimage|aiimg|aimage|iaimagen|openaimage|openaiimage|openjourney|journey|midjourney|spotify|music|spot(ify)?search|i(nsta)?g(ram)?(dl)?|igimage|igdownload|(dl)?tw(it(ter(dl|x)?)?)?|x|t?tx|gitclone|clonarepo|clonarrepo|repoclonar)$/i
+handler.command = /^(gimage|imagen?|play|play2|fgmp3|dlmp3|getaud|yt(a|mp3)?|ytmp3doc|ytadoc|fgmp4|dlmp4|getvid|yt(v|mp4)?|ytmp4doc|ytvdoc|facebook|fb|facebookdl|fbdl|mediafire(dl)?|dlmediafire|ytmax|ytmaxdoc|tiktok|tkdl|dalle|openiamage|aiimage|aiimg|aimage|iaimagen|openaimage|openaiimage|openjourney|journey|midjourney|spotify|music|spot(ify)?search|i(nsta)?g(ram)?(dl)?|igimage|igdownload|(dl)?tw(it(ter(dl|x)?)?)?|x|t?tx|gitclone|clonarepo|clonarrepo|repoclonar|bardimg|bardimage|geminiimg|geminiimage|geminimg|geminimage)$/i
 handler.register = true
 export default handler
 
