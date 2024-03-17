@@ -97,7 +97,7 @@ case isCommand3:
 if (!text) return conn.reply(m.chat, lenguajeGB.smsMalused2() + `\n*${usedPrefix + command} ${lenguajeGB.smsCreA()}*` , m) 
 try{
 await conn.sendPresenceUpdate('composing', m.chat)
-let res = await fetch (`https://api.simsimi.net/v2/?text=${text}&lc=${lenguajeGB.lenguaje()}`)  
+let res = await fetch (`https://api.lolhuman.xyz/api/simi?apikey=${lolkeysapi}&text=${text}`)  
 let json = await res.json()
 let tes = json.success.replace('simsimi', 'simsimi').replace('Simsimi', 'Simsimi').replace('sim simi', 'sim simi')
 m.reply(`${tes}`) 
