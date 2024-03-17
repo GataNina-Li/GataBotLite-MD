@@ -99,8 +99,7 @@ try{
 await conn.sendPresenceUpdate('composing', m.chat)
 let res = await fetch (`https://api.lolhuman.xyz/api/simi?apikey=${lolkeysapi}&text=${text}`)  
 let json = await res.json()
-let tes = json.success.replace('simsimi', 'simsimi').replace('Simsimi', 'Simsimi').replace('sim simi', 'sim simi')
-m.reply(`${tes}`) 
+m.reply(`${json.result}`) 
 } catch (e) {
 reportError(e)
 }     
