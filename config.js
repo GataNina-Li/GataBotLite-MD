@@ -49,21 +49,20 @@ global.itsrose = ['4b146102c4d500809da9d1ff']
 global.baileys = '@whiskeysockets/baileys'
 
 global.APIs = { 
-  xteam: 'https://api.xteam.xyz',
-  dzx: 'https://api.dhamzxploit.my.id',
-  lol: 'https://api.lolhuman.xyz',
-  violetics: 'https://violetics.pw',
-  neoxr: 'https://api.neoxr.my.id',
-  zenzapis: 'https://api.zahwazein.xyz',
-  akuari: 'https://api.akuari.my.id',
-  akuari2: 'https://apimu.my.id',	
-  fgmods: 'https://api-fgmods.ddns.net',
-  botcahx: 'https://api.botcahx.biz.id',
-  ibeng: 'https://api.ibeng.tech/docs',	
-  rose: 'https://api.itsrose.site',
-  popcat : 'https://api.popcat.xyz',
-  xcoders : 'https://api-xcoders.site'
-},
+lolhuman: { url: 'https://api.lolhuman.xyz/api/', key: lolkeysapi },
+neoxr: { url: 'https://api.neoxr.eu/api/', key: null },
+skizo: { url: 'https://skizo.tech/api/', key: null },
+zahwazein: { url: 'https://api.zahwazein.xyz', key: null },
+akuari: { url: 'https://apimu.my.id', key: null },
+apimu: { url: 'https://api.xteam.xyz', key: null },
+fgmods: { url: 'https://api-fgmods.ddns.net', key: null },
+botcahx: { url: 'https://api.botcahx.biz.id', key: null },
+ibeng: { url: 'https://api.ibeng.tech/docs', key: null },
+itsrose: { url: 'https://api.itsrose.site', key: null },
+popcat: { url: 'https://api.popcat.xyz', key: null },
+xcoders: { url: 'https://api-xcoders.site', key: 'Frieren' }
+}
+
 global.APIKeys = { 
   'https://api.xteam.xyz': `${keysxteam}`,
   'https://api.lolhuman.xyz': `${lolkeysapi}`,
