@@ -173,7 +173,8 @@ unlinkSync(filePath)
 })}
 break   
 
-case isCommand7:       
+case isCommand7: 
+let text = text
 let bufferImg
 //try{
 let q = m.quoted ? m.quoted : m
