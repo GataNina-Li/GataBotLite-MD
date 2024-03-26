@@ -16,6 +16,7 @@ const isCommand3 = /^(to(video|mp4)?|mp4)\b$/i.test(command)
 const isCommand4 = /^(to(gif|gifau)?|gif|gifau)\b$/i.test(command)
 const isCommand5 = /^(to(vn|ptt|audio|mp3)?|mp3)\b$/i.test(command)
 const isCommand6 = /^(to(voice|tts)?|tts)\b$/i.test(command)
+const isCommand7 = /^(to(anime)?)$/i.test(command)
 
 switch (true) {     
 case isCommand1:
@@ -170,8 +171,34 @@ unlinkSync(filePath)
 })
 } catch (e) { reject(e) }
 })}
-break        
+break   
+
+case isCommand7:       
+let stiker = false
+let bufferImg
+try{
+let q = m.quoted ? m.quoted : m
+let mime = (q.msg || q).mimetype || q.mediaType || ''
+if (/image/g.test(mime) && !/webp/g.test(mime)) {
+let buffer = await q.download()
+let media = await (uploadImage)(buffer)
+bufferImg = await (await fetch(APIs.skizo.url + `toanime?apikey=${APIs.skizo.key}&url=${media}`)).buffer()
+} else if (text) {
+bufferImg = await (await fetch(APIs.skizo.url + `toanime?apikey=${APIs.skizo.key}&url=${text.trim()}`)).buffer()
+} else return m.reply(`*Responde a una imagen o ingresa una url que sea \`(jpg, jpeg o png)\` para quitar el fondo*`)
+await m.reply(wait)
+await conn.sendMessage(m.chat, { image: bufferImg, caption: null }, { quoted: m })
+} catch (e) {
+await m.reply(lenguajeGB['smsMalError3']() + '\n*' + lenguajeGB.smsMensError1() + '*\n*' + usedPrefix + `${lenguajeGB.lenguaje() == 'es' ? 'reporte' : 'report'}` + '* ' + `${lenguajeGB.smsMensError2()} ` + usedPrefix + command)
+console.log(`❗❗ ${lenguajeGB['smsMensError2']()} ${usedPrefix + command} ❗❗`)
+console.log(e)}
+break
 }}
 
-handler.command = /^(to(img|image)?|img|jpe?g|png|tourl|url|upload|to(video|mp4)?|mp4|to(gif|gifau)?|gif|gifau|to(vn|ptt|audio|mp3)?|mp3|to(voice|tts)?|tts)\b$/i
+handler.command = /^(to(img|image)?|img|jpe?g|png|tourl|url|upload|to(video|mp4)?|mp4|to(gif|gifau)?|gif|gifau|to(vn|ptt|audio|mp3)?|mp3|to(voice|tts)?|tts|to(anime)?)\b$/i
 export default handler
+
+const isUrl = (text) => {
+const urlRegex = /^(https?):\/\/[^\s/$.?#]+\.(jpe?g|png)$/i
+return urlRegex.test(text)
+}
