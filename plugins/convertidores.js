@@ -16,7 +16,7 @@ const isCommand3 = /^(to(video|mp4)?|mp4)\b$/i.test(command)
 const isCommand4 = /^(to(gif|gifau)?|gif|gifau)\b$/i.test(command)
 const isCommand5 = /^(to(vn|ptt|audio|mp3)?|mp3)\b$/i.test(command)
 const isCommand6 = /^(to(voice|tts)?|tts)\b$/i.test(command)
-const isCommand7 = /^(to(anime)?)$/i.test(command)
+const isCommand7 = /^(to(anime)?)\b$/i.test(command)
 
 switch (true) {     
 case isCommand1:
@@ -185,7 +185,7 @@ let media = await (uploadImage)(buffer)
 bufferImg = await (await fetch(APIs.skizo.url + `toanime?apikey=${APIs.skizo.key}&url=${media}`)).buffer()
 } else if (text) {
 bufferImg = await (await fetch(APIs.skizo.url + `toanime?apikey=${APIs.skizo.key}&url=${text.trim()}`)).buffer()
-} else return m.reply(`*Responde a una imagen o ingresa una url que sea \`(jpg, jpeg o png)\` para quitar el fondo*`)
+} else return m.reply(`*Responde a una imagen o ingresa una url que sea \`(jpg, jpeg o png)\` para convertir a estilo Anime*`)
 await m.reply(wait)
 await conn.sendMessage(m.chat, { image: bufferImg, caption: null }, { quoted: m })
 //} catch (e) {
