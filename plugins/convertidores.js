@@ -196,8 +196,3 @@ break
 
 handler.command = /^(to(img|image)?|img|jpe?g|png|tourl|url|upload|to(video|mp4)?|mp4|to(gif|gifau)?|gif|gifau|to(vn|ptt|audio|mp3)?|mp3|to(voice|tts)?|tts|toanime)\b$/i
 export default handler
-
-const isUrl = (text) => {
-const urlRegex = /^(https?):\/\/[^\s/$.?#]+\.(jpe?g|png)$/i
-return urlRegex.test(text)
-}
