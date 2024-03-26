@@ -175,6 +175,7 @@ break
 
 case isCommand7: 
 let bufferImg
+let text
 //try{
 let q = m.quoted ? m.quoted : m
 let mime = (q.msg || q).mimetype || q.mediaType || ''
