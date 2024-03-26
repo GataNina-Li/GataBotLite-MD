@@ -174,6 +174,7 @@ unlinkSync(filePath)
 break   
 
 case isCommand7: 
+let text = args[0]
 let bufferImg
 //try{
 let q = m.quoted ? m.quoted : m
