@@ -16,7 +16,7 @@ const isCommand3 = /^(to(video|mp4)?|mp4)\b$/i.test(command)
 const isCommand4 = /^(to(gif|gifau)?|gif|gifau)\b$/i.test(command)
 const isCommand5 = /^(to(vn|ptt|audio|mp3)?|mp3)\b$/i.test(command)
 const isCommand6 = /^(to(voice|tts)?|tts)\b$/i.test(command)
-const isCommand7 = /^(to(anime)?)\b$/i.test(command)
+const isCommand7 = /^(anime|toanime)\b$/i.test(command)
 
 switch (true) {     
 case isCommand1:
@@ -195,7 +195,7 @@ await conn.sendMessage(m.chat, { image: bufferImg, caption: null }, { quoted: m 
 break
 }}
 
-handler.command = /^(to(img|image)?|img|jpe?g|png|tourl|url|upload|to(video|mp4)?|mp4|to(gif|gifau)?|gif|gifau|to(vn|ptt|audio|mp3)?|mp3|to(voice|tts)?|tts|to(anime)?)\b$/i
+handler.command = /^(to(img|image)?|img|jpe?g|png|tourl|url|upload|to(video|mp4)?|mp4|to(gif|gifau)?|gif|gifau|to(vn|ptt|audio|mp3)?|mp3|to(voice|tts)?|tts|anime|toanime)\b$/i
 export default handler
 
 const isUrl = (text) => {
