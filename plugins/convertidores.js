@@ -7,7 +7,7 @@ import gtts from 'node-gtts'
 import { readFileSync, unlinkSync } from 'fs'
 import { join } from 'path'
 
-let handler = async (m, { conn, command, usedPrefix, args }) => {
+let handler = async (m, { conn, command, usedPrefix, args, text }) => {
 let q, mime, media, out, caption
 
 const isCommand1 = /^(to(img|image)?|img|jpe?g|png)\b$/i.test(command)
@@ -138,7 +138,7 @@ break
 case isCommand6: 
 let defaultLang = lenguajeGB.lenguaje()
 let lang = args[0]
-let text = args.slice(1).join(' ')
+text = args.slice(1).join(' ')
 if ((args[0] || '').length !== 2) { 
 lang = defaultLang 
 text = args.join(' ')
@@ -174,9 +174,8 @@ unlinkSync(filePath)
 break   
 
 case isCommand7: 
-let text = args[0]
 let bufferImg
-//try{
+try{
 let q = m.quoted ? m.quoted : m
 let mime = (q.msg || q).mimetype || q.mediaType || ''
 await m.reply(wait)
@@ -184,14 +183,14 @@ if (/image/g.test(mime) && !/webp/g.test(mime)) {
 let buffer = await q.download()
 let media = await (uploadImage)(buffer)
 bufferImg = await (await fetch(APIs.skizo.url + `toanime?apikey=${APIs.skizo.key}&url=${media}`)).buffer()
-} else if (args[0]) {
+} else if (text) {
 bufferImg = await (await fetch(APIs.skizo.url + `toanime?apikey=${APIs.skizo.key}&url=${text.trim()}`)).buffer()
 } else return m.reply(`*Responde a una imagen o ingresa una url que sea \`(jpg, jpeg o png)\` para convertir a estilo Anime*`)
 await conn.sendMessage(m.chat, { image: bufferImg, caption: null }, { quoted: m })
-//} catch (e) {
-//await m.reply(lenguajeGB['smsMalError3']() + '\n*' + lenguajeGB.smsMensError1() + '*\n*' + usedPrefix + `${lenguajeGB.lenguaje() == 'es' ? 'reporte' : 'report'}` + '* ' + `${lenguajeGB.smsMensError2()} ` + usedPrefix + command)
-//console.log(`❗❗ ${lenguajeGB['smsMensError2']()} ${usedPrefix + command} ❗❗`)
-//console.log(e)}
+} catch (e) {
+await m.reply(lenguajeGB['smsMalError3']() + '\n*' + lenguajeGB.smsMensError1() + '*\n*' + usedPrefix + `${lenguajeGB.lenguaje() == 'es' ? 'reporte' : 'report'}` + '* ' + `${lenguajeGB.smsMensError2()} ` + usedPrefix + command)
+console.log(`❗❗ ${lenguajeGB['smsMensError2']()} ${usedPrefix + command} ❗❗`)
+console.log(e)}
 break
 }}
 
