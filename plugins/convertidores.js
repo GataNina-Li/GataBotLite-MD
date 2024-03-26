@@ -183,7 +183,7 @@ if (/image/g.test(mime) && !/webp/g.test(mime)) {
 let buffer = await q.download()
 let media = await (uploadImage)(buffer)
 bufferImg = await (await fetch(APIs.skizo.url + `toanime?apikey=${APIs.skizo.key}&url=${media}`)).buffer()
-} else if (text) {
+} else if (args[0]) {
 bufferImg = await (await fetch(APIs.skizo.url + `toanime?apikey=${APIs.skizo.key}&url=${text.trim()}`)).buffer()
 } else return m.reply(`*Responde a una imagen o ingresa una url que sea \`(jpg, jpeg o png)\` para convertir a estilo Anime*`)
 await conn.sendMessage(m.chat, { image: bufferImg, caption: null }, { quoted: m })
