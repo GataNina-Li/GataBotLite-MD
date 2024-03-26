@@ -7,7 +7,7 @@ import gtts from 'node-gtts'
 import { readFileSync, unlinkSync } from 'fs'
 import { join } from 'path'
 
-let handler = async (m, { conn, command, usedPrefix, text, args }) => {
+let handler = async (m, { conn, command, usedPrefix, args }) => {
 let q, mime, media, out, caption
 
 const isCommand1 = /^(to(img|image)?|img|jpe?g|png)\b$/i.test(command)
