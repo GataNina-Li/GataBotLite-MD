@@ -241,7 +241,8 @@ const filters = [
   { id: "pattern141", title: "Plaza de arte" }
 ]
 
-let list = filters.forEach((filter, index) => {
+let list = ''
+filters.forEach((filter, index) => {
 list += `*\`[${index + 1}]\`* (${filter.title})\n`
 })
     
