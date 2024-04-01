@@ -269,7 +269,10 @@ let [url, filterid, prompt] = text.split("|").map(s => s.trim())
 const isUrlValid = url && /https?:\/\/.*\.(jpeg|jpg|png)/i.test(url)
 const isPromptValid = prompt && /https?:\/\/.*\.(jpeg|jpg|png)/i.test(prompt)
 if (!isUrlValid && !isPromptValid && m.quoted) {
-[url, filterid, prompt] = [true, filterid, prompt]
+const parts = text.split("|").map(s => s.trim()) 
+const filterIds = filters.slice(1).map(filter => filter.id)
+const randomFilterId = filterIds[Math.floor(Math.random() * filterIds.length)]
+[url, filterid, prompt] = [true, !/\|/.test(text) && /^\d+$/.test(text) ? text : ((text.match(/\|/g)).length === 1) && /^\d+$/.test(parts[0]) ? parts[0] : randomFilterId, text.split("|").length === 2 ? parts[1].trim() : ""]
 }
 
 if (!url && !m.quoted) {
