@@ -23,7 +23,7 @@ const isCommand3 = /^(bot|simi|simsimi|alexa|bixby|cortana|siri|okgoogle)$/i.tes
 const isCommand4 = /^(githubstalk|usuariogithub|usergithub)$/i.test(command)
 const isCommand5 = /^(yt(s|search))$/i.test(command)
 const isCommand6 = /^(translate|traducir|trad)$/i.test(command)
-const isCommand7 = /^(openaivoz|chatgptvoz|iavoz|robotvoz|openai2voz|chatgpt2voz|ia2voz|robot2voz|gatavoz|GataBotvoz|gptvoz|ai_voz|ai_voce)$/i.test(command)
+const isCommand7 = /^(openaivoz|chatgptvoz|iavoz|robotvoz|openai2voz|chatgpt2voz|ia2voz|robot2voz|gatavoz|GataBotvoz|gptvoz|ai_voz|aivoce)$/i.test(command)
 const isCommand8 = /^(gemini|bard)$/i.test(command)
 const isCommand9 = /^(bing|bingia|iabing|copilot)$/i.test(command)
     
@@ -207,7 +207,7 @@ break
 case isCommand7:
 if (!text) throw `*${lenguajeGB['smsOpenai1']()} ${usedPrefix + command}* ${lenguajeGB.smsOpenai2()}\n\n*${usedPrefix + command}* ${lenguajeGB.smsOpenai3()}`
 try {
-conn.sendPresenceUpdate('recording', m.chat)
+await conn.sendPresenceUpdate('recording', m.chat)
 const tioress22 = await fetch(`https://skizo.tech/api/openai?apikey=${lolkeysapi}&text=${text}`)
 const hasill22 = await tioress22.json()
 if (hasill22.result == 'error' || hasill22.result == '' || !hasill22.result) return 
@@ -246,7 +246,7 @@ reportError(e)
 break 
         
 }}
-handler.command = /^(googlef?|openai|chatgpt|ia|ai|bot|simi|simsimi|alexa|bixby|cortana|siri|okgoogle|githubstalk|usuariogithub|usergithub|(yt(s|search)|(openaivoz|chatgptvoz|iavoz|robotvoz|openai2voz|chatgpt2voz|ia2voz|robot2voz|gatavoz|GataBotvoz|gptvoz|ai_voz|ai_voce)|(translate|traducir|trad))|gemini|bard|bing|bingia|iabing|copilot)$/i
+handler.command = /^(googlef?|openai|chatgpt|ia|ai|bot|simi|simsimi|alexa|bixby|cortana|siri|okgoogle|githubstalk|usuariogithub|usergithub|(yt(s|search)|(openaivoz|chatgptvoz|iavoz|robotvoz|openai2voz|chatgpt2voz|ia2voz|robot2voz|gatavoz|GataBotvoz|gptvoz|ai_voz|aivoce)|(translate|traducir|trad))|gemini|bard|bing|bingia|iabing|copilot)$/i
 handler.register = true
 export default handler 
 
