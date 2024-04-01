@@ -302,7 +302,7 @@ promptText = prompt || ''
 
 await m.reply(wait)
 let bufferImg
-if (url && !m.quoted) {
+if (isUrlValid && !m.quoted) {
 let response = await fetch(APIs.skizo.url + `illusion?apikey=${APIs.skizo.key}&url=${url.trim()}&filterid=${selectedFilterId}&prompt=${promptText}`)
 bufferImg = await response.buffer()
 } else {
