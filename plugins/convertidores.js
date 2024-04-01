@@ -279,8 +279,11 @@ filterid = parseInt(text.trim())
 } else if ((text.match(/\|/g))?.length === 1 && /^\d+$/.test(parts[0])) {
 filterid = parseInt(parts[0].trim())
 } else {
-filterid = randomFilterNumber + 1
+const filterIds = filters.slice(1).map(filter => filter.id)
+randomFilterId = filterIds[Math.floor(Math.random() * filterIds.length)]
+filterid = randomFilterId
 }
+//prompt = parts[1] ? parts[1].trim() : ""
 }
 
 if (!url && !m.quoted) {
