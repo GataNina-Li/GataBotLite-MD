@@ -259,15 +259,15 @@ ${usedPrefix + command} [filtro] | [consulta] *(opcional)*
 \`Elige un filtro usando el número correspondiente\`\n
 ${list}
 `
-if (!text) return m.reply(filterList)        
-let [url, filterid, prompt] = text.split("|").map(s => s.trim())
-const isUrlValid = url && /https?:\/\/.*\.(jpeg|jpg|png)/i.test(url)
-const isPromptValid = prompt && /https?:\/\/.*\.(jpeg|jpg|png)/i.test(prompt)
-if (!isUrlValid && !isPromptValid && m.quoted) {
+if (!text) return m.reply(filterList)  
 const parts = text.split("|").map(s => s.trim()) 
 const randomFilterIndex = Math.floor(Math.random() * (filters.length - 1)) + 1
 const randomFilterNumber = randomFilterIndex
 const randomFilterTitle = filters[randomFilterIndex].title
+let [url, filterid, prompt] = text.split("|").map(s => s.trim())
+const isUrlValid = url && /https?:\/\/.*\.(jpeg|jpg|png)/i.test(url)
+const isPromptValid = prompt && /https?:\/\/.*\.(jpeg|jpg|png)/i.test(prompt)
+if (!isUrlValid && !isPromptValid && m.quoted) {
 url = true
 filterid = !/\|/.test(text) && /^\d+$/.test(text) ? text : ((text.match(/\|/g)).length === 1) && /^\d+$/.test(parts[0]) ? parts[0] : (randomFilterNumber + 1).toString()
 prompt = text.split("|").length === 2 ? parts[1] ? parts[1].trim() : "" : ""
