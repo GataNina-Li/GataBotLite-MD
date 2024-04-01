@@ -277,9 +277,11 @@ if (!url && !m.quoted) {
 return m.reply("Debe agregar un enlace de imagen o responder a una imagen.")
 }
 
+if (!filterid) return m.reply('> *Falta seleccionar un filtro!!*\n\n' + filterList)
+    
 const selectedFilterIndex = parseInt(filterid) - 1
 if (isNaN(selectedFilterIndex) || selectedFilterIndex < 0 || selectedFilterIndex >= filters.length) {
-return m.reply(`El número '${filterid}' no corresponde a ningún filtro disponible.`)
+return m.reply(`El número \`'${filterid}'\` no corresponde a ningún filtro disponible.`)
 }
 const selectedFilterId = filters[selectedFilterIndex].id || Math.floor(Math.random() * (filters.length - 1)) + 1
 
