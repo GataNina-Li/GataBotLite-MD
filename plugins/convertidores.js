@@ -249,12 +249,12 @@ list += `*\`[${index + 1}]\`* (${filter.title})\n`
 let filterList = `*Para convertir la imagen a una ilusión de patrones:*
 
 > *Agregando un enlace de imagen:*
-*${usedPrefix + command}* enlace | filtro | consulta *(opcional)*
+*${usedPrefix + command}* [enlace] | [filtro] | [consulta] *(opcional)*
 > *Ejemplo:*
 *${usedPrefix + command}* https://telegra.ph/file/587c0111afe97997ea0d8.jpg | 3 | Color verde
 
 Respondiendo a una imagen:
-${usedPrefix + command} filtro | consulta *(opcional)*
+${usedPrefix + command} [filtro] | [consulta] *(opcional)*
 > *Ejemplo:*
 *${usedPrefix + command}* 3 | Color verde
 
@@ -277,7 +277,7 @@ if (!url && !m.quoted) {
 return m.reply("Debe agregar un enlace de imagen o responder a una imagen.")
 }
 
-const selectedFilterIndex = parseInt(userInput) - 1
+const selectedFilterIndex = parseInt(filterid) - 1
 if (isNaN(selectedFilterIndex) || selectedFilterIndex < 0 || selectedFilterIndex >= filters.length) {
 return m.reply(`El número '${filterid}' no corresponde a ningún filtro disponible.`)
 }
