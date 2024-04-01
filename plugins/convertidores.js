@@ -196,49 +196,49 @@ break
 
 case isCommand8:
 const filters = [
-  { id: "pattern001", title: "Personalizado" },
-  { id: "pattern113", title: "Arroz al amanecer" },
-  { id: "pattern147", title: "Hamburguesa" },
-  { id: "pattern146", title: "Marruecos" },
-  { id: "pattern120", title: "Dunas de arena" },
-  { id: "pattern138", title: "Las Vegas" },
-  { id: "pattern135", title: "Tokio" },
-  { id: "pattern111", title: "Lago de otoño" },
-  { id: "pattern122", title: "Lavanda" },
-  { id: "pattern136", title: "Sabana" },
-  { id: "pattern145", title: "Paisaje urbano" },
-  { id: "pattern116", title: "Pueblo nevado" },
-  { id: "pattern118", title: "Escocia" },
-  { id: "pattern119", title: "Camino de senderismo" },
-  { id: "pattern112", title: "Interior" },
-  { id: "pattern123", title: "Aurora" },
-  { id: "pattern133", title: "Coliseo" },
-  { id: "pattern107", title: "Picos de estrellas" },
-  { id: "pattern148", title: "Pizza" },
-  { id: "pattern130", title: "Parque de atracciones" },
-  { id: "pattern144", title: "Castillo" },
-  { id: "pattern124", title: "Embrujado" },
-  { id: "pattern128", title: "Camino solar" },
-  { id: "pattern115", title: "Ruinas antiguas" },
-  { id: "pattern125", title: "Estación de tren" },
-  { id: "pattern149", title: "Lasagna" },
-  { id: "pattern106", title: "Otoño" },
-  { id: "pattern109", title: "Bliss de arena" },
-  { id: "pattern143", title: "Templo" },
-  { id: "pattern104", title: "Lago alpino" },
-  { id: "pattern142", title: "Encanto alpino" },
-  { id: "pattern127", title: "Pila de papel" },
-  { id: "pattern102", title: "Utah" },
-  { id: "pattern132", title: "Manhattan" },
-  { id: "pattern108", title: "Acantilado" },
-  { id: "pattern117", title: "Caribe" },
-  { id: "pattern134", title: "Venecia" },
-  { id: "pattern126", title: "Colina de tela" },
-  { id: "pattern101", title: "Picos nevados" },
-  { id: "pattern137", title: "Dubái" },
-  { id: "pattern129", title: "Plaza de la ciudad" },
-  { id: "pattern114", title: "Monte Fuji" },
-  { id: "pattern141", title: "Plaza de arte" }
+{ id: "pattern001", title: "Personalizado" },
+{ id: "pattern113", title: "Arroz al amanecer" },
+{ id: "pattern147", title: "Hamburguesa" },
+{ id: "pattern146", title: "Marruecos" },
+{ id: "pattern120", title: "Dunas de arena" },
+{ id: "pattern138", title: "Las Vegas" },
+{ id: "pattern135", title: "Tokio" },
+{ id: "pattern111", title: "Lago de otoño" },
+{ id: "pattern122", title: "Lavanda" },
+{ id: "pattern136", title: "Sabana" },
+{ id: "pattern145", title: "Paisaje urbano" },
+{ id: "pattern116", title: "Pueblo nevado" },
+{ id: "pattern118", title: "Escocia" },
+{ id: "pattern119", title: "Camino de senderismo" },
+{ id: "pattern112", title: "Interior" },
+{ id: "pattern123", title: "Aurora" },
+{ id: "pattern133", title: "Coliseo" },
+{ id: "pattern107", title: "Picos de estrellas" },
+{ id: "pattern148", title: "Pizza" },
+{ id: "pattern130", title: "Parque de atracciones" },
+{ id: "pattern144", title: "Castillo" },
+{ id: "pattern124", title: "Embrujado" },
+{ id: "pattern128", title: "Camino solar" },
+{ id: "pattern115", title: "Ruinas antiguas" },
+{ id: "pattern125", title: "Estación de tren" },
+{ id: "pattern149", title: "Lasagna" },
+{ id: "pattern106", title: "Otoño" },
+{ id: "pattern109", title: "Bliss de arena" },
+{ id: "pattern143", title: "Templo" },
+{ id: "pattern104", title: "Lago alpino" },
+{ id: "pattern142", title: "Encanto alpino" },
+{ id: "pattern127", title: "Pila de papel" },
+{ id: "pattern102", title: "Utah" },
+{ id: "pattern132", title: "Manhattan" },
+{ id: "pattern108", title: "Acantilado" },
+{ id: "pattern117", title: "Caribe" },
+{ id: "pattern134", title: "Venecia" },
+{ id: "pattern126", title: "Colina de tela" },
+{ id: "pattern101", title: "Picos nevados" },
+{ id: "pattern137", title: "Dubái" },
+{ id: "pattern129", title: "Plaza de la ciudad" },
+{ id: "pattern114", title: "Monte Fuji" },
+{ id: "pattern141", title: "Plaza de arte" }
 ]
 let list = ''
 filters.forEach((filter, index) => {
@@ -267,6 +267,7 @@ if (!isUrlValid && !isPromptValid && m.quoted) {
 const parts = text.split("|").map(s => s.trim()) 
 const randomFilterIndex = Math.floor(Math.random() * (filters.length - 1)) + 1
 const randomFilterNumber = randomFilterIndex
+const randomFilterTitle = filters[randomFilterIndex].title
 url = true
 filterid = !/\|/.test(text) && /^\d+$/.test(text) ? text : ((text.match(/\|/g)).length === 1) && /^\d+$/.test(parts[0]) ? parts[0] : (randomFilterNumber + 1).toString()
 prompt = text.split("|").length === 2 ? parts[1] ? parts[1].trim() : "" : ""
@@ -302,9 +303,9 @@ bufferImg = await response.buffer()
 } else if (isUrlValid) {
 let response = await fetch(APIs.skizo.url + `illusion?apikey=${APIs.skizo.key}&url=${url.trim()}&filterid=${selectedFilterId}&prompt=${promptText}`)
 bufferImg = await response.buffer()
-} else return m.reply("La URL proporcionada no es un enlace de imagen válido.")
+} else return m.reply("La URL proporcionada no es un enlace de imagen válido o no se ha respondido a una imagen.")
    
-await conn.sendMessage(m.chat, { image: bufferImg, caption: null }, { quoted: m })
+await conn.sendMessage(m.chat, { image: bufferImg, caption: `🪄 *Efecto:* ${randomFilterTitle}\n📌 *Prompt:* ${promptText || 'Ninguno'}` }, { quoted: m })
 } catch (e) {
 await m.reply(lenguajeGB['smsMalError3']() + '\n*' + lenguajeGB.smsMensError1() + '*\n*' + usedPrefix + `${lenguajeGB.lenguaje() == 'es' ? 'reporte' : 'report'}` + '* ' + `${lenguajeGB.smsMensError2()} ` + usedPrefix + command)
 console.log(`❗❗ ${lenguajeGB['smsMensError2']()} ${usedPrefix + command} ❗❗`)
