@@ -304,14 +304,14 @@ await m.reply(wait)
 let bufferImg
 let q = m.quoted ? m.quoted : m
 let mime = (q.msg || q).mimetype || q.mediaType || ''
-if (isUrlValid && !m.quoted) {
-let response = await fetch(APIs.skizo.url + `illusion?apikey=${APIs.skizo.key}&url=${url.trim()}&filterid=${selectedFilterId}&prompt=${promptText}`)
-bufferImg = await response.buffer()
-} else if (/image/g.test(mime) && !/webp/g.test(mime)) {
+if (/image/g.test(mime) && !/webp/g.test(mime)) {
 let buffer = await q.download()
 let media = await uploadImage(buffer)
 let response = await fetch(APIs.skizo.url + `illusion?apikey=${APIs.skizo.key}&url=${media}&filterid=${selectedFilterId}&prompt=${promptText}`)
 bufferImg = await response.buffer()    
+} else if (isUrlValid) {
+let response = await fetch(APIs.skizo.url + `illusion?apikey=${APIs.skizo.key}&url=${url.trim()}&filterid=${selectedFilterId}&prompt=${promptText}`)
+bufferImg = await response.buffer()
 } else {
 return m.reply("La URL proporcionada no es un enlace de imagen válido.")
 }
