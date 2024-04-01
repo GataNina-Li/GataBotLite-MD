@@ -240,12 +240,10 @@ const filters = [
   { id: "pattern114", title: "Monte Fuji" },
   { id: "pattern141", title: "Plaza de arte" }
 ]
-
 let list = ''
 filters.forEach((filter, index) => {
 list += `*\`[${index + 1}]\`* (${filter.title})\n`
-})
-    
+})   
 let filterList = `*Para convertir la imagen a una ilusión de patrones:*
 
 > *Agregando un enlace de imagen:*
@@ -261,9 +259,7 @@ ${usedPrefix + command} [filtro] | [consulta] *(opcional)*
 \`Elige un filtro usando el número correspondiente\`\n
 ${list}
 `
-
-if (!text) return m.reply(filterList)
-        
+if (!text) return m.reply(filterList)        
 let [url, filterid, prompt] = text.split("|").map(s => s.trim())
 const isUrlValid = url && /https?:\/\/.*\.(jpeg|jpg|png)/i.test(url)
 const isPromptValid = prompt && /https?:\/\/.*\.(jpeg|jpg|png)/i.test(prompt)
@@ -274,22 +270,17 @@ const randomFilterNumber = randomFilterIndex
 url = true
 filterid = !/\|/.test(text) && /^\d+$/.test(text) ? text : ((text.match(/\|/g)).length === 1) && /^\d+$/.test(parts[0]) ? parts[0] : (randomFilterNumber + 1).toString()
 prompt = text.split("|").length === 2 ? parts[1] ? parts[1].trim() : "" : ""
-//[url, filterid, prompt] = [true, !/\|/.test(text) && /^\d+$/.test(text) ? text : ((text.match(/\|/g)).length === 1) && /^\d+$/.test(parts[0]) ? parts[0] : (randomFilterNumber + 1).toString(), text.split("|").length === 2 ? parts[1] ? parts[1].trim() : "" : ""]
-console.log(url, filterid, prompt)
 }
 try {
 if (!url && !m.quoted) {
 return m.reply("Debe agregar un enlace de imagen o responder a una imagen.")
 }
-
-if (!filterid) return m.reply('> *Falta seleccionar un filtro!!*\n\n' + filterList)
-    
+if (!filterid) return m.reply('> *Falta seleccionar un filtro!!*\n\n' + filterList)   
 const selectedFilterIndex = parseInt(filterid) - 1
 if (isNaN(selectedFilterIndex) || selectedFilterIndex < 0 || selectedFilterIndex >= filters.length) {
 return m.reply(`El número \`'${filterid}'\` no corresponde a ningún filtro disponible.`)
 }
 const selectedFilterId = filters[selectedFilterIndex].id || Math.floor(Math.random() * (filters.length - 1)) + 1
-
 let promptText = ''
 if (selectedFilterId === "pattern001") {
 if (!prompt) {
@@ -299,11 +290,10 @@ promptText = prompt
 } else {
 promptText = prompt || ''
 }
-
-await m.reply(wait)
 let bufferImg
 let q = m.quoted ? m.quoted : m
 let mime = (q.msg || q).mimetype || q.mediaType || ''
+await m.reply(wait)    
 if (/image/g.test(mime) && !/webp/g.test(mime)) {
 let buffer = await q.download()
 let media = await uploadImage(buffer)
@@ -312,10 +302,8 @@ bufferImg = await response.buffer()
 } else if (isUrlValid) {
 let response = await fetch(APIs.skizo.url + `illusion?apikey=${APIs.skizo.key}&url=${url.trim()}&filterid=${selectedFilterId}&prompt=${promptText}`)
 bufferImg = await response.buffer()
-} else {
-return m.reply("La URL proporcionada no es un enlace de imagen válido.")
-}
-    
+} else return m.reply("La URL proporcionada no es un enlace de imagen válido.")
+   
 await conn.sendMessage(m.chat, { image: bufferImg, caption: null }, { quoted: m })
 } catch (e) {
 await m.reply(lenguajeGB['smsMalError3']() + '\n*' + lenguajeGB.smsMensError1() + '*\n*' + usedPrefix + `${lenguajeGB.lenguaje() == 'es' ? 'reporte' : 'report'}` + '* ' + `${lenguajeGB.smsMensError2()} ` + usedPrefix + command)
