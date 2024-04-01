@@ -264,7 +264,6 @@ ${list}
 
 if (!text) return m.reply(filterList)
         
-try {
 let [url, filterid, prompt] = text.split("|").map(s => s.trim())
 const isUrlValid = url && /https?:\/\/.*\.(jpeg|jpg|png)/i.test(url)
 const isPromptValid = prompt && /https?:\/\/.*\.(jpeg|jpg|png)/i.test(prompt)
@@ -275,7 +274,7 @@ const randomFilterNumber = randomFilterIndex
 [url, filterid, prompt] = [true, !/\|/.test(text) && /^\d+$/.test(text) ? text : ((text.match(/\|/g)).length === 1) && /^\d+$/.test(parts[0]) ? parts[0] : (randomFilterNumber + 1).toString(), text.split("|").length === 2 ? parts[1] ? parts[1].trim() : "" : ""]
 console.log(url, filterid, prompt)
 }
-
+try {
 if (!url && !m.quoted) {
 return m.reply("Debe agregar un enlace de imagen o responder a una imagen.")
 }
