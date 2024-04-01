@@ -276,7 +276,7 @@ if (!url && !m.quoted) {
 return m.reply("Debe agregar un enlace de imagen o responder a una imagen.")
 }
 
-if (!filterid) return m.reply('> *Falta seleccionar un filtro!!*\n\n' + filterList)
+if (!url && !filterid) return m.reply('> *Falta seleccionar un filtro!!*\n\n' + filterList)
     
 const selectedFilterIndex = parseInt(filterid) - 1
 if (isNaN(selectedFilterIndex) || selectedFilterIndex < 0 || selectedFilterIndex >= filters.length) {
