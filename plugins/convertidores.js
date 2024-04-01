@@ -257,7 +257,7 @@ ${usedPrefix + command} [filtro] | [consulta] *(opcional)*
 *${usedPrefix + command}* 3 | Color verde
 
 \`Elige un filtro usando el número correspondiente\`\n
-${list}
+${list.trim()}
 `
 if (!text) return m.reply(filterList)  
 const parts = text.split("|").map(s => s.trim()) 
