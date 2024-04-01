@@ -269,8 +269,7 @@ let [url, filterid, prompt] = text.split("|").map(s => s.trim())
 const isUrlValid = url && /https?:\/\/.*\.(jpeg|jpg|png)/i.test(url)
 const isPromptValid = prompt && /https?:\/\/.*\.(jpeg|jpg|png)/i.test(prompt)
 if (!isUrlValid && !isPromptValid && m.quoted) {
-url = true
-[url, filterid, prompt] = [url, filterid, prompt]
+[url, filterid, prompt] = [true, filterid, prompt]
 }
 
 if (!url && !m.quoted) {
