@@ -302,20 +302,20 @@ promptText = prompt || ''
 
 await m.reply(wait)
 let bufferImg
+let q = m.quoted ? m.quoted : m
+let mime = (q.msg || q).mimetype || q.mediaType || ''
 if (isUrlValid && !m.quoted) {
 let response = await fetch(APIs.skizo.url + `illusion?apikey=${APIs.skizo.key}&url=${url.trim()}&filterid=${selectedFilterId}&prompt=${promptText}`)
 bufferImg = await response.buffer()
-} else {
-let q = m.quoted ? m.quoted : m
-let mime = (q.msg || q).mimetype || q.mediaType || ''
-if (/image\/(jpeg|jpg|png)/i.test(mime)) {
+} else if (/image\/(jpeg|jpg|png)/i.test(mime)) {
 let buffer = await q.download()
 let media = await uploadImage(buffer)
 let response = await fetch(APIs.skizo.url + `illusion?apikey=${APIs.skizo.key}&url=${media}&filterid=${selectedFilterId}&prompt=${promptText}`)
-bufferImg = await response.buffer();
+bufferImg = await response.buffer()    
 } else {
 return m.reply("La URL proporcionada no es un enlace de imagen válido.")
-}}
+}
+    
 await conn.sendMessage(m.chat, { image: bufferImg, caption: null }, { quoted: m })
 } catch (e) {
 await m.reply(lenguajeGB['smsMalError3']() + '\n*' + lenguajeGB.smsMensError1() + '*\n*' + usedPrefix + `${lenguajeGB.lenguaje() == 'es' ? 'reporte' : 'report'}` + '* ' + `${lenguajeGB.smsMensError2()} ` + usedPrefix + command)
