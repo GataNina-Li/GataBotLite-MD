@@ -214,7 +214,7 @@ const audio2 = await tts(botIA222.data.choices[0].text, idioma);
 await conn.sendMessage(m.chat, {audio: audio2, fileName: 'error.mp3', mimetype: 'audio/mpeg', ptt: true}, {quoted: m});    
 } catch {
 try {
-const tioress22 = await fetch(`https://api.lolhuman.xyz/api/openai?apikey=${lolkeysapi}&text=${text}&user=${m.sender}`);
+const tioress22 = await fetch(`https://skizo.tech/api/openai?apikey=${lolkeysapi}&text=${text}`)
 const hasill22 = await tioress22.json();
 if (hasill22.result == 'error' || hasill22.result == '' || !hasill22.result) return 
 const hasill22_result = await translate(`${hasill22.result}`, {to: idioma, autoCorrect: true});
