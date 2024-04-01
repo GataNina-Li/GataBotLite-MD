@@ -12,8 +12,8 @@ import {readFileSync, unlinkSync} from 'fs'
 import {join} from 'path'
 import fs from 'fs' 
 import {Configuration, OpenAIApi} from 'openai';
-const configuration = new Configuration({organization: global.openai_org_id, apiKey: global.openai_key});
-const openaiii = new OpenAIApi(configuration);
+const configuration = new Configuration({organization: global.openai_org_id, apiKey: global.openai_key})
+const openaiii = new OpenAIApi(configuration)
 const idioma = 'es'
 
 let handler = async (m, { conn, command, usedPrefix, args, text }) => {
@@ -211,9 +211,9 @@ conn.sendPresenceUpdate('recording', m.chat)
 const tioress22 = await fetch(`https://skizo.tech/api/openai?apikey=${lolkeysapi}&text=${text}`)
 const hasill22 = await tioress22.json()
 if (hasill22.result == 'error' || hasill22.result == '' || !hasill22.result) return 
-const hasill22_result = await translate(`${hasill22.result}`, {to: idioma, autoCorrect: true})
-const audio7 = await tts(hasill22_result.text, idioma)
-await conn.sendMessage(m.chat, {audio: audio7, fileName: 'error.mp3', mimetype: 'audio/mpeg', ptt: true}, {quoted: m})            
+//const hasill22_result = await translate(`${hasill22.result}`, {to: idioma, autoCorrect: true})
+//const audio7 = await tts(hasill22_result.text, idioma)
+await conn.sendMessage(m.chat, {audio: hasill22.result, fileName: 'error.mp3', mimetype: 'audio/mpeg', ptt: true}, {quoted: m})            
 } catch (e) {
 reportError(e)
 }
