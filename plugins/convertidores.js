@@ -272,7 +272,8 @@ if (!isUrlValid && !isPromptValid && m.quoted) {
 const parts = text.split("|").map(s => s.trim()) 
 const randomFilterIndex = Math.floor(Math.random() * (filters.length - 1)) + 1
 const randomFilterNumber = randomFilterIndex
-[url, filterid, prompt] = [true, !/\|/.test(text) && /^\d+$/.test(text) ? text.trim() : ((text.match(/\|/g)).length === 1) && /^\d+$/.test(parts[0]) ? parts[0].trim() : randomFilterNumber + 1, text.split("|").length === 2 ? parts[1].trim() : ""]
+[url, filterid, prompt] = [true, !/\|/.test(text) && /^\d+$/.test(text) ? text.trim() : ((text.match(/\|/g)).length === 1) && /^\d+$/.test(parts[0]) ? parts[0].trim() : randomFilterNumber, text.split("|").length === 2 ? parts[1].trim() : ""]
+filterid += 1
 }
 
 if (!url && !m.quoted) {
