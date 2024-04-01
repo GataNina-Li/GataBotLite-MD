@@ -85,7 +85,7 @@ let resu2 = await ia2.json()
 m.reply(resu2.response.trim())    
 } catch {        
 try {    
-let tioress = await fetch(`https://api.lolhuman.xyz/api/openai-turbo?apikey=${lolkeysapi}&text=${text}`)
+let tioress = await fetch(`https://skizo.tech/api/openai?apikey=${lolkeysapi}&text=${text}`)
 let hasill = await tioress.json()
 m.reply(`${hasill.result}`.trim())   
 } catch (e) {
