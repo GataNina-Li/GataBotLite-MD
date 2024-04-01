@@ -272,18 +272,7 @@ if (!isUrlValid && !isPromptValid && m.quoted) {
 const parts = text.split("|").map(s => s.trim()) 
 const randomFilterIndex = Math.floor(Math.random() * (filters.length - 1)) + 1
 const randomFilterNumber = randomFilterIndex
-//[url, filterid, prompt] = [true, !/\|/.test(text) && /^\d+$/.test(text) ? parseInt(text.trim()) : ((text.match(/\|/g)).length === 1) && /^\d+$/.test(parts[0]) ? parseInt(parts[0].trim()) : parseInt(randomFilterNumber) + 1, text.split("|").length === 2 ? parts[1].trim() : ""]
-[url, filterid, prompt] = [true, '', text.split("|").length === 2 ? parts[1].trim() : ""]
-if (!/\|/.test(text) && /^\d+$/.test(text)) {
-filterid = parseInt(text.trim())
-} else if ((text.match(/\|/g))?.length === 1 && /^\d+$/.test(parts[0])) {
-filterid = parseInt(parts[0].trim())
-} else {
-const filterIds = filters.slice(1).map(filter => filter.id)
-randomFilterId = filterIds[Math.floor(Math.random() * filterIds.length)]
-filterid = randomFilterId
-}
-//prompt = parts[1] ? parts[1].trim() : ""
+[url, filterid, prompt] = [true, !/\|/.test(text) && /^\d+$/.test(text) ? parseInt(text.trim()) : ((text.match(/\|/g)).length === 1) && /^\d+$/.test(parts[0]) ? parseInt(parts[0].trim()) : parseInt(randomFilterNumber) + 1, text.split("|").length === 2 ? parts[1] ? parts[1].trim() : "" : ""]
 }
 
 if (!url && !m.quoted) {
