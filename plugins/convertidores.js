@@ -272,7 +272,7 @@ if (!isUrlValid && !isPromptValid && m.quoted) {
 const parts = text.split("|").map(s => s.trim()) 
 const randomFilterIndex = Math.floor(Math.random() * (filters.length - 1)) + 1
 const randomFilterNumber = randomFilterIndex
-[url, filterid, prompt] = [true, !/\|/.test(text) && /^\d+$/.test(text) ? parseInt(text.trim()) : ((text.match(/\|/g)).length === 1) && /^\d+$/.test(parts[0]) ? parseInt(parts[0].trim()) : parseInt(randomFilterNumber) + 1, text.split("|").length === 2 ? parts[1] ? parts[1].trim() : "" : ""]
+[url, filterid, prompt] = [true, !/\|/.test(text) && /^\d+$/.test(text) ? text : ((text.match(/\|/g)).length === 1) && /^\d+$/.test(parts[0]) ? parts[0] : randomFilterNumber + 1, text.split("|").length === 2 ? parts[1] ? parts[1].trim() : "" : ""]
 }
 
 if (!url && !m.quoted) {
