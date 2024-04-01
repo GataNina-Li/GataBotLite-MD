@@ -263,7 +263,6 @@ if (!text) return m.reply(filterList)
 const parts = text.split("|").map(s => s.trim()) 
 const randomFilterIndex = Math.floor(Math.random() * (filters.length - 1)) + 1
 const randomFilterNumber = randomFilterIndex
-const randomFilterTitle = filters[randomFilterIndex].title
 let [url, filterid, prompt] = text.split("|").map(s => s.trim())
 const isUrlValid = url && /https?:\/\/.*\.(jpeg|jpg|png)/i.test(url)
 const isPromptValid = prompt && /https?:\/\/.*\.(jpeg|jpg|png)/i.test(prompt)
@@ -305,7 +304,7 @@ let response = await fetch(APIs.skizo.url + `illusion?apikey=${APIs.skizo.key}&u
 bufferImg = await response.buffer()
 } else return m.reply("La URL proporcionada no es un enlace de imagen válido o no se ha respondido a una imagen.")
    
-await conn.sendMessage(m.chat, { image: bufferImg, caption: `🪄 *Efecto:* ${randomFilterTitle}\n📌 *Prompt:* ${promptText || 'Ninguno'}` }, { quoted: m })
+await conn.sendMessage(m.chat, { image: bufferImg, caption: `🪄 *Efecto:* ${filters[selectedFilterIndex].title}\n📌 *Prompt:* ${promptText || 'Ninguno'}` }, { quoted: m })
 } catch (e) {
 await m.reply(lenguajeGB['smsMalError3']() + '\n*' + lenguajeGB.smsMensError1() + '*\n*' + usedPrefix + `${lenguajeGB.lenguaje() == 'es' ? 'reporte' : 'report'}` + '* ' + `${lenguajeGB.smsMensError2()} ` + usedPrefix + command)
 console.log(`❗❗ ${lenguajeGB['smsMensError2']()} ${usedPrefix + command} ❗❗`)
