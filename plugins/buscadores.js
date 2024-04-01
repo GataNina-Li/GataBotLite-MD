@@ -207,22 +207,16 @@ break
 case isCommand7:
 if (!text) throw `*${lenguajeGB['smsOpenai1']()} ${usedPrefix + command}* ${lenguajeGB.smsOpenai2()}\n\n*${usedPrefix + command}* ${lenguajeGB.smsOpenai3()}`
 try {
-conn.sendPresenceUpdate('recording', m.chat);
-const botIA222 = await openaiii.createCompletion({model: 'text-davinci-003', prompt: text, temperature: 0.3, max_tokens: 4097, stop: ['Ai:', 'Human:'], top_p: 1, frequency_penalty: 0.2, presence_penalty: 0});
-if (botIA222.data.choices[0].text == 'error' || botIA222.data.choices[0].text == '' || !botIA222.data.choices[0].text) return XD; // causar error undefined para usar otra api
-const audio2 = await tts(botIA222.data.choices[0].text, idioma);
-await conn.sendMessage(m.chat, {audio: audio2, fileName: 'error.mp3', mimetype: 'audio/mpeg', ptt: true}, {quoted: m});    
-} catch {
-try {
+conn.sendPresenceUpdate('recording', m.chat)
 const tioress22 = await fetch(`https://skizo.tech/api/openai?apikey=${lolkeysapi}&text=${text}`)
-const hasill22 = await tioress22.json();
+const hasill22 = await tioress22.json()
 if (hasill22.result == 'error' || hasill22.result == '' || !hasill22.result) return 
-const hasill22_result = await translate(`${hasill22.result}`, {to: idioma, autoCorrect: true});
-const audio7 = await tts(hasill22_result.text, idioma);
-await conn.sendMessage(m.chat, {audio: audio7, fileName: 'error.mp3', mimetype: 'audio/mpeg', ptt: true}, {quoted: m});            
+const hasill22_result = await translate(`${hasill22.result}`, {to: idioma, autoCorrect: true})
+const audio7 = await tts(hasill22_result.text, idioma)
+await conn.sendMessage(m.chat, {audio: audio7, fileName: 'error.mp3', mimetype: 'audio/mpeg', ptt: true}, {quoted: m})            
 } catch (e) {
 reportError(e)
-}}
+}
 break   
 
 case isCommand8:
