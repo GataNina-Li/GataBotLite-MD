@@ -47,7 +47,7 @@ reply = await conn.reply(m.chat, menuStart, m, { mentions: [m.sender] })
 
 const regexWithPrefix = new RegExp(`^${usedPrefix}${allRegex.source}$`) 
 handler.before = async function (m, { conn }) { 
-if (!text) return
+if (text) return
 let menu = `*◈ ${user.registered === true ? user.name : `👉 ${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'verificar nombre.edad' : 'verify name.age'}`} ◈*
 *˚₊·˚₊· ͟͟͞͞➳❥ @${m.sender.split("@")[0]}*
 *˚₊·˚₊· ͟͟͞͞➳❥* ${packname}${conn.user.jid == global.conn.user.jid ? '' : `\n*˚₊·˚₊· ͟͟͞͞➳❥* 𝗚𝗕 - 𝗦𝗨𝗕 𝗕𝗢𝗧 ⇢ *@${global.conn.user.jid.split`@`[0]}*`}
