@@ -51,7 +51,7 @@ let menu = `*◈ ${user.registered === true ? user.name : `👉 ${usedPrefix}${l
 *˚₊·˚₊· ͟͟͞͞➳❥ @${m.sender.split("@")[0]}*
 *˚₊·˚₊· ͟͟͞͞➳❥* ${packname}${conn.user.jid == global.conn.user.jid ? '' : `\n*˚₊·˚₊· ͟͟͞͞➳❥* 𝗚𝗕 - 𝗦𝗨𝗕 𝗕𝗢𝗧 ⇢ *@${global.conn.user.jid.split`@`[0]}*`}
 *☆═━┈◈ ╰ ${vs} ㎇ ╯ ◈┈━═☆*
-${regexWithPrefix.test(m.text) || regex.test(arreglos[0].comando) || (m.text == '1' && m.quoted && m.quoted.id === reply.id) ? 
+${regexWithPrefix.test(m.text) || regex.test(arreglos[0].comando) || (m.text === '1' && m.quoted && m.quoted.id === reply.id) ? 
 `*│* 
 *╰ ㊂ ▸▸ _${lenguajeGB.smsMenuTotal1()}_ ◂◂*
 *│* ┊
@@ -68,7 +68,7 @@ ${regexWithPrefix.test(m.text) || regex.test(arreglos[0].comando) || (m.text == 
 *│* ┊▸ ✦ _${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'infogata' : 'infobot'}_ 
 *│* ┊▸ ✦ _${lenguajeGB.lenguaje() == 'es' ? 'términos y condiciones' : 'terms'}_ 
 *│* ╰∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙ ∙ ∙ ∙ ∙` : ''}
-${regexWithPrefix.test(m.text) || regex.test(arreglos[1].comando) || (m.text == '2' && m.quoted && m.quoted.id === reply.id) ? 
+${regexWithPrefix.test(m.text) || regex.test(arreglos[1].comando) || (m.text === '2' && m.quoted && m.quoted.id === reply.id) ? 
 `*│*
 *╰ ㊂ ▸▸ _${lenguajeGB.smsMenuTotal2()}_ ◂◂*
 *│* ┊
