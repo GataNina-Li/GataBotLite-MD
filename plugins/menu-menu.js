@@ -1,6 +1,6 @@
 import fs, { promises } from 'fs'
 import fetch from 'node-fetch'
-const regex = /(info|serbot|descargas|juegos)menu/i
+const regex = /(info|buscador|juegos)menu/i
 const allRegex = /commands|comandos|menucompleto|allmenu|allm/i
 
 let handler = async (m, { conn, usedPrefix, command, text }) => {
@@ -20,8 +20,8 @@ let fkontak = { "key": { "participants":"0@s.whatsapp.net", "remoteJid": "status
 
 
 const arreglos = [
-{ tema: lenguajeGB.smsMenuTotal1(), comando: usedPrefix + 'infomenu' },
-{ tema: lenguajeGB.smsMenuTotal2(), comando: usedPrefix + 'serbotmenu' },
+{ tema: lenguajeGB.smsMenuTotal1() + '&' + lenguajeGB.smsMenuTotal2(), comando: usedPrefix + 'infomenu' },
+{ tema: lenguajeGB.smsMenuTotal3(), comando: usedPrefix + 'buscadormenu' },
 { tema: 'Tema 3', comando: usedPrefix + 'comando3' },
 { tema: 'Tema 4', comando: usedPrefix + 'comando4' }
 ]
@@ -68,9 +68,8 @@ ${regexWithPrefix.test(m.text) || regex.test(arreglos[0].comando) || (m.text ===
 *│* ┊▸ ✦ _${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'velocidad' : 'ping'}_ 
 *│* ┊▸ ✦ _${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'infogata' : 'infobot'}_ 
 *│* ┊▸ ✦ _${lenguajeGB.lenguaje() == 'es' ? 'términos y condiciones' : 'terms'}_ 
-*│* ╰∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙ ∙ ∙ ∙ ∙` : ''}
-${regexWithPrefix.test(m.text) || regex.test(arreglos[1].comando) || (m.text === '2' && m.quoted && m.quoted.id === reply.id) ? 
-`*│*
+*│* ╰∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙ ∙ ∙ ∙ ∙
+*│*
 *╰ ㊂ ▸▸ _${lenguajeGB.smsMenuTotal2()}_ ◂◂*
 *│* ┊
 *│* ┊▸ ✦ _${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'serbot' : 'jadibot'}_
@@ -78,7 +77,8 @@ ${regexWithPrefix.test(m.text) || regex.test(arreglos[1].comando) || (m.text ===
 *│* ┊▸ ✦ _${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'pausarsb' : 'pausesb'}_
 *│* ┊▸ ✦ _${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'eliminarsesion' : 'delsession'}_
 *│* ╰∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙ ∙ ∙ ∙ ∙` : ''}  
-*│*
+${regexWithPrefix.test(m.text) || regex.test(arreglos[1].comando) || (m.text === '2' && m.quoted && m.quoted.id === reply.id) ? 
+`*│*
 *╰ ㊂ ▸▸ _${lenguajeGB.smsMenuTotal3()}_ ◂◂*
 *│* ┊
 *│* ┊▸ ✦ _${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'google *texto*' : 'google *text*'}_
@@ -89,7 +89,7 @@ ${regexWithPrefix.test(m.text) || regex.test(arreglos[1].comando) || (m.text ===
 *│* ┊▸ ✦ _${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'gemini *texto*' : 'gemini *text*'}_
 *│* ┊▸ ✦ _${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'copilot *texto*' : 'copilot *text*'}_
 *│* ┊▸ ✦ _${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'usuariogithub *texto*' : 'usergithub *text*'}_
-*│* ╰∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙ ∙ ∙ ∙ ∙  
+*│* ╰∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙ ∙ ∙ ∙ ∙` : ''}  
 *│*
 *╰ ㊂ ▸▸ _HERRAMIENTAS_ ◂◂*
 *│* ┊
