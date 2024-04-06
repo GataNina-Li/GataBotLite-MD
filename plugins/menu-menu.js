@@ -1,6 +1,7 @@
 import fs, { promises } from 'fs'
 import fetch from 'node-fetch'
 const regex = /(info|descargas|juegos)menu/i
+const allRegex = /commands|comandos|menucompleto|allmenu|allm/i
 
 let handler = async (m, { conn, usedPrefix, command }) => {
 try {
@@ -35,21 +36,24 @@ Bienvenido ${user.registered === true ? user.name : `@${m.sender.split("@")[0]}`
 
 Para digirte a la sección de comandos, responde a este mensaje con el número de la sección o bien puedes usar el comando:
 
-${mensaje}`.trim()
+${mensaje}
+
+> *Ejemplo:* Responde a este mensaje con \`"1"\` para ir a la sección *${arreglos[0].comando}*`.trim()
 
 let reply
 if (!regex.test(command)) {
 reply = await conn.reply(m.chat, menuStart, m, { mentions: [m.sender] }) 
 }
- 
+
+const regexWithPrefix = new RegExp(`^${usedPrefix}${allRegex.source}$`) 
 handler.before = async function (m, { conn }) { 
 let menu = `*◈ ${user.registered === true ? user.name : `👉 ${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'verificar nombre.edad' : 'verify name.age'}`} ◈*
 *˚₊·˚₊· ͟͟͞͞➳❥ @${m.sender.split("@")[0]}*
 *˚₊·˚₊· ͟͟͞͞➳❥* ${packname}${conn.user.jid == global.conn.user.jid ? '' : `\n*˚₊·˚₊· ͟͟͞͞➳❥* 𝗚𝗕 - 𝗦𝗨𝗕 𝗕𝗢𝗧 ⇢ *@${global.conn.user.jid.split`@`[0]}*`}
 *☆═━┈◈ ╰ ${vs} ㎇ ╯ ◈┈━═☆*
-*│* 
-${ arreglos[0].comando == command || (m.text == '1' && m.quoted && m.quoted.id === reply.id) ? 
-`*╰ ㊂ ▸▸ _${lenguajeGB.smsMenuTotal1()}_ ◂◂*
+${regexWithPrefix.test(m.text) || regex.test(arreglos[0].comando) || (m.text == '1' && m.quoted && m.quoted.id === reply.id) ? 
+`*│* 
+*╰ ㊂ ▸▸ _${lenguajeGB.smsMenuTotal1()}_ ◂◂*
 *│* ┊
 *│* ┊▸ ✦ _${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'creadora' : 'owner'}_
 *│* ┊▸ ✦ _${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'contacto' : 'contact'}_ 
@@ -257,7 +261,7 @@ console.log(`❗❗ ${lenguajeGB['smsMensError2']()} ${usedPrefix + command} ❗
 console.log(e)}
 
 }
-let menuNormal = /^(menu|menú|memu|memú|help|info|comandos|menu1.2|ayuda|commands|menucompleto|allmenu|allm|m|\?)$/i
+let menuNormal = /^(menu|menú|memu|memú|help|menu2|ayuda|m|\?)$/i
 handler.command = new RegExp(menuNormal.source + '|^' + regex.source)
 export default handler
     
