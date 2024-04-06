@@ -20,15 +20,15 @@ let fkontak = { "key": { "participants":"0@s.whatsapp.net", "remoteJid": "status
 
 
 const arreglos = [
-{ tema: lenguajeGB.smsMenuTotal1(), comando: 'infomenu' },
-{ tema: 'Tema 2', comando: usedPrefix + '#comando2' },
-{ tema: 'Tema 3', comando: usedPrefix + '#comando3' },
-{ tema: 'Tema 4', comando: usedPrefix + '#comando4' }
+{ tema: lenguajeGB.smsMenuTotal1(), comando: usedPrefix + 'infomenu' },
+{ tema: 'Tema 2', comando: usedPrefix + 'comando2' },
+{ tema: 'Tema 3', comando: usedPrefix + 'comando3' },
+{ tema: 'Tema 4', comando: usedPrefix + 'comando4' }
 ]
 
 let mensaje = "Lista de menu:\n"
 arreglos.forEach((item, index) => {
-mensaje += `[${index + 1}] ${item.tema}\n${item.comando}\n\n`
+mensaje += `\`\`\`[${index + 1}]\`\`\` *${item.tema}*\n\`${item.comando}\`\n\n`
 })
 
 let menuStart = `
@@ -36,7 +36,7 @@ Bienvenido ${user.registered === true ? user.name : `@${m.sender.split("@")[0]}`
 
 Para digirte a la sección de comandos, responde a este mensaje con el número de la sección o bien puedes usar el comando:
 
-${mensaje}
+${mensaje.trim()}
 
 > *Ejemplo:* Responde a este mensaje con \`"1"\` para ir a la sección *${arreglos[0].tema}*`.trim()
 
