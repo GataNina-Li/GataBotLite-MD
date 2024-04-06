@@ -38,7 +38,7 @@ Para digirte a la sección de comandos, responde a este mensaje con el número d
 
 ${mensaje}
 
-> *Ejemplo:* Responde a este mensaje con \`"1"\` para ir a la sección *${arreglos[0].comando}*`.trim()
+> *Ejemplo:* Responde a este mensaje con \`"1"\` para ir a la sección *${arreglos[0].tema}*`.trim()
 
 let reply
 if (!regex.test(command)) {
