@@ -37,8 +37,9 @@ Para digirte a la sección de comandos, responde a este mensaje con el número d
 
 ${mensaje}`.trim()
 
+let reply
 if (!regex.test(command)) {
-const reply = await conn.reply(m.chat, menuStart, m, { mentions: [m.sender] }) 
+reply = await conn.reply(m.chat, menuStart, m, { mentions: [m.sender] }) 
 }
  
 handler.before = async function (m, { conn }) { 
