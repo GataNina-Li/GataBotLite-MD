@@ -1,5 +1,7 @@
 import fs, { promises } from 'fs'
 import fetch from 'node-fetch'
+const regex = /(info|descargas|juegos)menu/i
+
 let handler = async (m, { conn, usedPrefix, command }) => {
 try {
 let d = new Date(new Date + 3600000)
@@ -14,6 +16,7 @@ let readMore = more.repeat(850)
 let taguser = conn.getName(m.sender)
 let user = global.db.data.users[m.sender]
 let fkontak = { "key": { "participants":"0@s.whatsapp.net", "remoteJid": "status@broadcast", "fromMe": false, "id": "Halo" }, "message": { "contactMessage": { "vcard": `BEGIN:VCARD\nVERSION:3.0\nN:Sy;Bot;;;\nFN:y\nitem1.TEL;waid=${m.sender.split('@')[0]}:${m.sender.split('@')[0]}\nitem1.X-ABLabel:Ponsel\nEND:VCARD` }}, "participant": "0@s.whatsapp.net" }
+
 
 const arreglos = [
 { tema: lenguajeGB.smsMenuTotal1(), comando: 'infomenu' },
@@ -33,8 +36,10 @@ Bienvenido ${user.registered === true ? user.name : `@${m.sender.split("@")[0]}`
 Para digirte a la sección de comandos, responde a este mensaje con el número de la sección o bien puedes usar el comando:
 
 ${mensaje}`.trim()
- 
+
+if (!regex.test(command)) {
 const reply = await conn.reply(m.chat, menuStart, m, { mentions: [m.sender] }) 
+}
  
 handler.before = async function (m, { conn }) { 
 let menu = `*◈ ${user.registered === true ? user.name : `👉 ${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'verificar nombre.edad' : 'verify name.age'}`} ◈*
@@ -251,7 +256,8 @@ console.log(`❗❗ ${lenguajeGB['smsMensError2']()} ${usedPrefix + command} ❗
 console.log(e)}
 
 }
-handler.command = /^(infomenu|menu|menú|memu|memú|help|info|comandos|2help|menu1.2|ayuda|commands|commandos|menucompleto|allmenu|allm|m|\?)$/i
+let menuNormal = /^(menu|menú|memu|memú|help|info|comandos|menu1.2|ayuda|commands|menucompleto|allmenu|allm|m|\?)$/i
+handler.command = new RegExp(menuNormal.source + '|^' + regex.source)
 export default handler
     
 function clockString(ms) {
