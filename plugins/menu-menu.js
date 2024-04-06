@@ -1,6 +1,6 @@
 import fs, { promises } from 'fs'
 import fetch from 'node-fetch'
-const regex = /(info|descargas|juegos)menu/i
+const regex = /(info|serbot|descargas|juegos)menu/i
 const allRegex = /commands|comandos|menucompleto|allmenu|allm/i
 
 let handler = async (m, { conn, usedPrefix, command }) => {
@@ -21,7 +21,7 @@ let fkontak = { "key": { "participants":"0@s.whatsapp.net", "remoteJid": "status
 
 const arreglos = [
 { tema: lenguajeGB.smsMenuTotal1(), comando: usedPrefix + 'infomenu' },
-{ tema: 'Tema 2', comando: usedPrefix + 'comando2' },
+{ tema: lenguajeGB.smsMenuTotal2(), comando: usedPrefix + 'serbotmenu' },
 { tema: 'Tema 3', comando: usedPrefix + 'comando3' },
 { tema: 'Tema 4', comando: usedPrefix + 'comando4' }
 ]
@@ -68,14 +68,15 @@ ${regexWithPrefix.test(m.text) || regex.test(arreglos[0].comando) || (m.text == 
 *│* ┊▸ ✦ _${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'infogata' : 'infobot'}_ 
 *│* ┊▸ ✦ _${lenguajeGB.lenguaje() == 'es' ? 'términos y condiciones' : 'terms'}_ 
 *│* ╰∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙ ∙ ∙ ∙ ∙` : ''}
-*│*
+${regexWithPrefix.test(m.text) || regex.test(arreglos[1].comando) || (m.text == '2' && m.quoted && m.quoted.id === reply.id) ? 
+`*│*
 *╰ ㊂ ▸▸ _${lenguajeGB.smsMenuTotal2()}_ ◂◂*
 *│* ┊
 *│* ┊▸ ✦ _${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'serbot' : 'jadibot'}_
 *│* ┊▸ ✦ _${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'bots' : 'subsbots'}_
 *│* ┊▸ ✦ _${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'pausarsb' : 'pausesb'}_
 *│* ┊▸ ✦ _${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'eliminarsesion' : 'delsession'}_
-*│* ╰∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙ ∙ ∙ ∙ ∙  
+*│* ╰∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙ ∙ ∙ ∙ ∙` : ''}  
 *│*
 *╰ ㊂ ▸▸ _${lenguajeGB.smsMenuTotal3()}_ ◂◂*
 *│* ┊
