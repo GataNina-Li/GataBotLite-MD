@@ -46,10 +46,7 @@ reply = await conn.reply(m.chat, menuStart, m, { mentions: [m.sender] })
 }
 
 const regexWithPrefix = new RegExp(`^${usedPrefix}${allRegex.source}$`) 
-handler.before = async function (m, { conn }) { 
-if (!(regexWithPrefix.test(m.text) ||  regex.test(arreglos[0].comando) || (m.text === '1' && m.quoted && m.quoted.id === reply.id) ||
-regex.test(arreglos[1].comando) || (m.text === '2' && m.quoted && m.quoted.id === reply.id))) return
- 
+handler.before = async function (m, { conn }) {  
 let menu = `*◈ ${user.registered === true ? user.name : `👉 ${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'verificar nombre.edad' : 'verify name.age'}`} ◈*
 *˚₊·˚₊· ͟͟͞͞➳❥ @${m.sender.split("@")[0]}*
 *˚₊·˚₊· ͟͟͞͞➳❥* ${packname}${conn.user.jid == global.conn.user.jid ? '' : `\n*˚₊·˚₊· ͟͟͞͞➳❥* 𝗚𝗕 - 𝗦𝗨𝗕 𝗕𝗢𝗧 ⇢ *@${global.conn.user.jid.split`@`[0]}*`}
@@ -239,6 +236,9 @@ ${regexWithPrefix.test(m.text) || regex.test(arreglos[1].comando) || (m.text ===
 *│* ┊▸ ✦ _${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'bc *texto*' : 'broadcastall *text*'}_
 *│* ╰∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙ ∙ ∙ ∙ ∙
  `.trim()
+
+if (!(regexWithPrefix.test(m.text) || text ||  regex.test(arreglos[0].comando) || (m.text === '1' && m.quoted && m.quoted.id === reply.id) ||
+regex.test(arreglos[1].comando) || (m.text === '2' && m.quoted && m.quoted.id === reply.id))) return
  
 const vi = ['https://telegra.ph/file/405daebd4bc0d69e5d165.mp4',
 'https://telegra.ph/file/1d0ad9f79f65f39895b08.mp4',
