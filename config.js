@@ -52,6 +52,7 @@ global.APIs = {
 lolhuman: { url: 'https://api.lolhuman.xyz/api/', key: lolkeysapi },
 neoxr: { url: 'https://api.neoxr.eu/api/', key: null },
 skizo: { url: 'https://skizo.tech/api/', key: 'GataDios' },
+aemt: { url: 'https://aemt.me/', key: null },
 zahwazein: { url: 'https://api.zahwazein.xyz', key: null },
 akuari: { url: 'https://apimu.my.id', key: null },
 apimu: { url: 'https://api.xteam.xyz', key: null },
