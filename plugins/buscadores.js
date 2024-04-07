@@ -181,6 +181,7 @@ reportError(e)
 }          
 break
 case isCommand6:
+let user = global.db.data.users[m.sender]
 let lang
 if (!text && !m.quoted) return m.reply(`${lenguajeGB.smsMalused2()}\n*${usedPrefix + command}* es Hello`)
 try {
@@ -188,7 +189,7 @@ if (m.quoted && m.quoted.text) {
 if (text) {
 lang = text
 } else {
-lang = defaultLang   
+lang = user.GBLanguage || lenguajeGB.lenguaje()   
 }
 text = m.quoted.text
 } else {
