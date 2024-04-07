@@ -416,7 +416,7 @@ try {
 const response = await fetch(APIs.aemt.url + `download/tikdl?url=${text}`)
 const data = await response.json()
 const { author_info, result, result: { info_video, url: { nowm } } } = data
-const { profile = 'No encontrado' } = author_info || {}
+const { nickname, profile, id } = author_info
 const { 
 title = 'No encontrado', 
 region = 'No encontrado', 
@@ -440,9 +440,9 @@ const flag = codeToEmoji(region)
 const country = flagToCountry(flag)
 await conn.reply(m.chat, `${lenguajeGB['smsAvisoEG']()}*${lenguajeGB['smsTiktok']()}*`, m)    
 await conn.sendFile(m.chat, nowm, 'tiktok.mp4', `
-💜 *${data.author_info.nickname}*
+💜 *${nickname}*
 📝 *Descripción:* ${title}
-🆔 ${data.author_info.id}
+🆔 ${id}
 ✨ País: ${flag} ${country}
 🕒 *Duración:* ${durationText}
 📈 *Descargas:* ${total_download}
