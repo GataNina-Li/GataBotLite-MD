@@ -440,12 +440,22 @@ durationText += `${seconds} segundos`
 }
 const flag = codeToEmoji(region)
 const country = flagToCountry(flag).name
+const response2 = await fetch(APIs.aemt.url + `download/tiktokslide?url=${text}`)
+const data2 = await response2.json()
+const { result2 } = data2
+const { author, music_info } = result2 || {}
+const { unique_id, avatar } = author || {}
+const { title: title_audio, author, id: id_audio } = music_info || {}
 await conn.reply(m.chat, `${lenguajeGB['smsAvisoEG']()}*${lenguajeGB['smsTiktok']()}*`, m)    
 await conn.sendFile(m.chat, nowm, 'tiktok.mp4', `
-💜 *Usuario*  *${nickname}*
+👤 *Usuario:*  *${unique_id}* https://www.tiktok.com/@unique_id
+💜 *Nombre de usuario:*  *${nickname}*
 📝 *Descripción:* ${title}
 🆔 ${id}
-✨ País: ${flag} ${country}
+✨ *País:* ${flag} ${country}
+🎙️ *Autor de la canción:* ${author}
+🎶 *Música:* ${title_audio}
+📀 *Cover:* https://www.tiktok.com/music/${title_audio.replace(/ /g, '-')}-${id_audio}
 🕒 *Duración:* ${durationText}
 📈 *Descargas:* ${formatNumber(total_download)}
 👀 *Reproducciones:* ${formatNumber(total_play)}
