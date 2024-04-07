@@ -182,7 +182,7 @@ reportError(e)
 break
 case isCommand6:
 let lang
-if (!text) throw `${lenguajeGB.smsMalused2()}\n*${usedPrefix + command}* es Hello`
+if (!text && !m.quoted) return m.reply(`${lenguajeGB.smsMalused2()}\n*${usedPrefix + command}* es Hello`)
 try {
 if (m.quoted && m.quoted.text) {
 if (text) {
