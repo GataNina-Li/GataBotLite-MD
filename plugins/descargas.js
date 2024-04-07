@@ -415,7 +415,8 @@ if (!/(?:https:?\/{2})?(?:w{3}|vm|vt|t)?\.?tiktok.com\/([^\s&]+)/gi.test(text)) 
 try {
 const response = await fetch(APIs.aemt.url + `download/tikdl?url=${text}`)
 const data = await response.json()
-const { author_info, result, result: { info_video, url: { nowm } } } = data
+const { result, result: { info_video, url: { nowm } } } = data
+const author_info = data.author_info || {}
 const { nickname, profile, id } = author_info
 const { 
 title = 'No encontrado', 
