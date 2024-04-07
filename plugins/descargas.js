@@ -443,24 +443,27 @@ const flag = codeToEmoji(region)
 const country = flagToCountry(flag).name
 response = await fetch(APIs.aemt.url + `download/tiktokslide?url=${text}`)
 data = await response.json()
-//const resultData = data.result.data
-//const { id: id_audio, title: title_audio, author: author_audio } = resultData.music_info
-//const { unique_id, avatar } = resultData.author
-
-const { music_info, author: author_info2 } = data.result.data
+const { music_info, author: author_info2, digg_count } = data.result.data
 const { id: id_audio, title: title_audio, author: author_audio } = music_info
 const { unique_id, avatar } = author_info2
-let txtTK = `👤 *Usuario:*  *${unique_id}* https://www.tiktok.com/@${unique_id}
-💜 *Nombre de usuario:*  *${nickname}*
-📝 *Descripción:* ${title}
-🆔 ${id}
-✨ *País:* ${flag} ${country}
+let txtTK = `
+> *INFORMACIÓN DE USUARIO*\n
+👤 *Usuario:* \`${unique_id}\` 
+🔗 *Enlace:* https://www.tiktok.com/@${unique_id} 
+📌 *Nombre de usuario:*  *${nickname}*
+🆔 \`${id}\`
+✨ *País:* ${flag} \`\`\`${country}\`\`\`\n
+> *INFORMACIÓN DEL VÍDEO*\n
+📝 *Descripción:* ${title.replace(/(?:^|\s)(#[^#\s]+)(?=\s|$)/g, ' _$1_').replace(/(?:^|\s)(@[^\s]+)(?=\s|$)/g, ' *$1*')}
+🕒 *Duración:* ${durationText}\n
+> *INFORMACIÓN DEL SONIDO*\n
 🎙️ *Autor de la canción:* ${author_audio}
 🎶 *Música:* ${title_audio}
-📀 *Cover:* ${title_audio && id_audio ? `https://www.tiktok.com/music/${title_audio.trim().replace(/ /g, '-')}-${id_audio}` : 'Desconocido'}
-🕒 *Duración:* ${durationText}
-📈 *Descargas:* ${formatNumber(total_download)}
+📀 *Cover:* ${title_audio && id_audio ? `https://www.tiktok.com/music/${title_audio.trim().replace(/ /g, '-')}-${id_audio}` : 'Desconocido'}\n
+> *INFORMACIÓN ADICIONAL*\n
 👀 *Reproducciones:* ${formatNumber(total_play)}
+❤️ *Me gusta:* ${formatNumber(digg_count)}
+📈 *Descargas:* ${formatNumber(total_download)}
 🔁 *Compartidos:* ${formatNumber(total_share)}
 💬 *Comentarios:* ${formatNumber(total_comment)}`.trim()
 await conn.sendMessage(m.chat, { video: { url: nowm }, mimetype: 'video/mp4', caption: txtTK }, { quoted: m }) 
