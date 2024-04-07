@@ -1,4 +1,4 @@
-import { en, es, id, ar, pt } from '../lib/idiomas/total-idiomas.js'  
+import { en, es, id, ar, pt, de ,it } from '../lib/idiomas/total-idiomas.js'  
 export async function before(m, { conn }) {
 global.wait = lenguajeGB['smsMeWait']()
 global.wait2 = lenguajeGB.smsWait()
@@ -15,6 +15,10 @@ global.lenguajeGB = pt
 global.lenguajeGB = ar
 } else if (user.GBLanguage == 'id') {
 global.lenguajeGB = id
+} else if (user.GBLanguage == 'de') {
+global.lenguajeGB = de
+} else if (user.GBLanguage == 'it') {
+global.lenguajeGB = it
 } else {
 global.lenguajeGB = es
 }
