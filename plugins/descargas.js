@@ -408,24 +408,38 @@ reportError(e)
 }
 break
 
-//codigo adaptado por https://github.com/elrebelde21
 case isCommand11:
 if (!text) return conn.reply(m.chat, `${lenguajeGB['smsMalused2']()}\n*${usedPrefix + command} https://vm.tiktok.com/ZM2e66NBM/?t=1*`, m)
 if (!/(?:https:?\/{2})?(?:w{3}|vm|vt|t)?\.?tiktok.com\/([^\s&]+)/gi.test(text)) return conn.reply(m.chat, `${lenguajeGB['smsAvisoFG']()}*${lenguajeGB['smsYT6']()}*`, m)  
 try {
-const { author: { nickname }, video, description, audio } = await tiktokdl(args[0])
-.catch(async _ => await tiktokdlv2(args[0]))
-.catch(async _ => await tiktokdlv3(args[0]))
-const url = video.no_watermark2 || video.no_watermark || 'https://tikcdn.net' + video.no_watermark_raw || video.no_watermark_hd
+const response = await fetch(APIs.aemt.url + `download/tikdl?url=${text}`)
+const data = await response.json()
+const { author_info, result, result: { info_video, url: { nowm } } } = data
+const { nickname = 'No encontrado', profile = 'No encontrado' } = author_info || {}
+const { 
+title = 'No encontrado', 
+thumbnail = 'No encontrado', 
+duration = 'No encontrado', 
+total_download = 'No encontrado', 
+total_play = 'No encontrado', 
+total_share = 'No encontrado', 
+total_comment = 'No encontrado' 
+} = info_video || {}
 await conn.reply(m.chat, `${lenguajeGB['smsAvisoEG']()}*${lenguajeGB['smsTiktok']()}*`, m)    
-await conn.sendFile(m.chat, url, 'tiktok.mp4', `
-💜 *${nickname}*`.trim(), m)
-await conn.sendMessage(m.chat, { audio: { url: url }, fileName: 'tiktok.mp3', mimetype: 'audio/mp4', ptt: false }, { quoted: m })     
+await conn.sendFile(m.chat, nowm, 'tiktok.mp4', `
+💜 *${nickname}*
+📝 *Título:* ${title}
+🕒 *Duración:* ${duration} segundos
+📈 *Descargas Totales:* ${total_download}
+👀 *Reproducciones Totales:* ${total_play}
+🔁 *Compartidos:* ${total_share}
+💬 *Comentarios:* ${total_comment}`.trim(), m)
+await conn.sendMessage(m.chat, { audio: { url: nowm }, fileName: 'tiktok.mp3', mimetype: 'audio/mp4', ptt: false }, { quoted: m })     
 } catch (e) {
 reportError(e)
-}         
+}
 break
-   
+  
 case isCommand12:
 if (!args[0]) return m.reply(lenguajeGB.smsMalused2() + `*${usedPrefix + command} https://youtu.be/ejemplo*\n*${usedPrefix + command} https://www.youtube.com/ejemplo*`)
 await conn.reply(m.chat, lenguajeGB.smsAvisoEG() + '*' + lenguajeGB.smsYTV2() + '*', m)
