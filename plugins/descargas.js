@@ -412,6 +412,7 @@ break
 case isCommand11:
 if (!text) return conn.reply(m.chat, `${lenguajeGB['smsMalused2']()}\n*${usedPrefix + command} https://vm.tiktok.com/ZM2e66NBM/?t=1*`, m)
 if (!/(?:https:?\/{2})?(?:w{3}|vm|vt|t)?\.?tiktok.com\/([^\s&]+)/gi.test(text)) return conn.reply(m.chat, `${lenguajeGB['smsAvisoFG']()}*${lenguajeGB['smsYT6']()}*`, m)  
+await conn.reply(m.chat, `${lenguajeGB['smsAvisoEG']()}*${lenguajeGB['smsTiktok']()}*`, m)  
 try {
 const response = await fetch(APIs.aemt.url + `download/tikdl?url=${text}`)
 const data = await response.json()
@@ -446,7 +447,6 @@ const result2 = data2.result.data
 const { music_info = {}, author: author_info2 = {} } = result2
 const { title: title_audio, author: author_audio, id: id_audio } = music_info
 const { unique_id, avatar } = author_info2
-await conn.reply(m.chat, `${lenguajeGB['smsAvisoEG']()}*${lenguajeGB['smsTiktok']()}*`, m)  
 let txtTK = `👤 *Usuario:*  *${unique_id}* https://www.tiktok.com/@${unique_id}
 💜 *Nombre de usuario:*  *${nickname}*
 📝 *Descripción:* ${title}
@@ -466,7 +466,6 @@ await conn.sendMessage(m.chat, { audio: { url: nowm }, fileName: 'tiktok.mp3', m
 try{
 const responseTK = await fetch(APIs.aemt.url + `download/ttdl?url=${text}`)
 const dataTK = await responseTK.json()  
-await conn.reply(m.chat, `${lenguajeGB['smsAvisoEG']()}*${lenguajeGB['smsTiktok']()}*`, m)  
 await conn.sendMessage(m.chat, { video: { url: dataTK.result.video }, mimetype: 'video/mp4', caption: null }, { quoted: m }) 
 await conn.sendMessage(m.chat, { audio: { url: dataTK.result.audio }, fileName: 'tiktok.mp3', mimetype: 'audio/mp4', ptt: false }, { quoted: m }) 
 } catch (e) {
