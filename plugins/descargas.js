@@ -425,11 +425,20 @@ total_play = 'No encontrado',
 total_share = 'No encontrado', 
 total_comment = 'No encontrado' 
 } = info_video || {}
+const minutes = Math.floor(duration / 60)
+const seconds = duration % 60
+let durationText = ''
+if (minutes > 0) {
+durationText += `${minutes} minutos`
+if (seconds > 0) durationText += ` y ${seconds} segundos`
+} else {
+durationText += `${seconds} segundos`
+}
 await conn.reply(m.chat, `${lenguajeGB['smsAvisoEG']()}*${lenguajeGB['smsTiktok']()}*`, m)    
 await conn.sendFile(m.chat, nowm, 'tiktok.mp4', `
 💜 *${nickname}*
 📝 *Título:* ${title}
-🕒 *Duración:* ${duration} segundos
+🕒 *Duración:* ${durationText}
 📈 *Descargas Totales:* ${total_download}
 👀 *Reproducciones Totales:* ${total_play}
 🔁 *Compartidos:* ${total_share}
