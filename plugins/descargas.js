@@ -446,9 +446,8 @@ const result2 = data2.result.data
 const { music_info = {}, author: author_info2 = {} } = result2
 const { title: title_audio, author: author_audio, id: id_audio } = music_info
 const { unique_id, avatar } = author_info2
-await conn.reply(m.chat, `${lenguajeGB['smsAvisoEG']()}*${lenguajeGB['smsTiktok']()}*`, m)      
-await conn.sendFile(m.chat, nowm, 'tiktok.mp4', `
-👤 *Usuario:*  *${unique_id}* https://www.tiktok.com/@${unique_id}
+await conn.reply(m.chat, `${lenguajeGB['smsAvisoEG']()}*${lenguajeGB['smsTiktok']()}*`, m)  
+let txtTK = `👤 *Usuario:*  *${unique_id}* https://www.tiktok.com/@${unique_id}
 💜 *Nombre de usuario:*  *${nickname}*
 📝 *Descripción:* ${title}
 🆔 ${id}
@@ -460,9 +459,17 @@ await conn.sendFile(m.chat, nowm, 'tiktok.mp4', `
 📈 *Descargas:* ${formatNumber(total_download)}
 👀 *Reproducciones:* ${formatNumber(total_play)}
 🔁 *Compartidos:* ${formatNumber(total_share)}
-💬 *Comentarios:* ${formatNumber(total_comment)}`.trim(), m)
-await conn.sendMessage(m.chat, { audio: { url: nowm }, fileName: 'tiktok.mp3', mimetype: 'audio/mp4', ptt: false }, { quoted: m })     
+💬 *Comentarios:* ${formatNumber(total_comment)}`.trim()
+await conn.sendMessage(m.chat, { video: nowm, mimetype: 'video/mp4', caption: txtTK }, { quoted: m }) 
+await conn.sendMessage(m.chat, { audio: { url: nowm }, fileName: 'tiktok.mp3', mimetype: 'audio/mp4', ptt: false }, { quoted: m }) 
 } catch (e) {
+try{
+const responseTK = await fetch(APIs.aemt.url + `download/ttdl?url=${text}`)
+const dataTK = await responseTK.json()  
+await conn.reply(m.chat, `${lenguajeGB['smsAvisoEG']()}*${lenguajeGB['smsTiktok']()}*`, m)  
+await conn.sendMessage(m.chat, { video: dataTK.result.video, mimetype: 'video/mp4', caption: null }, { quoted: m }) 
+await conn.sendMessage(m.chat, { audio: { url: dataTK.result.audio }, fileName: 'tiktok.mp3', mimetype: 'audio/mp4', ptt: false }, { quoted: m }) 
+}} catch (e) {
 reportError(e)
 }
 break
