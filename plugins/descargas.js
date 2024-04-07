@@ -443,9 +443,9 @@ const flag = codeToEmoji(region)
 const country = flagToCountry(flag).name
 const response2 = await axios.get(APIs.aemt.url + `download/tiktokslide?url=${text}`)
 const resultData = response2.data.result.data
-const { music_info, author: author_info2 } = resultData
-const { title: title_audio, author: author_audio, id: id_audio } = music_info
-const { unique_id, avatar } = author_info2
+//const { music_info, author: author_info2 } = resultData
+const { title: title_audio, author: author_audio, id: id_audio } = resultData.music_info
+const { unique_id, avatar } = resultData.author
 let txtTK = `👤 *Usuario:*  *${unique_id}* https://www.tiktok.com/@${unique_id}
 💜 *Nombre de usuario:*  *${nickname}*
 📝 *Descripción:* ${title}
