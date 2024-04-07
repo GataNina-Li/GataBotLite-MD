@@ -1,4 +1,5 @@
-import { youtubedl, youtubeSearch, youtubedlv2, tiktokdl } from '@bochilteam/scraper' 
+import { youtubedl, youtubeSearch, youtubedlv2, tiktokdl } from '@bochilteam/scraper'
+import { codeToEmoji, flagToCountry } from 'emoji-country-flags'
 import uploader from '../lib/uploadImage.js'
 const regex = /(?:https|git)(?::\/\/|@)github\.com[\/:]([^\/:]+)\/(.+)/i;
 import { facebook } from "@xct007/frieren-scraper"
@@ -415,9 +416,10 @@ try {
 const response = await fetch(APIs.aemt.url + `download/tikdl?url=${text}`)
 const data = await response.json()
 const { author_info, result, result: { info_video, url: { nowm } } } = data
-const { nickname, profile = 'No encontrado', id } = author_info || {}
+const { profile = 'No encontrado' } = author_info || {}
 const { 
 title = 'No encontrado', 
+region = 'No encontrado', 
 thumbnail = 'No encontrado', 
 duration = 'No encontrado', 
 total_download = 'No encontrado', 
@@ -434,14 +436,17 @@ if (seconds > 0) durationText += ` y ${seconds} segundos`
 } else {
 durationText += `${seconds} segundos`
 }
+const flag = codeToEmoji(region)
+const country = flagToCountry(flag)
 await conn.reply(m.chat, `${lenguajeGB['smsAvisoEG']()}*${lenguajeGB['smsTiktok']()}*`, m)    
 await conn.sendFile(m.chat, nowm, 'tiktok.mp4', `
-💜 *${nickname}*
+💜 *${data.author_info.nickname}*
 📝 *Descripción:* ${title}
-🆔 ${id}
+🆔 ${data.author_info.id}
+✨ País: ${flag} ${country}
 🕒 *Duración:* ${durationText}
-📈 *Descargas Totales:* ${total_download}
-👀 *Reproducciones Totales:* ${total_play}
+📈 *Descargas:* ${total_download}
+👀 *Reproducciones:* ${total_play}
 🔁 *Compartidos:* ${total_share}
 💬 *Comentarios:* ${total_comment}`.trim(), m)
 await conn.sendMessage(m.chat, { audio: { url: nowm }, fileName: 'tiktok.mp3', mimetype: 'audio/mp4', ptt: false }, { quoted: m })     
