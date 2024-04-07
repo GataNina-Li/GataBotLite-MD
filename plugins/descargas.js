@@ -442,10 +442,10 @@ const flag = codeToEmoji(region)
 const country = flagToCountry(flag).name
 const response2 = await fetch(APIs.aemt.url + `download/tiktokslide?url=${text}`)
 const data2 = await response2.json()
-const music_info = data2.result?.music_info || {}
+const result2 = data2.result.data
+const { music_info = {}, author: author_info = {} } = result2
 const { title: title_audio, author: author_audio, id: id_audio } = music_info
-const author_info2 = data2.result?.author || {}
-const { unique_id, avatar } = author_info2
+const { unique_id, avatar } = author_info
 await conn.reply(m.chat, `${lenguajeGB['smsAvisoEG']()}*${lenguajeGB['smsTiktok']()}*`, m)      
 await conn.sendFile(m.chat, nowm, 'tiktok.mp4', `
 👤 *Usuario:*  *${unique_id}* https://www.tiktok.com/@unique_id
