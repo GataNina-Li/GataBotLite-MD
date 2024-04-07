@@ -442,15 +442,15 @@ const flag = codeToEmoji(region)
 const country = flagToCountry(flag).name
 await conn.reply(m.chat, `${lenguajeGB['smsAvisoEG']()}*${lenguajeGB['smsTiktok']()}*`, m)    
 await conn.sendFile(m.chat, nowm, 'tiktok.mp4', `
-💜 *${nickname}*
+💜 *Usuario*  *${nickname}*
 📝 *Descripción:* ${title}
 🆔 ${id}
 ✨ País: ${flag} ${country}
 🕒 *Duración:* ${durationText}
-📈 *Descargas:* ${total_download}
-👀 *Reproducciones:* ${total_play}
-🔁 *Compartidos:* ${total_share}
-💬 *Comentarios:* ${total_comment}`.trim(), m)
+📈 *Descargas:* ${formatNumber(total_download)}
+👀 *Reproducciones:* ${formatNumber(total_play)}
+🔁 *Compartidos:* ${formatNumber(total_share)}
+💬 *Comentarios:* ${formatNumber(total_comment)}`.trim(), m)
 await conn.sendMessage(m.chat, { audio: { url: nowm }, fileName: 'tiktok.mp3', mimetype: 'audio/mp4', ptt: false }, { quoted: m })     
 } catch (e) {
 reportError(e)
@@ -812,4 +812,10 @@ const getBuffer = async (url, options) => {
 options ? options : {}
 const res = await axios({method: 'get', url, headers: {'DNT': 1, 'Upgrade-Insecure-Request': 1,}, ...options, responseType: 'arraybuffer'})
 return res.data
+}
+
+function formatNumber(number) {
+if (number < 1000) return number.toString()
+if (number < 1000000) return (number / 1000).toFixed(1) + 'K'
+return (number / 1000000).toFixed(1) + 'M'
 }
