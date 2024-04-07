@@ -2,13 +2,15 @@ import { createHash } from 'crypto'
 import fetch from 'node-fetch'
 let Reg = /\|?(.*)([.|] *?)([0-9]*)$/i 
 let handler = async function (m, { conn, text, usedPrefix, command }) {
-let codigosIdiomas = ['es', 'en', 'pt', 'id', 'ar']
+let codigosIdiomas = ['es', 'en', 'pt', 'id', 'ar', 'de', 'it']
 let nombresIdiomas = {
 'es': 'Español',
 'en': 'English',
 'pt': 'Português',
 'id': 'Bahasa Indonesia',
-'ar': 'Arab (عرب)'
+'ar': 'Arab (عرب)',
+'de': 'Deutsch',
+'it': 'Italiano'
 }
   
 let who = m.mentionedJid && m.mentionedJid[0] ? m.mentionedJid[0] : m.fromMe ? conn.user.jid : m.sender
@@ -57,9 +59,9 @@ text = text.replace(/[\u{0030}-\u{0039}]\u{FE0F}\u{20E3}/gu, function(match) {
 return emojiANumero[match] || match
 })
 let idioma = ''
-function asignarIdioma(text) { 
+async function asignarIdioma(text) { 
 if (!text) return conn.sendMessage(m.chat, { text: `${lenguajeGB['smsAvisoAG']()}*ESCRIBA UN NÚMERO PARA ELEGIR EL IDIOMA, EJEMPLO:*\n\n✓ \`\`\`${usedPrefix}idiomagb 2️⃣\`\`\`\n✓ \`\`\`${usedPrefix}idiomagb 2\`\`\`` }, { quoted: m })	  
-if (text < 1 || (text > 5 && text)) {
+if (text < 1 || (text > codigosIdiomas.length && text)) {
 conn.reply(m.chat, `${lenguajeGB['smsAvisoFG']()}*"${text}" NO ES VÁLIDO PARA ELEGIR, RECUERDE USAR EL EMOJI NUMÉRICO O TEXTO NUMÉRICO PARA SELECCIONAR EL IDIOMA, EJEMPLO:*\n\n✓ \`\`\`${usedPrefix}idiomagb 2️⃣\`\`\`\n✓ \`\`\`${usedPrefix}idiomagb 2\`\`\``, m) 
 }
 switch (text) {
@@ -83,11 +85,19 @@ case "5️⃣":
 case "5":
 idioma = 'ar'
 break
+case "6️⃣":
+case "6":
+idioma = 'de'
+break
+case "7️⃣":
+case "7":
+idioma = 'it'
+break
 default:
-if (text == 0 || text > 5) return
+if (text == 0 || text > codigosIdiomas.length) return
 return conn.reply(m.chat, `${lenguajeGB['smsAvisoAG']()}*RECUERDE USAR EL EMOJI NUMÉRICO O TEXTO NUMÉRICO PARA SELECCIONAR EL IDIOMA, EJEMPLO*\n\n✓ \`\`\`${usedPrefix}idiomagb 2️⃣\`\`\`\n✓ \`\`\`${usedPrefix}idiomagb 2\`\`\``, m)
 }}
-asignarIdioma(text)
+await asignarIdioma(text)
 user.GBLanguage = idioma
 if (!user.GBLanguage) return m.reply(`${lenguajeGB['smsAvisoFG']()}*NO SE LOGRÓ CONFIGURAR EL IDIOMA, INTENTE DE NUEVO POR FAVOR*`)
 if (codigosIdiomas.includes(user.GBLanguage)) {
