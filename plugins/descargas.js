@@ -449,7 +449,7 @@ const { unique_id, avatar } = author_info2
 let txtTK = `
 > *INFORMACIÓN DE USUARIO*\n
 👤 *Usuario:* \`${unique_id}\` 
-🔗 *Enlace:* https://www.tiktok.com/@${unique_id} 
+🔗 *Enlace:* tiktok.com/@${unique_id} 
 📌 *Nombre de usuario:*  *${nickname}*
 🆔 \`${id}\`
 ✨ *País:* ${flag} \`\`\`${country}\`\`\`\n
@@ -459,7 +459,7 @@ let txtTK = `
 > *INFORMACIÓN DEL SONIDO*\n
 🎙️ *Autor de la canción:* ${author_audio}
 🎶 *Música:* ${title_audio}
-📀 *Cover:* ${title_audio && id_audio ? `https://www.tiktok.com/music/${title_audio.trim().replace(/ /g, '-')}-${id_audio}` : 'Desconocido'}\n
+📀 *Cover:* ${title_audio && id_audio ? `tiktok.com/music/${title_audio.trim().replace(/ /g, '-')}-${id_audio}` : 'Desconocido'}\n
 > *INFORMACIÓN ADICIONAL*\n
 👀 *Reproducciones:* ${formatNumber(total_play)}
 ❤️ *Me gusta:* ${formatNumber(digg_count)}
