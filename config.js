@@ -6,7 +6,7 @@ import cheerio from 'cheerio'
 import fetch from 'node-fetch'
 import axios from 'axios'
 import moment from 'moment-timezone'
-import { en, es, id, ar, pt } from './lib/idiomas/total-idiomas.js'
+import { en, es, id, ar, pt, de, it } from './lib/idiomas/total-idiomas.js'
 
 // ES ➜ Agregué primero el número del Bot como prioridad
 // ES ➜ Si desea recibir reportes debe de usar los tres parámetros (Número, nombre y true)
@@ -29,7 +29,8 @@ global.confirmCode = "" // No tocar esto : Do not touch this line
 // ES ➜ Agregue el código de idioma el cual usará GataBot  
 // EN ➜ Add the language code which GataBot will use
 //  es = Español      id = Bahasa Indonesia       ar = عرب
-//  en = English      pt = Português 
+//  en = English      pt = Português              de = Deutsch
+//  it = Italiano
 global.lenguajeGB = es  //<-- Predeterminado en idioma Español 
 
 // ES ➜ Consigue Apikey en https://platform.openai.com/account/api-keys
