@@ -181,24 +181,32 @@ reportError(e)
 }          
 break
 case isCommand6:
+let lang
 if (!text) throw `${lenguajeGB.smsMalused2()}\n*${usedPrefix + command}* es Hello`
 try {
-let lang = args[0];
-let text = args.slice(1).join(' ');
-const defaultLang = 'es';
-if ((args[0] || '').length !== 2) {
-lang = defaultLang;
-text = args.join(' ');
+if (m.quoted && m.quoted.text) {
+if (text) {
+lang = text
+} else {
+lang = defaultLang   
 }
-//if (!text && m.quoted && m.quoted.text) text = m.quoted.text;
-const result = await translate(`${text}`, {to: lang, autoCorrect: true});
-await m.reply(result.text);
+text = m.quoted.text
+} else {
+lang = args[0]
+let text = args.slice(1).join(' ')
+const defaultLang = 'es'
+if ((args[0] || '').length !== 2) {
+lang = defaultLang
+text = args.join(' ')
+}}
+const result = await translate(`${text}`, {to: lang, autoCorrect: true})
+await m.reply(result.text)
 } catch {
 try {
-const lol = await fetch(`https://api.lolhuman.xyz/api/translate/auto/${lang}?apikey=${lolkeysapi}&text=${text}`);
+const lol = await fetch(`https://api.lolhuman.xyz/api/translate/auto/${lang}?apikey=${lolkeysapi}&text=${text}`)
 const loll = await lol.json();
-const result2 = loll.result.translated;
-await m.reply(result2);
+const result2 = loll.result.translated
+await m.reply(result2)
 } catch (e) {
 reportError(e)
 }}
