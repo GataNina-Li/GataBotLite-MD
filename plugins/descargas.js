@@ -445,8 +445,8 @@ const data2 = await response2.json()
 const { result2 = {} } = data2
 const { music_info = {} } = result2
 const { title: title_audio, author: author_audio, id: id_audio } = music_info
-const { author: author_info = {} } = result2
-const { unique_id, avatar } = author_info
+const { author: author_info2 = {} } = result2
+const { unique_id, avatar } = author_info2
 await conn.reply(m.chat, `${lenguajeGB['smsAvisoEG']()}*${lenguajeGB['smsTiktok']()}*`, m)      
 await conn.sendFile(m.chat, nowm, 'tiktok.mp4', `
 👤 *Usuario:*  *${unique_id}* https://www.tiktok.com/@unique_id
