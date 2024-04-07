@@ -18,7 +18,7 @@ const idioma = 'es'
 
 let handler = async (m, { conn, command, usedPrefix, args, text }) => {
 const isCommand1 = /^(googlef?)$/i.test(command)
-const isCommand2 = /(openai|chatgpt|ia|ai)/i.test(command)
+const isCommand2 = /(openai|chatgpt|ia|ai)$/i.test(command)
 const isCommand3 = /^(bot|simi|simsimi|alexa|bixby|cortana|siri|okgoogle)$/i.test(command)
 const isCommand4 = /^(githubstalk|usuariogithub|usergithub)$/i.test(command)
 const isCommand5 = /^(yt(s|search))$/i.test(command)
