@@ -182,10 +182,9 @@ try {
 /*let videoURL = await fetch(APIs.lolhuman.url + `ytvideo2?apikey=${APIs.lolhuman.key}&url=${yt_play[0].url}`)
 let dataYT = await videoURL.json()
 await conn.sendMessage(m.chat, { video: { url: dataYT.result.link }, fileName: `${ttl}.mp4`, mimetype: 'video/mp4', caption: `${wm}`, thumbnailUrl: yt_play[0].thumbnail }, { quoted: m })*/
-qu = '360'
+qu = '720'
 q = qu + 'p'
-v = text
-yt = await youtubedl(v).catch(async _ => await youtubedlv2(v))
+yt = await youtubedl(yt_play[0].url).catch(async _ => await youtubedlv2(yt_play[0].url))
 dl_url = await yt.video[q].download()
 ttl = await yt.title
 size = await yt.video[q].fileSizeH
