@@ -448,7 +448,7 @@ const { title: title_audio, author: author_audio, id: id_audio } = music_info
 const { unique_id, avatar } = author_info2
 await conn.reply(m.chat, `${lenguajeGB['smsAvisoEG']()}*${lenguajeGB['smsTiktok']()}*`, m)      
 await conn.sendFile(m.chat, nowm, 'tiktok.mp4', `
-👤 *Usuario:*  *${unique_id}* https://www.tiktok.com/@unique_id
+👤 *Usuario:*  *${unique_id}* https://www.tiktok.com/@${unique_id}
 💜 *Nombre de usuario:*  *${nickname}*
 📝 *Descripción:* ${title}
 🆔 ${id}
