@@ -251,8 +251,8 @@ let filterList = `*Para convertir la imagen a una ilusión de patrones:*
 > *Ejemplo:*
 *${usedPrefix + command}* https://telegra.ph/file/587c0111afe97997ea0d8.jpg | 3 | Color verde
 
-Respondiendo a una imagen:
-${usedPrefix + command} [filtro] | [consulta] *(opcional)*
+> *Respondiendo a una imagen:*
+*${usedPrefix + command}* [filtro] | [consulta] *(opcional)*
 > *Ejemplo:*
 *${usedPrefix + command}* 3 | Color verde
 
