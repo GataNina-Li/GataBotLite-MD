@@ -450,14 +450,14 @@ let txtTK = `
 > *INFORMACIÓN DE USUARIO*\n
 👤 *Usuario:* \`${unique_id}\` 
 🔗 *Enlace:* tiktok.com/@${unique_id} 
-📌 *Nombre de usuario:*  *${nickname}*
+📌 *Nombre:* ${nickname}
 🆔 \`${id}\`
 ✨ *País:* ${flag} \`\`\`${country}\`\`\`\n
 > *INFORMACIÓN DEL VÍDEO*\n
-📝 *Descripción:* ${title.replace(/(?:^|\s)(#[^#\s]+)(?=\s|$)/g, ' _$1_').replace(/(?:^|\s)(@[^\s]+)(?=\s|$)/g, ' *$1*')}
-🕒 *Duración:* ${durationText}\n
+🕒 *Duración:* ${durationText}
+📝 *Descripción:* ${title.replace(/(?:^|\s)(#[^#\s]+)(?=\s|$)/g, ' _$1_').replace(/(?:^|\s)(@[^\s]+)(?=\s|$)/g, ' *$1*')}\n
 > *INFORMACIÓN DEL SONIDO*\n
-🎙️ *Autor de la canción:* ${author_audio}
+🎙️ *Autor:* ${author_audio}
 🎶 *Música:* ${title_audio}
 📀 *Cover:* ${title_audio && id_audio ? `tiktok.com/music/${title_audio.trim().replace(/ /g, '-')}-${id_audio}` : 'Desconocido'}\n
 > *INFORMACIÓN ADICIONAL*\n
