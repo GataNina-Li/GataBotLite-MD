@@ -469,9 +469,9 @@ const dataTK = await responseTK.json()
 await conn.reply(m.chat, `${lenguajeGB['smsAvisoEG']()}*${lenguajeGB['smsTiktok']()}*`, m)  
 await conn.sendMessage(m.chat, { video: dataTK.result.video, mimetype: 'video/mp4', caption: null }, { quoted: m }) 
 await conn.sendMessage(m.chat, { audio: { url: dataTK.result.audio }, fileName: 'tiktok.mp3', mimetype: 'audio/mp4', ptt: false }, { quoted: m }) 
-}} catch (e) {
+} catch (e) {
 reportError(e)
-}
+}}
 break
   
 case isCommand12:
