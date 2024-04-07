@@ -179,9 +179,9 @@ reportError(e)
 }  
 if (command == 'play2') {
 try {
-let videoURL = await fetch(APIs.lolhuman.url + `ytplay2?apikey=${APIs.lolhuman.key}&query=${yt_play[0].title}`)
+let videoURL = await fetch(APIs.lolhuman.url + `ytvideo2?apikey=${APIs.lolhuman.key}&url=${yt_play[0].url}`)
 let dataYT = await videoURL.json()
-await conn.sendMessage(m.chat, { video: { url: dataYT.result.video }, fileName: `${ttl}.mp4`, mimetype: 'video/mp4', caption: `${wm}`, thumbnailUrl: yt_play[0].thumbnail }, { quoted: m })
+await conn.sendMessage(m.chat, { video: { url: dataYT.result.link }, fileName: `${ttl}.mp4`, mimetype: 'video/mp4', caption: `${wm}`, thumbnailUrl: yt_play[0].thumbnail }, { quoted: m })
 await m.react(sent)
 await message.react(correct)  
 } catch (e) {
