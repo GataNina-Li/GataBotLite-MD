@@ -456,7 +456,7 @@ await conn.sendFile(m.chat, nowm, 'tiktok.mp4', `
 ✨ *País:* ${flag} ${country}
 🎙️ *Autor de la canción:* ${author_audio}
 🎶 *Música:* ${title_audio}
-📀 *Cover:* https://www.tiktok.com/music/${title_audio.replace(/ /g, '-')}-${id_audio} 
+📀 *Cover:* ${title_audio && id_audio ? `https://www.tiktok.com/music/${title_audio.replace(/ /g, '-')}-${id_audio}` : 'Desconocido'}
 🕒 *Duración:* ${durationText}
 📈 *Descargas:* ${formatNumber(total_download)}
 👀 *Reproducciones:* ${formatNumber(total_play)}
