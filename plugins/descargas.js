@@ -469,14 +469,14 @@ let txtTK = `
 await conn.sendMessage(m.chat, { video: { url: nowm }, mimetype: 'video/mp4', caption: txtTK }, { quoted: m }) 
 await conn.sendMessage(m.chat, { audio: { url: nowm }, fileName: 'tiktok.mp3', mimetype: 'audio/mp4', ptt: false }, { quoted: m }) 
 } catch (e) {
-/*try{
+try{
 const responseTK = await fetch(APIs.aemt.url + `download/ttdl?url=${text}`)
 const dataTK = await responseTK.json()  
 await conn.sendMessage(m.chat, { video: { url: dataTK.result.video }, mimetype: 'video/mp4', caption: null }, { quoted: m }) 
 await conn.sendMessage(m.chat, { audio: { url: dataTK.result.audio }, fileName: 'tiktok.mp3', mimetype: 'audio/mp4', ptt: false }, { quoted: m }) 
-} catch (e) {*/
+} catch (e) {
 reportError(e)
-}//}
+}}
 break
   
 case isCommand12:
