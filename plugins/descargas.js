@@ -179,9 +179,17 @@ reportError(e)
 }  
 if (command == 'play2') {
 try {
-let videoURL = await fetch(APIs.lolhuman.url + `ytvideo2?apikey=${APIs.lolhuman.key}&url=${yt_play[0].url}`)
+/*let videoURL = await fetch(APIs.lolhuman.url + `ytvideo2?apikey=${APIs.lolhuman.key}&url=${yt_play[0].url}`)
 let dataYT = await videoURL.json()
-await conn.sendMessage(m.chat, { video: { url: dataYT.result.link }, fileName: `${ttl}.mp4`, mimetype: 'video/mp4', caption: `${wm}`, thumbnailUrl: yt_play[0].thumbnail }, { quoted: m })
+await conn.sendMessage(m.chat, { video: { url: dataYT.result.link }, fileName: `${ttl}.mp4`, mimetype: 'video/mp4', caption: `${wm}`, thumbnailUrl: yt_play[0].thumbnail }, { quoted: m })*/
+qu = '360'
+q = qu + 'p'
+v = text
+yt = await youtubedl(v).catch(async _ => await youtubedlv2(v))
+dl_url = await yt.video[q].download()
+ttl = await yt.title
+size = await yt.video[q].fileSizeH
+await conn.sendMessage(m.chat, { video: { url: dl_url }, fileName: `${ttl}.mp4`, mimetype: 'video/mp4', caption: null, thumbnail: await fetch(yt.thumbnail) }, { quoted: m })
 await m.react(sent)
 await message.react(correct)  
 } catch (e) {
