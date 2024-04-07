@@ -12,6 +12,7 @@ const data = await response.json()
 let { accounts, channels, groups, collaboration, sponsors, others } = data.info
 
 global.tk = accounts.tiktok
+global.ths = accounts.threads
 
 global.canal1 = channels.channel1
 global.canal2 = channels.channel2
