@@ -415,8 +415,9 @@ if (!/(?:https:?\/{2})?(?:w{3}|vm|vt|t)?\.?tiktok.com\/([^\s&]+)/gi.test(text)) 
 try {
 const response = await fetch(APIs.aemt.url + `download/tikdl?url=${text}`)
 const data = await response.json()
-const { result, result: { info_video, url: { nowm } } } = data
-const author_info = data.author_info || {}
+const { result } = data
+const { info_video, url: { nowm } } = result || {}
+const { author_info = {} } = result
 const { nickname, profile, id } = author_info
 const { 
 title = 'No encontrado', 
@@ -438,7 +439,7 @@ if (seconds > 0) durationText += ` y ${seconds} segundos`
 durationText += `${seconds} segundos`
 }
 const flag = codeToEmoji(region)
-const country = flagToCountry(flag)
+const country = flagToCountry(flag).name
 await conn.reply(m.chat, `${lenguajeGB['smsAvisoEG']()}*${lenguajeGB['smsTiktok']()}*`, m)    
 await conn.sendFile(m.chat, nowm, 'tiktok.mp4', `
 💜 *${nickname}*
