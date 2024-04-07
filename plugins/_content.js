@@ -11,10 +11,13 @@ const response = await fetch('https://raw.githubusercontent.com/GataNina-Li/Gata
 const data = await response.json()
 let { accounts, channels, groups, collaboration, sponsors, others } = data.info
 
+
 global.canal1 = channels.channel1
 global.canal2 = channels.channel2
 global.canal3 = channels.channel3
 global.canal4 = channels.channel4
+
+global.accountsgb = [canal1, canal2, canal3, canal4, tk, ig, yt, paypal, fb, ths, md, asistencia].getRandom()
 
 var canalesInfo = [
 { link: canal1, id: "120363160031023229@newsletter", name: "INFINITY-WA 💫" },
@@ -23,7 +26,7 @@ var canalesInfo = [
 ]
 var indiceAleatorio = Math.floor(Math.random() * canalesInfo.length)
 var channelRD = canalesInfo[indiceAleatorio]
-global.fakeChannel = { contextInfo: { mentionedJid: null, forwardingScore: 1, isForwarded: true, forwardedNewsletterMessageInfo: { newsletterJid: channelRD.id, serverMessageId: '', newsletterName: channelRD.name }, externalAdReply: { title: wm, body: vs, mediaType: 1, renderLargerThumbnail: false, previewType: `PHOTO`, thumbnailUrl: gataImg, thumbnail: imagen1, sourceUrl: accountsgb }}}, { quoted: m }
+global.fakeChannel = { contextInfo: { mentionedJid: null, forwardingScore: 1, isForwarded: true, forwardedNewsletterMessageInfo: { newsletterJid: channelRD.id, serverMessageId: '', newsletterName: channelRD.name }, externalAdReply: { title: wm, body: vs, mediaType: 1, renderLargerThumbnail: false, previewType: `PHOTO`, thumbnailUrl: gataImg.getRandom(), thumbnail: imagen1, sourceUrl: accountsgb }}}, { quoted: m }
 
 }
 export default handler
