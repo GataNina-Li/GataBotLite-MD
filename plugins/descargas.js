@@ -441,9 +441,9 @@ durationText += `${seconds} segundos`
 }
 const flag = codeToEmoji(region)
 const country = flagToCountry(flag).name
-const response2 = await fetch(APIs.aemt.url + `download/tiktokslide?url=${text}`)
+const response2 = await axios.get(APIs.aemt.url + `download/tiktokslide?url=${text}`)
 const data2 = await response2.json()
-const resultData = data2.result.data
+const resultData = data2.data.result.data
 const { music_info, author: author_info2 } = resultData
 const { title: title_audio, author: author_audio, id: id_audio } = music_info
 const { unique_id, avatar } = author_info2
