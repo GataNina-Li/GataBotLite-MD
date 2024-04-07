@@ -1,6 +1,6 @@
-import translate from '@vitalets/google-translate-api'
+/*import translate from '@vitalets/google-translate-api'
 import * as fs from 'fs'
-import { es, en, id, ar, pt } from '../lib/idiomas/total-idiomas.js'
+import { es, en, id, ar, pt, de, it } from '../lib/idiomas/total-idiomas.js'
 
 let handler = async (m, { conn, args, usedPrefix, command }) => {
 let fkontak = { "key": { "participants":"0@s.whatsapp.net", "remoteJid": "status@broadcast", "fromMe": false, "id": "Halo" }, "message": { "contactMessage": { "vcard": `BEGIN:VCARD\nVERSION:3.0\nN:Sy;Bot;;;\nFN:y\nitem1.TEL;waid=${m.sender.split('@')[0]}:${m.sender.split('@')[0]}\nitem1.X-ABLabel:Ponsel\nEND:VCARD` }}, "participant": "0@s.whatsapp.net" }
@@ -64,3 +64,4 @@ handler.command = /^(idioma|languaje|idiomas|languajes|languages)$/i
 handler.owner = true
 
 export default handler
+*/
