@@ -187,8 +187,8 @@ Set-ExecutionPolicy RemoteSigned
 #### ✨ Portugués (Português) [`Idioma de Edição`](https://github.com/GataNina-Li/GataBotLite-MD/blob/master/lib/idiomas/portugues.js)
 #### ✨ Indonesio (Bahasa Indonesia) [`Mengedit Bahasa`](https://github.com/GataNina-Li/GataBotLite-MD/blob/master/lib/idiomas/indonesio.js) 
 #### ✨ Árabe (عرب) [`عدل اللغة`](https://github.com/GataNina-Li/GataBotLite-MD/blob/master/lib/idiomas/arabe.js)
-#### ✨ Italiano (Italiano) [`Modifica lingua`](https://github.com/GataNina-Li/GataBotLite-MD/blob/master/lib/idiomas/italiano.js)
 #### ✨ Alemán (Deutsch) [`Sprache bearbeiten`](https://github.com/GataNina-Li/GataBotLite-MD/blob/master/lib/idiomas/aleman.js)
+#### ✨ Italiano (Italiano) [`Modifica lingua`](https://github.com/GataNina-Li/GataBotLite-MD/blob/master/lib/idiomas/italiano.js)
 ----
 > **Note** The translations are not perfect, it is only a reference, if you want to collaborate with the language or with another that is not on the list, contact me [`Contact me`](https://wa.me/message/C45GXBEFTPONE1)
 
