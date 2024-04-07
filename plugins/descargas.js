@@ -414,8 +414,8 @@ if (!text) return conn.reply(m.chat, `${lenguajeGB['smsMalused2']()}\n*${usedPre
 if (!/(?:https:?\/{2})?(?:w{3}|vm|vt|t)?\.?tiktok.com\/([^\s&]+)/gi.test(text)) return conn.reply(m.chat, `${lenguajeGB['smsAvisoFG']()}*${lenguajeGB['smsYT6']()}*`, m)  
 await conn.reply(m.chat, `${lenguajeGB['smsAvisoEG']()}*${lenguajeGB['smsTiktok']()}*`, m)  
 try {
-const response = await fetch(APIs.aemt.url + `download/tikdl?url=${text}`)
-const data = await response.json()
+let response = await fetch(APIs.aemt.url + `download/tikdl?url=${text}`)
+let data = await response.json()
 const { result } = data
 const { info_video, url: { nowm } } = result || {}
 const { author_info = {} } = result
@@ -441,11 +441,10 @@ durationText += `${seconds} segundos`
 }
 const flag = codeToEmoji(region)
 const country = flagToCountry(flag).name
-const response2 = await fetch(APIs.aemt.url + `download/tiktokslide?url=${text}`)
-const data2 = await response2.json()
-const resultData = data2.result.data
-//const { music_info, author: author_info2 } = resultData
-const { title: title_audio, author: author_audio, id: id_audio } = resultData.music_info
+response = await fetch(APIs.aemt.url + `download/tiktokslide?url=${text}`)
+data = await response.json()
+const resultData = data.result.data
+const { id: id_audio, title: title_audio, author: author_audio } = resultData.music_info
 const { unique_id, avatar } = resultData.author
 let txtTK = `👤 *Usuario:*  *${unique_id}* https://www.tiktok.com/@${unique_id}
 💜 *Nombre de usuario:*  *${nickname}*
