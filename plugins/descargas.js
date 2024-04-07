@@ -442,7 +442,7 @@ const flag = codeToEmoji(region)
 const country = flagToCountry(flag).name
 const response2 = await fetch(APIs.aemt.url + `download/tiktokslide?url=${text}`)
 const data2 = await response2.json()
-const { result2 = {} } = data2
+const { result2 = {} } = data2.result
 const { music_info = {} } = result2
 const { title: title_audio, author: author_audio, id: id_audio } = music_info
 const { author: author_info2 = {} } = result2
