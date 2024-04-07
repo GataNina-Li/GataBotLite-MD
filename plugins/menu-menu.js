@@ -223,7 +223,7 @@ thumbnailUrl: img2,
 sourceUrl: md,
 mediaType: 1,
 renderLargerThumbnail: false
-}})
+}}})
 //await conn.sendMessage(m.chat, { video: { url: vi.getRandom() }, gifPlayback: true, caption: menu, mentions: [m.sender, global.conn.user.jid] }, { quoted: [m, fakeChannel] }) 
 } catch (error) {
 try {
