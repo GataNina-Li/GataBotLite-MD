@@ -442,7 +442,6 @@ durationText += `${seconds} segundos`
 const flag = codeToEmoji(region)
 const country = flagToCountry(flag).name
 const response2 = await axios.get(APIs.aemt.url + `download/tiktokslide?url=${text}`)
-//const data2 = await response2.json()
 const resultData = response2.data.result.data
 const { music_info, author: author_info2 } = resultData
 const { title: title_audio, author: author_audio, id: id_audio } = music_info
@@ -460,7 +459,7 @@ let txtTK = `👤 *Usuario:*  *${unique_id}* https://www.tiktok.com/@${unique_id
 👀 *Reproducciones:* ${formatNumber(total_play)}
 🔁 *Compartidos:* ${formatNumber(total_share)}
 💬 *Comentarios:* ${formatNumber(total_comment)}`.trim()
-await conn.sendMessage(m.chat, { video: nowm, mimetype: 'video/mp4', caption: txtTK }, { quoted: m }) 
+await conn.sendMessage(m.chat, { video: { url: nowm }, mimetype: 'video/mp4', caption: txtTK }, { quoted: m }) 
 await conn.sendMessage(m.chat, { audio: { url: nowm }, fileName: 'tiktok.mp3', mimetype: 'audio/mp4', ptt: false }, { quoted: m }) 
 } catch (e) {
 /*try{
