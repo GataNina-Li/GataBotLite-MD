@@ -35,6 +35,7 @@ const isCommand17 = /^(i(nsta)?g(ram)?(dl)?|igimage|igdownload)$/i.test(command)
 const isCommand18 = /^((dl)?tw(it(ter(dl|x)?)?)?|x|t?tx)$/i.test(command)
 const isCommand19 = /^(gitclone|clonarepo|clonarrepo|repoclonar)$/i.test(command)
 const isCommand20 = /^(bardimg|bardimage|geminiimg|geminiimage|geminimg|geminimage)$/i.test(command)
+const isCommand21 = /^(prueba9)$/i.test(command)
 
 async function reportError(e) {
 let errb = await m.reply(lenguajeGB['smsMalError3']() + '\n*' + lenguajeGB.smsMensError1() + '*\n*' + usedPrefix + `${lenguajeGB.lenguaje() == 'es' ? 'reporte' : 'report'}` + '* ' + `${lenguajeGB.smsMensError2()} ` + usedPrefix + command)
@@ -683,9 +684,33 @@ await conn.sendMessage(m.chat, { text: json.result }, { quoted: m })
 } else return m.reply(`*RESPONDE A UNA IMAGEN CON UN TEXTO*\n\n*EJEMPLO*\n*${usedPrefix + command}* describe esta imagen`)
 } catch (e) {
 reportError(e)}
-break
+break   
+
+case isCommand21:
+if (!text) return m.reply('𝙐𝙨𝙤 𝘾𝙤𝙧𝙧𝙚𝙘𝙩𝙤: !twitter https://twitter.com/Twitter/status/1507480223012594177')
+try {
+await conn.sendMessage(chat, { react: { text: '📥', key: m.key } })
+const twitterUrl = text
+const response = await fetch(`https://controlled-gae-deliriusapi.koyeb.app/api/twitterdl?url=${twitterUrl}`)
+if (response && response.data && response.data.length > 0) {
+for (const result of response.data) {
+try {
+if (result.type === 'video') {
+await conn.sendMessage(chat, { video: { url: result.url }, mimetype: 'video/mp4', caption: "Aquí está su vídeo" }, { quoted: m })
+} else if (result.type === 'image') {
+await conn.sendMessage(chat, { image: { url: result.url, mimetype: 'image/jpeg' }, caption: "Aquí está su imagen" }, { quoted: m })
+}} catch (error) {
+console.log('Error al enviar mensaje:', error)
 }}
-handler.command = /^(gimage|imagen?|play|play2|fgmp3|dlmp3|getaud|yt(a|mp3)?|ytmp3doc|ytadoc|fgmp4|dlmp4|getvid|yt(v|mp4)?|ytmp4doc|ytvdoc|facebook|fb|facebookdl|fbdl|mediafire(dl)?|dlmediafire|ytmax|ytmaxdoc|tiktok|tkdl|dalle|openiamage|aiimage|aiimg|aimage|iaimagen|openaimage|openaiimage|openjourney|journey|midjourney|spotify|music|spot(ify)?search|i(nsta)?g(ram)?(dl)?|igimage|igdownload|(dl)?tw(it(ter(dl|x)?)?)?|x|t?tx|gitclone|clonarepo|clonarrepo|repoclonar|bardimg|bardimage|geminiimg|geminiimage|geminimg|geminimage)$/i
+await conn.sendMessage(chat, { react: { text: '✅', key: m.key } })
+}} catch (e) {
+console.log('Error en la solicitud a la API:', e)
+return enviar('𝙚𝙧𝙧𝙤𝙧')
+}
+break
+        
+}}
+handler.command = /^(gimage|imagen?|play|play2|fgmp3|dlmp3|getaud|yt(a|mp3)?|ytmp3doc|ytadoc|fgmp4|dlmp4|getvid|yt(v|mp4)?|ytmp4doc|ytvdoc|facebook|fb|facebookdl|fbdl|mediafire(dl)?|dlmediafire|ytmax|ytmaxdoc|tiktok|tkdl|dalle|openiamage|aiimage|aiimg|aimage|iaimagen|openaimage|openaiimage|openjourney|journey|midjourney|spotify|music|spot(ify)?search|i(nsta)?g(ram)?(dl)?|igimage|igdownload|(dl)?tw(it(ter(dl|x)?)?)?|x|t?tx|gitclone|clonarepo|clonarrepo|repoclonar|bardimg|bardimage|geminiimg|geminiimage|geminimg|geminimage|prueba9)$/i
 handler.register = true
 export default handler
 
