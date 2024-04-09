@@ -705,7 +705,7 @@ console.log('Error al enviar mensaje:', error)
 await conn.sendMessage(chat, { react: { text: '✅', key: m.key } })
 }} catch (e) {
 console.log('Error en la solicitud a la API:', e)
-return enviar('𝙚𝙧𝙧𝙤𝙧')
+return m.reply('𝙚𝙧𝙧𝙤𝙧')
 }
 break
         
