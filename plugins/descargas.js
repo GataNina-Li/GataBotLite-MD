@@ -689,20 +689,20 @@ break
 case isCommand21:
 if (!text) return m.reply('𝙐𝙨𝙤 𝘾𝙤𝙧𝙧𝙚𝙘𝙩𝙤: !twitter https://twitter.com/Twitter/status/1507480223012594177')
 try {
-await conn.sendMessage(chat, { react: { text: '📥', key: m.key } })
+await conn.sendMessage(m.chat, { react: { text: '📥', key: m.key } })
 const twitterUrl = text
 const response = await fetch(`https://controlled-gae-deliriusapi.koyeb.app/api/twitterdl?url=${twitterUrl}`)
 if (response && response.data && response.data.length > 0) {
 for (const result of response.data) {
 try {
 if (result.type === 'video') {
-await conn.sendMessage(chat, { video: { url: result.url }, mimetype: 'video/mp4', caption: "Aquí está su vídeo" }, { quoted: m })
+await conn.sendMessage(m.chat, { video: { url: result.url }, mimetype: 'video/mp4', caption: "Aquí está su vídeo" }, { quoted: m })
 } else if (result.type === 'image') {
-await conn.sendMessage(chat, { image: { url: result.url, mimetype: 'image/jpeg' }, caption: "Aquí está su imagen" }, { quoted: m })
+await conn.sendMessage(m.chat, { image: { url: result.url, mimetype: 'image/jpeg' }, caption: "Aquí está su imagen" }, { quoted: m })
 }} catch (error) {
 console.log('Error al enviar mensaje:', error)
 }}
-await conn.sendMessage(chat, { react: { text: '✅', key: m.key } })
+await conn.sendMessage(m.chat, { react: { text: '✅', key: m.key } })
 }} catch (e) {
 console.log('Error en la solicitud a la API:', e)
 return m.reply('𝙚𝙧𝙧𝙤𝙧')
