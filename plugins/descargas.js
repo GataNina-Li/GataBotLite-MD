@@ -687,27 +687,32 @@ reportError(e)}
 break   
 
 case isCommand21:
-if (!text) return m.reply('𝙐𝙨𝙤 𝘾𝙤𝙧𝙧𝙚𝙘𝙩𝙤: !twitter https://twitter.com/Twitter/status/1507480223012594177')
-try {
-await conn.sendMessage(m.chat, { react: { text: '📥', key: m.key } })
-const twitterUrl = text
-const response = await fetch(`https://controlled-gae-deliriusapi.koyeb.app/api/twitterdl?url=${twitterUrl}`)
-if (response && response.data && response.data.length > 0) {
-for (const result of response.data) {
-try {
-if (result.type === 'video') {
-await conn.sendMessage(m.chat, { video: { url: result.media.url }, mimetype: 'video/mp4', caption: "Aquí está su vídeo" }, { quoted: m })
-} else if (result.type === 'image') {
-await conn.sendMessage(m.chat, { image: { url: result.media.url, mimetype: 'image/jpeg' }, caption: "Aquí está su imagen" }, { quoted: m })
-}} catch (error) {
-console.log('Error al enviar mensaje:', error)
-}}
-await conn.sendMessage(m.chat, { react: { text: '✅', key: m.key } })
-}} catch (e) {
-console.log('Error en la solicitud a la API:', e)
-return m.reply('𝙚𝙧𝙧𝙤𝙧')
-}
-break
+  if (!text) return m.reply('𝙐𝙨𝙤 𝘾𝙤𝙧𝙧𝙚𝙘𝙩𝙤: !twitter https://twitter.com/Twitter/status/1507480223012594177')
+  try {
+    await conn.sendMessage(m.chat, { react: { text: '📥', key: m.key } })
+    const twitterUrl = text
+    const response = await fetch(`https://controlled-gae-deliriusapi.koyeb.app/api/twitterdl?url=${twitterUrl}`)
+    const responseData = await response.json()
+
+    if (responseData && responseData.media) {
+      const result = responseData.media[0];
+      try {
+        if (result.type === 'video') {
+          await conn.sendMessage(m.chat, { video: { url: result.url }, mimetype: 'video/mp4', caption: "Aquí está su vídeo" }, { quoted: m })
+        } else if (result.type === 'image') {
+          await conn.sendMessage(m.chat, { image: { url: result.url, mimetype: 'image/jpeg' }, caption: "Aquí está su imagen" }, { quoted: m })
+        }
+      } catch (error) {
+        console.error('Error al enviar mensaje:', error)
+      }
+      await conn.sendMessage(m.chat, { react: { text: '✅', key: m.key } })
+    }
+  } catch (e) {
+    console.error('Error en la solicitud a la API:', e)
+    return m.reply('𝙚𝙧𝙧𝙤𝙧')
+  }
+  break;
+
         
 }}
 handler.command = /^(gimage|imagen?|play|play2|fgmp3|dlmp3|getaud|yt(a|mp3)?|ytmp3doc|ytadoc|fgmp4|dlmp4|getvid|yt(v|mp4)?|ytmp4doc|ytvdoc|facebook|fb|facebookdl|fbdl|mediafire(dl)?|dlmediafire|ytmax|ytmaxdoc|tiktok|tkdl|dalle|openiamage|aiimage|aiimg|aimage|iaimagen|openaimage|openaiimage|openjourney|journey|midjourney|spotify|music|spot(ify)?search|i(nsta)?g(ram)?(dl)?|igimage|igdownload|(dl)?tw(it(ter(dl|x)?)?)?|x|t?tx|gitclone|clonarepo|clonarrepo|repoclonar|bardimg|bardimage|geminiimg|geminiimage|geminimg|geminimage|prueba9)$/i
