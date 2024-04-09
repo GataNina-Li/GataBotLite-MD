@@ -696,9 +696,9 @@ if (response && response.data && response.data.length > 0) {
 for (const result of response.data) {
 try {
 if (result.type === 'video') {
-await conn.sendMessage(m.chat, { video: { url: result.url }, mimetype: 'video/mp4', caption: "Aquí está su vídeo" }, { quoted: m })
+await conn.sendMessage(m.chat, { video: { url: result.media.url }, mimetype: 'video/mp4', caption: "Aquí está su vídeo" }, { quoted: m })
 } else if (result.type === 'image') {
-await conn.sendMessage(m.chat, { image: { url: result.url, mimetype: 'image/jpeg' }, caption: "Aquí está su imagen" }, { quoted: m })
+await conn.sendMessage(m.chat, { image: { url: result.media.url, mimetype: 'image/jpeg' }, caption: "Aquí está su imagen" }, { quoted: m })
 }} catch (error) {
 console.log('Error al enviar mensaje:', error)
 }}
