@@ -298,10 +298,6 @@ console.log(chalk.bold.yellow(lenguajeGB['smsCodigoQR']()))}
 if (connection == 'open') {
 console.log(chalk.bold.greenBright(lenguajeGB['smsConexion']()))}
 let reason = new Boom(lastDisconnect?.error)?.output?.statusCode
-if (reason == 405) {
-await fs.unlinkSync("./GataBotSession/" + "creds.json")
-console.log(chalk.bold.cyanBright(lenguajeGB['smsConexionOFF']()))
-process.send('reset')}
 if (connection === 'close') {
 if (reason === DisconnectReason.badSession) {
 console.log(chalk.bold.cyanBright(lenguajeGB['smsConexionOFF']()))
@@ -326,7 +322,7 @@ await global.reloadHandler(true).catch(console.error) //process.send('reset')
 console.log(chalk.bold.redBright(lenguajeGB['smsConexiondescon'](reason, connection)))
 }}
 }
-process.on('uncaughtException', console.error);
+process.on('uncaughtException', console.error)
 //process.on('uncaughtException', (err) => {
 //console.error('Se ha cerrado la conexión:\n', err)
 //process.send('reset') })
