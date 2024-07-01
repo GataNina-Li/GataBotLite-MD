@@ -6,7 +6,9 @@ if (args.length >= 1) {
 text = args.slice(0).join(" ")
 } else if (m.quoted && m.quoted.text) {
 text = m.quoted.text
-} else return  
+} else {
+text = "📣 Anuncio"
+} 
 const users = participants.map((u) => conn.decodeJid(u.id))
 await conn.sendMessage(m.chat, { text: text, mentions: users }, { quoted: m }) 
 //const q = m.quoted ? m.quoted : m || m.text || m.sender
