@@ -1,7 +1,8 @@
 import {generateWAMessageFromContent} from '@whiskeysockets/baileys'
 import * as fs from 'fs';
 const handler = async (m, {conn, text, participants, isOwner, isAdmin, args}) => {
-try {
+const q = m.quoted ? m.quoted : m || m.text || m.sender
+if (q.mtype == 'extendedTextMessage') {
 if (args.length >= 1) {
 text = args.slice(0).join(" ")
 } else if (m.quoted && m.quoted.text) {
@@ -15,7 +16,7 @@ await conn.sendMessage(m.chat, { text: text, mentions: users }, { quoted: m })
 //const c = m.quoted ? await m.getQuotedObj() : m.msg || m.text || m.sender
 //const msg = conn.cMod(m.chat, generateWAMessageFromContent(m.chat, {[m.quoted ? q.mtype : 'extendedTextMessage']: m.quoted ? c.message[q.mtype] : {text: '' || c}}, {quoted: m, userJid: conn.user.id}), text || q.text, conn.user.jid, {mentions: users})
 //await conn.relayMessage(m.chat, msg.message, { messageId: msg.key.id })
-} catch {
+} else {
 
 // [ By @NeKosmic || https://github.com/NeKosmic/ ]
 
