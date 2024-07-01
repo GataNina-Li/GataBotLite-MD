@@ -26,7 +26,7 @@ const mime = (quoted.msg || quoted).mimetype || ''
 const isMedia = /image|video|sticker|audio/.test(mime)
 const more = String.fromCharCode(8206)
 const masss = more.repeat(850)
-const htextos = `${text ? text : '📣📣📣'}`
+const htextos = m.quoted && m.quoted.text ? m.quoted.text : m.text ? m.text : text ? text : '📣📣📣'
 if ((isMedia && quoted.mtype === 'imageMessage') && htextos) {
 var mediax = await quoted.download?.()
 conn.sendMessage(m.chat, { image: mediax, mentions: users, caption: htextos, mentions: users}, {quoted: m})
