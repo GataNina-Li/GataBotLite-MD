@@ -113,11 +113,12 @@ npm install -g ffmpeg imagemagick git yarn && npm i && node --no-warnings index.
 <a href="https://www.cafirexos.com"><img src="https://grxcwmcwbxwj.objectstorage.sa-saopaulo-1.oci.customer-oci.com/n/grxcwmcwbxwj/b/cafirexos/o/logos%2Flogo.png" height="125px"></a>
 ### Información del Host
 
-- **Página:** [`Cafirexos`](https://www.cafirexos.com)
-- **Dashboard:** [`Aquí`](https://dash.cafirexos.com)
+- **Página:** [`Aquí`](https://www.cafirexos.com)
+- **Área de clientes:** [`Aquí`](https://clientes.cafirexos.com)
+- **Dashboard:** [`Aquí`](https://dashboard.cafirexos.com)
 - **Panel:** [`Aquí`](https://panel.cafirexos.com/)
 - **Canal de WhatsApp:** [`Aquí`](https://whatsapp.com/channel/0029VaFVSkRCMY0KFmCMDX2q)
-- **Grupo de WhatsApp:** [`Aquí`](https://chat.whatsapp.com/FBtyc8Q5w2iJXVl5zGJdFJ)
+- **Grupo de WhatsApp:** [`Aquí`](https://chat.whatsapp.com/LrzOqVlP75A2h65v8kfLAR)
 - **Correo:** [`Aquí`](mailto:contacto@cafirexos.com)
 - **Contacto:** [`Diego Flores`](https://wa.me/50497150165)
 
@@ -139,7 +140,7 @@ npm install -g ffmpeg imagemagick git yarn && npm i && node --no-warnings index.
 - [x] **Configuración** <details><summary>**Ajustes del Servidor - GataBotLite-MD**</summary><img src="https://telegra.ph/file/e29855655f6c2943661f8.jpg"></details>
 -----
 ### 🟢 INFINITY-HOST
-> Activar **GataBot-MD** 24/7 activo en Infinity-Host
+> Activar **GataBotLite-MD** 24/7 activo en Infinity-Host
 
 <a href="https://dashboard.infinitywa.xyz"><img src="https://qu.ax/XLCK.jpg" height="125px"></a>
 ### Información del Host
