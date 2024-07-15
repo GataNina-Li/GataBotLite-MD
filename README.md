@@ -91,6 +91,19 @@ pm2 delete all
 npm install -g ffmpeg imagemagick git yarn && npm i && node --no-warnings index.js
 ```
 ----
+### 💎 FlarexCloud
+> Empiece a usar FlarexCloud para activar **GataBotLite-MD**
+
+<a href="https://www.flarex.cloud"><img src="https://cdn.flarex.cloud/deploy.png" height="60px"></a>
+### Información sobre FlarexCloud
+
+- **Página:** [`Aquí`](https://www.flarex.cloud)
+- **Dashboard / Área de Pagos:** [`Aquí`](https://billing.flarex.cloud)
+- **Game Panel:** [`Aquí`](https://gamepanel.flarex.cloud)
+- **Comunidad de WhatsApp:** [`Aquí`](https://chat.whatsapp.com/K25DOitoKoQJZLUJhjOK1h)
+- **Discord:** [`Aquí`](https://discord.flarex.cloud)
+- **Contacto:** [`hi@flarex.cloud`](mailto:hi@flarex.cloud) / [`support@flarex.cloud`](mailto:support@flarex.cloud) / [`partnerships@flarex.cloud`](mailto:partnerships@flarex.cloud)
+----
 ### 📦⛏️ BOXMINE HOST 
 [![YouTube](https://img.shields.io/badge/BoxMine_Host-World-FF0000?style=for-the-badge&logo=youtube&logoColor=white)](https://www.youtube.com/@boxminehost)
 
@@ -153,18 +166,6 @@ npm install -g ffmpeg imagemagick git yarn && npm i && node --no-warnings index.
 
 - [x] **Configuración** <details><summary>**Ajustes del Servidor - GataBotLite-MD**</summary><img src="https://telegra.ph/file/0b7ba2b142f21c676b84a.jpg"></details>
 ------------------------
-### 💎 FlarexCloud
-> Empiece a usar FlarexCloud para activar **GataBotLite-MD**
-
-<a href="https://www.flarex.cloud"><img src="https://cdn.flarex.cloud/deploy.png" height="60px"></a>
-### Información sobre FlarexCloud
-
-- **Página:** [`Aquí`](https://www.flarex.cloud)
-- **Dashboard / Área de Pagos:** [`Aquí`](https://billing.flarex.cloud)
-- **Game Panel:** [`Aquí`](https://gamepanel.flarex.cloud)
-- **Discord:** [`Aquí`](https://discord.flarex.cloud)
-- **Contacto:** [`hi@flarex.cloud`](mailto:hi@flarex.cloud) / [`support@flarex.cloud`](mailto:support@flarex.cloud) / [`partnerships@flarex.cloud`](mailto:partnerships@flarex.cloud)
-----
 ## 🌻 INSTALACIÓN PARA WINDOWS/VPS/RDP 🌻
 <a href="https://youtu.be/SaxYKnnZo3E">
 <img src="https://img.shields.io/badge/Tutorial-FF0000?style=for-the-badge&logo=youtube&logoColor=white" alt="Tutorial"> </a>
