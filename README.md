@@ -142,7 +142,7 @@ npm install -g ffmpeg imagemagick git yarn && npm i && node --no-warnings index.
 ### 🟢 INFINITY-HOST
 > Activar **GataBotLite-MD** 24/7 activo en Infinity-Host
 
-<a href="https://dashboard.infinitywa.xyz"><img src="https://qu.ax/XLCK.jpg" height="125px"></a>
+<a href="https://dash.infinity-wa.com"><img src="https://i.imgur.com/CiNEYMc.png" height="140px"></a>
 ### Información del Host
 
 - **Dashboard:** [`Aquí`](https://dash.infinity-wa.com)
@@ -150,7 +150,6 @@ npm install -g ffmpeg imagemagick git yarn && npm i && node --no-warnings index.
 - **Estado de servicios:** [`Aquí`](https://status.infinity-wa.xyz)
 - **Grupo de WhatsApp:** [`Aquí`](https://chat.whatsapp.com/GQ82mPnSYnm0XL2hLPk7FV)
 - **Canal de WhatsApp:** [`Aquí`](https://whatsapp.com/channel/0029Va4QjH7DeON0ePwzjS1A)
-- **Support:** [`Bot exclusivo`](https://wa.me/message/FETBF7YBO37CG1)
 
 - [x] **Configuración** <details><summary>**Ajustes del Servidor - GataBotLite-MD**</summary><img src="https://telegra.ph/file/0b7ba2b142f21c676b84a.jpg"></details>
 ------------------------
