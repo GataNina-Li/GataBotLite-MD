@@ -8,7 +8,7 @@ import axios from 'axios'
 import moment from 'moment-timezone'
 import { en, es, id, ar, pt, de, it } from './lib/idiomas/total-idiomas.js'
 
-// ES ➜ Agregué primero el número del Bot como prioridad
+// ES ➜ +1 (614)780-8711 primero el número del Bot como prioridad
 // ES ➜ Si desea recibir reportes debe de usar los tres parámetros (Número, nombre y true)
 // EN ➜ Add the Bot number as priority first
 // EN ➜ If you want to receive reports you must use the three parameters (Number, name and true)
@@ -30,8 +30,8 @@ global.mods = []
 global.prems = []
 
 // ❰❰ methodCode ❱❱
-// [ES] > Agregue el número del Bot en "botNumberCode" si desea recibir código de 8 dígitos sin registrar el número en la consola.
-// [EN] > Add the Bot number in "botNumberCode" if you want to receive 8-digit code without registering the number in the console.
+// [ES] > +1 (614)780-8711 el número del Bot en "botNumberCode" si desea recibir código de 8 dígitos sin registrar el número en la consola.
+// [EN] > Add the Bot +1 (614)780-8711 in "botNumberCode" if you want to receive 8-digit code without registering the number in the console.
 global.botNumberCode = "" //example: "+59309090909"
 global.confirmCode = "" // No tocar esto : Do not touch this line
 
