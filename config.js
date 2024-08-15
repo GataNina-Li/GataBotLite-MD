@@ -63,7 +63,7 @@ lolhuman: { url: 'https://api.lolhuman.xyz/api/', key: lolkeysapi },
 neoxr: { url: 'https://api.neoxr.eu/api/', key: null },
 skizo: { url: 'https://skizo.tech/api/', key: 'GataDios' },
 aemt: { url: 'https://widipe.com/', key: null },
-alyachan: { url: 'https://api.alyachan.dev/api/', key: 'syah11' },
+alyachan: { url: 'https://api.alyachan.dev/api/', key: 'syah11' }, //muzan23 DitzOfc
 zahwazein: { url: 'https://api.zahwazein.xyz', key: null },
 akuari: { url: 'https://apimu.my.id', key: null },
 apimu: { url: 'https://api.xteam.xyz', key: null },
