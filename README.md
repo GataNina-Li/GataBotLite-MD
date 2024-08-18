@@ -91,19 +91,16 @@ pm2 delete all
 npm install -g ffmpeg imagemagick git yarn && npm i && node --no-warnings index.js
 ```
 ----
-### 💎 FlarexCloud
-> Empiece a usar FlarexCloud para activar **GataBotLite-MD**
+### ☁️ CORINPLUS HOTS 
+<a href="https://dash.corinplus.com"><img src="https://qu.ax/ZycD.png" height="125px"></a>
+### Información sobre CorinPlus
 
-<a href="https://www.flarex.cloud"><img src="https://cdn.flarex.cloud/deploy.png" height="60px"></a>
-### Información sobre FlarexCloud
-
-- **Página:** [`Aquí`](https://www.flarex.cloud)
-- **Dashboard / Área de Pagos:** [`Aquí`](https://billing.flarex.cloud)
-- **Game Panel:** [`Aquí`](https://gamepanel.flarex.cloud)
-- **Comunidad de WhatsApp:** [`Aquí`](https://chat.whatsapp.com/K25DOitoKoQJZLUJhjOK1h)
-- **Discord:** [`Aquí`](https://discord.flarex.cloud)
-- **Contacto:** [`hi@flarex.cloud`](mailto:hi@flarex.cloud) / [`support@flarex.cloud`](mailto:support@flarex.cloud) / [`partnerships@flarex.cloud`](mailto:partnerships@flarex.cloud)
-----
+- **Dashboard:** [`Aquí`](https://dash.corinplus.com)
+- **Panel:** [`Aquí`](https://panel.corinplus.com)
+- **Canal de WhatsApp:** [`Aquí`](https://whatsapp.com/channel/0029VakUvreFHWpyWUr4Jr0g)
+- **Grupo - Soporte:** [`Aquí`](https://chat.whatsapp.com/K235lkvaGvlGRQKYm26xZP)
+- **Contacto:** [`Gata Dios`](https://wa.me/message/B3KTM5XN2JMRD1)
+-----
 ### 📦⛏️ BOXMINE HOST 
 [![YouTube](https://img.shields.io/badge/BoxMine_Host-World-FF0000?style=for-the-badge&logo=youtube&logoColor=white)](https://www.youtube.com/@boxminehost)
 
@@ -136,21 +133,6 @@ npm install -g ffmpeg imagemagick git yarn && npm i && node --no-warnings index.
 - **Contacto:** [`Diego Flores`](https://wa.me/50497150165)
 
 - [x] **Configuración** <details><summary>**Ajustes del Servidor - GataBotLite-MD**</summary><img src="https://telegra.ph/file/7495a0f937c20bcbf8b9b.jpg"></details>
-----
-### ☁️ VORTEXUS CLOUD - HOST
-> Integra **GataBot** en un servicio de alojamiento eficiente.
-
-<a href="https://vortexuscloud.com"><img src="https://telegra.ph/file/4bd3d8d14e5683073d4f3.jpg" height="125px"></a>
-### vortexus cloud
-
-- **Pagina Oficial:** [`Vortexuscloud`](https://vortexuscloud.com)
-- **Crear cuenta en la Dashboard:** [`Dashboard`](https://youtu.be/JUg7DWUY6_Y?si=DHwk9dwjvWdPEIBJ)
-- **Dashboard:** [`Dash`](https://dash.vortexuscloud.com)
-- **Panel:** [`Aquí`](https://panel.vortexuscloud.com)
-- **Contacto:** [`Aquí`](https://wa.me/258858119033) 
-- **Canal de WhatsApp:** [`Aquí`](https://whatsapp.com/channel/0029Va8ZD6O3mFXxTPl1m13A)
-
-- [x] **Configuración** <details><summary>**Ajustes del Servidor - GataBotLite-MD**</summary><img src="https://telegra.ph/file/e29855655f6c2943661f8.jpg"></details>
 -----
 ### 🟢 INFINITY-HOST
 > Activar **GataBotLite-MD** 24/7 activo en Infinity-Host
