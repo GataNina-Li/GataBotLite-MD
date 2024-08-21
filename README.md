@@ -120,23 +120,6 @@ npm install -g ffmpeg imagemagick git yarn && npm i && node --no-warnings index.
 - **Canal de WhatsApp:** [`Aquí`](https://whatsapp.com/channel/0029Va71C1q2UPBOICnxu83r)
 
 - [x] **Configuración** <details><summary>**Ajustes del Servidor - GataBotLite-MD**</summary><img src="https://telegra.ph/file/2c6d9f2888d9687c6815d.jpg"></details>
-----
-### 🔵 CAFIREXOS 
-> Optimice la implementación de **GataBot** mediante la integración en un servicio de alojamiento de alto rendimiento.
-
-<a href="https://www.cafirexos.com"><img src="https://grxcwmcwbxwj.objectstorage.sa-saopaulo-1.oci.customer-oci.com/n/grxcwmcwbxwj/b/cafirexos/o/logos%2Flogo.png" height="125px"></a>
-### Información del Host
-
-- **Página:** [`Aquí`](https://www.cafirexos.com)
-- **Área de clientes:** [`Aquí`](https://clientes.cafirexos.com)
-- **Dashboard:** [`Aquí`](https://dashboard.cafirexos.com)
-- **Panel:** [`Aquí`](https://panel.cafirexos.com/)
-- **Canal de WhatsApp:** [`Aquí`](https://whatsapp.com/channel/0029VaFVSkRCMY0KFmCMDX2q)
-- **Grupo de WhatsApp:** [`Aquí`](https://chat.whatsapp.com/LrzOqVlP75A2h65v8kfLAR)
-- **Correo:** [`Aquí`](mailto:contacto@cafirexos.com)
-- **Contacto:** [`Diego Flores`](https://wa.me/50497150165)
-
-- [x] **Configuración** <details><summary>**Ajustes del Servidor - GataBotLite-MD**</summary><img src="https://telegra.ph/file/7495a0f937c20bcbf8b9b.jpg"></details>
 ------------------------
 ## 🌻 INSTALACIÓN PARA WINDOWS/VPS/RDP 🌻
 <a href="https://youtu.be/SaxYKnnZo3E">
