@@ -46,7 +46,7 @@
 "body-parser": "^1.20.2",
 "cfonts": "^2.10.0",
 "chalk": "^5.0.0",
-"cheerio": "github:AikerDev/cheeiro",
+"cheerio": "1.0.0-rc.12", 
 "colors": "1.4.0",
 "express": "^4.17.3",
 "emoji-country-flags": "^1.0.3",
