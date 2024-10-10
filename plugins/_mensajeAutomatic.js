@@ -11,30 +11,31 @@ await conn.reply(m.chat, [`¿Tu Nokia es muy lento y necesitas que tu bot esté 
 
 ¡Tenemos la solución perfecta para ti! 🎉 Mantén tu bot funcionando sin interrupciones con nuestros servidores, Ofrecemos servidores gratuitos y de pago a precios súper accesibles, al alcance de todos. 💸 
 
-🖥️ *Totalmente compatible con GataBot:* Disfruta al máximo de su potencial en nuestros servidores de alto rendimiento, asegurando una experiencia fluida y de alta calidad. El staff de GataBot y CorinPlus Host se encarga de que disfrutes de todas sus funciones al máximo. 😺✨
+🖥️ *Totalmente compatible con GataBot:* Disfruta al máximo de su potencial en nuestros servidores de alto rendimiento, asegurando una experiencia fluida y de alta calidad. El staff de GataBot y Sky-Ultra-Plus Host se encarga de que disfrutes de todas sus funciones al máximo. 😺✨
 
 🟢 \`\`\`Información del Host\`\`\`
 
 💻 *Página:*
-https://dash.corinplus.com
+https://dash.skyultraplus.com
 
 *🟢 Dashboard:*
-https://dash.corinplus.com
+https://dash.skyultraplus.com
 
 ⚙️ *Panel*
-https://panel.corinplus.com
+https://panel.skyultraplus.com
 
 💥 *Comunidad de WhatsApp:*
-https://chat.whatsapp.com/HR3OLhsuZPqCMImzuHcuON
+https://chat.whatsapp.com/KGPhTIfgOzZCMNqoc3R7OW
 
 *🟣 Discord:*
-https://discord.com/invite/bjKpRBtkHv
+https://discord.gg/zvKgtc2RBc
 
 🧡 *Canal de WhatsApp:*
 https://whatsapp.com/channel/0029VakUvreFHWpyWUr4Jr0g
 
 🗣📲 *Contacto:*
 • wa.me/5214531287294
+• wa.me/15167096032
 • wa.me/573147616444
 • https://www.facebook.com/elrebelde21
 
@@ -52,7 +53,7 @@ _Si quieres apoyar económicamente al Host y obtener beneficios exclusivos, ¡es
 - Acceso a grupo exclusivo 🔰
 - Soporte personalizado 🛠️
 - Lucrar con nuestros servicios 
-- 10K CorinPlus 🎉
+- 10K SkyCoins 🎉
 
 > 🌟 *\`Reseller Ultra\`*
 💰 *Aportación:* $30 USD/mes
@@ -60,7 +61,7 @@ _Si quieres apoyar económicamente al Host y obtener beneficios exclusivos, ¡es
 - Acceso a grupo exclusivo 🔰
 - Soporte personalizado 🛠️
 - Lucrar con nuestros servicios 
-- 20K CorinPlus 🎉
+- 20K SkyCoins 🎉
 - 20 slots 🗝️
 
 > 💫 *\`Reseller Estrella\`*
@@ -69,7 +70,7 @@ _Si quieres apoyar económicamente al Host y obtener beneficios exclusivos, ¡es
 - Acceso a grupo exclusivo 🔰
 - Soporte personalizado 🛠️
 - Lucrar con nuestros servicios 
-- 40K CorinPlus 🎉
+- 40K SkyCoins 🎉
 - 30 slots 🗝️
 - 40% de descuento en toda nuestra tienda 🛒
 - Nodo exclusivo 💻
@@ -80,7 +81,7 @@ _Si quieres apoyar económicamente al Host y obtener beneficios exclusivos, ¡es
 * Acceso a grupo exclusivo 🔰
 * Soporte personalizado 🛠️
 * Lucrar con nuestros servicios 
-* 50K CorinPlus 🎉
+* 50K SkyCoins 🎉
 * 40 slots 🗝️
 * 60% de descuento en toda nuestra tienda 🛒
 * Nodo exclusivo 💻
@@ -99,8 +100,8 @@ https://chat.whatsapp.com/HR3OLhsuZPqCMImzuHcuON
 +505 7533 0073
 https://wa.me/message/B3KTM5XN2JMRD1
 
-*CorinPlus Host*
-_¡El plus que necesitas!_`].getRandom(), m)
+*SkyUltraPlus Host*
+_¡El plus y el Ultra que necesitas!_`].getRandom(), m)
 
 user.pc = new Date * 1
 }
