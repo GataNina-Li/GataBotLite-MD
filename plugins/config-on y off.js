@@ -241,20 +241,20 @@ ${lenguajeGB.smsParaAdmins() + ' ' + `${m.isGroup ? chat.antiTwitter ? '✅' : '
 🌸 \`\`\`${usedPrefix}on/off\`\`\` *antitwitter*\n
 ${lenguajeGB.smsParaAdmins() + ' ' + `${m.isGroup ? chat.antifake ? '✅' : '❌' : lenguajeGB.smsNoGg()}`}
 🌼 \`\`\`${usedPrefix}on/off\`\`\` *${lenguajeGB.lenguaje() == 'es' ? 'antinternacional' : 'antifake'}*\n
-${lenguajeGB.smsParaOw() + ' ' + `${bot.restrict ? '✅' : '❌'}`}
-🌸 \`\`\`${usedPrefix}on/off\`\`\` *${lenguajeGB.lenguaje() == 'es' ? 'restringir' : 'restrict'}*\n
-${lenguajeGB.smsParaOw() + ' ' + `${global.opts['self'] ? '❌' : '✅'}`}
-🌼 \`\`\`${usedPrefix}on/off\`\`\` *${lenguajeGB.lenguaje() == 'es' ? 'publico' : 'public'}*\n
-${lenguajeGB.smsParaOw() + ' ' + `${bot.jadibotmd ? '✅' : '❌'}`}
-🌸 \`\`\`${usedPrefix}on/off\`\`\` *${lenguajeGB.lenguaje() == 'es' ? 'modoserbot' : 'modejadibot'}*\n
-${lenguajeGB.smsParaOw() + ' ' + `${bot.antiprivado ? '✅' : '❌'}`}
-🌼 \`\`\`${usedPrefix}on/off\`\`\` *${lenguajeGB.lenguaje() == 'es' ? 'antiprivado' : 'antiprivate'}*\n
-${lenguajeGB.smsParaOw() + ' ' + `${bot.antiCall ? '✅' : '❌'}`}
-🌸 \`\`\`${usedPrefix}on/off\`\`\` *${lenguajeGB.lenguaje() == 'es' ? 'antillamar' : 'anticall'}*\n
-${lenguajeGB.smsParaOw() + ' ' + `${global.opts['autoread'] ? '✅' : '❌'}`}
-🌼 \`\`\`${usedPrefix}on/off\`\`\` *${lenguajeGB.lenguaje() == 'es' ? 'autovisto' : 'autoread'}*\n
 ${lenguajeGB.smsParaAdmins() + ' ' + `${m.isGroup ? chat.modoadmin ? '✅' : '❌' : lenguajeGB.smsNoGg()}`}
 🌸 \`\`\`${usedPrefix}on/off\`\`\` *${lenguajeGB.lenguaje() == 'es' ? 'modoadmin' : 'modeadmin'}*\n
+${lenguajeGB.smsParaOw() + ' ' + `${bot.restrict ? '✅' : '❌'}`}
+🌼 \`\`\`${usedPrefix}on/off\`\`\` *${lenguajeGB.lenguaje() == 'es' ? 'restringir' : 'restrict'}*\n
+${lenguajeGB.smsParaOw() + ' ' + `${global.opts['self'] ? '❌' : '✅'}`}
+🌸 \`\`\`${usedPrefix}on/off\`\`\` *${lenguajeGB.lenguaje() == 'es' ? 'publico' : 'public'}*\n
+${lenguajeGB.smsParaOw() + ' ' + `${bot.jadibotmd ? '✅' : '❌'}`}
+🌼 \`\`\`${usedPrefix}on/off\`\`\` *${lenguajeGB.lenguaje() == 'es' ? 'modoserbot' : 'modejadibot'}*\n
+${lenguajeGB.smsParaOw() + ' ' + `${bot.antiprivado ? '✅' : '❌'}`}
+🌸 \`\`\`${usedPrefix}on/off\`\`\` *${lenguajeGB.lenguaje() == 'es' ? 'antiprivado' : 'antiprivate'}*\n
+${lenguajeGB.smsParaOw() + ' ' + `${bot.antiCall ? '✅' : '❌'}`}
+🌼 \`\`\`${usedPrefix}on/off\`\`\` *${lenguajeGB.lenguaje() == 'es' ? 'antillamar' : 'anticall'}*\n
+${lenguajeGB.smsParaOw() + ' ' + `${global.opts['autoread'] ? '✅' : '❌'}`}
+🌸 \`\`\`${usedPrefix}on/off\`\`\` *${lenguajeGB.lenguaje() == 'es' ? 'autovisto' : 'autoread'}*\n
 ${lenguajeGB.smsParaAdYOw() + ' ' + `${chat.delete ? '✅' : '❌'}`}
 🌼 \`\`\`${usedPrefix}on/off\`\`\` *${lenguajeGB.lenguaje() == 'es' ? 'antieliminar' : 'antidelete'}*\n
 ${lenguajeGB.smsParaAdYOw() + ' ' + `${chat.antiver ? '✅' : '❌'}`}
