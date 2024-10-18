@@ -113,20 +113,7 @@ pp = getUrlFromDirectPath(newsletterInfo.preview)
 pp = thumb
 }
 if (caption) {
-/*let contextInfo = {
-mentionedJid: conn.parseMention(caption),
-externalAdReply: {
-title: "Inspector de enlaces de Canales",
-body: "",
-mediaType: 0,
-previewType: 0,
-renderLargerThumbnail: false,
-thumbnailUrl: pp,
-sourceUrl: ""
-}}*/
-await conn.sendMessage(m.chat, {
-text: caption,
-contextInfo: {
+await conn.sendMessage(m.chat, { text: caption, contextInfo: {
 mentionedJid: conn.parseMention(caption),
 externalAdReply: {
 title: "Inspector de enlaces de Canales",
@@ -154,5 +141,13 @@ export default handler
 function formatDate(n, locale = "id", includeTime = true) {
 const date = new Date(n)
 if (isNaN(date)) return "Fecha no válida"
-return includeTime ? date.toLocaleString(locale) : date.toLocaleDateString(locale)
+// Formato de fecha: día/mes/año
+const optionsDate = { day: '2-digit', month: '2-digit', year: 'numeric' }
+const formattedDate = date.toLocaleDateString(locale, optionsDate)
+if (!includeTime) return formattedDate;
+// Formato de hora: hora:minuto:segundos AM/PM
+const optionsTime = { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true }
+const formattedTime = date.toLocaleTimeString(locale, optionsTime)
+return `${formattedDate}, ${formattedTime}`
 }
+
