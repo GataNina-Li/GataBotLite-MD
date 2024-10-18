@@ -118,17 +118,16 @@ mentionedJid: conn.parseMention(caption),
 externalAdReply: {
 title: "Inspector de enlaces de Canales",
 body: "",
-mediaType: 1,
-previewType: 0,
+//mediaType: 0,
+//previewType: 0,
 renderLargerThumbnail: false,
-thumbnailUrl: gataMenu.getRandom(),
+thumbnailUrl: pp,
 sourceUrl: ""
 }}
 await conn.sendMessage(m.chat, { caption: caption, contextInfo: contextInfo }, { quoted: fkontak })
 }
 }}} catch (e) {
 console.error(e)
-console.log(pp)
 await m.reply("Error.")
 }} catch (e) {
 reportError(e)
