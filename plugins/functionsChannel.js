@@ -132,7 +132,7 @@ console.error(e)
 await m.reply("Error.")
 }} catch (e) {
 reportError(e)
-}}
+}
 break
         
 }}
