@@ -113,8 +113,7 @@ pp = getUrlFromDirectPath(newsletterInfo.preview)
 pp = thumb
 }
 if (caption) {
-await conn.reply(m.chat, caption, m, {
-contextInfo: {
+let contextInfo = {
 mentionedJid: conn.parseMention(caption),
 externalAdReply: {
 title: "Inspector de enlaces de Canales",
@@ -125,7 +124,7 @@ renderLargerThumbnail: false,
 thumbnailUrl: pp,
 sourceUrl: ""
 }}
-})
+await conn.sendMessage(m.chat, { caption: caption, contextInfo: contextInfo }, { quoted: fkontak })
 }
 }}} catch (e) {
 console.error(e)
