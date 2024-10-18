@@ -124,11 +124,11 @@ renderLargerThumbnail: false,
 thumbnailUrl: gataMenu.getRandom(),
 sourceUrl: ""
 }}
-console.log(pp)
 await conn.sendMessage(m.chat, { caption: caption, contextInfo: contextInfo }, { quoted: fkontak })
 }
 }}} catch (e) {
 console.error(e)
+console.log(pp)
 await m.reply("Error.")
 }} catch (e) {
 reportError(e)
