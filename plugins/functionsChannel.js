@@ -146,7 +146,7 @@ const optionsDate = { day: '2-digit', month: '2-digit', year: 'numeric' }
 const formattedDate = date.toLocaleDateString(locale, optionsDate)
 if (!includeTime) return formattedDate;
 // Formato de hora: hora:minuto:segundos AM/PM
-const optionsTime = { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true }
+const optionsTime = { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false }
 const formattedTime = date.toLocaleTimeString(locale, optionsTime)
 return `${formattedDate}, ${formattedTime}`
 }
