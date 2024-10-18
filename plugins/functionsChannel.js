@@ -96,7 +96,7 @@ body: "",
 mediaType: 1,
 previewType: 0,
 renderLargerThumbnail: false,
-thumbnailUrl: pp,
+thumbnailUrl: gataMenu.getRandom(),
 sourceUrl: ""
 }}
 })
