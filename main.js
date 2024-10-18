@@ -29,6 +29,7 @@ const { DisconnectReason, useMultiFileAuthState, MessageRetryMap, fetchLatestBai
 const { CONNECTING } = ws
 const { chain } = lodash
 const PORT = process.env.PORT || process.env.SERVER_PORT || 3000
+let stopped = 'close'
 
 protoType()
 serialize()
