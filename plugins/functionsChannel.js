@@ -96,7 +96,7 @@ body: "",
 mediaType: 1,
 previewType: 0,
 renderLargerThumbnail: false,
-thumbnailUrl: gataMenu.getRandom(),
+thumbnailUrl: pp,
 sourceUrl: ""
 }}
 })
@@ -121,7 +121,7 @@ body: "",
 mediaType: 1,
 previewType: 0,
 renderLargerThumbnail: false,
-thumbnailUrl: pp,
+thumbnailUrl: gataMenu.getRandom(),
 sourceUrl: ""
 }}
 await conn.sendMessage(m.chat, { caption: caption, contextInfo: contextInfo }, { quoted: fkontak })
