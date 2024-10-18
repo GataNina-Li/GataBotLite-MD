@@ -118,8 +118,8 @@ mentionedJid: conn.parseMention(caption),
 externalAdReply: {
 title: "Inspector de enlaces de Canales",
 body: "",
-//mediaType: 0,
-//previewType: 0,
+mediaType: 0,
+previewType: 0,
 renderLargerThumbnail: false,
 thumbnailUrl: pp,
 sourceUrl: ""
