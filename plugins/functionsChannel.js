@@ -134,6 +134,7 @@ return includeTime ? date.toLocaleString(locale) : date.toLocaleDateString(local
 }
 
 function formatValue(key, value) {
+console.log(value)
 switch (key) {
 case "subscribers":
 return value ? value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".") : "No hay suscriptores"
