@@ -98,7 +98,7 @@ if (!('sDemote' in chat)) chat.sDemote = ''
 if (!('delete' in chat)) chat.delete = true                  
 if (!('antiver' in chat)) chat.viewonce = true         
 if (!('modoadmin' in chat)) chat.modoadmin = false
-if (!('autorespond' in chat)) chat.autorespond = false     
+if (!('autorespond' in chat)) chat.autorespond = true     
 if (!('antiLink' in chat)) chat.antiLink = false
 if (!('antiLink2' in chat)) chat.antiLink2 = false    
 if (!('antiTiktok' in chat)) chat.antiTiktok = false
@@ -124,7 +124,7 @@ sDemote: '',
 delete: true,
 antiver: true,
 modoadmin: false,
-autorespond: false,
+autorespond: true,
 antiLink: false,
 antiLink2: false,	
 antiTiktok: false,
