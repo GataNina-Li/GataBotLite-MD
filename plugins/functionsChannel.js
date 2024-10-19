@@ -16,6 +16,7 @@ console.log(e)
 
 switch (true) {     
 case isCommand1:
+console.log('dddddd')
 let thumb = gataMenu.getRandom()
 // Generar la información del grupo
 const groupInfo = (res) => ({
