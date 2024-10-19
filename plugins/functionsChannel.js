@@ -1,3 +1,6 @@
+// Código adaptado por https://github.com/GataNina-Li
+// Código compatible con canales y comunidades de WhatsApp 
+
 import { getUrlFromDirectPath } from "@whiskeysockets/baileys"
 import _ from "lodash"
 
@@ -127,12 +130,12 @@ case "creation_time":
 case "nameTime":
 case "descriptionTime":
 return formatDate(value)
-case "description":
+case "description": 
 case "name":
 return value || "No hay información disponible"
 case "state":
 switch (value) {
-case "ACTIVE": return "Activo";
+case "ACTIVE": return "Activo"
 case "GEOSUSPENDED": return "Suspendido por región"
 case "SUSPENDED": return "Suspendido"
 default: return "Desconocido"
@@ -180,7 +183,9 @@ const sectionName = _.startCase(prefix + key.replace(/_/g, " "))
 .replace("State", "Estado")
 .replace("Creation Time", "Fecha de creación")
 .replace("Name Time", "Fecha de modificación del nombre")
+.replace("Name", "Nombre")
 .replace("Description Time", "Fecha de modificación de la descripción")
+.replace("Description", "Descripción")
 .replace("Invite", "Invitación")
 .replace("Handle", "Alias")
 .replace("Picture", "Imagen")
@@ -199,7 +204,9 @@ caption += `- *${_.startCase(shortKey.replace(/_/g, " "))
 .replace("State", "Estado")
 .replace("Creation Time", "Fecha de creación")
 .replace("Name Time", "Fecha de modificación del nombre")
+.replace("Name", "Nombre")
 .replace("Description Time", "Fecha de modificación de la descripción")
+.replace("Description", "Descripción")
 .replace("Invite", "Invitación")
 .replace("Handle", "Alias")
 .replace("Picture", "Imagen")
