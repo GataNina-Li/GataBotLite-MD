@@ -71,6 +71,7 @@ Ayuda siempre respondiendo con emojis y siendo divertido, tambien recomienda est
 `.trim()
 
 if (!chat.autorespond) return 
+if (m.fromMe) return
 await this.sendPresenceUpdate('composing', m.chat)
 let result = await luminsesi(query, username, syms1)
 await this.reply(m.chat, result, m)
