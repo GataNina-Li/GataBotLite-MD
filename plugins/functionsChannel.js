@@ -111,26 +111,25 @@ handler.command = /^(inspect2)$/i
 handler.register = true
 export default handler 
 
-/*function formatDate(n, locale = "es-ES", includeTime = true) {
+function formatDate(n, locale = "es", includeTime = true) {
+if (n > 1e12) {
+n = Math.floor(n / 1000)  // Convertir de milisegundos a segundos
+} else if (n < 1e10) {
+n = Math.floor(n * 1000)  // Convertir de segundos a milisegundos
+}
 const date = new Date(n)
 if (isNaN(date)) return "Fecha no válida"
 // Formato de fecha: día/mes/año
 const optionsDate = { day: '2-digit', month: '2-digit', year: 'numeric' }
 const formattedDate = date.toLocaleDateString(locale, optionsDate)
-if (!includeTime) return formattedDate;
-// Obtener horas, minutos y segundos
-const hours = date.getHours()
+if (!includeTime) return formattedDate
+// horas, minutos y segundos
+const hours = String(date.getHours()).padStart(2, '0')
 const minutes = String(date.getMinutes()).padStart(2, '0')
 const seconds = String(date.getSeconds()).padStart(2, '0')
 const period = hours < 12 ? 'AM' : 'PM'
 const formattedTime = `${hours}:${minutes}:${seconds} ${period}`
 return `${formattedDate}, ${formattedTime}`
-}*/
-
-function formatDate(n, locale = "id", includeTime = true) {
-const date = new Date(n / 1000)
-if (isNaN(date)) return "Fecha no válida"
-return includeTime ? date.toLocaleString(locale) : date.toLocaleDateString(locale)
 }
 
 function formatValue(key, value) {
