@@ -72,10 +72,10 @@ console.log(info)
 console.log('Método de enlace')
 }}
 let caption = info
-if (true) {
+if (caption) {
 let pp
 try {
-pp = await conn.profilePictureUrl(info.id)
+pp = await conn.profilePictureUrl(inviteInfo.id)
 } catch {
 pp = thumb
 }
