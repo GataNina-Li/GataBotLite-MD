@@ -18,6 +18,7 @@ switch (true) {
 case isCommand1:
 try { 
 let thumb = gataMenu.getRandom()
+let ppChannel = null
 try {
 let res = text ? null : await conn.groupMetadata(m.chat)
 if (res) {
@@ -53,6 +54,7 @@ let caption = `*Inspector de enlaces de grupo*\n- ${inviteInfo.id || ""}\n*Títu
 let pp
 try {
 pp = await conn.profilePictureUrl(inviteInfo?.id)
+ppChannel = true
 } catch (e) {
 pp = thumb
 }
@@ -109,7 +111,7 @@ handler.command = /^(inspect2)$/i
 handler.register = true
 export default handler 
 
-function formatDate(n, locale = "id", includeTime = true) {
+function formatDate(n, locale = "es-ES", includeTime = true) {
 const date = new Date(n)
 if (isNaN(date)) return "Fecha no válida"
 // Formato de fecha: día/mes/año
@@ -172,50 +174,40 @@ default:
 return value !== null && value !== undefined ? value.toString() : "No hay información disponible"
 }}
 
+function newsletterKey(key) {
+return _.startCase(key.replace(/_/g, " "))
+.replace("Id", "ID")
+.replace("State", "Estado")
+.replace("Creation Time", "Fecha de creación")
+.replace("Name Time", "Fecha de modificación del nombre")
+.replace("Name", "Nombre")
+.replace("Description Time", "Fecha de modificación de la descripción")
+.replace("Description", "Descripción")
+.replace("Invite", "Invitación")
+.replace("Handle", "Alias")
+.replace("Picture", "Imagen")
+.replace("Preview", "Vista previa")
+.replace("Reaction Codes", "Reacciones")
+.replace("Subscribers", "Suscriptores")
+.replace("Verification", "Verificación")
+.replace("Viewer Metadata", "Datos avanzados")
+}
+
 function processObject(obj, prefix = "") {
 let caption = ""
 Object.keys(obj).forEach(key => {
 const value = obj[key]
 if (typeof value === "object" && value !== null) {
 if (Object.keys(value).length > 0) {
-const sectionName = _.startCase(prefix + key.replace(/_/g, " "))
-.replace("Id", "ID")
-.replace("State", "Estado")
-.replace("Creation Time", "Fecha de creación")
-.replace("Name Time", "Fecha de modificación del nombre")
-.replace("Name", "Nombre")
-.replace("Description Time", "Fecha de modificación de la descripción")
-.replace("Description", "Descripción")
-.replace("Invite", "Invitación")
-.replace("Handle", "Alias")
-.replace("Picture", "Imagen")
-.replace("Preview", "Vista previa")
-.replace("Reaction Codes", "Reacciones")
-.replace("Subscribers", "Suscriptores")
-.replace("Verification", "Verificación")
-.replace("Viewer Metadata", "Datos avanzados")
+const sectionName = newsletterKey(prefix + key)
 caption += `\n*\`${sectionName}\`*\n`
 caption += processObject(value, `${prefix}${key}_`)
 }} else {
 const shortKey = prefix ? prefix.split("_").pop() + "_" + key : key
 const displayValue = formatValue(shortKey, value)
-caption += `- *${_.startCase(shortKey.replace(/_/g, " "))
-.replace("Id", "ID")
-.replace("State", "Estado")
-.replace("Creation Time", "Fecha de creación")
-.replace("Name Time", "Fecha de modificación del nombre")
-.replace("Name", "Nombre")
-.replace("Description Time", "Fecha de modificación de la descripción")
-.replace("Description", "Descripción")
-.replace("Invite", "Invitación")
-.replace("Handle", "Alias")
-.replace("Picture", "Imagen")
-.replace("Preview", "Vista previa")
-.replace("Reaction Codes", "Reacciones")
-.replace("Subscribers", "Suscriptores")
-.replace("Verification", "Verificación")
-.replace("Viewer Metadata", "Datos avanzados")
-}:*\n${displayValue}\n\n`
+const translatedKey = newsletterKey(shortKey)
+caption += `- *${translatedKey}:* ${displayValue}\n\n`
 }})
 return caption.trim()
 }
+
