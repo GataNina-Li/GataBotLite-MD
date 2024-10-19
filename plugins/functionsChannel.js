@@ -17,39 +17,6 @@ try {
 let thumb = gataMenu.getRandom()
 try {
 let res = text ? null : await conn.groupMetadata(m.chat)
-  
-const formatValue = (key, value) => {
-switch (key) {
-case "subscribers":
-return value ? value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") : "Tidak ada";
-case "creation_time":
-case "nameTime":
-case "descriptionTime":
-return formatDate(value);
-case "description":
-case "name":
-return value || "No hay nada"
-default:
-return value !== null && value !== undefined ? value.toString() : "No hay nada"
-}}
-
-const processObject = (obj, prefix = "") => {
-let caption = ""
-Object.keys(obj).forEach(key => {
-const value = obj[key]
-if (typeof value === "object" && value !== null) {
-if (Object.keys(value).length > 0) {
-const sectionName = _.startCase(prefix + key.replace(/_/g, " "))
-caption += `\n*\`${sectionName}\`*\n`;
-caption += processObject(value, `${prefix}${key}_`)
-}} else {
-const shortKey = prefix ? prefix.split("_").pop() + "_" + key : key
-const displayValue = formatValue(shortKey, value)
-caption += `- *${_.startCase(shortKey.replace(/_/g, " "))}:* ${displayValue}\n`
-}
-})
-return caption.trim()
-}
 if (res) {
 let caption = `*Inspector de enlaces de grupo*\n- ${res.id || ""}\n*Título:* ${res.subject || ""}\n*Creado* por @${res.owner?.split("@")[0] || ""} en *${formatDate(1e3 * res.creation) || ""}*${res.subjectOwner ? `\n*Título cambiado* por @${res.subjectOwner?.split("@")[0]} en *${formatDate(1e3 * res.subjectTime)}*` : ""}${res.descOwner ? `\n*Descripción* por @${res.descOwner?.split("@")[0]} en *${formatDate(1e3 * res.descTime)}*` : ""}\n*Número de miembros:* ${res.size || ""}\n*Miembro superior:* ${res.participants ? "\n" + res.participants.slice(0, 5).map((user, i) => `${i + 1}. @${user.id?.split("@")[0]}${"superadmin" === user.admin ? " (superadmin)" : "admin" === user.admin ? " (admin)" : ""}`).join("\n").trim() : "No hay"}${res.participants?.length > 5 ? `\nY ${res.participants?.length - 5} otros miembros.` : ""}\n${res.desc ? `*Descripción:*\n${res.desc}` : "*No hay descripción*"}\n\n*Detalles completos del grupo*\n\n*Restringido:* ${res.restrict ? "Si" : "No"}\n*Anunciar:* ${res.announce ? "Si" : "No"}\n*Es comunidad:* ${res.isCommunity ? "Si" : "No"}\n*Es un anuncio de la comunidad:* ${res.isCommunityAnnounce ? "Si" : "No"}\n*Modo de Aprobación para Unirse:* ${res.joinApprovalMode ? "Si" : "No"}\n*Modo para agregar Miembros:* ${res.memberAddMode ? "Si" : "No"}\n*Duración:* ${void 0 !== res.ephemeralDuration ? res.ephemeralDuration + " segundos" : "desconocido"}`
 let pp
@@ -109,6 +76,7 @@ caption += processObject(newsletterInfo)
 let pp
 try {
 pp = getUrlFromDirectPath(newsletterInfo.preview)
+console.log(pp)
 } catch (e) {
 pp = thumb
 }
@@ -151,3 +119,96 @@ const formattedTime = date.toLocaleTimeString(locale, optionsTime)
 return `${formattedDate}, ${formattedTime}`
 }
 
+function formatValue(key, value) {
+switch (key) {
+case "subscribers":
+return value ? value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".") : "No hay suscriptores"
+case "creation_time":
+case "nameTime":
+case "descriptionTime":
+return formatDate(value)
+case "description":
+case "name":
+return value || "No hay información disponible"
+case "state":
+switch (value) {
+case "ACTIVE": return "Activo";
+case "GEOSUSPENDED": return "Suspendido por región"
+case "SUSPENDED": return "Suspendido"
+default: return "Desconocido"
+}
+case "reaction_codes":
+switch (value) {
+case "ALL": return "Todas las reacciones permitidas"
+case "BASIC": return "Reacciones básicas permitidas"
+case "NONE": return "No se permiten reacciones"
+default: return "Desconocido"
+}
+case "verification":
+switch (value) {
+case "VERIFIED": return "Verificado"
+case "UNVERIFIED": return "No verificado"
+default: return "Desconocido"
+}
+case "mute":
+switch (value) {
+case "ON": return "Silenciado"
+case "OFF": return "No silenciado"
+case "UNDEFINED": return "Sin definir"
+default: return "Desconocido"
+}
+case "view_role":
+switch (value) {
+case "ADMIN": return "Administrador"
+case "OWNER": return "Propietario"
+case "SUBSCRIBER": return "Suscriptor"
+case "GUEST": return "Invitado"
+default: return "Desconocido"
+}
+default:
+return value !== null && value !== undefined ? value.toString() : "No hay información disponible"
+}}
+
+function processObject(obj, prefix = "") {
+let caption = ""
+Object.keys(obj).forEach(key => {
+const value = obj[key]
+if (typeof value === "object" && value !== null) {
+if (Object.keys(value).length > 0) {
+const sectionName = _.startCase(prefix + key.replace(/_/g, " "))
+.replace("Id", "ID")
+.replace("State", "Estado")
+.replace("Creation Time", "Fecha de creación")
+.replace("Name Time", "Fecha de modificación del nombre")
+.replace("Description Time", "Fecha de modificación de la descripción")
+.replace("Invite", "Invitación")
+.replace("Handle", "Alias")
+.replace("Picture", "Imagen")
+.replace("Preview", "Vista previa")
+.replace("Reaction Codes", "Reacciones")
+.replace("Subscribers", "Suscriptores")
+.replace("Verification", "Verificación")
+.replace("Viewer Metadata", "Datos avanzados")
+caption += `\n*\`${sectionName}\`*\n`;
+caption += processObject(value, `${prefix}${key}_`)
+}} else {
+const shortKey = prefix ? prefix.split("_").pop() + "_" + key : key
+const displayValue = formatValue(shortKey, value)
+caption += `- *${_.startCase(shortKey.replace(/_/g, " "))
+.replace("Id", "ID")
+.replace("State", "Estado")
+.replace("Creation Time", "Fecha de creación")
+.replace("Name Time", "Fecha de modificación del nombre")
+.replace("Description Time", "Fecha de modificación de la descripción")
+.replace("Invite", "Invitación")
+.replace("Handle", "Alias")
+.replace("Picture", "Imagen")
+.replace("Preview", "Vista previa")
+.replace("Reaction Codes", "Códigos de reacción")
+.replace("Subscribers", "Suscriptores")
+.replace("Verification", "Verificación")
+.replace("Viewer Metadata", "Datos avanzados")
+}:* ${displayValue}\n`
+}})
+return caption.trim()
+}
