@@ -90,7 +90,7 @@ mentionedJid: conn.parseMention(caption),
 externalAdReply: {
 title: "Inspector de enlaces de Canales",
 body: packname,
-thumbnailUrl: gataMenu.getRandom(),
+thumbnailUrl: pp,
 sourceUrl: args[0],
 mediaType: 1,
 showAdAttribution: true,
