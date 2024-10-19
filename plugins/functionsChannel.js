@@ -75,6 +75,8 @@ sourceUrl: ""
 } else if (channelUrl) {
 let newsletterInfo = await conn.newsletterMetadata("invite", channelUrl)
 if (!newsletterInfo) return m.reply("Canal no encontrado.")
+let caption = "*Inspector de enlaces de Canales*\n"
+caption += processObject(newsletterInfo, ppChannel)
 let pp
 try {
 pp = getUrlFromDirectPath(newsletterInfo.preview)
@@ -82,8 +84,7 @@ ppChannel = true
 } catch (e) {
 pp = thumb
 }
-let caption = "*Inspector de enlaces de Canales*\n"
-caption += processObject(newsletterInfo, ppChannel)
+
 if (caption) {
 await conn.sendMessage(m.chat, { text: caption, contextInfo: {
 mentionedJid: conn.parseMention(caption),
@@ -184,7 +185,7 @@ return _.startCase(key.replace(/_/g, " "))
 .replace("Description", "Descripción")
 .replace("Invite", "Invitación")
 .replace("Handle", "Alias")
-//.replace("Picture", "Imagen")
+.replace("Picture", "Imagen")
 .replace("Preview", "Vista previa")
 .replace("Reaction Codes", "Reacciones")
 .replace("Subscribers", "Suscriptores")
