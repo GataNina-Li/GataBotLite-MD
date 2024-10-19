@@ -25,7 +25,7 @@ let caption = `*ID del grupo:* ${res.id || ""}\n` +
 `*Fecha de creación:* ${formatDate(1e3 * res.creation) || ""}\n`
 if (isInviteInfo) {
 caption += `*Descripción:* ${res.desc || "*No hay descripción*"}\n` +
-`*ID de descripción:* ${res.descId || "N/A"}\n` +
+`*ID de descripción:* ${res.descId || "N/A"}\n`
 if (res.linkedParent) {
 try {
 let linkedGroupMeta = await conn.groupMetadata(res.linkedParent)
