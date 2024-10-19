@@ -75,7 +75,7 @@ sourceUrl: ""
 } else if (channelUrl) {
 let newsletterInfo = await conn.newsletterMetadata("invite", channelUrl)
 if (!newsletterInfo) return m.reply("Canal no encontrado.")
-let caption = "*Inspector de enlaces de Canales*\n"
+let caption = "*Inspector de enlaces de Canales*\n\n"
 caption += processObject(newsletterInfo, ppChannel)
 let pp
 try {
@@ -91,7 +91,7 @@ mentionedJid: conn.parseMention(caption),
 externalAdReply: {
 title: "Inspector de enlaces de Canales",
 body: packname,
-thumbnailUrl: pp,
+thumbnailUrl: gataMenu.getRandom(),
 sourceUrl: args[0],
 mediaType: 1,
 showAdAttribution: true,
