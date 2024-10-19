@@ -76,7 +76,7 @@ sourceUrl: ""
 let newsletterInfo = await conn.newsletterMetadata("invite", channelUrl)
 if (!newsletterInfo) return m.reply("Canal no encontrado.")
 let caption = "*Inspector de enlaces de Canales*\n"
-caption += processObject(newsletterInfo)
+caption += processObject(newsletterInfo, ppChannel)
 let pp
 try {
 pp = getUrlFromDirectPath(newsletterInfo.preview)
@@ -192,7 +192,7 @@ return _.startCase(key.replace(/_/g, " "))
 .replace("Viewer Metadata", "Datos avanzados")
 }
 
-function processObject(obj, prefix = "") {
+function processObject(obj, prefix = "", ppChannel) {
 let caption = ""
 Object.keys(obj).forEach(key => {
 const value = obj[key]
