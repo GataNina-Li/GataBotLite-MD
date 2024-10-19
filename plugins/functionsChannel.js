@@ -75,8 +75,6 @@ sourceUrl: ""
 } else if (channelUrl) {
 let newsletterInfo = await conn.newsletterMetadata("invite", channelUrl)
 if (!newsletterInfo) return m.reply("Canal no encontrado.")
-let caption = "*Inspector de enlaces de Canales*\n\n"
-caption += processObject(newsletterInfo, ppChannel)
 let pp
 if (newsletterInfo.preview) {
 pp = getUrlFromDirectPath(newsletterInfo.preview)
@@ -84,6 +82,8 @@ ppChannel = true
 } else {
 pp = thumb
 }
+let caption = "*Inspector de enlaces de Canales*\n\n"
+caption += processObject(newsletterInfo, ppChannel, newsletterInfo, pp)
 if (caption) {
 await conn.sendMessage(m.chat, { text: caption, contextInfo: {
 mentionedJid: conn.parseMention(caption),
@@ -131,7 +131,7 @@ const formattedTime = `${hours}:${minutes}:${seconds} ${period}`
 return `${formattedDate}, ${formattedTime}`
 }
 
-function formatValue(key, value) {
+function formatValue(key, value, pp, newsletterInfo) {
 console.log(value)
 switch (key) {
 case "subscribers":
@@ -178,6 +178,12 @@ case "SUBSCRIBER": return "Suscriptor"
 case "GUEST": return "Invitado"
 default: return "Desconocido"
 }
+case "picture":
+if (newsletterInfo.preview) {
+return pp
+} else {
+return "No hay imagen disponible"
+}
 default:
 return value !== null && value !== undefined ? value.toString() : "No hay información disponible"
 }}
@@ -201,7 +207,7 @@ return _.startCase(key.replace(/_/g, " "))
 .replace("Viewer Metadata", "Datos avanzados")
 }
 
-function processObject(obj, prefix = "", ppChannel) {
+function processObject(obj, prefix = "", pp, newsletterInfo) {
 let caption = ""
 Object.keys(obj).forEach(key => {
 const value = obj[key]
@@ -212,11 +218,7 @@ caption += `\n*\`${sectionName}\`*\n`
 caption += processObject(value, `${prefix}${key}_`)
 }} else {
 const shortKey = prefix ? prefix.split("_").pop() + "_" + key : key
-const displayValue = formatValue(shortKey, value)
-//if (shortKey === "picture") {
-//const imageValue = ppChannel ? pp : displayValue
-//caption += `- *Imagen:*\n${imageValue || "No hay imagen disponible"}\n\n`
-//}
+const displayValue = formatValue(shortKey, value, pp, newsletterInfo)
 const translatedKey = newsletterKey(shortKey)
 caption += `- *${translatedKey}:*\n${displayValue}\n\n`
 }})
