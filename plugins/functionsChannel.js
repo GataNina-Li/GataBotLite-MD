@@ -78,13 +78,12 @@ if (!newsletterInfo) return m.reply("Canal no encontrado.")
 let caption = "*Inspector de enlaces de Canales*\n\n"
 caption += processObject(newsletterInfo, ppChannel)
 let pp
-try {
+if (newsletterInfo.preview) {
 pp = getUrlFromDirectPath(newsletterInfo.preview)
 ppChannel = true
-} catch (e) {
+} else {
 pp = thumb
 }
-
 if (caption) {
 await conn.sendMessage(m.chat, { text: caption, contextInfo: {
 mentionedJid: conn.parseMention(caption),
