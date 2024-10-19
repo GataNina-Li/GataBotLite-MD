@@ -37,10 +37,16 @@ joinApprovalMode: res.joinApprovalMode ? "✅ Si" : "❌ No",
 memberAddMode: res.memberAddMode ? "✅ Si" : "❌ No",
 ephemeralDuration: res.ephemeralDuration !== undefined ? `${res.ephemeralDuration} segundos` : "desconocido"
 })
+let info
 try {
-let res = await conn.groupMetadata(m.chat) // Si el bot esta en el grupo
-let info = groupInfo(res)
-if (!info.id) {
+// Intentar obtener la metadata del grupo
+let res = await conn.groupMetadata(m.chat) // Si el bot está en el grupo
+info = groupInfo(res)
+} catch (error) {
+console.error("Error al obtener la información del grupo:", error)
+}
+
+if (!info?.id) {              
 // En caso que no este en el grupo va a intentar con el enlace
 const inviteUrl = text?.match(/(?:https:\/\/)?(?:www\.)?(?:chat\.|wa\.)?whatsapp\.com\/(?:invite\/|joinchat\/)?([0-9A-Za-z]{22,24})/i)?.[1]
 if (inviteUrl) {
@@ -83,9 +89,7 @@ renderLargerThumbnail: false,
 thumbnailUrl: pp,
 sourceUrl: ""
 }}})
-}} catch (error) {
-console.error("Error al obtener la información del grupo:", error)
-}
+} else {
 // Manejo de enlaces de canal
 const channelUrl = text?.match(/(?:https:\/\/)?(?:www\.)?(?:chat\.|wa\.)?whatsapp\.com\/(?:channel\/)?([0-9A-Za-z]{22,24})/i)?.[1]
 if (channelUrl) {
@@ -113,7 +117,7 @@ renderLargerThumbnail: false
 }}}, { quoted: fkontak })
 }} catch (e) {
 reportError(e)
-}}
+}}}
 break
         
 }}
