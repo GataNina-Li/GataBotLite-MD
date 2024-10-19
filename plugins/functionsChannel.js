@@ -48,7 +48,7 @@ const groupInfo = (res, isInviteInfo = false) => {
                    `*¿Es anuncio de comunidad?:* ${res.isCommunityAnnounce ? "✅ Si" : "❌ No"}\n` +
                    `*Modo de aprobación de unión:* ${res.joinApprovalMode ? "✅ Si" : "❌ No"}\n` +
                    `*Modo de adición de miembros:* ${res.memberAddMode ? "✅ Si" : "❌ No"}\n` +
-                   `*Duración efímera:* ${res.ephemeralDuration !== undefined ? `${res.ephemeralDuration} segundos` : "desconocido"}`;
+                   `*Duración efímera:* ${res.ephemeralDuration !== undefined ? `${res.ephemeralDuration} segundos` : "desconocido"}`
     }
 
     return caption
@@ -58,15 +58,15 @@ let info
 try {
 let res = text ? null : await conn.groupMetadata(m.chat) // Si el bot está en el grupo
 info = groupInfo(res)
-console.log('Metodo de metadatos')
-} catch {           
-// En caso que no este en el grupo va a intentar con el enlace
+console.log('Método de metadatos')
+} catch {
+// En caso de que no esté en el grupo, va a intentar con el enlace
 const inviteUrl = text?.match(/(?:https:\/\/)?(?:www\.)?(?:chat\.|wa\.)?whatsapp\.com\/(?:invite\/|joinchat\/)?([0-9A-Za-z]{22,24})/i)?.[1]
 if (inviteUrl) {
 let inviteInfo = await conn.groupGetInviteInfo(inviteUrl)
 if (!inviteInfo) return m.reply("Grupo no encontrado.")
 info = groupInfo(inviteInfo, true)
-console.log('Metodo de enlace')
+console.log('Método de enlace')
 }}
 if (info) {
 let caption = info
