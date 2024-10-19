@@ -63,7 +63,6 @@ let res = text ? null : await conn.groupMetadata(m.chat) // Si el bot está en e
 info = await groupInfo(res)
 console.log('Método de metadatos')
 } catch { // En caso de que no esté en el grupo, va a intentar con el enlace
-try {
 const inviteUrl = text?.match(/(?:https:\/\/)?(?:www\.)?(?:chat\.|wa\.)?whatsapp\.com\/(?:invite\/|joinchat\/)?([0-9A-Za-z]{22,24})/i)?.[1]
 if (inviteUrl) {
 let inviteInfo = await conn.groupGetInviteInfo(inviteUrl)
@@ -73,6 +72,7 @@ console.log(info)
 console.log('Método de enlace')
 }}
 let caption = info
+if (caption) {
 let pp
 try {
 pp = await conn.profilePictureUrl(info.id)
@@ -90,7 +90,7 @@ renderLargerThumbnail: false,
 thumbnailUrl: pp,
 sourceUrl: ""
 }}})
-} catch {
+} else {
 // Manejo de enlaces de canal
 const channelUrl = text?.match(/(?:https:\/\/)?(?:www\.)?(?:chat\.|wa\.)?whatsapp\.com\/(?:channel\/|joinchat\/)?([0-9A-Za-z]{22,24})/i)?.[1]
 if (channelUrl) {
