@@ -29,9 +29,9 @@ nameCommunity = "\n" + (linkedGroupMeta.subject || "")
 nameCommunity = ""
 }}
 try {
-groupPicture = await conn.profilePictureUrl(res.id, 'image')
+groupPicture = await conn.profilePictureUrl(res.id)
 } catch {
-groupPicture = ""
+groupPicture = "No se puedo obtener"
 }
 let caption = `*ID del grupo:*\n${res.id || "No encontrado"}\n\n` +
 `*Creado por:*\n${res.owner ? `@${res.owner?.split("@")[0]}` : "No encontrado"} ${res.creation ? `el ${formatDate(res.creation)}` : "(Fecha no encontrada)"}\n\n` +
