@@ -42,14 +42,15 @@ let info
 try {
 let res = text ? null : await conn.groupMetadata(m.chat) // Si el bot está en el grupo
 info = groupInfo(res)
-console.log('Prueba')
+console.log('Metodo de metadatos')
 } catch {           
 // En caso que no este en el grupo va a intentar con el enlace
 const inviteUrl = text?.match(/(?:https:\/\/)?(?:www\.)?(?:chat\.|wa\.)?whatsapp\.com\/(?:invite\/|joinchat\/)?([0-9A-Za-z]{22,24})/i)?.[1]
 if (inviteUrl) {
 let inviteInfo = await conn.groupGetInviteInfo(inviteUrl)
 if (!inviteInfo) return m.reply("Grupo no encontrado.")
-info = groupInfo(inviteInfo);
+info = groupInfo(inviteInfo)
+console.log('Metodo de enlace')
 }}
 if (info) {
 let caption = `*Inspector de enlaces de grupo*\n` +
