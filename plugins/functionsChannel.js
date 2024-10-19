@@ -131,7 +131,7 @@ const formattedTime = `${hours}:${minutes}:${seconds} ${period}`
 return `${formattedDate}, ${formattedTime}`
 }
 
-function formatValue(key, value) {
+async function formatValue(key, value) {
 console.log(value)
 switch (key) {
 case "subscribers":
@@ -180,7 +180,7 @@ default: return "Desconocido"
 }
 case "picture":
 if (value) {
-return getUrlFromDirectPath(value)
+return await getUrlFromDirectPath(value)
 } else {
 return "No hay imagen disponible"
 }
