@@ -18,48 +18,8 @@ switch (true) {
 case isCommand1:
 let thumb = gataMenu.getRandom()
 let pp
-// Generar la información del grupo
-/*const groupInfo = async (res, isInviteInfo = false) => {
-let caption = `*ID del grupo:* ${res.id || ""}\n` +
-`*Título:* ${res.subject || ""}\n` +
-`*Creado por:* ${res?.owner ? `@${res.owner?.split("@")[0]}` : "No encontrado"}\n` + 
-`*Fecha de creación:* ${formatDate(1e3 * res.creation) || ""}\n`
-if (isInviteInfo) {
-caption += `*Descripción:* ${res.desc || "*No hay descripción*"}\n` +
-`*ID de descripción:* ${res.descId || "N/A"}\n`
-if (res.linkedParent) {
-try {
-let linkedGroupMeta = await conn.groupMetadata(res.linkedParent)
-caption += `*Comunidad vinculada al grupo:* (Id: ${res.linkedParent || "N/A"}) ${linkedGroupMeta.subject || "N/A"}\n` 
-} catch {
-caption += `*Comunidad vinculada al grupo:* ${res.linkedParent || "N/A"}\n` 
-}}
-caption += `*Restricciones:* ${res.restrict ? "✅ Si" : "❌ No"}\n` +
-`*Anuncios:* ${res.announce ? "✅ Si" : "❌ No"}\n` +
-`*¿Es comunidad?:* ${res.isCommunity ? "✅ Si" : "❌ No"}\n` +
-`*¿Es anuncio de comunidad?:* ${res.isCommunityAnnounce ? "✅ Si" : "❌ No"}\n` +
-`*Modo de aprobación de miembros:* ${res.joinApprovalMode ? "✅ Si" : "❌ No"}\n` +
-`*Modo para agregar miembros:* ${res.memberAddMode ? "✅ Si" : "❌ No"}\n` +
-`*Duración:* ${res.ephemeralDuration !== undefined ? `${res.ephemeralDuration} segundos` : "desconocido"}\n`
-} else {
-caption += res.subjectOwner ? `\n🏷️ *Título cambiado* por @${res.subjectOwner?.split("@")[0]} en *${formatDate(1e3 * res.subjectTime)}*\n` : ""
-caption += res.descOwner ? `\n📝 *Descripción* por @${res.descOwner?.split("@")[0]} en *${formatDate(1e3 * res.descTime)}*\n` : ""
-caption += `*Tamaño del grupo:* ${res.size || ""}\n` +
-`*Miembros destacados:* ` + (res.participants ? "\n👥 " + res.participants.slice(0, 5).map((user, i) => `${i + 1}. @${user.id?.split("@")[0]}${user.admin === "superadmin" ? " (superadmin)" : user.admin === "admin" ? " (admin)" : ""}`).join("\n") : "No hay") + `\n` +
-(res.participants?.length > 5 ? `*Y ${res.participants.length - 5} otros miembros.*` : "") + `\n` +
-`*Descripción:* ${res.desc ? `\n${res.desc}` : "*No hay descripción*"}\n` +
-`*Restricciones:* ${res.restrict ? "✅ Si" : "❌ No"}\n` +
-`*Anuncios:* ${res.announce ? "✅ Si" : "❌ No"}\n` +
-`*¿Es comunidad?:* ${res.isCommunity ? "✅ Si" : "❌ No"}\n` +
-`*¿Es anuncio de comunidad?:* ${res.isCommunityAnnounce ? "✅ Si" : "❌ No"}\n` +
-`*Modo de aprobación de miembros:* ${res.joinApprovalMode ? "✅ Si" : "❌ No"}\n` +
-`*Modo para agregar miembros:* ${res.memberAddMode ? "✅ Si" : "❌ No"}\n` +
-`*Duración efímera:* ${res.ephemeralDuration !== undefined ? `${res.ephemeralDuration} segundos` : "desconocido"}`
-}
-return caption
-}*/
 const groupInfo = async (res, isInviteInfo = false) => {
-let nameCommunity = "No encontrado"
+let nameCommunity = "no tiene Comunidad"
 if (res.linkedParent) {
 try {
 let linkedGroupMeta = await conn.groupMetadata(res.linkedParent)
@@ -68,9 +28,9 @@ nameCommunity = "--> " + (linkedGroupMeta.subject || "")
 nameCommunity = ""
 }}
 let caption = `*ID del grupo:*\n${res.id || "No encontrado"}\n\n` +
-`*Creado por:*\n${res.owner ? `@${res.owner?.split("@")[0]}` : "No encontrado"} ${res.creation ? `el ${formatDate(1e3 * res.creation)}` : "(Fecha no encontrada)"}\n\n` +
-`*Título:* ${res.subject || "No encontrado"}\n\n` +
-`*Título cambiado por:*\n${res.subjectOwner ? `@${res.subjectOwner?.split("@")[0]}` : "No encontrado"} ${res.subjectTime ? `el ${formatDate(1e3 * res.subjectTime)}` : "(Fecha no encontrada)"}\n\n` +
+`*Creado por:*\n${res.owner ? `@${res.owner?.split("@")[0]}` : "No encontrado"} ${res.creation ? `el ${formatDate(res.creation)}` : "(Fecha no encontrada)"}\n\n` +
+`*Nombre:* ${res.subject || "No encontrado"}\n\n` +
+`*Nombre cambiado por:*\n${res.subjectOwner ? `@${res.subjectOwner?.split("@")[0]}` : "No encontrado"} ${res.subjectTime ? `el ${formatDate(res.subjectTime)}` : "(Fecha no encontrada)"}\n\n` +
 `*Descripción:*\n${res.desc || "No encontrado"}\n\n` +
 `*Id de la descripción:*\n${res.descId || "No encontrado"}\n\n` 
 
@@ -83,8 +43,8 @@ caption += `*Descripción cambiado por:*\n${res.descOwner ? `@${res.descOwner?.s
 
 // Parámetros comunes tanto para metadatos como para enlace de invitación
 caption += `*Miembros destacados:*\n` + (res.participants ? res.participants.map((user, i) => `${i + 1}. @${user.id?.split("@")[0]}${user.admin === "superadmin" ? " (superadmin)" : user.admin === "admin" ? " (admin)" : ""}`).join("\n") : "No hay") + `\n\n` +
-`*Participantes total:*\n${res.size || "Cantidad no encontrada"}\n\n` +
-`*Comunidad vinculada al grupo:*\n${res.linkedParent ? `(Id: ${res.linkedParent})` : "No hay"} ${nameCommunity}\n\n` +
+`*Destacados total:*\n${res.size || "Cantidad no encontrada"}\n\n` +
+`*Comunidad vinculada al grupo:*\n${res.linkedParent ? `(Id: ${res.linkedParent})` : "Este Grupo"} ${nameCommunity}\n\n` +
 `*Restricciones:* ${res.restrict ? "✅ Si" : "❌ No"}\n` +
 `*Anuncios:* ${res.announce ? "✅ Si" : "❌ No"}\n` +
 `*¿Es comunidad?:* ${res.isCommunity ? "✅ Si" : "❌ No"}\n` +
