@@ -79,17 +79,17 @@ pp = await conn.profilePictureUrl(info.id)
 } catch {
 pp = thumb
 }
-await conn.reply(m.chat, caption, m, { contextInfo: {
+await conn.sendMessage(m.chat, { text: caption, contextInfo: {
 mentionedJid: conn.parseMention(caption),
 externalAdReply: {
-title: "Ver enlace de grupo",
-body: "",
-mediaType: 1,
-previewType: 0,
-renderLargerThumbnail: false,
+title: "Inspector de enlaces de Grupos",
+body: packname,
 thumbnailUrl: pp,
-sourceUrl: ""
-}}})
+sourceUrl: args[0],
+mediaType: 1,
+showAdAttribution: true,
+renderLargerThumbnail: false
+}}}, { quoted: fkontak })
 } else {
 // Manejo de enlaces de canal
 const channelUrl = text?.match(/(?:https:\/\/)?(?:www\.)?(?:chat\.|wa\.)?whatsapp\.com\/(?:channel\/|joinchat\/)?([0-9A-Za-z]{22,24})/i)?.[1]
