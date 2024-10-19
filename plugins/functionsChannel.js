@@ -111,7 +111,7 @@ handler.command = /^(inspect2)$/i
 handler.register = true
 export default handler 
 
-function formatDate(n, locale = "es-ES", includeTime = true) {
+function formatDate(n, locale = "es", includeTime = true) {
 const date = new Date(n)
 if (isNaN(date)) return "Fecha no válida"
 // Formato de fecha: día/mes/año
@@ -185,7 +185,7 @@ return _.startCase(key.replace(/_/g, " "))
 .replace("Description", "Descripción")
 .replace("Invite", "Invitación")
 .replace("Handle", "Alias")
-.replace("Picture", "Imagen")
+//.replace("Picture", "Imagen")
 .replace("Preview", "Vista previa")
 .replace("Reaction Codes", "Reacciones")
 .replace("Subscribers", "Suscriptores")
