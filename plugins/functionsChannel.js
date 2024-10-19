@@ -30,8 +30,8 @@ nameCommunity = ""
 }}
 try {
 groupPicture = await conn.profilePictureUrl(res.id)
-} catch {
-groupPicture = "No se puedo obtener"
+} catch (e) {
+console.log(e)
 }
 let caption = `*ID del grupo:*\n${res.id || "No encontrado"}\n\n` +
 `*Creado por:*\n${res.owner ? `@${res.owner?.split("@")[0]}` : "No encontrado"} ${res.creation ? `el ${formatDate(res.creation)}` : "(Fecha no encontrada)"}\n\n` +
