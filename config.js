@@ -23,7 +23,7 @@ global.mods = []
 global.prems = []
 
 // Cambiar a false para usar el Bot desde el mismo numero del Bot.
-global.isBaileysFail = false
+global.isBaileysFail = true
 
 // ❰❰ methodCode ❱❱
 // [ES] > Agregue el número del Bot en "botNumberCode" si desea recibir código de 8 dígitos sin registrar el número en la consola.
