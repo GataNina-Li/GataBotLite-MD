@@ -38,14 +38,14 @@ memberAddMode: res.memberAddMode ? "✅ Si" : "❌ No",
 ephemeralDuration: res.ephemeralDuration !== undefined ? `${res.ephemeralDuration} segundos` : "desconocido"
 })
 let info
-//try {
 // Intentar obtener la metadata del grupo
-let res = await groupMetadata(m.chat) // Si el bot está en el grupo
+try {
+let res = text ? null : await conn.groupMetadata(m.chat) // Si el bot está en el grupo
 info = groupInfo(res)
 console.log('Prueba')
-//} catch (error) {
-//console.error("Error al obtener la información del grupo:", error)
-//}
+} catch (error) {
+console.error("Error al obtener la información del grupo:", error)
+}
 
 if (!res) {              
 // En caso que no este en el grupo va a intentar con el enlace
