@@ -131,7 +131,7 @@ const formattedTime = `${hours}:${minutes}:${seconds} ${period}`
 return `${formattedDate}, ${formattedTime}`
 }
 
-function formatValue(key, value, newsletterInfo) {
+function formatValue(key, value) {
 console.log(value)
 switch (key) {
 case "subscribers":
@@ -179,8 +179,8 @@ case "GUEST": return "Invitado"
 default: return "Desconocido"
 }
 case "picture":
-if (newsletterInfo.preview) {
-return getUrlFromDirectPath(newsletterInfo.preview)
+if (value) {
+return getUrlFromDirectPath(value)
 } else {
 return "No hay imagen disponible"
 }
@@ -207,7 +207,7 @@ return _.startCase(key.replace(/_/g, " "))
 .replace("Viewer Metadata", "Datos avanzados")
 }
 
-function processObject(obj, prefix = "", newsletterInfo) {
+function processObject(obj, prefix = "") {
 let caption = ""
 Object.keys(obj).forEach(key => {
 const value = obj[key]
@@ -218,7 +218,7 @@ caption += `\n*\`${sectionName}\`*\n`
 caption += processObject(value, `${prefix}${key}_`)
 }} else {
 const shortKey = prefix ? prefix.split("_").pop() + "_" + key : key
-const displayValue = formatValue(shortKey, value, newsletterInfo)
+const displayValue = formatValue(shortKey, value)
 const translatedKey = newsletterKey(shortKey)
 caption += `- *${translatedKey}:*\n${displayValue}\n\n`
 }})
