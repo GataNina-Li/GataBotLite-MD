@@ -29,11 +29,11 @@ caption += `*Descripción:* ${res.desc || "*No hay descripción*"}\n` +
 if (res.linkedParent) {
 try {
 let linkedGroupMeta = await conn.groupMetadata(res.linkedParent)
-caption += `*Comunidad vinculada al grupo:* (Id: ${res.linkedParent || "N/A"}) ${linkedGroupMeta.subject || "N/A"}\n` +
+caption += `*Comunidad vinculada al grupo:* (Id: ${res.linkedParent || "N/A"}) ${linkedGroupMeta.subject || "N/A"}\n` 
 } catch {
-caption += `*Comunidad vinculada al grupo:* ${res.linkedParent || "N/A"}\n` +
+caption += `*Comunidad vinculada al grupo:* ${res.linkedParent || "N/A"}\n` 
 }}
-`*Restricciones:* ${res.restrict ? "✅ Si" : "❌ No"}\n` +
+caption += `*Restricciones:* ${res.restrict ? "✅ Si" : "❌ No"}\n` +
 `*Anuncios:* ${res.announce ? "✅ Si" : "❌ No"}\n` +
 `*¿Es comunidad?:* ${res.isCommunity ? "✅ Si" : "❌ No"}\n` +
 `*¿Es anuncio de comunidad?:* ${res.isCommunityAnnounce ? "✅ Si" : "❌ No"}\n` +
