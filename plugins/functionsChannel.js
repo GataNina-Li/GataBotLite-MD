@@ -111,7 +111,7 @@ handler.command = /^(inspect2)$/i
 handler.register = true
 export default handler 
 
-function formatDate(n, locale = "es", includeTime = true) {
+function formatDate(n, locale = "id", includeTime = true) {
 const date = new Date(n)
 if (isNaN(date)) return "Fecha no válida"
 // Formato de fecha: día/mes/año
@@ -205,10 +205,10 @@ caption += processObject(value, `${prefix}${key}_`)
 }} else {
 const shortKey = prefix ? prefix.split("_").pop() + "_" + key : key
 const displayValue = formatValue(shortKey, value)
-if (shortKey === "picture") {
-const imageValue = ppChannel ? pp : displayValue
-caption += `- *Imagen:*\n${imageValue || "No hay imagen disponible"}\n\n`
-}
+//if (shortKey === "picture") {
+//const imageValue = ppChannel ? pp : displayValue
+//caption += `- *Imagen:*\n${imageValue || "No hay imagen disponible"}\n\n`
+//}
 const translatedKey = newsletterKey(shortKey)
 caption += `- *${translatedKey}:*\n${displayValue}\n\n`
 }})
