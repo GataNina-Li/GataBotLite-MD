@@ -17,6 +17,7 @@ console.log(e)
 switch (true) {     
 case isCommand1:
 let thumb = gataMenu.getRandom()
+let pp
 // Generar la información del grupo
 const groupInfo = async (res, isInviteInfo = false) => {
 let caption = `*ID del grupo:* ${res.id || ""}\n` +
@@ -61,6 +62,11 @@ let info
 try {
 let res = text ? null : await conn.groupMetadata(m.chat) // Si el bot está en el grupo
 info = await groupInfo(res)
+try {
+pp = await conn.profilePictureUrl(res?.id)
+} catch {
+pp = thumb
+}
 console.log('Método de metadatos')
 } catch { // En caso de que no esté en el grupo, va a intentar con el enlace
 const inviteUrl = text?.match(/(?:https:\/\/)?(?:www\.)?(?:chat\.|wa\.)?whatsapp\.com\/(?:invite\/|joinchat\/)?([0-9A-Za-z]{22,24})/i)?.[1]
@@ -73,9 +79,8 @@ console.log('Método de enlace')
 }}
 let caption = info
 if (caption) {
-let pp
 try {
-pp = await conn.profilePictureUrl(inviteInfo.id)
+pp = await conn.profilePictureUrl(inviteInfo?.id)
 } catch {
 pp = thumb
 }
@@ -98,7 +103,6 @@ try {
 let newsletterInfo = await conn.newsletterMetadata("invite", channelUrl)
 if (!newsletterInfo) return m.reply("Canal no encontrado.")
 let caption = "*Inspector de enlaces de Canales*\n\n" + processObject(newsletterInfo, "", newsletterInfo.preview)
-let pp
 if (newsletterInfo.preview) {
 pp = getUrlFromDirectPath(newsletterInfo.preview)
 } else {
