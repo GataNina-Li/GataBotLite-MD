@@ -4,7 +4,7 @@
 import { getUrlFromDirectPath } from "@whiskeysockets/baileys"
 import _ from "lodash"
 
-let handler = async (m, { conn, command, usedPrefix, args, text }) => {
+let handler = async (m, { conn, command, usedPrefix, args, text, groupMetadata }) => {
 const isCommand1 = /^(inspect2)$/i.test(command)
     
 let fkontak = { "key": { "participants":"0@s.whatsapp.net", "remoteJid": "status@broadcast", "fromMe": false, "id": "Halo" }, "message": { "contactMessage": { "vcard": `BEGIN:VCARD\nVERSION:3.0\nN:Sy;Bot;;;\nFN:y\nitem1.TEL;waid=${m.sender.split('@')[0]}:${m.sender.split('@')[0]}\nitem1.X-ABLabel:Ponsel\nEND:VCARD` }}, "participant": "0@s.whatsapp.net" }
@@ -40,14 +40,14 @@ ephemeralDuration: res.ephemeralDuration !== undefined ? `${res.ephemeralDuratio
 let info
 //try {
 // Intentar obtener la metadata del grupo
-let res = await conn.groupMetadata(m.chat) // Si el bot está en el grupo
+let res = await groupMetadata(m.chat) // Si el bot está en el grupo
 info = groupInfo(res)
 console.log('Prueba')
 //} catch (error) {
 //console.error("Error al obtener la información del grupo:", error)
 //}
 
-if (!info?.id) {              
+if (!res) {              
 // En caso que no este en el grupo va a intentar con el enlace
 const inviteUrl = text?.match(/(?:https:\/\/)?(?:www\.)?(?:chat\.|wa\.)?whatsapp\.com\/(?:invite\/|joinchat\/)?([0-9A-Za-z]{22,24})/i)?.[1]
 if (inviteUrl) {
