@@ -111,7 +111,7 @@ handler.command = /^(inspect2)$/i
 handler.register = true
 export default handler 
 
-function formatDate(n, locale = "es-ES", includeTime = true) {
+/*function formatDate(n, locale = "es-ES", includeTime = true) {
 const date = new Date(n)
 if (isNaN(date)) return "Fecha no válida"
 // Formato de fecha: día/mes/año
@@ -125,6 +125,12 @@ const seconds = String(date.getSeconds()).padStart(2, '0')
 const period = hours < 12 ? 'AM' : 'PM'
 const formattedTime = `${hours}:${minutes}:${seconds} ${period}`
 return `${formattedDate}, ${formattedTime}`
+}*/
+
+function formatDate(n, locale = "es-ES", includeTime = true) {
+const date = new Date(n)
+if (isNaN(date)) return "Fecha no válida"
+return includeTime ? date.toLocaleString(locale) : date.toLocaleDateString(locale)
 }
 
 function formatValue(key, value) {
