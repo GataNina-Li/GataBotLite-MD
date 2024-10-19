@@ -128,7 +128,7 @@ return `${formattedDate}, ${formattedTime}`
 }*/
 
 function formatDate(n, locale = "id", includeTime = true) {
-const date = new Date(n)
+const date = new Date(n * 1000)
 if (isNaN(date)) return "Fecha no válida"
 return includeTime ? date.toLocaleString(locale) : date.toLocaleDateString(locale)
 }
