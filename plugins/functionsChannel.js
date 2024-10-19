@@ -115,9 +115,9 @@ mediaType: 1,
 showAdAttribution: true,
 renderLargerThumbnail: false
 }}}, { quoted: fkontak })
-}} catch (e) {
+}}} catch (e) {
 reportError(e)
-}}}
+}}
 break
         
 }}
