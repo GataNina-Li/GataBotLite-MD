@@ -20,6 +20,7 @@ let thumb = gataMenu.getRandom()
 let pp
 const groupInfo = async (res, isInviteInfo = false) => {
 let nameCommunity = "no pertenece a ninguna Comunidad"
+let groupPicture = "No disponible"
 if (res.linkedParent) {
 try {
 let linkedGroupMeta = await conn.groupMetadata(res.linkedParent)
@@ -27,12 +28,18 @@ nameCommunity = "\n" + (linkedGroupMeta.subject || "")
 } catch {
 nameCommunity = ""
 }}
+try {
+groupPicture = await conn.profilePictureUrl(res.id, 'image')
+} catch {
+groupPicture = ""
+}
 let caption = `*ID del grupo:*\n${res.id || "No encontrado"}\n\n` +
 `*Creado por:*\n${res.owner ? `@${res.owner?.split("@")[0]}` : "No encontrado"} ${res.creation ? `el ${formatDate(res.creation)}` : "(Fecha no encontrada)"}\n\n` +
 `*Nombre:*\n${res.subject || "No encontrado"}\n\n` +
 `*Nombre cambiado por:*\n${res.subjectOwner ? `@${res.subjectOwner?.split("@")[0]}` : "No encontrado"} ${res.subjectTime ? `el ${formatDate(res.subjectTime)}` : "(Fecha no encontrada)"}\n\n` +
 `*Descripción:*\n${res.desc || "No encontrado"}\n\n` +
 `*Id de la descripción:*\n${res.descId || "No encontrado"}\n\n` +
+`*Imagen del grupo:*\n${groupPicture}\n\n` +
 
 // Parámetros que solo están disponibles en los metadatos
 //if (!isInviteInfo) {
