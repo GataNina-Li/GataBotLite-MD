@@ -91,7 +91,7 @@ sourceUrl: ""
 }}})
 } else {
 // Manejo de enlaces de canal
-const channelUrl = text?.match(/(?:https:\/\/)?(?:www\.)?(?:chat\.|wa\.)?whatsapp\.com\/(?:channel\/)?([0-9A-Za-z]{22,24})/i)?.[1]
+const channelUrl = text?.match(/(?:https:\/\/)?(?:www\.)?(?:chat\.|wa\.)?whatsapp\.com\/(?:channel\/|joinchat\/)?([0-9A-Za-z]{22,24})/i)?.[1]
 if (channelUrl) {
 try {
 let newsletterInfo = await conn.newsletterMetadata("invite", channelUrl)
