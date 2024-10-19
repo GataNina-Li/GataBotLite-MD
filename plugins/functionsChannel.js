@@ -71,7 +71,6 @@ info = await groupInfo(inviteInfo, true)
 console.log(info)
 console.log('Método de enlace')
 }}
-if (info) {
 let caption = info
 let pp
 try {
