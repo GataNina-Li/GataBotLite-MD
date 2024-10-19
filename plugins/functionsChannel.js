@@ -83,7 +83,7 @@ caption += `*Descripción cambiado por:*\n${res.descOwner ? `@${res.descOwner?.s
 
 // Parámetros comunes tanto para metadatos como para enlace de invitación
 caption += `*Miembros destacados:*\n` + (res.participants ? res.participants.map((user, i) => `${i + 1}. @${user.id?.split("@")[0]}${user.admin === "superadmin" ? " (superadmin)" : user.admin === "admin" ? " (admin)" : ""}`).join("\n") : "No hay") + `\n\n` +
-`*Participantes total:*\n${res.size || "Cantidad no encontrada"}\n\n`
+`*Participantes total:*\n${res.size || "Cantidad no encontrada"}\n\n` +
 `*Comunidad vinculada al grupo:*\n${res.linkedParent ? `(Id: ${res.linkedParent})` : "No hay"} ${nameCommunity}\n\n` +
 `*Restricciones:* ${res.restrict ? "✅ Si" : "❌ No"}\n` +
 `*Anuncios:* ${res.announce ? "✅ Si" : "❌ No"}\n` +
