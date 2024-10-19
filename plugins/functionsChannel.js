@@ -103,7 +103,6 @@ pp = getUrlFromDirectPath(newsletterInfo.preview)
 } else {
 pp = thumb
 }
-if (caption) {
 await conn.sendMessage(m.chat, { text: caption, contextInfo: {
 mentionedJid: conn.parseMention(caption),
 externalAdReply: {
@@ -115,9 +114,9 @@ mediaType: 1,
 showAdAttribution: true,
 renderLargerThumbnail: false
 }}}, { quoted: fkontak })
-}}} catch (e) {
+} catch (e) {
 reportError(e)
-}}
+}}}
 break
         
 }}
