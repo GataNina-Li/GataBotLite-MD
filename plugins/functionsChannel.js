@@ -78,12 +78,13 @@ info = await groupInfo(inviteInfo, true)
 //if (!inviteInfo) return m.reply("Grupo no encontrado.")
 console.log(info)
 console.log('Método de enlace')
-//}}
+//
 if (inviteInfo) {
 try {
 pp = await conn.profilePictureUrl(inviteInfo?.id)
 } catch {
 pp = thumb
+}}
 let caption = info
 if (caption) {
 await conn.sendMessage(m.chat, { text: caption, contextInfo: {
