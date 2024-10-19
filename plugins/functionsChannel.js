@@ -18,7 +18,7 @@ switch (true) {
 case isCommand1:
 let thumb = gataMenu.getRandom()
 // Generar la información del grupo
-const groupInfo = (res, isInviteInfo = false) => {
+const groupInfo = async (res, isInviteInfo = false) => {
 let caption = `*ID del grupo:* ${res.id || ""}\n` +
 `*Título:* ${res.subject || ""}\n` +
 `*Creado por:* @${res.owner?.split("@")[0] || ""}\n` +
@@ -61,14 +61,14 @@ return caption
 let info
 try {
 let res = text ? null : await conn.groupMetadata(m.chat) // Si el bot está en el grupo
-info = groupInfo(res)
+info = await groupInfo(res)
 console.log('Método de metadatos')
 } catch { // En caso de que no esté en el grupo, va a intentar con el enlace
 const inviteUrl = text?.match(/(?:https:\/\/)?(?:www\.)?(?:chat\.|wa\.)?whatsapp\.com\/(?:invite\/|joinchat\/)?([0-9A-Za-z]{22,24})/i)?.[1]
 if (inviteUrl) {
 let inviteInfo = await conn.groupGetInviteInfo(inviteUrl)
 if (!inviteInfo) return m.reply("Grupo no encontrado.")
-info = groupInfo(inviteInfo, true)
+info = await groupInfo(inviteInfo, true)
 console.log(info)
 console.log('Método de enlace')
 }}
