@@ -13,10 +13,9 @@ await m.reply(lenguajeGB['smsMalError3']() + '\n*' + lenguajeGB.smsMensError1() 
 console.log(`❗❗ ${lenguajeGB['smsMensError2']()} ${usedPrefix + command} ❗❗`)
 console.log(e)
 }
-
+    
 switch (true) {     
 case isCommand1:
-console.log('dddddd')
 let thumb = gataMenu.getRandom()
 // Generar la información del grupo
 const groupInfo = (res) => ({
@@ -39,13 +38,13 @@ memberAddMode: res.memberAddMode ? "✅ Si" : "❌ No",
 ephemeralDuration: res.ephemeralDuration !== undefined ? `${res.ephemeralDuration} segundos` : "desconocido"
 })
 let info
-try {
+//try {
 // Intentar obtener la metadata del grupo
 let res = await conn.groupMetadata(m.chat) // Si el bot está en el grupo
 info = groupInfo(res)
-} catch (error) {
-console.error("Error al obtener la información del grupo:", error)
-}
+//} catch (error) {
+//console.error("Error al obtener la información del grupo:", error)
+//}
 
 if (!info?.id) {              
 // En caso que no este en el grupo va a intentar con el enlace
