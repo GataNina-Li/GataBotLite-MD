@@ -42,6 +42,7 @@ let info
 // Intentar obtener la metadata del grupo
 let res = await conn.groupMetadata(m.chat) // Si el bot está en el grupo
 info = groupInfo(res)
+console.log('Prueba')
 //} catch (error) {
 //console.error("Error al obtener la información del grupo:", error)
 //}
