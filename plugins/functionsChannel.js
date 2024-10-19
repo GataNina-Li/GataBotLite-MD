@@ -16,50 +16,63 @@ console.log(e)
 
 switch (true) {     
 case isCommand1:
-try { 
 let thumb = gataMenu.getRandom()
-let ppChannel = null
-try {
-let res = text ? null : await conn.groupMetadata(m.chat)
-if (res) {
-let caption = `*Inspector de enlaces de grupo*\n- ${res.id || ""}\n*Título:* ${res.subject || ""}\n*Creado* por @${res.owner?.split("@")[0] || ""} en *${formatDate(1e3 * res.creation) || ""}*${res.subjectOwner ? `\n*Título cambiado* por @${res.subjectOwner?.split("@")[0]} en *${formatDate(1e3 * res.subjectTime)}*` : ""}${res.descOwner ? `\n*Descripción* por @${res.descOwner?.split("@")[0]} en *${formatDate(1e3 * res.descTime)}*` : ""}\n*Número de miembros:* ${res.size || ""}\n*Miembro superior:* ${res.participants ? "\n" + res.participants.slice(0, 5).map((user, i) => `${i + 1}. @${user.id?.split("@")[0]}${"superadmin" === user.admin ? " (superadmin)" : "admin" === user.admin ? " (admin)" : ""}`).join("\n").trim() : "No hay"}${res.participants?.length > 5 ? `\nY ${res.participants?.length - 5} otros miembros.` : ""}\n${res.desc ? `*Descripción:*\n${res.desc}` : "*No hay descripción*"}\n\n*Detalles completos del grupo*\n\n*Restringido:* ${res.restrict ? "Si" : "No"}\n*Anunciar:* ${res.announce ? "Si" : "No"}\n*Es comunidad:* ${res.isCommunity ? "Si" : "No"}\n*Es un anuncio de la comunidad:* ${res.isCommunityAnnounce ? "Si" : "No"}\n*Modo de Aprobación para Unirse:* ${res.joinApprovalMode ? "Si" : "No"}\n*Modo para agregar Miembros:* ${res.memberAddMode ? "Si" : "No"}\n*Duración:* ${void 0 !== res.ephemeralDuration ? res.ephemeralDuration + " segundos" : "desconocido"}`
-let pp
-try {
-pp = await conn.profilePictureUrl(res?.id)
-} catch (e) {
-pp = thumb
-}
-if (caption) {
-await conn.reply(m.chat, caption, m, {
-contextInfo: {
-mentionedJid: conn.parseMention(caption),
-externalAdReply: {
-title: "Ver enlace de grupo",
-body: "",
-mediaType: 1,
-previewType: 0,
-renderLargerThumbnail: false,
-thumbnailUrl: pp,
-sourceUrl: ""
-}}
+// Generar la información del grupo
+const groupInfo = (res) => ({
+id: res.id || "",
+title: res.subject || "",
+createdBy: `@${res.owner?.split("@")[0] || ""}`,
+creationDate: formatDate(1e3 * res.creation) || "",
+subjectOwner: res.subjectOwner ? `\n🏷️ *Título cambiado* por @${res.subjectOwner?.split("@")[0]} en *${formatDate(1e3 * res.subjectTime)}*` : "",
+descOwner: res.descOwner ? `\n📝 *Descripción* por @${res.descOwner?.split("@")[0]} en *${formatDate(1e3 * res.descTime)}*` : "",
+size: res.size || "",
+topMembers: res.participants ? "\n👥 " + res.participants.slice(0, 5).map((user, i) => `${i + 1}. @${user.id?.split("@")[0]}${user.admin === "superadmin" ? " (superadmin)" : user.admin === "admin" ? " (admin)" : ""}`).join("\n") : "No hay",
+extraMembers: res.participants?.length > 5 ? `\nY ${res.participants.length - 5} otros miembros.` : "",
+desc: res.desc ? `*Descripción:*\n${res.desc}` : "*No hay descripción*",
+restrict: res.restrict ? "✅ Si" : "❌ No",
+announce: res.announce ? "✅ Si" : "❌ No",
+isCommunity: res.isCommunity ? "✅ Si" : "❌ No",
+isCommunityAnnounce: res.isCommunityAnnounce ? "✅ Si" : "❌ No",
+joinApprovalMode: res.joinApprovalMode ? "✅ Si" : "❌ No",
+memberAddMode: res.memberAddMode ? "✅ Si" : "❌ No",
+ephemeralDuration: res.ephemeralDuration !== undefined ? `${res.ephemeralDuration} segundos` : "desconocido"
 })
-}
-} else {
+try {
+let res = await conn.groupMetadata(m.chat) // Si el bot esta en el grupo
+let info = groupInfo(res)
+if (!info.id) {
+// En caso que no este en el grupo va a intentar con el enlace
 const inviteUrl = text?.match(/(?:https:\/\/)?(?:www\.)?(?:chat\.|wa\.)?whatsapp\.com\/(?:invite\/|joinchat\/)?([0-9A-Za-z]{22,24})/i)?.[1]
-const channelUrl = text?.match(/(?:https:\/\/)?(?:www\.)?(?:chat\.|wa\.)?whatsapp\.com\/(?:channel\/|joinchat\/)?([0-9A-Za-z]{22,24})/i)?.[1]
 if (inviteUrl) {
 let inviteInfo = await conn.groupGetInviteInfo(inviteUrl)
-if (!inviteInfo) return m.reply("Group tidak ditemukan.")
-let caption = `*Inspector de enlaces de grupo*\n- ${inviteInfo.id || ""}\n*Título:* ${inviteInfo.subject || ""}\n*Creado* por @${inviteInfo.owner?.split("@")[0] || ""} en *${formatDate(1e3 * inviteInfo.creation) || ""}*${inviteInfo.subjectOwner ? `\n*Título cambiado* por @${inviteInfo.subjectOwner?.split("@")[0]} en *${formatDate(1e3 * inviteInfo.subjectTime)}*` : ""}${inviteInfo.descOwner ? `\n*Descripción* por @${inviteInfo.descOwner?.split("@")[0]} en *${formatDate(1e3 * inviteInfo.descTime)}*` : ""}\n*Número de miembros:* ${inviteInfo.size || ""}\n*Miembro superior:* ${inviteInfo.participants ? "\n" + inviteInfo.participants.slice(0, 5).map((user, i) => `${i + 1}. @${user.id?.split("@")[0]}${"superadmin" === user.admin ? " (superadmin)" : "admin" === user.admin ? " (admin)" : ""}`).join("\n").trim() : "No hay"}${inviteInfo.participants?.length > 5 ? `\nY ${inviteInfo.participants?.length - 5} otros miembros.` : ""}\n${inviteInfo.desc ? `*Descripción:*\n${inviteInfo.desc}` : "*No hay descripción*"}\n\n*Detalles completos del grupo*\n\n*Restringido:* ${inviteInfo.restrict ? "Si" : "No"}\n*Anunciar:* ${inviteInfo.announce ? "Si" : "No"}\n*Es comunidad:* ${inviteInfo.isCommunity ? "Si" : "No"}\n*Es un anuncio de la comunidad:* ${inviteInfo.isCommunityAnnounce ? "Si" : "No"}\n*Modo de Aprobación para Unirse:* ${inviteInfo.joinApprovalMode ? "Si" : "No"}\n*Modo para agregar Miembros:* ${inviteInfo.memberAddMode ? "Si" : "No"}\n*Duración:* ${void 0 !== inviteInfo.ephemeralDuration ? inviteInfo.ephemeralDuration + " segundos" : "desconocido"}`
+if (!inviteInfo) return m.reply("Grupo no encontrado.")
+info = groupInfo(inviteInfo);
+}}
+if (info) {
+let caption = `*Inspector de enlaces de grupo*\n` +
+`🔗 - ${info.id}\n` +
+`*Título:* ${info.title}\n` +
+`🗓️ *Creado* por ${info.createdBy} en *${info.creationDate}*` +
+`${info.subjectOwner}` +
+`${info.descOwner}\n` +
+`👥 *Número de miembros:* ${info.size}\n` +
+`👤 *Miembro superior:* ${info.topMembers}${info.extraMembers}\n` +
+`${info.desc}\n\n` +
+`*Detalles completos del grupo*\n\n` +
+`🔒 *Restringido:* ${info.restrict}\n` +
+`📢 *Anunciar:* ${info.announce}\n` +
+`🏛️ *Es comunidad:* ${info.isCommunity}\n` +
+`📣 *Es un anuncio de la comunidad:* ${info.isCommunityAnnounce}\n` +
+`🔑 *Modo de Aprobación para Unirse:* ${info.joinApprovalMode}\n` +
+`➕ *Modo para agregar Miembros:* ${info.memberAddMode}\n` +
+`⏳ *Duración:* ${info.ephemeralDuration}`
 let pp
 try {
-pp = await conn.profilePictureUrl(inviteInfo?.id)
-} catch (e) {
+pp = await conn.profilePictureUrl(info.id)
+} catch {
 pp = thumb
 }
-if (caption) {
-await conn.reply(m.chat, caption, m, {
-contextInfo: {
+await conn.reply(m.chat, caption, m, { contextInfo: {
 mentionedJid: conn.parseMention(caption),
 externalAdReply: {
 title: "Ver enlace de grupo",
@@ -69,18 +82,18 @@ previewType: 0,
 renderLargerThumbnail: false,
 thumbnailUrl: pp,
 sourceUrl: ""
-}}
-})
-}
-} else if (channelUrl) {
+}}})
+}} catch {
+// Manejo de enlaces de canal
+const channelUrl = text?.match(/(?:https:\/\/)?(?:www\.)?(?:chat\.|wa\.)?whatsapp\.com\/(?:channel\/)?([0-9A-Za-z]{22,24})/i)?.[1]
+if (channelUrl) {
+try {
 let newsletterInfo = await conn.newsletterMetadata("invite", channelUrl)
 if (!newsletterInfo) return m.reply("Canal no encontrado.")
-let caption = "*Inspector de enlaces de Canales*\n\n"
-caption += processObject(newsletterInfo, "", newsletterInfo.preview)
+let caption = "*Inspector de enlaces de Canales*\n\n" + processObject(newsletterInfo, "", newsletterInfo.preview)
 let pp
 if (newsletterInfo.preview) {
 pp = getUrlFromDirectPath(newsletterInfo.preview)
-ppChannel = true
 } else {
 pp = thumb
 }
@@ -95,14 +108,10 @@ sourceUrl: args[0],
 mediaType: 1,
 showAdAttribution: true,
 renderLargerThumbnail: false
-}}} , { quoted: fkontak })
-}
+}}}, { quoted: fkontak })
 }}} catch (e) {
-console.error(e)
-await m.reply("Error.")
-}} catch (e) {
 reportError(e)
-}
+}}
 break
         
 }}
