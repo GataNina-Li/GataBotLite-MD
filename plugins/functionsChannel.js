@@ -54,7 +54,6 @@ let caption = `*Inspector de enlaces de grupo*\n- ${inviteInfo.id || ""}\n*Títu
 let pp
 try {
 pp = await conn.profilePictureUrl(inviteInfo?.id)
-ppChannel = true
 } catch (e) {
 pp = thumb
 }
@@ -81,7 +80,7 @@ caption += processObject(newsletterInfo)
 let pp
 try {
 pp = getUrlFromDirectPath(newsletterInfo.preview)
-console.log(pp)
+ppChannel = true
 } catch (e) {
 pp = thumb
 }
@@ -185,7 +184,7 @@ return _.startCase(key.replace(/_/g, " "))
 .replace("Description", "Descripción")
 .replace("Invite", "Invitación")
 .replace("Handle", "Alias")
-.replace("Picture", "Imagen")
+//.replace("Picture", "Imagen")
 .replace("Preview", "Vista previa")
 .replace("Reaction Codes", "Reacciones")
 .replace("Subscribers", "Suscriptores")
@@ -205,6 +204,10 @@ caption += processObject(value, `${prefix}${key}_`)
 }} else {
 const shortKey = prefix ? prefix.split("_").pop() + "_" + key : key
 const displayValue = formatValue(shortKey, value)
+if (shortKey === "picture") {
+const imageValue = ppChannel ? pp : displayValue
+caption += `- *Imagen:* ${imageValue || "No hay imagen disponible"}\n\n`
+}
 const translatedKey = newsletterKey(shortKey)
 caption += `- *${translatedKey}:* ${displayValue}\n\n`
 }})
