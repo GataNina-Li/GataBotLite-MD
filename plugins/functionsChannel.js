@@ -79,13 +79,13 @@ console.log(info)
 console.log('Método de enlace')
 }}
 let caption = info
-if (caption) {
 if (inviteInfo) {
 try {
 pp = await conn.profilePictureUrl(inviteInfo?.id)
 } catch {
 pp = thumb
 }}
+if (caption) {
 await conn.sendMessage(m.chat, { text: caption, contextInfo: {
 mentionedJid: conn.parseMention(caption),
 externalAdReply: {
