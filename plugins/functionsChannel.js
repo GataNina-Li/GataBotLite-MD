@@ -79,7 +79,6 @@ info = await groupInfo(inviteInfo, true)
 console.log(info)
 console.log('Método de enlace')
 //
-if (inviteInfo) {
 try {
 pp = await conn.profilePictureUrl(inviteInfo?.id)
 } catch {
