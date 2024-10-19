@@ -76,7 +76,7 @@ sourceUrl: ""
 let newsletterInfo = await conn.newsletterMetadata("invite", channelUrl)
 if (!newsletterInfo) return m.reply("Canal no encontrado.")
 let caption = "*Inspector de enlaces de Canales*\n\n"
-caption += processObject(newsletterInfo)
+caption += processObject(newsletterInfo, "", newsletterInfo.preview)
 let pp
 if (newsletterInfo.preview) {
 pp = getUrlFromDirectPath(newsletterInfo.preview)
@@ -131,7 +131,7 @@ const formattedTime = `${hours}:${minutes}:${seconds} ${period}`
 return `${formattedDate}, ${formattedTime}`
 }
 
-function formatValue(key, value) {
+function formatValue(key, value, preview) {
 console.log(value)
 switch (key) {
 case "subscribers":
@@ -179,8 +179,8 @@ case "GUEST": return "Invitado"
 default: return "Desconocido"
 }
 case "picture":
-if (value) {
-return value
+if (preview) {
+return getUrlFromDirectPath(preview)
 } else {
 return "No hay imagen disponible"
 }
@@ -207,7 +207,7 @@ return _.startCase(key.replace(/_/g, " "))
 .replace("Viewer Metadata", "Datos avanzados")
 }
 
-function processObject(obj, prefix = "") {
+function processObject(obj, prefix = "", preview) {
 let caption = ""
 Object.keys(obj).forEach(key => {
 const value = obj[key]
@@ -218,7 +218,7 @@ caption += `\n*\`${sectionName}\`*\n`
 caption += processObject(value, `${prefix}${key}_`)
 }} else {
 const shortKey = prefix ? prefix.split("_").pop() + "_" + key : key
-const displayValue = formatValue(shortKey, value)
+const displayValue = formatValue(shortKey, value, preview)
 const translatedKey = newsletterKey(shortKey)
 caption += `- *${translatedKey}:*\n${displayValue}\n\n`
 }})
