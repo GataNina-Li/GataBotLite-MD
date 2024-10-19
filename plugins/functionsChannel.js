@@ -83,7 +83,9 @@ renderLargerThumbnail: false,
 thumbnailUrl: pp,
 sourceUrl: ""
 }}})
-}} catch {
+}} catch (error) {
+console.error("Error al obtener la información del grupo:", error)
+}
 // Manejo de enlaces de canal
 const channelUrl = text?.match(/(?:https:\/\/)?(?:www\.)?(?:chat\.|wa\.)?whatsapp\.com\/(?:channel\/)?([0-9A-Za-z]{22,24})/i)?.[1]
 if (channelUrl) {
@@ -109,7 +111,7 @@ mediaType: 1,
 showAdAttribution: true,
 renderLargerThumbnail: false
 }}}, { quoted: fkontak })
-}}} catch (e) {
+}} catch (e) {
 reportError(e)
 }}
 break
