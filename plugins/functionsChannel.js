@@ -25,15 +25,7 @@ let caption = `*ID del grupo:* ${res.id || ""}\n` +
 `*Fecha de creación:* ${formatDate(1e3 * res.creation) || ""}\n`
 if (isInviteInfo) {
 caption += `*Descripción:* ${res.desc || "*No hay descripción*"}\n` +
-`*ID de descripción:* ${res.descId || "N/A"}\n`
-if (res.linkedParent) {
-try {
-let linkedGroupMeta = await conn.groupMetadata(res.linkedParent)
-caption += `*Grupo vinculado:* (Id: ${res.linkedParent || "N/A"}) ${linkedGroupMeta.subject || "N/A"}\n`
-} catch (e) {
-console.log(e)
-caption += `*Grupo vinculado:* ${res.linkedParent || "N/A"}\n`  // Aquí debes asignar a 'caption'
-}
+`*ID de descripción:* ${res.descId || "N/A"}\n` +
 `*Restricciones:* ${res.restrict ? "✅ Si" : "❌ No"}\n` +
 `*Anuncios:* ${res.announce ? "✅ Si" : "❌ No"}\n` +
 `*¿Es comunidad?:* ${res.isCommunity ? "✅ Si" : "❌ No"}\n` +
