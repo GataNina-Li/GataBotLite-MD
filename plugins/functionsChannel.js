@@ -194,7 +194,7 @@ const sectionName = _.startCase(prefix + key.replace(/_/g, " "))
 .replace("Subscribers", "Suscriptores")
 .replace("Verification", "Verificación")
 .replace("Viewer Metadata", "Datos avanzados")
-caption += `\n*\`${sectionName}\`*\n`;
+caption += `\n*\`${sectionName}\`*\n`
 caption += processObject(value, `${prefix}${key}_`)
 }} else {
 const shortKey = prefix ? prefix.split("_").pop() + "_" + key : key
@@ -211,11 +211,11 @@ caption += `- *${_.startCase(shortKey.replace(/_/g, " "))
 .replace("Handle", "Alias")
 .replace("Picture", "Imagen")
 .replace("Preview", "Vista previa")
-.replace("Reaction Codes", "Códigos de reacción")
+.replace("Reaction Codes", "Reacciones")
 .replace("Subscribers", "Suscriptores")
 .replace("Verification", "Verificación")
 .replace("Viewer Metadata", "Datos avanzados")
-}:* ${displayValue}\n`
+}:*\n${displayValue}\n\n`
 }})
 return caption.trim()
 }
