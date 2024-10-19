@@ -82,7 +82,7 @@ try {
 pp = await conn.profilePictureUrl(inviteInfo?.id)
 } catch {
 pp = thumb
-}}}}
+}}}
 let caption = info
 if (caption) {
 await conn.sendMessage(m.chat, { text: caption, contextInfo: {
