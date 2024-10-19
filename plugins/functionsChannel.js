@@ -29,17 +29,18 @@ nameCommunity = ""
 }}
 let caption = `*ID del grupo:*\n${res.id || "No encontrado"}\n\n` +
 `*Creado por:*\n${res.owner ? `@${res.owner?.split("@")[0]}` : "No encontrado"} ${res.creation ? `el ${formatDate(res.creation)}` : "(Fecha no encontrada)"}\n\n` +
-`*Nombre:* ${res.subject || "No encontrado"}\n\n` +
+`*Nombre:*\n${res.subject || "No encontrado"}\n\n` +
 `*Nombre cambiado por:*\n${res.subjectOwner ? `@${res.subjectOwner?.split("@")[0]}` : "No encontrado"} ${res.subjectTime ? `el ${formatDate(res.subjectTime)}` : "(Fecha no encontrada)"}\n\n` +
 `*Descripción:*\n${res.desc || "No encontrado"}\n\n` +
-`*Id de la descripción:*\n${res.descId || "No encontrado"}\n\n` 
+`*Id de la descripción:*\n${res.descId || "No encontrado"}\n\n` +
 
 // Parámetros que solo están disponibles en los metadatos
-if (!isInviteInfo) {
-caption += `*Descripción cambiado por:*\n${res.descOwner ? `@${res.descOwner?.split("@")[0]}` : "No encontrado"}\n\n` +
+//if (!isInviteInfo) {
+//caption += 
+`*Descripción cambiado por:*\n${res.descOwner ? `@${res.descOwner?.split("@")[0]}` : "No encontrado"}\n\n` +
 `*Autor:*\n${res.author || "No encontrado"}\n\n` +
 `*Código de invitación:*\n${res.inviteCode || "No disponible"}\n\n`
-}
+//}
 
 // Parámetros comunes tanto para metadatos como para enlace de invitación
 caption += `*Miembros destacados:*\n` + (res.participants ? res.participants.map((user, i) => `${i + 1}. @${user.id?.split("@")[0]}${user.admin === "superadmin" ? " (superadmin)" : user.admin === "admin" ? " (admin)" : ""}`).join("\n") : "No hay") + `\n\n` +
