@@ -78,13 +78,12 @@ info = await groupInfo(inviteInfo, true)
 //if (!inviteInfo) return m.reply("Grupo no encontrado.")
 console.log(info)
 console.log('Método de enlace')
-}}
+//}}
 if (inviteInfo) {
 try {
 pp = await conn.profilePictureUrl(inviteInfo?.id)
 } catch {
 pp = thumb
-}}
 let caption = info
 if (caption) {
 await conn.sendMessage(m.chat, { text: caption, contextInfo: {
@@ -98,7 +97,7 @@ mediaType: 1,
 showAdAttribution: false,
 renderLargerThumbnail: false
 }}}, { quoted: fkontak })
-} else {
+}}} else {
 // Manejo de enlaces de canal
 const channelUrl = text?.match(/(?:https:\/\/)?(?:www\.)?(?:chat\.|wa\.)?whatsapp\.com\/(?:channel\/|joinchat\/)?([0-9A-Za-z]{22,24})/i)?.[1]
 if (channelUrl) {
