@@ -43,11 +43,7 @@ try {
 let res = text ? null : await conn.groupMetadata(m.chat) // Si el bot está en el grupo
 info = groupInfo(res)
 console.log('Prueba')
-} catch (error) {
-console.error("Error al obtener la información del grupo:", error)
-}
-
-if (!res) {              
+} catch {           
 // En caso que no este en el grupo va a intentar con el enlace
 const inviteUrl = text?.match(/(?:https:\/\/)?(?:www\.)?(?:chat\.|wa\.)?whatsapp\.com\/(?:invite\/|joinchat\/)?([0-9A-Za-z]{22,24})/i)?.[1]
 if (inviteUrl) {
