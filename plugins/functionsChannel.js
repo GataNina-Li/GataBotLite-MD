@@ -21,7 +21,7 @@ let thumb = gataMenu.getRandom()
 const groupInfo = async (res, isInviteInfo = false) => {
 let caption = `*ID del grupo:* ${res.id || ""}\n` +
 `*Título:* ${res.subject || ""}\n` +
-`*Creado por:* @${res.owner?.split("@")[0] || ""}\n` +
+`*Creado por:* ${res?.owner ? `@${res.owner?.split("@")[0]}` : "No encontrado"}\n` + 
 `*Fecha de creación:* ${formatDate(1e3 * res.creation) || ""}\n`
 if (isInviteInfo) {
 caption += `*Descripción:* ${res.desc || "*No hay descripción*"}\n` +
