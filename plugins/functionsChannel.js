@@ -127,7 +127,7 @@ const formattedTime = `${hours}:${minutes}:${seconds} ${period}`
 return `${formattedDate}, ${formattedTime}`
 }*/
 
-function formatDate(n, locale = "es-ES", includeTime = true) {
+function formatDate(n, locale = "id", includeTime = true) {
 const date = new Date(n)
 if (isNaN(date)) return "Fecha no válida"
 return includeTime ? date.toLocaleString(locale) : date.toLocaleDateString(locale)
