@@ -111,16 +111,19 @@ handler.command = /^(inspect2)$/i
 handler.register = true
 export default handler 
 
-function formatDate(n, locale = "id", includeTime = true) {
+function formatDate(n, locale = "es-ES", includeTime = true) {
 const date = new Date(n)
 if (isNaN(date)) return "Fecha no válida"
 // Formato de fecha: día/mes/año
 const optionsDate = { day: '2-digit', month: '2-digit', year: 'numeric' }
 const formattedDate = date.toLocaleDateString(locale, optionsDate)
 if (!includeTime) return formattedDate;
-// Formato de hora: hora:minuto:segundos AM/PM
-const optionsTime = { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false }
-const formattedTime = date.toLocaleTimeString(locale, optionsTime)
+// Obtener horas, minutos y segundos
+const hours = date.getHours()
+const minutes = String(date.getMinutes()).padStart(2, '0')
+const seconds = String(date.getSeconds()).padStart(2, '0')
+const period = hours < 12 ? 'AM' : 'PM'
+const formattedTime = `${hours}:${minutes}:${seconds} ${period}`
 return `${formattedDate}, ${formattedTime}`
 }
 
@@ -185,7 +188,7 @@ return _.startCase(key.replace(/_/g, " "))
 .replace("Description", "Descripción")
 .replace("Invite", "Invitación")
 .replace("Handle", "Alias")
-//.replace("Picture", "Imagen")
+.replace("Picture", "Imagen")
 .replace("Preview", "Vista previa")
 .replace("Reaction Codes", "Reacciones")
 .replace("Subscribers", "Suscriptores")
