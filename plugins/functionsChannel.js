@@ -47,7 +47,7 @@ caption += `*Descripción cambiado por:*\n${res.descOwner ? `@${res.descOwner?.s
 `*Autor:*\n${res.author || "No encontrado"}\n\n` +
 `*Código de invitación:*\n${res.inviteCode || "No disponible"}\n\n`
 `*Restricciones:* ${res.restrict ? "✅ Si" : "❌ No"}\n` +
-`*Modo para agregar miembros:* ${res.memberAddMode ? "✅ Si" : "❌ No"}\n` 
+`*Modo para agregar miembros:* ${res.memberAddMode ? "✅ Si" : "❌ No"}\n` +
 `*Duración:* ${res.ephemeralDuration !== undefined ? `${res.ephemeralDuration} segundos` : "Desconocido"}\n`
 }
 
