@@ -65,9 +65,9 @@ return caption
 let info
 try {
 let res = text ? null : await conn.groupMetadata(m.chat) // Si el bot está en el grupo
-if (res) {
 info = await groupInfo(res)
-}
+//if (res) {
+//}
 console.log('Método de metadatos')
 console.log(info)
 } catch { // En caso de que no esté en el grupo, va a intentar con el enlace
@@ -77,9 +77,10 @@ let inviteInfo = await conn.groupGetInviteInfo(inviteUrl)
 info = await groupInfo(inviteInfo, true)   
 console.log(info)
 console.log('Método de enlace')
+}}
 if (!pp) {
 pp = thumb
-}}}
+}       
 let caption = info
 if (caption) {
 await conn.sendMessage(m.chat, { text: caption, contextInfo: {
