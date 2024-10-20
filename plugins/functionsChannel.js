@@ -30,8 +30,8 @@ nameCommunity = "\n" + (linkedGroupMeta.subject || "")
 nameCommunity = ""
 }}
 try {
-groupPictur = await conn.profilePictureUrl(res.id)
-pp = groupPictur
+groupPicture = await conn.profilePictureUrl(res.id)
+pp = groupPicture
 } catch (e) {
 pp = null
 }
@@ -46,7 +46,7 @@ let caption = `*ID del grupo:*\n${res.id || "No encontrado"}\n\n` +
 `*Nombre cambiado por:*\n${res.subjectOwner ? `@${res.subjectOwner?.split("@")[0]}` : "No encontrado"} ${res.subjectTime ? `el ${formatDate(res.subjectTime)}` : "(Fecha no encontrada)"}\n\n` +
 `*Descripción:*\n${res.desc || "No encontrado"}\n\n` +
 `*Id de la descripción:*\n${res.descId || "No encontrado"}\n\n` +
-`*Imagen del grupo:*\n${groupPictur}\n\n` 
+`*Imagen del grupo:*\n${groupPicture}\n\n` 
 
 // Parámetros que solo están disponibles en los metadatos
 if (!isInviteInfo) {
