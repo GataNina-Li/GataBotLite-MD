@@ -85,7 +85,7 @@ console.log('Método de metadatos')
 const inviteUrl = text?.match(/(?:https:\/\/)?(?:www\.)?(?:chat\.|wa\.)?whatsapp\.com\/(?:invite\/|joinchat\/)?([0-9A-Za-z]{22,24})/i)?.[1]
 if (inviteUrl) {
 let inviteInfo = await conn.groupGetInviteInfo(inviteUrl)
-console.log(inviteInfo)
+m.reply(inviteInfo)
 info = await groupInfo(inviteInfo, true)
 console.log('Método de enlace')
 }}
@@ -157,7 +157,6 @@ return `${formattedDate}, ${formattedTime}`
 }
 
 function formatValue(key, value, preview) {
-console.log(value)
 switch (key) {
 case "subscribers":
 return value ? value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".") : "No hay suscriptores"
