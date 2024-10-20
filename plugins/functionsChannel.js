@@ -55,13 +55,16 @@ caption += `*Descripción cambiado por:*\n${res.descOwner ? `@${res.descOwner?.s
 `*Código de invitación:*\n${res.inviteCode || inviteCode || "No disponible"}\n\n` +
 `*Restricciones:* ${res.restrict ? "✅ Si" : "❌ No"}\n\n` +
 `*Modo para agregar miembros:* ${res.memberAddMode ? "✅ Si" : "❌ No"}\n\n` +
-`*Duración:* ${res.ephemeralDuration !== undefined ? `${res.ephemeralDuration} segundos` : "Desconocido"}\n\n`
+`*Duración:* ${res.ephemeralDuration !== undefined ? `${res.ephemeralDuration} segundos` : "Desconocido"}\n\n` +
+`*Admins:*\n` + (res.participants && res.participants.length > 0 ? res.participants.filter(user => user.admin === "admin" || user.admin === "superadmin").map((user, i) => `${i + 1}. @${user.id?.split("@")[0]}${user.admin === "superadmin" ? " (superadmin)" : " (admin)"}`).join("\n") : "No encontrado") + `\n\n` +
+`*Usuarios en total:*\n${res.size || "Cantidad no encontrada"}\n\n`
+} else {
+caption += `*Miembros destacados:*\n` + (res.participants && res.participants.length > 0 ? res.participants.map((user, i) => `${i + 1}. @${user.id?.split("@")[0]}${user.admin === "superadmin" ? " (superadmin)" : user.admin === "admin" ? " (admin)" : ""}`).join("\n") : "No encontrado") + `\n\n` +
+`*Destacados total:*\n${res.size || "Cantidad no encontrada"}\n\n`
 }
 
 // Parámetros comunes tanto para metadatos como para enlace de invitación
-caption += `*Miembros destacados:*\n` + (res.participants && res.participants.length > 0 ? res.participants.map((user, i) => `${i + 1}. @${user.id?.split("@")[0]}${user.admin === "superadmin" ? " (superadmin)" : user.admin === "admin" ? " (admin)" : ""}`).join("\n") : "No encontrado") + `\n\n` +
-`*Destacados total:*\n${res.size || "Cantidad no encontrada"}\n\n` +
-`*Comunidad vinculada al grupo:*\n${res.isCommunity ? "Este grupo es un chat de avisos" : `${res.linkedParent ? res.linkedParent : "Este grupo"} ${nameCommunity}`}\n\n` +
+caption += `*Comunidad vinculada al grupo:*\n${res.isCommunity ? "Este grupo es un chat de avisos" : `${res.linkedParent ? res.linkedParent : "Este grupo"} ${nameCommunity}`}\n\n` +
 `*Anuncios:* ${res.announce ? "✅ Si" : "❌ No"}\n` +
 `*¿Es comunidad?:* ${res.isCommunity ? "✅ Si" : "❌ No"}\n` +
 `*¿Es anuncio de comunidad?:* ${res.isCommunityAnnounce ? "✅ Si" : "❌ No"}\n` +
