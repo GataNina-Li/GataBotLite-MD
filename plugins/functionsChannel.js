@@ -18,10 +18,10 @@ switch (true) {
 case isCommand1:
 let thumb = gataMenu.getRandom()
 let pp
+let inviteCode
 const groupInfo = async (res, isInviteInfo = false) => {
 let nameCommunity = "no pertenece a ninguna Comunidad"
 let groupPicture = "No se pudo obtener"
-let inviteCode
 if (res.linkedParent) {
 try {
 let linkedGroupMeta = await conn.groupMetadata(res.linkedParent)
@@ -69,7 +69,7 @@ caption += `*Comunidad vinculada al grupo:*\n${res.isCommunity ? "Este grupo es 
 `*¿Es comunidad?:* ${res.isCommunity ? "✅ Si" : "❌ No"}\n` +
 `*¿Es anuncio de comunidad?:* ${res.isCommunityAnnounce ? "✅ Si" : "❌ No"}\n` +
 `*Modo de aprobación de miembros:* ${res.joinApprovalMode ? "✅ Si" : "❌ No"}\n` 
-return caption.trim()
+return { caption: caption.trim(), inviteCode }
 }
 let info
 try {
@@ -98,7 +98,7 @@ externalAdReply: {
 title: "Inspector de enlaces de Grupos",
 body: packname,
 thumbnailUrl: pp,
-sourceUrl: args[0],
+sourceUrl: args[0] ? args[0] : inviteCode ? `https://chat.whatsapp.com/${inviteCode}` : md : md,
 mediaType: 1,
 showAdAttribution: false,
 renderLargerThumbnail: false
