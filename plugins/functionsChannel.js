@@ -26,7 +26,7 @@ if (res.linkedParent) {
 try {
 let linkedGroupMeta = await conn.groupMetadata(res.linkedParent)
 nameCommunity = "\n" + (linkedGroupMeta.subject || "")
-} catch {
+} catch (e) {
 nameCommunity = ""
 }}
 try {
@@ -37,8 +37,9 @@ pp = null
 }
 try {
 inviteCode = await conn.groupInviteCode(m.chat || res.id)
-} catch {
+} catch (e) {
 inviteCode = null
+console.log(e)
 }
 const formatParticipants = (participants) =>
 participants && participants.length > 0
