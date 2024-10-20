@@ -29,7 +29,8 @@ nameCommunity = "\n" + (linkedGroupMeta.subject || "")
 nameCommunity = ""
 }}
 try {
-groupPicture = await conn.profilePictureUrl(res.id)
+groupPictur = await conn.profilePictureUrl(res.id)
+pp = groupPictur
 } catch (e) {
 console.log(e)
 }
@@ -45,7 +46,7 @@ let caption = `*ID del grupo:*\n${res.id || "No encontrado"}\n\n` +
 if (!isInviteInfo) {
 caption += `*Descripción cambiado por:*\n${res.descOwner ? `@${res.descOwner?.split("@")[0]}` : "No encontrado"}\n\n` +
 `*Autor:*\n${res.author || "No encontrado"}\n\n` +
-`*Código de invitación:*\n${res.inviteCode || "No disponible"}\n\n`
+`*Código de invitación:*\n${res.inviteCode || "No disponible"}\n\n` +
 `*Restricciones:* ${res.restrict ? "✅ Si" : "❌ No"}\n` +
 `*Modo para agregar miembros:* ${res.memberAddMode ? "✅ Si" : "❌ No"}\n` +
 `*Duración:* ${res.ephemeralDuration !== undefined ? `${res.ephemeralDuration} segundos` : "Desconocido"}\n`
@@ -64,13 +65,9 @@ return caption
 let info
 try {
 let res = text ? null : await conn.groupMetadata(m.chat) // Si el bot está en el grupo
-info = await groupInfo(res)
 if (res) {
-try {
-pp = await conn.profilePictureUrl(res?.id)
-} catch {
-pp = thumb
-}}
+info = await groupInfo(res)
+}
 console.log('Método de metadatos')
 console.log(info)
 } catch { // En caso de que no esté en el grupo, va a intentar con el enlace
@@ -78,12 +75,9 @@ const inviteUrl = text?.match(/(?:https:\/\/)?(?:www\.)?(?:chat\.|wa\.)?whatsapp
 if (inviteUrl) {
 let inviteInfo = await conn.groupGetInviteInfo(inviteUrl)
 info = await groupInfo(inviteInfo, true)   
-//if (!inviteInfo) return m.reply("Grupo no encontrado.")
 console.log(info)
 console.log('Método de enlace')
-try {
-pp = await conn.profilePictureUrl(inviteInfo?.id)
-} catch {
+if (!pp) {
 pp = thumb
 }}}
 let caption = info
