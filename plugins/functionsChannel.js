@@ -19,7 +19,7 @@ case isCommand1:
 let thumb = gataMenu.getRandom()
 let pp
 let inviteCode
-const groupInfo = async (res, isInviteInfo = true) => {
+const groupInfo = async (res, isInviteInfo = false) => {
 let nameCommunity = "no pertenece a ninguna Comunidad"
 let groupPicture = "No se pudo obtener"
 if (res.linkedParent) {
@@ -36,7 +36,7 @@ pp = groupPicture
 pp = null
 }
 try {
-inviteCode = await conn.groupInviteCode(m.chat || res.id)
+inviteCode = await conn.groupInviteCode(m.chat)
 } catch (e) {
 inviteCode = null
 console.log(e)
