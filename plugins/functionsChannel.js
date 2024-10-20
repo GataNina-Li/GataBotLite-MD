@@ -39,27 +39,26 @@ let caption = `*ID del grupo:*\n${res.id || "No encontrado"}\n\n` +
 `*Nombre cambiado por:*\n${res.subjectOwner ? `@${res.subjectOwner?.split("@")[0]}` : "No encontrado"} ${res.subjectTime ? `el ${formatDate(res.subjectTime)}` : "(Fecha no encontrada)"}\n\n` +
 `*Descripción:*\n${res.desc || "No encontrado"}\n\n` +
 `*Id de la descripción:*\n${res.descId || "No encontrado"}\n\n` +
-`*Imagen del grupo:*\n${groupPicture}\n\n` +
+`*Imagen del grupo:*\n${groupPicture}\n\n` 
 
 // Parámetros que solo están disponibles en los metadatos
-//if (!isInviteInfo) {
-//caption += 
-`*Descripción cambiado por:*\n${res.descOwner ? `@${res.descOwner?.split("@")[0]}` : "No encontrado"}\n\n` +
+if (!isInviteInfo) {
+caption += `*Descripción cambiado por:*\n${res.descOwner ? `@${res.descOwner?.split("@")[0]}` : "No encontrado"}\n\n` +
 `*Autor:*\n${res.author || "No encontrado"}\n\n` +
 `*Código de invitación:*\n${res.inviteCode || "No disponible"}\n\n`
-//}
+`*Restricciones:* ${res.restrict ? "✅ Si" : "❌ No"}\n` +
+`*Modo para agregar miembros:* ${res.memberAddMode ? "✅ Si" : "❌ No"}\n` 
+`*Duración:* ${res.ephemeralDuration !== undefined ? `${res.ephemeralDuration} segundos` : "Desconocido"}\n`
+}
 
 // Parámetros comunes tanto para metadatos como para enlace de invitación
 caption += `*Miembros destacados:*\n` + (res.participants && res.participants.length > 0 ? res.participants.map((user, i) => `${i + 1}. @${user.id?.split("@")[0]}${user.admin === "superadmin" ? " (superadmin)" : user.admin === "admin" ? " (admin)" : ""}`).join("\n") : "No encontrado") + `\n\n` +
 `*Destacados total:*\n${res.size || "Cantidad no encontrada"}\n\n` +
 `*Comunidad vinculada al grupo:*\n${res.isCommunity ? "Este grupo es un chat de avisos" : `${res.linkedParent ? res.linkedParent : "Este grupo"} ${nameCommunity}`}\n\n` +
-`*Restricciones:* ${res.restrict ? "✅ Si" : "❌ No"}\n` +
 `*Anuncios:* ${res.announce ? "✅ Si" : "❌ No"}\n` +
 `*¿Es comunidad?:* ${res.isCommunity ? "✅ Si" : "❌ No"}\n` +
 `*¿Es anuncio de comunidad?:* ${res.isCommunityAnnounce ? "✅ Si" : "❌ No"}\n` +
-`*Modo de aprobación de miembros:* ${res.joinApprovalMode ? "✅ Si" : "❌ No"}\n` +
-`*Modo para agregar miembros:* ${res.memberAddMode ? "✅ Si" : "❌ No"}\n` +
-`*Duración:* ${res.ephemeralDuration !== undefined ? `${res.ephemeralDuration} segundos` : "Desconocido"}\n`
+`*Modo de aprobación de miembros:* ${res.joinApprovalMode ? "✅ Si" : "❌ No"}\n` 
 return caption
 }
 let info
