@@ -88,21 +88,28 @@ const inviteUrl = text?.match(/(?:https:\/\/)?(?:www\.)?(?:chat\.|wa\.)?whatsapp
 //if (!inviteUrl) return m.reply("Grupo no encontrado.")
 //if (inviteUrl) {
 let inviteInfo = await conn.groupGetInviteInfo(inviteUrl)
-info = await groupInfo(inviteInfo, true)  
-console.log(info)
-console.log('Método de enlace')
-if (!pp) {
-pp = thumb
-}
-}//}
-let caption = info
-if (caption) {
-await conn.sendMessage(m.chat, { text: caption, contextInfo: {
-mentionedJid: conn.parseMention(caption),
+info = await groupInfo(inviteInfo, true) 
+await conn.sendMessage(m.chat, { text: info, contextInfo: {
+mentionedJid: conn.parseMention(info),
 externalAdReply: {
 title: "🔰 Inspector de Grupos",
 body: packname,
-thumbnailUrl: pp,
+thumbnailUrl: pp ? pp : thumb,
+sourceUrl: md, //args[0] ? args[0] : inviteCode ? `https://chat.whatsapp.com/${inviteCode}` : md,
+mediaType: 1,
+showAdAttribution: false,
+renderLargerThumbnail: false
+}}}, { quoted: fkontak })
+console.log(info)
+console.log('Método de enlace')
+}//}
+if (info) {
+await conn.sendMessage(m.chat, { text: info, contextInfo: {
+mentionedJid: conn.parseMention(info),
+externalAdReply: {
+title: "🔰 Inspector de Grupos",
+body: packname,
+thumbnailUrl: pp ? pp : thumb,
 sourceUrl: md, //args[0] ? args[0] : inviteCode ? `https://chat.whatsapp.com/${inviteCode}` : md,
 mediaType: 1,
 showAdAttribution: false,
