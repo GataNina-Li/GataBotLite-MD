@@ -40,6 +40,10 @@ inviteCode = await conn.groupInviteCode(m.chat || res.id)
 } catch {
 inviteCode = null
 }
+const formatParticipants = (participants) =>
+participants && participants.length > 0
+? participants.map((user, i) => `${i + 1}. @${user.id?.split("@")[0]}${user.admin === "superadmin" ? " (superadmin)" : user.admin === "admin" ? " (admin)" : ""}`).join("\n")
+: "No encontrado"
 let caption = `*ID del grupo:*\n${res.id || "No encontrado"}\n\n` +
 `*Creado por:*\n${res.owner ? `@${res.owner?.split("@")[0]}` : "No encontrado"} ${res.creation ? `el ${formatDate(res.creation)}` : "(Fecha no encontrada)"}\n\n` +
 `*Nombre:*\n${res.subject || "No encontrado"}\n\n` +
@@ -58,8 +62,9 @@ caption += `*Descripción cambiado por:*\n${res.descOwner ? `@${res.descOwner?.s
 `*Duración:* ${res.ephemeralDuration !== undefined ? `${res.ephemeralDuration} segundos` : "Desconocido"}\n\n` +
 `*Admins:*\n` + (res.participants && res.participants.length > 0 ? res.participants.filter(user => user.admin === "admin" || user.admin === "superadmin").map((user, i) => `${i + 1}. @${user.id?.split("@")[0]}${user.admin === "superadmin" ? " (superadmin)" : " (admin)"}`).join("\n") : "No encontrado") + `\n\n` +
 `*Usuarios en total:*\n${res.size || "Cantidad no encontrada"}\n\n`
-} else {
-caption += `*Miembros destacados:*\n` + (res.participants && res.participants.length > 0 ? res.participants.map((user, i) => `${i + 1}. @${user.id?.split("@")[0]}${user.admin === "superadmin" ? " (superadmin)" : user.admin === "admin" ? " (admin)" : ""}`).join("\n") : "No encontrado") + `\n\n` +
+}
+if (isInviteInfo) {
+caption += `*Miembros destacados:*\n${formatParticipants(res.participants)}\n\n` +
 `*Destacados total:*\n${res.size || "Cantidad no encontrada"}\n\n`
 }
 
