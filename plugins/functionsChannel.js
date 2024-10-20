@@ -87,9 +87,9 @@ const inviteUrl = text?.match(/(?:https:\/\/)?(?:www\.)?(?:chat\.|wa\.)?whatsapp
 //if (!inviteUrl) return m.reply("Grupo no encontrado.")
 if (inviteUrl) {
 let inviteInfo = await conn.groupGetInviteInfo(inviteUrl)
-console.log(inviteInfo)
 info = await groupInfo(inviteInfo, true)  
 console.log(info)
+console.log(groupInfo)
 console.log('Método de enlace')
 if (!pp) {
 pp = thumb
