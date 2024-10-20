@@ -98,7 +98,7 @@ externalAdReply: {
 title: "Inspector de enlaces de Grupos",
 body: packname,
 thumbnailUrl: pp,
-sourceUrl: args[0] ? args[0] : inviteCode ? `https://chat.whatsapp.com/${inviteCode}` : md : md,
+sourceUrl: args[0] ? args[0] : inviteCode ? `https://chat.whatsapp.com/${inviteCode}` : md,
 mediaType: 1,
 showAdAttribution: false,
 renderLargerThumbnail: false
