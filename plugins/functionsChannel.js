@@ -36,7 +36,7 @@ pp = groupPicture
 pp = null
 }
 try {
-inviteCode = await conn.groupInviteCode(res.id)
+inviteCode = await conn.groupInviteCode(m.chat)
 } catch {
 inviteCode = null
 }
