@@ -30,7 +30,7 @@ nameCommunity = "\n" + (linkedGroupMeta.subject || "")
 nameCommunity = ""
 }}
 try {
-groupPicture = await conn.profilePictureUrl(res.id)
+groupPicture = await conn.profilePictureUrl(res.id, 'image')
 pp = groupPicture
 } catch (e) {
 pp = null
