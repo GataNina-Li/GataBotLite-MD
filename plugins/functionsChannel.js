@@ -41,10 +41,10 @@ inviteCode = await conn.groupInviteCode(m.chat)
 inviteCode = null
 console.log(e)
 }
-const formatParticipants = (participants) =>
-participants && participants.length > 0
-? participants.map((user, i) => `${i + 1}. @${user.id?.split("@")[0]}${user.admin === "superadmin" ? " (superadmin)" : user.admin === "admin" ? " (admin)" : ""}`).join("\n")
-: "No encontrado"
+//const formatParticipants = (participants) =>
+//participants && participants.length > 0
+//? participants.map((user, i) => `${i + 1}. @${user.id?.split("@")[0]}${user.admin === "superadmin" ? " (superadmin)" : user.admin === "admin" ? " (admin)" : ""}`).join("\n")
+//: "No encontrado"
 let caption = `*ID del grupo:*\n${res.id || "No encontrado"}\n\n` +
 `*Creado por:*\n${res.owner ? `@${res.owner?.split("@")[0]}` : "No encontrado"} ${res.creation ? `el ${formatDate(res.creation)}` : "(Fecha no encontrada)"}\n\n` +
 `*Nombre:*\n${res.subject || "No encontrado"}\n\n` +
