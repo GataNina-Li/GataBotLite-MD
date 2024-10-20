@@ -21,6 +21,7 @@ let pp
 const groupInfo = async (res, isInviteInfo = false) => {
 let nameCommunity = "no pertenece a ninguna Comunidad"
 let groupPicture = "No disponible"
+let inviteCode
 if (res.linkedParent) {
 try {
 let linkedGroupMeta = await conn.groupMetadata(res.linkedParent)
@@ -31,9 +32,13 @@ nameCommunity = ""
 try {
 groupPictur = await conn.profilePictureUrl(res.id)
 pp = groupPictur
-console.log(groupPictur)
 } catch (e) {
 console.log(e)
+}
+try {
+inviteCode = res.inviteCode || await conn.groupInviteCode(res.id)
+} catch {
+inviteCode = null
 }
 let caption = `*ID del grupo:*\n${res.id || "No encontrado"}\n\n` +
 `*Creado por:*\n${res.owner ? `@${res.owner?.split("@")[0]}` : "No encontrado"} ${res.creation ? `el ${formatDate(res.creation)}` : "(Fecha no encontrada)"}\n\n` +
@@ -47,10 +52,10 @@ let caption = `*ID del grupo:*\n${res.id || "No encontrado"}\n\n` +
 if (!isInviteInfo) {
 caption += `*Descripción cambiado por:*\n${res.descOwner ? `@${res.descOwner?.split("@")[0]}` : "No encontrado"}\n\n` +
 `*Autor:*\n${res.author || "No encontrado"}\n\n` +
-`*Código de invitación:*\n${res.inviteCode || "No disponible"}\n\n` +
-`*Restricciones:* ${res.restrict ? "✅ Si" : "❌ No"}\n` +
-`*Modo para agregar miembros:* ${res.memberAddMode ? "✅ Si" : "❌ No"}\n` +
-`*Duración:* ${res.ephemeralDuration !== undefined ? `${res.ephemeralDuration} segundos` : "Desconocido"}\n`
+`*Código de invitación:*\n${res.inviteCode || inviteCode || "No disponible"}\n\n` +
+`*Restricciones:* ${res.restrict ? "✅ Si" : "❌ No"}\n\n` +
+`*Modo para agregar miembros:* ${res.memberAddMode ? "✅ Si" : "❌ No"}\n\n` +
+`*Duración:* ${res.ephemeralDuration !== undefined ? `${res.ephemeralDuration} segundos` : "Desconocido"}\n\n`
 }
 
 // Parámetros comunes tanto para metadatos como para enlace de invitación
@@ -61,7 +66,7 @@ caption += `*Miembros destacados:*\n` + (res.participants && res.participants.le
 `*¿Es comunidad?:* ${res.isCommunity ? "✅ Si" : "❌ No"}\n` +
 `*¿Es anuncio de comunidad?:* ${res.isCommunityAnnounce ? "✅ Si" : "❌ No"}\n` +
 `*Modo de aprobación de miembros:* ${res.joinApprovalMode ? "✅ Si" : "❌ No"}\n` 
-return caption
+return caption.trim()
 }
 let info
 try {
