@@ -42,10 +42,10 @@ inviteCode = await conn.groupInviteCode(m.chat)
 inviteCode = null
 console.log(e)
 }
-//const formatParticipants = (participants) =>
-//participants && participants.length > 0
-//? participants.map((user, i) => `${i + 1}. @${user.id?.split("@")[0]}${user.admin === "superadmin" ? " (superadmin)" : user.admin === "admin" ? " (admin)" : ""}`).join("\n")
-//: "No encontrado"
+const formatParticipants = (participants) =>
+participants && participants.length > 0
+? participants.map((user, i) => `${i + 1}. @${user.id?.split("@")[0]}${user.admin === "superadmin" ? " (superadmin)" : user.admin === "admin" ? " (admin)" : ""}`).join("\n")
+: "No encontrado"
 let caption = `*ID del grupo:*\n${res.id || "No encontrado"}\n\n` +
 `*Creado por:*\n${res.owner ? `@${res.owner?.split("@")[0]}` : "No encontrado"} ${res.creation ? `el ${formatDate(res.creation)}` : "(Fecha no encontrada)"}\n\n` +
 `*Nombre:*\n${res.subject || "No encontrado"}\n\n` +
@@ -65,10 +65,10 @@ caption += `*Descripción cambiado por:*\n${res.descOwner ? `@${res.descOwner?.s
 `*Admins:*\n` + (res.participants && res.participants.length > 0 ? res.participants.filter(user => user.admin === "admin" || user.admin === "superadmin").map((user, i) => `${i + 1}. @${user.id?.split("@")[0]}${user.admin === "superadmin" ? " (superadmin)" : " (admin)"}`).join("\n") : "No encontrado") + `\n\n` +
 `*Usuarios en total:*\n${res.size || "Cantidad no encontrada"}\n\n`
 }
-//if (isInviteInfo) {
-//caption += `*Miembros destacados:*\n${formatParticipants(res.participants)}\n\n` +
-//`*Destacados total:*\n${res.size || "Cantidad no encontrada"}\n\n`
-//}
+if (isInviteInfo) {
+caption += `*Miembros destacados:*\n${formatParticipants(res.participants)}\n\n` +
+`*Destacados total:*\n${res.size || "Cantidad no encontrada"}\n\n`
+}
 
 // Parámetros comunes tanto para metadatos como para enlace de invitación
 caption += `*Comunidad vinculada al grupo:*\n${res.isCommunity ? "Este grupo es un chat de avisos" : `${res.linkedParent ? res.linkedParent : "Este grupo"} ${nameCommunity}`}\n\n` +
@@ -86,23 +86,11 @@ console.log('Método de metadatos')
 } catch { // En caso de que no esté en el grupo, va a intentar con el enlace
 const inviteUrl = text?.match(/(?:https:\/\/)?(?:www\.)?(?:chat\.|wa\.)?whatsapp\.com\/(?:invite\/|joinchat\/)?([0-9A-Za-z]{22,24})/i)?.[1]
 //if (!inviteUrl) return m.reply("Grupo no encontrado.")
-//if (inviteUrl) {
+if (inviteUrl) {
 let inviteInfo = await conn.groupGetInviteInfo(inviteUrl)
 info = await groupInfo(inviteInfo, true) 
-await conn.sendMessage(m.chat, { text: info, contextInfo: {
-mentionedJid: conn.parseMention(info),
-externalAdReply: {
-title: "🔰 Inspector de Grupos",
-body: packname,
-thumbnailUrl: pp ? pp : thumb,
-sourceUrl: md, //args[0] ? args[0] : inviteCode ? `https://chat.whatsapp.com/${inviteCode}` : md,
-mediaType: 1,
-showAdAttribution: false,
-renderLargerThumbnail: false
-}}}, { quoted: fkontak })
-console.log(info)
 console.log('Método de enlace')
-}//}
+}}
 if (info) {
 await conn.sendMessage(m.chat, { text: info, contextInfo: {
 mentionedJid: conn.parseMention(info),
@@ -110,7 +98,7 @@ externalAdReply: {
 title: "🔰 Inspector de Grupos",
 body: packname,
 thumbnailUrl: pp ? pp : thumb,
-sourceUrl: md, //args[0] ? args[0] : inviteCode ? `https://chat.whatsapp.com/${inviteCode}` : md,
+sourceUrl: args[0] ? args[0] : inviteCode ? `https://chat.whatsapp.com/${inviteCode}` : md,
 mediaType: 1,
 showAdAttribution: false,
 renderLargerThumbnail: false
