@@ -64,10 +64,10 @@ caption += `*Descripción cambiado por:*\n${res.descOwner ? `@${res.descOwner?.s
 `*Admins:*\n` + (res.participants && res.participants.length > 0 ? res.participants.filter(user => user.admin === "admin" || user.admin === "superadmin").map((user, i) => `${i + 1}. @${user.id?.split("@")[0]}${user.admin === "superadmin" ? " (superadmin)" : " (admin)"}`).join("\n") : "No encontrado") + `\n\n` +
 `*Usuarios en total:*\n${res.size || "Cantidad no encontrada"}\n\n`
 }
-if (isInviteInfo) {
-caption += `*Miembros destacados:*\n${formatParticipants(res.participants)}\n\n` +
-`*Destacados total:*\n${res.size || "Cantidad no encontrada"}\n\n`
-}
+//if (isInviteInfo) {
+//caption += `*Miembros destacados:*\n${formatParticipants(res.participants)}\n\n` +
+//`*Destacados total:*\n${res.size || "Cantidad no encontrada"}\n\n`
+//}
 
 // Parámetros comunes tanto para metadatos como para enlace de invitación
 caption += `*Comunidad vinculada al grupo:*\n${res.isCommunity ? "Este grupo es un chat de avisos" : `${res.linkedParent ? res.linkedParent : "Este grupo"} ${nameCommunity}`}\n\n` +
@@ -90,10 +90,10 @@ let inviteInfo = await conn.groupGetInviteInfo(inviteUrl)
 info = await groupInfo(inviteInfo, true)  
 console.log(info)
 console.log('Método de enlace')
-}}
 if (!pp) {
 pp = thumb
-}       
+}     
+}}
 let caption = info
 if (caption) {
 await conn.sendMessage(m.chat, { text: caption, contextInfo: {
