@@ -85,7 +85,7 @@ console.log('Método de metadatos')
 const inviteUrl = text?.match(/(?:https:\/\/)?(?:www\.)?(?:chat\.|wa\.)?whatsapp\.com\/(?:invite\/|joinchat\/)?([0-9A-Za-z]{22,24})/i)?.[1]
 if (inviteUrl) {
 let inviteInfo = await conn.groupGetInviteInfo(inviteUrl)
-info = await groupInfo(inviteInfo)
+info = await groupInfo(inviteInfo, true)
 console.log(info)
 console.log('Método de enlace')
 }}
