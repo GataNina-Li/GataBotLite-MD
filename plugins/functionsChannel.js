@@ -20,7 +20,7 @@ let thumb = gataMenu.getRandom()
 let pp
 const groupInfo = async (res, isInviteInfo = false) => {
 let nameCommunity = "no pertenece a ninguna Comunidad"
-let groupPicture = "No disponible"
+let groupPicture = "No se pudo obtener"
 let inviteCode
 if (res.linkedParent) {
 try {
@@ -29,30 +29,30 @@ nameCommunity = "\n" + (linkedGroupMeta.subject || "")
 } catch {
 nameCommunity = ""
 }}
-//try {
-//groupPictur = await conn.profilePictureUrl(res.id)
-//pp = groupPictur
-//} catch (e) {
-//console.log(e)
-//}
-//try {
-//inviteCode = res.inviteCode || 
-//} catch {
-//inviteCode = null
-//}
+try {
+groupPictur = await conn.profilePictureUrl(res.id)
+pp = groupPictur
+} catch (e) {
+pp = null
+}
+try {
+inviteCode = await conn.groupInviteCode(res.id)
+} catch {
+inviteCode = null
+}
 let caption = `*ID del grupo:*\n${res.id || "No encontrado"}\n\n` +
 `*Creado por:*\n${res.owner ? `@${res.owner?.split("@")[0]}` : "No encontrado"} ${res.creation ? `el ${formatDate(res.creation)}` : "(Fecha no encontrada)"}\n\n` +
 `*Nombre:*\n${res.subject || "No encontrado"}\n\n` +
 `*Nombre cambiado por:*\n${res.subjectOwner ? `@${res.subjectOwner?.split("@")[0]}` : "No encontrado"} ${res.subjectTime ? `el ${formatDate(res.subjectTime)}` : "(Fecha no encontrada)"}\n\n` +
 `*Descripción:*\n${res.desc || "No encontrado"}\n\n` +
 `*Id de la descripción:*\n${res.descId || "No encontrado"}\n\n` +
-`*Imagen del grupo:*\n${await conn.profilePictureUrl(res.id)}\n\n` 
+`*Imagen del grupo:*\n${inviteCode}\n\n` 
 
 // Parámetros que solo están disponibles en los metadatos
 if (!isInviteInfo) {
 caption += `*Descripción cambiado por:*\n${res.descOwner ? `@${res.descOwner?.split("@")[0]}` : "No encontrado"}\n\n` +
 `*Autor:*\n${res.author || "No encontrado"}\n\n` +
-`*Código de invitación:*\n${res.inviteCode || await conn.groupInviteCode(res.id) || "No disponible"}\n\n` +
+`*Código de invitación:*\n${res.inviteCode || inviteCode || "No disponible"}\n\n` +
 `*Restricciones:* ${res.restrict ? "✅ Si" : "❌ No"}\n\n` +
 `*Modo para agregar miembros:* ${res.memberAddMode ? "✅ Si" : "❌ No"}\n\n` +
 `*Duración:* ${res.ephemeralDuration !== undefined ? `${res.ephemeralDuration} segundos` : "Desconocido"}\n\n`
