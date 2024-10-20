@@ -58,10 +58,10 @@ caption += `*Descripción cambiado por:*\n${res.descOwner ? `@${res.descOwner?.s
 `*Duración:* ${res.ephemeralDuration !== undefined ? `${res.ephemeralDuration} segundos` : "Desconocido"}\n\n` +
 `*Admins:*\n` + (res.participants && res.participants.length > 0 ? res.participants.filter(user => user.admin === "admin" || user.admin === "superadmin").map((user, i) => `${i + 1}. @${user.id?.split("@")[0]}${user.admin === "superadmin" ? " (superadmin)" : " (admin)"}`).join("\n") : "No encontrado") + `\n\n` +
 `*Usuarios en total:*\n${res.size || "Cantidad no encontrada"}\n\n`
-} else {
-caption += `*Miembros destacados:*\n` + (res.participants && res.participants.length > 0 ? res.participants.map((user, i) => `${i + 1}. @${user.id?.split("@")[0]}${user.admin === "superadmin" ? " (superadmin)" : user.admin === "admin" ? " (admin)" : ""}`).join("\n") : "No encontrado") + `\n\n` +
-`*Destacados total:*\n${res.size || "Cantidad no encontrada"}\n\n`
-}
+} //else {
+//caption += `*Miembros destacados:*\n` + (res.participants && res.participants.length > 0 ? res.participants.map((user, i) => `${i + 1}. @${user.id?.split("@")[0]}${user.admin === "superadmin" ? " (superadmin)" : user.admin === "admin" ? " (admin)" : ""}`).join("\n") : "No encontrado") + `\n\n` +
+//`*Destacados total:*\n${res.size || "Cantidad no encontrada"}\n\n`
+//}
 
 // Parámetros comunes tanto para metadatos como para enlace de invitación
 caption += `*Comunidad vinculada al grupo:*\n${res.isCommunity ? "Este grupo es un chat de avisos" : `${res.linkedParent ? res.linkedParent : "Este grupo"} ${nameCommunity}`}\n\n` +
