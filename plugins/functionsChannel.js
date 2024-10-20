@@ -85,6 +85,7 @@ console.log('Método de metadatos')
 } catch { // En caso de que no esté en el grupo, va a intentar con el enlace
 const inviteUrl = text?.match(/(?:https:\/\/)?(?:www\.)?(?:chat\.|wa\.)?whatsapp\.com\/(?:invite\/|joinchat\/)?([0-9A-Za-z]{22,24})/i)?.[1]
 //if (!inviteUrl) return m.reply("Grupo no encontrado.")
+console.log(inviteUrl)
 if (inviteUrl) {
 let inviteInfo = await conn.groupGetInviteInfo(inviteUrl)
 info = await groupInfo(inviteInfo, true)  
@@ -93,6 +94,7 @@ console.log('Método de enlace')
 if (!pp) {
 pp = thumb
 }
+}}
 let caption = info
 if (caption) {
 await conn.sendMessage(m.chat, { text: caption, contextInfo: {
@@ -106,7 +108,7 @@ mediaType: 1,
 showAdAttribution: false,
 renderLargerThumbnail: false
 }}}, { quoted: fkontak })
-}}} else {
+} else {
 // Manejo de enlaces de canales
 const channelUrl = text?.match(/(?:https:\/\/)?(?:www\.)?(?:chat\.|wa\.)?whatsapp\.com\/(?:channel\/|joinchat\/)?([0-9A-Za-z]{22,24})/i)?.[1]
 if (channelUrl) {
