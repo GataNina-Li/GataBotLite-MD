@@ -39,7 +39,6 @@ try {
 inviteCode = await conn.groupInviteCode(m.chat)
 } catch (e) {
 inviteCode = null
-console.log(e)
 }
 const formatParticipants = (participants) =>
 participants && participants.length > 0
