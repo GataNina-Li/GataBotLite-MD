@@ -36,7 +36,7 @@ pp = groupPicture
 pp = null
 }
 try {
-inviteCode = await conn.groupInviteCode(m.chat)
+inviteCode = await conn.groupInviteCode(m.chat || res.id)
 } catch {
 inviteCode = null
 }
@@ -58,10 +58,10 @@ caption += `*Descripción cambiado por:*\n${res.descOwner ? `@${res.descOwner?.s
 `*Duración:* ${res.ephemeralDuration !== undefined ? `${res.ephemeralDuration} segundos` : "Desconocido"}\n\n` +
 `*Admins:*\n` + (res.participants && res.participants.length > 0 ? res.participants.filter(user => user.admin === "admin" || user.admin === "superadmin").map((user, i) => `${i + 1}. @${user.id?.split("@")[0]}${user.admin === "superadmin" ? " (superadmin)" : " (admin)"}`).join("\n") : "No encontrado") + `\n\n` +
 `*Usuarios en total:*\n${res.size || "Cantidad no encontrada"}\n\n`
-} //else {
-//caption += `*Miembros destacados:*\n` + (res.participants && res.participants.length > 0 ? res.participants.map((user, i) => `${i + 1}. @${user.id?.split("@")[0]}${user.admin === "superadmin" ? " (superadmin)" : user.admin === "admin" ? " (admin)" : ""}`).join("\n") : "No encontrado") + `\n\n` +
-//`*Destacados total:*\n${res.size || "Cantidad no encontrada"}\n\n`
-//}
+} else {
+caption += `*Miembros destacados:*\n` + (res.participants && res.participants.length > 0 ? res.participants.map((user, i) => `${i + 1}. @${user.id?.split("@")[0]}${user.admin === "superadmin" ? " (superadmin)" : user.admin === "admin" ? " (admin)" : ""}`).join("\n") : "No encontrado") + `\n\n` +
+`*Destacados total:*\n${res.size || "Cantidad no encontrada"}\n\n`
+}
 
 // Parámetros comunes tanto para metadatos como para enlace de invitación
 caption += `*Comunidad vinculada al grupo:*\n${res.isCommunity ? "Este grupo es un chat de avisos" : `${res.linkedParent ? res.linkedParent : "Este grupo"} ${nameCommunity}`}\n\n` +
@@ -75,16 +75,12 @@ let info
 try {
 let res = text ? null : await conn.groupMetadata(m.chat) // Si el bot está en el grupo
 info = await groupInfo(res)
-//if (res) {
-//}
 console.log('Método de metadatos')
-console.log(info)
 } catch { // En caso de que no esté en el grupo, va a intentar con el enlace
 const inviteUrl = text?.match(/(?:https:\/\/)?(?:www\.)?(?:chat\.|wa\.)?whatsapp\.com\/(?:invite\/|joinchat\/)?([0-9A-Za-z]{22,24})/i)?.[1]
 if (inviteUrl) {
 let inviteInfo = await conn.groupGetInviteInfo(inviteUrl)
 info = await groupInfo(inviteInfo, true)   
-console.log(info)
 console.log('Método de enlace')
 }}
 if (!pp) {
@@ -95,7 +91,7 @@ if (caption) {
 await conn.sendMessage(m.chat, { text: caption, contextInfo: {
 mentionedJid: conn.parseMention(caption),
 externalAdReply: {
-title: "Inspector de enlaces de Grupos",
+title: "🔰 Inspector de Grupos",
 body: packname,
 thumbnailUrl: pp,
 sourceUrl: args[0] ? args[0] : inviteCode ? `https://chat.whatsapp.com/${inviteCode}` : md,
@@ -104,7 +100,7 @@ showAdAttribution: false,
 renderLargerThumbnail: false
 }}}, { quoted: fkontak })
 } else {
-// Manejo de enlaces de canal
+// Manejo de enlaces de canales
 const channelUrl = text?.match(/(?:https:\/\/)?(?:www\.)?(?:chat\.|wa\.)?whatsapp\.com\/(?:channel\/|joinchat\/)?([0-9A-Za-z]{22,24})/i)?.[1]
 if (channelUrl) {
 try {
@@ -119,7 +115,7 @@ pp = thumb
 await conn.sendMessage(m.chat, { text: caption, contextInfo: {
 mentionedJid: conn.parseMention(caption),
 externalAdReply: {
-title: "Inspector de enlaces de Canales",
+title: "📢 Inspector de Canales",
 body: packname,
 thumbnailUrl: pp,
 sourceUrl: args[0],
