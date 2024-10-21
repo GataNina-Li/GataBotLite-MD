@@ -96,6 +96,7 @@ let inviteInfo
 if (inviteUrl) {
 try {
 inviteInfo = await conn.groupGetInviteInfo(inviteUrl)
+console.log(inviteInfo)
 } catch (e) {
 m.reply('Grupo no encontrado')
 return
