@@ -104,7 +104,7 @@ async function sendGroupInfo(conn, m, info, thumbnail, inviteCode, argUrl) {
 
 // Formateadores de Información
 
-function formatGroupInfo(res, isInviteInfo = false) {
+async function formatGroupInfo(res, isInviteInfo = false) {
     // Formatear la información del grupo, combinando metadatos y enlace de invitación
     const groupPicture = await getGroupPictureUrl(conn, res.id)
     const caption = `*ID del grupo:*\n${res.id || "No encontrado"}\n` +
