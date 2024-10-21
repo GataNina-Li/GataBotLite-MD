@@ -30,13 +30,19 @@ nameCommunity = "\n" + (linkedGroupMeta.subject || "")
 nameCommunity = ""
 console.log(e)
 }}
-try {
+//try {
 //groupPicture = await conn.profilePictureUrl(res.id, 'image')
-pp = groupPicture
-} catch (e) {
-pp = null
+//pp = groupPicture
+//} catch (e) {
+//pp = null
+//console.log(e)
+//}
+groupPicture = await conn.profilePictureUrl(res.id, 'image').catch(e => {
 console.log(e)
-}
+return null
+})
+pp = groupPicture || "No se pudo obtener"
+
 try {
 inviteCode = await conn.groupInviteCode(m.chat)
 } catch (e) {
