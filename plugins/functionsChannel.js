@@ -23,13 +23,13 @@ const groupInfo = async (res, isInviteInfo = false) => {
 let nameCommunity = "no pertenece a ninguna Comunidad"
 let groupPicture = "No se pudo obtener"
 if (res.linkedParent) {
-try {
-let linkedGroupMeta = await conn.groupMetadata(res.linkedParent)
-nameCommunity = "\n" + (linkedGroupMeta.subject || "")
-} catch (e) {
-nameCommunity = ""
-console.log(e)
-}}
+//try {
+//let linkedGroupMeta = await conn.groupMetadata(res.linkedParent)
+//nameCommunity = "\n" + (linkedGroupMeta.subject || "")
+//} catch (e) {
+//nameCommunity = ""
+//console.log(e)
+//}}
 //try {
 //groupPicture = await conn.profilePictureUrl(res.id, 'image')
 //pp = groupPicture
@@ -37,11 +37,11 @@ console.log(e)
 //pp = null
 //console.log(e)
 //}
-groupPicture = await conn.profilePictureUrl(res.id, 'image').catch(e => {
-console.log(e)
-return null
-})
-pp = groupPicture || "No se pudo obtener"
+//groupPicture = await conn.profilePictureUrl(res.id, 'image').catch(e => {
+//console.log(e)
+//return null
+//})
+//pp = groupPicture || "No se pudo obtener"
 
 try {
 inviteCode = await conn.groupInviteCode(m.chat)
@@ -59,7 +59,7 @@ let caption = `*ID del grupo:*\n${res.id || "No encontrado"}\n\n` +
 `*Nombre cambiado por:*\n${res.subjectOwner ? `@${res.subjectOwner?.split("@")[0]}` : "No encontrado"} ${res.subjectTime ? `el ${formatDate(res.subjectTime)}` : "(Fecha no encontrada)"}\n\n` +
 `*Descripción:*\n${res.desc || "No encontrado"}\n\n` +
 `*Id de la descripción:*\n${res.descId || "No encontrado"}\n\n` +
-`*Imagen del grupo:*\n${groupPicture}\n\n` 
+//`*Imagen del grupo:*\n${groupPicture}\n\n` 
 
 // Parámetros que solo están disponibles en los metadatos
 if (!isInviteInfo) {
@@ -78,8 +78,8 @@ caption += `*Miembros destacados:*\n${formatParticipants(res.participants)}\n\n`
 }
 
 // Parámetros comunes tanto para metadatos como para enlace de invitación
-caption += `*Comunidad vinculada al grupo:*\n${res.isCommunity ? "Este grupo es un chat de avisos" : `${res.linkedParent ? res.linkedParent : "Este grupo"} ${nameCommunity}`}\n\n` +
-`*Anuncios:* ${res.announce ? "✅ Si" : "❌ No"}\n` +
+//caption += `*Comunidad vinculada al grupo:*\n${res.isCommunity ? "Este grupo es un chat de avisos" : `${res.linkedParent ? res.linkedParent : "Este grupo"} ${nameCommunity}`}\n\n` +
+caption += `*Anuncios:* ${res.announce ? "✅ Si" : "❌ No"}\n` +
 `*¿Es comunidad?:* ${res.isCommunity ? "✅ Si" : "❌ No"}\n` +
 `*¿Es anuncio de comunidad?:* ${res.isCommunityAnnounce ? "✅ Si" : "❌ No"}\n` +
 `*Modo de aprobación de miembros:* ${res.joinApprovalMode ? "✅ Si" : "❌ No"}\n` 
