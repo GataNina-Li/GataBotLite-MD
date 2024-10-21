@@ -105,7 +105,7 @@ info = await groupInfo(inviteInfo, true)
 console.log(info)
 console.log('Método de enlace')
 }}
-if (inviteUrl) {
+if (info) {
 await conn.sendMessage(m.chat, { text: info, contextInfo: {
 mentionedJid: conn.parseMention(info),
 externalAdReply: {
