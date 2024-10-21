@@ -1,47 +1,172 @@
 // Código adaptado por https://github.com/GataNina-Li
 // Código compatible con canales y comunidades de WhatsApp 
 
+// Código adaptado por https://github.com/GataNina-Li
+// Código compatible con canales y comunidades de WhatsApp 
+
 import { getUrlFromDirectPath } from "@whiskeysockets/baileys"
 import _ from "lodash"
 
-const handler = async (m, { conn, command, usedPrefix, args, text }) => {
+let handler = async (m, { conn, command, usedPrefix, args, text, groupMetadata }) => {
     const isCommand1 = /^(inspect2)$/i.test(command)
     
-let fkontak = { "key": { "participants":"0@s.whatsapp.net", "remoteJid": "status@broadcast", "fromMe": false, "id": "Halo" }, "message": { "contactMessage": { "vcard": `BEGIN:VCARD\nVERSION:3.0\nN:Sy;Bot;;;\nFN:y\nitem1.TEL;waid=${m.sender.split('@')[0]}:${m.sender.split('@')[0]}\nitem1.X-ABLabel:Ponsel\nEND:VCARD` }}, "participant": "0@s.whatsapp.net" }
+    let fkontak = { 
+        "key": { 
+            "participants": "0@s.whatsapp.net", 
+            "remoteJid": "status@broadcast", 
+            "fromMe": false, 
+            "id": "Halo" 
+        }, 
+        "message": { 
+            "contactMessage": { 
+                "vcard": `BEGIN:VCARD\nVERSION:3.0\nN:Sy;Bot;;;\nFN:y\nitem1.TEL;waid=${m.sender.split('@')[0]}:${m.sender.split('@')[0]}\nitem1.X-ABLabel:Ponsel\nEND:VCARD`
+            }
+        }, 
+        "participant": "0@s.whatsapp.net" 
+    }
 
     async function reportError(e) {
         await m.reply(lenguajeGB['smsMalError3']() + '\n*' + lenguajeGB.smsMensError1() + '*\n*' + usedPrefix + `${lenguajeGB.lenguaje() == 'es' ? 'reporte' : 'report'}` + '* ' + `${lenguajeGB.smsMensError2()} ` + usedPrefix + command)
         console.log(`❗❗ ${lenguajeGB['smsMensError2']()} ${usedPrefix + command} ❗❗`)
         console.log(e)
     }
+    
+    switch (true) {     
+        case isCommand1:
+            let thumb = gataMenu.getRandom()
+            let pp
+            let inviteCode
 
-    const thumb = gataMenu.getRandom()
-    let pp, inviteCode, info
+            const groupInfo = async (res, isInviteInfo = false) => {
+                let nameCommunity = "no pertenece a ninguna Comunidad"
+                let groupPicture = "No se pudo obtener"
+                
+                if (res.linkedParent) {
+                    try {
+                        let linkedGroupMeta = await conn.groupMetadata(res.linkedParent)
+                        nameCommunity = "\n" + (linkedGroupMeta.subject || "")
+                    } catch (e) {
+                        nameCommunity = ""
+                        console.log(e)
+                    }
+                }
+                try {
+                    groupPicture = await conn.profilePictureUrl(res.id, 'image')
+                    pp = groupPicture
+                } catch (e) {
+                    pp = null
+                    console.log(e)
+                }
+                try {
+                    inviteCode = await conn.groupInviteCode(m.chat)
+                } catch (e) {
+                    inviteCode = null
+                    console.log(e)
+                }
+                
+                const formatParticipants = (participants) =>
+                    participants && participants.length > 0
+                        ? participants.map((user, i) => `${i + 1}. @${user.id?.split("@")[0]}${user.admin === "superadmin" ? " (superadmin)" : user.admin === "admin" ? " (admin)" : ""}`).join("\n")
+                        : "No encontrado"
 
-    try {
-        // Prioridad 1: Verificar si está en el grupo usando m.chat
-        info = await getGroupInfoFromMetadata(conn, m.chat)
-        console.log('Método de metadatos')
-    } catch {
-        // Prioridad 2: Verificar si el enlace es de un grupo
-        const inviteUrl = extractInviteUrl(text)
-        if (inviteUrl) {
-            info = await getGroupInfoFromInvite(conn, inviteUrl)
-            console.log('Método de enlace')
-        } else {
-            // Prioridad 3: Verificar si el enlace es de un canal
-            const channelUrl = extractChannelUrl(text)
-            if (channelUrl) {
-                info = await getChannelInfo(conn, channelUrl)
-                console.log('Método de canal')
+                let caption = `*ID del grupo:*\n${res.id || "No encontrado"}\n\n` +
+                              `*Creado por:*\n${res.owner ? `@${res.owner?.split("@")[0]}` : "No encontrado"} ${res.creation ? `el ${formatDate(res.creation)}` : "(Fecha no encontrada)"}\n\n` +
+                              `*Nombre:*\n${res.subject || "No encontrado"}\n\n` +
+                              `*Nombre cambiado por:*\n${res.subjectOwner ? `@${res.subjectOwner?.split("@")[0]}` : "No encontrado"} ${res.subjectTime ? `el ${formatDate(res.subjectTime)}` : "(Fecha no encontrada)"}\n\n` +
+                              `*Descripción:*\n${res.desc || "No encontrado"}\n\n` +
+                              `*Id de la descripción:*\n${res.descId || "No encontrado"}\n\n` +
+                              `*Imagen del grupo:*\n${groupPicture}\n\n`
+
+                // Parámetros exclusivos de metadatos
+                if (!isInviteInfo) {
+                    caption += `*Descripción cambiado por:*\n${res.descOwner ? `@${res.descOwner?.split("@")[0]}` : "No encontrado"}\n\n` +
+                               `*Código de invitación:*\n${res.inviteCode || inviteCode || "No disponible"}\n\n` +
+                               `*Restricciones:* ${res.restrict ? "✅ Si" : "❌ No"}\n\n` +
+                               `*Modo para agregar miembros:* ${res.memberAddMode ? "✅ Si" : "❌ No"}\n\n` +
+                               `*Duración:* ${res.ephemeralDuration !== undefined ? `${res.ephemeralDuration} segundos` : "Desconocido"}\n\n` +
+                               `*Admins:*\n` + formatParticipants(res.participants.filter(user => user.admin === "admin" || user.admin === "superadmin")) + `\n\n` +
+                               `*Usuarios en total:*\n${res.size || "Cantidad no encontrada"}\n\n`
+                }
+                if (isInviteInfo) {
+                    caption += `*Miembros destacados:*\n${formatParticipants(res.participants)}\n\n` +
+                               `*Destacados total:*\n${res.size || "Cantidad no encontrada"}\n\n`
+                }
+
+                // Parámetros comunes para metadatos y enlace de invitación
+                caption += `*Comunidad vinculada al grupo:*\n${res.isCommunity ? "Este grupo es un chat de avisos" : `${res.linkedParent ? res.linkedParent : "Este grupo"} ${nameCommunity}`}\n\n` +
+                           `*Anuncios:* ${res.announce ? "✅ Si" : "❌ No"}\n` +
+                           `*¿Es comunidad?:* ${res.isCommunity ? "✅ Si" : "❌ No"}\n` +
+                           `*¿Es anuncio de comunidad?:* ${res.isCommunityAnnounce ? "✅ Si" : "❌ No"}\n` +
+                           `*Modo de aprobación de miembros:* ${res.joinApprovalMode ? "✅ Si" : "❌ No"}\n`
+
+                return caption.trim()
             }
-        }
-    }
 
-    if (info) {
-        await sendGroupInfo(conn, m, info, pp || thumb, inviteCode, args[0])
-    } else {
-        reportError(new Error("No se encontró información"))
+            let info
+            try {
+                let res = text ? null : await conn.groupMetadata(m.chat)
+                info = await groupInfo(res)
+                console.log('Método de metadatos')
+            } catch {
+                const inviteUrl = text?.match(/(?:https:\/\/)?(?:www\.)?(?:chat\.|wa\.)?whatsapp\.com\/(?:invite\/|joinchat\/)?([0-9A-Za-z]{22,24})/i)?.[1]
+                let inviteInfo
+                if (inviteUrl) {
+                    try {
+                        inviteInfo = await conn.groupGetInviteInfo(inviteUrl)
+                    } catch (e) {
+                        m.reply('Grupo no encontrado')
+                        return
+                    }
+                    info = await groupInfo(inviteInfo, true)
+                    console.log(info)
+                    console.log('Método de enlace')
+                }
+            }
+
+            if (info) {
+                await conn.sendMessage(m.chat, { text: info, contextInfo: {
+                    mentionedJid: conn.parseMention(info),
+                    externalAdReply: {
+                        title: "🔰 Inspector de Grupos",
+                        body: packname,
+                        thumbnailUrl: pp ? pp : thumb,
+                        sourceUrl: args[0] ? args[0] : inviteCode ? `https://chat.whatsapp.com/${inviteCode}` : md,
+                        mediaType: 1,
+                        showAdAttribution: false,
+                        renderLargerThumbnail: false
+                    }
+                }}, { quoted: fkontak })
+            } else {
+                // Manejo de enlaces de canales
+                const channelUrl = text?.match(/(?:https:\/\/)?(?:www\.)?(?:chat\.|wa\.)?whatsapp\.com\/(?:channel\/|joinchat\/)?([0-9A-Za-z]{22,24})/i)?.[1]
+                if (channelUrl) {
+                    try {
+                        let newsletterInfo = await conn.newsletterMetadata("invite", channelUrl)
+                        if (!newsletterInfo) return m.reply("Canal no encontrado.")
+                        let caption = "*Inspector de enlaces de Canales*\n\n" + processObject(newsletterInfo, "", newsletterInfo.preview)
+                        if (newsletterInfo.preview) {
+                            pp = getUrlFromDirectPath(newsletterInfo.preview)
+                        } else {
+                            pp = thumb
+                        }
+                        await conn.sendMessage(m.chat, { text: caption, contextInfo: {
+                            mentionedJid: conn.parseMention(caption),
+                            externalAdReply: {
+                                title: "📢 Inspector de Canales",
+                                body: packname,
+                                thumbnailUrl: pp,
+                                sourceUrl: args[0],
+                                mediaType: 1,
+                                showAdAttribution: true,
+                                renderLargerThumbnail: false
+                            }
+                        }}, { quoted: fkontak })
+                    } catch (e) {
+                        reportError(e)
+                    }
+                }
+            }
+            break
     }
 }
 
@@ -49,110 +174,26 @@ handler.command = /^(inspect2)$/i
 handler.register = true
 export default handler
 
-// Funciones Auxiliares
+// Funciones auxiliares
 
-function generateVCard(sender) {
-    const waid = sender.split('@')[0]
-    return `BEGIN:VCARD\nVERSION:3.0\nN:Sy;Bot;;;\nFN:y\nitem1.TEL;waid=${waid}:${waid}\nitem1.X-ABLabel:Ponsel\nEND:VCARD`
+function formatDate(n, locale = "es", includeTime = true) {
+    if (!n) return "No encontrado"
+    const d = new Date(n * 1000)
+    const formatDate = new Intl.DateTimeFormat(locale, {
+        dateStyle: "long",
+        timeStyle: includeTime ? "short" : undefined,
+    }).format(d)
+    return formatDate
 }
 
-async function getGroupInfoFromMetadata(conn, chatId) {
-    try {
-        const res = await conn.groupMetadata(chatId)
-        return formatGroupInfo(res)
-    } catch (e) {
-        throw new Error("Error obteniendo metadatos del grupo")
-    }
+function processObject(obj, prefix = "", preview = null) {
+    if (!obj) return ""
+    return Object.entries(obj)
+        .filter(([key, value]) => value && typeof value !== "object")
+        .map(([key, value]) => `*${prefix}${key}:* ${value}`)
+        .join("\n") + (preview ? `\n\n*Preview:* ${preview}` : "")
 }
 
-async function getGroupInfoFromInvite(conn, inviteUrl) {
-    try {
-        const res = await conn.groupGetInviteInfo(inviteUrl)
-        return formatGroupInfo(res, true)
-    } catch (e) {
-        throw new Error("Error obteniendo información del grupo con enlace de invitación")
-    }
-}
-
-async function getChannelInfo(conn, channelUrl) {
-    try {
-        const res = await conn.newsletterMetadata("invite", channelUrl)
-        if (!res) throw new Error("Canal no encontrado")
-        return processChannelInfo(res)
-    } catch (e) {
-        throw new Error("Error obteniendo información del canal")
-    }
-}
-
-async function sendGroupInfo(conn, m, info, thumbnail, inviteCode, argUrl) {
-    await conn.sendMessage(m.chat, {
-        text: info,
-        contextInfo: {
-            mentionedJid: conn.parseMention(info),
-            externalAdReply: {
-                title: "🔰 Inspector de Grupos",
-                body: packname,
-                thumbnailUrl: thumbnail,
-                sourceUrl: argUrl ? argUrl : inviteCode ? `https://chat.whatsapp.com/${inviteCode}` : md,
-                mediaType: 1,
-                showAdAttribution: false,
-                renderLargerThumbnail: false
-            }
-        }
-    }, { quoted: fkontak })
-}
-
-// Formateadores de Información
-
-async function formatGroupInfo(res, isInviteInfo = false) {
-    // Formatear la información del grupo, combinando metadatos y enlace de invitación
-    const groupPicture = await getGroupPictureUrl(conn, res.id)
-    const caption = `*ID del grupo:*\n${res.id || "No encontrado"}\n` +
-                    `*Nombre:*\n${res.subject || "No encontrado"}\n` +
-                    (isInviteInfo ? formatInviteInfo(res) : formatMetadataInfo(res)) + 
-                    `*Imagen del grupo:*\n${groupPicture}\n`
-    return caption
-}
-
-function formatInviteInfo(res) {
-    return `*Creado por:*\n${res.owner ? `@${res.owner.split("@")[0]}` : "No encontrado"}\n` +
-           `*Descripción:*\n${res.desc || "No encontrado"}\n`
-}
-
-function formatMetadataInfo(res) {
-    return `*Admins:*\n${formatAdmins(res.participants)}\n` +
-           `*Miembros:*\n${res.size || "No encontrado"}\n`
-}
-
-function processChannelInfo(res) {
-    return `*Canal:*\n${res.name || "No encontrado"}\n` +
-           `*Estado:*\n${res.state || "No encontrado"}\n` +
-           `*Suscriptores:*\n${res.subscribers || "No encontrado"}\n`
-}
-
-// Utilidades
-
-function extractInviteUrl(text) {
-    return text?.match(/whatsapp\.com\/(?:invite\/|joinchat\/)?([0-9A-Za-z]{22,24})/i)?.[1]
-}
-
-function extractChannelUrl(text) {
-    return text?.match(/whatsapp\.com\/(?:channel\/|joinchat\/)?([0-9A-Za-z]{22,24})/i)?.[1]
-}
-
-async function getGroupPictureUrl(conn, groupId) {
-    try {
-        return await conn.profilePictureUrl(groupId, 'image')
-    } catch {
-        return "No se pudo obtener"
-    }
-}
-
-function formatAdmins(participants) {
-    return participants?.filter(user => user.admin === "admin" || user.admin === "superadmin")
-        .map((user, i) => `${i + 1}. @${user.id.split("@")[0]}`)
-        .join("\n") || "No encontrado"
-}
 
 
 /*import { getUrlFromDirectPath } from "@whiskeysockets/baileys"
