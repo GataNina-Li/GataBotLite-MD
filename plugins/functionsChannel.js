@@ -28,7 +28,7 @@ let linkedGroupMeta = await conn.groupMetadata(res.linkedParent)
 nameCommunity = "\n" + (linkedGroupMeta.subject || "")
 } catch (e) {
 nameCommunity = ""
-console.log(e)
+//console.log(e)
 }}
 //try {
 //groupPicture = await conn.profilePictureUrl(res.id, 'image')
