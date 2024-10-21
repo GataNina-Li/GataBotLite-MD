@@ -22,7 +22,7 @@ let inviteCode
 const groupInfo = async (res, isInviteInfo = false) => {
 let nameCommunity = "no pertenece a ninguna Comunidad"
 let groupPicture = "No se pudo obtener"
-if (res.linkedParent) {
+//if (res.linkedParent) {
 //try {
 //let linkedGroupMeta = await conn.groupMetadata(res.linkedParent)
 //nameCommunity = "\n" + (linkedGroupMeta.subject || "")
