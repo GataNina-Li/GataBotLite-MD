@@ -100,10 +100,11 @@ inviteInfo = await conn.groupGetInviteInfo(inviteUrl)
 m.reply('Grupo no encontrado')
 return
 }
+}
 info = await groupInfo(inviteInfo, true)
 console.log(info)
 console.log('Método de enlace')
-}}
+}
 if (info) {
 await conn.sendMessage(m.chat, { text: info, contextInfo: {
 mentionedJid: conn.parseMention(info),
