@@ -51,7 +51,7 @@ let handler = async (m, { conn, command, usedPrefix, args, text, groupMetadata }
                     }
                 }
                 try {
-                    groupPicture = await conn.profilePictureUrl(res.id, 'image') || thumb
+                    groupPicture = await conn.profilePictureUrl(res.?id, 'image') || thumb
                     pp = groupPicture
                 } catch (e) {
                     pp = null
