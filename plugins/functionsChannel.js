@@ -141,6 +141,7 @@ mediaType: 1,
 showAdAttribution: true,
 renderLargerThumbnail: false
 }}}, { quoted: fkontak })
+newsletterInfo.id ? m.reply(newsletterInfo.id) : ''
 } catch (e) {
 reportError(e)
 }}}
