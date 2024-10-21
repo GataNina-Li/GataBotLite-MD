@@ -31,7 +31,7 @@ nameCommunity = ""
 console.log(e)
 }}
 try {
-groupPicture = await conn.profilePictureUrl(res.id, 'image')
+//groupPicture = await conn.profilePictureUrl(res.id, 'image')
 pp = groupPicture
 } catch (e) {
 pp = null
