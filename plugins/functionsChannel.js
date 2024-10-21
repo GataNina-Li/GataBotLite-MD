@@ -101,7 +101,7 @@ m.reply('Grupo no encontrado')
 return
 }
 m.reply('Error')
-info = await groupInfo(inviteInfo, true)
+info = await groupInfo(inviteInfo)
 console.log(info)
 console.log('Método de enlace')
 }}
