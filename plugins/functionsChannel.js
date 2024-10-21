@@ -28,17 +28,20 @@ let linkedGroupMeta = await conn.groupMetadata(res.linkedParent)
 nameCommunity = "\n" + (linkedGroupMeta.subject || "")
 } catch (e) {
 nameCommunity = ""
+console.log(e)
 }}
 try {
 groupPicture = await conn.profilePictureUrl(res.id, 'image')
 pp = groupPicture
 } catch (e) {
 pp = null
+console.log(e)
 }
 try {
 inviteCode = await conn.groupInviteCode(m.chat)
 } catch (e) {
 inviteCode = null
+console.log(e)
 }
 const formatParticipants = (participants) =>
 participants && participants.length > 0
