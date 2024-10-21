@@ -86,9 +86,10 @@ info = await groupInfo(res)
 console.log('Método de metadatos')
 } catch {
 const inviteUrl = text?.match(/(?:https:\/\/)?(?:www\.)?(?:chat\.|wa\.)?whatsapp\.com\/(?:invite\/|joinchat\/)?([0-9A-Za-z]{22,24})/i)?.[1]
+let inviteInfo
 if (inviteUrl) {
 try {
-let inviteInfo = await conn.groupGetInviteInfo(inviteUrl)
+inviteInfo = await conn.groupGetInviteInfo(inviteUrl)
 } catch (e) {
 m.reply('Grupo no encontrado')
 return
