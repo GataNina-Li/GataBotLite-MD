@@ -79,7 +79,7 @@ let caption = `🆔 *Identificador del grupo:*\n${id || "No encontrado"}\n\n` +
 `🖼️ *Imagen del grupo:*\n${pp ? pp : groupPicture}\n\n` +
 `🏆 *Miembros destacados:*\n${formatParticipants(groupData.participants)}\n\n` +
 `👥 *Destacados total:*\n${size || "Cantidad no encontrada"}\n\n` +
-`✨ *Información avanzada* ✨\n\n🔎 *Comunidad vinculada al grupo:*\n${isCommunity ? "Este grupo es un chat de avisos" : `${"`Id:` " + linkedParent ? linkedParent : "Este grupo"} ${nameCommunity}`}\n\n` +
+`✨ *Información avanzada* ✨\n\n🔎 *Comunidad vinculada al grupo:*\n${isCommunity ? "Este grupo es un chat de avisos" : `${linkedParent ? "`Id:` " + linkedParent : "Este grupo"} ${nameCommunity}`}\n\n` +
 `📢 *Anuncios:* ${announce ? "✅ Si" : "❌ No"}\n` +
 `🏘️ *¿Es comunidad?:* ${isCommunity ? "✅ Si" : "❌ No"}\n` +
 `📯 *¿Es anuncio de comunidad?:* ${isCommunityAnnounce ? "✅" : "❌"}\n` +
