@@ -106,7 +106,7 @@ return
 }}}
 if (info) {
 await conn.sendMessage(m.chat, { text: info, contextInfo: {
-//mentionedJid: conn.parseMention(info),
+mentionedJid: conn.parseMention(info),
 externalAdReply: {
 title: "🔰 Inspector de Grupos",
 body: packname,
