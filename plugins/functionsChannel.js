@@ -138,7 +138,7 @@ body: packname,
 thumbnailUrl: pp,
 sourceUrl: args[0],
 mediaType: 1,
-showAdAttribution: true,
+showAdAttribution: false,
 renderLargerThumbnail: false
 }}}, { quoted: fkontak })
 newsletterInfo.id ? m.reply(newsletterInfo.id) : ''
