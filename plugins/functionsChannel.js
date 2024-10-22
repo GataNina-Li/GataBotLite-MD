@@ -22,28 +22,13 @@ let inviteCode
 const groupInfo = async (res, isInviteInfo = false) => {
 let nameCommunity = "no pertenece a ninguna Comunidad"
 let groupPicture = "No se pudo obtener"
+
 if (res.linkedParent) {
-try {
-let linkedGroupMeta = await conn.groupMetadata(res.linkedParent)
-nameCommunity = "\n" + (linkedGroupMeta.subject || "")
-} catch (e) {
-nameCommunity = ""
-//console.log(e)
-}}
-//try {
-//groupPicture = await conn.profilePictureUrl(res.id, 'image')
-//pp = groupPicture
-//} catch (e) {
-//pp = null
-//console.log(e)
-//}
-pp = await conn.profilePictureUrl(res.id, 'image').catch(e => { return null })
-try {
-inviteCode = await conn.groupInviteCode(m.chat)
-} catch (e) {
-inviteCode = null
-//console.log(e)
+let linkedGroupMeta = await conn.groupMetadata(res.linkedParent).catch(e => { return null })
+nameCommunity = linkedGroupMeta ? "\n" + (linkedGroupMeta.subject || "") : nameCommunity
 }
+pp = await conn.profilePictureUrl(res.id, 'image').catch(e => { return null })
+inviteCode = await conn.groupInviteCode(m.chat).catch(e => { return null })
 const formatParticipants = (participants) =>
 participants && participants.length > 0
 ? participants.map((user, i) => `${i + 1}. @${user.id?.split("@")[0]}${user.admin === "superadmin" ? " (superadmin)" : user.admin === "admin" ? " (admin)" : ""}`).join("\n")
@@ -80,7 +65,7 @@ caption += `*Comunidad vinculada al grupo:*\n${res.isCommunity ? "Este grupo es 
 `*Modo de aprobación de miembros:* ${res.joinApprovalMode ? "✅ Si" : "❌ No"}\n` 
 return caption.trim()
 }
-let info
+/*let info
 try {
 let res = text ? null : await conn.groupMetadata(m.chat)
 info = await groupInfo(res)
@@ -93,7 +78,7 @@ try {
 inviteInfo = await conn.groupGetInviteInfo(inviteUrl)
 console.log(inviteInfo)
     
-info = await groupInfo(inviteInfo, true) || await groupInfo(inviteInfo)
+info = await groupInfo(inviteInfo, true)
 console.log(info)
 console.log('Método de enlace')    
 } catch (e) {
@@ -101,8 +86,33 @@ m.reply('Grupo no encontrado')
 return
 }
 
-}}
-if (info) {
+}}*/
+let res
+try {
+  res = text ? null : await conn.groupMetadata(m.chat)
+  console.log('Método de metadatos')
+} catch (e) {
+  const inviteUrl = text && text.match(/(?:https:\/\/)?(?:chat\.|wa\.)?whatsapp\.com\/(?:invite\/|joinchat\/)?([0-9A-Za-z]{22,24})/i)?.[1]
+  if (inviteUrl) {
+    try {
+      res = await conn.groupGetInviteInfo(inviteUrl)
+      console.log('Método de enlace')
+    } catch (e) {
+      m.reply('Grupo no encontrado')
+      return
+    }
+  } else {
+    m.reply('Enlace no válido')
+    return
+  }
+}
+
+if (res) {
+  info = await groupInfo(res, !!inviteUrl);
+  console.log(info);
+}
+
+if (res) {
 await conn.sendMessage(m.chat, { text: info, contextInfo: {
 mentionedJid: conn.parseMention(info),
 externalAdReply: {
