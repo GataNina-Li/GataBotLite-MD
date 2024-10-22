@@ -47,7 +47,7 @@ try {
 inviteCode = await conn.groupInviteCode(m.chat)
 } catch (e) {
 inviteCode = null
-console.log(e)
+//console.log(e)
 }
 const formatParticipants = (participants) =>
 participants && participants.length > 0
@@ -68,9 +68,9 @@ caption += `*Descripción cambiado por:*\n${res.descOwner ? `@${res.descOwner?.s
 `*Código de invitación:*\n${res.inviteCode || inviteCode || "No disponible"}\n\n` +
 `*Restricciones:* ${res.restrict ? "✅ Si" : "❌ No"}\n\n` +
 `*Modo para agregar miembros:* ${res.memberAddMode ? "✅ Si" : "❌ No"}\n\n` +
-`*Duración:* ${res.ephemeralDuration !== undefined ? `${res.ephemeralDuration} segundos` : "Desconocido"}\n\n` +
-`*Admins:*\n` + (res.participants && res.participants.length > 0 ? res.participants.filter(user => user.admin === "admin" || user.admin === "superadmin").map((user, i) => `${i + 1}. @${user.id?.split("@")[0]}${user.admin === "superadmin" ? " (superadmin)" : " (admin)"}`).join("\n") : "No encontrado") + `\n\n` +
-`*Usuarios en total:*\n${res.size || "Cantidad no encontrada"}\n\n`
+`*Duración:* ${res.ephemeralDuration !== undefined ? `${res.ephemeralDuration} segundos` : "Desconocido"}\n\n` 
+//`*Admins:*\n` + (res.participants && res.participants.length > 0 ? res.participants.filter(user => user.admin === "admin" || user.admin === "superadmin").map((user, i) => `${i + 1}. @${user.id?.split("@")[0]}${user.admin === "superadmin" ? " (superadmin)" : " (admin)"}`).join("\n") : "No encontrado") + `\n\n` +
+//`*Usuarios en total:*\n${res.size || "Cantidad no encontrada"}\n\n`
 }
 if (isInviteInfo) {
 caption += `*Miembros destacados:*\n${formatParticipants(res.participants)}\n\n` +
