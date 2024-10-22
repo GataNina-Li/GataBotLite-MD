@@ -112,7 +112,7 @@ if (res) {
   console.log(info);
 }
 
-if (res) {
+if (info) {
 await conn.sendMessage(m.chat, { text: info, contextInfo: {
 mentionedJid: conn.parseMention(info),
 externalAdReply: {
