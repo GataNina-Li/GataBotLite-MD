@@ -92,7 +92,7 @@ try {
   res = text ? null : await conn.groupMetadata(m.chat)
   console.log('Método de metadatos')
 } catch (e) {
-  const inviteUrl = text && text.match(/(?:https:\/\/)?(?:chat\.|wa\.)?whatsapp\.com\/(?:invite\/|joinchat\/)?([0-9A-Za-z]{22,24})/i)?.[1]
+  const inviteUrl = text?.match(/(?:https:\/\/)?(?:www\.)?(?:chat\.|wa\.)?whatsapp\.com\/(?:invite\/|joinchat\/)?([0-9A-Za-z]{22,24})/i)?.[1]
   if (inviteUrl) {
     try {
       res = await conn.groupGetInviteInfo(inviteUrl)
@@ -108,7 +108,7 @@ try {
 }
 
 if (res) {
-  info = await groupInfo(res, !!inviteUrl);
+  info = await groupInfo(res, !!inviteUrl)
   console.log(info);
 }
 
