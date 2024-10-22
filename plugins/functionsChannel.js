@@ -87,7 +87,7 @@ let caption = `🆔 *Identificador del grupo:*\n${id || "No encontrado"}\n\n` +
 return caption.trim()
 }
 
-let info = null
+let info
 try {
 let res = text ? null : await conn.groupMetadata(m.chat)
 info = await MetadataGroupInfo(res) // Si el bot esta en el grupo
@@ -99,6 +99,7 @@ if (inviteUrl) {
 try {
 inviteInfo = await conn.groupGetInviteInfo(inviteUrl)
 info = inviteGroupInfo(inviteInfo) // Para cualquier enlace de grupo/comunidad
+console.log(info)
 console.log('Método de enlace')    
 } catch (e) {
 m.reply('Grupo no encontrado')
