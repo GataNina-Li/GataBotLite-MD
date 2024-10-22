@@ -66,6 +66,48 @@ caption += `*Comunidad vinculada al grupo:*\n${res.isCommunity ? "Este grupo es 
 console.log(caption)
 return caption.trim()
 }
+const formatGroupInfo = (groupData) => {
+const formatDate = (timestamp) => new Date(timestamp * 1000).toLocaleString()
+const {
+    id,
+    subject,
+    subjectOwner,
+    subjectTime,
+    size,
+    creation,
+    owner,
+    desc,
+    descId,
+    linkedParent,
+    restrict,
+    announce,
+    isCommunity,
+    isCommunityAnnounce,
+    joinApprovalMode,
+    memberAddMode,
+    ephemeralDuration
+  } = groupData;
+
+  
+  let formattedInfo = `*Información del Grupo:*\n\n` +
+    `*ID del Grupo:* ${id || "No disponible"}\n` +
+    `*Nombre:* ${subject || "No disponible"}\n` +
+    `*Creado por:* ${owner ? `@${owner.split("@")[0]}` : "No disponible"} ${creation ? `el ${formatDate(creation)}` : ""}\n` +
+    `*Última vez cambiado el nombre:* ${subjectOwner ? `@${subjectOwner.split("@")[0]}` : "No disponible"} ${subjectTime ? `el ${formatDate(subjectTime)}` : ""}\n` +
+    `*Descripción:* ${desc || "No disponible"}\n` +
+    `*ID de la Descripción:* ${descId || "No disponible"}\n` +
+    `*Comunidad Vinculada:* ${linkedParent ? `ID de la Comunidad: ${linkedParent}` : "No vinculada a ninguna comunidad"}\n\n` +
+    `*Restricciones:* ${restrict ? "✅ Si" : "❌ No"}\n` +
+    `*Anuncios:* ${announce ? "✅ Si" : "❌ No"}\n` +
+    `*¿Es comunidad?:* ${isCommunity ? "✅ Si" : "❌ No"}\n` +
+    `*¿Es un Anuncio de Comunidad?:* ${isCommunityAnnounce ? "✅ Si" : "❌ No"}\n` +
+    `*Aprobación de Miembros:* ${joinApprovalMode ? "✅ Si" : "❌ No"}\n` +
+    `*Modo para agregar miembros:* ${memberAddMode ? "✅ Si" : "❌ No"}\n` +
+    `*Duración de mensajes efímeros:* ${ephemeralDuration ? `${ephemeralDuration} segundos` : "No configurado"}\n` +
+    `*Tamaño del Grupo:* ${size || "No disponible"}\n`;
+
+  return formattedInfo
+}
 let info = null
 try {
 let res = text ? null : await conn.groupMetadata(m.chat)
@@ -78,6 +120,7 @@ if (inviteUrl) {
 try {
 inviteInfo = await conn.groupGetInviteInfo(inviteUrl)
 console.log(inviteInfo)
+const formattedInfo = formatGroupInfo(inviteInfo)
     
 info = await groupInfo(inviteInfo, true)
 console.log(info)
