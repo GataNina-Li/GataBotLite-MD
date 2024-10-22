@@ -153,6 +153,7 @@ reportError(e)
 break
 
 case isCommand2:
+console.log(conn.chats)
 const channels = _.values(conn.chats).filter(c => c.jid.endsWith("@newsletter"))
 if (_.isEmpty(args)) {
 const list = _.map(channels, (ch, i) => `*${i + 1}.* ${ch.name}`).join("\n")
