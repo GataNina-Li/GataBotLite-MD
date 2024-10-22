@@ -9,7 +9,7 @@ let pp, groupAdmins, listAdmin, owner
 const isCommand1 = /^(infogrupo|gro?upinfo|info(gro?up|gc))$/i.test(command)
 const isCommand2 = /^(admins|@admins|dmins)$/i.test(command)
 const isCommand3 = /^(enlace|link(gro?up)?)$/i.test(command)
-const isCommand4 = /^(inspect|inspeccionar|revisar)$/i.test(command)
+//const isCommand4 = /^(inspect|inspeccionar|revisar)$/i.test(command)
 const isCommand5 = /^(saludar|abrazar)$/i.test(command)
 
 async function reportError(e) {
@@ -161,7 +161,7 @@ break
 break
 }}
 
-handler.command = /^(infogrupo|gro?upinfo|info(gro?up|gc)|admins|@admins|dmins|enlace|link(gro?up)?|inspect|inspeccionar|revisar|saludar|abrazar)$/i
+handler.command = /^(infogrupo|gro?upinfo|info(gro?up|gc)|admins|@admins|dmins|enlace|link(gro?up)?|saludar|abrazar)$/i
 handler.group = true
 handler.register = true
 export default handler
