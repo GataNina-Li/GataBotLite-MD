@@ -121,6 +121,7 @@ try {
 inviteInfo = await conn.groupGetInviteInfo(inviteUrl)
 console.log(inviteInfo)
 const formattedInfo = formatGroupInfo(inviteInfo)
+m.reply(formattedInfo)
     
 info = await groupInfo(inviteInfo, true)
 console.log(info)
