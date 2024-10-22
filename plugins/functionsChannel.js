@@ -88,6 +88,7 @@ return
 
 }}*/
 let res
+let info
 try {
   res = text ? null : await conn.groupMetadata(m.chat)
   console.log('Método de metadatos')
