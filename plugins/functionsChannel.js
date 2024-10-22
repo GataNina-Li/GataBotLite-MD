@@ -111,9 +111,9 @@ try {
 if (res) {
   info = await groupInfo(res, !!inviteUrl)
   console.log(info);
-}
+//}
 
-if (info) {
+//if (info) {
 await conn.sendMessage(m.chat, { text: info, contextInfo: {
 mentionedJid: conn.parseMention(info),
 externalAdReply: {
