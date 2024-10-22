@@ -37,12 +37,7 @@ nameCommunity = ""
 //pp = null
 //console.log(e)
 //}
-groupPicture = await conn.profilePictureUrl(res.id, 'image').catch(e => {
-//console.log(e)
-pp = null
-return null
-})
-
+pp = await conn.profilePictureUrl(res.id, 'image').catch(e => { return null })
 try {
 inviteCode = await conn.groupInviteCode(m.chat)
 } catch (e) {
@@ -59,7 +54,7 @@ let caption = `*ID del grupo:*\n${res.id || "No encontrado"}\n\n` +
 `*Nombre cambiado por:*\n${res.subjectOwner ? `@${res.subjectOwner?.split("@")[0]}` : "No encontrado"} ${res.subjectTime ? `el ${formatDate(res.subjectTime)}` : "(Fecha no encontrada)"}\n\n` +
 `*Descripción:*\n${res.desc || "No encontrado"}\n\n` +
 `*Id de la descripción:*\n${res.descId || "No encontrado"}\n\n` +
-`*Imagen del grupo:*\n${groupPicture}\n\n` 
+`*Imagen del grupo:*\n${pp ? pp : groupPicture}\n\n` 
 
 // Parámetros que solo están disponibles en los metadatos
 if (!isInviteInfo) {
