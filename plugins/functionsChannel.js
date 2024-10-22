@@ -19,7 +19,7 @@ case isCommand1:
 let thumb = gataMenu.getRandom()
 let pp
 let inviteCode
-const groupInfo = async (res, isInviteInfo = false) => {
+const MetadataGroupInfo = async (res, isInviteInfo = false) => {
 let nameCommunity = "no pertenece a ninguna Comunidad"
 let groupPicture = "No se pudo obtener"
 
@@ -33,85 +33,64 @@ const formatParticipants = (participants) =>
 participants && participants.length > 0
 ? participants.map((user, i) => `${i + 1}. @${user.id?.split("@")[0]}${user.admin === "superadmin" ? " (superadmin)" : user.admin === "admin" ? " (admin)" : ""}`).join("\n")
 : "No encontrado"
-let caption = `*ID del grupo:*\n${res.id || "No encontrado"}\n\n` +
-`*Creado por:*\n${res.owner ? `@${res.owner?.split("@")[0]}` : "No encontrado"} ${res.creation ? `el ${formatDate(res.creation)}` : "(Fecha no encontrada)"}\n\n` +
-`*Nombre:*\n${res.subject || "No encontrado"}\n\n` +
-`*Nombre cambiado por:*\n${res.subjectOwner ? `@${res.subjectOwner?.split("@")[0]}` : "No encontrado"} ${res.subjectTime ? `el ${formatDate(res.subjectTime)}` : "(Fecha no encontrada)"}\n\n` +
-`*Descripción:*\n${res.desc || "No encontrado"}\n\n` +
-`*Id de la descripción:*\n${res.descId || "No encontrado"}\n\n` +
-`*Imagen del grupo:*\n${pp ? pp : groupPicture}\n\n` 
-
-// Parámetros que solo están disponibles en los metadatos
-if (!isInviteInfo) {
-caption += `*Descripción cambiado por:*\n${res.descOwner ? `@${res.descOwner?.split("@")[0]}` : "No encontrado"}\n\n` +
-`*Autor:*\n${res.author || "No encontrado"}\n\n` +
-`*Código de invitación:*\n${res.inviteCode || inviteCode || "No disponible"}\n\n` +
-`*Restricciones:* ${res.restrict ? "✅ Si" : "❌ No"}\n\n` +
-`*Modo para agregar miembros:* ${res.memberAddMode ? "✅ Si" : "❌ No"}\n\n` +
-`*Duración:* ${res.ephemeralDuration !== undefined ? `${res.ephemeralDuration} segundos` : "Desconocido"}\n\n` 
-//`*Admins:*\n` + (res.participants && res.participants.length > 0 ? res.participants.filter(user => user.admin === "admin" || user.admin === "superadmin").map((user, i) => `${i + 1}. @${user.id?.split("@")[0]}${user.admin === "superadmin" ? " (superadmin)" : " (admin)"}`).join("\n") : "No encontrado") + `\n\n` +
-//`*Usuarios en total:*\n${res.size || "Cantidad no encontrada"}\n\n`
-}
-if (isInviteInfo) {
-caption += `*Miembros destacados:*\n${formatParticipants(res.participants)}\n\n` +
-`*Destacados total:*\n${res.size || "Cantidad no encontrada"}\n\n`
-}
-
-// Parámetros comunes tanto para metadatos como para enlace de invitación
-caption += `*Comunidad vinculada al grupo:*\n${res.isCommunity ? "Este grupo es un chat de avisos" : `${res.linkedParent ? res.linkedParent : "Este grupo"} ${nameCommunity}`}\n\n` +
-`*Anuncios:* ${res.announce ? "✅ Si" : "❌ No"}\n` +
-`*¿Es comunidad?:* ${res.isCommunity ? "✅ Si" : "❌ No"}\n` +
-`*¿Es anuncio de comunidad?:* ${res.isCommunityAnnounce ? "✅ Si" : "❌ No"}\n` +
-`*Modo de aprobación de miembros:* ${res.joinApprovalMode ? "✅ Si" : "❌ No"}\n` 
-console.log(caption)
+let caption = `🆔 *Identificador del grupo:*\n${res.id || "No encontrado"}\n\n` +
+`👑 *Creado por:*\n${res.owner ? `@${res.owner?.split("@")[0]}` : "No encontrado"} ${res.creation ? `el ${formatDate(res.creation)}` : "(Fecha no encontrada)"}\n\n` +
+`🏷️ *Nombre:*\n${res.subject || "No encontrado"}\n\n` +
+`✏️ *Nombre cambiado por:*\n${res.subjectOwner ? `@${res.subjectOwner?.split("@")[0]}` : "No encontrado"} ${res.subjectTime ? `el ${formatDate(res.subjectTime)}` : "(Fecha no encontrada)"}\n\n` +
+`📄 *Descripción:*\n${res.desc || "No encontrado"}\n\n` +
+`📝 *Descripción cambiado por:*\n${res.descOwner ? `@${res.descOwner?.split("@")[0]}` : "No encontrado"}\n\n` +
+`🗃️ *Id de la descripción:*\n${res.descId || "No encontrado"}\n\n` +
+`🖼️ *Imagen del grupo:*\n${pp ? pp : groupPicture}\n\n` +
+`💫 *Autor:*\n${res.author || "No encontrado"}\n\n` +
+`🎫 *Código de invitación:*\n${res.inviteCode || inviteCode || "No disponible"}\n\n` +
+`⌛ *Duración:*\n${res.ephemeralDuration !== undefined ? `${res.ephemeralDuration} segundos` : "Desconocido"}\n\n` +
+`🛃 *Admins:*\n` + (res.participants && res.participants.length > 0 ? res.participants.filter(user => user.admin === "admin" || user.admin === "superadmin").map((user, i) => `${i + 1}. @${user.id?.split("@")[0]}${user.admin === "superadmin" ? " (superadmin)" : " (admin)"}`).join("\n") : "No encontrado") + `\n\n` +
+`🔰 *Usuarios en total:*\n${res.size || "Cantidad no encontrada"}\n\n` +
+`✨ *Información avanzada*\n🔎 *Comunidad vinculada al grupo:*\n${res.isCommunity ? "Este grupo es un chat de avisos" : `${res.linkedParent ? res.linkedParent : "Este grupo"} ${nameCommunity}`}\n\n` +
+`⚠️ *Restricciones:* ${res.restrict ? "✅ Si" : "❌ No"}\n\n` +
+`📢 *Anuncios:* ${res.announce ? "✅ Si" : "❌ No"}\n` +
+`🏘️ *¿Es comunidad?:* ${res.isCommunity ? "✅ Si" : "❌ No"}\n` +
+`📯 *¿Es anuncio de comunidad?:* ${res.isCommunityAnnounce ? "✅ Si" : "❌ No"}\n` +
+`🤝 *Modo de aprobación de miembros:* ${res.joinApprovalMode ? "✅ Si" : "❌ No"}\n` +
+`🆕 *Modo para agregar miembros:* ${res.memberAddMode ? "✅ Si" : "❌ No"}\n\n` 
 return caption.trim()
 }
-const formatGroupInfo = (groupData) => {
-const formatDate = (timestamp) => new Date(timestamp * 1000).toLocaleString()
-const {
-    id,
-    subject,
-    subjectOwner,
-    subjectTime,
-    size,
-    creation,
-    owner,
-    desc,
-    descId,
-    linkedParent,
-    restrict,
-    announce,
-    isCommunity,
-    isCommunityAnnounce,
-    joinApprovalMode,
-    memberAddMode,
-    ephemeralDuration
-  } = groupData;
-
-  
-  let formattedInfo = `*Información del Grupo:*\n\n` +
-    `*ID del Grupo:* ${id || "No disponible"}\n` +
-    `*Nombre:* ${subject || "No disponible"}\n` +
-    `*Creado por:* ${owner ? `@${owner.split("@")[0]}` : "No disponible"} ${creation ? `el ${formatDate(creation)}` : ""}\n` +
-    `*Última vez cambiado el nombre:* ${subjectOwner ? `@${subjectOwner.split("@")[0]}` : "No disponible"} ${subjectTime ? `el ${formatDate(subjectTime)}` : ""}\n` +
-    `*Descripción:* ${desc || "No disponible"}\n` +
-    `*ID de la Descripción:* ${descId || "No disponible"}\n` +
-    `*Comunidad Vinculada:* ${linkedParent ? `ID de la Comunidad: ${linkedParent}` : "No vinculada a ninguna comunidad"}\n\n` +
-    `*Restricciones:* ${restrict ? "✅ Si" : "❌ No"}\n` +
-    `*Anuncios:* ${announce ? "✅ Si" : "❌ No"}\n` +
-    `*¿Es comunidad?:* ${isCommunity ? "✅ Si" : "❌ No"}\n` +
-    `*¿Es un Anuncio de Comunidad?:* ${isCommunityAnnounce ? "✅ Si" : "❌ No"}\n` +
-    `*Aprobación de Miembros:* ${joinApprovalMode ? "✅ Si" : "❌ No"}\n` +
-    `*Modo para agregar miembros:* ${memberAddMode ? "✅ Si" : "❌ No"}\n` +
-    `*Duración de mensajes efímeros:* ${ephemeralDuration ? `${ephemeralDuration} segundos` : "No configurado"}\n` +
-    `*Tamaño del Grupo:* ${size || "No disponible"}\n`;
-
-  return formattedInfo
+        
+const inviteGroupInfo = async (groupData) => {
+const { id, subject, subjectOwner, subjectTime, size, creation, owner, desc, descId, linkedParent, restrict, announce, isCommunity, isCommunityAnnounce, joinApprovalMode, memberAddMode, ephemeralDuration } = groupData
+let nameCommunity = "no pertenece a ninguna Comunidad"
+let groupPicture = "No se pudo obtener"
+if (linkedParent) {
+let linkedGroupMeta = await conn.groupMetadata(linkedParent).catch(e => { return null })
+nameCommunity = linkedGroupMeta ? "\n" + (linkedGroupMeta.subject || "") : nameCommunity
 }
+pp = await conn.profilePictureUrl(id, 'image').catch(e => { return null })
+const formatParticipants = (participants) =>
+participants && participants.length > 0
+? participants.map((user, i) => `${i + 1}. @${user.id?.split("@")[0]}${user.admin === "superadmin" ? " (superadmin)" : user.admin === "admin" ? " (admin)" : ""}`).join("\n")
+: "No encontrado"
+
+let caption = `🆔 *Identificador del grupo:*\n${id || "No encontrado"}\n\n` +
+`👑 *Creado por:*\n${owner ? `@${owner?.split("@")[0]}` : "No encontrado"} ${creation ? `el ${formatDate(creation)}` : "(Fecha no encontrada)"}\n\n` +
+`🏷️ *Nombre:*\n${subject || "No encontrado"}\n\n` +
+`✏️ *Nombre cambiado por:*\n${subjectOwner ? `@${subjectOwner?.split("@")[0]}` : "No encontrado"} ${subjectTime ? `el ${formatDate(subjectTime)}` : "(Fecha no encontrada)"}\n\n` +
+`📄 *Descripción:*\n${desc || "No encontrada"}\n\n` +
+`💠 *ID de la descripción:*\n${descId || "No encontrado"}\n\n` +
+`🖼️ *Imagen del grupo:*\n${pp ? pp : groupPicture}\n\n` +
+`🏆 *Miembros destacados:*\n${formatParticipants(groupData.participants)}\n\n` +
+`👥 *Destacados total:*\n${size || "Cantidad no encontrada"}\n\n` +
+`✨ *Información avanzada*\n🔎 *Comunidad vinculada al grupo:*\n${isCommunity ? "Este grupo es un chat de avisos" : `${linkedParent ? linkedParent : "Este grupo"} ${nameCommunity}`}\n\n` +
+`📢 *Anuncios:* ${announce ? "✅ Si" : "❌ No"}\n` +
+`🏘️ *¿Es comunidad?:* ${isCommunity ? "✅ Si" : "❌ No"}\n` +
+`📯 *¿Es anuncio de comunidad?:* ${isCommunityAnnounce ? "✅ Si" : "❌ No"}\n` +
+`🤝 *Aprobación de Miembros:* ${joinApprovalMode ? "✅ Si" : "❌ No"}\n`
+return caption.trim()
+}
+
 let info = null
 try {
 let res = text ? null : await conn.groupMetadata(m.chat)
-info = await groupInfo(res)
+info = await MetadataGroupInfo(res) // Si el bot esta en el grupo
 console.log('Método de metadatos')
 } catch {
 const inviteUrl = text?.match(/(?:https:\/\/)?(?:www\.)?(?:chat\.|wa\.)?whatsapp\.com\/(?:invite\/|joinchat\/)?([0-9A-Za-z]{22,24})/i)?.[1]
@@ -119,19 +98,12 @@ let inviteInfo
 if (inviteUrl) {
 try {
 inviteInfo = await conn.groupGetInviteInfo(inviteUrl)
-console.log(inviteInfo)
-const formattedInfo = formatGroupInfo(inviteInfo)
-m.reply(formattedInfo)
-    
-info = await groupInfo(inviteInfo, true)
-console.log(info)
+info = inviteGroupInfo(inviteInfo) // Para cualquier enlace de grupo/comunidad
 console.log('Método de enlace')    
 } catch (e) {
 m.reply('Grupo no encontrado')
 return
-}
-
-}}
+}}}
 if (info) {
 await conn.sendMessage(m.chat, { text: info, contextInfo: {
 mentionedJid: conn.parseMention(info),
