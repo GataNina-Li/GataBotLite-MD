@@ -9,8 +9,7 @@ let pp, groupAdmins, listAdmin, owner
 const isCommand1 = /^(infogrupo|gro?upinfo|info(gro?up|gc))$/i.test(command)
 const isCommand2 = /^(admins|@admins|dmins)$/i.test(command)
 const isCommand3 = /^(enlace|link(gro?up)?)$/i.test(command)
-//const isCommand4 = /^(inspect|inspeccionar|revisar)$/i.test(command)
-const isCommand5 = /^(saludar|abrazar)$/i.test(command)
+const isCommand4 = /^(saludar|abrazar)$/i.test(command)
 
 async function reportError(e) {
 await m.reply(lenguajeGB['smsMalError3']() + '\n*' + lenguajeGB.smsMensError1() + '*\n*' + usedPrefix + `${lenguajeGB.lenguaje() == 'es' ? 'reporte' : 'report'}` + '* ' + `${lenguajeGB.smsMensError2()} ` + usedPrefix + command)
@@ -83,52 +82,8 @@ await conn.sendFile(m.chat, pp, 'error.jpg', '*https://chat.whatsapp.com/' + awa
 reportError(e)
 } 
 break
-
-//FUNCIÓN HECHA POR https://github.com/Azami19
-/*case isCommand4:
-let [, code] = text.match(/chat\.whatsapp\.com\/(?:invite\/)?([0-9A-Za-z]{20,24})/i) || []
-if (!code) return m.reply(lenguajeGB.smsMalused() + usedPrefix + command + ' ' + nna)
-try{
-const extractGroupMetadata = (result) => {
-const group = baileys.getBinaryNodeChild(result, 'group')
-const descChild = baileys.getBinaryNodeChild(group, 'description')
-let desc
-if (descChild) desc = baileys.getBinaryNodeChild(descChild, 'body')?.content
-const metadata = {
-id: group.attrs.id.includes('@') ? group.attrs.id : baileys.jidEncode(group.attrs.id, 'g.us'),
-subject: group.attrs.subject,
-creation: new Date(+group.attrs.creation * 1000).toLocaleString('id', { timeZone: 'America/Los_Angeles' }),
-owner: group.attrs.creator ? 'wa.me/' + baileys.jidNormalizedUser(group.attrs.creator).split('@')[0] : undefined,
-desc
-}
-return metadata
-}  
-let res = await conn.query({ tag: 'iq', attrs: { type: 'get', xmlns: 'w:g2', to: '@g.us' }, content: [{ tag: 'invite', attrs: { code } }] }),
-data = extractGroupMetadata(res),
-txt = Object.keys(data).map(v => `*${v.capitalize()}:* ${data[v]}`).join('\n')
-let groupinfo = `
-🌺 ${lenguajeGB.smsInsGC1()}
-→ ${data.id === undefined ? '❌' : data.id}
-
-🌸 ${lenguajeGB.smsInsGC2()}
-→ ${data.subject === undefined ? '❌' : data.subject}
-
-🌼 ${lenguajeGB.smsInsGC3()}
-→ ${data.creation === undefined ? '❌' : data.creation}
-
-🌻 ${lenguajeGB.smsInsGC4()}
-→ ${data.owner === undefined ? '❌' : data.owner}
-
-🌹 ${lenguajeGB.smsInsGC5()}
-→ ${data.desc === undefined ? '❌' : data.desc}
-`.trim()
-await conn.sendFile(m.chat, gataImg.getRandom(), 'error.jpg', groupinfo, m)
-} catch (e) {
-reportError(e)
-}   
-break*/
     
-case isCommand5:
+case isCommand4:
 let cometido
 cometido = `@${m.sender.split('@')[0]}`
 if(!text && !m.quoted) return conn.reply(m.chat, `*Etiquete al usuario o responda al mensaje del usuario usando ${usedPrefix + command}*`, m)
