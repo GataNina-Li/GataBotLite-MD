@@ -2,11 +2,9 @@
 // Código compatible con canales y comunidades de WhatsApp 
 
 import { getUrlFromDirectPath } from "@whiskeysockets/baileys"
-import _ from "lodash"
 
 let handler = async (m, { conn, command, usedPrefix, args, text, groupMetadata }) => {
 const isCommand1 = /^(superinspect|inspect|revisar|inspeccionar)$/i.test(command)
-const isCommand2 = /^(chlist||listchannel|listacanale?s)$/i.test(command)
     
 let fkontak = { "key": { "participants":"0@s.whatsapp.net", "remoteJid": "status@broadcast", "fromMe": false, "id": "Halo" }, "message": { "contactMessage": { "vcard": `BEGIN:VCARD\nVERSION:3.0\nN:Sy;Bot;;;\nFN:y\nitem1.TEL;waid=${m.sender.split('@')[0]}:${m.sender.split('@')[0]}\nitem1.X-ABLabel:Ponsel\nEND:VCARD` }}, "participant": "0@s.whatsapp.net" }
 async function reportError(e) {
@@ -151,43 +149,9 @@ newsletterInfo.id ? conn.sendMessage(m.chat, { text: newsletterInfo.id }, { quot
 reportError(e)
 }}}
 break
-
-case isCommand2:
-const connC = {
-chats: {
-"120363169294281316@newsletter": { jid: "120363169294281316@newsletter", name: "GataBot" }
-}}
-const channels = _.values(connC.chats).filter(c => c.jid.endsWith("@newsletter"))
-if (_.isEmpty(args)) {
-const list = _.map(channels, (ch, i) => `*${i + 1}.* ${ch.name}`).join("\n")
-const buttons = conn.ctaButton.setBody(`📋 *Lista de Nombres de Canal:*\n\n${list}\n\n💡 *Haz clic en el botón de abajo para elegir un canal.*`).setFooter("Selecciona un canal para más detalles.").addSelection("Seleccionar Canal").makeSections("Lista de Canales", "Seleccionar Canal")
-_.forEach(channels, (ch, i) => buttons.makeRow("", ch.name, `Ver Detalles ${ch.name}`, `${usedPrefix}chs ${i + 1}`))
-return buttons.run(m.chat, conn, m)
-} else if (/^\d+$/.test(args[0])) {
-const index = parseInt(args[0], 10) - 1
-if (index >= 0 && index < channels.length) {
-const ch = channels[index]
-const infoCh = await conn.newsletterMetadata("jid", ch.id)
-const info = `📊 *Información del Canal ${index + 1}*\n\n` + 
-`📛 *Nombre:* ${infoCh.thread_metadata?.name.text || "No disponible"}\n` + 
-`🆔 *ID:* ${infoCh.id}\n` + 
-`📝 *Descripción:* ${infoCh.thread_metadata?.description.text || "No disponible"}\n` + 
-`📅 *Creado:* ${formatTime(infoCh.thread_metadata?.creation_time)}\n` + 
-`👥 *Seguidores:* ${infoCh.thread_metadata?.subscribers_count || "No disponible"} personas\n` + 
-`✔️ *Verificación:* ${infoCh.thread_metadata?.verification === "UNVERIFIED" ? "No" : "Sí"}\n` + 
-`🔄 *Reacción:* ${infoCh.thread_metadata?.settings.reaction_codes.value === "ALL" ? "Todos" : "Solo admin"}\n\n` + 
-`🔗 *Enlace:* [https://whatsapp.com/channel/${infoCh.thread_metadata?.invite}](https://whatsapp.com/channel/${infoCh.thread_metadata?.invite})`
-const img = getUrlFromDirectPath(infoCh.thread_metadata?.preview.direct_path) || thumb
-return conn.sendFile(m.chat, img, "", info, m)
-} else {
-return m.reply("❌ *Canal no encontrado.*", m)
-}} else {
-return m.reply(`❗ *Formato de comando incorrecto.*\nUsa "${usedPrefix}chs" para la lista de canales o "${usedPrefix}chs [número]" para información del canal.`, m)
-}
-break
         
 }}
-handler.command = /^(superinspect|inspect?2|revisar|inspeccionar|chlist||listchannel|listacanale?s)$/i
+handler.command = /^(superinspect|inspect?2|revisar|inspeccionar)$/i
 handler.register = true
 export default handler 
 
