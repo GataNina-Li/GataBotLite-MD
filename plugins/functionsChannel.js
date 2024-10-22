@@ -97,14 +97,15 @@ if (inviteUrl) {
 try {
 inviteInfo = await conn.groupGetInviteInfo(inviteUrl)
 console.log(inviteInfo)
+    
+info = await groupInfo(inviteInfo, true)
+console.log(info)
+console.log('Método de enlace')    
 } catch (e) {
 m.reply('Grupo no encontrado')
 return
 }
-m.reply('Error')
-info = await groupInfo(inviteInfo, true)
-console.log(info)
-console.log('Método de enlace')
+
 }}
 if (info) {
 await conn.sendMessage(m.chat, { text: info, contextInfo: {
