@@ -98,7 +98,7 @@ let inviteInfo
 if (inviteUrl) {
 try {
 inviteInfo = await conn.groupGetInviteInfo(inviteUrl)
-info = inviteGroupInfo(inviteInfo) // Para cualquier enlace de grupo/comunidad
+info = await inviteGroupInfo(inviteInfo) // Para cualquier enlace de grupo/comunidad
 console.log(info)
 console.log('Método de enlace')    
 } catch (e) {
