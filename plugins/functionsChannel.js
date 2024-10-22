@@ -50,9 +50,9 @@ let caption = `🆔 *Identificador del grupo:*\n${res.id || "No encontrado"}\n\n
 `⚠️ *Restricciones:* ${res.restrict ? "✅ Si" : "❌ No"}\n` +
 `📢 *Anuncios:* ${res.announce ? "✅ Si" : "❌ No"}\n` +
 `🏘️ *¿Es comunidad?:* ${res.isCommunity ? "✅ Si" : "❌ No"}\n` +
-`📯 *¿Es anuncio de comunidad?:* ${res.isCommunityAnnounce ? "✅ Si" : "❌ No"}\n` +
-`🤝 *Modo de aprobación de miembros:* ${res.joinApprovalMode ? "✅ Si" : "❌ No"}\n` +
-`🆕 *Modo para agregar miembros:* ${res.memberAddMode ? "✅ Si" : "❌ No"}\n\n` 
+`📯 *¿Es anuncio de comunidad?:* ${res.isCommunityAnnounce ? "✅" : "❌"}\n` +
+`🤝 *Tiene aprobación de miembros:* ${res.joinApprovalMode ? "✅" : "❌"}\n` +
+`🆕 *Puede Agregar futuros miembros:* ${res.memberAddMode ? "✅" : "❌"}\n\n` 
 return caption.trim()
 }
         
@@ -82,8 +82,8 @@ let caption = `🆔 *Identificador del grupo:*\n${id || "No encontrado"}\n\n` +
 `✨ *Información avanzada* ✨\n\n🔎 *Comunidad vinculada al grupo:*\n${isCommunity ? "Este grupo es un chat de avisos" : `${"`Id:` " + linkedParent ? linkedParent : "Este grupo"} ${nameCommunity}`}\n\n` +
 `📢 *Anuncios:* ${announce ? "✅ Si" : "❌ No"}\n` +
 `🏘️ *¿Es comunidad?:* ${isCommunity ? "✅ Si" : "❌ No"}\n` +
-`📯 *¿Es anuncio de comunidad?:* ${isCommunityAnnounce ? "✅ Si" : "❌ No"}\n` +
-`🤝 *Aprobación de Miembros:* ${joinApprovalMode ? "✅ Si" : "❌ No"}\n`
+`📯 *¿Es anuncio de comunidad?:* ${isCommunityAnnounce ? "✅" : "❌"}\n` +
+`🤝 *Tiene aprobación de miembros:* ${joinApprovalMode ? "✅" : "❌"}\n`
 return caption.trim()
 }
 
