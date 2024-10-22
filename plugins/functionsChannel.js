@@ -47,9 +47,9 @@ let caption = `🆔 *Identificador del grupo:*\n${res.id || "No encontrado"}\n\n
 `🛃 *Admins:*\n` + (res.participants && res.participants.length > 0 ? res.participants.filter(user => user.admin === "admin" || user.admin === "superadmin").map((user, i) => `${i + 1}. @${user.id?.split("@")[0]}${user.admin === "superadmin" ? " (superadmin)" : " (admin)"}`).join("\n") : "No encontrado") + `\n\n` +
 `🔰 *Usuarios en total:*\n${res.size || "Cantidad no encontrada"}\n\n` +
 `✨ *Información avanzada* ✨\n\n🔎 *Comunidad vinculada al grupo:*\n${res.isCommunity ? "Este grupo es un chat de avisos" : `${res.linkedParent ? "`Id:` " + res.linkedParent : "Este grupo"} ${nameCommunity}`}\n\n` +
-`⚠️ *Restricciones:* ${res.restrict ? "✅ Si" : "❌ No"}\n` +
-`📢 *Anuncios:* ${res.announce ? "✅ Si" : "❌ No"}\n` +
-`🏘️ *¿Es comunidad?:* ${res.isCommunity ? "✅ Si" : "❌ No"}\n` +
+`⚠️ *Restricciones:* ${res.restrict ? "✅" : "❌"}\n` +
+`📢 *Anuncios:* ${res.announce ? "✅" : "❌"}\n` +
+`🏘️ *¿Es comunidad?:* ${res.isCommunity ? "✅" : "❌"}\n` +
 `📯 *¿Es anuncio de comunidad?:* ${res.isCommunityAnnounce ? "✅" : "❌"}\n` +
 `🤝 *Tiene aprobación de miembros:* ${res.joinApprovalMode ? "✅" : "❌"}\n` +
 `🆕 *Puede Agregar futuros miembros:* ${res.memberAddMode ? "✅" : "❌"}\n\n` 
