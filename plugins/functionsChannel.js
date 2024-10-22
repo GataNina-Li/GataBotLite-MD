@@ -119,20 +119,22 @@ renderLargerThumbnail: false
 }}}, { quoted: fkontak })
 } else {
 // Manejo de enlaces de canales
+let newsletterInfo
 const channelUrl = text?.match(/(?:https:\/\/)?(?:www\.)?(?:chat\.|wa\.)?whatsapp\.com\/(?:channel\/|joinchat\/)?([0-9A-Za-z]{22,24})/i)?.[1]
 if (!channelUrl) return await conn.reply(m.chat, "*Verifique que sea un enlace de canal de WhatsApp.*", m)
 if (channelUrl) {
 try {
-let newsletterInfo = await conn.newsletterMetadata("invite", channelUrl).catch(e => {  
+newsletterInfo = await conn.newsletterMetadata("invite", channelUrl).catch(e => {  
 conn.reply(m.chat, "*No se encontró información del canal.* Verifique que el enlace sea correcto.", m)       
 return  
 })
 let caption = "*Inspector de enlaces de Canales*\n\n" + processObject(newsletterInfo, "", newsletterInfo.preview)
-if (newsletterInfo.preview) {
+if (newsletterInfo?.preview) {
 pp = getUrlFromDirectPath(newsletterInfo.preview)
 } else {
 pp = thumb
 }
+if (channelUrl && newsletterInfo) {
 await conn.sendMessage(m.chat, { text: caption, contextInfo: {
 mentionedJid: conn.parseMention(caption),
 externalAdReply: {
@@ -143,7 +145,7 @@ sourceUrl: args[0],
 mediaType: 1,
 showAdAttribution: false,
 renderLargerThumbnail: false
-}}}, { quoted: fkontak })
+}}}, { quoted: fkontak })}
 newsletterInfo.id ? conn.sendMessage(m.chat, { text: newsletterInfo.id }, { quoted: null }) : ''
 } catch (e) {
 reportError(e)
