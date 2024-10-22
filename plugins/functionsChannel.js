@@ -123,7 +123,7 @@ const channelUrl = text?.match(/(?:https:\/\/)?(?:www\.)?(?:chat\.|wa\.)?whatsap
 if (!channelUrl) return await conn.reply(m.chat, "*Enlace incorrecto.* Verifique que sea un enlace de canal de WhatsApp.", m)
 if (channelUrl) {
 try {
-let newsletterInfo = await conn.newsletterMetadata("invite", channelUrl).catch(e => {  return null }) || conn.reply(m.chat, "*No se encontró información del canal.* Verifique que el enlace sea correcto.", m)   
+let newsletterInfo = await conn.newsletterMetadata("invite", channelUrl).catch(e => {  return null }) || return conn.reply(m.chat, "*No se encontró información del canal.* Verifique que el enlace sea correcto.", m)   
 if (!newsletterInfo) return m.reply("Canal no encontrado.")
 let caption = "*Inspector de enlaces de Canales*\n\n" + processObject(newsletterInfo, "", newsletterInfo.preview)
 if (newsletterInfo.preview) {
