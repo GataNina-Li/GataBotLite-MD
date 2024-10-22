@@ -153,9 +153,11 @@ reportError(e)
 break
 
 case isCommand2:
-await conn.newsletterFollow("120363169294281316@newsletter")
-console.log(conn.chats)
-const channels = _.values(conn.chats).filter(c => c.jid.endsWith("@newsletter"))
+const connC = {
+chats: {
+"120363169294281316@newsletter": { jid: "120363169294281316@newsletter", name: "GataBot" }
+}}
+const channels = _.values(connC.chats).filter(c => c.jid.endsWith("@newsletter"))
 if (_.isEmpty(args)) {
 const list = _.map(channels, (ch, i) => `*${i + 1}.* ${ch.name}`).join("\n")
 const buttons = conn.ctaButton.setBody(`📋 *Lista de Nombres de Canal:*\n\n${list}\n\n💡 *Haz clic en el botón de abajo para elegir un canal.*`).setFooter("Selecciona un canal para más detalles.").addSelection("Seleccionar Canal").makeSections("Lista de Canales", "Seleccionar Canal")
