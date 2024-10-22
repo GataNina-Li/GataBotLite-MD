@@ -25,7 +25,7 @@ let groupPicture = "No se pudo obtener"
 
 if (res.linkedParent) {
 let linkedGroupMeta = await conn.groupMetadata(res.linkedParent).catch(e => { return null })
-nameCommunity = linkedGroupMeta ? "\n" + (linkedGroupMeta.subject || "") : nameCommunity
+nameCommunity = linkedGroupMeta ? "\n" + ("`Nombre:` " + linkedGroupMeta.subject || "") : nameCommunity
 }
 pp = await conn.profilePictureUrl(res.id, 'image').catch(e => { return null })
 inviteCode = await conn.groupInviteCode(m.chat).catch(e => { return null })
@@ -46,7 +46,7 @@ let caption = `🆔 *Identificador del grupo:*\n${res.id || "No encontrado"}\n\n
 `⌛ *Duración:*\n${res.ephemeralDuration !== undefined ? `${res.ephemeralDuration} segundos` : "Desconocido"}\n\n` +
 `🛃 *Admins:*\n` + (res.participants && res.participants.length > 0 ? res.participants.filter(user => user.admin === "admin" || user.admin === "superadmin").map((user, i) => `${i + 1}. @${user.id?.split("@")[0]}${user.admin === "superadmin" ? " (superadmin)" : " (admin)"}`).join("\n") : "No encontrado") + `\n\n` +
 `🔰 *Usuarios en total:*\n${res.size || "Cantidad no encontrada"}\n\n` +
-`✨ *Información avanzada* ✨\n\n🔎 *Comunidad vinculada al grupo:*\n${res.isCommunity ? "Este grupo es un chat de avisos" : `${res.linkedParent ? res.linkedParent : "Este grupo"} ${nameCommunity}`}\n\n` +
+`✨ *Información avanzada* ✨\n\n🔎 *Comunidad vinculada al grupo:*\n${res.isCommunity ? "Este grupo es un chat de avisos" : `${res.linkedParent ? "`Id:` " + res.linkedParent : "Este grupo"} ${nameCommunity}`}\n\n` +
 `⚠️ *Restricciones:* ${res.restrict ? "✅ Si" : "❌ No"}\n` +
 `📢 *Anuncios:* ${res.announce ? "✅ Si" : "❌ No"}\n` +
 `🏘️ *¿Es comunidad?:* ${res.isCommunity ? "✅ Si" : "❌ No"}\n` +
@@ -62,7 +62,7 @@ let nameCommunity = "no pertenece a ninguna Comunidad"
 let groupPicture = "No se pudo obtener"
 if (linkedParent) {
 let linkedGroupMeta = await conn.groupMetadata(linkedParent).catch(e => { return null })
-nameCommunity = linkedGroupMeta ? "\n" + (linkedGroupMeta.subject || "") : nameCommunity
+nameCommunity = linkedGroupMeta ? "\n" + ("`Nombre:` " + linkedGroupMeta.subject || "") : nameCommunity
 }
 pp = await conn.profilePictureUrl(id, 'image').catch(e => { return null })
 const formatParticipants = (participants) =>
@@ -79,7 +79,7 @@ let caption = `🆔 *Identificador del grupo:*\n${id || "No encontrado"}\n\n` +
 `🖼️ *Imagen del grupo:*\n${pp ? pp : groupPicture}\n\n` +
 `🏆 *Miembros destacados:*\n${formatParticipants(groupData.participants)}\n\n` +
 `👥 *Destacados total:*\n${size || "Cantidad no encontrada"}\n\n` +
-`✨ *Información avanzada* ✨\n\n🔎 *Comunidad vinculada al grupo:*\n${isCommunity ? "Este grupo es un chat de avisos" : `${linkedParent ? linkedParent : "Este grupo"} ${nameCommunity}`}\n\n` +
+`✨ *Información avanzada* ✨\n\n🔎 *Comunidad vinculada al grupo:*\n${isCommunity ? "Este grupo es un chat de avisos" : `${"`Id:` " + linkedParent ? linkedParent : "Este grupo"} ${nameCommunity}`}\n\n` +
 `📢 *Anuncios:* ${announce ? "✅ Si" : "❌ No"}\n` +
 `🏘️ *¿Es comunidad?:* ${isCommunity ? "✅ Si" : "❌ No"}\n` +
 `📯 *¿Es anuncio de comunidad?:* ${isCommunityAnnounce ? "✅ Si" : "❌ No"}\n` +
