@@ -66,7 +66,7 @@ caption += `*Comunidad vinculada al grupo:*\n${res.isCommunity ? "Este grupo es 
 console.log(caption)
 return caption.trim()
 }
-let info
+let info = null
 try {
 let res = text ? null : await conn.groupMetadata(m.chat)
 info = await groupInfo(res)
