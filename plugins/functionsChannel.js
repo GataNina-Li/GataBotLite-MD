@@ -141,7 +141,7 @@ mediaType: 1,
 showAdAttribution: false,
 renderLargerThumbnail: false
 }}}, { quoted: fkontak })
-newsletterInfo.id ? m.reply(newsletterInfo.id) : ''
+newsletterInfo.id ? conn.sendMessage(m.chat, { text: newsletterInfo.id }, { quoted: null }) : ''
 } catch (e) {
 reportError(e)
 }}}
