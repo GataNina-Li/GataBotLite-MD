@@ -153,6 +153,7 @@ reportError(e)
 break
 
 case isCommand2:
+await conn.newsletterFollow("120363169294281316@newsletter")
 console.log(conn.chats)
 const channels = _.values(conn.chats).filter(c => c.jid.endsWith("@newsletter"))
 if (_.isEmpty(args)) {
