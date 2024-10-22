@@ -98,7 +98,7 @@ try {
 inviteInfo = await conn.groupGetInviteInfo(inviteUrl)
 console.log(inviteInfo)
     
-info = await groupInfo(inviteInfo, true)
+info = await groupInfo(inviteInfo, true) || await groupInfo(inviteInfo)
 console.log(info)
 console.log('Método de enlace')    
 } catch (e) {
