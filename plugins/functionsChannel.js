@@ -19,7 +19,7 @@ console.log(`❗❗ ${lenguajeGB['smsMensError2']()} ${usedPrefix + command} ❗
 console.log(e)
 }
 let thumb = gataMenu.getRandom()
-let pp
+let pp, ch
     
 switch (true) {     
 case isCommand1:
@@ -158,7 +158,7 @@ break
 // Seguir un canal de WhatsApp 
 case isCommand2:
 if (!isOwner || !isROwner) return await conn.reply(m.chat, `*No tienes permiso para usar este comando.*`, m)
-let ch
+ch
 if (!text) return await conn.reply(m.chat, `*Ingrese el ID o enlace de un canal de WhatsApp que quiere que el bot siga.*\n\nPuede obtener el ID usando el comando:\n*${usedPrefix}superinspect* enlace`, m)
 if (text.includes("@newsletter")) {
 ch = text
