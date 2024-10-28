@@ -177,7 +177,7 @@ break
 // Dejar de seguir un canal de WhatsApp 
 case isCommand3:
 if (!isOwner || !isROwner) return await conn.reply(m.chat, `*No tienes permiso para usar este comando.*`, m)
-let ch
+ch
 if (!text) return await conn.reply(m.chat, `*Ingrese el ID o enlace de un canal de WhatsApp que quiere que el bot deje de seguir.*\n\nPuede obtener el ID usando el comando:\n*${usedPrefix}superinspect* enlace`, m)
 if (text.includes("@newsletter")) {
 ch = text
