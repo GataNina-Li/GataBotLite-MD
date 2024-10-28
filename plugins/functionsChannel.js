@@ -7,7 +7,8 @@ import _ from "lodash"
 
 let handler = async (m, { conn, command, usedPrefix, args, text, groupMetadata, isOwner, isROwner }) => {
 const isCommand1 = /^(superinspect|inspect|revisar|inspeccionar)$/i.test(command)
-const isCommand2 = /^(seguircanal|followchannel)$/i.test(command)
+const isCommand2 = /^(seguircanal|followchannel|followch)$/i.test(command)
+const isCommand2 = /^(noseguircanal|unfollowchannel|unfollowch)$/i.test(command)
 
 const channelUrl = text?.match(/(?:https:\/\/)?(?:www\.)?(?:chat\.|wa\.)?whatsapp\.com\/(?:channel\/|joinchat\/)?([0-9A-Za-z]{22,24})/i)?.[1]
     
@@ -154,7 +155,7 @@ reportError(e)
 }}}
 break
 
-// Seguir un canal
+// Seguir un canal de WhatsApp 
 case isCommand2:
 if (!isOwner || !isROwner) return await conn.reply(m.chat, `*No tienes permiso para usar este comando.*`, m)
 let ch
@@ -172,9 +173,28 @@ await conn.reply(m.chat, `${packname} ha empezado a seguir el canal *${chtitle}*
 reportError(e)
 }
 break
+
+// Dejar de seguir un canal de WhatsApp 
+case isCommand3:
+if (!isOwner || !isROwner) return await conn.reply(m.chat, `*No tienes permiso para usar este comando.*`, m)
+let ch
+if (!text) return await conn.reply(m.chat, `*Ingrese el ID o enlace de un canal de WhatsApp que quiere que el bot deje de seguir.*\n\nPuede obtener el ID usando el comando:\n*${usedPrefix}superinspect* enlace`, m)
+if (text.includes("@newsletter")) {
+ch = text
+} else {
+ch = await conn.newsletterMetadata("invite", text).then(data => data.id).catch(e => null)
+}       
+try {
+const chtitle = await conn.newsletterMetadata(text.includes("@newsletter") ? "jid" : "invite", text.includes("@newsletter") ? ch : channelUrl).then(data => data.name).catch(e => null)
+await conn.newsletterUnfollow(ch)
+await conn.reply(m.chat, `${packname} ha dejado de seguir el canal *${chtitle}* con éxito.`, m) 
+} catch (e) {
+reportError(e)
+}
+break
         
 }}
-handler.command = /^(superinspect|inspect?2|revisar|inspeccionar|seguircanal|followchannel)$/i
+handler.command = /^(superinspect|inspect?2|revisar|inspeccionar|seguircanal|followchannel|followch|noseguircanal|unfollowchannel|unfollowch)$/i
 handler.register = true
 export default handler 
 
