@@ -7,7 +7,7 @@ if (m.text.includes('serbot') || m.text.includes('jadibot') || m.text.includes('
 const chat = global.db.data.chats[m.chat]
 const bot = global.db.data.settings[this.user.jid] || {}
 if (bot.antiPrivate && !isOwner && !isROwner) {
-await m.reply(`*${lenguajeGB['smsCreA']()}* *@${m.sender.split`@`[0]}*, ${lenguajeGB['smsprivado']()}\n${nn}`, { mentions: [m.sender] }, { quoted: fkontak })
+await m.reply(`*${lenguajeGB['smsCreA']()}* *@${m.sender.split`@`[0]}*, ${lenguajeGB['smsprivado']()}\n${nn}`)
 await this.updateBlockStatus(m.chat, 'block')
 }
 return !1
