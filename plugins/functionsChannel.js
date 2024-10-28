@@ -3,14 +3,17 @@
 // También encontrarás código para comandos enfocados para canales de WhatsApp
 
 import { getUrlFromDirectPath } from "@whiskeysockets/baileys"
+import uploadImage from '../lib/uploadImage.js'
 import _ from "lodash"
 
 let handler = async (m, { conn, command, usedPrefix, args, text, groupMetadata, isOwner, isROwner }) => {
 const isCommand1 = /^(superinspect|inspect|revisar|inspeccionar)\b$/i.test(command)
 const isCommand2 = /^(seguircanal|followchannel|followch)\b$/i.test(command)
 const isCommand3 = /^(noseguircanal|unfollowchannel|unfollowch)\b$/i.test(command)
-const isCommand4 = /^(avisos?canal|Updates?channel|updates?ch)\b$/i.test(command)
-const isCommand5 = /^(reaccionescanal|reactionchannel|reactionch)\b$/i.test(command)
+const isCommand4 = /^(silenciarcanal|mutechannel|mutech)\b$/i.test(command)
+const isCommand4 = /^(nosilenciarcanal|unmutechannel|unmutech)\b$/i.test(command)
+const isCommand5 = /^(avisos?canal|Updates?channel|updates?ch)\b$/i.test(command)
+const isCommand6 = /^(reaccionescanal|reactionchannel|reactionch)\b$/i.test(command)
 
 const channelUrl = text?.match(/(?:https:\/\/)?(?:www\.)?(?:chat\.|wa\.)?whatsapp\.com\/(?:channel\/|joinchat\/)?([0-9A-Za-z]{22,24})/i)?.[1]
     
@@ -21,7 +24,7 @@ console.log(`❗❗ ${lenguajeGB['smsMensError2']()} ${usedPrefix + command} ❗
 console.log(e)
 }
 let thumb = gataMenu.getRandom()
-let pp, ch
+let pp, ch, q, mime, buffer, media
     
 switch (true) {     
 case isCommand1:
@@ -195,8 +198,84 @@ reportError(e)
 }
 break
 
-// Recibir notificaciones de actualizaciones del canal en tiempo real
+// Silenciar un canal de WhatsApp 
 case isCommand4:
+if (!isOwner || !isROwner) return await conn.reply(m.chat, `*No tienes permiso para usar este comando.*`, m)
+ch
+if (!text) return await conn.reply(m.chat, `*Ingrese el ID o enlace de un canal de WhatsApp que quiere que el bot silencie las actualizaciones.*\n\nPuede obtener el ID usando el comando:\n*${usedPrefix}superinspect* enlace`, m)
+if (text.includes("@newsletter")) {
+ch = text
+} else {
+ch = await conn.newsletterMetadata("invite", text).then(data => data.id).catch(e => null)
+}       
+try {
+const chtitle = await conn.newsletterMetadata(text.includes("@newsletter") ? "jid" : "invite", text.includes("@newsletter") ? ch : channelUrl).then(data => data.name).catch(e => null)
+await conn.newsletterMute(ch)
+await conn.reply(m.chat, `${packname} ha silenciado las notificaciones para el canal *${chtitle}* con éxito.`, m) 
+} catch (e) {
+reportError(e)
+}
+break
+
+// Dejar de sileciar un canal de WhatsApp 
+case isCommand5:
+if (!isOwner || !isROwner) return await conn.reply(m.chat, `*No tienes permiso para usar este comando.*`, m)
+ch
+if (!text) return await conn.reply(m.chat, `*Ingrese el ID o enlace de un canal de WhatsApp que quiere que el bot active las actualizaciones.*\n\nPuede obtener el ID usando el comando:\n*${usedPrefix}superinspect* enlace`, m)
+if (text.includes("@newsletter")) {
+ch = text
+} else {
+ch = await conn.newsletterMetadata("invite", text).then(data => data.id).catch(e => null)
+}       
+try {
+const chtitle = await conn.newsletterMetadata(text.includes("@newsletter") ? "jid" : "invite", text.includes("@newsletter") ? ch : channelUrl).then(data => data.name).catch(e => null)
+await conn.newsletterUnmute(ch)
+await conn.reply(m.chat, `${packname} ha dejado de silenciar las notificaciones para el canal *${chtitle}* con éxito.`, m) 
+} catch (e) {
+reportError(e)
+}
+break
+
+// Modificar la imagen del canal
+case isCommand5:
+if (!isOwner || !isROwner) return await conn.reply(m.chat, `*No tienes permiso para usar este comando.*`, m)
+if (!text) return await conn.reply(m.chat, `*Ingrese el ID o enlace de un canal de WhatsApp respondiendo a una imagen jpg/jpeg/png o agregue un enlace de imagen*\n\nPuede obtener el ID usando el comando:\n*${usedPrefix}superinspect* enlace`, m)
+const regex = /(\b\w+@newsletter\b)(?:.*?(https?:\/\/[^\s]+?\.(?:jpe?g|png)))?/i
+const match = text.match(regex)
+if (m.quoted) {
+q = m.quoted ? m.quoted : m
+mime = (q.msg || q).mimetype || q.mediaType || ''
+if (/image/g.test(mime) && !/webp/g.test(mime)) {
+buffer = await q.download()
+media = await (uploadImage)(buffer)
+    
+} else {   
+if (match) {
+const channelId = match[1]
+const imageUrl = match[2] || null
+ch = channelId
+media = imageUrl
+} else {
+    console.log("No se encontró una URL de imagen o un ID de canal válido.");
+}
+media =
+}
+if (text.includes("@newsletter")) {
+ch = text
+} else {
+ch = await conn.newsletterMetadata("invite", text).then(data => data.id).catch(e => null)
+}       
+try {
+const chtitle = await conn.newsletterMetadata(text.includes("@newsletter") ? "jid" : "invite", text.includes("@newsletter") ? ch : channelUrl).then(data => data.name).catch(e => null)
+await conn.newsletterUnmute(ch)
+await conn.reply(m.chat, `${packname} ha dejado de silenciar las notificaciones para el canal *${chtitle}* con éxito.`, m) 
+} catch (e) {
+reportError(e)
+}
+break
+
+// Recibir notificaciones de actualizaciones del canal en tiempo real
+case isCommand6:
 if (!isOwner || !isROwner) return await conn.reply(m.chat, `*No tienes permiso para usar este comando.*`, m)
 ch
 if (!text) return await conn.reply(m.chat, `*Ingrese el ID o enlace de un canal de WhatsApp para que el bot reciba notificaciones en tiempo real.*\n\nPuede obtener el ID usando el comando:\n*${usedPrefix}superinspect* enlace`, m)
@@ -216,7 +295,7 @@ reportError(e)
 break
 
 // Establece el modo de reacciones en un canal de WhatsApp 
-case isCommand5:
+case isCommand7:
 if (!isOwner || !isROwner) return await conn.reply(m.chat, `*No tienes permiso para usar este comando.*`, m)
 ch
 if (!text) return await conn.reply(m.chat, `
@@ -280,7 +359,7 @@ reportError(e)
 break
         
 }}
-handler.command = /^(superinspect|inspect?2|revisar|inspeccionar|seguircanal|followchannel|followch|noseguircanal|unfollowchannel|unfollowch|avisos?canal|Updates?channel|updates?ch|reaccionescanal|reactionchannel|reactionch)\b$/i
+handler.command = /^(superinspect|inspect?2|revisar|inspeccionar|seguircanal|followchannel|followch|noseguircanal|unfollowchannel|unfollowch|silenciarcanal|mutechannel|mutech|nosilenciarcanal|unmutechannel|unmutech|avisos?canal|Updates?channel|updates?ch|reaccionescanal|reactionchannel|reactionch)\b$/i
 handler.register = true
 export default handler 
 
