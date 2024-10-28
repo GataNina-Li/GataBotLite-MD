@@ -10,7 +10,7 @@ const isCommand1 = /^(superinspect|inspect|revisar|inspeccionar)\b$/i.test(comma
 const isCommand2 = /^(seguircanal|followchannel|followch)\b$/i.test(command)
 const isCommand3 = /^(noseguircanal|unfollowchannel|unfollowch)\b$/i.test(command)
 const isCommand4 = /^(avisos?canal|Updates?channel|updates?ch)\b$/i.test(command)
-const isCommand4 = /^(reaccionescanal|reactionchannel|reactionch)\b$/i.test(command)
+const isCommand5 = /^(reaccionescanal|reactionchannel|reactionch)\b$/i.test(command)
 
 const channelUrl = text?.match(/(?:https:\/\/)?(?:www\.)?(?:chat\.|wa\.)?whatsapp\.com\/(?:channel\/|joinchat\/)?([0-9A-Za-z]{22,24})/i)?.[1]
     
