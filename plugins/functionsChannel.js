@@ -2,6 +2,7 @@
 // Código compatible con canales y comunidades de WhatsApp 
 
 import { getUrlFromDirectPath } from "@whiskeysockets/baileys"
+import _ from "lodash"
 
 let handler = async (m, { conn, command, usedPrefix, args, text, groupMetadata }) => {
 const isCommand1 = /^(superinspect|inspect|revisar|inspeccionar)$/i.test(command)
