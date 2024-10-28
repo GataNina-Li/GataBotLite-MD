@@ -155,8 +155,8 @@ break
 case isCommand2:
 try {
 let follow = await conn.newsletterFollow(text)
-let channels = _.values(conn.chats).filter(c => c.jid.endsWith("@newsletter"))
-console.log(channels)
+//let channels = _.values(conn.chats).filter(c => c.jid.endsWith("@newsletter"))
+console.log(conn.chats)
 } catch (e) {
 reportError(e)
 }
