@@ -10,6 +10,7 @@ const isCommand1 = /^(superinspect|inspect|revisar|inspeccionar)\b$/i.test(comma
 const isCommand2 = /^(seguircanal|followchannel|followch)\b$/i.test(command)
 const isCommand3 = /^(noseguircanal|unfollowchannel|unfollowch)\b$/i.test(command)
 const isCommand4 = /^(avisos?canal|Updates?channel|updates?ch)\b$/i.test(command)
+const isCommand4 = /^(reaccionescanal|reactionchannel|reactionch)\b$/i.test(command)
 
 const channelUrl = text?.match(/(?:https:\/\/)?(?:www\.)?(?:chat\.|wa\.)?whatsapp\.com\/(?:channel\/|joinchat\/)?([0-9A-Za-z]{22,24})/i)?.[1]
     
@@ -213,9 +214,73 @@ await conn.reply(m.chat, `${packname} recibirá notificaciones del canal *${chti
 reportError(e)
 }
 break
+
+// Establece el modo de reacciones en un canal de WhatsApp 
+case isCommand5:
+if (!isOwner || !isROwner) return await conn.reply(m.chat, `*No tienes permiso para usar este comando.*`, m)
+ch
+if (!text) return await conn.reply(m.chat, `
+*Ingrese el ID o enlace de un canal de WhatsApp seguido de un espacio y la opción del modo de reacciones para el canal.*
+
+*Modo de reacciones:*
+> Use solo el número de la opción.
+
+*Opciones:*
+\`\`\`[1]\`\`\` _Reacción con cualquier emoji._
+\`\`\`[2]\`\`\` _Reacción con emojis predeterminados._
+\`\`\`[3]\`\`\` _Ninguna reacción._
+
+*Ejemplo de uso:*
+*${usedPrefix + command}* 12345@newsletter 1
+
+*Puede obtener el ID usando el comando:*\n*${usedPrefix}superinspect* enlace`.trim(), m)
+
+const parts = text.split(' ')
+const modeNumber = parseInt(parts.pop())
+ch = parts.join(' ')
+
+let mode
+switch (modeNumber) {
+case 1:
+mode = 'ALL'
+break
+case 2:
+mode = 'BASIC'
+break
+case 3:
+mode = 'NONE'
+break
+default:
+return await conn.reply(m.chat, `*Modo de reacción no válida.*\n
+*Modo de reacciones:*
+> Use solo el número de la opción.
+
+*Opciones:*
+\`\`\`[1]\`\`\` _Reacción con cualquier emoji._
+\`\`\`[2]\`\`\` _Reacción con emojis predeterminados._
+\`\`\`[3]\`\`\` _Ninguna reacción._
+
+*Ejemplo de uso:*
+*${usedPrefix + command}* 12345@newsletter 1`, m)
+}
+
+if (ch.includes("@newsletter")) {
+ch = ch.trim()
+} else {
+ch = await conn.newsletterMetadata("invite", ch).then(data => data.id).catch(e => null)
+}
+
+try {
+const chtitle = await conn.newsletterMetadata(ch.includes("@newsletter") ? "jid" : "invite", ch.includes("@newsletter") ? ch : channelUrl).then(data => data.name).catch(e => null)
+await conn.newsletterReactionMode(ch, mode)
+await conn.reply(m.chat, `${packname} ha establecido el modo de reacciones como \`"${mode}"\` para el canal *${chtitle}*`, m)
+} catch (e) {
+reportError(e)
+}
+break
         
 }}
-handler.command = /^(superinspect|inspect?2|revisar|inspeccionar|seguircanal|followchannel|followch|noseguircanal|unfollowchannel|unfollowch|avisos?canal|Updates?channel|updates?ch)\b$/i
+handler.command = /^(superinspect|inspect?2|revisar|inspeccionar|seguircanal|followchannel|followch|noseguircanal|unfollowchannel|unfollowch|avisos?canal|Updates?channel|updates?ch|reaccionescanal|reactionchannel|reactionch)\b$/i
 handler.register = true
 export default handler 
 
