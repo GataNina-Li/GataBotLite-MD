@@ -3,6 +3,7 @@
 
 import { getUrlFromDirectPath } from "@whiskeysockets/baileys"
 import _ from "lodash"
+const channelUrl = text?.match(/(?:https:\/\/)?(?:www\.)?(?:chat\.|wa\.)?whatsapp\.com\/(?:channel\/|joinchat\/)?([0-9A-Za-z]{22,24})/i)?.[1]
 
 let handler = async (m, { conn, command, usedPrefix, args, text, groupMetadata }) => {
 const isCommand1 = /^(superinspect|inspect|revisar|inspeccionar)$/i.test(command)
@@ -122,7 +123,6 @@ renderLargerThumbnail: false
 } else {
 // Manejo de enlaces de canales
 let newsletterInfo
-const channelUrl = text?.match(/(?:https:\/\/)?(?:www\.)?(?:chat\.|wa\.)?whatsapp\.com\/(?:channel\/|joinchat\/)?([0-9A-Za-z]{22,24})/i)?.[1]
 if (!channelUrl) return await conn.reply(m.chat, "*Verifique que sea un enlace de canal de WhatsApp.*", m)
 if (channelUrl) {
 try {
@@ -152,11 +152,19 @@ reportError(e)
 }}}
 break
 
+// Seguir un canal
 case isCommand2:
+let ch
+if (!text) return await conn.reply(m.chat, `*Ingrese el ID o enlace de un canal de WhatsApp que quiere que el bot siga.*\n\nPuede obtener el ID usando el comando:\n*${usedPrefix}superinspect* enlace`, m)
+if (text.includes("@newsletter")) {
+ch = text
+} else {
+ch = await conn.newsletterMetadata("invite", text).then(data => data.id).catch(e => null)
+}       
 try {
-let follow = await conn.newsletterFollow(text)
-//let channels = _.values(conn.chats).filter(c => c.jid.endsWith("@newsletter"))
-console.log(conn.chats)
+let chtitle = await conn.newsletterMetadata("invite", ch).then(data => data.title).catch(e => null)
+await conn.newsletterFollow(ch)
+await conn.reply(m.chat, `${packname} está siguiendo el canal *${chtitle}* con éxito.`, m)
 } catch (e) {
 reportError(e)
 }
