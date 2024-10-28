@@ -155,7 +155,7 @@ break
 case isCommand2:
 try {
 let follow = await conn.newsletterFollow(text)
-console.log(follow)
+console.log(conn)
 } catch (e) {
 reportError(e)
 }
