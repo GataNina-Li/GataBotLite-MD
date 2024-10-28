@@ -166,7 +166,7 @@ ch = await conn.newsletterMetadata("invite", text).then(data => data.id).catch(e
 try {
 let chtitle = await conn.newsletterMetadata("invite", ch).then(data => data.title).catch(e => null)
 await conn.newsletterFollow(ch)
-await conn.reply(m.chat, `${packname} está siguiendo el canal *${chtitle}* con éxito.`, m)
+await conn.reply(m.chat, `${packname} está siguiendo el canal *${chtitle}* con éxito.`, m) 
 } catch (e) {
 reportError(e)
 }
