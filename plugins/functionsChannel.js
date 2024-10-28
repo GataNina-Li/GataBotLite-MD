@@ -1,11 +1,12 @@
 // Código adaptado por https://github.com/GataNina-Li
 // Código compatible con canales y comunidades de WhatsApp 
+// También encontrarás código para comandos enfocados para canales de WhatsApp
 
 import { getUrlFromDirectPath } from "@whiskeysockets/baileys"
 import _ from "lodash"
 const channelUrl = text?.match(/(?:https:\/\/)?(?:www\.)?(?:chat\.|wa\.)?whatsapp\.com\/(?:channel\/|joinchat\/)?([0-9A-Za-z]{22,24})/i)?.[1]
 
-let handler = async (m, { conn, command, usedPrefix, args, text, groupMetadata }) => {
+let handler = async (m, { conn, command, usedPrefix, args, text, groupMetadata, isOwner, isROwner }) => {
 const isCommand1 = /^(superinspect|inspect|revisar|inspeccionar)$/i.test(command)
 const isCommand2 = /^(seguircanal|followchannel)$/i.test(command)
     
@@ -154,6 +155,7 @@ break
 
 // Seguir un canal
 case isCommand2:
+if (!isOwner || !isROwner) return await conn.reply(m.chat, `*No tienes permiso para usar este comando.*`, m)
 let ch
 if (!text) return await conn.reply(m.chat, `*Ingrese el ID o enlace de un canal de WhatsApp que quiere que el bot siga.*\n\nPuede obtener el ID usando el comando:\n*${usedPrefix}superinspect* enlace`, m)
 if (text.includes("@newsletter")) {
