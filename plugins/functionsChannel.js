@@ -194,7 +194,7 @@ reportError(e)
 break
         
 }}
-handler.command = /^(superinspect|inspect?2|revisar|inspeccionar|seguircanal|followchannel|followch|noseguircanal|unfollowchannel|unfollowch)$/i
+handler.command = /^(superinspect|inspect?2|revisar|inspeccionar|seguircanal|followchannel|followch|noseguircanal|unfollowchannel|unfollowch)\b$/i
 handler.register = true
 export default handler 
 
