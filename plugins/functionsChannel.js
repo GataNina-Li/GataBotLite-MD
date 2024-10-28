@@ -8,7 +8,7 @@ import _ from "lodash"
 let handler = async (m, { conn, command, usedPrefix, args, text, groupMetadata, isOwner, isROwner }) => {
 const isCommand1 = /^(superinspect|inspect|revisar|inspeccionar)$/i.test(command)
 const isCommand2 = /^(seguircanal|followchannel|followch)$/i.test(command)
-const isCommand2 = /^(noseguircanal|unfollowchannel|unfollowch)$/i.test(command)
+const isCommand3 = /^(noseguircanal|unfollowchannel|unfollowch)$/i.test(command)
 
 const channelUrl = text?.match(/(?:https:\/\/)?(?:www\.)?(?:chat\.|wa\.)?whatsapp\.com\/(?:channel\/|joinchat\/)?([0-9A-Za-z]{22,24})/i)?.[1]
     
