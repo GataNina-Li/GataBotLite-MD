@@ -5,6 +5,7 @@ import { getUrlFromDirectPath } from "@whiskeysockets/baileys"
 
 let handler = async (m, { conn, command, usedPrefix, args, text, groupMetadata }) => {
 const isCommand1 = /^(superinspect|inspect|revisar|inspeccionar)$/i.test(command)
+const isCommand2 = /^(seguircanal|followchannel)$/i.test(command)
     
 let fkontak = { "key": { "participants":"0@s.whatsapp.net", "remoteJid": "status@broadcast", "fromMe": false, "id": "Halo" }, "message": { "contactMessage": { "vcard": `BEGIN:VCARD\nVERSION:3.0\nN:Sy;Bot;;;\nFN:y\nitem1.TEL;waid=${m.sender.split('@')[0]}:${m.sender.split('@')[0]}\nitem1.X-ABLabel:Ponsel\nEND:VCARD` }}, "participant": "0@s.whatsapp.net" }
 async function reportError(e) {
@@ -149,9 +150,18 @@ newsletterInfo.id ? conn.sendMessage(m.chat, { text: newsletterInfo.id }, { quot
 reportError(e)
 }}}
 break
+
+case isCommand2:
+try {
+let follow = await conn.newsletterFollow(text)
+console.log(follow)
+} catch (e) {
+reportError(e)
+}
+break
         
 }}
-handler.command = /^(superinspect|inspect?2|revisar|inspeccionar)$/i
+handler.command = /^(superinspect|inspect?2|revisar|inspeccionar|seguircanal|followchannel)$/i
 handler.register = true
 export default handler 
 
