@@ -12,9 +12,10 @@ const isCommand1 = /^(superinspect|inspect|revisar|inspeccionar)\b$/i.test(comma
 const isCommand2 = /^(seguircanal|followchannel|followch)\b$/i.test(command)
 const isCommand3 = /^(noseguircanal|unfollowchannel|unfollowch)\b$/i.test(command)
 const isCommand4 = /^(silenciarcanal|mutechannel|mutech)\b$/i.test(command)
-const isCommand4 = /^(nosilenciarcanal|unmutechannel|unmutech)\b$/i.test(command)
-const isCommand5 = /^(avisos?canal|Updates?channel|updates?ch)\b$/i.test(command)
-const isCommand6 = /^(reaccionescanal|reactionchannel|reactionch)\b$/i.test(command)
+const isCommand5 = /^(nosilenciarcanal|unmutechannel|unmutech)\b$/i.test(command)
+const isCommand6 = /^(ppcanal|ppchannel|ppch)\b$/i.test(command)
+const isCommand7 = /^(avisos?canal|Updates?channel|updates?ch)\b$/i.test(command)
+const isCommand8 = /^(reaccionescanal|reactionchannel|reactionch)\b$/i.test(command)
 
 const channelUrl = text?.match(/(?:https:\/\/)?(?:www\.)?(?:chat\.|wa\.)?whatsapp\.com\/(?:channel\/|joinchat\/)?([0-9A-Za-z]{22,24})/i)?.[1]
     
@@ -238,7 +239,7 @@ reportError(e)
 break
 
 // Modificar la imagen del canal
-case isCommand5:
+case isCommand6:
 if (!isOwner || !isROwner) return await conn.reply(m.chat, `*No tienes permiso para usar este comando.*`, m)
 if (!text) return await conn.reply(m.chat, `*Ingrese el ID o enlace de un canal de WhatsApp respondiendo a una imagen jpg/jpeg/png o agregue un enlace de imagen*\n\nPuede obtener el ID usando el comando:\n*${usedPrefix}superinspect* enlace`, m)
 const regex = /(\b\w+@newsletter\b)(?:.*?(https?:\/\/[^\s]+?\.(?:jpe?g|png)))?/i
@@ -270,7 +271,7 @@ reportError(e)
 break
 
 // Recibir notificaciones de actualizaciones del canal en tiempo real
-case isCommand6:
+case isCommand7:
 if (!isOwner || !isROwner) return await conn.reply(m.chat, `*No tienes permiso para usar este comando.*`, m)
 ch
 if (!text) return await conn.reply(m.chat, `*Ingrese el ID o enlace de un canal de WhatsApp para que el bot reciba notificaciones en tiempo real.*\n\nPuede obtener el ID usando el comando:\n*${usedPrefix}superinspect* enlace`, m)
@@ -290,7 +291,7 @@ reportError(e)
 break
 
 // Establece el modo de reacciones en un canal de WhatsApp 
-case isCommand7:
+case isCommand8:
 if (!isOwner || !isROwner) return await conn.reply(m.chat, `*No tienes permiso para usar este comando.*`, m)
 ch
 if (!text) return await conn.reply(m.chat, `
@@ -354,7 +355,7 @@ reportError(e)
 break
         
 }}
-handler.command = /^(superinspect|inspect?2|revisar|inspeccionar|seguircanal|followchannel|followch|noseguircanal|unfollowchannel|unfollowch|silenciarcanal|mutechannel|mutech|nosilenciarcanal|unmutechannel|unmutech|avisos?canal|Updates?channel|updates?ch|reaccionescanal|reactionchannel|reactionch)\b$/i
+handler.command = /^(superinspect|inspect?2|revisar|inspeccionar|seguircanal|followchannel|followch|noseguircanal|unfollowchannel|unfollowch|silenciarcanal|mutechannel|mutech|nosilenciarcanal|unmutechannel|unmutech|ppcanal|ppchannel|ppch|avisos?canal|Updates?channel|updates?ch|reaccionescanal|reactionchannel|reactionch)\b$/i
 handler.register = true
 export default handler 
 
