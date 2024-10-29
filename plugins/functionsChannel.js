@@ -446,7 +446,7 @@ break
         
 }}
 handler.command = /^(superinspect|inspect?2|revisar|inspeccionar|seguircanal|followchannel|followch|noseguircanal|unfollowchannel|unfollowch|silenciarcanal|mutechannel|mutech|nosilenciarcanal|unmutechannel|unmutech|ppcanal|ppchannel|ppch|eliminarppcanal|deleteppchannel|deleteppch|avisos?canal|Updates?channel|updates?ch|reaccionescanal|reactionchannel|reactionch|nuevonombrecanal|newnamechannel|newnamech|nuevadescc?anal|nuevadescripcioncanal|newdescc?hannel|newdescriptionchannel|newdescc?h)\b$/i
-handler.register = true
+//handler.register = true
 export default handler 
 
 function formatDate(n, locale = "es", includeTime = true) {
