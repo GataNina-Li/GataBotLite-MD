@@ -127,12 +127,22 @@ await m.reply(lenguajeGB.smsVerify8(usedPrefix))
 await m.reply(`${sn}`) 
 let fake = { contextInfo: { externalAdReply: { title: `【 🔔 Notificación General 🔔 】`, body: `🥳 ¡Nuevo usuario registrado!`, sourceUrl: accountsgb, thumbnailUrl: pp }}}
 let chtxt = `
-🌐 Idioma: ${nombresIdiomas}
-👤 Usuario: ${m.pushName || 'Anónimo'}
-✅ Verificación: ${user.name}
-🔢 Edad: ${user.age}
+🌐 *Idioma*: ${nombresIdiomas}
+👤 *Usuario*: ${m.pushName || 'Anónimo'}
+✅ *Verificación:* ${user.name}
+🔢 *Edad:* ${user.age}
 `.trim()
-await conn.reply('120363349916000764@newsletter', chtxt, null, fake)
+//await conn.reply('120363349916000764@newsletter', chtxt, null, fake)
+await conn.sendMessage(m.chat, { text: chtxt, contextInfo: {
+externalAdReply: {
+title: "【 🔔 Notificación General 🔔 】",
+body: '🥳 ¡Nuevo usuario registrado!',
+thumbnailUrl: pp,
+sourceUrl: accountsgb,
+mediaType: 1,
+showAdAttribution: false,
+renderLargerThumbnail: false
+}}}, { quoted: null })
 }
 }
 handler.command = /^(verify|verificar|reg(ister)?|idiomagb)$/i
