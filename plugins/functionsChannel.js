@@ -16,6 +16,7 @@ const isCommand6 = /^(ppcanal|ppchannel|ppch)\b$/i.test(command)
 const isCommand7 = /^(eliminarppcanal|deleteppchannel|deleteppch)\b$/i.test(command)
 const isCommand8 = /^(avisos?canal|Updates?channel|updates?ch)\b$/i.test(command)
 const isCommand9 = /^(reaccionescanal|reactionchannel|reactionch)\b$/i.test(command)
+const isCommand10 = /^(crearcanal|createchannel|createch)\b$/i.test(command)
 
 const channelUrl = text?.match(/(?:https:\/\/)?(?:www\.)?(?:chat\.|wa\.)?whatsapp\.com\/(?:channel\/|joinchat\/)?([0-9A-Za-z]{22,24})/i)?.[1]
 let txtBotAdminCh = '\n\n> *Verifique que el Bot sea admin en el canal, de lo contrario no funcionará el comando*'
@@ -171,7 +172,7 @@ if (!text) return await conn.reply(m.chat, `*Ingrese el ID o enlace de un canal 
 if (text.includes("@newsletter")) {
 ch = text
 } else {
-ch = await conn.newsletterMetadata("invite", text).then(data => data.id).catch(e => null)
+ch = await conn.newsletterMetadata("invite", channelUrl).then(data => data.id).catch(e => null)
 }       
 try {
 const chtitle = await conn.newsletterMetadata(text.includes("@newsletter") ? "jid" : "invite", text.includes("@newsletter") ? ch : channelUrl).then(data => data.name).catch(e => null)
@@ -190,7 +191,7 @@ if (!text) return await conn.reply(m.chat, `*Ingrese el ID o enlace de un canal 
 if (text.includes("@newsletter")) {
 ch = text
 } else {
-ch = await conn.newsletterMetadata("invite", text).then(data => data.id).catch(e => null)
+ch = await conn.newsletterMetadata("invite", channelUrl).then(data => data.id).catch(e => null)
 }       
 try {
 const chtitle = await conn.newsletterMetadata(text.includes("@newsletter") ? "jid" : "invite", text.includes("@newsletter") ? ch : channelUrl).then(data => data.name).catch(e => null)
@@ -209,7 +210,7 @@ if (!text) return await conn.reply(m.chat, `*Ingrese el ID o enlace de un canal 
 if (text.includes("@newsletter")) {
 ch = text
 } else {
-ch = await conn.newsletterMetadata("invite", text).then(data => data.id).catch(e => null)
+ch = await conn.newsletterMetadata("invite", channelUrl).then(data => data.id).catch(e => null)
 }       
 try {
 const chtitle = await conn.newsletterMetadata(text.includes("@newsletter") ? "jid" : "invite", text.includes("@newsletter") ? ch : channelUrl).then(data => data.name).catch(e => null)
@@ -228,7 +229,7 @@ if (!text) return await conn.reply(m.chat, `*Ingrese el ID o enlace de un canal 
 if (text.includes("@newsletter")) {
 ch = text
 } else {
-ch = await conn.newsletterMetadata("invite", text).then(data => data.id).catch(e => null)
+ch = await conn.newsletterMetadata("invite", channelUrl).then(data => data.id).catch(e => null)
 }       
 try {
 const chtitle = await conn.newsletterMetadata(text.includes("@newsletter") ? "jid" : "invite", text.includes("@newsletter") ? ch : channelUrl).then(data => data.name).catch(e => null)
@@ -274,7 +275,6 @@ if (text.includes("@newsletter")) {
 if(!match1) return await conn.reply(m.chat, `*No se encontró el ID del canal.*`, m)
 ch = match1
 } else {
-//inviteUrlch = text?.match(/(?:https:\/\/)?(?:www\.)?(?:chat\.|wa\.)?whatsapp\.com\/(?:channel\/invite\/)?([0-9A-Za-z]{22,24})/i)?.[1]
 ch = await conn.newsletterMetadata("invite", channelUrl).then(data => data.id).catch(e => null)
 }       
 try {
@@ -313,12 +313,11 @@ if (!text) return await conn.reply(m.chat, `*Ingrese el ID o enlace de un canal 
 if (text.includes("@newsletter")) {
 ch = text
 } else {
-ch = await conn.newsletterMetadata("invite", text).then(data => data.id).catch(e => null)
+ch = await conn.newsletterMetadata("invite", channelUrl).then(data => data.id).catch(e => null)
 }       
 try {
 const chtitle = await conn.newsletterMetadata(text.includes("@newsletter") ? "jid" : "invite", text.includes("@newsletter") ? ch : channelUrl).then(data => data.name).catch(e => null)
-let test = await conn.subscribeNewsletterUpdates(ch)
-console.log(test)
+await conn.subscribeNewsletterUpdates(ch)
 await conn.reply(m.chat, `${packname} recibirá notificaciones del canal *${chtitle}*`, m) 
 } catch (e) {
 reportError(e)
@@ -388,9 +387,43 @@ await conn.reply(m.chat, `${packname} ha establecido el modo de reacciones como 
 reportError(e)
 }
 break
+
+// Crear un nuevo canal
+case isCommand10:
+if (!isOwner || !isROwner) return await conn.reply(m.chat, `*No tienes permiso para usar este comando.*`, m)
+if (!text) return await conn.reply(m.chat, `*Ingrese un nombre y descripción para que el bot cree un nuevo canal de WhatsApp.
+*Parámetros de uso:*
+*${usedPrefix + command}* nombre, descripción 
+
+*Ejemplo de uso:*
+*${usedPrefix + command}* CanalNuevo, Bienvenidos a este canal`, m)
+const [name, ...descriptionParts] = text.split(',')
+const description = descriptionParts.join(',').trim()
+
+if (!name || !description) return await conn.reply(m.chat, `*Por favor, proporcione el nombre y descripción del canal, separados por comas.*\n\n
+*Parámetros de uso:*
+*${usedPrefix + command}* nombre, descripción 
+
+*Ejemplo de uso:*
+*${usedPrefix + command}* CanalNuevo, Bienvenidos a este canal`, m)
+//if (id.includes("@newsletter")) {
+//ch = id
+//} else {
+//ch = await conn.newsletterMetadata("invite", channelUrl).then(data => data.id).catch(e => null)
+//}       
+try {
+//const chtitle = await conn.newsletterMetadata(text.includes("@newsletter") ? "jid" : "invite", text.includes("@newsletter") ? ch : channelUrl).then(data => data.name).catch(e => null)
+let test = await conn.newsletterCreate(name, description)
+console.log(test)
+await conn.reply(m.chat, `${packname} ha creado el canal *${name}* con éxito.`, m) 
+} catch (e) {
+reportError(e)
+}
+break
+
         
 }}
-handler.command = /^(superinspect|inspect?2|revisar|inspeccionar|seguircanal|followchannel|followch|noseguircanal|unfollowchannel|unfollowch|silenciarcanal|mutechannel|mutech|nosilenciarcanal|unmutechannel|unmutech|ppcanal|ppchannel|ppch|eliminarppcanal|deleteppchannel|deleteppch|avisos?canal|Updates?channel|updates?ch|reaccionescanal|reactionchannel|reactionch)\b$/i
+handler.command = /^(superinspect|inspect?2|revisar|inspeccionar|seguircanal|followchannel|followch|noseguircanal|unfollowchannel|unfollowch|silenciarcanal|mutechannel|mutech|nosilenciarcanal|unmutechannel|unmutech|ppcanal|ppchannel|ppch|eliminarppcanal|deleteppchannel|deleteppch|avisos?canal|Updates?channel|updates?ch|reaccionescanal|reactionchannel|reactionch|crearcanal|createchannel|createch)\b$/i
 handler.register = true
 export default handler 
 
