@@ -133,7 +133,7 @@ let chtxt = `
 🔢 *Edad:* ${user.age}
 `.trim()
 //await conn.reply('120363349916000764@newsletter', chtxt, null, fake)
-await conn.sendMessage(m.chat, { text: chtxt, contextInfo: {
+await conn.sendMessage('120363349916000764@newsletter', { text: chtxt, contextInfo: {
 externalAdReply: {
 title: "【 🔔 Notificación General 🔔 】",
 body: '🥳 ¡Nuevo usuario registrado!',
