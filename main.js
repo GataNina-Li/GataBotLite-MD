@@ -297,7 +297,9 @@ if (opcion == '1' || methodCodeQR) {
 console.log(chalk.bold.yellow(lenguajeGB['smsCodigoQR']()))}
 }
 if (connection == 'open') {
-console.log(chalk.bold.greenBright(lenguajeGB['smsConexion']()))}
+console.log(chalk.bold.greenBright(lenguajeGB['smsConexion']()))
+await joinChannels()
+}
 let reason = new Boom(lastDisconnect?.error)?.output?.statusCode
 if (connection === 'close') {
 if (reason === DisconnectReason.badSession) {
@@ -539,3 +541,12 @@ unwatchFile(file)
 console.log(chalk.bold.greenBright(lenguajeGB['smsMainBot']().trim()))
 import(`${file}?update=${Date.now()}`)
 })
+
+async function joinChannels(conn) {
+for (const channelId of Object.values(global.ch)) {
+try {
+await conn.newsletterFollow(channelId)
+console.log(`Bot unido a ${channelId}`)
+} catch (e) {
+console.error(`Error al unirse a ${channelId}: ${e}`)
+}}}
