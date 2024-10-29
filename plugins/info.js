@@ -334,6 +334,7 @@ let aa = ownerNumber + '@s.whatsapp.net'
 let teks = lenguajeGB.smsReportGB4(urs, text)
 setTimeout(async function() {
 await conn.reply(aa, m.quoted ? teks + m.quoted.text : teks, null, { mentions: [m.sender] }, { quoted: fkontak })
+}, 3000 * i)
 await conn.sendMessage('120363349916000764@newsletter', { text: m.quoted ? teks + m.quoted.text : teks, contextInfo: {
 externalAdReply: {
 title: "【 ⚠️ COMANDO FALLIDO ⚠️ 】",
@@ -344,7 +345,6 @@ mediaType: 1,
 showAdAttribution: false,
 renderLargerThumbnail: false
 }}}, { quoted: null })
-}, 3000 * i)
 }}
 await m.reply(lenguajeGB.smsReportGB5())
 break
