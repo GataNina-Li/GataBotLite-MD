@@ -405,15 +405,9 @@ if (!name || !description) return await conn.reply(m.chat, `*Por favor, proporci
 *${usedPrefix + command}* nombre, descripción 
 
 *Ejemplo de uso:*
-*${usedPrefix + command}* CanalNuevo, Bienvenidos a este canal`, m)
-//if (id.includes("@newsletter")) {
-//ch = id
-//} else {
-//ch = await conn.newsletterMetadata("invite", channelUrl).then(data => data.id).catch(e => null)
-//}       
+*${usedPrefix + command}* CanalNuevo, Bienvenidos a este canal`, m)     
 try {
-//const chtitle = await conn.newsletterMetadata(text.includes("@newsletter") ? "jid" : "invite", text.includes("@newsletter") ? ch : channelUrl).then(data => data.name).catch(e => null)
-let test = await conn.newsletterCreate(name, description)
+let test = await conn.newsletterCreate('Hola', 'wwwwwwwww')
 console.log(test)
 await conn.reply(m.chat, `${packname} ha creado el canal *${name}* con éxito.`, m) 
 } catch (e) {
