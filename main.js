@@ -298,7 +298,7 @@ console.log(chalk.bold.yellow(lenguajeGB['smsCodigoQR']()))}
 }
 if (connection == 'open') {
 console.log(chalk.bold.greenBright(lenguajeGB['smsConexion']()))
-await joinChannels()
+await joinChannels(conn)
 }
 let reason = new Boom(lastDisconnect?.error)?.output?.statusCode
 if (connection === 'close') {
