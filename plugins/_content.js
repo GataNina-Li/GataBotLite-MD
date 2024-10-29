@@ -24,6 +24,7 @@ global.canal1 = "https://chat.whatsapp.com/B5s3ohjEGofH5YDD05jAV5"
 global.canal2 = "https://chat.whatsapp.com/IO5k0UOF7hOJHE1eH3Fcxh"
 global.canal3 = "https://chat.whatsapp.com/H1TEBeMtFVv3RcayD1WfGU"
 global.canal4 = "https://chat.whatsapp.com/GFsgXW2VD4I4FEOSlEg9wp"
+global.canal5 = "https://whatsapp.com/channel/0029VatPwXw7Noa8n1Vinx3g"
 
 // grupos (algunos pueden estar repetidos con otros, es temporal)
 global.nna = 'https://whatsapp.com/channel/0029Va6yY0iLY6d6XDmqA03g' //CANAL UPDATE
