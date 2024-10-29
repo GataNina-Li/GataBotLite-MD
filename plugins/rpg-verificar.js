@@ -14,7 +14,8 @@ let nombresIdiomas = {
 }
   
 let who = m.mentionedJid && m.mentionedJid[0] ? m.mentionedJid[0] : m.fromMe ? conn.user.jid : m.sender
-let pp = await conn.profilePictureUrl(who, 'image').catch(_ => gataMenu.getRandom())
+let pp = await conn.profilePictureUrl(who, 'image').catch(_ => gataImg.getRandom())
+let ppch = await conn.profilePictureUrl(who, 'image').catch(_ => gataMenu.getRandom())
   
 function pickRandom(list) {
 return list[Math.floor(Math.random() * list.length)]
@@ -130,7 +131,7 @@ await conn.sendMessage(global.ch.ch1, { text: chtxt, contextInfo: {
 externalAdReply: {
 title: "【 🔔 Notificación General 🔔 】",
 body: '🥳 ¡Nuevo usuario registrado!',
-thumbnailUrl: pp,
+thumbnailUrl: ppch,
 sourceUrl: accountsgb,
 mediaType: 1,
 showAdAttribution: false,
