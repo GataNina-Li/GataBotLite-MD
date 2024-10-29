@@ -126,7 +126,7 @@ await conn.sendFile(m.chat, pp, 'gata.jpg', caption, m, false, { mentions: [aa] 
 await m.reply(lenguajeGB.smsVerify8(usedPrefix)) 
 await m.reply(`${sn}`) 
 let chtxt = `🌐 *Idioma*: ${nombresIdiomas}\n👤 *Usuario*: ${m.pushName || 'Anónimo'}\n✅ *Verificación:* ${user.name}\n🔢 *Edad:* ${user.age} años `.trim()
-await conn.sendMessage(global.ch.ch2, { text: chtxt, contextInfo: {
+await conn.sendMessage(global.ch.ch1, { text: chtxt, contextInfo: {
 externalAdReply: {
 title: "【 🔔 Notificación General 🔔 】",
 body: '🥳 ¡Nuevo usuario registrado!',
