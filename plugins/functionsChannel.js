@@ -17,6 +17,7 @@ const isCommand7 = /^(eliminarppcanal|deleteppchannel|deleteppch)\b$/i.test(comm
 const isCommand8 = /^(avisos?canal|Updates?channel|updates?ch)\b$/i.test(command)
 const isCommand9 = /^(reaccionescanal|reactionchannel|reactionch)\b$/i.test(command)
 const isCommand10 = /^(nuevonombrecanal|newnamechannel|newnamech)\b$/i.test(command)
+const isCommand11 = /^(nuevadescc?anal|nuevadescripcioncanal|newdescc?hannel|newdescriptionchannel|newdescc?h)\b$/i.test(command)
 
 const channelUrl = text?.match(/(?:https:\/\/)?(?:www\.)?(?:chat\.|wa\.)?whatsapp\.com\/(?:channel\/|joinchat\/)?([0-9A-Za-z]{22,24})/i)?.[1]
 let txtBotAdminCh = '\n\n> *Verifique que el Bot sea admin en el canal, de lo contrario no funcionará el comando*'
@@ -413,9 +414,34 @@ await conn.reply(m.chat, `${packname} ha cambiado el nombre del canal *${name}*\
 reportError(e)
 }
 break
+
+// Modificar la descripción del canal
+case isCommand11:
+if (!isOwner || !isROwner) return await conn.reply(m.chat, `*No tienes permiso para usar este comando.*`, m)
+if (!text) return await conn.reply(m.chat, `*Ingrese el ID o enlace de un canal de WhatsApp para que el bot modifique la descripción del canal.*\n\n
+*Parámetros de uso:*
+*${usedPrefix + command}* \`id\` \`descripción\` 
+
+*Ejemplo de uso:*
+*${usedPrefix + command}* 12345@newsletter DescripciónDelcanal\n\n*Puede obtener el ID usando el comando:*\n*${usedPrefix}superinspect* enlace${txtBotAdminCh}`, m)
+const [idch, ...descriptionParts] = text.split(' ')
+const description = descriptionParts.join(' ').trim()
+if (text.includes("@newsletter")) {
+ch = idch.trim()
+} else {
+ch = await conn.newsletterMetadata("invite", channelUrl).then(data => data.id).catch(e => null)
+}       
+try {
+const chtitle = await conn.newsletterMetadata(text.includes("@newsletter") ? "jid" : "invite", text.includes("@newsletter") ? ch : channelUrl).then(data => data.name).catch(e => null)
+await conn.newsletterUpdateDescription(ch, description)
+await conn.reply(m.chat, `${packname} ha modificado la descripción del canal *${chtitle}*`, m) 
+} catch (e) {
+reportError(e)
+}
+break
         
 }}
-handler.command = /^(superinspect|inspect?2|revisar|inspeccionar|seguircanal|followchannel|followch|noseguircanal|unfollowchannel|unfollowch|silenciarcanal|mutechannel|mutech|nosilenciarcanal|unmutechannel|unmutech|ppcanal|ppchannel|ppch|eliminarppcanal|deleteppchannel|deleteppch|avisos?canal|Updates?channel|updates?ch|reaccionescanal|reactionchannel|reactionch|nuevonombrecanal|newnamechannel|newnamech)\b$/i
+handler.command = /^(superinspect|inspect?2|revisar|inspeccionar|seguircanal|followchannel|followch|noseguircanal|unfollowchannel|unfollowch|silenciarcanal|mutechannel|mutech|nosilenciarcanal|unmutechannel|unmutech|ppcanal|ppchannel|ppch|eliminarppcanal|deleteppchannel|deleteppch|avisos?canal|Updates?channel|updates?ch|reaccionescanal|reactionchannel|reactionch|nuevonombrecanal|newnamechannel|newnamech|nuevadescc?anal|nuevadescripcioncanal|newdescc?hannel|newdescriptionchannel|newdescc?h)\b$/i
 handler.register = true
 export default handler 
 
