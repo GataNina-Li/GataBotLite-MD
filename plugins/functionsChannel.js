@@ -16,7 +16,7 @@ const isCommand6 = /^(ppcanal|ppchannel|ppch)\b$/i.test(command)
 const isCommand7 = /^(eliminarppcanal|deleteppchannel|deleteppch)\b$/i.test(command)
 const isCommand8 = /^(avisos?canal|Updates?channel|updates?ch)\b$/i.test(command)
 const isCommand9 = /^(reaccionescanal|reactionchannel|reactionch)\b$/i.test(command)
-const isCommand10 = /^(crearcanal|createchannel|createch)\b$/i.test(command)
+const isCommand10 = /^(nuevonombrecanal|newnamechannel|newnamech)\b$/i.test(command)
 
 const channelUrl = text?.match(/(?:https:\/\/)?(?:www\.)?(?:chat\.|wa\.)?whatsapp\.com\/(?:channel\/|joinchat\/)?([0-9A-Za-z]{22,24})/i)?.[1]
 let txtBotAdminCh = '\n\n> *Verifique que el Bot sea admin en el canal, de lo contrario no funcionará el comando*'
@@ -388,36 +388,33 @@ reportError(e)
 }
 break
 
-// Crear un nuevo canal
+// Modificar nombre del canal
 case isCommand10:
 if (!isOwner || !isROwner) return await conn.reply(m.chat, `*No tienes permiso para usar este comando.*`, m)
-if (!text) return await conn.reply(m.chat, `*Ingrese un nombre y descripción para que el bot cree un nuevo canal de WhatsApp.
+if (!text) return await conn.reply(m.chat, `*Ingrese el ID o enlace de un canal de WhatsApp para que el bot modifique el nombre del canal.*\n\n
 *Parámetros de uso:*
-*${usedPrefix + command}* nombre, descripción 
+*${usedPrefix + command}* \`id\` \`nombre\` 
 
 *Ejemplo de uso:*
-*${usedPrefix + command}* CanalNuevo, Bienvenidos a este canal`, m)
-const [name, ...descriptionParts] = text.split(',')
-const description = descriptionParts.join(',').trim()
-
-if (!name || !description) return await conn.reply(m.chat, `*Por favor, proporcione el nombre y descripción del canal, separados por comas.*\n\n
-*Parámetros de uso:*
-*${usedPrefix + command}* nombre, descripción 
-
-*Ejemplo de uso:*
-*${usedPrefix + command}* CanalNuevo, Bienvenidos a este canal`, m)     
+*${usedPrefix + command}* 12345@newsletter NombreDelcanal\n\n*Puede obtener el ID usando el comando:*\n*${usedPrefix}superinspect* enlace${txtBotAdminCh}`, m)
+const [id, ...nameParts] = text.split(' ')
+const name = nameParts.join(' ').trim()
+if (text.includes("@newsletter")) {
+ch = id
+} else {
+ch = await conn.newsletterMetadata("invite", channelUrl).then(data => data.id).catch(e => null)
+}       
 try {
-let test = await conn.newsletterCreate('Hola', 'wwwwwwwww')
-console.log(test)
-await conn.reply(m.chat, `${packname} ha creado el canal *${name}* con éxito.`, m) 
+const chtitle = await conn.newsletterMetadata(text.includes("@newsletter") ? "jid" : "invite", text.includes("@newsletter") ? ch : channelUrl).then(data => data.name).catch(e => null)
+await conn.newsletterUpdateName(id, name)
+await conn.reply(m.chat, `${packname} ha cambiado el nombre del canal *${name}*\n\n*Anterior nombre:* ${chtitle}\n*Nuevo nombre:* ${name}`, m) 
 } catch (e) {
 reportError(e)
 }
 break
-
         
 }}
-handler.command = /^(superinspect|inspect?2|revisar|inspeccionar|seguircanal|followchannel|followch|noseguircanal|unfollowchannel|unfollowch|silenciarcanal|mutechannel|mutech|nosilenciarcanal|unmutechannel|unmutech|ppcanal|ppchannel|ppch|eliminarppcanal|deleteppchannel|deleteppch|avisos?canal|Updates?channel|updates?ch|reaccionescanal|reactionchannel|reactionch|crearcanal|createchannel|createch)\b$/i
+handler.command = /^(superinspect|inspect?2|revisar|inspeccionar|seguircanal|followchannel|followch|noseguircanal|unfollowchannel|unfollowch|silenciarcanal|mutechannel|mutech|nosilenciarcanal|unmutechannel|unmutech|ppcanal|ppchannel|ppch|eliminarppcanal|deleteppchannel|deleteppch|avisos?canal|Updates?channel|updates?ch|reaccionescanal|reactionchannel|reactionch|nuevonombrecanal|newnamechannel|newnamech)\b$/i
 handler.register = true
 export default handler 
 
