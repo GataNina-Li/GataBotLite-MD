@@ -249,6 +249,8 @@ if (!text) return await conn.reply(m.chat, `*Ingrese el ID o enlace de un canal 
 *${usedPrefix + command}* 12345@newsletter https://example.com/image.jpg\n\n*Puede obtener el ID usando el comando:*\n*${usedPrefix}superinspect* enlace${txtBotAdminCh}`, m)
 const regex = /(\b\w+@newsletter\b)(?:.*?(https?:\/\/[^\s]+?\.(?:jpe?g|png)))?/i
 const match = text.match(regex)
+let match1 = match[1] ? match[1] : null
+let match2 = match[2] ? match[2] : null
 if (m.quoted) {
 q = m.quoted ? m.quoted : m
 mime = (q.msg || q).mimetype || q.mediaType || ''
@@ -257,10 +259,10 @@ media = await q.download()
 } else {
 return await conn.reply(m.chat, `*Responda a una imagen jpg/png.*`, m)
 }} else { 
-if (!match[2]) return await conn.reply(m.chat, `*Agregué el enlace jpg/png después del ID del canal.*`, m)
-try {
 const imageUrlRegex = /(https?:\/\/[^\s]+?\.(?:jpe?g|png))/
-const response = await axios.get(match[2] || text.match(imageUrlRegex), { responseType: 'arraybuffer' })
+if (!match2 && !text.match(imageUrlRegex)) return await conn.reply(m.chat, `*Agregué el enlace jpg/png después del ID del canal.*`, m)
+try {
+const response = await axios.get(match2 || text.match(imageUrlRegex), { responseType: 'arraybuffer' })
 const imageBuffer = Buffer.from(response.data, 'binary')
 } catch (error) {
 return await conn.reply(m.chat, `*Error al descargar la imagen de la URL proporcionada.*`, m)
@@ -268,8 +270,8 @@ return await conn.reply(m.chat, `*Error al descargar la imagen de la URL proporc
 media = imageBuffer
 }
 if (text.includes("@newsletter")) {
-if(!match[1]) return await conn.reply(m.chat, `*No se encontró el ID del canal.*`, m)
-ch = match[1]
+if(!match1) return await conn.reply(m.chat, `*No se encontró el ID del canal.*`, m)
+ch = match1
 } else {
 inviteUrlch = text?.match(/(?:https:\/\/)?(?:www\.)?(?:chat\.|wa\.)?whatsapp\.com\/(?:channel\/invite\/)?([0-9A-Za-z]{22,24})/i)?.[1]
 ch = await conn.newsletterMetadata("invite", inviteUrlch).then(data => data.id).catch(e => null)
