@@ -249,8 +249,8 @@ if (!text) return await conn.reply(m.chat, `*Ingrese el ID o enlace de un canal 
 *${usedPrefix + command}* 12345@newsletter https://example.com/image.jpg\n\n*Puede obtener el ID usando el comando:*\n*${usedPrefix}superinspect* enlace${txtBotAdminCh}`, m)
 const regex = /(\b\w+@newsletter\b)(?:.*?(https?:\/\/[^\s]+?\.(?:jpe?g|png)))?/i
 const match = text.match(regex)
-let match1 = match ? match[1] ? match[1] : null
-let match2 = match ? match[2] ? match[2] : null
+let match1 = match ? match[1] ? match[1] : null : null
+let match2 = match ? match[2] ? match[2] : null : null
 if (m.quoted) {
 q = m.quoted ? m.quoted : m
 mime = (q.msg || q).mimetype || q.mediaType || ''
@@ -269,6 +269,7 @@ return await conn.reply(m.chat, `*Error al descargar la imagen de la URL proporc
 }
 media = imageBuffer
 }
+console.log(media)
 if (text.includes("@newsletter")) {
 if(!match1) return await conn.reply(m.chat, `*No se encontró el ID del canal.*`, m)
 ch = match1
