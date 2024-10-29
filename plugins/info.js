@@ -339,7 +339,7 @@ await conn.sendMessage('120363349916000764@newsletter', { text: m.quoted ? teks 
 externalAdReply: {
 title: "【 ⚠️ COMANDO FALLIDO ⚠️ 】",
 body: '💻 Seguirte comando esta fallando!',
-thumbnailUrl: pp,
+thumbnailUrl: gataImg.getRandom(),
 sourceUrl: accountsgb,
 mediaType: 1,
 showAdAttribution: false,
