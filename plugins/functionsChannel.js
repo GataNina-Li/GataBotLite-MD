@@ -5,6 +5,7 @@
 import { getUrlFromDirectPath } from "@whiskeysockets/baileys"
 import uploadImage from '../lib/uploadImage.js'
 import _ from "lodash"
+import axios from 'axios' 
 
 let handler = async (m, { conn, command, usedPrefix, args, text, groupMetadata, isOwner, isROwner }) => {
 const isCommand1 = /^(superinspect|inspect|revisar|inspeccionar)\b$/i.test(command)
@@ -24,7 +25,7 @@ console.log(`❗❗ ${lenguajeGB['smsMensError2']()} ${usedPrefix + command} ❗
 console.log(e)
 }
 let thumb = gataMenu.getRandom()
-let pp, ch, q, mime, buffer, media
+let pp, ch, q, mime, buffer, media, inviteUrlch
     
 switch (true) {     
 case isCommand1:
@@ -247,28 +248,22 @@ q = m.quoted ? m.quoted : m
 mime = (q.msg || q).mimetype || q.mediaType || ''
 if (/image/g.test(mime) && !/webp/g.test(mime)) {
 buffer = await q.download()
-media = await (uploadImage)(buffer)
-    
+media = await (uploadImage)(buffer) 
 } else {   
-if (match) {
-const channelId = match[1]
-const imageUrl = match[2] || null
-ch = channelId
-media = imageUrl
-} else {
-    console.log("No se encontró una URL de imagen o un ID de canal válido.");
-}
-media =
+const response = await axios.get(match[2], { responseType: 'arraybuffer' })
+const imageBuffer = Buffer.from(response.data, 'binary')
+media = imageBuffer
 }
 if (text.includes("@newsletter")) {
-ch = text
+ch = match[1]
 } else {
-ch = await conn.newsletterMetadata("invite", text).then(data => data.id).catch(e => null)
+inviteUrlch = text?.match(/(?:https:\/\/)?(?:www\.)?(?:chat\.|wa\.)?whatsapp\.com\/(?:channel\/invite\/)?([0-9A-Za-z]{22,24})/i)?.[1]
+ch = await conn.newsletterMetadata("invite", inviteUrlch).then(data => data.id).catch(e => null)
 }       
 try {
 const chtitle = await conn.newsletterMetadata(text.includes("@newsletter") ? "jid" : "invite", text.includes("@newsletter") ? ch : channelUrl).then(data => data.name).catch(e => null)
-await conn.newsletterUnmute(ch)
-await conn.reply(m.chat, `${packname} ha dejado de silenciar las notificaciones para el canal *${chtitle}* con éxito.`, m) 
+await conn.newsletterUpdatePicture(ch, media)
+await conn.reply(m.chat, `${packname} ha actualizado la imagen del canal *${chtitle}* con éxito.`, m) 
 } catch (e) {
 reportError(e)
 }
