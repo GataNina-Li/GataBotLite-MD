@@ -258,8 +258,13 @@ media = await q.download()
 return await conn.reply(m.chat, `*Responda a una imagen jpg/png.*`, m)
 }} else { 
 if (!match[2]) return await conn.reply(m.chat, `*Agregué el enlace jpg/png después del ID del canal.*`, m)
-const response = await axios.get(match[2], { responseType: 'arraybuffer' })
+try {
+const imageUrlRegex = /(https?:\/\/[^\s]+?\.(?:jpe?g|png))/
+const response = await axios.get(match[2] || text.match(imageUrlRegex), { responseType: 'arraybuffer' })
 const imageBuffer = Buffer.from(response.data, 'binary')
+} catch (error) {
+return await conn.reply(m.chat, `*Error al descargar la imagen de la URL proporcionada.*`, m)
+}
 media = imageBuffer
 }
 if (text.includes("@newsletter")) {
