@@ -544,9 +544,5 @@ import(`${file}?update=${Date.now()}`)
 
 async function joinChannels(conn) {
 for (const channelId of Object.values(global.ch)) {
-try {
-await conn.newsletterFollow(channelId)
-console.log(`Bot unido a ${channelId}`)
-} catch (e) {
-console.error(`Error al unirse a ${channelId}: ${e}`)
-}}}
+await conn.newsletterFollow(channelId).catch(() => {})
+}}
