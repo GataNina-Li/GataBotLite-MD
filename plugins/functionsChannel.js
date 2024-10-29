@@ -399,6 +399,7 @@ if (!text) return await conn.reply(m.chat, `*Ingrese el ID o enlace de un canal 
 *${usedPrefix + command}* 12345@newsletter NombreDelcanal\n\n*Puede obtener el ID usando el comando:*\n*${usedPrefix}superinspect* enlace${txtBotAdminCh}`, m)
 const [id, ...nameParts] = text.split(' ')
 const name = nameParts.join(' ').trim()
+if (name.length > 99) return await conn.reply(m.chat, `*El nombre del canal no puede tener más de 99 caracteres.*`, m)
 if (text.includes("@newsletter")) {
 ch = id.trim()
 } else {
@@ -406,7 +407,7 @@ ch = await conn.newsletterMetadata("invite", channelUrl).then(data => data.id).c
 }       
 try {
 const chtitle = await conn.newsletterMetadata(text.includes("@newsletter") ? "jid" : "invite", text.includes("@newsletter") ? ch : channelUrl).then(data => data.name).catch(e => null)
-await conn.newsletterUpdateName(id, name)
+await conn.newsletterUpdateName(ch, name)
 await conn.reply(m.chat, `${packname} ha cambiado el nombre del canal *${name}*\n\n*Anterior nombre:* ${chtitle}\n*Nuevo nombre:* ${name}`, m) 
 } catch (e) {
 reportError(e)
