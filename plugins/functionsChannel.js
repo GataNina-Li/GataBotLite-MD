@@ -392,7 +392,7 @@ break
 // Modificar nombre del canal
 case isCommand10:
 
-const channels = _.values(conn.chats).filter(c => c.jid.endsWith("@newsletter"))
+const channels = _.values(conn.chats).filter(c => c.id && c.id.endsWith("@newsletter"))
 console.log(channels)
 
 if (!isOwner || !isROwner) return await conn.reply(m.chat, `*No tienes permiso para usar este comando.*`, m)
