@@ -249,8 +249,8 @@ if (!text) return await conn.reply(m.chat, `*Ingrese el ID o enlace de un canal 
 *${usedPrefix + command}* 12345@newsletter https://example.com/image.jpg\n\n*Puede obtener el ID usando el comando:*\n*${usedPrefix}superinspect* enlace${txtBotAdminCh}`, m)
 const regex = /(\b\w+@newsletter\b)(?:.*?(https?:\/\/[^\s]+?\.(?:jpe?g|png)))?/i
 const match = text.match(regex)
-let match1 = match[1] ? match[1] : null
-let match2 = match[2] ? match[2] : null
+let match1 = match ? match[1] : null
+let match2 = match ? match[2] : null
 if (m.quoted) {
 q = m.quoted ? m.quoted : m
 mime = (q.msg || q).mimetype || q.mediaType || ''
