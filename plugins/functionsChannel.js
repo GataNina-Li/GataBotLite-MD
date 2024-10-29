@@ -26,7 +26,7 @@ console.log(`❗❗ ${lenguajeGB['smsMensError2']()} ${usedPrefix + command} ❗
 console.log(e)
 }
 let thumb = gataMenu.getRandom()
-let pp, ch, q, mime, buffer, media, inviteUrlch
+let pp, ch, q, mime, buffer, media, inviteUrlch, imageBuffer
     
 switch (true) {     
 case isCommand1:
@@ -263,7 +263,7 @@ const imageUrlRegex = /(https?:\/\/[^\s]+?\.(?:jpe?g|png))/
 if (!match2 && !text.match(imageUrlRegex)) return await conn.reply(m.chat, `*Agregué el enlace jpg/png después del ID del canal.*`, m)
 try {
 const response = await axios.get(match2 || text.match(imageUrlRegex), { responseType: 'arraybuffer' })
-const imageBuffer = Buffer.from(response.data, 'binary')
+imageBuffer = Buffer.from(response.data, 'binary')
 } catch (error) {
 return await conn.reply(m.chat, `*Error al descargar la imagen de la URL proporcionada.*`, m)
 }
