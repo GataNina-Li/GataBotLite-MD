@@ -294,7 +294,7 @@ if (!text) return await conn.reply(m.chat, `*Ingrese el ID o enlace de un canal 
 if (text.includes("@newsletter")) {
 ch = text
 } else {
-ch = await conn.newsletterMetadata("invite", text).then(data => data.id).catch(e => null)
+ch = await conn.newsletterMetadata("invite", channelUrl).then(data => data.id).catch(e => null)
 }       
 try {
 const chtitle = await conn.newsletterMetadata(text.includes("@newsletter") ? "jid" : "invite", text.includes("@newsletter") ? ch : channelUrl).then(data => data.name).catch(e => null)
