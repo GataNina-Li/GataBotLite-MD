@@ -3,7 +3,6 @@
 // También encontrarás código para comandos enfocados para canales de WhatsApp
 
 import { getUrlFromDirectPath } from "@whiskeysockets/baileys"
-import uploadImage from '../lib/uploadImage.js'
 import _ from "lodash"
 import axios from 'axios' 
 
@@ -254,10 +253,10 @@ q = m.quoted ? m.quoted : m
 mime = (q.msg || q).mimetype || q.mediaType || ''
 if (/image/g.test(mime) && !/webp/g.test(mime)) {
 media = await q.download()
-//media = await (uploadImage)(buffer) 
 } else {
 return await conn.reply(m.chat, `*Responda a una imagen jpg/png.*`, m)
-}} else {   
+}} else { 
+if (!match[2]) return await conn.reply(m.chat, `*Agregué el enlace jpg/png después del ID del canal.*`, m)
 const response = await axios.get(match[2], { responseType: 'arraybuffer' })
 const imageBuffer = Buffer.from(response.data, 'binary')
 media = imageBuffer
