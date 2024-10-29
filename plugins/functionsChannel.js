@@ -13,11 +13,12 @@ const isCommand3 = /^(noseguircanal|unfollowchannel|unfollowch)\b$/i.test(comman
 const isCommand4 = /^(silenciarcanal|mutechannel|mutech)\b$/i.test(command)
 const isCommand5 = /^(nosilenciarcanal|unmutechannel|unmutech)\b$/i.test(command)
 const isCommand6 = /^(ppcanal|ppchannel|ppch)\b$/i.test(command)
-const isCommand7 = /^(avisos?canal|Updates?channel|updates?ch)\b$/i.test(command)
-const isCommand8 = /^(reaccionescanal|reactionchannel|reactionch)\b$/i.test(command)
+const isCommand7 = /^(eliminarppcanal|deleteppchannel|deleteppch)\b$/i.test(command)
+const isCommand8 = /^(avisos?canal|Updates?channel|updates?ch)\b$/i.test(command)
+const isCommand9 = /^(reaccionescanal|reactionchannel|reactionch)\b$/i.test(command)
 
 const channelUrl = text?.match(/(?:https:\/\/)?(?:www\.)?(?:chat\.|wa\.)?whatsapp\.com\/(?:channel\/|joinchat\/)?([0-9A-Za-z]{22,24})/i)?.[1]
-let txtBotAdminCh = '\n\n > *Verifique que el Bot sea admin en el canal, de lo contrario no funcionará el comando*'
+let txtBotAdminCh = '\n\n> *Verifique que el Bot sea admin en el canal, de lo contrario no funcionará el comando*'
     
 let fkontak = { "key": { "participants":"0@s.whatsapp.net", "remoteJid": "status@broadcast", "fromMe": false, "id": "Halo" }, "message": { "contactMessage": { "vcard": `BEGIN:VCARD\nVERSION:3.0\nN:Sy;Bot;;;\nFN:y\nitem1.TEL;waid=${m.sender.split('@')[0]}:${m.sender.split('@')[0]}\nitem1.X-ABLabel:Ponsel\nEND:VCARD` }}, "participant": "0@s.whatsapp.net" }
 async function reportError(e) {
@@ -285,8 +286,27 @@ reportError(e)
 }
 break
 
-// Recibir notificaciones de actualizaciones del canal en tiempo real
+// Eliminar la imagen del canal
 case isCommand7:
+if (!isOwner || !isROwner) return await conn.reply(m.chat, `*No tienes permiso para usar este comando.*`, m)
+ch
+if (!text) return await conn.reply(m.chat, `*Ingrese el ID o enlace de un canal de WhatsApp que quiere que el bot elimine la imagen del canal.*\n\n*Puede obtener el ID usando el comando:*\n*${usedPrefix}superinspect* enlace${txtBotAdminCh}`, m)
+if (text.includes("@newsletter")) {
+ch = text
+} else {
+ch = await conn.newsletterMetadata("invite", text).then(data => data.id).catch(e => null)
+}       
+try {
+const chtitle = await conn.newsletterMetadata(text.includes("@newsletter") ? "jid" : "invite", text.includes("@newsletter") ? ch : channelUrl).then(data => data.name).catch(e => null)
+await conn.newsletterRemovePicture(ch)
+await conn.reply(m.chat, `${packname} ha eliminado la imagen del canal *${chtitle}* con éxito.`, m) 
+} catch (e) {
+reportError(e)
+}
+break
+
+// Recibir notificaciones de actualizaciones del canal en tiempo real
+case isCommand8:
 if (!isOwner || !isROwner) return await conn.reply(m.chat, `*No tienes permiso para usar este comando.*`, m)
 ch
 if (!text) return await conn.reply(m.chat, `*Ingrese el ID o enlace de un canal de WhatsApp para que el bot reciba notificaciones en tiempo real.*\n\n*Puede obtener el ID usando el comando:*\n*${usedPrefix}superinspect* enlace${txtBotAdminCh}`, m)
@@ -306,7 +326,7 @@ reportError(e)
 break
 
 // Establece el modo de reacciones en un canal de WhatsApp 
-case isCommand8:
+case isCommand9:
 if (!isOwner || !isROwner) return await conn.reply(m.chat, `*No tienes permiso para usar este comando.*`, m)
 ch
 if (!text) return await conn.reply(m.chat, `
@@ -370,7 +390,7 @@ reportError(e)
 break
         
 }}
-handler.command = /^(superinspect|inspect?2|revisar|inspeccionar|seguircanal|followchannel|followch|noseguircanal|unfollowchannel|unfollowch|silenciarcanal|mutechannel|mutech|nosilenciarcanal|unmutechannel|unmutech|ppcanal|ppchannel|ppch|avisos?canal|Updates?channel|updates?ch|reaccionescanal|reactionchannel|reactionch)\b$/i
+handler.command = /^(superinspect|inspect?2|revisar|inspeccionar|seguircanal|followchannel|followch|noseguircanal|unfollowchannel|unfollowch|silenciarcanal|mutechannel|mutech|nosilenciarcanal|unmutechannel|unmutech|ppcanal|ppchannel|ppch|eliminarppcanal|deleteppchannel|deleteppch|avisos?canal|Updates?channel|updates?ch|reaccionescanal|reactionchannel|reactionch)\b$/i
 handler.register = true
 export default handler 
 
