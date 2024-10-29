@@ -269,13 +269,12 @@ return await conn.reply(m.chat, `*Error al descargar la imagen de la URL proporc
 }
 media = imageBuffer
 }
-console.log(media)
 if (text.includes("@newsletter")) {
 if(!match1) return await conn.reply(m.chat, `*No se encontró el ID del canal.*`, m)
 ch = match1
 } else {
-inviteUrlch = text?.match(/(?:https:\/\/)?(?:www\.)?(?:chat\.|wa\.)?whatsapp\.com\/(?:channel\/invite\/)?([0-9A-Za-z]{22,24})/i)?.[1]
-ch = await conn.newsletterMetadata("invite", inviteUrlch).then(data => data.id).catch(e => null)
+//inviteUrlch = text?.match(/(?:https:\/\/)?(?:www\.)?(?:chat\.|wa\.)?whatsapp\.com\/(?:channel\/invite\/)?([0-9A-Za-z]{22,24})/i)?.[1]
+ch = await conn.newsletterMetadata("invite", channelUrl).then(data => data.id).catch(e => null)
 }       
 try {
 const chtitle = await conn.newsletterMetadata(text.includes("@newsletter") ? "jid" : "invite", text.includes("@newsletter") ? ch : channelUrl).then(data => data.name).catch(e => null)
