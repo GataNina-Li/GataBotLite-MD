@@ -241,7 +241,12 @@ break
 // Modificar la imagen del canal
 case isCommand6:
 if (!isOwner || !isROwner) return await conn.reply(m.chat, `*No tienes permiso para usar este comando.*`, m)
-if (!text) return await conn.reply(m.chat, `*Ingrese el ID o enlace de un canal de WhatsApp respondiendo a una imagen jpg/jpeg/png o agregue un enlace de imagen*\n\nPuede obtener el ID usando el comando:\n*${usedPrefix}superinspect* enlace`, m)
+if (!text) return await conn.reply(m.chat, `*Ingrese el ID o enlace de un canal de WhatsApp respondiendo a una imagen jpg/jpeg/png o agregue un enlace de imagen*\n
+*Respondiendo a una imagen*
+*${usedPrefix + command}* 12345@newsletter
+
+*Agregando url de imagen*
+*${usedPrefix + command}* 12345@newsletter https://example.com/image.jpg\n\nPuede obtener el ID usando el comando:\n*${usedPrefix}superinspect* enlace`, m)
 const regex = /(\b\w+@newsletter\b)(?:.*?(https?:\/\/[^\s]+?\.(?:jpe?g|png)))?/i
 const match = text.match(regex)
 if (m.quoted) {
@@ -250,7 +255,9 @@ mime = (q.msg || q).mimetype || q.mediaType || ''
 if (/image/g.test(mime) && !/webp/g.test(mime)) {
 buffer = await q.download()
 media = await (uploadImage)(buffer) 
-} else {   
+} else {
+return await conn.reply(m.chat, `*Responda a una imagen jpg/png.*`, m)
+}} else {   
 const response = await axios.get(match[2], { responseType: 'arraybuffer' })
 const imageBuffer = Buffer.from(response.data, 'binary')
 media = imageBuffer
