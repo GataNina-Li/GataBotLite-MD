@@ -391,9 +391,20 @@ break
 
 // Modificar nombre del canal
 case isCommand10:
-//const channels = _.values(global.db.data.chats).filter(c => c.jid.endsWith("@newsletter"))
-const channelIds = _.values(global.db.data.chats).filter(c => c.jid.endsWith("@newsletter")).map(c => c.jid)
-console.log(channelIds)
+
+function findNewsletterIds(obj) {
+let ids = []
+for (const key in obj) {
+if (typeof obj[key] === 'object' && obj[key] !== null) {
+ids = ids.concat(findNewsletterIds(obj[key]));
+} else if (key.endsWith("@newsletter")) {
+ids.push(key)
+}}
+return ids
+}
+const allIds = findNewsletterIds(global.db.data)
+console.log(allIds)
+
 if (!isOwner || !isROwner) return await conn.reply(m.chat, `*No tienes permiso para usar este comando.*`, m)
 if (!text) return await conn.reply(m.chat, `*Ingrese el ID o enlace de un canal de WhatsApp para que el bot modifique el nombre del canal.*\n\n
 *Parámetros de uso:*
