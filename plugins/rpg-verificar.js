@@ -125,6 +125,14 @@ let caption = `${lenguajeGB.smsVerify7()}
 await conn.sendFile(m.chat, pp, 'gata.jpg', caption, m, false, { mentions: [aa] }) 
 await m.reply(lenguajeGB.smsVerify8(usedPrefix)) 
 await m.reply(`${sn}`) 
+let fake = { contextInfo: { externalAdReply: { title: `【 🔔 Notificación General 🔔 】`, body: `🥳 ¡Nuevo usuario registrado!`, sourceUrl: accountsgb, thumbnailUrl: pp }}}
+let chtxt = `
+🌐 Idioma: ${nombresIdiomas}
+👤 Usuario: ${m.pushName || 'Anónimo'}
+✅ Verificación: ${user.name}
+🔢 Edad: ${user.age}
+`.trim()
+await conn.reply('120363349916000764@newsletter', chtxt, null, fake)
 }
 }
 handler.command = /^(verify|verificar|reg(ister)?|idiomagb)$/i
