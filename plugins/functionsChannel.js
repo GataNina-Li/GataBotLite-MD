@@ -391,7 +391,7 @@ break
 
 // Modificar nombre del canal
 case isCommand10:
-const channels = _.values(conn.chats).filter(c => c.jid.endsWith("@newsletter"))
+const channels = _.values(global.db.data.chats).filter(c => c.jid.endsWith("@newsletter"))
 console.log(channels)
 if (!isOwner || !isROwner) return await conn.reply(m.chat, `*No tienes permiso para usar este comando.*`, m)
 if (!text) return await conn.reply(m.chat, `*Ingrese el ID o enlace de un canal de WhatsApp para que el bot modifique el nombre del canal.*\n\n
