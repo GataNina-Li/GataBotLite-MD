@@ -391,10 +391,6 @@ break
 
 // Modificar nombre del canal
 case isCommand10:
-
-const channels = _.values(conn.chats).filter(c => c.id && c.id.endsWith("@newsletter"))
-console.log(channels)
-
 if (!isOwner || !isROwner) return await conn.reply(m.chat, `*No tienes permiso para usar este comando.*`, m)
 if (!text) return await conn.reply(m.chat, `*Ingrese el ID o enlace de un canal de WhatsApp para que el bot modifique el nombre del canal.*\n\n
 *Parámetros de uso:*
@@ -443,10 +439,12 @@ await conn.reply(m.chat, `${packname} ha modificado la descripción del canal *$
 reportError(e)
 }
 break
+
+//const channels = _.values(conn.chats).filter(c => c.id && c.id.endsWith("@newsletter"))
         
 }}
 handler.command = /^(superinspect|inspect?2|revisar|inspeccionar|seguircanal|followchannel|followch|noseguircanal|unfollowchannel|unfollowch|silenciarcanal|mutechannel|mutech|nosilenciarcanal|unmutechannel|unmutech|ppcanal|ppchannel|ppch|eliminarppcanal|deleteppchannel|deleteppch|avisos?canal|Updates?channel|updates?ch|reaccionescanal|reactionchannel|reactionch|nuevonombrecanal|newnamechannel|newnamech|nuevadescc?anal|nuevadescripcioncanal|newdescc?hannel|newdescriptionchannel|newdescc?h)\b$/i
-//handler.register = true
+handler.register = true
 export default handler 
 
 function formatDate(n, locale = "es", includeTime = true) {
