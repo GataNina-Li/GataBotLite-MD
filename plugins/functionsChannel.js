@@ -8,16 +8,16 @@ import axios from 'axios'
 
 let handler = async (m, { conn, command, usedPrefix, args, text, groupMetadata, isOwner, isROwner }) => {
 const isCommand1 = /^(superinspect|inspect|revisar|inspeccionar)\b$/i.test(command)
-const isCommand2 = /^(seguircanal|followchannel|followch)\b$/i.test(command)
-const isCommand3 = /^(noseguircanal|unfollowchannel|unfollowch)\b$/i.test(command)
-const isCommand4 = /^(silenciarcanal|mutechannel|mutech)\b$/i.test(command)
-const isCommand5 = /^(nosilenciarcanal|unmutechannel|unmutech)\b$/i.test(command)
-const isCommand6 = /^(ppcanal|ppchannel|ppch)\b$/i.test(command)
-const isCommand7 = /^(eliminarppcanal|deleteppchannel|deleteppch)\b$/i.test(command)
-const isCommand8 = /^(avisos?canal|Updates?channel|updates?ch)\b$/i.test(command)
-const isCommand9 = /^(reaccionescanal|reactionchannel|reactionch)\b$/i.test(command)
-const isCommand10 = /^(nuevonombrecanal|newnamechannel|newnamech)\b$/i.test(command)
-const isCommand11 = /^(nuevadescc?anal|nuevadescripcioncanal|newdescc?hannel|newdescriptionchannel|newdescc?h)\b$/i.test(command)
+const isCommand2 = /^(seguircanal|seguirch|followchannel|followch)\b$/i.test(command)
+const isCommand3 = /^(noseguircanal|noseguirch|unfollowchannel|unfollowch)\b$/i.test(command)
+const isCommand4 = /^(silenciarcanal|silenciarch|mutechannel|mutech)\b$/i.test(command)
+const isCommand5 = /^(nosilenciarcanal|nosilenciarch|unmutechannel|unmutech)\b$/i.test(command)
+const isCommand6 = /^(ppcanal|ppchannel|cambiarppcanal|cambiarppch|setppchannel|ppch|setppch)\b$/i.test(command)
+const isCommand7 = /^(eliminarppcanal|eliminarppch|deleteppchannel|deleteppch)\b$/i.test(command)
+const isCommand8 = /^(avisos?canal|updates?channel|updates?ch)\b$/i.test(command)
+const isCommand9 = /^(reaccionescanal|reaccionesch|reactions?channel|reactionch)\b$/i.test(command)
+const isCommand10 = /^(nuevonombrecanal|nuevonombrech|nuevonombrech|newnamechannel|newnamech)\b$/i.test(command)
+const isCommand11 = /^(nuevadescc?anal|nuevadescripcioncanal|nuevadescripcionch|newdescc?hannel|newdescriptionchannel|newdescc?h)\b$/i.test(command)
 
 const channelUrl = text?.match(/(?:https:\/\/)?(?:www\.)?(?:chat\.|wa\.)?whatsapp\.com\/(?:channel\/|joinchat\/)?([0-9A-Za-z]{22,24})/i)?.[1]
 let txtBotAdminCh = '\n\n> *Verifique que el Bot sea admin en el canal, de lo contrario no funcionará el comando*'
@@ -443,7 +443,7 @@ break
 //const channels = _.values(conn.chats).filter(c => c.id && c.id.endsWith("@newsletter"))
         
 }}
-handler.command = /^(superinspect|inspect?2|revisar|inspeccionar|seguircanal|followchannel|followch|noseguircanal|unfollowchannel|unfollowch|silenciarcanal|mutechannel|mutech|nosilenciarcanal|unmutechannel|unmutech|ppcanal|ppchannel|ppch|eliminarppcanal|deleteppchannel|deleteppch|avisos?canal|Updates?channel|updates?ch|reaccionescanal|reactionchannel|reactionch|nuevonombrecanal|newnamechannel|newnamech|nuevadescc?anal|nuevadescripcioncanal|newdescc?hannel|newdescriptionchannel|newdescc?h)\b$/i
+handler.command = /^(superinspect|inspect|revisar|inspeccionar|seguircanal|seguirch|followchannel|followch|noseguircanal|noseguirch|unfollowchannel|unfollowch|silenciarcanal|silenciarch|mutechannel|mutech|nosilenciarcanal|nosilenciarch|unmutechannel|unmutech|ppcanal|ppchannel|cambiarppcanal|cambiarppch|setppchannel|ppch|setppch|eliminarppcanal|eliminarppch|deleteppchannel|deleteppch|avisos?canal|updates?channel|updates?ch|reaccionescanal|reaccionesch|reactions?channel|reactionch|nuevonombrecanal|nuevonombrech|nuevonombrech|newnamechannel|newnamech|nuevadescc?anal|nuevadescripcioncanal|nuevadescripcionch|newdescc?hannel|newdescriptionchannel|newdescc?h)\b$/i
 handler.register = true
 export default handler 
 
