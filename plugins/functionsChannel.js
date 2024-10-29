@@ -253,8 +253,8 @@ if (m.quoted) {
 q = m.quoted ? m.quoted : m
 mime = (q.msg || q).mimetype || q.mediaType || ''
 if (/image/g.test(mime) && !/webp/g.test(mime)) {
-buffer = await q.download()
-media = await (uploadImage)(buffer) 
+media = await q.download()
+//media = await (uploadImage)(buffer) 
 } else {
 return await conn.reply(m.chat, `*Responda a una imagen jpg/png.*`, m)
 }} else {   
