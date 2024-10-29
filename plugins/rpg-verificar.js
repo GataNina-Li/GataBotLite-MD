@@ -122,7 +122,10 @@ let caption = `${lenguajeGB.smsVerify7()}
 *⎔ ${lenguajeGB.smsVerify9()}*
 • 'ͧͧͧͦꙶͣͤ✓ᚲᴳᴮ'
 *⎔ ${lenguajeGB.smsPerfil5()}*
-• \`\`\`${sn}\`\`\``.trim()
+• \`\`\`${sn}\`\`\`
+
+> *Mira tú registro en este canal*
+${canal5}`.trim()
 await conn.sendFile(m.chat, pp, 'gata.jpg', caption, m, false, { mentions: [aa] }) 
 await m.reply(lenguajeGB.smsVerify8(usedPrefix)) 
 await m.reply(`${sn}`) 
