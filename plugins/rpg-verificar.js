@@ -129,7 +129,7 @@ ${canal5}`.trim()
 await conn.sendFile(m.chat, pp, 'gata.jpg', caption, m, false, { mentions: [aa] }) 
 await m.reply(lenguajeGB.smsVerify8(usedPrefix)) 
 await m.reply(`${sn}`) 
-let chtxt = `🌐 *Idioma*: ${nombresIdiomas}\n👤 *Usuario*: ${m.pushName || 'Anónimo'}\n✅ *Verificación:* ${user.name}\n🔢 *Edad:* ${user.age} años `.trim()
+let chtxt = `🌐 *Idioma*: ${nombresIdiomas}\n👤 *Usuario*: ${m.pushName || 'Anónimo'}\n✅ *Verificación:* ${user.name}\n🔢 *Edad:* ${user.age} años\n🐈 *Bot:* ${packname}`.trim()
 await conn.sendMessage(global.ch.ch1, { text: chtxt, contextInfo: {
 externalAdReply: {
 title: "【 🔔 Notificación General 🔔 】",
