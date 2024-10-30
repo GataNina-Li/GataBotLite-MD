@@ -1,5 +1,7 @@
 import { createHash } from 'crypto'  
 import fetch from 'node-fetch'
+import PhoneNumber from 'awesome-phonenumber'
+import moment from 'moment-timezone'
 let Reg = /\|?(.*)([.|] *?)([0-9]*)$/i 
 let handler = async function (m, { conn, text, usedPrefix, command }) {
 let codigosIdiomas = ['es', 'en', 'pt', 'id', 'ar', 'de', 'it']
@@ -12,7 +14,12 @@ let nombresIdiomas = {
 'de': 'Deutsch',
 'it': 'Italiano'
 }
-  
+ 
+const date = moment.tz('America/Bogota').format('DD/MM/YYYY')
+const time = moment.tz('America/Argentina/Buenos_Aires').format('LT') 
+let api = await axios.get(`${apis}/tools/country?text=${PhoneNumber('+' + who.replace('@s.whatsapp.net', '')).getNumber('international')}`)
+let userNationalityData = api.data.result
+let userNationality = userNationalityData ? `${userNationalityData.name} ${userNationalityData.emoji}` : 'Desconocido' 
 let who = m.mentionedJid && m.mentionedJid[0] ? m.mentionedJid[0] : m.fromMe ? conn.user.jid : m.sender
 let pp = await conn.profilePictureUrl(who, 'image').catch(_ => gataImg.getRandom())
 let ppch = await conn.profilePictureUrl(who, 'image').catch(_ => gataMenu.getRandom())
@@ -23,7 +30,9 @@ return list[Math.floor(Math.random() * list.length)]
 let tag = `${m.sender.split("@")[0]}`
 let aa = tag + '@s.whatsapp.net'
 let user = global.db.data.users[m.sender]
-  
+let totalreg = Object.keys(global.db.data.users).length
+let rtotalreg = Object.values(global.db.data.users).filter(user => user.registered == true).length
+
 if (/^(verify|verificar|reg(ister)?)$/i.test(command)) {
 if (user.registered === true) return m.reply(lenguajeGB.smsVerify0(usedPrefix) + '*')
 if (!Reg.test(text)) return m.reply(lenguajeGB.smsVerify1(usedPrefix, command))
@@ -119,6 +128,8 @@ let caption = `${lenguajeGB.smsVerify7()}
 • ${user.name}
 *⎔ ${lenguajeGB.smsPerfil3()}*
 • ${user.age}
+*⎔ Pais :*
+• ${userNationality}
 *⎔ ${lenguajeGB.smsVerify9()}*
 • 'ͧͧͧͦꙶͣͤ✓ᚲᴳᴮ'
 *⎔ ${lenguajeGB.smsPerfil5()}*
@@ -129,7 +140,7 @@ ${canal5}`.trim()
 await conn.sendFile(m.chat, pp, 'gata.jpg', caption, m, false, { mentions: [aa] }) 
 await m.reply(lenguajeGB.smsVerify8(usedPrefix)) 
 await m.reply(`${sn}`) 
-let chtxt = `🌐 *Idioma*: ${nombresIdiomas}\n👤 *Usuario*: ${m.pushName || 'Anónimo'}\n✅ *Verificación:* ${user.name}\n🔢 *Edad:* ${user.age} años\n🐈 *Bot:* ${packname}`.trim()
+let chtxt = `🌐 *Idioma*: ${nombresIdiomas}\n🌎 *Pais:* ${userNationality}\n👤 *Usuario*: ${m.pushName || 'Anónimo'}\n✅ *Verificación:* ${user.name}\n🔢 *Edad:* ${user.age} años\n👥 *Total de usuarios registrados:* ${rtotalreg}\n🐈 *Bot:* ${packname}`.trim()
 await conn.sendMessage(global.ch.ch1, { text: chtxt, contextInfo: {
 externalAdReply: {
 title: "【 🔔 Notificación General 🔔 】",
