@@ -416,7 +416,7 @@ await conn.sendMessage(ch, { text: `${packname} ha cambiado el nombre del canal 
 externalAdReply: {
 title: "【 🔔 Notificación General 🔔 】",
 body: '¡Nuevo nombre para el canal!',
-thumbnailUrl: gataImg, 
+thumbnailUrl: gataMenu, 
 sourceUrl: accountsgb,
 mediaType: 1,
 showAdAttribution: false,
