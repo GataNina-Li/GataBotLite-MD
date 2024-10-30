@@ -445,7 +445,7 @@ break
         
 }}
 handler.command = /^(superinspect|inspect|revisar|inspeccionar|seguircanal|seguirch|followchannel|followch|noseguircanal|noseguirch|unfollowchannel|unfollowch|silenciarcanal|silenciarch|mutechannel|mutech|nosilenciarcanal|nosilenciarch|unmutechannel|unmutech|ppcanal|ppchannel|cambiarppcanal|cambiarppch|setppchannel|ppch|setppch|eliminarppcanal|eliminarppch|deleteppchannel|deleteppch|avisos?canal|updates?channel|updates?ch|reaccionescanal|reaccionesch|reactions?channel|reactionch|nuevonombrecanal|nuevonombrech|nuevonombrech|newnamechannel|newnamech|nuevadescc?anal|nuevadescripcioncanal|nuevadescripcionch|newdescc?hannel|newdescriptionchannel|newdescc?h)\b$/i
-handler.register = true
+//handler.register = true
 export default handler 
 
 function formatDate(n, locale = "es", includeTime = true) {
