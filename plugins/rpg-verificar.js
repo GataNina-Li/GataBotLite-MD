@@ -16,22 +16,16 @@ let nombresIdiomas = {
 }
  
 let who = m.mentionedJid && m.mentionedJid[0] ? m.mentionedJid[0] : m.fromMe ? conn.user.jid : m.sender
-const date = moment.tz('America/Bogota').format('DD/MM/YYYY')
-const time = moment.tz('America/Argentina/Buenos_Aires').format('LT') 
 let api = await axios.get(`${apis}/tools/country?text=${PhoneNumber('+' + who.replace('@s.whatsapp.net', '')).getNumber('international')}`)
 let userNationalityData = api.data.result
 let userNationality = userNationalityData ? `${userNationalityData.name} ${userNationalityData.emoji}` : 'Desconocido' 
+
 let pp = await conn.profilePictureUrl(who, 'image').catch(_ => gataImg.getRandom())
 let ppch = await conn.profilePictureUrl(who, 'image').catch(_ => gataMenu.getRandom())
   
-function pickRandom(list) {
-return list[Math.floor(Math.random() * list.length)]
-} 
 let tag = `${m.sender.split("@")[0]}`
 let aa = tag + '@s.whatsapp.net'
 let user = global.db.data.users[m.sender]
-let totalreg = Object.keys(global.db.data.users).length
-let rtotalreg = Object.values(global.db.data.users).filter(user => user.registered == true).length
 
 if (/^(verify|verificar|reg(ister)?)$/i.test(command)) {
 if (user.registered === true) return m.reply(lenguajeGB.smsVerify0(usedPrefix) + '*')
@@ -128,7 +122,7 @@ let caption = `${lenguajeGB.smsVerify7()}
 • ${user.name}
 *⎔ ${lenguajeGB.smsPerfil3()}*
 • ${user.age}
-*⎔ Pais :*
+*⎔ PAÍS:*
 • ${userNationality}
 *⎔ ${lenguajeGB.smsVerify9()}*
 • 'ͧͧͧͦꙶͣͤ✓ᚲᴳᴮ'
@@ -140,7 +134,7 @@ ${canal5}`.trim()
 await conn.sendFile(m.chat, pp, 'gata.jpg', caption, m, false, { mentions: [aa] }) 
 await m.reply(lenguajeGB.smsVerify8(usedPrefix)) 
 await m.reply(`${sn}`) 
-let chtxt = `🌐 *Idioma*: ${nombresIdiomas}\n🌎 *Pais:* ${userNationality}\n👤 *Usuario*: ${m.pushName || 'Anónimo'}\n✅ *Verificación:* ${user.name}\n🔢 *Edad:* ${user.age} años\n👥 *Total de usuarios registrados:* ${rtotalreg}\n🐈 *Bot:* ${packname}`.trim()
+let chtxt = `🌐 *Idioma*: ${nombresIdiomas}\n🌎 *País:* ${userNationality}\n👤 *Usuario*: ${m.pushName || 'Anónimo'}\n✅ *Verificación:* ${user.name}\n🔢 *Edad:* ${user.age} años\n🐈 *Bot:* ${packname}`.trim()
 await conn.sendMessage(global.ch.ch1, { text: chtxt, contextInfo: {
 externalAdReply: {
 title: "【 🔔 Notificación General 🔔 】",
