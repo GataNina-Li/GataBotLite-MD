@@ -5,7 +5,7 @@ let chat = db.data.chats[m.chat]
 //if (viewonce && m.mtype && m.msg && m.msg.hasOwnProperty("viewOnce"))
 //if (/^[.~#/\$,](read)?viewonce/.test(m.text)) return
 if (!chat.antiver || chat.isBanned) return
-if (m.mtype == 'viewOnceMessageV2' || m.mtype == 'viewOnce') {
+if (m.mtype == 'viewOnceMessageV2' || m.msg.hasOwnProperty("viewOnce")) {
 let msg = m.message.viewOnceMessageV2.message
 let type = Object.keys(msg)[0]
 let media = await downloadContentFromMessage(msg[type], type == 'imageMessage' ? 'image' : 'video')
