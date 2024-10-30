@@ -15,12 +15,12 @@ let nombresIdiomas = {
 'it': 'Italiano'
 }
  
+let who = m.mentionedJid && m.mentionedJid[0] ? m.mentionedJid[0] : m.fromMe ? conn.user.jid : m.sender
 const date = moment.tz('America/Bogota').format('DD/MM/YYYY')
 const time = moment.tz('America/Argentina/Buenos_Aires').format('LT') 
 let api = await axios.get(`${apis}/tools/country?text=${PhoneNumber('+' + who.replace('@s.whatsapp.net', '')).getNumber('international')}`)
 let userNationalityData = api.data.result
 let userNationality = userNationalityData ? `${userNationalityData.name} ${userNationalityData.emoji}` : 'Desconocido' 
-let who = m.mentionedJid && m.mentionedJid[0] ? m.mentionedJid[0] : m.fromMe ? conn.user.jid : m.sender
 let pp = await conn.profilePictureUrl(who, 'image').catch(_ => gataImg.getRandom())
 let ppch = await conn.profilePictureUrl(who, 'image').catch(_ => gataMenu.getRandom())
   
