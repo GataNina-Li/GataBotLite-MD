@@ -2,9 +2,10 @@ import { downloadContentFromMessage } from "@whiskeysockets/baileys"
 
 export async function before(m, { isAdmin, isBotAdmin }) {
 let chat = db.data.chats[m.chat]
-if (/^[.~#/\$,](read)?viewonce/.test(m.text)) return
+//if (viewonce && m.mtype && m.msg && m.msg.hasOwnProperty("viewOnce"))
+//if (/^[.~#/\$,](read)?viewonce/.test(m.text)) return
 if (!chat.antiver || chat.isBanned) return
-if (m.mtype == 'viewOnceMessageV2') {
+if (m.mtype == 'viewOnceMessageV2' || m.mtype == 'viewOnce') {
 let msg = m.message.viewOnceMessageV2.message
 let type = Object.keys(msg)[0]
 let media = await downloadContentFromMessage(msg[type], type == 'imageMessage' ? 'image' : 'video')
