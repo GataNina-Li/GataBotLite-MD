@@ -20,10 +20,10 @@ global.asistencia = 'https://wa.me/message/MEKOUFBEOG5ED1'
 global.tg = 'https://t.me/globalgb' // canal
 
 // canales
-global.canal1 = "https://chat.whatsapp.com/B5s3ohjEGofH5YDD05jAV5"
-global.canal2 = "https://chat.whatsapp.com/IO5k0UOF7hOJHE1eH3Fcxh"
-global.canal3 = "https://chat.whatsapp.com/H1TEBeMtFVv3RcayD1WfGU"
-global.canal4 = "https://chat.whatsapp.com/GFsgXW2VD4I4FEOSlEg9wp"
+global.canal1 = "https://whatsapp.com/channel/0029Va4QjH7DeON0ePwzjS1A"
+global.canal2 = "https://whatsapp.com/channel/0029Va4QjH7DeON0ePwzjS1A"
+global.canal3 = "https://whatsapp.com/channel/0029VaKn22pDJ6GwY61Ftn15"
+global.canal4 = "https://whatsapp.com/channel/0029VabS4KD8KMqeVXXmkG1D"
 global.canal5 = "https://whatsapp.com/channel/0029VatPwXw7Noa8n1Vinx3g"
 
 // grupos (algunos pueden estar repetidos con otros, es temporal)
@@ -82,7 +82,7 @@ global.welgata = [ig, yt2, yt2, ig, md, ig, yt, paypal, yt2, yt2, ig, fb, tg]
 global.redesMenu = [nna, nn2, nn, nnn, nnnt, nnntt, nnnttt, nnnttt1, nnnttt2, nnnttt3, nnnttt4, md, ig, paypal, yt, asistencia, fb, tg]
 global.gataMenu = [img, img2, img6, img7, img8, img9, img13, img14, img15, img17, img18, img19, img20, img21]
 global.gataImg = [imagen1, imagen2, imagen3, imagen4, imagen5, imagen6, imagen7, imagen8, imagen9, imagen10, imagen11, imagen12, imagen13]
-global.accountsgb = [canal1, canal2, canal3, canal4, tk, ig, yt, paypal, fb, ths, md, asistencia, tg].getRandom()
+global.accountsgb = [canal1, canal2, canal3, canal4, canal5, tk, ig, yt, paypal, fb, ths, md, asistencia, tg].getRandom()
 
 global.canalIdGB = ["120363160031023229@newsletter", "120363169294281316@newsletter", "120363203805910750@newsletter", "120363302472386010@newsletter"]
 global.canalNombreGB = ["INFINITY-WA 💫", "GB - UPDATE 🐈", "Tips sobre GataBot 🤩", "NEW PROJECT: YartexBot-MD ✨"]
