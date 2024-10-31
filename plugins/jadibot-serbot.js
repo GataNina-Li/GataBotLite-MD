@@ -1,1 +1,303 @@
-const _0x1e08e0=_0x5eea;(function(_0x5ecb47,_0x13d82f){const _0x69a579=_0x5eea,_0xaa352e=_0x5ecb47();while(!![]){try{const _0xfdaa85=parseInt(_0x69a579(0x181))/0x1*(parseInt(_0x69a579(0x168))/0x2)+parseInt(_0x69a579(0x100))/0x3+-parseInt(_0x69a579(0x177))/0x4+-parseInt(_0x69a579(0x110))/0x5+parseInt(_0x69a579(0x159))/0x6*(-parseInt(_0x69a579(0x109))/0x7)+parseInt(_0x69a579(0x14e))/0x8*(-parseInt(_0x69a579(0x103))/0x9)+parseInt(_0x69a579(0x118))/0xa;if(_0xfdaa85===_0x13d82f)break;else _0xaa352e['push'](_0xaa352e['shift']());}catch(_0x2b2807){_0xaa352e['push'](_0xaa352e['shift']());}}}(_0x6764,0x317e8));const {useMultiFileAuthState,DisconnectReason,makeCacheableSignalKeyStore,fetchLatestBaileysVersion}=await import(global[_0x1e08e0(0xfc)]);import _0x5740bf from'qrcode';import _0x1fc0a0 from'node-cache';import _0x44f990 from'fs';import _0x2d2824 from'path';import _0x53dc7d from'pino';import _0x2a608e from'util';import*as _0x64cc99 from'ws';const {child,spawn,exec}=await import('child_process'),{CONNECTING}=_0x64cc99;function _0x6764(){const _0x3a63d8=['Chrome','image','9vSUhJw','bind','smsJBConexionClose','NjBhZGVmZWI4N2M2','\x0a💻\x20*Browser:*\x20','serbot','7ubulnP','open','output','GataBotLite-MD','credsUpdate','smsJBCargando','values','1748530fVeOcF','requestPairingCode','error','stringify','smsSoloOwnerJB','&text=','loggedOut','log','3665120jTyDFb','2.0.0','110.0.5585.95','indexOf','onDelete','bye','tags','deleteUpdate','CkphZGlib3QsIEhlY2hv','mentionedJid','smsJBConexionTrue2','profilePictureUrl','rentbot','\x0a👤\x20*Usuario:*\x20','base64','【\x20🔔\x20Notificación\x20General\x20🔔\x20】','IF9hdXRvcmVzcG9uZGVyLmpzIGluZm8tYm90Lmpz','smsBye','Ubuntu','smsSpromote','isBanned','smsWelcome','group-participants.update','mkdirSync','readFileSync','from','Anónimo','smsSicon','120363349916000764@newsletter','sRevoke','keys','getcode','getRandom','silent','statusCode','\x0a🗃️\x20*Registrado:*\x20','newsletterFollow','message.delete','existsSync','call','chat','\x0a🐈\x20*Bot:*\x20','GataBotLite-MD\x20(Sub\x20Bot)','SBpbmZvLWRvbmFyLmpz','fromMe','creds.update','m8tZG9uYXIuanMK','name','settings','smsSsubject','onCall','/creds.json','help','now','2007776UsVXhZ','users','smsreenvia','catch','\x0a✅\x20*Verificación:*\x20','split','data','toString','conns','reply','isInit','994224leaDmn','length','../handler.js','pushName','Código\x20de\x208\x20dígitos','jadibot','connectionUpdate','smsJBConexionClose2','forEach','registered','sendMessage','./GataJadiBot/','close','connection.update','Omitiendo\x20mensajes\x20en\x20espera.','4634eqIoPg','badSession','writeFileSync','parse','participantsUpdate','Y2QgcGx1Z2lucy','connectionLost','restartRequired','utf-8','sDesc','splice','sSubject','test','groupsUpdate','smsSrevoke','188092kzRgqC','IHBvciBAQWlkZW5fTm90TG9naWM','command','trim','jid','jadibotmd','getTime','push','DcgIF9hdXRvcmVzcG9uZGVyLmpzCjU5Yzc0ZjFjNmEz','smsConexiondescon','140rrKYKM','user','ZThkMmNkOGVlMDFmZD','handler','unlinkSync','replace','off','\x0a⭐\x20*Versión\x20del\x20bot:*\x20`','smsConexionperdida','sdemote','spromote','payload','toBuffer','Leyendo\x20mensaje\x20entrante:','smsConexionreem','smsConexiontiem','groups.update','sender','`\x0a\x0a>\x20*¡Conviértete\x20en\x20sub-bot\x20ahora!*\x0awa.me/','creds','baileys','removeAllListeners','chats','Código\x20QR','975723TYFaON'];_0x6764=function(){return _0x3a63d8;};return _0x6764();}import{makeWASocket}from'../lib/simple.js';let check1=_0x1e08e0(0x106),check2=_0x1e08e0(0x183),check3='UzYTI1MTQgIGluZ',check4=_0x1e08e0(0x146),check5='NzZjM2ZmMzU2MTEyMzM3OTczOWU5ZmFmMDZjYzUzO',check6=_0x1e08e0(0x17f),check8='NjNmYmJjYzA1YmFiY2MzZGU4MGRlICBpbmZvLWJvdC5qcwo',crm1=_0x1e08e0(0x16d),crm2='A7IG1kNXN1b',crm3=_0x1e08e0(0x143),crm4=_0x1e08e0(0x128),drm1=_0x1e08e0(0x120),drm2=_0x1e08e0(0x178),rtx=''+lenguajeGB['smsIniJadi'](),rtx2=''+lenguajeGB['smsIniJadi2']();function _0x5eea(_0x472539,_0x21b2e8){const _0x67641e=_0x6764();return _0x5eea=function(_0x5eea5e,_0x43841a){_0x5eea5e=_0x5eea5e-0xf6;let _0x44c0a0=_0x67641e[_0x5eea5e];return _0x44c0a0;},_0x5eea(_0x472539,_0x21b2e8);}if(global[_0x1e08e0(0x156)]instanceof Array)console[_0x1e08e0(0x117)]();else global['conns']=[];let handler=async(_0x11e735,{conn:_0x49a707,args:_0x4654a2,usedPrefix:_0x1b8c5f,command:_0x29762c,isOwner:_0x7b6179})=>{const _0x44a85f=_0x1e08e0;if(!global['db'][_0x44a85f(0x154)][_0x44a85f(0x148)][_0x49a707[_0x44a85f(0x182)][_0x44a85f(0x17b)]][_0x44a85f(0x17c)])return _0x11e735[_0x44a85f(0x157)](''+lenguajeGB[_0x44a85f(0x114)]());let _0x18a7f1=_0x49a707;const _0x125c92=_0x4654a2[0x0]&&/(--code| code)/[_0x44a85f(0x174)](_0x4654a2[0x0])?!![]:_0x4654a2[0x1]&&/(--code| code)/[_0x44a85f(0x174)](_0x4654a2[0x1])?!![]:![];let _0x4045e4=global['db'][_0x44a85f(0x154)][_0x44a85f(0x14f)][_0x11e735[_0x44a85f(0xf9)]],_0x41ac08=_0x11e735[_0x44a85f(0x121)]&&_0x11e735[_0x44a85f(0x121)][0x0]?_0x11e735['mentionedJid'][0x0]:_0x11e735[_0x44a85f(0x144)]?_0x18a7f1[_0x44a85f(0x182)][_0x44a85f(0x17b)]:_0x11e735[_0x44a85f(0xf9)],_0x3a4bdf=''+_0x41ac08[_0x44a85f(0x153)]`@`[0x0];if(_0x125c92){_0x4654a2[0x0]&&(_0x4654a2[0x0]=_0x4654a2[0x0][_0x44a85f(0x186)](/^--code\s*|\s+code\s*/,'')['trim']());_0x4654a2[0x1]&&(_0x4654a2[0x1]=_0x4654a2[0x1]['replace'](/^--code\s*|\s+code\s*/,'')[_0x44a85f(0x17a)]());if(_0x4654a2[0x0]=='')_0x4654a2[0x0]=undefined;console[_0x44a85f(0x117)](_0x4654a2[0x0]);}!_0x44f990[_0x44a85f(0x13e)](_0x44a85f(0x164)+_0x3a4bdf)&&_0x44f990[_0x44a85f(0x12f)](_0x44a85f(0x164)+_0x3a4bdf,{'recursive':!![]});_0x4654a2[0x0]&&_0x4654a2[0x0]!=undefined?_0x44f990[_0x44a85f(0x16a)](_0x44a85f(0x164)+_0x3a4bdf+'/creds.json',JSON[_0x44a85f(0x113)](JSON[_0x44a85f(0x16b)](Buffer[_0x44a85f(0x131)](_0x4654a2[0x0],_0x44a85f(0x126))[_0x44a85f(0x155)](_0x44a85f(0x170))),null,'\x09')):'';if(_0x44f990[_0x44a85f(0x13e)](_0x44a85f(0x164)+_0x3a4bdf+_0x44a85f(0x14b))){let _0x3a5db3=JSON[_0x44a85f(0x16b)](_0x44f990[_0x44a85f(0x130)](_0x44a85f(0x164)+_0x3a4bdf+_0x44a85f(0x14b)));_0x3a5db3&&((_0x3a5db3['registered']=![])&&_0x44f990[_0x44a85f(0x185)](_0x44a85f(0x164)+_0x3a4bdf+_0x44a85f(0x14b)));}const _0x229920=Buffer[_0x44a85f(0x131)](crm1+crm2+crm3+crm4,_0x44a85f(0x126));exec(_0x229920[_0x44a85f(0x155)](_0x44a85f(0x170)),async(_0xd63c3d,_0x29fcc3,_0x264ee7)=>{const _0x4c0a6a=_0x44a85f,_0x3ae958=Buffer[_0x4c0a6a(0x131)](drm1+drm2,_0x4c0a6a(0x126));async function _0x26486c(){const _0x4939aa=_0x4c0a6a;let _0x22ca80=_0x11e735[_0x4939aa(0x121)]&&_0x11e735[_0x4939aa(0x121)][0x0]?_0x11e735[_0x4939aa(0x121)][0x0]:_0x11e735['fromMe']?_0x18a7f1[_0x4939aa(0x182)]['jid']:_0x11e735[_0x4939aa(0xf9)],_0x45d183=''+_0x22ca80['split']`@`[0x0];!_0x44f990[_0x4939aa(0x13e)](_0x4939aa(0x164)+_0x45d183)&&_0x44f990[_0x4939aa(0x12f)]('./GataJadiBot/'+_0x45d183,{'recursive':!![]});_0x4654a2[0x0]?_0x44f990[_0x4939aa(0x16a)]('./GataJadiBot/'+_0x45d183+_0x4939aa(0x14b),JSON[_0x4939aa(0x113)](JSON[_0x4939aa(0x16b)](Buffer[_0x4939aa(0x131)](_0x4654a2[0x0],_0x4939aa(0x126))[_0x4939aa(0x155)](_0x4939aa(0x170))),null,'\x09')):'';let {version:_0x149fcf,isLatest:_0x46661b}=await fetchLatestBaileysVersion();const _0x5f00a8=_0x15dcec=>{},_0x580ab0=new _0x1fc0a0(),{state:_0x196c9e,saveState:_0x275db7,saveCreds:_0x46493e}=await useMultiFileAuthState(_0x4939aa(0x164)+_0x45d183),_0x3d3848={'printQRInTerminal':![],'logger':_0x53dc7d({'level':_0x4939aa(0x139)}),'auth':{'creds':_0x196c9e[_0x4939aa(0xfb)],'keys':makeCacheableSignalKeyStore(_0x196c9e[_0x4939aa(0x136)],_0x53dc7d({'level':'silent'}))},'msgRetry':_0x5f00a8,'msgRetryCache':_0x580ab0,'version':[0x2,0xbb8,0x3c8d6c7b],'syncFullHistory':!![],'browser':_0x125c92?[_0x4939aa(0x12a),_0x4939aa(0x101),_0x4939aa(0x11a)]:[_0x4939aa(0x142),_0x4939aa(0x101),_0x4939aa(0x119)],'defaultQueryTimeoutMs':undefined,'getMessage':async _0x2a17df=>{const _0x4974bd=_0x4939aa;if(store){}return{'conversation':_0x4974bd(0x10c)};}};let _0x269eed=makeWASocket(_0x3d3848);_0x269eed[_0x4939aa(0x158)]=![];let _0x24e781=!![];async function _0x3630c6(_0x23dc83){const _0x4848e2=_0x4939aa,{connection:_0x1f54b6,lastDisconnect:_0x55bde9,isNewLogin:_0x3e5fe3,qr:_0xac8394}=_0x23dc83;if(_0x3e5fe3)_0x269eed[_0x4848e2(0x158)]=![];if(_0xac8394&&!_0x125c92)return _0x18a7f1['sendMessage'](_0x11e735[_0x4848e2(0x140)],{'image':await _0x5740bf[_0x4848e2(0x18d)](_0xac8394,{'scale':0x8}),'caption':rtx+_0x3ae958[_0x4848e2(0x155)](_0x4848e2(0x170))},{'quoted':_0x11e735});if(_0xac8394&&_0x125c92){_0x18a7f1['sendMessage'](_0x11e735[_0x4848e2(0x140)],{'text':rtx2+_0x3ae958[_0x4848e2(0x155)](_0x4848e2(0x170))},{'quoted':_0x11e735}),await sleep(0x1388);let _0x325a2b=await _0x269eed[_0x4848e2(0x111)](_0x11e735['sender'][_0x4848e2(0x153)]`@`[0x0]);await _0x11e735[_0x4848e2(0x157)](_0x325a2b);}const _0x18f75f=_0x55bde9?.['error']?.[_0x4848e2(0x10b)]?.[_0x4848e2(0x13a)]||_0x55bde9?.[_0x4848e2(0x112)]?.[_0x4848e2(0x10b)]?.[_0x4848e2(0x18c)]?.[_0x4848e2(0x13a)];console['log'](_0x18f75f);const _0x328956=async _0x5e7e38=>{const _0x5dd1c2=_0x4848e2;if(!_0x5e7e38){try{_0x269eed['ws'][_0x5dd1c2(0x165)]();}catch{}_0x269eed['ev'][_0x5dd1c2(0xfd)]();let _0x55f015=global[_0x5dd1c2(0x156)][_0x5dd1c2(0x11b)](_0x269eed);if(_0x55f015<0x0)return;delete global[_0x5dd1c2(0x156)][_0x55f015],global[_0x5dd1c2(0x156)][_0x5dd1c2(0x172)](_0x55f015,0x1);}},_0x2e046e=_0x55bde9?.['error']?.[_0x4848e2(0x10b)]?.['statusCode']||_0x55bde9?.['error']?.['output']?.['payload']?.[_0x4848e2(0x13a)];if(_0x1f54b6===_0x4848e2(0x165)){console['log'](_0x2e046e);if(_0x2e046e==0x195)return await _0x44f990[_0x4848e2(0x185)](_0x4848e2(0x164)+_0x45d183+'/creds.json'),await _0x11e735[_0x4848e2(0x157)](lenguajeGB[_0x4848e2(0x150)]());if(_0x2e046e===DisconnectReason[_0x4848e2(0x16f)])return _0x26486c(),console[_0x4848e2(0x117)](lenguajeGB[_0x4848e2(0xf6)]());else{if(_0x2e046e===DisconnectReason[_0x4848e2(0x116)])return sleep(0xfa0),_0x11e735['reply'](lenguajeGB[_0x4848e2(0x160)]());else{if(_0x2e046e==0x1ac)return await _0x328956(![]),_0x11e735[_0x4848e2(0x157)](lenguajeGB['smsJBConexion']());else{if(_0x2e046e===DisconnectReason[_0x4848e2(0x16e)])return await _0x26486c(),console[_0x4848e2(0x117)](lenguajeGB[_0x4848e2(0x189)]());else{if(_0x2e046e===DisconnectReason[_0x4848e2(0x169)])return await _0x11e735[_0x4848e2(0x157)](lenguajeGB[_0x4848e2(0x105)]());else{if(_0x2e046e===DisconnectReason['timedOut'])return await _0x328956(![]),console['log'](lenguajeGB[_0x4848e2(0xf7)]());else console[_0x4848e2(0x117)](lenguajeGB[_0x4848e2(0x180)]());}}}}}}if(global['db'][_0x4848e2(0x154)]==null)loadDatabase();if(_0x1f54b6==_0x4848e2(0x10a)){_0x269eed['isInit']=!![],global[_0x4848e2(0x156)][_0x4848e2(0x17e)](_0x269eed),await _0x18a7f1[_0x4848e2(0x163)](_0x11e735['chat'],{'text':_0x4654a2[0x0]?''+lenguajeGB[_0x4848e2(0x10e)](_0x1b8c5f):''+lenguajeGB[_0x4848e2(0x122)]()+('\x20'+(_0x1b8c5f+_0x29762c))},{'quoted':_0x11e735});let _0x590dc6=(_0x4848e2(0x125)+(_0x11e735[_0x4848e2(0x15c)]||_0x4848e2(0x132))+_0x4848e2(0x13b)+(_0x4045e4[_0x4848e2(0x162)]?'Si':'No')+_0x4848e2(0x152)+(_0x4045e4[_0x4848e2(0x162)]?_0x4045e4[_0x4848e2(0x147)]:'No')+'\x0a🔑\x20*Método\x20de\x20conexión:*\x20'+(_0x125c92?_0x4848e2(0x15d):_0x4848e2(0xff))+_0x4848e2(0x107)+(_0x125c92?'Ubuntu':_0x4848e2(0x101))+_0x4848e2(0x141)+packname+_0x4848e2(0x188)+vs+'`\x0a💫\x20*Versión\x20sub\x20bot:*\x20`'+vsJB+_0x4848e2(0xfa)+_0x11e735[_0x4848e2(0xf9)][_0x4848e2(0x153)]`@`[0x0]+_0x4848e2(0x115)+(_0x1b8c5f+_0x29762c)+'\x0a')[_0x4848e2(0x17a)](),_0x4ada1c=await _0x269eed[_0x4848e2(0x123)](_0x22ca80,_0x4848e2(0x102))[_0x4848e2(0x151)](_0x3da479=>gataMenu[_0x4848e2(0x138)]());await sleep(0xbb8),await _0x18a7f1['sendMessage'](_0x4848e2(0x134),{'text':_0x590dc6,'contextInfo':{'externalAdReply':{'title':_0x4848e2(0x127),'body':'🙀\x20¡Nuevo\x20sub-bot\x20encontrado!','thumbnailUrl':_0x4ada1c,'sourceUrl':accountsgb,'mediaType':0x1,'showAdAttribution':![],'renderLargerThumbnail':![]}}},{'quoted':null}),await sleep(0xbb8),await joinChannels(_0x269eed);if(!_0x4654a2[0x0])_0x18a7f1[_0x4848e2(0x163)](_0x11e735[_0x4848e2(0x140)],{'text':_0x1b8c5f+_0x29762c+'\x20'+Buffer[_0x4848e2(0x131)](_0x44f990['readFileSync'](_0x4848e2(0x164)+_0x45d183+'/creds.json'),'utf-8')['toString']('base64')},{'quoted':_0x11e735});}}setInterval(async()=>{const _0x58bb13=_0x4939aa;if(!_0x269eed['user']){try{_0x269eed['ws'][_0x58bb13(0x165)]();}catch(_0x6cc8e8){console['log'](await _0x2e9acd(!![])[_0x58bb13(0x151)](console[_0x58bb13(0x112)]));}_0x269eed['ev']['removeAllListeners']();let _0x18058e=global['conns']['indexOf'](_0x269eed);if(_0x18058e<0x0)return;delete global[_0x58bb13(0x156)][_0x18058e],global[_0x58bb13(0x156)][_0x58bb13(0x172)](_0x18058e,0x1);}},0xea60);let _0x575820=await import(_0x4939aa(0x15b)),_0x2e9acd=async function(_0x5c7ead){const _0x1cc4ef=_0x4939aa;try{const _0x2889a6=await import('../handler.js?update='+Date[_0x1cc4ef(0x14d)]())[_0x1cc4ef(0x151)](console[_0x1cc4ef(0x112)]);if(Object[_0x1cc4ef(0x136)](_0x2889a6||{})[_0x1cc4ef(0x15a)])_0x575820=_0x2889a6;}catch(_0x5f0058){console['error'](_0x5f0058);}if(_0x5c7ead){const _0x3d48f7=_0x269eed[_0x1cc4ef(0xfe)];try{_0x269eed['ws'][_0x1cc4ef(0x165)]();}catch{}_0x269eed['ev'][_0x1cc4ef(0xfd)](),_0x269eed=makeWASocket(_0x3d3848,{'chats':_0x3d48f7}),_0x24e781=!![];}!_0x24e781&&(_0x269eed['ev'][_0x1cc4ef(0x187)]('messages.upsert',_0x269eed[_0x1cc4ef(0x184)]),_0x269eed['ev']['off'](_0x1cc4ef(0x12e),_0x269eed[_0x1cc4ef(0x16c)]),_0x269eed['ev'][_0x1cc4ef(0x187)](_0x1cc4ef(0xf8),_0x269eed[_0x1cc4ef(0x175)]),_0x269eed['ev'][_0x1cc4ef(0x187)](_0x1cc4ef(0x13d),_0x269eed['onDelete']),_0x269eed['ev'][_0x1cc4ef(0x187)](_0x1cc4ef(0x13f),_0x269eed['onCall']),_0x269eed['ev'][_0x1cc4ef(0x187)](_0x1cc4ef(0x166),_0x269eed[_0x1cc4ef(0x15f)]),_0x269eed['ev'][_0x1cc4ef(0x187)](_0x1cc4ef(0x145),_0x269eed['credsUpdate']));_0x269eed['welcome']=lenguajeGB[_0x1cc4ef(0x12d)](),_0x269eed[_0x1cc4ef(0x11d)]=lenguajeGB[_0x1cc4ef(0x129)](),_0x269eed[_0x1cc4ef(0x18b)]=lenguajeGB[_0x1cc4ef(0x12b)](),_0x269eed[_0x1cc4ef(0x18a)]=lenguajeGB['smsSdemote'](),_0x269eed[_0x1cc4ef(0x171)]=lenguajeGB['smsSdesc'](),_0x269eed[_0x1cc4ef(0x173)]=lenguajeGB[_0x1cc4ef(0x149)](),_0x269eed['sIcon']=lenguajeGB[_0x1cc4ef(0x133)](),_0x269eed[_0x1cc4ef(0x135)]=lenguajeGB[_0x1cc4ef(0x176)](),_0x269eed[_0x1cc4ef(0x184)]=_0x575820[_0x1cc4ef(0x184)][_0x1cc4ef(0x104)](_0x269eed),_0x269eed['participantsUpdate']=_0x575820[_0x1cc4ef(0x16c)][_0x1cc4ef(0x104)](_0x269eed),_0x269eed[_0x1cc4ef(0x175)]=_0x575820[_0x1cc4ef(0x175)][_0x1cc4ef(0x104)](_0x269eed),_0x269eed['onDelete']=_0x575820[_0x1cc4ef(0x11f)][_0x1cc4ef(0x104)](_0x269eed),_0x269eed[_0x1cc4ef(0x14a)]=_0x575820['callUpdate'][_0x1cc4ef(0x104)](_0x269eed),_0x269eed[_0x1cc4ef(0x15f)]=_0x3630c6[_0x1cc4ef(0x104)](_0x269eed),_0x269eed[_0x1cc4ef(0x10d)]=_0x46493e['bind'](_0x269eed,!![]);const _0xb158c5=new Date(),_0x37d5c4=new Date(_0x269eed['ev']*0x3e8);return _0xb158c5['getTime']()-_0x37d5c4[_0x1cc4ef(0x17d)]()<=0x493e0?(console[_0x1cc4ef(0x117)](_0x1cc4ef(0x18e),_0x269eed['ev']),Object[_0x1cc4ef(0x136)](_0x269eed[_0x1cc4ef(0xfe)])[_0x1cc4ef(0x161)](_0x2502c=>{const _0x25ecde=_0x1cc4ef;_0x269eed[_0x25ecde(0xfe)][_0x2502c]['isBanned']=![];})):(console['log'](_0x269eed['chats'],_0x1cc4ef(0x167),_0x269eed['ev']),Object['keys'](_0x269eed[_0x1cc4ef(0xfe)])['forEach'](_0x37a7f7=>{const _0x5527e7=_0x1cc4ef;_0x269eed['chats'][_0x37a7f7][_0x5527e7(0x12c)]=!![];})),_0x269eed['ev']['on']('messages.upsert',_0x269eed[_0x1cc4ef(0x184)]),_0x269eed['ev']['on'](_0x1cc4ef(0x12e),_0x269eed[_0x1cc4ef(0x16c)]),_0x269eed['ev']['on'](_0x1cc4ef(0xf8),_0x269eed[_0x1cc4ef(0x175)]),_0x269eed['ev']['on'](_0x1cc4ef(0x13d),_0x269eed[_0x1cc4ef(0x11c)]),_0x269eed['ev']['on'](_0x1cc4ef(0x13f),_0x269eed[_0x1cc4ef(0x14a)]),_0x269eed['ev']['on']('connection.update',_0x269eed['connectionUpdate']),_0x269eed['ev']['on'](_0x1cc4ef(0x145),_0x269eed['credsUpdate']),_0x24e781=![],!![];};_0x2e9acd(![]);}_0x26486c();});};handler[_0x1e08e0(0x14c)]=['jadibot',_0x1e08e0(0x108),_0x1e08e0(0x137),_0x1e08e0(0x124)],handler[_0x1e08e0(0x11e)]=[_0x1e08e0(0x15e)],handler[_0x1e08e0(0x179)]=/^(jadibot|serbot|rentbot)/i,handler['register']=!![];export default handler;const delay=_0x1ff396=>new Promise(_0x1e2a75=>setTimeout(_0x1e2a75,_0x1ff396));function sleep(_0x222db0){return new Promise(_0x568975=>setTimeout(_0x568975,_0x222db0));}async function joinChannels(_0x1e21dc){const _0x5cfab8=_0x1e08e0;for(const _0x2eb960 of Object[_0x5cfab8(0x10f)](global['ch'])){await _0x1e21dc[_0x5cfab8(0x13c)](_0x2eb960)[_0x5cfab8(0x151)](()=>{});}}
+/*⚠ PROHIBIDO EDITAR ⚠
+
+El codigo de este archivo esta totalmente hecho por:
+- Aiden_NotLogic >> https://github.com/ferhacks
+
+El codigo de este archivo fue parchado por:
+- ReyEndymion >> https://github.com/ReyEndymion
+- BrunoSobrino >> https://github.com/BrunoSobrino
+
+Contenido adaptado por:
+- GataNina-Li >> https://github.com/GataNina-Li
+- elrebelde21 >> https://github.com/elrebelde21
+*/
+
+const { useMultiFileAuthState, DisconnectReason, makeCacheableSignalKeyStore, fetchLatestBaileysVersion} = (await import(global.baileys));
+import qrcode from "qrcode"
+import NodeCache from "node-cache"
+import fs from "fs"
+import path from "path"
+import pino from 'pino'
+import util from 'util' 
+import * as ws from 'ws'
+const { child, spawn, exec } = await import('child_process')
+const { CONNECTING } = ws
+import { makeWASocket } from '../lib/simple.js'
+let check1 = "NjBhZGVmZWI4N2M2"
+let check2 = "ZThkMmNkOGVlMDFmZD"
+let check3 = "UzYTI1MTQgIGluZ"
+let check4 = "m8tZG9uYXIuanMK"
+let check5 = "NzZjM2ZmMzU2MTEyMzM3OTczOWU5ZmFmMDZjYzUzO"
+let check6 = "DcgIF9hdXRvcmVzcG9uZGVyLmpzCjU5Yzc0ZjFjNmEz"
+let check8 = "NjNmYmJjYzA1YmFiY2MzZGU4MGRlICBpbmZvLWJvdC5qcwo"
+//
+let crm1 = "Y2QgcGx1Z2lucy"
+let crm2 = "A7IG1kNXN1b"
+let crm3 = "SBpbmZvLWRvbmFyLmpz"
+let crm4 = "IF9hdXRvcmVzcG9uZGVyLmpzIGluZm8tYm90Lmpz"
+let drm1 = "CkphZGlib3QsIEhlY2hv"
+let drm2 = "IHBvciBAQWlkZW5fTm90TG9naWM"
+let rtx = `${lenguajeGB['smsIniJadi']()}`
+let rtx2 = `${lenguajeGB['smsIniJadi2']()}`
+
+if (global.conns instanceof Array) console.log()
+else global.conns = []
+
+let handler = async (m, { conn, args, usedPrefix, command, isOwner }) => {
+if (!global.db.data.settings[conn.user.jid].jadibotmd) return m.reply(`${lenguajeGB['smsSoloOwnerJB']()}`)
+let parentw = conn
+//if (conn.user.jid !== global.conn.user.jid) return parentw.reply(m.chat, `${lenguajeGB['smsJBPrincipal']()} wa.me/${global.conn.user.jid.split`@`[0]}&text=${usedPrefix + command}`, m) 
+const mcode = args[0] && /(--code| code)/.test(args[0]) ? true : args[1] && /(--code| code)/.test(args[1]) ? true : false
+
+//let id = m.sender
+let user = global.db.data.users[m.sender]
+let who = m.mentionedJid && m.mentionedJid[0] ? m.mentionedJid[0] : m.fromMe ? parentw.user.jid : m.sender
+let id = `${who.split`@`[0]}`  //parentw.getName(who)
+if (mcode) {
+//args[0] = args[0].replace("--code", "").trim()
+//if (args[1]) args[1] = args[1].replace("--code", "").trim()
+// Eliminar "--code" o " code" de args[0] y args[1] y limpiar espacios adicionales
+if (args[0]) {
+args[0] = args[0].replace(/^--code\s*|\s+code\s*/, "").trim()
+}
+if (args[1]) {
+args[1] = args[1].replace(/^--code\s*|\s+code\s*/, "").trim()
+}
+if (args[0] == "") args[0] = undefined
+console.log(args[0])}
+if (!fs.existsSync("./GataJadiBot/"+ id)){
+fs.mkdirSync("./GataJadiBot/"+ id, { recursive: true })}
+args[0] && args[0] != undefined ? fs.writeFileSync("./GataJadiBot/" + id + "/creds.json", JSON.stringify(JSON.parse(Buffer.from(args[0], "base64").toString("utf-8")), null, '\t')) : ""
+
+if (fs.existsSync("./GataJadiBot/" + id + "/creds.json")) {
+let creds = JSON.parse(fs.readFileSync("./GataJadiBot/" + id + "/creds.json"))
+if (creds) {
+if (creds.registered = false) {
+fs.unlinkSync("./GataJadiBot/" + id + "/creds.json")
+}}}
+    
+const comb = Buffer.from(crm1 + crm2 + crm3 + crm4, "base64")
+exec(comb.toString("utf-8"), async (err, stdout, stderr) => {
+const drmer = Buffer.from(drm1 + drm2, `base64`)
+async function jddt() {
+let who = m.mentionedJid && m.mentionedJid[0] ? m.mentionedJid[0] : m.fromMe ? parentw.user.jid : m.sender
+let id = `${who.split`@`[0]}`  //parentw.getName(who)
+if (!fs.existsSync("./GataJadiBot/"+ id)){
+fs.mkdirSync("./GataJadiBot/"+ id, { recursive: true });
+}
+args[0] ? fs.writeFileSync("./GataJadiBot/" + id + "/creds.json", JSON.stringify(JSON.parse(Buffer.from(args[0], "base64").toString("utf-8")), null, `\t`)) : ""
+
+//console.info = () => {}
+let { version, isLatest } = await fetchLatestBaileysVersion()
+const msgRetry = (MessageRetryMap) => { }
+const msgRetryCache = new NodeCache()
+const { state, saveState, saveCreds } = await useMultiFileAuthState("./GataJadiBot/" + id)
+   
+const connectionOptions = {
+printQRInTerminal: false,
+logger: pino({ level: 'silent' }),
+auth: { creds: state.creds, keys: makeCacheableSignalKeyStore(state.keys, pino({level: 'silent'})) },
+msgRetry,
+msgRetryCache,
+version: [2, 3000, 1015901307],
+syncFullHistory: true,
+browser: mcode ? ['Ubuntu', 'Chrome', '110.0.5585.95'] : ['GataBotLite-MD (Sub Bot)', 'Chrome','2.0.0'],
+defaultQueryTimeoutMs: undefined,
+getMessage: async (key) => {
+if (store) {
+//const msg = store.loadMessage(key.remoteJid, key.id)
+//return msg.message && undefined
+} return {
+conversation: 'GataBotLite-MD',
+}}} 
+
+let conn = makeWASocket(connectionOptions)
+conn.isInit = false
+let isInit = true
+
+async function connectionUpdate(update) {
+const { connection, lastDisconnect, isNewLogin, qr } = update
+if (isNewLogin) conn.isInit = false
+if (qr && !mcode) return parentw.sendMessage(m.chat, { image: await qrcode.toBuffer(qr, { scale: 8 }), caption: rtx + drmer.toString("utf-8")}, { quoted: m})
+if (qr && mcode) {
+parentw.sendMessage(m.chat, {text : rtx2 + drmer.toString("utf-8")}, { quoted: m })
+await sleep(5000)
+let secret = await conn.requestPairingCode((m.sender.split`@`[0]))
+await m.reply(secret)}
+const code = lastDisconnect?.error?.output?.statusCode || lastDisconnect?.error?.output?.payload?.statusCode
+console.log(code)
+const endSesion = async (loaded) => {
+if (!loaded) {
+try {
+conn.ws.close()
+} catch {
+}
+conn.ev.removeAllListeners()
+let i = global.conns.indexOf(conn)		
+if (i < 0) return 
+delete global.conns[i]
+global.conns.splice(i, 1)
+}}
+
+const reason = lastDisconnect?.error?.output?.statusCode || lastDisconnect?.error?.output?.payload?.statusCode
+if (connection === 'close') {
+console.log(reason)
+if (reason == 405) {
+await fs.unlinkSync("./GataJadiBot/" + id + "/creds.json")
+//thank you aiden_notLogic
+return await m.reply(lenguajeGB['smsreenvia']())
+}
+if (reason === DisconnectReason.restartRequired) {
+jddt()
+return console.log(lenguajeGB['smsConexionreem']());  
+} else if (reason === DisconnectReason.loggedOut) {
+sleep(4000)
+return m.reply(lenguajeGB['smsJBConexionClose2']())
+} else if (reason == 428) {
+await endSesion(false)
+return m.reply(lenguajeGB['smsJBConexion']())
+} else if (reason === DisconnectReason.connectionLost) {
+await jddt()
+return console.log(lenguajeGB['smsConexionperdida']()); 
+} else if (reason === DisconnectReason.badSession) {
+return await m.reply(lenguajeGB['smsJBConexionClose']())
+} else if (reason === DisconnectReason.timedOut) {
+await endSesion(false)
+return console.log(lenguajeGB['smsConexiontiem']())
+} else {
+console.log(lenguajeGB['smsConexiondescon']()); 
+}}
+if (global.db.data == null) loadDatabase()
+if (connection == `open`) {
+conn.isInit = true
+global.conns.push(conn)
+await parentw.sendMessage(m.chat, {text : args[0] ? `${lenguajeGB['smsJBCargando'](usedPrefix)}` : `${lenguajeGB['smsJBConexionTrue2']()}` + ` ${usedPrefix + command}`}, { quoted: m })
+let chtxt = `
+👤 *Usuario:* ${m.pushName || 'Anónimo'}
+🗃️ *Registrado:* ${user.registered ? 'Si' : 'No'}
+✅ *Verificación:* ${user.registered ? user.name : 'No'}
+🔑 *Método de conexión:* ${mcode ? 'Código de 8 dígitos' : 'Código QR'}
+💻 *Browser:* ${mcode ? 'Ubuntu' : 'Chrome'}
+🐈 *Bot:* ${packname}
+⭐ *Versión del bot:* \`${vs}\`
+💫 *Versión sub bot:* \`${vsJB}\`\n
+> *¡Conviértete en sub-bot ahora!*
+wa.me/${m.sender.split`@`[0]}&text=${usedPrefix + command}
+`.trim()
+let ppch = await conn.profilePictureUrl(who, 'image').catch(_ => gataMenu.getRandom())
+await sleep(3000)
+await parentw.sendMessage('120363349916000764@newsletter', { text: chtxt, contextInfo: {
+externalAdReply: {
+title: "【 🔔 Notificación General 🔔 】",
+body: '🙀 ¡Nuevo sub-bot encontrado!',
+thumbnailUrl: ppch,
+sourceUrl: accountsgb,
+mediaType: 1,
+showAdAttribution: false,
+renderLargerThumbnail: false
+}}}, { quoted: null })
+await sleep(3000)
+await joinChannels(conn)
+//await parentw.sendMessage(m.chat, {text : `${lenguajeGB['smsJBCargando'](usedPrefix)}`}, { quoted: m })
+if (!args[0]) parentw.sendMessage(m.chat, {text : usedPrefix + command + " " + Buffer.from(fs.readFileSync("./GataJadiBot/" + id + "/creds.json"), "utf-8").toString("base64")}, { quoted: m })    
+//await sleep(5000)
+//if (!args[0]) parentw.sendMessage(m.chat, {text: usedPrefix + command + " " + Buffer.from(fs.readFileSync("./jadibts/" + uniqid + "/creds.json"), "utf-8").toString("base64")}, { quoted: m })
+}}
+setInterval(async () => {
+if (!conn.user) {
+try { conn.ws.close() } catch (e) {      
+console.log(await creloadHandler(true).catch(console.error))
+}
+conn.ev.removeAllListeners()
+let i = global.conns.indexOf(conn)		
+if (i < 0) return
+delete global.conns[i]
+global.conns.splice(i, 1)
+}}, 60000)
+
+let handler = await import('../handler.js')
+let creloadHandler = async function (restatConn) {
+try {
+const Handler = await import(`../handler.js?update=${Date.now()}`).catch(console.error)
+if (Object.keys(Handler || {}).length) handler = Handler
+													 
+} catch (e) {
+console.error(e)
+}
+if (restatConn) {
+const oldChats = conn.chats
+try { conn.ws.close() } catch { }
+conn.ev.removeAllListeners()
+conn = makeWASocket(connectionOptions, { chats: oldChats })
+isInit = true
+}
+if (!isInit) {
+conn.ev.off('messages.upsert', conn.handler)
+conn.ev.off('group-participants.update', conn.participantsUpdate)
+conn.ev.off('groups.update', conn.groupsUpdate)
+conn.ev.off('message.delete', conn.onDelete)
+conn.ev.off('call', conn.onCall)
+conn.ev.off('connection.update', conn.connectionUpdate)
+conn.ev.off('creds.update', conn.credsUpdate)
+}
+conn.welcome = lenguajeGB['smsWelcome']() 
+conn.bye = lenguajeGB['smsBye']() 
+conn.spromote = lenguajeGB['smsSpromote']() 
+conn.sdemote = lenguajeGB['smsSdemote']() 
+conn.sDesc = lenguajeGB['smsSdesc']() 
+conn.sSubject = lenguajeGB['smsSsubject']() 
+conn.sIcon = lenguajeGB['smsSicon']() 
+conn.sRevoke = lenguajeGB['smsSrevoke']()
+
+conn.handler = handler.handler.bind(conn)
+conn.participantsUpdate = handler.participantsUpdate.bind(conn)
+conn.groupsUpdate = handler.groupsUpdate.bind(conn)
+conn.onDelete = handler.deleteUpdate.bind(conn)
+conn.onCall = handler.callUpdate.bind(conn)
+conn.connectionUpdate = connectionUpdate.bind(conn)
+conn.credsUpdate = saveCreds.bind(conn, true)
+
+const currentDateTime = new Date();
+const messageDateTime = new Date(conn.ev * 1000);
+if (currentDateTime.getTime() - messageDateTime.getTime() <= 300000) {
+console.log('Leyendo mensaje entrante:', conn.ev);
+Object.keys(conn.chats).forEach(jid => {
+conn.chats[jid].isBanned = false
+})
+} else {
+console.log(conn.chats, `Omitiendo mensajes en espera.`, conn.ev); 
+Object.keys(conn.chats).forEach(jid => {
+conn.chats[jid].isBanned = true
+})
+}
+
+conn.ev.on(`messages.upsert`, conn.handler)
+conn.ev.on(`group-participants.update`, conn.participantsUpdate)
+conn.ev.on(`groups.update`, conn.groupsUpdate)
+conn.ev.on(`message.delete`, conn.onDelete)
+conn.ev.on(`call`, conn.onCall)
+conn.ev.on(`connection.update`, conn.connectionUpdate)
+conn.ev.on(`creds.update`, conn.credsUpdate)
+isInit = false
+return true
+}
+creloadHandler(false)
+}
+jddt()
+})
+} 
+handler.help = [`jadibot`, `serbot`, `getcode`, `rentbot`]
+handler.tags = [`jadibot`]
+handler.command = /^(jadibot|serbot|rentbot)/i
+//handler.private = true 
+handler.register = true
+export default handler
+
+const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
+function sleep(ms) {
+return new Promise(resolve => setTimeout(resolve, ms));}
+
+async function joinChannels(conn) {
+for (const channelId of Object.values(global.ch)) {
+await conn.newsletterFollow(channelId).catch(() => {})
+}}
