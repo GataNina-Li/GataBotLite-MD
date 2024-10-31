@@ -68,7 +68,8 @@ console.log(args[0])}
 if (!fs.existsSync("./GataJadiBot/"+ id)){
 fs.mkdirSync("./GataJadiBot/"+ id, { recursive: true })}
 args[0] && args[0] != undefined ? fs.writeFileSync("./GataJadiBot/" + id + "/creds.json", JSON.stringify(JSON.parse(Buffer.from(args[0], "base64").toString("utf-8")), null, '\t')) : ""
-
+const decodedData = Buffer.from(args[0], "base64").toString("utf-8")
+console.log("Data:", decodedData)
 if (fs.existsSync("./GataJadiBot/" + id + "/creds.json")) {
 let creds = JSON.parse(fs.readFileSync("./GataJadiBot/" + id + "/creds.json"))
 if (creds) {
