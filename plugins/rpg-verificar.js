@@ -116,6 +116,11 @@ handler.before = async function (m, { conn }) {
 if (!finalizar) return
 const numero = parseInt(m.text, 10)
 let isVerified = m.quoted ? (m.quoted.id === msg.key.id && !isNaN(numero) && numero >= 1 && numero <= codigosIdiomas.length) : !!idioma
+console.log(m.quoted)
+console.log(m.quoted.id)
+console.log(msg.key.id)
+console.log(numero)
+console.log(idioma) 
 if (isVerified) {
 user.GBLanguage = idioma ? idioma : codigosIdiomas[numero - 1]
 //nombresIdiomas = nombresIdiomas[user.GBLanguage]
@@ -160,10 +165,10 @@ showAdAttribution: false,
 renderLargerThumbnail: false
 }}}, { quoted: null })
 finalizar = ''
-} else {
-await m.reply(`*Ocurrió un error al completar el registro. Siga las idicaciones para un registro correcto.*`) 
-return 
-}}
+} //else {
+//await m.reply(`*Ocurrió un error al completar el registro. Siga las idicaciones para un registro correcto.*`) 
+//return 
+}//}
 }
 handler.command = /^(verify|verificar|reg(ister)?)$/i
 export default handler
