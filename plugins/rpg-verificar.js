@@ -162,6 +162,7 @@ renderLargerThumbnail: false
 finalizar = ''
 } else {
 await m.reply(`*Ocurrió un error al completar el registro. Siga las idicaciones para un registro correcto.*`) 
+return 
 }}
 }
 handler.command = /^(verify|verificar|reg(ister)?)$/i
