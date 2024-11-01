@@ -17,7 +17,7 @@ let nombresIdiomas = {
 'it': 'Italiano'
 }
 
-let idioma, msg, user, userNationality, tag, aa, pp, ppch, name, splitter, age
+let idioma, msg, user, userNationality, tag, aa, pp, ppch, name, splitter, age, match
 let handler = async function (m, { conn, text, usedPrefix, command }) {
 const dispositivo = await getDevice(m.key.id)
 let who = m.mentionedJid && m.mentionedJid[0] ? m.mentionedJid[0] : m.fromMe ? conn.user.jid : m.sender
@@ -35,7 +35,7 @@ user = global.db.data.users[m.sender]
 if (/^(verify|verificar|reg(ister)?)$/i.test(command)) {
 if (user.registered === true) return m.reply(lenguajeGB.smsVerify0(usedPrefix) + '*')
 if (!Reg.test(text)) return m.reply(lenguajeGB.smsVerify1(usedPrefix, command))
-let match = text.match(Reg)
+match = text.match(Reg)
 [name, splitter, age] = match.slice(1)
 
 if (!name) return m.reply(lenguajeGB.smsVerify2())
