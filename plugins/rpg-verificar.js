@@ -110,7 +110,7 @@ console.log(`Idioma establecido a: ${nombresIdiomas[idioma]}`)
 } else {
 console.log('Error: El idioma seleccionado no es válido.')
 } 
-}}
+}
 
 }}
 handler.before = async function (m, { conn }) {
