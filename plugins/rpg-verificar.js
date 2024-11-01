@@ -70,7 +70,7 @@ let genText = `
 👉 *Responda a este mensaje con el número del idioma.*\n
 ❇️ *El registro esta en pausa, elija su idioma para continuar.*\n
 > _Considere que el idioma que elija será con el idioma que_ ${packname} _va interactuar con usted._ Si su idioma no aparece use otro o solicite que se agregué su idoma en: ${ig}
-\n────────────────────────\n
+\n⋯⋯⋯⋯⋯⋯⋯⋯⋯\n
 🌟 *DYNAMIC MULTI LANGUAGE* 🌟\n
 👉 *Reply to this message with the language number.*\n
 ❇️ *Registration is paused, choose your language to continue.*\n
@@ -95,7 +95,7 @@ await conn.sendButton(m.chat, `
 🌟 *MULTI LENGUAJE DINÁMICO* 🌟\n
 ❇️ *El registro esta en pausa, elija su idioma para continuar.*\n
 > _Considere que el idioma que elija será con el idioma que_ ${packname} _va interactuar con usted._ Si su idioma no aparece use otro o solicite que se agregué su idoma en: ${ig}
-* - - - - - - - - - - - -*
+\n⋯⋯⋯⋯⋯⋯⋯⋯⋯\n
 🌟 *DYNAMIC MULTI LANGUAGE* 🌟\n
 ❇️ *Registration is paused, choose your language to continue.*\n
 > _Consider that the language you choose will be the language that_ ${packname} _will interact with you with._ If your language does not appear, use another one or request that your language be added at: ${ig}\n
@@ -115,7 +115,7 @@ console.log('Error: El idioma seleccionado no es válido.')
 handler.before = async function (m, { conn }) {
 if (!finalizar) return
 const numero = parseInt(m.text, 10)
-let isVerified = m.quoted ? (m.quoted.id === msg.key.id && !isNaN(numero) && numero >= 1 && numero <= codigosIdiomas.length) : !!idioma
+let isVerified = m.quoted ? (m.quoted.id == msg.key.id && !isNaN(numero) && numero >= 1 && numero <= codigosIdiomas.length) : !!idioma
 console.log(m.quoted)
 console.log(m.quoted.id)
 console.log(msg.key.id)
