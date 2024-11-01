@@ -16,8 +16,17 @@ let nombresIdiomas = {
 'de': 'Deutsch',
 'it': 'Italiano'
 }
+let descripcionesIdiomas = {
+es: "Selecciona ${nombresIdiomas[codigo]} como el idioma del bot.",
+en: "Select ${nombresIdiomas[codigo]} as the bot's language.",
+pt: "Selecione ${nombresIdiomas[codigo]} como o idioma do bot.",
+id: "Pilih ${nombresIdiomas[codigo]} sebagai bahasa bot.",
+ar: "اختر ${nombresIdiomas[codigo]} كلغة للروبوت.",
+de: "Wählen Sie ${nombresIdiomas[codigo]} als die Sprache des Bots.",
+it: "Seleziona ${nombresIdiomas[codigo]} come lingua del bot."
+}
 
-let idioma, msg, user, userNationality, tag, aa, pp, ppch, nombre, edad
+let idioma, msg, user, userNationality, tag, aa, pp, ppch, nombre, edad, finalizar
 let handler = async function (m, { conn, text, usedPrefix, command }) {
 const dispositivo = await getDevice(m.key.id)
 let who = m.mentionedJid && m.mentionedJid[0] ? m.mentionedJid[0] : m.fromMe ? conn.user.jid : m.sender
@@ -68,16 +77,17 @@ let genText = `
 > _Consider that the language you choose will be the language that_ ${packname} _will interact with you with._ If your language does not appear, use another one or request that your language be added at: ${ig}\n
 ${listaIdiomasTexto}`
 msg = await conn.sendMessage(m.chat, { text: genText.trim() }, { quoted: m })	
+finalizar = true
 } else {
 let selectedLanguageCode
-const sections = [
-{ title: `🌐 Seleccionar Idioma`, highlight_label: "Recomendado",
+const sections = [{ 
+title: `🌐 Seleccionar Idioma | Select Language 🌐`, highlight_label: "Popular",
 rows: codigosIdiomas.map(codigo => ({
 title: `${nombresIdiomas[codigo]}`,
-description: `Selecciona ${nombresIdiomas[codigo]} como el idioma del bot.`,
+description: descripcionesIdiomas[codigo].replace('${nombresIdiomas[codigo]}', nombresIdiomas[codigo]),
 id: (() => {
 idioma = codigo
-return `selectLanguage_${codigo}`
+return `${codigo}`
 })()
 }))
 }]
@@ -90,6 +100,11 @@ await conn.sendButton(m.chat, `
 ❇️ *Registration is paused, choose your language to continue.*\n
 > _Consider that the language you choose will be the language that_ ${packname} _will interact with you with._ If your language does not appear, use another one or request that your language be added at: ${ig}\n
 `.trim(), wm.trim(), null, null, null, null, [['Idiomas | Languages', sections]], m)
+if (codigo) {
+finalizar = true
+} else {
+return
+}
 if (codigosIdiomas.includes(idioma)) {
 console.log(`Idioma establecido a: ${nombresIdiomas[idioma]}`)
 } else {
@@ -98,6 +113,7 @@ console.log('Error: El idioma seleccionado no es válido.')
 }}
 
 handler.before = async function (m, { conn }) {
+if (!finalizar) return
 const numero = parseInt(m.text, 10)
 let isVerified = m.quoted ? (m.quoted.id === msg.key.id && !isNaN(numero) && numero >= 1 && numero <= codigosIdiomas.length) : !!idioma
 if (isVerified) {
@@ -141,6 +157,7 @@ mediaType: 1,
 showAdAttribution: false,
 renderLargerThumbnail: false
 }}}, { quoted: null })
+finalizar = ''
 } else {
 await m.reply(`*Ocurrió un error al completar el registro. Siga las idicaciones para un registro correcto.*`) 
 }}
