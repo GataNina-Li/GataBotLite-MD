@@ -165,6 +165,7 @@ showAdAttribution: false,
 renderLargerThumbnail: false
 }}}, { quoted: null })
 finalizar = ''
+return
 } //else {
 //await m.reply(`*Ocurrió un error al completar el registro. Siga las idicaciones para un registro correcto.*`) 
 //return 
