@@ -17,7 +17,7 @@ let nombresIdiomas = {
 'it': 'Italiano'
 }
 
-let idioma, msg, user, userNationality, tag, aa, pp, ppch, name, splitter, age, match
+let idioma, msg, user, userNationality, tag, aa, pp, ppch, nombre, edad
 let handler = async function (m, { conn, text, usedPrefix, command }) {
 const dispositivo = await getDevice(m.key.id)
 let who = m.mentionedJid && m.mentionedJid[0] ? m.mentionedJid[0] : m.fromMe ? conn.user.jid : m.sender
@@ -35,16 +35,17 @@ user = global.db.data.users[m.sender]
 if (/^(verify|verificar|reg(ister)?)$/i.test(command)) {
 if (user.registered === true) return m.reply(lenguajeGB.smsVerify0(usedPrefix) + '*')
 if (!Reg.test(text)) return m.reply(lenguajeGB.smsVerify1(usedPrefix, command))
-match = text.match(Reg)
-[name, splitter, age] = match.slice(1)
-
+let [_, name, splitter, age] = text.match(Reg)  
 if (!name) return m.reply(lenguajeGB.smsVerify2())
 if (!age) return m.reply(lenguajeGB.smsVerify3())
 age = parseInt(age)
+
 if (age > 50) return m.reply(lenguajeGB.smsVerify4()) 
 if (age < 10) return m.reply(lenguajeGB.smsVerify5())
-if (name.length >= 30) return m.reply(lenguajeGB.smsVerify6())
-
+if (name.length >= 30) return m.reply(lenguajeGB.smsVerify6())  
+edad = age
+nombre = name
+  
 if (/ios|web|desktop|unknown/gi.test(dispositivo)) {
 let listaIdiomasTexto = ''
 listaIdiomasTexto += '*╭┄┄┄┄┄┄┄┄┄┄┄┄┄┄୭̥⋆*｡*\n' 
@@ -102,8 +103,8 @@ let isVerified = m.quoted ? (m.quoted.id === msg.key.id && !isNaN(numero) && num
 if (isVerified) {
 user.GBLanguage = idioma ? idioma : codigosIdiomas[numero - 1]
 nombresIdiomas = nombresIdiomas[user.GBLanguage]
-user.name = name + 'ͧͧͧͦꙶͣͤ✓ᚲᴳᴮ'.trim()
-user.age = age
+user.name = nombre + 'ͧͧͧͦꙶͣͤ✓ᚲᴳᴮ'.trim()
+user.age = edad
 user.regTime = + new Date
 user.registered = true
 let sn = createHash('md5').update(m.sender).digest('hex').slice(0, 6)	
