@@ -332,10 +332,17 @@ let ownerNumber = global.owner[i][0]
 if (global.owner[i][2] === true) {
 let aa = ownerNumber + '@s.whatsapp.net'
 let teks = lenguajeGB.smsReportGB4(urs, text)
+let teks2 = `💌 \`\`\`REPORTE\`\`\` 💌
+
+*⎔ Usuario:*
+*» ${m.pushName || 'Anónimo'}*
+
+*⎔ Mensaje:*
+*» ${text}*`
 setTimeout(async function() {
 await conn.reply(aa, m.quoted ? teks + m.quoted.text : teks, null, { mentions: [m.sender] }, { quoted: fkontak })
-}, 3000 * i)
-await conn.sendMessage('120363349916000764@newsletter', { text: m.quoted ? teks + m.quoted.text : teks, contextInfo: {
+
+await conn.sendMessage('120363349916000764@newsletter', { text: m.quoted ? teks2 + m.quoted.text : teks2, contextInfo: {
 externalAdReply: {
 title: "【 ⚠️ COMANDO FALLIDO ⚠️ 】",
 body: '💻 Seguirte comando esta fallando!',
@@ -344,7 +351,7 @@ sourceUrl: accountsgb,
 mediaType: 1,
 showAdAttribution: false,
 renderLargerThumbnail: false
-}}}, { quoted: null })
+}}}, { quoted: null })}, 3000 * i)
 }}
 await m.reply(lenguajeGB.smsReportGB5())
 break
