@@ -87,7 +87,7 @@ title: `${nombresIdiomas[codigo]}`,
 description: descripcionesIdiomas[codigo].replace('${nombresIdiomas[codigo]}', nombresIdiomas[codigo]),
 id: (() => {
 idioma = codigo
-return `${codigo}`
+return `selectLanguage_${codigo}`
 })()
 }))
 }]
