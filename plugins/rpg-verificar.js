@@ -112,6 +112,7 @@ console.log('Error: El idioma seleccionado no es válido.')
 } 
 }}
 
+}}
 handler.before = async function (m, { conn }) {
 if (!finalizar) return
 //if (m.quoted && !/^\d+$/.test(m.text)) return conn.reply(m.chat, `*Solo se permiten números del \`1\` al \`${codigosIdiomas.length}\` de acuerdo con el orden de idiomas disponibles*`, m)
@@ -169,7 +170,6 @@ return
 } //else {
 //await m.reply(`*Ocurrió un error al completar el registro. Siga las idicaciones para un registro correcto.*`) 
 //return 
-}//}
 }
 handler.command = /^(verify|verificar|reg(ister)?)$/i
 export default handler
