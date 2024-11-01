@@ -26,7 +26,7 @@ de: "Wählen Sie ${nombresIdiomas[codigo]} als die Sprache des Bots.",
 it: "Seleziona ${nombresIdiomas[codigo]} come lingua del bot."
 }
 
-let idioma, msg, user, userNationality, tag, aa, pp, ppch, nombre, edad, finalizar
+let idioma, msg, user, userNationality, tag, aa, pp, ppch, codigo, nombre, edad, finalizar
 let handler = async function (m, { conn, text, usedPrefix, command }) {
 const dispositivo = await getDevice(m.key.id)
 let who = m.mentionedJid && m.mentionedJid[0] ? m.mentionedJid[0] : m.fromMe ? conn.user.jid : m.sender
