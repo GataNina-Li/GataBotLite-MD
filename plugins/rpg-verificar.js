@@ -114,6 +114,7 @@ console.log('Error: El idioma seleccionado no es válido.')
 
 handler.before = async function (m, { conn }) {
 if (!finalizar) return
+if (m.quoted && !/^\d+$/.test(m.text)) return conn.reply(m.chat, `*Solo se permiten números del \`1\` al \`${codigosIdiomas.length}\` de acuerdo con el orden de idiomas disponibles*`, m)
 const numero = parseInt(m.text, 10)
 let isVerified = m.quoted ? (m.quoted.id == msg.key.id && !isNaN(numero) && numero >= 1 && numero <= codigosIdiomas.length) : !!idioma
 console.log(m.quoted)
@@ -123,9 +124,7 @@ console.log(numero)
 console.log(idioma) 
 if (isVerified) {
 user.GBLanguage = idioma ? idioma : codigosIdiomas[numero - 1]
-//nombresIdiomas = nombresIdiomas[user.GBLanguage]
-let idiomaSeleccionado = user.GBLanguage
-nombresIdiomas = nombresIdiomas[idiomaSeleccionado]
+nombresIdiomas = nombresIdiomas[user.GBLanguage]
 user.name = nombre + 'ͧͧͧͦꙶͣͤ✓ᚲᴳᴮ'.trim()
 user.age = edad
 user.regTime = + new Date
