@@ -115,7 +115,7 @@ console.log('Error: El idioma seleccionado no es válido.')
 }}
 handler.before = async function (m, { conn }) {
 if (!finalizar) return
-if (m.quoted.id == msg.key.id) {
+if (m.quoted && m.quoted.id == msg.key.id) {
 if (!/^\d+$/.test(m.text)) return conn.reply(m.chat, `*Solo se permiten números del \`1\` al \`${codigosIdiomas.length}\` de acuerdo con el orden de idiomas disponibles*`, m)
 }
 const numero = parseInt(m.text, 10)
