@@ -70,7 +70,7 @@ let genText = `
 👉 *Responda a este mensaje con el número del idioma.*\n
 ❇️ *El registro esta en pausa, elija su idioma para continuar.*\n
 > _Considere que el idioma que elija será con el idioma que_ ${packname} _va interactuar con usted._ Si su idioma no aparece use otro o solicite que se agregué su idoma en: ${ig}
-\n⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯\n
+\n────────────────────────\n
 🌟 *DYNAMIC MULTI LANGUAGE* 🌟\n
 👉 *Reply to this message with the language number.*\n
 ❇️ *Registration is paused, choose your language to continue.*\n
