@@ -7,6 +7,7 @@ import axios from 'axios'
 let Reg = /\|?(.*)([.|] *?)([0-9]*)$/i 
 let msg, user, userNationality, tag, aa, pp, ppch, codigo, nombre, edad, finalizar, codigosIdiomas, nombresIdiomas, usedPrefix
 let handler = async function (m, { conn, text, usedPrefix, command }) {
+usedPrefix = usedPrefix
 codigosIdiomas = ['es', 'en', 'pt', 'id', 'ar', 'de', 'it']
 nombresIdiomas = {
 'es': 'Español',
