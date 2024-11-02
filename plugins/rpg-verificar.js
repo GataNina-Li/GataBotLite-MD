@@ -5,7 +5,7 @@ import moment from 'moment-timezone'
 import axios from 'axios'
 
 let Reg = /\|?(.*)([.|] *?)([0-9]*)$/i 
-let msg, user, userNationality, tag, aa, pp, ppch, codigo, nombre, edad, finalizar, codigosIdiomas, nombresIdiomas
+let msg, user, userNationality, tag, aa, pp, ppch, codigo, nombre, edad, finalizar, codigosIdiomas, nombresIdiomas, usedPrefix
 let handler = async function (m, { conn, text, usedPrefix, command }) {
 codigosIdiomas = ['es', 'en', 'pt', 'id', 'ar', 'de', 'it']
 nombresIdiomas = {
@@ -65,7 +65,7 @@ msg = await conn.sendMessage(m.chat, { text: genText.trim() }, { quoted: m })
 finalizar = true
 }}
  
-handler.before = async function (m, { conn, usedPrefix }) {
+handler.before = async function (m, { conn }) {
 if (user?.registered === true || user?.registered === undefined) return
 if (!finalizar) return
 if (m.quoted && m.quoted.id == msg.key.id) {
