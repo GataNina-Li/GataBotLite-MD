@@ -100,10 +100,9 @@ let caption = `${lenguajeGB.smsVerify7()}
 > *Mira tú registro en este canal*
 ${canal5}`.trim()
 await m.reply(`${lenguajeGB['smsAvisoIIG']()}*EN CASO QUE QUIERA CAMBIAR O ELIMINAR EL IDIOMA DEBE DE ELIMINAR SU REGISTRO PRIMERO*`)
-user.GBLanguage ? '' : await sleep(2000) 
 await conn.sendFile(m.chat, pp, 'gata.jpg', caption, m, false, { mentions: [aa] }) 
-await m.reply(lenguajeGB.smsVerify8(usedPrefix)) 
-await conn.sendMessage(m.chat, {text: sn }, { quoted: m })
+m.reply(lenguajeGB.smsVerify8(usedPrefix)) 
+m.reply(sn)
 let chtxt = `🌐 *Idioma:* ${nombresIdiomas}\n🌎 *País:* ${userNationality}\n👤 *Usuario:* ${m.pushName || 'Anónimo'}\n✅ *Verificación:* ${user.name}\n🔢 *Edad:* ${user.age} años\n🐈 *Bot:* ${packname}`.trim()
 await conn.sendMessage('', { text: chtxt, contextInfo: {
 externalAdReply: {
