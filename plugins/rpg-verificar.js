@@ -5,8 +5,10 @@ import moment from 'moment-timezone'
 import axios from 'axios'
 
 let Reg = /\|?(.*)([.|] *?)([0-9]*)$/i 
-let codigosIdiomas = ['es', 'en', 'pt', 'id', 'ar', 'de', 'it']
-let nombresIdiomas = {
+let msg, user, userNationality, tag, aa, pp, ppch, codigo, nombre, edad, finalizar, codigosIdiomas, nombresIdiomas
+let handler = async function (m, { conn, text, usedPrefix, command }) {
+codigosIdiomas = ['es', 'en', 'pt', 'id', 'ar', 'de', 'it']
+nombresIdiomas = {
 'es': 'Español',
 'en': 'English',
 'pt': 'Português',
@@ -15,9 +17,6 @@ let nombresIdiomas = {
 'de': 'Deutsch',
 'it': 'Italiano'
 }
-
-let msg, user, userNationality, tag, aa, pp, ppch, codigo, nombre, edad, finalizar
-let handler = async function (m, { conn, text, usedPrefix, command }) {
 let who = m.mentionedJid && m.mentionedJid[0] ? m.mentionedJid[0] : m.fromMe ? conn.user.jid : m.sender
 let api = await axios.get(`${apis}/tools/country?text=${PhoneNumber('+' + who.replace('@s.whatsapp.net', '')).getNumber('international')}`)
 let userNationalityData = api.data.result
