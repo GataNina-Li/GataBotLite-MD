@@ -32,19 +32,37 @@ await conn.sendMessage(m.chat, { text: edit, mentions: [m.sender] }, { quoted: f
 } else if (chat.detect && m.messageStubType == 26) {
 await conn.sendMessage(m.chat, { text: status, mentions: [m.sender] }, { quoted: fkontak })  
 
-} else if (m.messageStubType === 172 && m.messageStubParameters.length > 0) {
-    const users = m.messageStubParameters[0];
-    try {
-      await conn.groupRequestParticipantsUpdate(m.chat, [users], 'approve'); 
-      conn.sendMessage(m.chat, { text: `*solicitud de ingresos @${users} aprobada ✨*`, mentions: [m.sender] }, { quoted: fkontak })        
-    } catch (error) {
-      console.error(`Error al aprobar la solicitud de ${users}:`, error);
-    }
-    return;
-  } if (chat.detect && m.messageStubType == 29) {
+} else if (chat.detect && m.messageStubType == 29) {
 await conn.sendMessage(m.chat, { text: admingp, mentions: [`${m.sender}`,`${m.messageStubParameters[0]}`] }, { quoted: fkontak })  
 
-} else if (chat.detect && m.messageStubType == 30) {
+} else if (chat.detect && m.messageStubType === 172 && m.messageStubParameters.length > 0) {
+const rawUser = m.messageStubParameters[0];
+const users = rawUser.split('@')[0]; 
+const prefijosProhibidos = ['91', '92', '222', '93', '265', '61', '62', '966', '229', '40', '49', '20', '963', '967', '234', '210', '212'];
+const usersConPrefijo = users.startsWith('+') ? users : `+${users}`;
+
+if (chat.antifake) {
+if (prefijosProhibidos.some(prefijo => usersConPrefijo.startsWith(prefijo))) {
+try {
+await conn.groupRequestParticipantsUpdate(m.chat, [rawUser], 'reject');
+m.reply(`Solicitud de ingreso de @${users} rechazada automáticamente por tener un prefijo prohibido.`);
+} catch (error) {
+console.error(`Error al rechazar la solicitud de ${usersConPrefijo}:`, error);
+}} else {
+try {
+await conn.groupRequestParticipantsUpdate(m.chat, [rawUser], 'approve');
+m.reply(`Solicitud de ingreso de @${users} aprobada automáticamente.`);
+} catch (error) {
+console.error(`Error al aprobar la solicitud de ${usersConPrefijo}:`, error);
+}}} else {
+try {
+await conn.groupRequestParticipantsUpdate(m.chat, [rawUser], 'approve');
+m.reply(`Solicitud de ingreso de @${users} aprobada automáticamente ya que #antifake está desactivado.`);
+} catch (error) {
+console.error(`Error al aprobar la solicitud de ${usersConPrefijo}:`, error);
+}}
+return;
+} if (chat.detect && m.messageStubType == 30) {
 await conn.sendMessage(m.chat, { text: noadmingp, mentions: [`${m.sender}`,`${m.messageStubParameters[0]}`] }, { quoted: fkontak })  
 
 //} else if (chat.detect && m.messageStubType == 145) {
