@@ -217,7 +217,7 @@ finalizar = true
 }}
  
 handler.before = async function (m, { conn }) {
-if (user.registered === true) return
+if (user?.registered === true || user?.registered === undefined) return
 if (!finalizar) return
 if (m.quoted && m.quoted.id == msg.key.id) {
 if (!/^\d+$/.test(m.text)) return conn.reply(m.chat, `*Solo se permiten números del \`1\` al \`${codigosIdiomas.length}\` de acuerdo con el orden de idiomas disponibles*`, m)
