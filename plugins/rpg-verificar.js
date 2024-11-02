@@ -100,9 +100,10 @@ let caption = `${lenguajeGB.smsVerify7()}
 > *Mira tú registro en este canal*
 ${canal5}`.trim()
 await m.reply(`${lenguajeGB['smsAvisoIIG']()}*EN CASO QUE QUIERA CAMBIAR O ELIMINAR EL IDIOMA DEBE DE ELIMINAR SU REGISTRO PRIMERO*`)
+user.GBLanguage ? '' : await sleep(2000) 
 await conn.sendFile(m.chat, pp, 'gata.jpg', caption, m, false, { mentions: [aa] }) 
 await m.reply(lenguajeGB.smsVerify8(usedPrefix)) 
-await conn.sendMessage(m.chat, {text: sn }, { quoted: null })
+await conn.sendMessage(m.chat, {text: sn }, { quoted: m })
 let chtxt = `🌐 *Idioma:* ${nombresIdiomas}\n🌎 *País:* ${userNationality}\n👤 *Usuario:* ${m.pushName || 'Anónimo'}\n✅ *Verificación:* ${user.name}\n🔢 *Edad:* ${user.age} años\n🐈 *Bot:* ${packname}`.trim()
 await conn.sendMessage('', { text: chtxt, contextInfo: {
 externalAdReply: {
@@ -119,6 +120,10 @@ return
 }}
 handler.command = /^(verify|verificar|reg(ister)?)$/i
 export default handler
+
+const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
+function sleep(ms) {
+return new Promise(resolve => setTimeout(resolve, ms));}
 
 /*import { createHash } from 'crypto'  
 import fetch from 'node-fetch'
