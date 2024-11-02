@@ -38,7 +38,7 @@ await conn.sendMessage(m.chat, { text: admingp, mentions: [`${m.sender}`,`${m.me
 } else if (chat.detect && m.messageStubType === 172 && m.messageStubParameters.length > 0) {
 const rawUser = m.messageStubParameters[0];
 const users = rawUser.split('@')[0]; 
-const prefijosProhibidos = ['91', '507', '92', '222', '93', '265', '61', '62', '966', '229', '40', '49', '20', '963', '967', '234', '210', '212'];
+const prefijosProhibidos = ['91', '92', '222', '93', '265', '61', '62', '966', '229', '40', '49', '20', '963', '967', '234', '210', '212'];
 const usersConPrefijo = users.startsWith('+') ? users : `+${users}`;
 
 if (chat.antifake) {
