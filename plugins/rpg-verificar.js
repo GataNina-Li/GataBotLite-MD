@@ -70,7 +70,7 @@ handler.before = async function (m, { conn }) {
 if (user?.registered === true || user?.registered === undefined) return
 if (!finalizar) return
 if (m.quoted && m.quoted.id == msg.key.id) {
-if (!/^\d+$/.test(m.text)) return conn.reply(m.chat, `*Solo se permiten números del \`1\` al \`${codigosIdiomas.length}\` de acuerdo con el orden de idiomas disponibles*`, m)
+if (!/^\d+$/.test(m.text)) return conn.reply(m.chat, `*Solo se permiten números del \`1\` al \`${codigosIdiomas.length}\` de acuerdo con el orden de idiomas disponibles*\n\n*Only numbers from \`1\` to \`${languagecodes.length}\` are allowed according to the order of available languages*`, m)
 }
 const numero = parseInt(m.text, 10)
 let isVerified = m.quoted ? (m.quoted.id == msg.key.id && !isNaN(numero) && numero >= 1 && numero <= codigosIdiomas.length) : false
