@@ -65,7 +65,7 @@ msg = await conn.sendMessage(m.chat, { text: genText.trim() }, { quoted: m })
 finalizar = true
 }}
  
-handler.before = async function (m, { conn }) {
+handler.before = async function (m, { conn, usedPrefix }) {
 if (user?.registered === true || user?.registered === undefined) return
 if (!finalizar) return
 if (m.quoted && m.quoted.id == msg.key.id) {
@@ -100,8 +100,8 @@ let caption = `${lenguajeGB.smsVerify7()}
 > *Mira tú registro en este canal*
 ${canal5}`.trim()
 await m.reply(`${lenguajeGB['smsAvisoIIG']()}*EN CASO QUE QUIERA CAMBIAR O ELIMINAR EL IDIOMA DEBE DE ELIMINAR SU REGISTRO PRIMERO*`)
-await m.reply(lenguajeGB['smsVerify8'](usedPrefix)) 
 await conn.sendFile(m.chat, pp, 'gata.jpg', caption, m, false, { mentions: [aa] }) 
+await m.reply(lenguajeGB['smsVerify8'](usedPrefix)) 
 let chtxt = `🌐 *Idioma:* ${nombresIdiomas}\n🌎 *País:* ${userNationality}\n👤 *Usuario:* ${m.pushName || 'Anónimo'}\n✅ *Verificación:* ${user.name}\n🔢 *Edad:* ${user.age} años\n🐈 *Bot:* ${packname}`.trim()
 await conn.sendMessage('', { text: chtxt, contextInfo: {
 externalAdReply: {
