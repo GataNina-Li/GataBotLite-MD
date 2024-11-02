@@ -32,7 +32,16 @@ await conn.sendMessage(m.chat, { text: edit, mentions: [m.sender] }, { quoted: f
 } else if (chat.detect && m.messageStubType == 26) {
 await conn.sendMessage(m.chat, { text: status, mentions: [m.sender] }, { quoted: fkontak })  
 
-} else if (chat.detect && m.messageStubType == 29) {
+} else if (m.messageStubType === 172 && m.messageStubParameters.length > 0) {
+    const users = m.messageStubParameters[0];
+    try {
+      await conn.groupRequestParticipantsUpdate(m.chat, [users], 'approve'); 
+      conn.sendMessage(m.chat, { text: `*solicitud de ingresos @${users} aprobada ✨*`, mentions: [m.sender] }, { quoted: fkontak })        
+    } catch (error) {
+      console.error(`Error al aprobar la solicitud de ${users}:`, error);
+    }
+    return;
+  } if (chat.detect && m.messageStubType == 29) {
 await conn.sendMessage(m.chat, { text: admingp, mentions: [`${m.sender}`,`${m.messageStubParameters[0]}`] }, { quoted: fkontak })  
 
 } else if (chat.detect && m.messageStubType == 30) {
