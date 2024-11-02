@@ -214,7 +214,7 @@ ${listaIdiomasTexto}
 > _The chosen language will be the one that_ ${packname} _will use. If it is not available, select another one or request to add it at:_ ${ig}`
 msg = await conn.sendMessage(m.chat, { text: genText.trim() }, { quoted: m })	
 finalizar = true
-}
+}}
  
 handler.before = async function (m, { conn }) {
 if (user.registered === true) return
@@ -267,7 +267,7 @@ renderLargerThumbnail: false
 }}}, { quoted: null })
 finalizar = '' 
 return
-}  }
+}}
 handler.command = /^(verify|verificar|reg(ister)?)$/i
 export default handler
 
