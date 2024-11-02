@@ -1,4 +1,4 @@
-import { createHash } from 'crypto'  
+/*import { createHash } from 'crypto'  
 import fetch from 'node-fetch'
 import PhoneNumber from 'awesome-phonenumber'
 import moment from 'moment-timezone'
@@ -146,9 +146,8 @@ renderLargerThumbnail: false
 }}}, { quoted: null })
 }}
 handler.command = /^(verify|verificar|reg(ister)?|idiomagb)$/i
-export default handler
+export default handler*/
 
-/*import { getDevice } from '@whiskeysockets/baileys'
 import { createHash } from 'crypto'  
 import fetch from 'node-fetch'
 import PhoneNumber from 'awesome-phonenumber'
@@ -166,19 +165,9 @@ let nombresIdiomas = {
 'de': 'Deutsch',
 'it': 'Italiano'
 }
-let descripcionesIdiomas = {
-es: "Selecciona ${nombresIdiomas[codigo]} como el idioma del bot.",
-en: "Select ${nombresIdiomas[codigo]} as the bot's language.",
-pt: "Selecione ${nombresIdiomas[codigo]} como o idioma do bot.",
-id: "Pilih ${nombresIdiomas[codigo]} sebagai bahasa bot.",
-ar: "اختر ${nombresIdiomas[codigo]} كلغة للروبوت.",
-de: "Wählen Sie ${nombresIdiomas[codigo]} als die Sprache des Bots.",
-it: "Seleziona ${nombresIdiomas[codigo]} come lingua del bot."
-}
 
-let idioma, msg, user, userNationality, tag, aa, pp, ppch, codigo, nombre, edad, finalizar
+let msg, user, userNationality, tag, aa, pp, ppch, codigo, nombre, edad, finalizar
 let handler = async function (m, { conn, text, usedPrefix, command }) {
-const dispositivo = await getDevice(m.key.id)
 let who = m.mentionedJid && m.mentionedJid[0] ? m.mentionedJid[0] : m.fromMe ? conn.user.jid : m.sender
 let api = await axios.get(`${apis}/tools/country?text=${PhoneNumber('+' + who.replace('@s.whatsapp.net', '')).getNumber('international')}`)
 let userNationalityData = api.data.result
@@ -205,7 +194,6 @@ if (name.length >= 30) return m.reply(lenguajeGB.smsVerify6())
 edad = age
 nombre = name
   
-if (/ios|web|desktop|unknown/gi.test(dispositivo)) {
 let listaIdiomasTexto = ''
 listaIdiomasTexto += '*╭┄┄┄┄┄┄┄┄┄┄┄┄┄┄୭̥⋆*｡*\n' 
 listaIdiomasTexto += '*┆ 🌐 IDIOMA DINÁMICO 🌐*\n' 
@@ -216,62 +204,28 @@ listaIdiomasTexto += `*┆* \`\`\`[ ${index + 1} ] » ${nombresIdiomas[codigo]}\
 })
 listaIdiomasTexto += '*╰┄┄┄┄┄┄┄┄┄┄┄┄┄┄୭̥⋆*｡*\n'    
 let genText = `
+${listaIdiomasTexto}
 🌟 *MULTI LENGUAJE DINÁMICO* 🌟\n
-👉 *Responda a este mensaje con el número del idioma.*\n
-❇️ *El registro esta en pausa, elija su idioma para continuar.*\n
-> _Considere que el idioma que elija será con el idioma que_ ${packname} _va interactuar con usted._ Si su idioma no aparece use otro o solicite que se agregué su idoma en: ${ig}
+👉 *Verificación pausada. Responda a este mensaje con el número del idioma.*\n
+> _El idioma elegido será el que_ ${packname} _usará. Si no está disponible, selecciona otro o solicita agregarlo en:_ ${ig}
 \n⋯⋯⋯⋯⋯⋯⋯⋯⋯\n
 🌟 *DYNAMIC MULTI LANGUAGE* 🌟\n
-👉 *Reply to this message with the language number.*\n
-❇️ *Registration is paused, choose your language to continue.*\n
-> _Consider that the language you choose will be the language that_ ${packname} _will interact with you with._ If your language does not appear, use another one or request that your language be added at: ${ig}\n
-${listaIdiomasTexto}`
+👉 *Verification paused. Reply to this message with the language number.*\n
+> _The chosen language will be the one that_ ${packname} _will use. If it is not available, select another one or request to add it at:_ ${ig}`
 msg = await conn.sendMessage(m.chat, { text: genText.trim() }, { quoted: m })	
 finalizar = true
-} else {
-let selectedLanguageCode
-const sections = [{ 
-title: `🌐 Seleccionar Idioma | Select Language 🌐`, highlight_label: "Popular",
-rows: codigosIdiomas.map(codigo => ({
-title: `${nombresIdiomas[codigo]}`,
-description: descripcionesIdiomas[codigo].replace('${nombresIdiomas[codigo]}', nombresIdiomas[codigo]),
-id: (() => {
-idioma = codigo
-return `selectLanguage_${codigo}`
-})()
-}))
-}]
-await conn.sendButton(m.chat, `
-🌟 *MULTI LENGUAJE DINÁMICO* 🌟\n
-❇️ *El registro esta en pausa, elija su idioma para continuar.*\n
-> _Considere que el idioma que elija será con el idioma que_ ${packname} _va interactuar con usted._ Si su idioma no aparece use otro o solicite que se agregué su idoma en: ${ig}
-\n⋯⋯⋯⋯⋯⋯⋯⋯⋯\n
-🌟 *DYNAMIC MULTI LANGUAGE* 🌟\n
-❇️ *Registration is paused, choose your language to continue.*\n
-> _Consider that the language you choose will be the language that_ ${packname} _will interact with you with._ If your language does not appear, use another one or request that your language be added at: ${ig}\n
-`.trim(), wm.trim(), null, null, null, null, [['Idiomas | Languages', sections]], m)
-if (codigo) {
-finalizar = true
-} else {
-return
 }
-if (codigosIdiomas.includes(idioma)) {
-console.log(`Idioma establecido a: ${nombresIdiomas[idioma]}`)
-} else {
-console.log('Error: El idioma seleccionado no es válido.')
-} 
-}
-
-}}
+ 
 handler.before = async function (m, { conn }) {
+if (user.registered === true) return
 if (!finalizar) return
 if (m.quoted && m.quoted.id == msg.key.id) {
 if (!/^\d+$/.test(m.text)) return conn.reply(m.chat, `*Solo se permiten números del \`1\` al \`${codigosIdiomas.length}\` de acuerdo con el orden de idiomas disponibles*`, m)
 }
 const numero = parseInt(m.text, 10)
-let isVerified = m.quoted ? (m.quoted.id == msg.key.id && !isNaN(numero) && numero >= 1 && numero <= codigosIdiomas.length) : !!idioma || false
+let isVerified = m.quoted ? (m.quoted.id == msg.key.id && !isNaN(numero) && numero >= 1 && numero <= codigosIdiomas.length) : false
 if (isVerified) {
-user.GBLanguage = idioma ? idioma : codigosIdiomas[numero - 1]
+user.GBLanguage = codigosIdiomas[numero - 1]
 nombresIdiomas = nombresIdiomas[user.GBLanguage]
 user.name = nombre + 'ͧͧͧͦꙶͣͤ✓ᚲᴳᴮ'.trim()
 user.age = edad
@@ -311,14 +265,11 @@ mediaType: 1,
 showAdAttribution: false,
 renderLargerThumbnail: false
 }}}, { quoted: null })
-finalizar = ''
+finalizar = '' 
 return
-} //else {
-//await m.reply(`*Ocurrió un error al completar el registro. Siga las idicaciones para un registro correcto.*`) 
-//return 
-}
+}  }
 handler.command = /^(verify|verificar|reg(ister)?)$/i
-export default handler*/
+export default handler
 
 /*import { createHash } from 'crypto'  
 import fetch from 'node-fetch'
