@@ -6,7 +6,7 @@ let setting = global.db.data.settings[this.user.jid]
 const settingsREAD = global.db.data.settings[this.user.jid] || {}
 
 if (m.text && prefixRegex.test(m.text)) {
-this.sendPresenceUpdate('composing', m.chat)
+//this.sendPresenceUpdate('composing', m.chat)
 this.readMessages([m.key])
         
 let usedPrefix = m.text.match(prefixRegex)[0]
