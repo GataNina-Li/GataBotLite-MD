@@ -5,9 +5,8 @@ import moment from 'moment-timezone'
 import axios from 'axios'
 
 let Reg = /\|?(.*)([.|] *?)([0-9]*)$/i 
-let msg, user, userNationality, tag, aa, pp, ppch, codigo, nombre, edad, finalizar, codigosIdiomas, nombresIdiomas, usedPrefix
+let msg, user, userNationality, tag, aa, pp, ppch, codigo, nombre, edad, finalizar, codigosIdiomas, nombresIdiomas
 let handler = async function (m, { conn, text, usedPrefix, command }) {
-usedPrefix = usedPrefix
 codigosIdiomas = ['es', 'en', 'pt', 'id', 'ar', 'de', 'it']
 nombresIdiomas = {
 'es': 'Español',
@@ -64,8 +63,7 @@ ${listaIdiomasTexto}
 > _The language chosen will be the one that_ ${packname} _will use. If your language is not available, select another one or request to add it at:_ ${ig}`
 msg = await conn.sendMessage(m.chat, { text: genText.trim() }, { quoted: m })	
 finalizar = true
-}}
- 
+}
 handler.before = async function (m, { conn }) {
 if (user?.registered === true || user?.registered === undefined) return
 if (!finalizar) return
@@ -116,7 +114,7 @@ renderLargerThumbnail: false
 }}}, { quoted: null })
 finalizar = '' 
 return
-}}
+}}}
 handler.command = /^(verify|verificar|reg(ister)?)$/i
 export default handler
 
