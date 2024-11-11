@@ -402,7 +402,8 @@ m.reply(caption);
 conn.sendFile(m.chat, fileData.link, fileData.filename, '', m, null, {mimetype: fileData.mime, asDocument: true, 
 });
 m.react(`✅`);
-} catch {
+});
+} catch (error) {
 try {
 let res = await mediafiredl(args[0])  
 let res2 = await mediafireDl(args[0])  
