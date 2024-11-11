@@ -238,7 +238,7 @@ await message.react(correct)
 } catch (e) {
 reportError(e)
 }    
-}}} catch (e) {
+}} catch (e) {
 reportError(e)
 }
 break
