@@ -64,21 +64,19 @@ reportError(e)
 break
     
 case isCommand2:
-  let q, v, yt, dl_url, ttl, size, lolhuman, lolh, n, n2, n3, n4, cap, qu, currentQuality;
+let q, v, yt, dl_url, ttl, size, lolhuman, lolh, n, n2, n3, n4, cap, qu, currentQuality;
+if (!text) return m.reply(lenguajeGB.smsMalused2() + `*${usedPrefix + command} Billie Eilish - Bellyache*`);
 
-  if (!text) return m.reply(lenguajeGB.smsMalused2() + `*${usedPrefix + command} Billie Eilish - Bellyache*`);
+try {
+const yt_play = await search(args.join(" "));
+let additionalText = '';
+if (command === 'play') { 
+additionalText = '⬇️ A U D I O ⬇️';
+} else if (command === 'play2') {
+additionalText = '⬇️ V I D E O ⬇️';
+}
 
-  try {
-    const yt_play = await search(args.join(" "));
-    let additionalText = '';
-    
-    if (command === 'play') { 
-      additionalText = '⬇️ A U D I O ⬇️';
-    } else if (command === 'play2') {
-      additionalText = '⬇️ V I D E O ⬇️';
-    }
-
-    let caption = `*◜⋯ ⋯ ⋯ Y O U T U B E ⋯ ⋯ ⋯◞*
+let caption = `*◜⋯ ⋯ ⋯ Y O U T U B E ⋯ ⋯ ⋯◞*
 *◎ ${lenguajeGB.smsYT1()}*
 ${yt_play[0].title}
 
@@ -92,228 +90,139 @@ ${MilesNumber(yt_play[0].views)}
 ${yt_play[0].url}
 *◜⋯ ⋯ ⋯ ${additionalText} ⋯ ⋯ ⋯◞*`;
 
-    let message = await conn.sendMessage(m.chat, {
-      text: caption,
-      contextInfo: {
-        externalAdReply: {
-          title: wm,
-          body: wait2.replace(/\*/g, ''),
-          thumbnailUrl: yt_play[0].thumbnail,
-          sourceUrl: md,
-          mediaType: 1,
-          showAdAttribution: false,
-          renderLargerThumbnail: true
-        }
-      }
-    });
+let message = await conn.sendMessage(m.chat, {text: caption, contextInfo: { externalAdReply: {title: wm, body: wait2.replace(/\*/g, ''), thumbnailUrl: yt_play[0].thumbnail, sourceUrl: md, mediaType: 1, showAdAttribution: false, renderLargerThumbnail: true }}});
+await m.react(sending);
+await message.react(waitemot);
+setTimeout(() => { message.react(waitemot2); }, 1000);
 
-    await m.react(sending);
-    await message.react(waitemot);
-    setTimeout(() => { message.react(waitemot2); }, 1000);
+if (command == 'play') {
+try {
+const apiUrl = `https://deliriussapi-oficial.vercel.app/download/ytmp3?url=${encodeURIComponent(yt_play[0].url)}`;
+const apiResponse = await fetch(apiUrl);
+const delius = await apiResponse.json();
+if (!delius.status) return m.react("❌");
+const downloadUrl = delius.data.download.url;
+await conn.sendMessage(m.chat, { audio: { url: downloadUrl }, mimetype: 'audio/mpeg' }, { quoted: m });
+await m.react(sent);
+await message.react(correct);
+} catch (e1) {
+try {
+const res = await fetch(`https://api.zenkey.my.id/api/download/ytmp3?apikey=zenkey&url=${yt_play[0].url}`);
+const audioData = await res.json();
+if (audioData.status && audioData.result?.downloadUrl) {
+await conn.sendMessage(m.chat, { audio: { url: audioData.result.downloadUrl }, mimetype: 'audio/mpeg' }, { quoted: m });
+await m.react(sent);
+await message.react(correct);
+}} catch {
+try {
+let q = '128kbps';
+let v = yt_play[0].url;
+const yt = await youtubedl(v).catch(async () => await youtubedlv2(v));
+const dl_url = await yt.audio[q].download();
+const ttl = await yt.title;
+const size = await yt.audio[q].fileSizeH;
+await conn.sendMessage(m.chat, {audio: { url: dl_url }, mimetype: 'audio/mpeg', contextInfo: {externalAdReply: {title: ttl, body: "", thumbnailUrl: yt_play[0].thumbnail, mediaType: 1, showAdAttribution: true, renderLargerThumbnail: true }}}, { quoted: m });
+await m.react(sent);
+await message.react(correct);
+} catch {
+try {
+const dataRE = await fetch(`https://api.akuari.my.id/downloader/youtube?link=${yt_play[0].url}`);
+const dataRET = await dataRE.json();
+await conn.sendMessage(m.chat, {audio: { url: dataRET.mp3[1].url }, mimetype: 'audio/mpeg', contextInfo: {externalAdReply: { title: yt_play[0].title, body: "", thumbnailUrl: yt_play[0].thumbnail,
+ mediaType: 1, showAdAttribution: true, renderLargerThumbnail: true }}}, { quoted: m });
+await m.react(sent);
+await message.react(correct);
+} catch {
+try {
+let humanLol = await fetch(`https://api.lolhuman.xyz/api/ytplay?apikey=${lolkeysapi}&query=${yt_play[0].title}`);
+let humanRET = await humanLol.json();
+await conn.sendMessage(m.chat, {
+audio: { url: humanRET.result.audio.link },
+mimetype: 'audio/mpeg',
+contextInfo: {externalAdReply: {
+title: yt_play[0].title,
+body: "",
+thumbnailUrl: yt_play[0].thumbnail,
+mediaType: 1,
+showAdAttribution: true,
+renderLargerThumbnail: true
+}}}, { quoted: m });
+await m.react(sent);
+await message.react(correct);
+} catch {
+try {
+let lolhuman = await fetch(`https://api.lolhuman.xyz/api/ytaudio2?apikey=${lolkeysapi}&url=${yt_play[0].url}`);
+let lolh = await lolhuman.json();
+let n = lolh.result.title || 'error';
+await conn.sendMessage(m.chat, {
+audio: { url: lolh.result.link },
+mimetype: 'audio/mpeg',
+contextInfo: { externalAdReply: {
+title: n,
+body: "",
+thumbnailUrl: yt_play[0].thumbnail,
+mediaType: 1,
+showAdAttribution: true,
+renderLargerThumbnail: true
+}}}, { quoted: m });
+await m.react(sent);
+await message.react(correct);
+} catch {
+try {
+let searchh = await yts(yt_play[0].url);
+let __res = searchh.all.filter(v => v.type == "video");
+let infoo = await ytdl.getInfo('https://youtu.be/' + __res[0].videoId);
+let ress = await ytdl.chooseFormat(infoo.formats, { filter: 'audioonly' });
+await conn.sendMessage(m.chat, {
+audio: { url: ress.url },
+mimetype: 'audio/mpeg',
+contextInfo: { externalAdReply: {
+title: __res[0].title,
+body: "",
+thumbnailUrl: yt_play[0].thumbnail,
+mediaType: 1,
+showAdAttribution: true,
+renderLargerThumbnail: true
+}}}, { quoted: m });
+await m.react(sent);
+await message.react(correct);
+} catch {
+reportError(e);
+}}}}}}}}
 
-    if (command == 'play') {
-      try {
-        const apiUrl = `https://deliriussapi-oficial.vercel.app/download/ytmp3?url=${encodeURIComponent(yt_play[0].url)}`;
-        const apiResponse = await fetch(apiUrl);
-        const delius = await apiResponse.json();
-        
-        if (!delius.status) return m.react("❌");
-        const downloadUrl = delius.data.download.url;
-
-        await conn.sendMessage(m.chat, { audio: { url: downloadUrl }, mimetype: 'audio/mpeg' }, { quoted: m });
-        await m.react(sent);
-        await message.react(correct);
-      } catch (e1) {
-        try {
-          const res = await fetch(`https://api.zenkey.my.id/api/download/ytmp3?apikey=zenkey&url=${yt_play[0].url}`);
-          const audioData = await res.json();
-
-          if (audioData.status && audioData.result?.downloadUrl) {
-            await conn.sendMessage(m.chat, { audio: { url: audioData.result.downloadUrl }, mimetype: 'audio/mpeg' }, { quoted: m });
-            await m.react(sent);
-            await message.react(correct);
-          }
-        } catch {
-          try {
-            let q = '128kbps';
-            let v = yt_play[0].url;
-            const yt = await youtubedl(v).catch(async () => await youtubedlv2(v));
-            const dl_url = await yt.audio[q].download();
-            const ttl = await yt.title;
-            const size = await yt.audio[q].fileSizeH;
-
-            await conn.sendMessage(m.chat, {
-              audio: { url: dl_url },
-              mimetype: 'audio/mpeg',
-              contextInfo: {
-                externalAdReply: {
-                  title: ttl,
-                  body: "",
-                  thumbnailUrl: yt_play[0].thumbnail,
-                  mediaType: 1,
-                  showAdAttribution: true,
-                  renderLargerThumbnail: true
-                }
-              }
-            }, { quoted: m });
-
-            await m.react(sent);
-            await message.react(correct);
-          } catch {
-            try {
-              const dataRE = await fetch(`https://api.akuari.my.id/downloader/youtube?link=${yt_play[0].url}`);
-              const dataRET = await dataRE.json();
-
-              await conn.sendMessage(m.chat, {
-                audio: { url: dataRET.mp3[1].url },
-                mimetype: 'audio/mpeg',
-                contextInfo: {
-                  externalAdReply: {
-                    title: yt_play[0].title,
-                    body: "",
-                    thumbnailUrl: yt_play[0].thumbnail,
-                    mediaType: 1,
-                    showAdAttribution: true,
-                    renderLargerThumbnail: true
-                  }
-                }
-              }, { quoted: m });
-
-              await m.react(sent);
-              await message.react(correct);
-            } catch {
-              try {
-                let humanLol = await fetch(`https://api.lolhuman.xyz/api/ytplay?apikey=${lolkeysapi}&query=${yt_play[0].title}`);
-                let humanRET = await humanLol.json();
-                await conn.sendMessage(m.chat, {
-                  audio: { url: humanRET.result.audio.link },
-                  mimetype: 'audio/mpeg',
-                  contextInfo: {
-                    externalAdReply: {
-                      title: yt_play[0].title,
-                      body: "",
-                      thumbnailUrl: yt_play[0].thumbnail,
-                      mediaType: 1,
-                      showAdAttribution: true,
-                      renderLargerThumbnail: true
-                    }
-                  }
-                }, { quoted: m });
-
-                await m.react(sent);
-                await message.react(correct);
-              } catch {
-                try {
-                  let lolhuman = await fetch(`https://api.lolhuman.xyz/api/ytaudio2?apikey=${lolkeysapi}&url=${yt_play[0].url}`);
-                  let lolh = await lolhuman.json();
-                  let n = lolh.result.title || 'error';
-
-                  await conn.sendMessage(m.chat, {
-                    audio: { url: lolh.result.link },
-                    mimetype: 'audio/mpeg',
-                    contextInfo: {
-                      externalAdReply: {
-                        title: n,
-                        body: "",
-                        thumbnailUrl: yt_play[0].thumbnail,
-                        mediaType: 1,
-                        showAdAttribution: true,
-                        renderLargerThumbnail: true
-                      }
-                    }
-                  }, { quoted: m });
-
-                  await m.react(sent);
-                  await message.react(correct);
-                } catch {
-                  try {
-                    let searchh = await yts(yt_play[0].url);
-                    let __res = searchh.all.filter(v => v.type == "video");
-                    let infoo = await ytdl.getInfo('https://youtu.be/' + __res[0].videoId);
-                    let ress = await ytdl.chooseFormat(infoo.formats, { filter: 'audioonly' });
-
-                    await conn.sendMessage(m.chat, {
-                      audio: { url: ress.url },
-                      mimetype: 'audio/mpeg',
-                      contextInfo: {
-                        externalAdReply: {
-                          title: __res[0].title,
-                          body: "",
-                          thumbnailUrl: yt_play[0].thumbnail,
-                          mediaType: 1,
-                          showAdAttribution: true,
-                          renderLargerThumbnail: true
-                        }
-                      }
-                    }, { quoted: m });
-
-                    await m.react(sent);
-                    await message.react(correct);
-                  } catch {
-                    reportError(e);
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-
-    if (command == 'play2') {
-      try {
-        const apiUrl = `https://deliriussapi-oficial.vercel.app/download/ytmp4?url=${encodeURIComponent(yt_play[0].url)}`;
-        const apiResponse = await fetch(apiUrl);
-        const delius = await apiResponse.json();
-
-        if (!delius.status) return m.react("❌");
-
-        const downloadUrl = delius.data.download.url;
-        const fileSize = await getFileSize(downloadUrl);
-
-        if (fileSize > LimitVid) {
-          await conn.sendMessage(m.chat, { document: { url: downloadUrl }, fileName: `${yt_play[0].title}.mp4`, caption: `${yt_play[0].title}` }, { quoted: m });
-        } else {
-          await conn.sendMessage(m.chat, {
-            video: { url: downloadUrl },
-            fileName: `${yt_play[0].title}.mp4`,
-            caption: `${yt_play[0].title}`,
-            thumbnail: yt_play[0].thumbnail,
-            mimetype: 'video/mp4'
-          }, { quoted: m });
-
-          await m.react(sent);
-          await message.react(correct);
-        }
-      } catch (e1) {
-        try {
-          let d2 = await fetch(`https://exonity.tech/api/ytdlp2-faster?apikey=adminsepuh&url=${yt_play[0].url}`);
-          let dp = await d2.json();
-          const audiop = await getBuffer(dp.result.media.mp4);
-          const fileSize = await getFileSize(dp.result.media.mp4);
-
-          if (fileSize > LimitVid) {
-            await conn.sendMessage(m.chat, { document: { url: audiop }, fileName: `${yt_play[0].title}.mp4`, caption: `${yt_play[0].title}` }, { quoted: m });
-          } else {
-            await conn.sendMessage(m.chat, {
-              video: { url: audiop },
-              caption: `${yt_play[0].title}`,
-              thumbnail: yt_play[0].thumbnail,
-              mimetype: 'video/mp4'
-            }, { quoted: m });
-
-            await m.react(sent);
-            await message.react(correct);
-          }
-        } catch (e2) {
-          reportError(e2);
-        }
-      }
-    }
-  } catch (error) {
-    reportError(error);
-  }
-  break;
+if (command == 'play2') {
+try {
+const apiUrl = `https://deliriussapi-oficial.vercel.app/download/ytmp4?url=${encodeURIComponent(yt_play[0].url)}`;
+const apiResponse = await fetch(apiUrl);
+const delius = await apiResponse.json();
+if (!delius.status) return m.react("❌");
+const downloadUrl = delius.data.download.url;
+const fileSize = await getFileSize(downloadUrl);
+if (fileSize > LimitVid) {
+await conn.sendMessage(m.chat, { document: { url: downloadUrl }, fileName: `${yt_play[0].title}.mp4`, caption: `${yt_play[0].title}` }, { quoted: m });
+} else {
+await conn.sendMessage(m.chat, {video: { url: downloadUrl }, fileName: `${yt_play[0].title}.mp4`, caption: `${yt_play[0].title}`, thumbnail: yt_play[0].thumbnail, mimetype: 'video/mp4' }, { quoted: m });
+await m.react(sent);
+await message.react(correct);
+}
+} catch (e1) {
+try {
+let d2 = await fetch(`https://exonity.tech/api/ytdlp2-faster?apikey=adminsepuh&url=${yt_play[0].url}`);
+let dp = await d2.json();
+const audiop = await getBuffer(dp.result.media.mp4);
+const fileSize = await getFileSize(dp.result.media.mp4);
+if (fileSize > LimitVid) {
+await conn.sendMessage(m.chat, { document: { url: audiop }, fileName: `${yt_play[0].title}.mp4`, caption: `${yt_play[0].title}` }, { quoted: m });
+} else {
+await conn.sendMessage(m.chat, { video: { url: audiop }, caption: `${yt_play[0].title}`, thumbnail: yt_play[0].thumbnail, mimetype: 'video/mp4' }, { quoted: m });
+await m.react(sent);
+await message.react(correct);
+}} catch (e2) {
+reportError(e2);
+}}}} catch (error) {
+reportError(error);
+}
+break;
             
 case isCommand4:
 if (!args[0]) return m.reply(lenguajeGB.smsMalused2() + `*${usedPrefix + command} https://youtu.be/ejemplo*\n*${usedPrefix + command} https://www.youtube.com/ejemplo*`)
