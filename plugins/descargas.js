@@ -92,6 +92,26 @@ setTimeout(() => { message.react(waitemot2) }, 1000)
 //setTimeout(() => { message.react(alert) }, 2000)}
 if (command == 'play') {	
 try {
+const apiUrl = `https://deliriussapi-oficial.vercel.app/download/ytmp3?url=${encodeURIComponent(yt_play[0].url)}`;
+const apiResponse = await fetch(apiUrl);
+const delius = await apiResponse.json();
+if (!delius.status) return m.react("❌");
+const downloadUrl = delius.data.download.url;
+await conn.sendMessage(m.chat, { audio: { url: downloadUrl }, mimetype: 'audio/mpeg' }, { quoted: m });
+await m.react(sent)    
+await message.react(correct)
+} catch (e1) {
+try {
+const res = await fetch(`https://api.zenkey.my.id/api/download/ytmp3?apikey=zenkey&url=${yt_play[0].url}`)
+const audioData = await res.json()
+
+if (audioData.status && audioData.result?.downloadUrl) {
+    await conn.sendMessage(m.chat, { audio: { url: audioData.result.downloadUrl }, mimetype: 'audio/mpeg' }, { quoted: m });
+await m.react(sent)    
+await message.react(correct)    
+}
+} catch {
+try {
 let q = '128kbps'
 let v = yt_play[0].url
 const yt = await youtubedl(v).catch(async _ => await youtubedlv2(v))
@@ -175,7 +195,7 @@ await message.react(correct)
 //conn.sendMessage(m.chat, { audio: { url: ress.url }, fileName: __res[0].title + '.mp3', mimetype: 'audio/mp4' }, { quoted: m })  
 } catch {
 reportError(e)
-}}}}}
+}}}}}}}
 }  
 if (command == 'play2') {
 try {
