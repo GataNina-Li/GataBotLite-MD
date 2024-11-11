@@ -12,6 +12,8 @@ import { promisify } from 'util'
 import os from 'os'
 import axios from 'axios'
 import Spotify from "spotifydl-x"
+const LimitAud = 725 * 1024 * 1024; //700MB
+const LimitVid = 425 * 1024 * 1024; //425MB
 
 let handler = async (m, { conn, text, usedPrefix, command, args }) => {
 let q, v, yt, dl_url, ttl, size, lolhuman, lolh, n, n2, n3, n4, cap, qu, currentQuality
@@ -199,6 +201,28 @@ reportError(e)
 }  
 if (command == 'play2') {
 try {
+const apiUrl = `https://deliriussapi-oficial.vercel.app/download/ytmp4?url=${encodeURIComponent(yt_play[0].url)}`;
+const apiResponse = await fetch(apiUrl);
+const delius = await apiResponse.json();
+if (!delius.status) return m.react("❌");
+const downloadUrl = delius.data.download.url;
+const fileSize = await getFileSize(downloadUrl);
+if (fileSize > LimitVid) {
+await conn.sendMessage(m.chat, { document: { url: downloadUrl }, fileName: `${yt_play[0].title}.mp4`, caption: `🔰 Aquí está tu video \n🔥 Título: ${yt_play[0].title}` }, { quoted: m });
+} else {
+await conn.sendMessage(m.chat, { video: { url: downloadUrl }, fileName: `${yt_play[0].title}.mp4`, caption: `🔰 Aquí está tu video \n🔥 Título: ${yt_play[0].title}`, thumbnail: yt_play[0].thumbnail, mimetype: 'video/mp4' }, { quoted: m });
+}} catch (e1) {
+try {
+let d2 = await fetch(`https://exonity.tech/api/ytdlp2-faster?apikey=adminsepuh&url=${yt_play[0].url}`);
+let dp = await d2.json();
+const audiop = await getBuffer(dp.result.media.mp4);
+const fileSize = await getFileSize(dp.result.media.mp4);
+if (fileSize > LimitVid) {
+await conn.sendMessage(m.chat, { document: { url: audiop }, fileName: `${yt_play[0].title}.mp4`, caption: `🔰 Aquí está tu video \n🔥 Título: ${yt_play[0].title}` }, { quoted: m });
+} else {
+await conn.sendMessage(m.chat, { video: { url: audiop }, fileName: `${yt_play[0].title}.mp4`, caption: `🔰 Aquí está tu video \n🔥 Título: ${yt_play[0].title}`, thumbnail: yt_play[0].thumbnail, mimetype: 'video/mp4' }, { quoted: m });
+}} catch {
+try {
 /*let videoURL = await fetch(APIs.lolhuman.url + `ytvideo2?apikey=${APIs.lolhuman.key}&url=${yt_play[0].url}`)
 let dataYT = await videoURL.json()
 await conn.sendMessage(m.chat, { video: { url: dataYT.result.link }, fileName: `${ttl}.mp4`, mimetype: 'video/mp4', caption: `${wm}`, thumbnailUrl: yt_play[0].thumbnail }, { quoted: m })*/
@@ -214,7 +238,7 @@ await message.react(correct)
 } catch (e) {
 reportError(e)
 }    
-}} catch (e) {
+}}} catch (e) {
 reportError(e)
 }
 break
@@ -362,7 +386,24 @@ break
         
 case isCommand9:
 if (!args[0]) return m.reply(lenguajeGB.smsMalused2() + `*${usedPrefix + command} https://www.mediafire.com/file/04kaaqx9oe3tb8b/DOOM_v13_CLONE%255BCOM.FM%255D.apk/file*`)
+m.react("✨") 
 try {  
+const res = await fetch(`https://deliriussapi-oficial.vercel.app/api/mediafire?url=${args[0]}`);
+if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
+const data = await res.json();
+const fileDataArray = data.data;
+fileDataArray.forEach((fileData) => {
+const caption = `🗂️ ${fileData.filename}
+⚖️ ${fileData.size}
+📡 ${fileData.mime}
+
+${lenguajeGB.smsMediaFr()}`.trim();
+m.reply(caption);
+conn.sendFile(m.chat, fileData.link, fileData.filename, '', m, null, {mimetype: fileData.mime, asDocument: true, 
+});
+m.react(`✅`);
+} catch {
+try {
 let res = await mediafiredl(args[0])  
 let res2 = await mediafireDl(args[0])  
 let { filename:name, ext:mime, url, filesizeH:peso } = res
@@ -377,10 +418,12 @@ ${lenguajeGB.smsMediaFr()}`.trim()
 await m.reply(caption)
 //await conn.sendFile(m.chat, link, name, '', m, null, { mimetype: mime, asDocument: true })  
 await conn.sendFile(m.chat, url, name, '', m, null, { mimetype: mime, asDocument: true })
+m.react(`✅`);
 } catch (e) {
 await m.reply(lenguajeGB['smsMalError3']() + '\n*' + lenguajeGB.smsMensError1() + '*\n*' + usedPrefix + `${lenguajeGB.lenguaje() == 'es' ? 'reporte' : 'report'}` + '* ' + `${lenguajeGB.smsMensError2()} ` + usedPrefix + command)
 console.log(`❗❗ ${lenguajeGB['smsMensError2']()} ${usedPrefix + command} ❗❗`)
-console.log(e)}    
+console.log(e)
+m.react(`❌`)}}   
 async function mediafireDl(url) {
 const res = await axios.get(`https://www-mediafire-com.translate.goog/${url.replace('https://www.mediafire.com/','')}?_x_tr_sl=en&_x_tr_tl=fr&_x_tr_hl=en&_x_tr_pto=wapp`)
 const $ = cheerio.load(res.data)
@@ -869,4 +912,15 @@ function formatNumber(number) {
 if (number < 1000) return number.toString()
 if (number < 1000000) return (number / 1000).toFixed(1) + 'K'
 return (number / 1000000).toFixed(1) + 'M'
+}
+
+async function getFileSize(url) {
+    try {
+        const response = await fetch(url, { method: 'HEAD' });
+        const contentLength = response.headers.get('content-length');
+        return contentLength ? parseInt(contentLength, 10) : 0;
+    } catch (error) {
+        console.error("Error al obtener el tamaño del archivo", error);
+        return 0;
+    }
 }
