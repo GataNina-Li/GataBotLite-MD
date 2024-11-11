@@ -245,7 +245,7 @@ await m.react('❌');
 console.log(e);
 reportError(e);
 }}}
-}}}
+}}
 break;
             
 case isCommand4:
