@@ -243,7 +243,7 @@ await message.react(correct)
 } catch (e) {
 reportError(e);
 m.react('❌');
-}}}
+}}}}
 }
 break;
             
