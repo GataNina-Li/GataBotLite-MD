@@ -19,6 +19,7 @@ if (!m.message) return !0
 if (m.text.includes('serbot') || m.text.includes('jadibot') || m.text.includes('deletesesion') || m.text.includes('estado') || m.text.includes('bots')) return !0
 const chat = global.db.data.chats[m.chat]
 const bot = global.db.data.settings[this.user.jid] || {}
+if (m.chat === '120363336642332098@newsletter') return !0
 if (bot.antiPrivate && !isOwner && !isROwner) {
 await m.reply(`*${lenguajeGB['smsCreA']()}* *@${m.sender.split`@`[0]}*, ${lenguajeGB['smsprivado']()}\n${nn}`)
 await this.updateBlockStatus(m.chat, 'block')
