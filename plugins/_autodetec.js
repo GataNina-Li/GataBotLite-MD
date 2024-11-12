@@ -45,19 +45,19 @@ if (chat.antifake) {
 if (prefijosProhibidos.some(prefijo => usersConPrefijo.startsWith(prefijo))) {
 try {
 await conn.groupRequestParticipantsUpdate(m.chat, [rawUser], 'reject');
-m.reply(`Solicitud de ingreso de @${users} rechazada automáticamente por tener un prefijo prohibido.`);
+//m.reply(`Solicitud de ingreso de @${users} rechazada automáticamente por tener un prefijo prohibido.`);
 } catch (error) {
 console.error(`Error al rechazar la solicitud de ${usersConPrefijo}:`, error);
 }} else {
 try {
 await conn.groupRequestParticipantsUpdate(m.chat, [rawUser], 'approve');
-m.reply(`Solicitud de ingreso de @${users} aprobada automáticamente.`);
+//m.reply(`Solicitud de ingreso de @${users} aprobada automáticamente.`);
 } catch (error) {
 console.error(`Error al aprobar la solicitud de ${usersConPrefijo}:`, error);
 }}} else {
 try {
 await conn.groupRequestParticipantsUpdate(m.chat, [rawUser], 'approve');
-m.reply(`Solicitud de ingreso de @${users} aprobada automáticamente ya que #antifake está desactivado.`);
+//m.reply(`Solicitud de ingreso de @${users} aprobada automáticamente ya que #antifake está desactivado.`);
 } catch (error) {
 console.error(`Error al aprobar la solicitud de ${usersConPrefijo}:`, error);
 }}
