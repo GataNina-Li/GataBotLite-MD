@@ -12,17 +12,16 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 let suggestionQueue = {}; 
-let cooldown = {}; 
+//let cooldown = {}; 
 const ADMIN_GROUP_ID = "120363317570465699@g.us";  
 const CANAL_ID = "120363160031023229@newsletter";
-const COOLDOWN_TIME = 24 * 60 * 60 * 1000; //24hs
 const MAX_VIDEO_SIZE_MB = 40; // Límite de 40MB X videos
 
 let handler = async (m, { conn, text, usedPrefix, command }) => {
 let who = m.mentionedJid && m.mentionedJid.length > 0 ? m.mentionedJid[0] : (m.fromMe ? conn.user.jid : m.sender);
 let pp = await conn.profilePictureUrl(who, 'image').catch(_ => "https://telegra.ph/file/33bed21a0eaa789852c30.jpg");
 
-let time = global.db.data.users[m.sender].suggetimme + 86400000; // 24 horas en ms
+let time = global.db.data.users[m.sender].suggetimme + 86400000; //24hs
 if (new Date() - global.db.data.users[m.sender].suggetimme < 86400000) {
 return m.reply(`⚠️ Ya has enviado una publicación. Por favor, espera ${msToTime(time - new Date())} antes de enviar otra.`);
 }
