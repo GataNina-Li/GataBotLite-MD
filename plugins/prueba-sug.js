@@ -101,8 +101,7 @@ return
  global.db.data.users[m.sender].suggetimme = new Date * 1
 
 let confirmMessage = `El usuario @${m.sender.split('@')[0]} ha enviado una publicación. ¿La aprueban?\n\n*📝 ${category.charAt(0).toUpperCase() + category.slice(1)}:* ${suggestionText || 'Sin texto'}\n\n> Escriba "si ${suggestionId}" para aceptar\n> Escriba "no ${suggestionId}" para rechazar.\n\n> *ID de la publicación:* ${suggestionId}`;
-
-let messageOptions = { mentions: [m.sender], quoted: m };
+//let options = { mentions: [m.sender], quoted: m };
 
     if (url) {
         if (/image/.test(mime)) {
