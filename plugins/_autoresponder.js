@@ -95,6 +95,7 @@ if (m.fromMe) return
 if (!user.registered) return
 await this.sendPresenceUpdate('composing', m.chat)
 
+let result
 if (result && result.trim().length > 0) {
 result = await geminiProApi(query, syms1);
 }
