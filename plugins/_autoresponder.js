@@ -31,6 +31,18 @@ return response.data.result
 console.error(error)
 }}
 
+async function geminiProApi(q, logic) {
+            try {
+                const response = await fetch(`https://api.ryzendesu.vip/api/ai/gemini-pro?text=${encodeURIComponent(q)}&prompt=${encodeURIComponent(logic)}`);
+                if (!response.ok) throw new Error(`Error en la solicitud: ${response.statusText}`);
+                const result = await response.json();
+                return result.answer;
+            } catch (error) {
+                console.error('Error en Gemini Pro:', error);
+                return null;
+            }
+        }
+        
 let query = m.text
 let username = m.pushName
 let syms1 = `
@@ -82,9 +94,19 @@ if (!chat.autorespond) return
 if (m.fromMe) return
 if (!user.registered) return
 await this.sendPresenceUpdate('composing', m.chat)
-let result = await luminsesi(query, username, syms1)
-await this.reply(m.chat, result, m)
+
+if (result && result.trim().length > 0) {
+result = await geminiProApi(query, syms1);
 }
+
+if (!result || result.trim().length === 0) {
+result = await luminsesi(query, username, syms1)
+}
+
+if (result && result.trim().length > 0) {
+await this.reply(m.chat, result, m)
+} else {    
+}}
 return true
 }
 export default handler
