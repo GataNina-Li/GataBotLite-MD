@@ -13,8 +13,8 @@ import { en, es, id, ar, pt, de, it } from './lib/idiomas/total-idiomas.js'
 // EN ➜ Add the Bot number as priority first
 // EN ➜ If you want to receive reports you must use the three parameters (Number, name and true)
 global.owner = [
-['573147616444', '𝙂𝙖𝙩𝙖𝘽𝙤𝙩𝙇𝙞𝙩𝙚-𝙈𝘿 🌻🐈', true], //𝙂𝙖𝙩𝙖𝘽𝙤𝙩𝙇𝙞𝙩𝙚-𝙈𝘿 🌻🐈
-['593968263524', '𝙂𝘽 𝘼𝙨𝙞𝙨𝙩𝙚𝙣𝙘𝙞𝙖 🌻🐈', true],
+['56998483945', '㰑̸̸̷̶ᅟ𝗕∀Ξ̶Ʞㅤ⸸ㅤ𝗣Ξ̶ꓤ𝖥꯭ꓱ𝗖̸Ⲧ', true], //𝙂𝙖𝙩𝙖𝘽𝙤𝙩𝙇𝙞𝙩𝙚-𝙈𝘿 🌻🐈
+['56934128574', 'Nicky 🐧', true],
 ['5492266613038'], 
 ['595976126756'],
 ['593968585383']]
