@@ -73,8 +73,8 @@ if (!/^\d+$/.test(m.text)) return conn.reply(m.chat, `*Solo se permiten números
 const numero = parseInt(m.text, 10)
 let isVerified = m.quoted ? (m.quoted.id == msg.key.id && !isNaN(numero) && numero >= 1 && numero <= codigosIdiomas.length) : false
 if (isVerified) {
-user.GBLanguage = codigosIdiomas[numero - 1]
-nombresIdiomas = nombresIdiomas[user.GBLanguage]
+user.GBLanguage = codigosIdiomas[numero - 1] || 'es'
+nombresIdiomas = nombresIdiomas[user.GBLanguage] || nombresIdiomas['es']
 user.name = nombre + 'ͧͧͧͦꙶͣͤ✓ᚲᴳᴮ'.trim()
 user.age = edad
 user.regTime = + new Date
