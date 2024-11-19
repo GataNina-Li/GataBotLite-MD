@@ -94,6 +94,7 @@ global.moment = moment
 
 global.packname = '𝙂𝙖𝙩𝙖𝘽𝙤𝙩𝙇𝙞𝙩𝙚-𝙈𝘿 🌻🐈'
 global.author = '𝙂𝙖𝙩𝙖 𝘿𝙞𝙤𝙨'
+global.policyGB = 'github.com/GataNina-Li/GataBot-MD/blob/master/terms.md'
 
 // ES ➜ Está parte es para mostrar el contacto de alguien al usar #contacto
 // EN ➜ This part is to display someone's contact using #contact
