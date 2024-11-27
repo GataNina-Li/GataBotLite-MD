@@ -4,15 +4,15 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
   const args = text.split(',').map((v) => v.trim());
   if (args.length < 3)
     return m.reply(
-      `*⚠️ Debes ingresar el link del grupo, el mensaje y la cantidad de spam separados por comas.*\n\nEjemplo:\n${usedPrefix + command} https://chat.whatsapp.com/xxxx, hola, 5.`
+      `*⚠️ Debes ingresar el link del grupo, el mensaje y la cantidad de spam separados por comas.*\n\nEjemplo:\n${usedPrefix + command} https://chat.whatsapp.com/xxxx, Hola, ¿cómo están?, 250`
     );
 
   const [groupLink, message, countStr] = args;
   const count = parseInt(countStr, 10); 
-
-  if (!groupLink.includes('chat.whatsapp.com')) 
+  
+  if (!groupLink.includes('chat.whatsapp.com'))
     return m.reply('*⚠️ Proporcione un enlace válido del grupo.*');
-  if (isNaN(count) || count <= 0) 
+  if (isNaN(count) || count <= 0)
     return m.reply('*⚠️ Especifique una cantidad válida de mensajes (mayor a 0).*');
 
   try {
@@ -23,9 +23,7 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
 
     for (let i = 0; i < count; i++) {
       await conn.sendMessage(groupId, { text: message });
-
-      if (i % 50 === 0) await delay(5000); 
-      else await delay(1000); 
+      await delay(1000); 
     }
 
     m.reply(`✅ Spam completado. Saliendo del grupo...`);
