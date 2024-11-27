@@ -5,7 +5,7 @@ let handler = async (m, { conn, text, usedPrefix, command}) => {
   if (args.length < 3) return m.reply(`*⚠️ Debes ingresar el link del grupo, el mensaje y la cantidad de spam separados por comas.*\n\nEjemplo:\n${usedPrefix + command} https://chat.whatsapp.com/xxxx, hola, 5.`);
 
   const [groupLink, message, countStr] = args;
-  const count = parseInt(countStr, 600);
+  const count = parseInt(countStr, 999999999999999999999999999999999999999999);
 
   if (!groupLink.includes('chat.whatsapp.com')) return m.reply('*⚠️ Proporcione un enlace válido del grupo.*');
   if (isNaN(count) || count <= 0) return m.reply('*⚠️ Especifique una cantidad válida de mensajes (mayor a 0).*');
