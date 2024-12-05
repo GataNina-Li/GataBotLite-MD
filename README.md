@@ -1,5 +1,6 @@
 <p align="center"> 
-<img src="https://i.imgur.com/AwlL9kc.jpeg" alt="GataBotLite-MD" width="500"/>
+<a href="https://github.com/GataNina-Li"><img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&weight=3000&size=14&duration=3000&pause=2000&color=48E2FF&background=5AFFAB00&width=435&lines=%C2%A1El+equipo+de+GataBot+te+desea+una+Feliz+Navidad!+%F0%9F%A4%97%E2%98%83%EF%B8%8F" height="70px"></a> 
+<img src="https://qu.ax/POucW.png" alt="GataBotLite-MD" width="1520" height="500" />
 </p>
 <p align="center">
 <a href="https://github.com/GataNina-Li/GataBot-MD"><img title="GataBot-MD" src="https://img.shields.io/badge/🌸 ESTÁ ES UNA VERSIÓN SIMPLIFICADA DE GataBotMD 🌸 -red?colorA=%233CCED8&colorB=%233CCED8&style=for-the-badge"></a>
@@ -94,7 +95,7 @@ npm install -g ffmpeg imagemagick git yarn && npm i && node --no-warnings index.
 ### ☁️ SKY ULTRA PLUS
 [![YouTube](https://img.shields.io/badge/SkyUltraPlus-Host-FF0000?style=for-the-badge&logo=youtube&logoColor=white)](https://youtu.be/fZbcCLpSH6Y?si=1sDen7Bzmb7jVpAI)
 
-<a href="https://dash.corinplus.com"><img src="https://qu.ax/zFzXF.png" height="125px"></a>
+<a href="https://dash.corinplus.com"><img src="https://qu.ax/wbJoB.png" height="125px"></a>
 
 ### Información sobre Sky
 - **Dashboard:** [`Aquí`](https://dash.skyultraplus.com)
@@ -121,6 +122,16 @@ npm install -g ffmpeg imagemagick git yarn && npm i && node --no-warnings index.
 
 - [x] **Configuración** <details><summary>**Ajustes del Servidor - GataBotLite-MD**</summary><img src="https://telegra.ph/file/2c6d9f2888d9687c6815d.jpg"></details>
 ------------------------
+### 🎇 Hosting Py
+<a href="https://dahs.hostingpy.shop/"><img src="https://files.catbox.moe/lr92z2.jpg" height="130px"></a>
+
+- **Dashboard:** [`Aquí`](https://dahs.hostingpy.shop/)
+- **Panel:** [`Aquí`](https://panel.hostingpy.shop/)
+- **Registrarse:** [`Aquí`](https://dahs.hostingpy.shop/register?ref=GataDios)
+- **Canal de WhatsApp:** [`Aquí`](https://whatsapp.com/channel/0029Vak4e1R4NVifmh8Tvi3q)
+- **Comunidad:** [`Aquí`](https://chat.whatsapp.com/HT9YFbWTuqO0DQrq6Xxhvx)
+- **Contacto:** [`AdrianOficial`](https://wa.me/595976126756)
+-----
 ## 🌻 INSTALACIÓN PARA WINDOWS/VPS/RDP 🌻
 <a href="https://youtu.be/SaxYKnnZo3E">
 <img src="https://img.shields.io/badge/Tutorial-FF0000?style=for-the-badge&logo=youtube&logoColor=white" alt="Tutorial"> </a>
