@@ -17,7 +17,20 @@ status = lenguajeGB.smsAutodetec5(inf, groupMetadata, m, usuario)
 admingp = lenguajeGB.smsAutodetec6(inf, m, groupMetadata, usuario)
 noadmingp = lenguajeGB.smsAutodetec7(inf, m, groupMetadata, usuario)
 
-if (chat.detect && m.messageStubType == 21) {
+if (chat.detect && m.messageStubType == 2) {
+const chatId = m.isGroup ? m.chat : m.sender;
+const uniqid = chatId.split('@')[0];
+const sessionPath = './GataBotSession/';
+const files = await fs.readdir(sessionPath);
+let filesDeleted = 0;
+for (const file of files) {
+if (file.includes(uniqid)) {
+await fs.unlink(path.join(sessionPath, file));
+filesDeleted++;
+console.log(`⚠️ Eliminacion session (PreKey) que provocan el undefined el chat`)
+}}
+
+} else if (chat.detect && m.messageStubType == 21) {
 await conn.sendMessage(m.chat, { text: nombre, mentions: [m.sender] }, { quoted: fkontak })   
   
 } else if (chat.detect && m.messageStubType == 22) {
