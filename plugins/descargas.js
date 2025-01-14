@@ -95,9 +95,9 @@ ${yt_play[0].url}
 > Descargar  en video reaccionados a "👍"`;
 
 let message = await conn.sendMessage(m.chat, {text: caption, contextInfo: { externalAdReply: {title: wm, body: wait2.replace(/\*/g, ''), thumbnailUrl: yt_play[0].thumbnail, sourceUrl: md, mediaType: 1, showAdAttribution: false, renderLargerThumbnail: true }}});
-await m.react(sending);
-await message.react(waitemot);
-setTimeout(() => { message.react(waitemot2); }, 1000);
+//await m.react(sending);
+//await message.react(waitemot);
+//setTimeout(() => { message.react(waitemot2); }, 1000);
 
 tempStorage[m.sender] = { url: yt_play[0].url, title: yt_play[0].title };
 
@@ -108,29 +108,30 @@ const userVideoData = tempStorage[m.sender];
 if (!userVideoData || !userVideoData.url) return conn.reply(m.chat, '❌ NO HAY RESULTADO DE LA APIS, INTENTE DE NUEVO POR FAVOR', m || null);
 try {
 if (text === '❤️' || text === 'audio') {
-await conn.reply(m.chat, `Espere...`, fkontak, m || null)
+await conn.reply(m.chat, `Espere...`, m || null)
 try {    
 const res = await fetch(`https://api.siputzx.my.id/api/d/ytmp3?url=${userVideoData.url}`);
 let { data } = await res.json();
 await conn.sendMessage(m.chat, { audio: { url: data.dl }, mimetype: 'audio/mpeg' }, { quoted: m ||null });
-await m.react(sent);
-await message.react(correct);
+} catch (e1) {
+try {    
+const axeelUrl = `https://axeel.my.id/api/download/audio?url=${userVideoData.url}`;
+const axeelResponse = await fetch(axeelUrl);
+const axeelData = await axeelResponse.json();
+if (!axeelData || !axeelData.downloads?.url) throw new Error();
+await conn.sendMessage(m.chat, { audio: { url: axeelData.downloads.url }, mimetype: 'audio/mpeg' }, { quoted: m });
 } catch (e1) {
 try {    
 const res = await fetch(`https://api.zenkey.my.id/api/download/ytmp3?apikey=zenkey&url=${userVideoData.url}`);
 let { result } = await res.json();
 await conn.sendMessage(m.chat, { audio: { url: result.download.url }, mimetype: 'audio/mpeg' }, { quoted: m || null });
-await m.react(sent);
-await message.react(correct);
 } catch (error) {
-}}
+}}}
 } else if (text === '👍' || text === 'video') {
-await conn.reply(m.chat, `Espere...`, fkontak, m || null)
+await conn.reply(m.chat, `Espere...`, m || null)
 const res = await fetch(`https://api.siputzx.my.id/api/d/ytmp4?url=${userVideoData.url}`);
 let { data } = await res.json();
 await conn.sendMessage(m.chat, { video: { url: data.dl }, fileName: `video.mp4`, mimetype: 'video/mp4', caption: `⟡ *${userVideoData.title}*\n> ${wm}`}, { quoted: m || null })
-await m.react(sent);
-await message.react(correct);
 }
 } catch (error) {
 console.error(error);
