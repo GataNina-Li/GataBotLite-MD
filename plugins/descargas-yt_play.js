@@ -35,15 +35,13 @@ await conn.sendMessage(m.chat, {text: caption, contextInfo: { externalAdReply: {
 }
 
 handler.before = async (m, { conn }) => {
-const { key, reaction: emoji } = reaction; 
-if (key.id === sentMessage.key.id && key.remoteJid === m.chat) {        
 const text = m.text.trim().toLowerCase();
-if (!['🎶', 'audio', '📽', 'video'].includes(text)) return;
+if (!['❤️', '🎶', 'audio', '👍', '📽', 'video'].includes(text)) return;
 const userVideoData = tempStorage[m.sender];
 if (!userVideoData || !userVideoData.url) return conn.reply(m.chat, '❌ NO HAY RESULTADO DE LA APIS, INTENTE DE NUEVO POR FAVOR', m || null);
 try {
-if (text === 'audio' || emoji === '❤️') {
-await conn.reply(m.chat, lenguajeGB['smsAvisoIIG']() + lenguajeGB.smsYTA1(), fkontak, m || null)
+if (text === '❤️' || text === 'audio') {
+await conn.reply(m.chat, lenguajeGB.smsYTA1(), fkontak, m || null)
 try {    
 const res = await fetch(`https://api.siputzx.my.id/api/d/ytmp3?url=${userVideoData.url}`);
 let { data } = await res.json();
@@ -86,8 +84,8 @@ const fileSize = await getFileSize(dp.result.media.mp3);
 await conn.sendFile(m.chat, audiop, 'error.mp4', `${gt}`, m)
 } catch (error) {
 }}}}}}
-} else if (text === 'video' || emoji === '👍') {
-await conn.reply(m.chat, lenguajeGB['smsAvisoIIG']() + lenguajeGB.smsYTV1(), fkontak, m || null)
+} else if (text === '👍' || text === 'video') {
+await conn.reply(m.chat, lenguajeGB.smsYTV1(), fkontak, m || null)
 try {
 const res = await fetch(`https://api.siputzx.my.id/api/d/ytmp4?url=${userVideoData.url}`);
 let { data } = await res.json();
@@ -123,7 +121,7 @@ console.error(error);
 } finally {
 delete tempStorage[m.sender];
 }
-}}
+}
 handler.command = /^(play|play2)$/i
 //handler.limit = 2
 handler.register = true 
