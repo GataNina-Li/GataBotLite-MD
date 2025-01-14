@@ -29,15 +29,16 @@ ${yt_play[0].url}
 > Para descargar en audio reaccionar con "❤️" o escribe "audio" 
 > Para descarga en video reacciona con "👍" o escribe "video"`;
 
-tempStorage[m.sender] = { url: yt_play[0].url, title: yt_play[0].title };
-  
-await conn.sendMessage(m.chat, {text: caption, contextInfo: { externalAdReply: {title: wm, body: wait2.replace(/\*/g, ''), thumbnailUrl: yt_play[0].thumbnail, sourceUrl: md, mediaType: 1, showAdAttribution: false, renderLargerThumbnail: true }}});
+let message = await conn.sendMessage(m.chat, {text: caption, contextInfo: { externalAdReply: {title: wm, body: wait2.replace(/\*/g, ''), thumbnailUrl: yt_play[0].thumbnail, sourceUrl: md, mediaType: 1, showAdAttribution: false, renderLargerThumbnail: true }}});
+
+tempStorage[m.sender] = { url: yt_play[0].url, title: yt_play[0].title, resp: message };
 }
 
 handler.before = async (m, { conn }) => {
 const text = m.text.trim().toLowerCase();
 if (!['❤️', '🎶', 'audio', '👍', '📽', 'video'].includes(text)) return;
 const userVideoData = tempStorage[m.sender];
+const gata = tempStorage[m.sender];
 if (!userVideoData || !userVideoData.url) return conn.reply(m.chat, '❌ NO HAY RESULTADO DE LA APIS, INTENTE DE NUEVO POR FAVOR', m || null);
 try {
 if (text === '❤️' || text === 'audio') {
@@ -45,14 +46,14 @@ await conn.reply(m.chat, lenguajeGB.smsYTA1(), fkontak, m || null)
 try {    
 const res = await fetch(`https://api.siputzx.my.id/api/d/ytmp3?url=${userVideoData.url}`);
 let { data } = await res.json();
-await conn.sendMessage(m.chat, { audio: { url: data.dl }, mimetype: 'audio/mpeg' }, { quoted: m ||null });
+await conn.sendMessage(m.chat, { audio: { url: data.dl }, mimetype: 'audio/mpeg' }, { quoted: m ||gata.resp });
 } catch (e1) {
 try {    
 const axeelUrl = `https://axeel.my.id/api/download/audio?url=${userVideoData.url}`;
 const axeelResponse = await fetch(axeelUrl);
 const axeelData = await axeelResponse.json();
 if (!axeelData || !axeelData.downloads?.url) throw new Error();
-await conn.sendMessage(m.chat, { audio: { url: axeelData.downloads.url }, mimetype: 'audio/mpeg' }, { quoted: m });
+await conn.sendMessage(m.chat, { audio: { url: axeelData.downloads.url }, mimetype: 'audio/mpeg' }, { quoted: m || gata.resp });
 } catch {
 try {
 const apiUrl = `${apis}/download/ytmp4?url=${userVideoData.url}`;
@@ -60,7 +61,7 @@ const apiResponse = await fetch(apiUrl);
 const delius = await apiResponse.json();
 if (!delius.status) return 
 const downloadUrl = delius.data.download.url;
-await conn.sendMessage(m.chat, { audio: { url: downloadUrl }, mimetype: 'audio/mpeg' }, { quoted: m });
+await conn.sendMessage(m.chat, { audio: { url: downloadUrl }, mimetype: 'audio/mpeg' }, { quoted: m || gata.resp });
 } catch {
 try {
 const ryzenUrl = `https://api.ryzendesu.vip/api/downloader/ytmp3?url=${userVideoData.url}`;
@@ -68,20 +69,20 @@ const ryzenResponse = await fetch(ryzenUrl);
 const ryzenData = await ryzenResponse.json();
 if (ryzenData.status === 'tunnel' && ryzenData.url) {
 const downloadUrl = ryzenData.url;
-await conn.sendMessage(m.chat, { audio: { url: downloadUrl }, mimetype: 'audio/mpeg' }, { quoted: m });
+await conn.sendMessage(m.chat, { audio: { url: downloadUrl }, mimetype: 'audio/mpeg' }, { quoted: m || gata.resp });
 }
 } catch {
 try {          
 const res = await fetch(`https://api.zenkey.my.id/api/download/ytmp3?apikey=zenkey&url=${userVideoData.url}`);
 let { result } = await res.json();
-await conn.sendMessage(m.chat, { audio: { url: result.download.url }, mimetype: 'audio/mpeg' }, { quoted: m || null });
+await conn.sendMessage(m.chat, { audio: { url: result.download.url }, mimetype: 'audio/mpeg' }, { quoted: m || gata.resp });
 } catch {
 try {   
 let d2 = await fetch(`https://exonity.tech/api/ytdlp2-faster?apikey=adminsepuh&url=${userVideoData.url}`);
 let dp = await d2.json();
 const audiop = await getBuffer(dp.result.media.mp3);
 const fileSize = await getFileSize(dp.result.media.mp3);
-await conn.sendFile(m.chat, audiop, 'error.mp4', `${gt}`, m)
+await conn.sendFile(m.chat, audiop, 'error.mp4', `${gt}`, m || gata.resp)
 } catch (error) {
 }}}}}}
 } else if (text === '👍' || text === 'video') {
@@ -89,14 +90,14 @@ await conn.reply(m.chat, lenguajeGB.smsYTV1(), fkontak, m || null)
 try {
 const res = await fetch(`https://api.siputzx.my.id/api/d/ytmp4?url=${userVideoData.url}`);
 let { data } = await res.json();
-await conn.sendMessage(m.chat, { video: { url: data.dl }, fileName: `video.mp4`, mimetype: 'video/mp4', caption: `⟡ *${userVideoData.title}*\n> ${wm}`}, { quoted: m || null })
+await conn.sendMessage(m.chat, { video: { url: data.dl }, fileName: `video.mp4`, mimetype: 'video/mp4', caption: `⟡ *${userVideoData.title}*\n> ${wm}`}, { quoted: m || gata.resp })
 } catch {
 try {   
 const axeelUrl = `https://axeel.my.id/api/download/audio?url=${userVideoData.url}`;
 const axeelResponse = await fetch(axeelUrl);
 const axeelData = await axeelResponse.json();
 if (!axeelData || !axeelData.downloads?.url) throw new Error();
-await conn.sendFile(m.chat, axeelData.downloads.url, 'error.mp4', `${gt}`, m)
+await conn.sendFile(m.chat, axeelData.downloads.url, 'error.mp4', `${gt}`, m || gata.resp)
 } catch {
 try {   
 const ryzenUrl = `https://api.ryzendesu.vip/api/downloader/ytmp3?url=${userVideoData.url}`;
@@ -104,7 +105,7 @@ const ryzenResponse = await fetch(ryzenUrl);
 const ryzenData = await ryzenResponse.json();
 if (ryzenData.status === 'tunnel' && ryzenData.url) {
 const downloadUrl = ryzenData.url;
-await conn.sendFile(m.chat, downloadUrl, 'error.mp4', `${gt}`, m)
+await conn.sendFile(m.chat, downloadUrl, 'error.mp4', `${gt}`, m || gata.resp)
 }       
 } catch {
 try {   
@@ -112,7 +113,7 @@ let d2 = await fetch(`https://exonity.tech/api/ytdlp2-faster?apikey=adminsepuh&u
 let dp = await d2.json();
 const audiop = await getBuffer(dp.result.media.mp3);
 const fileSize = await getFileSize(dp.result.media.mp3);
-await conn.sendFile(m.chat, audiop, 'error.mp4', `${gt}`, m)
+await conn.sendFile(m.chat, audiop, 'error.mp4', `${gt}`, m || gata.resp)
 } catch (error) {
 }}}}
 }
