@@ -14,7 +14,6 @@ import axios from 'axios'
 import Spotify from "spotifydl-x"
 const LimitAud = 725 * 1024 * 1024; //700MB
 const LimitVid = 425 * 1024 * 1024; //425MB
-let tempStorage = {};
 
 let handler = async (m, { conn, text, usedPrefix, command, args }) => {
 let q, v, yt, dl_url, ttl, size, lolhuman, lolh, n, n2, n3, n4, cap, qu, currentQuality
@@ -64,18 +63,18 @@ reportError(e)
 } 
 break
     
-case isCommand2:
+/*case isCommand2:
 let q, v, yt, dl_url, ttl, size, lolhuman, lolh, n, n2, n3, n4, cap, qu, currentQuality;
 if (!text) return m.reply(lenguajeGB.smsMalused2() + `*${usedPrefix + command} Billie Eilish - Bellyache*`);
 
 try {
 const yt_play = await search(args.join(" "));
-/*let additionalText = '';
+let additionalText = '';
 if (command === 'play') { 
 additionalText = '⬇️ A U D I O ⬇️';
 } else if (command === 'play2') {
 additionalText = '⬇️ V I D E O ⬇️';
-}*/
+}
 
 let caption = `*◜⋯ ⋯ ⋯ Y O U T U B E ⋯ ⋯ ⋯◞*
 *◎ ${lenguajeGB.smsYT1()}*
@@ -89,61 +88,14 @@ ${MilesNumber(yt_play[0].views)}
 
 *◎ URL*
 ${yt_play[0].url}
-*◜⋯ ⋯ ⋯ ${gt} ⋯ ⋯ ⋯◞*
+*◜⋯ ⋯ ⋯ ${additionalText} ⋯ ⋯ ⋯◞*`;
+*/
+//let message = await conn.sendMessage(m.chat, {text: caption, contextInfo: { externalAdReply: {title: wm, body: wait2.replace(/\*/g, ''), thumbnailUrl: yt_play[0].thumbnail, sourceUrl: md, mediaType: 1, showAdAttribution: false, renderLargerThumbnail: true }}});
+/*await m.react(sending);
+await message.react(waitemot);
+setTimeout(() => { message.react(waitemot2); }, 1000);
 
-> Descargar en audio reaccionado a "❤️"
-> Descargar  en video reaccionados a "👍"`;
-
-let message = await conn.sendMessage(m.chat, {text: caption, contextInfo: { externalAdReply: {title: wm, body: wait2.replace(/\*/g, ''), thumbnailUrl: yt_play[0].thumbnail, sourceUrl: md, mediaType: 1, showAdAttribution: false, renderLargerThumbnail: true }}});
-//await m.react(sending);
-//await message.react(waitemot);
-//setTimeout(() => { message.react(waitemot2); }, 1000);
-
-tempStorage[m.sender] = { url: yt_play[0].url, title: yt_play[0].title };
-
-handler.before = async (m, { conn }) => {
-const text = m.text.trim().toLowerCase();
-if (!['🎶', 'audio', '📽', 'video'].includes(text)) return;
-const userVideoData = tempStorage[m.sender];
-if (!userVideoData || !userVideoData.url) return conn.reply(m.chat, '❌ NO HAY RESULTADO DE LA APIS, INTENTE DE NUEVO POR FAVOR', m || null);
-try {
-if (text === '❤️' || text === 'audio') {
-await conn.reply(m.chat, `Espere...`, m || null)
-try {    
-const res = await fetch(`https://api.siputzx.my.id/api/d/ytmp3?url=${userVideoData.url}`);
-let { data } = await res.json();
-await conn.sendMessage(m.chat, { audio: { url: data.dl }, mimetype: 'audio/mpeg' }, { quoted: m ||null });
-} catch (e1) {
-try {    
-const axeelUrl = `https://axeel.my.id/api/download/audio?url=${userVideoData.url}`;
-const axeelResponse = await fetch(axeelUrl);
-const axeelData = await axeelResponse.json();
-if (!axeelData || !axeelData.downloads?.url) throw new Error();
-await conn.sendMessage(m.chat, { audio: { url: axeelData.downloads.url }, mimetype: 'audio/mpeg' }, { quoted: m });
-} catch (e1) {
-try {    
-const res = await fetch(`https://api.zenkey.my.id/api/download/ytmp3?apikey=zenkey&url=${userVideoData.url}`);
-let { result } = await res.json();
-await conn.sendMessage(m.chat, { audio: { url: result.download.url }, mimetype: 'audio/mpeg' }, { quoted: m || null });
-} catch (error) {
-}}}
-} else if (text === '👍' || text === 'video') {
-await conn.reply(m.chat, `Espere...`, m || null)
-const res = await fetch(`https://api.siputzx.my.id/api/d/ytmp4?url=${userVideoData.url}`);
-let { data } = await res.json();
-await conn.sendMessage(m.chat, { video: { url: data.dl }, fileName: `video.mp4`, mimetype: 'video/mp4', caption: `⟡ *${userVideoData.title}*\n> ${wm}`}, { quoted: m || null })
-}
-} catch (error) {
-console.error(error);
-} finally {
-delete tempStorage[m.sender];
-}}
-} catch (error) {
-reportError(error);
-}
-break;
-
-/*if (command == 'play') {
+if (command == 'play') {
 try {
 const apiUrl = `https://deliriussapi-oficial.vercel.app/download/ytmp3?url=${encodeURIComponent(yt_play[0].url)}`;
 const apiResponse = await fetch(apiUrl);
@@ -271,8 +223,7 @@ reportError(e2);
 reportError(error);
 }
 break;
-*/
-            
+*/            
 case isCommand4:
 if (!args[0]) return m.reply(lenguajeGB.smsMalused2() + `*${usedPrefix + command} https://youtu.be/ejemplo*\n*${usedPrefix + command} https://www.youtube.com/ejemplo*`)
 await conn.reply(m.chat, lenguajeGB.smsAvisoEG() + '*' + lenguajeGB.smsYTA1() + '*', m)
