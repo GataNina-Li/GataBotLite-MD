@@ -23,6 +23,9 @@ global.owner = [
 global.mods = [] 
 global.prems = []
 
+// Cambiar a false para desactivar en "auto-reconexion" de sub-bots
+global.gataJadibts = true
+
 // Cambiar a false para usar el Bot desde el mismo numero del Bot.
 global.isBaileysFail = true
 
@@ -111,7 +114,7 @@ global.desc2 = '' //agrega una descripción larga (Solo se aplicará si su whasa
 global.country = '' //agrega tú país ejemplo: 🇪🇨
 
 global.vs = '1.4.0'
-global.vsJB = '5.0'
+global.vsJB = '5.0 (beta)'
 global.gt = '𝙂𝙖𝙩𝙖𝘽𝙤𝙩𝙇𝙞𝙩𝙚-𝙈𝘿'
 
 global.wm = '𝙂𝙖𝙩𝙖𝘽𝙤𝙩𝙇𝙞𝙩𝙚-𝙈𝘿 🌻🐈 : 𝙂𝙖𝙩𝙖 𝘿𝙞𝙤𝙨'
