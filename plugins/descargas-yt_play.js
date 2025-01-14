@@ -29,9 +29,9 @@ ${yt_play[0].url}
 > Para descargar en audio reaccionar con "❤️" o escribe "audio" 
 > Para descarga en video reacciona con "👍" o escribe "video"`;
 
-let message = await conn.sendMessage(m.chat, {text: caption, contextInfo: { externalAdReply: {title: wm, body: wait2.replace(/\*/g, ''), thumbnailUrl: yt_play[0].thumbnail, sourceUrl: md, mediaType: 1, showAdAttribution: false, renderLargerThumbnail: true }}});
+tempStorage[m.sender] = { url: yt_play[0].url, title: yt_play[0].title, resp: m };
 
-tempStorage[m.sender] = { url: yt_play[0].url, title: yt_play[0].title, resp: message };
+await conn.sendMessage(m.chat, {text: caption, contextInfo: { externalAdReply: {title: wm, body: wait2.replace(/\*/g, ''), thumbnailUrl: yt_play[0].thumbnail, sourceUrl: md, mediaType: 1, showAdAttribution: false, renderLargerThumbnail: true }}});
 }
 
 handler.before = async (m, { conn }) => {
