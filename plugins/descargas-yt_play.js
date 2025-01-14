@@ -39,7 +39,7 @@ const text = m.text.trim().toLowerCase();
 if (!['❤️', '🎶', 'audio', '👍', '📽', 'video'].includes(text)) return;
 const userVideoData = tempStorage[m.sender];
 const gata = tempStorage[m.sender];
-if (!userVideoData || !userVideoData.url) return conn.reply(m.chat, '❌ NO HAY RESULTADO DE LA APIS, INTENTE DE NUEVO POR FAVOR', m || null);
+if (!userVideoData || !userVideoData.url) return
 try {
 if (text === '❤️' || text === 'audio') {
 await conn.reply(m.chat, lenguajeGB.smsYTA1(), fkontak, m || null)
