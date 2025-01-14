@@ -1,4 +1,8 @@
-const { proto, generateWAMessage, areJidsSameUser } = (await import('@whiskeysockets/baileys')).default
+const {
+  proto,
+  generateWAMessage,
+  areJidsSameUser,
+} = (await import('@whiskeysockets/baileys')).default;
 
 export async function all(m, chatUpdate) {
   if (m.isBaileys) return;
@@ -12,10 +16,10 @@ export async function all(m, chatUpdate) {
     userJid: this.user.id,
     quoted: m.quoted && m.quoted.fakeObj,
   });
-  messages.key.fromMe = m.isBaileys || (m.sender === m.conn?.user?.jid)
-  messages.key.id = m.key.id
-  messages.pushName = m.pushName
-  if (m.isGroup) messages.participant = m.sender
+  messages.key.fromMe = areJidsSameUser(m.sender, this.user.id);
+  messages.key.id = m.key.id; 
+  messages.pushName = m.pushName;
+  if (m.isGroup) messages.participant = m.sender;
   const msg = {
     ...chatUpdate,
     messages: [proto.WebMessageInfo.fromObject(messages)],
