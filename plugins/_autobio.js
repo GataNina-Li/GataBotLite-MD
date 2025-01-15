@@ -1,7 +1,7 @@
-/*let handler = m => m;
+let handler = m => m;
 handler.all = async function (m) {
 let setting = global.db.data.settings[this.user.jid];
-const INTERVAL = 30 * 60 * 1000;
+const INTERVAL = 30 * 60 * 1000; //se actualizada solo cada 30 minutos 
 
 if (setting.status && (new Date() - setting.status < INTERVAL)) return;
 
@@ -28,4 +28,4 @@ function clockString(ms) {
     let s = isNaN(ms) ? '--' : Math.floor(ms / 1000) % 60;
     return [d, ' » ', h, ' ・ ', m, ' ・ ', s].map(v => v.toString().padStart(2, 0)).join('');
 }
-*/
+
