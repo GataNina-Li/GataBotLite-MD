@@ -44,6 +44,11 @@ try {
 if (text === '❤️' || text === 'audio') {
 await conn.reply(m.chat, lenguajeGB.smsAvisoEG() + lenguajeGB.smsYTA1(), fkontak, m || null); 
 try {
+const res = await fetch(`https://api.siputzx.my.id/api/d/ytmp3?url=${userVideoData.url}`);
+let { data } = await res.json();
+await conn.sendMessage(m.chat, { audio: { url: data.dl }, mimetype: 'audio/mpeg' }, { quoted: gata.resp });
+} catch (e1) {
+try {    
 const res = await fetch(`https://api.vreden.web.id/api/ytmp3?url=${userVideoData.url}`);
 const { data } = await res.json();        
 if (data.status) {
@@ -88,7 +93,7 @@ const audiop = await getBuffer(dp.result.media.mp3);
 const fileSize = await getFileSize(dp.result.media.mp3);
 await conn.sendFile(m.chat, audiop, 'error.mp4', `${gt}`, gata.resp)
 } catch (error) {
-}}}}}}
+}}}}}}}
 } else if (text === '👍' || text === 'video') {
 await conn.reply(m.chat, lenguajeGB.smsAvisoEG() + lenguajeGB.smsYTV1(), fkontak, m || null)
 try {
