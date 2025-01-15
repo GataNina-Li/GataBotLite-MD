@@ -46,11 +46,10 @@ await conn.reply(m.chat, lenguajeGB.smsAvisoEG() + lenguajeGB.smsYTA1(), fkontak
 try {    
 const res = await fetch(`https://api.vreden.web.id/api/ytmp3?url=${userVideoData.url}`);
 const { data } = await res.json();
-if (data.status === 200 && data.result.download.status) {
 const downloadUrl = data.result.download.url;
 const title = data.result.metadata.title;
 await conn.sendMessage(m.chat, { audio: { url: downloadUrl }, mimetype: 'audio/mpeg', fileName: `${title}.mp3` }, { quoted: gata.resp });} 
-} catch (e1) {
+catch (e1) {
 try {    
 const axeelUrl = `https://axeel.my.id/api/download/audio?url=${userVideoData.url}`;
 const axeelResponse = await fetch(axeelUrl);
