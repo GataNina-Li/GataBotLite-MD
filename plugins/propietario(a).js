@@ -2,6 +2,7 @@ import fs from 'fs'
 import { execSync } from 'child_process'
 import { spawn } from 'child_process'
 import chalk from "chalk" 
+import archiver from 'archiver'
 let linkRegex = /chat.whatsapp.com\/([0-9A-Za-z]{20,24})/i
 
 let handler = async (m, { conn, command, usedPrefix, text, isAdmin, isOwner, isROwner, participants, groupMetadata  }) => {
@@ -32,7 +33,57 @@ console.log(e)
 
 switch (true) {     
 case isCommand1:
-await conn.reply(m.sender, lenguajeGB.smsResP1(), fkontak)
+const databaseFolder = './database'
+const zipPath = './database_backup.zip'
+  
+if (!fs.existsSync(databaseFolder)) {
+await m.reply('⚠️ La carpeta *.database* no existe.')
+return
+}
+
+if (conn.user.jid != global.conn.user.jid) {
+if (!fs.existsSync(`./GataJadiBot/${conn.user.jid.split`@`[0]}/creds.json`)) {
+await m.reply('⚠️ El archivo *creds.json* del Sub Bot no existe.')
+return
+}
+} else if (!fs.existsSync('./GataBotSession/creds.json')) {
+await m.reply('⚠️ El archivo *creds.json* no existe.')
+return
+}
+
+await m.reply(`_*🗂️ Preparando envío de base de datos...*_`)
+
+try {
+let d = new Date()
+let date = d.toLocaleDateString('es', { day: 'numeric', month: 'long', year: 'numeric' })
+const path = conn.user.jid != global.conn.user.jid ? `./GataJadiBot/${conn.user.jid.split`@`[0]}/creds.json` : `./GataBotSession/creds.json`
+let creds = await fs.readFileSync(path)
+
+const output = fs.createWriteStream(zipPath)
+const archive = archiver('zip', { zlib: { level: 9 } })
+
+output.on('close', async () => {
+console.log(`Archivo .zip creado: ${archive.pointer()} bytes`)
+
+await conn.reply(m.sender, `*🗓️ Database:* ${date}`, fkontak)
+await conn.sendMessage(m.sender, { document: creds, mimetype: 'application/json', fileName: `creds.json`}, { quoted: m })
+await conn.sendMessage(m.sender, { document: fs.readFileSync(zipPath), mimetype: 'application/zip', fileName: `.database.zip` }, { quoted: m })
+
+fs.unlinkSync(zipPath)
+})
+
+archive.on('error', (err) => {
+throw err
+})
+
+archive.pipe(output);
+archive.directory(databaseFolder, false)
+archive.finalize()
+} catch (e) {
+reportError(e)
+}}
+
+/*await conn.reply(m.sender, lenguajeGB.smsResP1(), fkontak)
 try {
 let d = new Date
 let date = d.toLocaleDateString('fr', { day: 'numeric', month: 'long', year: 'numeric' })
@@ -43,7 +94,7 @@ await conn.sendMessage(m.sender, {document: database, mimetype: 'application/jso
 await conn.sendMessage(m.sender, {document: creds, mimetype: 'application/json', fileName: `creds.json`}, { quoted: m })
 } catch (e) {
 reportError(e)
-}   
+}   */
 break
     
 case isCommand2:
