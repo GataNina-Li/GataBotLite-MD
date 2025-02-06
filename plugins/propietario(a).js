@@ -81,7 +81,7 @@ archive.directory(databaseFolder, false)
 archive.finalize()
 } catch (e) {
 reportError(e)
-}}
+}
 
 /*await conn.reply(m.sender, lenguajeGB.smsResP1(), fkontak)
 try {
