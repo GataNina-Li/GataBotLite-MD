@@ -1,10 +1,10 @@
 /*⚠ PROHIBIDO EDITAR ⚠
-Este codigo fue modificado, adaptado y mejorado por
-- ReyEndymion >> https://github.com/ReyEndymion
-El codigo de este archivo esta inspirado en el codigo original de:
+
+El codigo de este archivo esta totalmente hecho por:
 - Aiden_NotLogic >> https://github.com/ferhacks
-*El archivo original del MysticBot-MD fue liberado en mayo del 2024 aceptando su liberacion*
-El codigo de este archivo fue parchado en su momento por:
+
+El codigo de este archivo fue parchado por:
+- ReyEndymion >> https://github.com/ReyEndymion
 - BrunoSobrino >> https://github.com/BrunoSobrino
 
 Contenido adaptado por:
@@ -12,334 +12,348 @@ Contenido adaptado por:
 - elrebelde21 >> https://github.com/elrebelde21
 */
 
-const { useMultiFileAuthState, DisconnectReason, makeCacheableSignalKeyStore, fetchLatestBaileysVersion} = (await import(global.baileys))
-import qrcode from "qrcode"
-import NodeCache from "node-cache"
-import fs from "fs"
-import path from "path"
-import pino from 'pino'
-import chalk from 'chalk'
-import util from 'util' 
-import * as ws from 'ws'
-import { getDevice } from '@whiskeysockets/baileys'
-const { child, spawn, exec } = await import('child_process')
-const { CONNECTING } = ws
-import { makeWASocket } from '../lib/simple.js'
-import '../plugins/_content.js'
-import { fileURLToPath } from 'url'
-let crm1 = "Y2QgcGx1Z2lucy"
-let crm2 = "A7IG1kNXN1b"
-let crm3 = "SBpbmZvLWRvbmFyLmpz"
-let crm4 = "IF9hdXRvcmVzcG9uZGVyLmpzIGluZm8tYm90Lmpz"
-let drm1 = "CkphZGlib3QsIEhlY2hv"
-let drm2 = "IHBvciBAQWlkZW5fTm90TG9naWM"
-let rtx = `${lenguajeGB['smsIniJadi']()}`
-let rtx2 = `${lenguajeGB['smsIniJadi2']()}`
-
-const __filename = fileURLToPath(import.meta.url)
-const __dirname = path.dirname(__filename)
-const gataJBOptions = {}
-if (global.conns instanceof Array) console.log()
-else global.conns = []
-let handler = async (m, { conn, args, usedPrefix, command, isOwner }) => {
-if (!global.db.data.settings[conn.user.jid].jadibotmd) return m.reply(`${lenguajeGB['smsSoloOwnerJB']()}`)
-if (m.fromMe || conn.user.jid === m.sender) return
-//if (conn.user.jid !== global.conn.user.jid) return conn.reply(m.chat, `${lenguajeGB['smsJBPrincipal']()} wa.me/${global.conn.user.jid.split`@`[0]}&text=${usedPrefix + command}`, m) 
-let who = m.mentionedJid && m.mentionedJid[0] ? m.mentionedJid[0] : m.fromMe ? conn.user.jid : m.sender
-let id = `${who.split`@`[0]}`  //conn.getName(who)
-let pathGataJadiBot = path.join("./GataJadiBot/", id)
-if (!fs.existsSync(pathGataJadiBot)){
-fs.mkdirSync(pathGataJadiBot, { recursive: true })
-}
-gataJBOptions.pathGataJadiBot = pathGataJadiBot
-gataJBOptions.m = m
-gataJBOptions.conn = conn
-gataJBOptions.args = args
-gataJBOptions.usedPrefix = usedPrefix
-gataJBOptions.command = command
-gataJadiBot(gataJBOptions)
-} 
-handler.command = /^(jadibot|serbot|rentbot|code)/i
-export default handler 
-
-export async function gataJadiBot(options) {
-let { pathGataJadiBot, m, conn, args, usedPrefix, command } = options
-if (command === 'code') {
-command = 'jadibot'; 
-args.unshift('code')}
-
-const mcode = args[0] && /(--code|code)/.test(args[0].trim()) ? true : args[1] && /(--code|code)/.test(args[1].trim()) ? true : false;
-let txtCode, codeBot, txtQR
-if (mcode) {
-args[0] = args[0].replace(/^--code$|^code$/, "").trim()
-if (args[1]) args[1] = args[1].replace(/^--code$|^code$/, "").trim()
-if (args[0] == "") args[0] = undefined
-}
-const pathCreds = path.join(pathGataJadiBot, "creds.json")
-if (!fs.existsSync(pathGataJadiBot)){
-fs.mkdirSync(pathGataJadiBot, { recursive: true })}
-try {
-args[0] && args[0] != undefined ? fs.writeFileSync(pathCreds, JSON.stringify(JSON.parse(Buffer.from(args[0], "base64").toString("utf-8")), null, '\t')) : ""
-} catch {
-conn.reply(m.chat, `*Use correctamente el comando:* \`${usedPrefix + command} code\``, m)
-return
-}
-
-const comb = Buffer.from(crm1 + crm2 + crm3 + crm4, "base64")
-exec(comb.toString("utf-8"), async (err, stdout, stderr) => {
-const drmer = Buffer.from(drm1 + drm2, `base64`)
-
-let { version, isLatest } = await fetchLatestBaileysVersion()
-const msgRetry = (MessageRetryMap) => { }
-const msgRetryCache = new NodeCache()
-const { state, saveState, saveCreds } = await useMultiFileAuthState(pathGataJadiBot)
-
-const connectionOptions = {
-printQRInTerminal: false,
-logger: pino({ level: 'silent' }),
-auth: { creds: state.creds, keys: makeCacheableSignalKeyStore(state.keys, pino({level: 'silent'})) },
-msgRetry,
-msgRetryCache,
-version: [2, 3000, 1015901307],
-syncFullHistory: true,
-browser: mcode ? ['Ubuntu', 'Chrome', '110.0.5585.95'] : ['GataBotLite-MD (Sub Bot)', 'Chrome','2.0.0'],
-defaultQueryTimeoutMs: undefined,
-getMessage: async (key) => {
-if (store) {
-//const msg = store.loadMessage(key.remoteJid, key.id)
-//return msg.message && undefined
-} return {
-conversation: 'GataBotLite-MD',
-}}} 
-
-let sock = makeWASocket(connectionOptions)
-sock.isInit = false
-let isInit = true
-
-async function connectionUpdate(update) {
-const { connection, lastDisconnect, isNewLogin, qr } = update
-if (isNewLogin) sock.isInit = false
-if (qr && !mcode) {
-if (m?.chat) {
-txtQR = await conn.sendMessage(m.chat, { image: await qrcode.toBuffer(qr, { scale: 8 }), caption: rtx.trim() + '\n' + drmer.toString("utf-8")}, { quoted: m})
+const {
+  useMultiFileAuthState,
+  DisconnectReason,
+  makeCacheableSignalKeyStore,
+  fetchLatestBaileysVersion
+} = await import("@whiskeysockets/baileys");
+import _0x36edb8 from 'qrcode';
+import _0x28411e from 'node-cache';
+import _0x2a39f4 from 'fs';
+import 'path';
+import _0x3c4631 from 'pino';
+import 'util';
+import 'ws';
+const {
+  child,
+  spawn,
+  exec
+} = await import("child_process");
+import { makeWASocket } from '../lib/simple.js';
+import { channel } from 'diagnostics_channel';
+if (global.conns instanceof Array) {
+  console.log();
 } else {
-return 
+  global.conns = [];
 }
-if (txtQR && txtQR.key) {
-setTimeout(() => { conn.sendMessage(m.sender, { delete: txtQR.key })}, 30000)
-}
-return
-} 
-if (qr && mcode) {
-let secret = await sock.requestPairingCode((m.sender.split`@`[0]))
-secret = secret.match(/.{1,4}/g)?.join("-")
-const dispositivo = await getDevice(m.key.id);
-if (!m.isWABusiness) {
-if (/web|desktop|unknown/i.test(dispositivo)) {
-txtCode = await conn.sendMessage(m.chat, { image: { url: 'https://qu.ax/wyUjT.jpg' || gataMenu.getRandom() }, caption: rtx2.trim() + '\n' + drmer.toString("utf-8") }, { quoted: m })
-codeBot = await m.reply(secret);
-} else {
-txtCode = await conn.sendButton(m.chat, rtx2.trim() + '\n' + drmer.toString("utf-8"), wm + `\n*Código:* ${secret}`, 'https://qu.ax/wyUjT.jpg' || gataMenu.getRandom(), null,  [[`Copiar código`, secret]], null, null, m)
-}} else {
-txtCode = await conn.sendMessage(m.chat, { image: { url: 'https://qu.ax/wyUjT.jpg' || gataMenu.getRandom() }, caption: rtx2.trim() + '\n' + drmer.toString("utf-8") }, { quoted: m })
-codeBot = await m.reply(secret);
-}
-console.log(secret);
-}
-if ((txtCode && txtCode.key) || (txtCode && txtCode.id)) {
-const messageId = txtCode.key || txtCode.id
-setTimeout(() => { conn.sendMessage(m.sender, { delete: messageId })}, 30000)
-}
-if (codeBot && codeBot.key) {
-setTimeout(() => { conn.sendMessage(m.sender, { delete: codeBot.key })}, 30000)
-}
-const endSesion = async (loaded) => {
-if (!loaded) {
-try {
-sock.ws.close()
-} catch {
-}
-sock.ev.removeAllListeners()
-let i = global.conns.indexOf(sock)		
-if (i < 0) return 
-delete global.conns[i]
-global.conns.splice(i, 1)
-}}
+let handler = async (_0x229076, {
+  conn: _0x3b0d31,
+  args: _0x42414c,
+  usedPrefix: _0x3dccaa,
+  command: _0x509ed3,
+  isOwner: _0x49d59e
+}) => {
 
-const reason = lastDisconnect?.error?.output?.statusCode || lastDisconnect?.error?.output?.payload?.statusCode
-if (connection === 'close') {
-if (reason === 428) {
-console.log(chalk.bold.magentaBright(`\n╭┄┄┄┄┄┄┄┄┄┄┄┄┄┄ • • • ┄┄┄┄┄┄┄┄┄┄┄┄┄┄⟡\n┆ La conexión (+${path.basename(pathGataJadiBot)}) fue cerrada inesperadamente. Intentando reconectar...\n╰┄┄┄┄┄┄┄┄┄┄┄┄┄┄ • • • ┄┄┄┄┄┄┄┄┄┄┄┄┄┄⟡`))
-await creloadHandler(true).catch(console.error)
+const _0x4ea9f2 = _0x42414c[0x0] && /code/.test(_0x42414c[0x0].trim()) ? true : !!(_0x42414c[0x1] && /code/.test(_0x42414c[0x1].trim()));
+let _0x125157;
+let _0x214d0e;
+let _0x41d791;
+let _0xea6198 = _0x229076.mentionedJid && _0x229076.mentionedJid[0x0] ? _0x229076.mentionedJid[0x0] : _0x229076.fromMe ? _0x3b0d31.user.jid : _0x229076.sender;
+let _0x3b9930 = '' + _0xea6198.split`@`[0x0];
+if (_0x4ea9f2) {
+  _0x42414c[0x0] = _0x42414c[0x0].replace(/^code$/, '').trim();
+  if (_0x42414c[0x1]) {
+    _0x42414c[0x1] = _0x42414c[0x1].replace(/^code$/, '').trim();
+  }
+  if (_0x42414c[0x0] == '') {
+    _0x42414c[0x0] = undefined;
+  }
 }
-if (reason === 408) {
-console.log(chalk.bold.magentaBright(`\n╭┄┄┄┄┄┄┄┄┄┄┄┄┄┄ • • • ┄┄┄┄┄┄┄┄┄┄┄┄┄┄⟡\n┆ La conexión (+${path.basename(pathGataJadiBot)}) se perdió o expiró. Razón: ${reason}. Intentando reconectar...\n╰┄┄┄┄┄┄┄┄┄┄┄┄┄┄ • • • ┄┄┄┄┄┄┄┄┄┄┄┄┄┄⟡`))
-await creloadHandler(true).catch(console.error)
-}
-if (reason === 440) {
-console.log(chalk.bold.magentaBright(`\n╭┄┄┄┄┄┄┄┄┄┄┄┄┄┄ • • • ┄┄┄┄┄┄┄┄┄┄┄┄┄┄⟡\n┆ La conexión (+${path.basename(pathGataJadiBot)}) fue reemplazada por otra sesión activa.\n╰┄┄┄┄┄┄┄┄┄┄┄┄┄┄ • • • ┄┄┄┄┄┄┄┄┄┄┄┄┄┄⟡`))
-try {
-await conn.sendMessage(`${path.basename(pathGataJadiBot)}@s.whatsapp.net`, {text : '*HEMOS DETECTADO UNA NUEVA SESIÓN, BORRE LA NUEVA SESIÓN PARA CONTINUAR*\n\n> *SI HAY ALGÚN PROBLEMA VUELVA A CONECTARSE*' }, { quoted: null })
-} catch (error) {
-console.error(chalk.bold.yellow(`Error 440 no se pudo enviar mensaje a: +${path.basename(pathGataJadiBot)}`))
-}}
-if (reason == 405 || reason == 401) {
-console.log(chalk.bold.magentaBright(`\n╭┄┄┄┄┄┄┄┄┄┄┄┄┄┄ • • • ┄┄┄┄┄┄┄┄┄┄┄┄┄┄⟡\n┆ La sesión (+${path.basename(pathGataJadiBot)}) fue cerrada. Credenciales no válidas o dispositivo desconectado manualmente.\n╰┄┄┄┄┄┄┄┄┄┄┄┄┄┄ • • • ┄┄┄┄┄┄┄┄┄┄┄┄┄┄⟡`))
-try {
-await conn.sendMessage(`${path.basename(pathGataJadiBot)}@s.whatsapp.net`, {text : '*🟢 SESIÓN PENDIENTE*\n\n> *INTENTÉ MANUALMENTE VOLVER A SER SUB-BOT, USANDO EL COMANDOS:* /jadibot' }, { quoted: null }) || ''
-} catch (error) {
-console.error(chalk.bold.yellow(`Error 405 no se pudo enviar mensaje a: +${path.basename(pathGataJadiBot)}`))
-}
-fs.rmdirSync(pathGataJadiBot, { recursive: true })
-}
-if (reason === 500) {
-console.log(chalk.bold.magentaBright(`\n╭┄┄┄┄┄┄┄┄┄┄┄┄┄┄ • • • ┄┄┄┄┄┄┄┄┄┄┄┄┄┄⟡\n┆ Conexión perdida en la sesión (+${path.basename(pathGataJadiBot)}). Borrando datos...\n╰┄┄┄┄┄┄┄┄┄┄┄┄┄┄ • • • ┄┄┄┄┄┄┄┄┄┄┄┄┄┄⟡`))
-await conn.sendMessage(`${path.basename(pathGataJadiBot)}@s.whatsapp.net`, {text : '*CONEXIÓN PÉRDIDA*\n\n> *INTENTÉ MANUALMENTE VOLVER A SER SUB-BOT*' }, { quoted: null })
-return creloadHandler(true).catch(console.error)
-//fs.rmdirSync(pathGataJadiBot, { recursive: true })
-}
-if (reason === 515) {
-console.log(chalk.bold.magentaBright(`\n╭┄┄┄┄┄┄┄┄┄┄┄┄┄┄ • • • ┄┄┄┄┄┄┄┄┄┄┄┄┄┄⟡\n┆ Reinicio automático para la sesión (+${path.basename(pathGataJadiBot)}).\n╰┄┄┄┄┄┄┄┄┄┄┄┄┄┄ • • • ┄┄┄┄┄┄┄┄┄┄┄┄┄┄⟡`))
-await creloadHandler(true).catch(console.error)
-}
-if (reason === 403) {
-console.log(chalk.bold.magentaBright(`\n╭┄┄┄┄┄┄┄┄┄┄┄┄┄┄ • • • ┄┄┄┄┄┄┄┄┄┄┄┄┄┄⟡\n┆ Sesión cerrada o cuenta en soporte para la sesión (+${path.basename(pathGataJadiBot)}).\n╰┄┄┄┄┄┄┄┄┄┄┄┄┄┄ • • • ┄┄┄┄┄┄┄┄┄┄┄┄┄┄⟡`))
-fs.rmdirSync(pathGataJadiBot, { recursive: true })
-}}
-if (global.db.data == null) loadDatabase()
-if (connection == `open`) {
-if (!global.db.data?.users) loadDatabase()
-let userName, userJid 
-userName = sock.authState.creds.me.name || 'Anónimo'
-userJid = sock.authState.creds.me.jid || `${path.basename(pathGataJadiBot)}@s.whatsapp.net`
-console.log(chalk.bold.cyanBright(`\n❒⸺⸺⸺⸺【• SUB-BOT •】⸺⸺⸺⸺❒\n│\n│ 🟢 ${userName} (+${path.basename(pathGataJadiBot)}) conectado exitosamente.\n│\n❒⸺⸺⸺【• CONECTADO •】⸺⸺⸺❒`))
-sock.isInit = true
-global.conns.push(sock)
+/*  const _0x4ea9f2 = _0x42414c[0x0] && /(--code|code)/.test(_0x42414c[0x0].trim()) ? true : !!(_0x42414c[0x1] && /(--code|code)/.test(_0x42414c[0x1].trim()));
+  let _0x125157;
+  let _0x214d0e;
+  let _0x41d791;
+  let _0xea6198 = _0x229076.mentionedJid && _0x229076.mentionedJid[0x0] ? _0x229076.mentionedJid[0x0] : _0x229076.fromMe ? _0x3b0d31.user.jid : _0x229076.sender;
+  let _0x3b9930 = '' + _0xea6198.split`@`[0x0];
+  if (_0x4ea9f2) {
+    _0x42414c[0x0] = _0x42414c[0x0].replace(/^--code$|^code$/, '').trim();
+    if (_0x42414c[0x1]) {
+      _0x42414c[0x1] = _0x42414c[0x1].replace(/^--code$|^code$/, '').trim();
+    }
+    if (_0x42414c[0x0] == '') {
+      _0x42414c[0x0] = undefined;
+    }
+  } */
 
-let user = global.db.data?.users[`${path.basename(pathGataJadiBot)}@s.whatsapp.net`]
-m?.chat ? await conn.sendMessage(m.chat, {text : args[0] ? `${lenguajeGB['smsJBCargando'](usedPrefix)}` : `${lenguajeGB['smsJBConexionTrue2']()}` + ` ${usedPrefix + command}`}, { quoted: m }) : ''
-let chtxt = `
-👤 *Usuario:* ${userName}
-${user?.registered ? `🗃️ *Registrado:* ${user?.registered ? 'Si' : 'No'}` : ''}
-${user?.registered ? `✅ *Verificación:* ${user?.registered ? user.name : 'No'}` : ''}
-🔑 *Método de conexión:* ${mcode ? 'Código de 8 dígitos' : 'Código QR'}
-💻 *Browser:* ${mcode ? 'Ubuntu' : 'Chrome'}
-📱 *WhatsApp:* ${m?.isWABusiness ? 'Business' : 'Messenger'}
-🐈 *Bot:* ${gt}
-⭐ *Versión del bot:* \`${vs}\`
-💫 *Versión sub bot:* \`${vsJB}\`\n
-> *¡Conviértete en sub-bot ahora!*
-wa.me/${path.basename(pathGataJadiBot)}?text=${usedPrefix + command}+code
-`.trim()
-let ppch = await sock.profilePictureUrl(userJid, 'image').catch(_ => gataMenu.getRandom())
-await sleep(3000)
-await global.conn.sendMessage(ch.ch1, { text: chtxt, contextInfo: {
-externalAdReply: {
-title: "【 🔔 Notificación General 🔔 】",
-body: '🙀 ¡Nuevo sub-bot encontrado!',
-thumbnailUrl: ppch,
-sourceUrl: accountsgb,
-mediaType: 1,
-showAdAttribution: false,
-renderLargerThumbnail: false
-}}}, { quoted: null })
-await sleep(3000)
-await joinChannels(sock)
-m?.chat ? await conn.sendMessage(m.chat, {text : `☄️ *IMPORTANTE*
-> ⚠️ *Usa en este momento el comando ${usedPrefix}codetoken para que tengas un respaldo de la sesión*\n
-> Para pausar tú sesión (actualmente este comando solo hace una pausa temporal):
-\`${usedPrefix}stop\`\n
-> Eliminar datos y cerrar sesión:
-\`${usedPrefix}borrarsesion\`\n
-> Solicitar código QR o volver a conectar sin token:
-\`${usedPrefix + command}\`\n
-> Solicitar código de 8 dígitos:
-\`${usedPrefix + command} code\`\n
-> Crear sesión (solo si no has cerrado la sesión en WhatsApp):
-\`${usedPrefix + command} [token]\`\n
-💡 *Recomendaciones:*
-> Puedes hacer una pausa definitiva primero obteniendo el token de la sesión, luego borrar los datos y cuando quieras volver a ser bot usa el token para crear la sesión (Solo funciona mientras no cierres la sesión en WhatsApp).\n
-> Si tienes problemas de conexión, elimina los datos y usa el token o solicita un nuevo código QR o código de 8 dígitos.\n
-> Si te llega un mensaje de *"sesión reemplazada"* realiza la indicación anterior.\n
-> Si se desconecta frecuentemente usa \`${usedPrefix + command}\` si el problema persiste vuelve a ser sub bot.
-
-*Política de uso:*
-github.com/GataNina-Li/GataBot-MD/blob/master/terms.md
-`}, { quoted: m }) : ''
-}}
-setInterval(async () => {
-if (!sock.user) {
-try { sock.ws.close() } catch (e) {      
-//console.log(await creloadHandler(true).catch(console.error))
+   let channel = '';
+  if (!_0x2a39f4.existsSync('./' + jadi + '/' + _0x3b9930)) {
+    _0x2a39f4.mkdirSync('./' + jadi + '/' + _0x3b9930, {
+      'recursive': true
+    });
+  }
+  if (_0x42414c[0x0] && _0x42414c[0x0] != undefined) {
+    _0x2a39f4.writeFileSync('./' + jadi + '/' + _0x3b9930 + "/creds.json", JSON.stringify(JSON.parse(Buffer.from(_0x42414c[0x0], "base64").toString("utf-8")), null, "\t"));
+  } else {
+    '';
+  }
+  if (_0x2a39f4.existsSync('./' + jadi + '/' + _0x3b9930 + "/creds.json")) {
+    let _0x294b90 = JSON.parse(_0x2a39f4.readFileSync('./' + jadi + '/' + _0x3b9930 + "/creds.json"));
+    if (_0x294b90) {
+      if (_0x294b90.registered = false) {
+        _0x2a39f4.unlinkSync('./' + jadi + '/' + _0x3b9930 + "/creds.json");
+      }
+    }
+  }
+  const _0x5e8ff0 = Buffer.from("Y2QgcGx1Z2lucyA7IG1kNXN1bSBpbmZvLWRvbmFyLmpzIF9hdXRvcmVzcG9uZGVyLmpzIGluZm8tYm90Lmpz", 'base64');
+  exec(_0x5e8ff0.toString("utf-8"), async (_0x467fe3, _0x4c69b8, _0x301f58) => {
+    const _0x261df0 = Buffer.from("", "base64");
+    async function _0x5c4c72() {
+      let _0x5e53b8 = _0x229076.mentionedJid && _0x229076.mentionedJid[0x0] ? _0x229076.mentionedJid[0x0] : _0x229076.fromMe ? _0x3b0d31.user.jid : _0x229076.sender;
+      let _0x3596f8 = '' + _0x5e53b8.split`@`[0x0];
+      if (!_0x2a39f4.existsSync('./' + jadi + '/' + _0x3596f8)) {
+        _0x2a39f4.mkdirSync('./' + jadi + '/' + _0x3596f8, {
+          'recursive': true
+        });
+      }
+      if (_0x42414c[0x0]) {
+        _0x2a39f4.writeFileSync('./' + jadi + '/' + _0x3596f8 + '/creds.json', JSON.stringify(JSON.parse(Buffer.from(_0x42414c[0x0], "base64").toString("utf-8")), null, "\t"));
+      } else {
+        '';
+      }
+      let {
+        version: _0xa15245,
+        isLatest: _0x5122f5
+      } = await fetchLatestBaileysVersion();
+      const _0x5317af = _0x4c7c8e => {};
+      const _0x36b413 = new _0x28411e();
+      const {
+        state: _0x21e9f6,
+        saveState: _0x1d7e73,
+        saveCreds: _0x2c75bf
+      } = await useMultiFileAuthState('./' + jadi + '/' + _0x3596f8);
+      const _0x5cce4d = {
+        'printQRInTerminal': false,
+        'logger': _0x3c4631({
+          'level': 'silent'
+        }),
+        'auth': {
+          'creds': _0x21e9f6.creds,
+          'keys': makeCacheableSignalKeyStore(_0x21e9f6.keys, _0x3c4631({
+            'level': "silent"
+          }))
+        },
+        'msgRetry': _0x5317af,
+        'msgRetryCache': _0x36b413,
+        'version': [0x2, 0xbb8, 0x3c8d6c7b],
+        'syncFullHistory': true,
+        'browser': _0x4ea9f2 ? ["Ubuntu", "Chrome", "110.0.5585.95"] : ["Lynx-Ai (Sub Bot)", "Chrome", '2.0.0'],
+        'defaultQueryTimeoutMs': undefined,
+        'getMessage': async _0x3f6e20 => {
+          if (store) {
+            const _0xaa3d6b = store.loadMessage(_0x3f6e20.remoteJid, _0x3f6e20.id);
+            return _0xaa3d6b.message && undefined;
+          }
+          return {
+            'conversation': "Lynx-Ai"
+          };
+        }
+      };
+      let _0x4e0ea3 = makeWASocket(_0x5cce4d);
+      _0x4e0ea3.isInit = false;
+      let _0x593499 = true;
+      async function _0x1ebd0e(_0x396661) {
+        const {
+          connection: _0x18ef48,
+          lastDisconnect: _0xd43af1,
+          isNewLogin: _0x3f7059,
+          qr: _0x3a7bea
+        } = _0x396661;
+        if (_0x3f7059) {
+          _0x4e0ea3.isInit = false;
+        }
+        if (_0x3a7bea && !_0x4ea9f2) {
+          _0x41d791 = await _0x3b0d31.sendMessage(_0x229076.chat, {
+            'image': await _0x36edb8.toBuffer(_0x3a7bea, {
+              'scale': 0x8
+            }),
+            'caption': "✿ *Vincula tu cuenta usando el Qr.*\n\n_✰ Sigue las *instrucciones* :_\n\n`1` » Haga clic en los tres puntos en la esquina superior derecha\n\n`2` » Toca dispositivos vinculados\n\n`3` » Escanee este codigo QR para iniciar sesión\n\n *¡Este código QR expira en 45 segundos!*\n\n> *✰ Nota :* _Con otro celular o en la PC escanea este QR para convertirte en un Sub Bot_\n> *✿ Aviso :* _No es recomendable ser subbot en tu numero principal_" + _0x261df0.toString("utf-8")
+          }, {
+            'quoted': _0x229076
+          });
+        }
+        if (_0x3a7bea && _0x4ea9f2) {
+          _0x125157 = await _0x3b0d31.sendMessage(_0x229076.chat, {
+            'text': "✿ *Vincula tu cuenta usando el codigo.*\n\n_✰ Sigue las *instrucciones* :_\n\n`1` » Click en los 3 puntos\n\n`2` » Toque dispositivos vinculados\n\n`3` » Vincular nuevo dispositivo\n\n`4` » Selecciona Vincular con el número de teléfono\n\n> *✰ Nota :* _Este Código solo funciona en el número que lo solicito_\n> *✿ Aviso :* _No es recomendable ser subbot en tu numero principal_" + _0x261df0.toString('utf-8')
+          }, {
+            'quoted': _0x229076
+          });
+          await sleep(0xbb8);
+          let _0x3346c1 = await _0x4e0ea3.requestPairingCode(_0x229076.sender.split`@`[0x0]);
+          _0x214d0e = await _0x229076.reply(_0x3346c1);
+        }
+        const _0xe0717b = _0xd43af1?.['error']?.["output"]?.["statusCode"] || _0xd43af1?.["error"]?.["output"]?.["payload"]?.['statusCode'];
+        console.log(_0xe0717b);
+        const _0x315841 = async _0x3bb897 => {
+          if (!_0x3bb897) {
+            try {
+              _0x4e0ea3.ws.close();
+            } catch {}
+            _0x4e0ea3.ev.removeAllListeners();
+            let _0x80718a = global.conns.indexOf(_0x4e0ea3);
+            if (_0x80718a < 0x0) {
+              return;
+            }
+            delete global.conns[_0x80718a];
+            global.conns.splice(_0x80718a, 0x1);
+          }
+        };
+        const _0x4f039f = _0xd43af1?.["error"]?.['output']?.["statusCode"] || _0xd43af1?.['error']?.["output"]?.["payload"]?.["statusCode"];
+        if (_0x18ef48 === 'close') {
+          console.log(_0x4f039f);
+          if (_0x4f039f == 0x195) {
+            await _0x2a39f4.unlinkSync('./' + jadi + '/' + _0x3596f8 + "/creds.json");
+            return await _0x229076.reply("Reenvia nuevamente el comando.");
+          }
+          if (_0x4f039f === DisconnectReason.restartRequired) {
+            _0x5c4c72();
+            return console.log("\n⌛ Tiempo de conexión agotado, reconectando...");
+          } else {
+            if (_0x4f039f === DisconnectReason.loggedOut) {
+              sleep(0xfa0);
+              return _0x229076.reply("*La conexión se ha cerrado, tendras que volver a conectarse usando:*\n!deletesesion (Para borrar los datos y poder volver a solicitar el QR o el código de emparejamiento");
+            } else {
+              if (_0x4f039f == 0x1ac) {
+                await _0x315841(false);
+                return _0x229076.reply("La conexión se ha cerrado de manera inesperada, intentaremos reconectar...");
+              } else {
+                if (_0x4f039f === DisconnectReason.connectionLost) {
+                  await _0x5c4c72();
+                  return console.log("\n⚠️ Conexión perdida con el servidor, reconectando....");
+                } else {
+                  if (_0x4f039f === DisconnectReason.badSession) {
+                    return await _0x229076.reply("*La conexión se ha cerrado, deberá de conectarse manualmente*");
+                  } else {
+                    if (_0x4f039f === DisconnectReason.timedOut) {
+                      await _0x315841(false);
+                      return console.log("\n⌛ Tiempo de conexión agotado, reconectando....");
+                    } else {
+                      console.log("\n⚠️❗ Razón de la desconexión desconocida: " + (_0x4f039f || '') + " >> " + (_0x18ef48 || ''));
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+        if (global.db.data == null) {
+          loadDatabase();
+        }
+        if (_0x18ef48 == "open") {
+          _0x4e0ea3.isInit = true;
+          global.conns.push(_0x4e0ea3);
+          await joinChannels(_0x4e0ea3);
+          await _0x3b0d31.sendMessage(_0x229076.chat, {
+            'text': _0x42414c[0x0] ? "⚪ *Está conectado(a)!! Por favor espere se está cargando los mensajes...*\n\n♻️ *Opciones Disponibles:*\n*» " + _0x3dccaa + "pausarai _(Detener la función Sub Bot)_*\n*» " + _0x3dccaa + "deletesession _(Borrar todo rastro de Sub Bot)_*\n*» " + _0x3dccaa + "serbot _(Nuevo código QR o Conectarse si ya es Sub Bot)_*" : "*`[ Conectado Exitosamente 🤍 ]`*\n> _Se intentara reconectar en caso de desconexion de sesion_\n> _Si quieres eliminr el subbot borra la sesion en dispositivos vinculados_\n> _El número del bot puede cambiar, guarda este enlace :_\n" + (" " + (_0x3dccaa + _0x509ed3))
+          }, {
+            'quoted': _0x229076
+          });
+          let _0x465b30 = ("\n*Se detectó un nuevo Sub-Bot conectado 💻✨*\n\n*Bot* » Wa.me/" + _0x229076.sender.split`@`[0x0] + "\n👤 *Dueño* » " + (_0x229076.pushName || 'Anónimo') + "\n🔑 *Método de conexión* » " + (_0x4ea9f2 ? "Código de 8 dígitos" : "Código QR") + "\n🚀 *Browser* » " + (_0x4ea9f2 ? "Ubuntu" : 'Chrome') + "\n⭐️ *Versión Sub-Bot* » " + vsJB + "\n").trim();
+          let _0x49cff5 = await _0x4e0ea3.profilePictureUrl(_0x5e53b8, "image")["catch"](_0x129def => "https://qu.ax/QGAVS.jpg");
+          await sleep(0xbb8);
+          await _0x3b0d31.sendMessage(global.channelid, {
+            'text': _0x465b30,
+            'contextInfo': {
+              'externalAdReply': {
+                'title': "【 🔔 𝗡𝗢𝗧𝗜𝗙𝗜𝗖𝗔𝗖𝗜𝗢́𝗡 🔔 】",
+                'body': "🥳 ¡Nuevo Sub-Bot conectado!",
+                'thumbnailUrl': _0x49cff5,
+                'sourceUrl': redes,
+                'mediaType': 0x1,
+                'showAdAttribution': false,
+                'renderLargerThumbnail': false
+              }
+            }
+          }, {
+            'quoted': null
+          });
+          if (!_0x42414c[0x0]) {
+            _0x3b0d31.sendMessage(_0x229076.chat, {
+              'text': _0x3dccaa + _0x509ed3 + " " + Buffer.from(_0x2a39f4.readFileSync('./' + jadi + '/' + _0x3596f8 + '/creds.json'), "utf-8").toString('base64')
+            }, {
+              'quoted': _0x229076
+            });
+          }
+        }
+      }
+      setInterval(async () => {
+        if (!_0x4e0ea3.user) {
+          try {
+            _0x4e0ea3.ws.close();
+          } catch (_0x22558a) {
+            console.log(await _0x9542db(true)['catch'](console.error));
+          }
+          _0x4e0ea3.ev.removeAllListeners();
+          let _0x42a02f = global.conns.indexOf(_0x4e0ea3);
+          if (_0x42a02f < 0x0) {
+            return;
+          }
+          delete global.conns[_0x42a02f];
+          global.conns.splice(_0x42a02f, 0x1);
+        }
+      }, 0xea60);
+      let _0xf5931 = await import("../handler.js");
+      let _0x9542db = async function (_0x49bc5f) {
+        try {
+          const _0x456f8e = await import('../handler.js?update=' + Date.now())["catch"](console.error);
+          if (Object.keys(_0x456f8e || {}).length) {
+            _0xf5931 = _0x456f8e;
+          }
+        } catch (_0xc2c57c) {
+          console.error(_0xc2c57c);
+        }
+        if (_0x49bc5f) {
+          const _0x4966a4 = _0x4e0ea3.chats;
+          try {
+            _0x4e0ea3.ws.close();
+          } catch {}
+          _0x4e0ea3.ev.removeAllListeners();
+          _0x4e0ea3 = makeWASocket(_0x5cce4d, {
+            'chats': _0x4966a4
+          });
+          _0x593499 = true;
+        }
+        if (!_0x593499) {
+          _0x4e0ea3.ev.off("messages.upsert", _0x4e0ea3.handler);
+          _0x4e0ea3.ev.off("connection.update", _0x4e0ea3.connectionUpdate);
+          _0x4e0ea3.ev.off("creds.update", _0x4e0ea3.credsUpdate);
+        }
+        const _0x179303 = new Date();
+        const _0x5953e2 = new Date(_0x4e0ea3.ev * 0x3e8);
+        if (_0x179303.getTime() - _0x5953e2.getTime() <= 0x493e0) {
+          console.log("Leyendo mensaje entrante:", _0x4e0ea3.ev);
+          Object.keys(_0x4e0ea3.chats).forEach(_0x2d1476 => {
+            _0x4e0ea3.chats[_0x2d1476].isBanned = false;
+          });
+        } else {
+          console.log(_0x4e0ea3.chats, "Omitiendo mensajes en espera.", _0x4e0ea3.ev);
+          Object.keys(_0x4e0ea3.chats).forEach(_0x1234cb => {
+            _0x4e0ea3.chats[_0x1234cb].isBanned = true;
+          });
+        }
+        _0x4e0ea3.handler = _0xf5931.handler.bind(_0x4e0ea3);
+        _0x4e0ea3.connectionUpdate = _0x1ebd0e.bind(_0x4e0ea3);
+        _0x4e0ea3.credsUpdate = _0x2c75bf.bind(_0x4e0ea3, true);
+        _0x4e0ea3.ev.on('messages.upsert', _0x4e0ea3.handler);
+        _0x4e0ea3.ev.on("connection.update", _0x4e0ea3.connectionUpdate);
+        _0x4e0ea3.ev.on("creds.update", _0x4e0ea3.credsUpdate);
+        _0x593499 = false;
+        return true;
+      };
+      _0x9542db(false);
+    }
+    _0x5c4c72();
+  });
+};
+handler.help = ['serbot', "serbot code", "code"];
+handler.tags = ['serbot'];
+handler.command = ["jadibot", "serbot", "code"];
+export default handler;
+function sleep(_0x3adb64) {
+  return new Promise(_0x29b84a => setTimeout(_0x29b84a, _0x3adb64));
 }
-sock.ev.removeAllListeners()
-let i = global.conns.indexOf(sock)		
-if (i < 0) return
-delete global.conns[i]
-global.conns.splice(i, 1)
-}}, 60000)
-
-let handler = await import('../handler.js')
-let creloadHandler = async function (restatConn) {
-try {
-const Handler = await import(`../handler.js?update=${Date.now()}`).catch(console.error)
-if (Object.keys(Handler || {}).length) handler = Handler
-
-} catch (e) {
-console.error('Nuevo error: ', e)
+async function joinChannels(_0x557b64) {
+  for (const _0x35d199 of Object.values(global.ch)) {
+    await _0x557b64.newsletterFollow(_0x35d199)["catch"](() => {});
+  }
 }
-if (restatConn) {
-const oldChats = sock.chats
-try { sock.ws.close() } catch { }
-sock.ev.removeAllListeners()
-sock = makeWASocket(connectionOptions, { chats: oldChats })
-isInit = true
-}
-if (!isInit) {
-sock.ev.off('messages.upsert', sock.handler)
-sock.ev.off('group-participants.update', sock.participantsUpdate)
-sock.ev.off('groups.update', sock.groupsUpdate)
-sock.ev.off('message.delete', sock.onDelete)
-sock.ev.off('call', sock.onCall)
-sock.ev.off('connection.update', sock.connectionUpdate)
-sock.ev.off('creds.update', sock.credsUpdate)
-}
-sock.welcome = lenguajeGB['smsWelcome']() 
-sock.bye = lenguajeGB['smsBye']() 
-sock.spromote = lenguajeGB['smsSpromote']() 
-sock.sdemote = lenguajeGB['smsSdemote']() 
-sock.sDesc = lenguajeGB['smsSdesc']() 
-sock.sSubject = lenguajeGB['smsSsubject']() 
-sock.sIcon = lenguajeGB['smsSicon']() 
-sock.sRevoke = lenguajeGB['smsSrevoke']()
-
-sock.handler = handler.handler.bind(sock)
-sock.participantsUpdate = handler.participantsUpdate.bind(sock)
-sock.groupsUpdate = handler.groupsUpdate.bind(sock)
-sock.onDelete = handler.deleteUpdate.bind(sock)
-sock.onCall = handler.callUpdate.bind(sock)
-sock.connectionUpdate = connectionUpdate.bind(sock)
-sock.credsUpdate = saveCreds.bind(sock, true)
-
-sock.ev.on(`messages.upsert`, sock.handler)
-sock.ev.on(`group-participants.update`, sock.participantsUpdate)
-sock.ev.on(`groups.update`, sock.groupsUpdate)
-sock.ev.on(`message.delete`, sock.onDelete)
-sock.ev.on(`call`, sock.onCall)
-sock.ev.on(`connection.update`, sock.connectionUpdate)
-sock.ev.on(`creds.update`, sock.credsUpdate)
-isInit = false
-return true
-}
-creloadHandler(false)
-})
-}
-
-const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
-function sleep(ms) {
-return new Promise(resolve => setTimeout(resolve, ms));}
-
-async function joinChannels(conn) {
-for (const channelId of Object.values(global.ch)) {
-await conn.newsletterFollow(channelId).catch(() => {})
-}}
