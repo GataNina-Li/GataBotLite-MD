@@ -6,12 +6,13 @@ El codigo de este archivo esta inspirado en el codigo original de:
 *El archivo original del MysticBot-MD fue liberado en mayo del 2024 aceptando su liberacion*
 El codigo de este archivo fue parchado en su momento por:
 - BrunoSobrino >> https://github.com/BrunoSobrino
-Contenido adaptado para GataBot-MD por:
+
+Contenido adaptado por:
 - GataNina-Li >> https://github.com/GataNina-Li
 - elrebelde21 >> https://github.com/elrebelde21
 */
 
-const { useMultiFileAuthState, DisconnectReason, makeCacheableSignalKeyStore, fetchLatestBaileysVersion} = (await import(global.baileys));
+const { useMultiFileAuthState, DisconnectReason, makeCacheableSignalKeyStore, fetchLatestBaileysVersion} = (await import(global.baileys))
 import qrcode from "qrcode"
 import NodeCache from "node-cache"
 import fs from "fs"
@@ -132,14 +133,18 @@ return
 if (qr && mcode) {
 let secret = await sock.requestPairingCode((m.sender.split`@`[0]))
 secret = secret.match(/.{1,4}/g)?.join("-")
-const dispositivo = await getDevice(m.key.id)
-if (!m.isWABusiness && /web|desktop|unknown/i.test(dispositivo)) {
+const dispositivo = await getDevice(m.key.id);
+if (!m.isWABusiness) {
+if (/web|desktop|unknown/i.test(dispositivo)) {
 txtCode = await conn.sendMessage(m.chat, { image: { url: 'https://qu.ax/wyUjT.jpg' || gataMenu.getRandom() }, caption: rtx2.trim() + '\n' + drmer.toString("utf-8") }, { quoted: m })
-codeBot = await m.reply(secret)
+codeBot = await m.reply(secret);
 } else {
 txtCode = await conn.sendButton(m.chat, rtx2.trim() + '\n' + drmer.toString("utf-8"), wm + `\n*Código:* ${secret}`, 'https://qu.ax/wyUjT.jpg' || gataMenu.getRandom(), null,  [[`Copiar código`, secret]], null, null, m)
+}} else {
+txtCode = await conn.sendMessage(m.chat, { image: { url: 'https://qu.ax/wyUjT.jpg' || gataMenu.getRandom() }, caption: rtx2.trim() + '\n' + drmer.toString("utf-8") }, { quoted: m })
+codeBot = await m.reply(secret);
 }
-console.log(secret)
+console.log(secret);
 }
 if ((txtCode && txtCode.key) || (txtCode && txtCode.id)) {
 const messageId = txtCode.key || txtCode.id
@@ -226,7 +231,7 @@ ${user?.registered ? `✅ *Verificación:* ${user?.registered ? user.name : 'No'
 > *¡Conviértete en sub-bot ahora!*
 wa.me/${path.basename(pathGataJadiBot)}?text=${usedPrefix + command}+code
 `.trim()
-let ppch = await sock.profilePictureUrl(userJid, 'image').catch(_ => gataMenu)
+let ppch = await sock.profilePictureUrl(userJid, 'image').catch(_ => gataMenu.getRandom())
 await sleep(3000)
 await global.conn.sendMessage(ch.ch1, { text: chtxt, contextInfo: {
 externalAdReply: {
