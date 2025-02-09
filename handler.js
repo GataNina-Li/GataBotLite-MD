@@ -192,12 +192,9 @@ await delay(time)
 }, time)
 }
 
-//if (m.isBaileys) return 
-if (m.isBaileys || isBaileysFail && m?.sender === this?.this?.user?.jid) {
-return
-}
-m.exp += Math.ceil(Math.random() * 10)
+if ((m.id.startsWith('NJX-') || (m.id.startsWith('BAE5') && m.id.length === 16) || (m.id.startsWith('B24E') && m.id.length === 20))) return
 
+m.exp += Math.ceil(Math.random() * 10)
 let usedPrefix
 let _user = global.db.data && global.db.data.users && global.db.data.users[m.sender]
 
