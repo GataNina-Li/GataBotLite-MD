@@ -98,7 +98,7 @@ await conn.sendMessage(m.chat, { [typeAudio]: { url: json.data.url }, mimetype: 
 await conn.sendMessage(m.chat, { text: "Error al descargar el Audio" }, { quoted: gata.resp })
 }}}}}}
   
-} else if (typeVideo.type === "video" || typeVideo.type === "document") 
+} else if (typeVideo.type === "video" || typeVideo.type === "document") {
 await conn.reply(m.chat, lenguajeGB.smsAvisoEG() + `*${typeVideo.type === "video" ? lenguajeGB.smsYTV1() : lenguajeGB.smsYTV2()}*`, fkontak, m || null)
 try {
 const response = await fetch(APIs.alyachan.url + `ytv?url=${userVideoData.url}&apikey=${APIs.alyachan.key}`);
@@ -138,7 +138,7 @@ try {
 } catch (error) {
 console.error(error);
 } finally {
-delete tempStorage[m.sender];
+delete tempStorage[m.sender]
 }
 }
 handler.command = /^(play|play2)$/i
