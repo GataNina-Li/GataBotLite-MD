@@ -80,7 +80,7 @@ mediaType: 1,
 sourceUrl: accountsgb }}}, { quoted: fkontak }) 
 } else if (chat.detect && m.messageStubType == 29) {
 await conn.sendMessage(m.chat, { text: admingp, mentions: [`${m.sender}`,`${m.messageStubParameters[0]}`] }, { quoted: fkontak }) 
-} else if (chat.detect && m.messageStubType === 172 && m.messageStubParameters.length > 0) {
+} else if (m.messageStubType === 172) {
 const rawUser = m.messageStubParameters[0];
 const users = rawUser.split('@')[0]; 
 const prefijosProhibidos = ['91', '92', '222', '93', '265', '61', '62', '966', '229', '40', '49', '20', '963', '967', '234', '210', '212'];
@@ -114,8 +114,8 @@ await conn.sendMessage(m.chat, { text: noadmingp, mentions: [`${m.sender}`,`${m.
 //await conn.sendMessage(m.chat, { text: 'Se ha activado el modo de aprobación para unirse al grupo.', mentions: [m.sender] })
 
 } else {
-//console.log({ messageStubType: m.messageStubType,
-//messageStubParameters: m.messageStubParameters,
-//type: WAMessageStubType[m.messageStubType], 
-//})
+console.log({ messageStubType: m.messageStubType,
+messageStubParameters: m.messageStubParameters,
+type: WAMessageStubType[m.messageStubType], 
+})
 }}
