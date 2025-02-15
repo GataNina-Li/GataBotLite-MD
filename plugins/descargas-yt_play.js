@@ -105,7 +105,7 @@ const response = await fetch(APIs.alyachan.url + `ytv?url=${userVideoData.url}&a
 const json = await response.json()
 console.log(json)
 let caption = `🎬 *${json.title}*\n📺 *Canal:* ${json.channel}\n📁 *Calidad:* ${json.data.quality}\n📦 *Tamaño:* ${json.data.size}`
-await conn.sendMessage(m.chat, { video: { url: data.dl }, fileName: `video.mp4`, caption: caption }, { quoted: gata.resp })
+await conn.sendMessage(m.chat, { document: { url: data.dl }, mimetype: 'video/mp4', fileName: `video.mp4`, caption: caption }, { quoted: gata.resp })
 //await conn.sendMessage(m.chat, { [typeVideo.type]: { url: data.dl }, mimetype: 'video/mp4', fileName: json.data.filename, ...(typeVideo.caption && { caption: caption }) }, { quoted: gata.resp })
 //const res = await fetch(`https://api.siputzx.my.id/api/d/ytmp4?url=${userVideoData.url}`);
 //let { data } = await res.json();
