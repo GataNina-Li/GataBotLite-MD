@@ -42,12 +42,16 @@ const userVideoData = tempStorage[m.sender];
 const gata = tempStorage[m.sender];
 if (!userVideoData || !userVideoData.url) return
 try {
-if (text === '❤️' || text === 'audio') {
+if (text === '❤️' || text === 'audio' || text === '🙏' || text === 'audiodoc') {
 await conn.reply(m.chat, lenguajeGB.smsAvisoEG() + `*${lenguajeGB.smsYTA1()}*`, fkontak, m || null)
 try {
 const response = await fetch(APIs.ryzendesu.url + `downloader/ytmp3?url=${userVideoData.url}`)
 const json = await response.json()
+if (text === '❤️' || text === 'audio') {
 await conn.sendMessage(m.chat, { audio: { url: json.url }, mimetype: 'audio/mpeg', fileName: json.filename }, { quoted: gata.resp })
+} else if (text === '🙏' || text === 'audiodoc') {
+await conn.sendMessage(m.chat, { document: { url: json.url }, mimetype: 'audio/mpeg', fileName: json.filename }, { quoted: gata.resp })
+}
 } catch {   
 try {
 const response = await fetch(APIs.delirius.url + `download/ytmp3?url=${userVideoData.url}`)
