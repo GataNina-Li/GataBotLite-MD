@@ -42,9 +42,9 @@ const gata = tempStorage[m.sender];
 if (!userVideoData || !userVideoData.url) return
 try {
 if (text === '❤️' || text === 'audio') {
-await conn.reply(m.chat, lenguajeGB.smsAvisoEG() + lenguajeGB.smsYTA1(), fkontak, m || null)
+await conn.reply(m.chat, lenguajeGB.smsAvisoEG() + `*${lenguajeGB.smsYTA1()}*`, fkontak, m || null)
 try {
-const response = await fetch(`https://api.alyachan.dev/api/yta?url=${userVideoData.url}&apikey=Gata-Dios`)
+const response = await fetch(APIs.alyachan.url + `yta?url=${userVideoData.url}&apikey=${APIs.skizo.key}`)
 const json = await response.json()
 console.log(json)
 await conn.sendMessage(m.chat, { audio: { url: json.data.url }, mimetype: 'audio/mpeg' }, { quoted: gata.resp })
