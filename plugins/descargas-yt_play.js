@@ -43,14 +43,19 @@ if (!userVideoData || !userVideoData.url) return
 try {
 if (text === '❤️' || text === 'audio') {
 await conn.reply(m.chat, lenguajeGB.smsAvisoEG() + `*${lenguajeGB.smsYTA1()}*`, fkontak, m || null)
+try {   
+const response = await fetch(APIs.exonity.url + `dl/ytmp3?url=${userVideoData.url}&apikey=${APIs.exonity.key}`)
+const json = await response.json()
+console.log(json)
+await conn.sendMessage(m.chat, { audio: { url: json.result.dl }, mimetype: 'audio/mpeg', fileName: json.result.title + '.mp3' }, { quoted: gata.resp })
+} catch (error) {
 try {
 const response = await fetch(APIs.alyachan.url + `yta?url=${userVideoData.url}&apikey=${APIs.alyachan.key}`)
 const json = await response.json()
-//await conn.sendMessage(m.chat, { audio: { url: json.data.url }, mimetype: 'audio/mpeg' }, { quoted: gata.resp })
 await conn.sendMessage(m.chat, { audio: { url: json.data.url }, mimetype: 'audio/mpeg', fileName: json.data.filename }, { quoted: gata.resp })
 } catch {   
 try {
-const res = await fetch(`https://api.siputzx.my.id/api/d/ytmp3?url=${userVideoData.url}`);
+const res = await fetch(APIs.siputzx.url + `d/ytmp3?url=${userVideoData.url}`)
 let { data } = await res.json();
 await conn.sendMessage(m.chat, { audio: { url: data.dl }, mimetype: 'audio/mpeg' }, { quoted: gata.resp });
 } catch (e1) { 
@@ -83,13 +88,6 @@ const res = await fetch(`https://api.zenkey.my.id/api/download/ytmp3?apikey=zenk
 let { result } = await res.json();
 await conn.sendMessage(m.chat, { audio: { url: result.download.url }, mimetype: 'audio/mpeg' }, { quoted: gata.resp });
 } catch {
-try {   
-let d2 = await fetch(`https://exonity.tech/api/ytdlp2-faster?apikey=adminsepuh&url=${userVideoData.url}`);
-let dp = await d2.json();
-const audiop = await getBuffer(dp.result.media.mp3);
-const fileSize = await getFileSize(dp.result.media.mp3);
-await conn.sendFile(m.chat, audiop, 'error.mp4', `${gt}`, gata.resp)
-} catch (error) {
 }}}}}*/
 
 }}
