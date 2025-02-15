@@ -36,20 +36,12 @@ await conn.sendMessage(m.chat, {text: caption, contextInfo: { externalAdReply: {
 }
 
 handler.before = async (m, { conn }) => {
-const text = m.text.trim().toLowerCase();
+const text = m.text.trim().toLowerCase()
 if (!['❤️', 'audio', '👍', 'video', '🙏', 'audiodoc', '😮', 'videodoc'].includes(text)) return
-const userVideoData = tempStorage[m.sender];
-const gata = tempStorage[m.sender];
+const userVideoData = tempStorage[m.sender]
+const gata = tempStorage[m.sender]
 if (!userVideoData || !userVideoData.url) return
-try {
-if (text === '❤️' || text === 'audio' || text === '🙏' || text === 'audiodoc') {
-
-if (text === '❤️' || text === 'audio') {
-await conn.reply(m.chat, lenguajeGB.smsAvisoEG() + `*${lenguajeGB.smsYTA1()}*`, fkontak, m || null)
-} else if (text === '🙏' || text === 'audiodoc') {
-await conn.reply(m.chat, lenguajeGB.smsAvisoEG() + `*${lenguajeGB.smsYTA2()}*`, fkontak, m || null)
-}
-
+  
 const optionsAudio = {
 "❤️": "audio",
 "audio": "audio",
@@ -65,7 +57,14 @@ const optionsVideo = {
 "videodoc": "document"
 }
 const typeVideo = optionsVideo[text]
-
+  
+try {
+if (typeAudio === "audio" || typeAudio === "document") {
+if (typeAudio === "audio") {
+await conn.reply(m.chat, lenguajeGB.smsAvisoEG() + `*${lenguajeGB.smsYTA1()}*`, fkontak, m || null)
+} else if (typeAudio === "document") {
+await conn.reply(m.chat, lenguajeGB.smsAvisoEG() + `*${lenguajeGB.smsYTA2()}*`, fkontak, m || null)
+}
 try {
 const response = await fetch(APIs.ryzendesu.url + `downloader/ytmp3?url=${userVideoData.url}`)
 const json = await response.json()
