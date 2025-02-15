@@ -59,7 +59,7 @@ const optionsVideo = {
 const typeVideo = optionsVideo[text]
   
 try {
-if (typeAudio === "audio" || typeAudio === "document") {
+if ((typeAudio === "audio" || typeAudio === "document") && ['❤️', '🙏', 'audio', 'audiodoc'].includes(text)) {
 if (typeAudio === "audio") {
 await conn.reply(m.chat, lenguajeGB.smsAvisoEG() + `*${lenguajeGB.smsYTA1()}*`, fkontak, m || null)
 } else if (typeAudio === "document") {
@@ -98,7 +98,7 @@ await conn.sendMessage(m.chat, { [typeAudio]: { url: json.data.url }, mimetype: 
 await conn.sendMessage(m.chat, { text: "Error al descargar el Audio" }, { quoted: gata.resp })
 }}}}}}
   
-} else if (typeVideo.type === "video" || typeVideo.type === "document") {
+} else if ((typeVideo.type === "video" || typeVideo.type === "document") && ['👍', '😮', 'video', 'videodoc'].includes(text)) {
 await conn.reply(m.chat, lenguajeGB.smsAvisoEG() + `*${typeVideo.type === "video" ? lenguajeGB.smsYTV1() : lenguajeGB.smsYTV2()}*`, fkontak, m || null)
 try {
 const response = await fetch(APIs.alyachan.url + `ytv?url=${userVideoData.url}&apikey=${APIs.alyachan.key}`);
