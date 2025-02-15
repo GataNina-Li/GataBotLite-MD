@@ -53,7 +53,7 @@ await conn.sendMessage(m.chat, { audio: { url: result.download.url }, mimetype: 
 //await conn.sendMessage(m.chat, { audio: { url: json.data.url }, mimetype: 'audio/mpeg' }, { quoted: gata.resp })
 } catch {   
 try {
-const res = await fetch(APIs.vreden.url + `ytmp3?url=${userVideoData.url}`)
+const res = await fetch('https://api.vreden.web.id/api/ytmp3?url=https://youtu.be/TdrL3QxjyVw'/*APIs.vreden.url + `ytmp3?url=${userVideoData.url}`*/)
 const { data } = await res.json()       
 await conn.sendMessage(m.chat, { audio: { url: data.result.download.url },mimetype: 'audio/mpeg', fileName: `${data.result.metadata.title}.mp3`}, { quoted: gata.resp })
 //const res = await fetch(`https://api.siputzx.my.id/api/d/ytmp3?url=${userVideoData.url}`);
