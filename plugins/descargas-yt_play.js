@@ -110,7 +110,7 @@ await conn.sendMessage(m.chat, { [typeVideo.type]: { url: data.dl }, fileName: j
 //let { data } = await res.json();
 //await conn.sendMessage(m.chat, { video: { url: data.dl }, fileName: `video.mp4`, mimetype: 'video/mp4', caption: `⟡ *${userVideoData.title}*\n> ${wm}`}, { quoted: gata.resp })
 } catch {
-try {   
+/*try {   
 const axeelUrl = `https://axeel.my.id/api/download/audio?url=${userVideoData.url}`;
 const axeelResponse = await fetch(axeelUrl);
 const axeelData = await axeelResponse.json();
@@ -125,7 +125,7 @@ if (ryzenData.status === 'tunnel' && ryzenData.url) {
 const downloadUrl = ryzenData.url;
 await conn.sendFile(m.chat, downloadUrl, 'error.mp4', `${gt}`, gata.resp)
 }       
-} catch {
+} catch {*/
 try {   
 //let d2 = await fetch(`https://exonity.tech/api/ytdlp2-faster?apikey=adminsepuh&url=${userVideoData.url}`);
 //let dp = await d2.json();
@@ -133,7 +133,8 @@ try {
 //const fileSize = await getFileSize(dp.result.media.mp3);
 //await conn.sendFile(m.chat, audiop, 'error.mp4', `${gt}`, gata.resp)
 } catch (error) {
-}}}}
+console.log(error)
+}}//}}
 }
 } catch (error) {
 console.error(error);
