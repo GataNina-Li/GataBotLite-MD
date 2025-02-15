@@ -43,15 +43,33 @@ const gata = tempStorage[m.sender];
 if (!userVideoData || !userVideoData.url) return
 try {
 if (text === '❤️' || text === 'audio' || text === '🙏' || text === 'audiodoc') {
+
+if (text === '❤️' || text === 'audio') {
 await conn.reply(m.chat, lenguajeGB.smsAvisoEG() + `*${lenguajeGB.smsYTA1()}*`, fkontak, m || null)
+} else if (text === '🙏' || text === 'audiodoc') {
+await conn.reply(m.chat, lenguajeGB.smsAvisoEG() + `*${lenguajeGB.smsYTA2()}*`, fkontak, m || null)
+}
+
+const optionsAudio = {
+"❤️": "audio",
+"audio": "audio",
+"🙏": "document",
+"audiodoc": "document"
+}
+const typeAudio = optionsAudio[text]
+
+const optionsVideo = {
+"👍": "video",
+"video": "video",
+"😮": "document",
+"videodoc": "document"
+}
+const typeVideo = optionsVideo[text]
+
 try {
 const response = await fetch(APIs.ryzendesu.url + `downloader/ytmp3?url=${userVideoData.url}`)
 const json = await response.json()
-if (text === '❤️' || text === 'audio') {
-await conn.sendMessage(m.chat, { audio: { url: json.url }, mimetype: 'audio/mpeg', fileName: json.filename }, { quoted: gata.resp })
-} else if (text === '🙏' || text === 'audiodoc') {
-await conn.sendMessage(m.chat, { document: { url: json.url }, mimetype: 'audio/mpeg', fileName: json.filename }, { quoted: gata.resp })
-}
+await conn.sendMessage(m.chat, { [typeAudio]: { url: json.url }, mimetype: 'audio/mpeg', fileName: json.filename }, { quoted: gata.resp })
 } catch {   
 try {
 const response = await fetch(APIs.delirius.url + `download/ytmp3?url=${userVideoData.url}`)
