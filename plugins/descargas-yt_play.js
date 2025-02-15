@@ -101,14 +101,17 @@ await conn.sendMessage(m.chat, { text: "Error al descargar el Audio" }, { quoted
 } else if ((typeVideo.type === "video" || typeVideo.type === "document") && ['👍', '😮', 'video', 'videodoc'].includes(text)) {
 await conn.reply(m.chat, lenguajeGB.smsAvisoEG() + `*${typeVideo.type === "video" ? lenguajeGB.smsYTV1() : lenguajeGB.smsYTV2()}*`, fkontak, m || null)
 try {
-const response = await fetch(APIs.alyachan.url + `ytv?url=${userVideoData.url}&apikey=${APIs.alyachan.key}`);
+const response = await fetch(APIs.ryzendesu.url + `downloader/ytmp4?url=${userVideoData.url}&quality=720`)
 const json = await response.json()
 console.log(json)
+let caption = `🎬 *${json.title}*\n📺 *Canal:* ${json.authorUrl}\n📁 *Calidad:* 720p\n📦 *Tamaño:* ${await getFileSize(json.url)}`
+await conn.sendMessage(m.chat, { [typeVideo.type]: { url: json.url }, mimetype: 'video/mp4', fileName: json.filename, ...(typeVideo.caption && { caption: caption }) }, { quoted: gata.resp })
+} catch {
+try {
+const response = await fetch(APIs.alyachan.url + `ytv?url=${userVideoData.url}&apikey=${APIs.alyachan.key}`)
+const json = await response.json()
 let caption = `🎬 *${json.title}*\n📺 *Canal:* ${json.channel}\n📁 *Calidad:* ${json.data.quality}\n📦 *Tamaño:* ${json.data.size}`
 await conn.sendMessage(m.chat, { [typeVideo.type]: { url: json.data.url }, mimetype: 'video/mp4', fileName: json.data.filename, ...(typeVideo.caption && { caption: caption }) }, { quoted: gata.resp })
-//const res = await fetch(`https://api.siputzx.my.id/api/d/ytmp4?url=${userVideoData.url}`);
-//let { data } = await res.json();
-//await conn.sendMessage(m.chat, { video: { url: data.dl }, fileName: `video.mp4`, mimetype: 'video/mp4', caption: `⟡ *${userVideoData.title}*\n> ${wm}`}, { quoted: gata.resp })
 } catch {
 /*try {   
 const axeelUrl = `https://axeel.my.id/api/download/audio?url=${userVideoData.url}`;
@@ -134,7 +137,7 @@ try {
 //await conn.sendFile(m.chat, audiop, 'error.mp4', `${gt}`, gata.resp)
 } catch (error) {
 console.log(error)
-}}//}}
+}}}//}}
 }
 } catch (error) {
 console.error(error);
@@ -187,10 +190,21 @@ async function getFileSize(url) {
 try {
 const response = await fetch(url, { method: 'HEAD' })
 const contentLength = response.headers.get('content-length')
-return contentLength ? parseInt(contentLength, 10) : 0
+if (!contentLength) return "Tamaño no disponible"
+const sizeInBytes = parseInt(contentLength, 10);
+return await formatSize(sizeInBytes)
 } catch (error) {
-console.error("Error al obtener el tamaño del archivo", error)
-return 0
+console.error("Error al obtener el tamaño del archivo:", error)
+return "Error al obtener el tamaño"
+}}
+
+async function formatSize(bytes) {
+if (bytes >= 1e9) {
+return (bytes / 1e9).toFixed(2) + " GB"
+} else if (bytes >= 1e6) {
+return (bytes / 1e6).toFixed(2) + " MB"
+} else {
+return bytes + " bytes"
 }}
 
 async function fetchInvidious(url) {
@@ -204,46 +218,4 @@ return videoInfo
 throw new Error("No se pudo obtener información del video desde Invidious")
 }}
 
-function getBestVideoQuality(videoData) {
-const preferredQualities = ['720p', '360p', 'auto']
-const availableQualities = Object.keys(videoData.video)
-for (let quality of preferredQualities) {
-if (availableQualities.includes(quality)) {
-return videoData.video[quality].quality
-}}
-return '360p'
-}
 
-async function ytMp3(url) {
-return new Promise((resolve, reject) => {
-ytdl.getInfo(url).then(async(getUrl) => {
-let result = [];
-for(let i = 0; i < getUrl.formats.length; i++) {
-let item = getUrl.formats[i];
-if (item.mimeType == 'audio/webm; codecs=\"opus\"') {
-let { contentLength } = item;
-let bytes = await bytesToSize(contentLength);
-result[i] = { audio: item.url, size: bytes }}};
-let resultFix = result.filter(x => x.audio != undefined && x.size != undefined) 
-let tiny = await axios.get(`https://tinyurl.com/api-create.php?url=${resultFix[0].audio}`);
-let tinyUrl = tiny.data;
-let title = getUrl.videoDetails.title;
-let thumb = getUrl.player_response.microformat.playerMicroformatRenderer.thumbnail.thumbnails[0].url;
-resolve({ title, result: tinyUrl, result2: resultFix, thumb })}).catch(reject)})};
-
-async function ytMp4(url) {
-return new Promise(async(resolve, reject) => {
-ytdl.getInfo(url).then(async(getUrl) => {
-let result = [];
-for(let i = 0; i < getUrl.formats.length; i++) {
-let item = getUrl.formats[i];
-if (item.container == 'mp4' && item.hasVideo == true && item.hasAudio == true) {
-let { qualityLabel, contentLength } = item;
-let bytes = await bytesToSize(contentLength);
-result[i] = { video: item.url, quality: qualityLabel, size: bytes }}};
-let resultFix = result.filter(x => x.video != undefined && x.size != undefined && x.quality != undefined) 
-let tiny = await axios.get(`https://tinyurl.com/api-create.php?url=${resultFix[0].video}`);
-let tinyUrl = tiny.data;
-let title = getUrl.videoDetails.title;
-let thumb = getUrl.player_response.microformat.playerMicroformatRenderer.thumbnail.thumbnails[0].url;
-resolve({ title, result: tinyUrl, rersult2: resultFix[0].video, thumb })}).catch(reject)})};
