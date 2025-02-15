@@ -90,7 +90,7 @@ await conn.sendMessage(m.chat, { audio: { url: result.download.url }, mimetype: 
 } catch {
 }}}}}*/
 
-}}
+}}}
 } else if (text === '👍' || text === 'video') {
 await conn.reply(m.chat, lenguajeGB.smsAvisoEG() + lenguajeGB.smsYTV1(), fkontak, m || null)
 try {
