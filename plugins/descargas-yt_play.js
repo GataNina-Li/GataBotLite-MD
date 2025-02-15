@@ -36,19 +36,24 @@ await conn.sendMessage(m.chat, {text: caption, contextInfo: { externalAdReply: {
 
 handler.before = async (m, { conn }) => {
 const text = m.text.trim().toLowerCase();
-if (!['❤️', '🎶', 'audio', '👍', '📽', 'video'].includes(text)) return;
+if (!['❤️', '🎶', 'audio', '👍', '📽', 'video'].includes(text)) return
 const userVideoData = tempStorage[m.sender];
 const gata = tempStorage[m.sender];
 if (!userVideoData || !userVideoData.url) return
 try {
 if (text === '❤️' || text === 'audio') {
 await conn.reply(m.chat, lenguajeGB.smsAvisoEG() + `*${lenguajeGB.smsYTA1()}*`, fkontak, m || null)
+//try {
+//const response = await fetch(APIs.ryzendesu.url + `downloader/ytmp3?url=${userVideoData.url}`)
+//const json = await response.json()
+//await conn.sendMessage(m.chat, { audio: { url: json.url }, mimetype: 'audio/mpeg', fileName: json.filename }, { quoted: gata.resp })
+//} catch {   
 try {
-const response = await fetch(APIs.ryzendesu.url + `downloader/ytmp3?url=${userVideoData.url}`)
+const response = await fetch(APIs.delirius.url + `download/ytmp3?url=${userVideoData.url}`)
 const json = await response.json()
 console.log(json)
-await conn.sendMessage(m.chat, { audio: { url: json.url }, mimetype: 'audio/mpeg', fileName: json.filename }, { quoted: gata.resp })
-} catch {   
+await conn.sendMessage(m.chat, { audio: { url: json.data.download.url }, mimetype: 'audio/mpeg', fileName: json.data.download.filename }, { quoted: gata.resp })
+} catch {
 try {
 const response = await fetch(APIs.alyachan.url + `yta?url=${userVideoData.url}&apikey=${APIs.alyachan.key}`)
 const json = await response.json()
@@ -72,10 +77,6 @@ await conn.sendMessage(m.chat, { audio: { url: result.download.url }, mimetype: 
 await m.reply(`Error: ${e1}`)
 
 /*try {    
-const res = await fetch(APIs.vreden.url + `ytmp3?url=${userVideoData.url}`);
-const { result } = await res.json()
-await conn.sendMessage(m.chat, { audio: { url: result.download.url }, mimetype: 'audio/mpeg', fileName: result.download.filename }, { quoted: gata.resp })
-} catch {
 try {
 const apiUrl = `${apis}/download/ytmp4?url=${userVideoData.url}`
 const apiResponse = await fetch(apiUrl);
