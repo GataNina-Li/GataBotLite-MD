@@ -44,7 +44,7 @@ try {
 if (text === '❤️' || text === 'audio') {
 await conn.reply(m.chat, lenguajeGB.smsAvisoEG() + `*${lenguajeGB.smsYTA1()}*`, fkontak, m || null)
 try {
-const response = await fetch(APIs.alyachan.url + `yta?url=${userVideoData.url}&apikey=${APIs.alyachan.key}`)
+//const response = await fetch(APIs.alyachan.url + `yta?url=${userVideoData.url}&apikey=${APIs.alyachan.key}`)
 const json = await response.json()
 await conn.sendMessage(m.chat, { audio: { url: json.data.url }, mimetype: 'audio/mpeg' }, { quoted: gata.resp })
 } catch {   
