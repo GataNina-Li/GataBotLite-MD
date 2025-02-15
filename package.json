@@ -30,7 +30,7 @@
 "url": "https://github.com/GataNina-Li/GataBotLite-MD/issues" },
 "license": "GPL-3.0-or-later",
 "dependencies": {
-"@whiskeysockets/baileys": "github:kangfarrel/felzar-Baileys",
+"@whiskeysockets/baileys": "github:nstar-y/bail",
 "@adiwajshing/keyed-db": "^0.2.4",
 "@bochilteam/scraper": "^4.2.4",
 "@brandond/findthelyrics": "^2.0.5",
