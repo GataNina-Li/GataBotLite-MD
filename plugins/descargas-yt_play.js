@@ -3,9 +3,7 @@ import fetch from 'node-fetch'
 import yts from 'yt-search'
 import ytdl from 'ytdl-core'
 import axios from 'axios'
-const LimitAud = 725 * 1024 * 1024 //700MB
-const LimitVid = 425 * 1024 * 1024 //425MB
-let tempStorage = {};
+let tempStorage = {}
 
 const handler = async (m, {conn, command, args, text, usedPrefix}) => {
 if (!text) return m.reply(lenguajeGB.smsMalused2() + `*${usedPrefix + command} Billie Eilish - Bellyache*`)
@@ -101,11 +99,12 @@ await conn.sendMessage(m.chat, { text: "Error al descargar el Audio" }, { quoted
 } else if ((typeVideo.type === "video" || typeVideo.type === "document") && ['👍', '😮', 'video', 'videodoc'].includes(text)) {
 await conn.reply(m.chat, lenguajeGB.smsAvisoEG() + `*${typeVideo.type === "video" ? lenguajeGB.smsYTV1() : lenguajeGB.smsYTV2()}*`, fkontak, m || null)
 try {
-const response = await fetch(APIs.ryzendesu.url + `downloader/ytmp4?url=${userVideoData.url}&quality=720`)
+const response = await fetch(APIs.delirius.url + `download/ytmp4?url=${userVideoData.url}`)
 const json = await response.json()
 console.log(json)
-let caption = `🎬 *${json.title}*\n📺 *Canal:* ${json.authorUrl}\n📁 *Calidad:* 720p\n📦 *Tamaño:* ${await getFileSize(json.url)}`
-await conn.sendMessage(m.chat, { [typeVideo.type]: { url: json.url }, mimetype: 'video/mp4', fileName: json.filename, ...(typeVideo.caption && { caption: caption }) }, { quoted: gata.resp })
+let caption = `🎬 *${json.data.title}*\n📺 *Canal:* ${json.data.author}\n📁 *Calidad:* ${json.data.download.quality}\n📦 *Tamaño:* ${json.data.download.size}`
+await conn.sendMessage(m.chat, { [typeVideo.type]: { url: json.data.download.url }, mimetype: 'video/mp4', fileName: json.data.download.filename, ...(typeVideo.caption && { caption: caption }) }, { quoted: gata.resp })
+  
 } catch {
 try {
 const response = await fetch(APIs.alyachan.url + `ytv?url=${userVideoData.url}&apikey=${APIs.alyachan.key}`)
@@ -113,6 +112,11 @@ const json = await response.json()
 let caption = `🎬 *${json.title}*\n📺 *Canal:* ${json.channel}\n📁 *Calidad:* ${json.data.quality}\n📦 *Tamaño:* ${json.data.size}`
 await conn.sendMessage(m.chat, { [typeVideo.type]: { url: json.data.url }, mimetype: 'video/mp4', fileName: json.data.filename, ...(typeVideo.caption && { caption: caption }) }, { quoted: gata.resp })
 } catch {
+try {
+const response = await fetch(APIs.ryzendesu.url + `downloader/ytmp4?url=${userVideoData.url}&quality=720`)
+const json = await response.json()
+let caption = `🎬 *${json.title}*\n📺 *Canal:* ${json.authorUrl}\n📁 *Calidad:* 720p\n📦 *Tamaño:* ${await getFileSize(json.url)}`
+await conn.sendMessage(m.chat, { [typeVideo.type]: { url: json.url }, mimetype: 'video/mp4', fileName: json.filename, ...(typeVideo.caption && { caption: caption }) }, { quoted: gata.resp })
 /*try {   
 const axeelUrl = `https://axeel.my.id/api/download/audio?url=${userVideoData.url}`;
 const axeelResponse = await fetch(axeelUrl);
@@ -129,6 +133,7 @@ const downloadUrl = ryzenData.url;
 await conn.sendFile(m.chat, downloadUrl, 'error.mp4', `${gt}`, gata.resp)
 }       
 } catch {*/
+} catch {
 try {   
 //let d2 = await fetch(`https://exonity.tech/api/ytdlp2-faster?apikey=adminsepuh&url=${userVideoData.url}`);
 //let dp = await d2.json();
@@ -137,54 +142,23 @@ try {
 //await conn.sendFile(m.chat, audiop, 'error.mp4', `${gt}`, gata.resp)
 } catch (error) {
 console.log(error)
-}}}//}}
+}}}}//}}
 }
 } catch (error) {
 console.error(error);
 } finally {
 delete tempStorage[m.sender]
 }
+  
 }
 handler.command = /^(play|play2)$/i
-//handler.limit = 2
 handler.register = true 
 export default handler
 
 async function search(query, options = {}) {
-const search = await yts.search({query, hl: 'es', gl: 'ES', ...options});
-return search.videos;
+const search = await yts.search({query, hl: 'es', gl: 'ES', ...options})
+return search.videos
 }
-
-function MilesNumber(number) {
-const exp = /(\d)(?=(\d{3})+(?!\d))/g;
-const rep = '$1.';
-const arr = number.toString().split('.');
-arr[0] = arr[0].replace(exp, rep);
-return arr[1] ? arr.join('.') : arr[0];
-}
-
-function secondString(seconds) {
-seconds = Number(seconds);
-const d = Math.floor(seconds / (3600 * 24));
-const h = Math.floor((seconds % (3600 * 24)) / 3600);
-const m = Math.floor((seconds % 3600) / 60);
-const s = Math.floor(seconds % 60);
-const dDisplay = d > 0 ? d + (d == 1 ? ' día, ' : ' días, ') : '';
-const hDisplay = h > 0 ? h + (h == 1 ? ' hora, ' : ' horas, ') : '';
-const mDisplay = m > 0 ? m + (m == 1 ? ' minuto, ' : ' minutos, ') : '';
-const sDisplay = s > 0 ? s + (s == 1 ? ' segundo' : ' segundos') : '';
-return dDisplay + hDisplay + mDisplay + sDisplay;
-}
-  
-const getBuffer = async (url) => {
-try {
-const response = await fetch(url);
-const buffer = await response.arrayBuffer();
-return Buffer.from(buffer);
-} catch (error) {
-console.error("Error al obtener el buffer", error);
-throw new Error("Error al obtener el buffer");
-}}
 
 async function getFileSize(url) {
 try {
