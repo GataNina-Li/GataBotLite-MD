@@ -63,6 +63,7 @@ try {
 const res = await fetch(APIs.siputzx.url + `d/ytmp3?url=${userVideoData.url}`)
 let { data } = await res.json();
 await conn.sendMessage(m.chat, { audio: { url: data.dl }, mimetype: 'audio/mpeg' }, { quoted: gata.resp })
+} catch {
 try {    
 const res = await fetch(APIs.vreden.url + `ytmp3?url=${userVideoData.url}`);
 const { result } = await res.json()
