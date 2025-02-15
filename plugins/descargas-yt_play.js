@@ -44,16 +44,19 @@ try {
 if (text === '❤️' || text === 'audio') {
 await conn.reply(m.chat, lenguajeGB.smsAvisoEG() + `*${lenguajeGB.smsYTA1()}*`, fkontak, m || null)
 try {
-const response = await fetch(APIs.alyachan.url + `yta?url=${userVideoData.url}&apikey=${APIs.alyachan.key}`)
-  //fetch(`https://api.alyachan.dev/api/yta?url=${userVideoData.url}&apikey=Gata-Dios`) //fetch(APIs.alyachan.url + `yta?url=${userVideoData.url}&apikey=${APIs.skizo.key}`)
+//const response = await fetch(APIs.alyachan.url + `yta?url=${userVideoData.url}&apikey=${APIs.alyachan.key}`)
 const json = await response.json()
 console.log(json)
 await conn.sendMessage(m.chat, { audio: { url: json.data.url }, mimetype: 'audio/mpeg' }, { quoted: gata.resp })
 } catch {   
 try {
-const res = await fetch(`https://api.siputzx.my.id/api/d/ytmp3?url=${userVideoData.url}`);
-let { data } = await res.json();
-await conn.sendMessage(m.chat, { audio: { url: data.dl }, mimetype: 'audio/mpeg' }, { quoted: gata.resp });
+const res = await fetch(APIs.vreden.url + `ytmp3?url=${userVideoData.url}`)
+const { data } = await res.json()       
+console.log(data) 
+await conn.sendMessage(m.chat, { audio: { url: data.result.download.url },mimetype: 'audio/mpeg', fileName: `${data.result.metadata.title}.mp3`}, { quoted: gata.resp })
+//const res = await fetch(`https://api.siputzx.my.id/api/d/ytmp3?url=${userVideoData.url}`);
+//let { data } = await res.json();
+//await conn.sendMessage(m.chat, { audio: { url: data.dl }, mimetype: 'audio/mpeg' }, { quoted: gata.resp });
 } catch (e1) { 
 await m.reply(`Error: ${e1}`)
 
