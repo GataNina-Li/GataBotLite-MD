@@ -58,14 +58,15 @@ global.keysneoxr = keysneoxrrr[Math.floor(keysneoxrrr.length * Math.random())]
 global.lolkeysapi = 'GataDiosV3'
 global.itsrose = ['4b146102c4d500809da9d1ff']
 global.baileys = '@whiskeysockets/baileys'
-global.apis = 'https://delirius-apiofc.vercel.app'
 
 global.APIs = { 
 lolhuman: { url: 'https://api.lolhuman.xyz/api/', key: lolkeysapi },
 neoxr: { url: 'https://api.neoxr.eu/api/', key: null },
 skizo: { url: 'https://skizo.tech/api/', key: 'GataDios' },
 aemt: { url: 'https://widipe.com/', key: null },
-alyachan: { url: 'https://api.alyachan.dev/api/', key: 'Gata-Dios' },
+alyachan: { url: 'https://api.alyachan.dev/api/', key: 'Gata-Dios' }, 
+vreden: { url: 'https://api.vreden.web.id/api/', key: null },
+delirius: { url: 'https://delirius-apiofc.vercel.app/', key: null },
 zahwazein: { url: 'https://api.zahwazein.xyz', key: null },
 akuari: { url: 'https://apimu.my.id', key: null },
 apimu: { url: 'https://api.xteam.xyz', key: null },
