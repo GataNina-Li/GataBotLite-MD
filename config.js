@@ -61,10 +61,12 @@ global.baileys = '@whiskeysockets/baileys'
 
 global.APIs = { 
 lolhuman: { url: 'https://api.lolhuman.xyz/api/', key: lolkeysapi },
-neoxr: { url: 'https://api.neoxr.eu/api/', key: null },
 skizo: { url: 'https://skizo.tech/api/', key: 'GataDios' },
-aemt: { url: 'https://widipe.com/', key: null },
 alyachan: { url: 'https://api.alyachan.dev/api/', key: 'Gata-Dios' }, 
+exonity: { url: 'https://exonity.tech/api/', key: 'GataDios' },
+neoxr: { url: 'https://api.neoxr.eu/api/', key: null },
+aemt: { url: 'https://widipe.com/', key: null },
+siputzx: { url: 'https://api.siputzx.my.id/api/', key: null },
 vreden: { url: 'https://api.vreden.web.id/api/', key: null },
 delirius: { url: 'https://delirius-apiofc.vercel.app/', key: null },
 zahwazein: { url: 'https://api.zahwazein.xyz', key: null },
