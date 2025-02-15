@@ -44,6 +44,12 @@ try {
 if (text === '❤️' || text === 'audio') {
 await conn.reply(m.chat, lenguajeGB.smsAvisoEG() + lenguajeGB.smsYTA1(), fkontak, m || null)
 try {
+const response = await fetch(`https://api.alyachan.dev/api/yta?url=${userVideoData.url}&apikey=Gata-Dios`)
+const json = await response.json()
+console.log(json)
+await conn.sendMessage(m.chat, { audio: { url: json.data.url }, mimetype: 'audio/mpeg' }, { quoted: gata.resp })
+} catch {   
+try {
 const res = await fetch(`https://api.siputzx.my.id/api/d/ytmp3?url=${userVideoData.url}`);
 let { data } = await res.json();
 await conn.sendMessage(m.chat, { audio: { url: data.dl }, mimetype: 'audio/mpeg' }, { quoted: gata.resp });
@@ -97,7 +103,7 @@ await conn.sendFile(m.chat, audiop, 'error.mp4', `${gt}`, gata.resp)
 } catch (error) {
 }}}}}*/
 
-}
+}}
 } else if (text === '👍' || text === 'video') {
 await conn.reply(m.chat, lenguajeGB.smsAvisoEG() + lenguajeGB.smsYTV1(), fkontak, m || null)
 try {
