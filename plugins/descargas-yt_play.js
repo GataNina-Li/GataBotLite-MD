@@ -44,9 +44,12 @@ try {
 if (text === '❤️' || text === 'audio') {
 await conn.reply(m.chat, lenguajeGB.smsAvisoEG() + `*${lenguajeGB.smsYTA1()}*`, fkontak, m || null)
 try {
+const res = await fetch(APIs.vreden.url + `ytmp3?url=${userVideoData.url}`)
+const { data } = await res.json()       
+await conn.sendMessage(m.chat, { audio: { url: data.result.download.url },mimetype: 'audio/mpeg', fileName: `${data.result.metadata.title}.mp3`}, { quoted: gata.resp })
 //const response = await fetch(APIs.alyachan.url + `yta?url=${userVideoData.url}&apikey=${APIs.alyachan.key}`)
-const json = await response.json()
-await conn.sendMessage(m.chat, { audio: { url: json.data.url }, mimetype: 'audio/mpeg' }, { quoted: gata.resp })
+//const json = await response.json()
+//await conn.sendMessage(m.chat, { audio: { url: json.data.url }, mimetype: 'audio/mpeg' }, { quoted: gata.resp })
 } catch {   
 try {
 const res = await fetch(APIs.vreden.url + `ytmp3?url=${userVideoData.url}`)
