@@ -47,7 +47,8 @@ try {
 const res = await fetch(`https://api.siputzx.my.id/api/d/ytmp3?url=${userVideoData.url}`);
 let { data } = await res.json();
 await conn.sendMessage(m.chat, { audio: { url: data.dl }, mimetype: 'audio/mpeg' }, { quoted: gata.resp });
-} catch (e1) {
+} catch (e1) { 
+await m.reply('Error: ', e1)
 /*try {    
 const res = await fetch(`https://api.vreden.web.id/api/ytmp3?url=${userVideoData.url}`);
 const { data } = await res.json();        
