@@ -73,30 +73,31 @@ await conn.sendMessage(m.chat, { [typeAudio]: { url: json.url }, mimetype: 'audi
 try {
 const response = await fetch(APIs.delirius.url + `download/ytmp3?url=${userVideoData.url}`)
 const json = await response.json()
-await conn.sendMessage(m.chat, { audio: { url: json.data.download.url }, mimetype: 'audio/mpeg', fileName: json.data.download.filename }, { quoted: gata.resp })
+await conn.sendMessage(m.chat, { [typeAudio]: { url: json.data.download.url }, mimetype: 'audio/mpeg', fileName: json.data.download.filename }, { quoted: gata.resp })
 } catch {
 try {
 const res = await fetch(APIs.vreden.url + `ytmp3?url=${userVideoData.url}`);
 const { result } = await res.json()
-await conn.sendMessage(m.chat, { audio: { url: result.download.url }, mimetype: 'audio/mpeg', fileName: result.download.filename }, { quoted: gata.resp })
+await conn.sendMessage(m.chat, { [typeAudio]: { url: result.download.url }, mimetype: 'audio/mpeg', fileName: result.download.filename }, { quoted: gata.resp })
 } catch {   
 try {   
 const response = await fetch(APIs.exonity.url + `dl/ytmp3?url=${userVideoData.url}&apikey=${APIs.exonity.key}`)
 const json = await response.json()
-await conn.sendMessage(m.chat, { audio: { url: json.result.dl }, mimetype: 'audio/mpeg', fileName: json.result.title + '.mp3' }, { quoted: gata.resp })
+await conn.sendMessage(m.chat, { [typeAudio]: { url: json.result.dl }, mimetype: 'audio/mpeg', fileName: json.result.title + '.mp3' }, { quoted: gata.resp })
 } catch {
 try {
 const res = await fetch(APIs.siputzx.url + `d/ytmp3?url=${userVideoData.url}`)
 let { data } = await res.json();
-await conn.sendMessage(m.chat, { audio: { url: data.dl }, mimetype: 'audio/mpeg' }, { quoted: gata.resp })
+await conn.sendMessage(m.chat, { [typeAudio]: { url: data.dl }, mimetype: 'audio/mpeg' }, { quoted: gata.resp })
 } catch {
 try {   
 const response = await fetch(APIs.alyachan.url + `yta?url=${userVideoData.url}&apikey=${APIs.alyachan.key}`)
 const json = await response.json()
-await conn.sendMessage(m.chat, { audio: { url: json.data.url }, mimetype: 'audio/mpeg', fileName: json.data.filename }, { quoted: gata.resp })
+await conn.sendMessage(m.chat, { [typeAudio]: { url: json.data.url }, mimetype: 'audio/mpeg', fileName: json.data.filename }, { quoted: gata.resp })
 } catch { 
 await conn.sendMessage(m.chat, { text: "Error al descargar el Audio" }, { quoted: gata.resp })
 }}}}}}
+  
 } else if (text === '👍' || text === 'video') {
 await conn.reply(m.chat, lenguajeGB.smsAvisoEG() + lenguajeGB.smsYTV1(), fkontak, m || null)
 try {
