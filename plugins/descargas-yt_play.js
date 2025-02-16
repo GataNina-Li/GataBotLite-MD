@@ -18,9 +18,8 @@ if (videoIdToFind) {
 const videoId = videoIdToFind[1]  
 ytplay2 = ytplay2.all.find(item => item.videoId === videoId) || ytplay2.videos.find(item => item.videoId === videoId)
 } 
-ytplay2 = Array.isArray(ytplay2) ? ytplay2[0] : ytplay2  
-console.log(ytplay2)  
-console.log(ytplay2?.all?.[0]?.views)
+ytplay2 = ytplay2.all?.[0] || ytplay2.videos?.[0] || ytplay2  
+
 let caption = `*◜⋯ ⋯ ⋯ Y O U T U B E ⋯ ⋯ ⋯◞*
 *◎ ${lenguajeGB.smsYT1()}*
 ${ytplay2?.title}
