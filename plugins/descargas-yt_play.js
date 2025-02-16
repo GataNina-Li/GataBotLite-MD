@@ -17,6 +17,7 @@ let ytplay2 = await yts(videoIdToFind ? 'https://youtu.be/' + videoIdToFind[1] :
 if (videoIdToFind) {
 const videoId = videoIdToFind[1]  
 ytplay2 = ytplay2.all.find(item => item.videoId === videoId) || ytplay2.videos.find(item => item.videoId === videoId)
+console.log(ytplay2)
 } 
 ytplay2 = Array.isArray(ytplay2) ? ytplay2[0] : ytplay2  
   
