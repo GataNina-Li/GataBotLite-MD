@@ -28,7 +28,7 @@ ${yt_play[0].url}
 > "👍" o "video" → *Video*
 > "🙏" o "audiodoc" → *Audio (doc)*
 > "😮" o "videodoc" → *Video (doc)*`
-tempStorage[m.sender] = { url: yt_play[0].url, title: yt_play[0].title, resp: m }
+tempStorage[m.sender] = { url: yt_play[0].url, title: yt_play[0].title, resp: m, usedPrefix: usedPrefix, command: command }
 
 await conn.sendMessage(m.chat, {text: caption, contextInfo: { externalAdReply: { title: wm, body: wait2.replace(/\*/g, ''), thumbnailUrl: yt_play[0].thumbnail, sourceUrl: md, mediaType: 1, showAdAttribution: false, renderLargerThumbnail: true }}});
 }
@@ -92,19 +92,12 @@ try {
 const response = await fetch(APIs.alyachan.url + `yta?url=${userVideoData.url}&apikey=${APIs.alyachan.key}`)
 const json = await response.json()
 await conn.sendMessage(m.chat, { [typeAudio]: { url: json.data.url }, mimetype: 'audio/mpeg', fileName: json.data.filename }, { quoted: gata.resp })
-} catch { 
-await conn.sendMessage(m.chat, { text: "Error al descargar el Audio" }, { quoted: gata.resp })
+} catch (e) { 
+reportError(e, conn, m, gata)
 }}}}}}
   
 } else if ((typeVideo.type === "video" || typeVideo.type === "document") && ['👍', '😮', 'video', 'videodoc'].includes(text)) {
 await conn.reply(m.chat, lenguajeGB.smsAvisoEG() + `*${typeVideo.type === "video" ? lenguajeGB.smsYTV1() : lenguajeGB.smsYTV2()}*`, fkontak, m || null)
-try {
-const response = await fetch(APIs.exonity.url + `dl/ytmp4?url=${userVideoData.url}&apikey=${APIs.exonity.key}`)
-const json = await response.json()
-console.log(json)
-let caption = `🎬 *${json.result.title}*`
-await conn.sendMessage(m.chat, { [typeVideo.type]: { url: json.result.dl }, mimetype: 'video/mp4', fileName: json.result.title + '.mp4', ...(typeVideo.caption && { caption: caption }) }, { quoted: gata.resp })
-} catch {
 try {
 const response = await fetch(APIs.delirius.url + `download/ytmp4?url=${userVideoData.url}`)
 const json = await response.json()
@@ -125,25 +118,31 @@ let caption = `🎬 *${json.title}*\n📺 *Canal:* ${json.authorUrl}\n📁 *Cali
 await conn.sendMessage(m.chat, { [typeVideo.type]: { url: json.url }, mimetype: 'video/mp4', fileName: json.filename, ...(typeVideo.caption && { caption: caption }) }, { quoted: gata.resp })
 } catch {
 try {   
-//let d2 = await fetch(`https://exonity.tech/api/ytdlp2-faster?apikey=adminsepuh&url=${userVideoData.url}`);
-//let dp = await d2.json();
-//const audiop = await getBuffer(dp.result.media.mp3);
-//const fileSize = await getFileSize(dp.result.media.mp3);
-//await conn.sendFile(m.chat, audiop, 'error.mp4', `${gt}`, gata.resp)
+const response = await fetch(APIs.exonity.url + `dl/ytmp4?url=${userVideoData.url}&apikey=${APIs.exonity.key}`)
+const json = await response.json()
+let caption = `🎬 *${json.result.title}*`
+await conn.sendMessage(m.chat, { [typeVideo.type]: { url: json.result.dl }, mimetype: 'video/mp4', fileName: json.result.title + '.mp4', ...(typeVideo.caption && { caption: caption }) }, { quoted: gata.resp })
+} catch (e) {
+reportError(e, conn, m, gata)
+}}}}
+}
+
 } catch (error) {
 console.log(error)
-}}}}}//}
-}
-} catch (error) {
-console.error(error);
 } finally {
 delete tempStorage[m.sender]
-}
-  
-}
+}}
 handler.command = /^(play|play2)$/i
 handler.register = true 
 export default handler
+
+async function reportError(e, conn, m, gata) {
+let errb = await m.reply(lenguajeGB['smsMalError3']() + '\n*' + lenguajeGB.smsMensError1() + '*\n*' + gata.usedPrefix + `${lenguajeGB.lenguaje() == 'es' ? 'reporte' : 'report'}` + '* ' + `${lenguajeGB.smsMensError2()} ` + gata.usedPrefix + gata.command)
+await console.log(`❗❗ ${lenguajeGB['smsMensError2']()} ${gata.usedPrefix + gata.command} ❗❗`)
+await console.log(e)
+let faultkey = await conn.sendMessage(m.chat, { react: { text: fault, key: errb.key }})
+await m.react(notsent)
+}
 
 async function search(query, options = {}) {
 const search = await yts.search({query, hl: 'es', gl: 'ES', ...options})
@@ -190,15 +189,4 @@ return (bytes / 1e9).toFixed(2) + " GB"
 return (bytes / 1e6).toFixed(2) + " MB"
 } else {
 return bytes + " bytes"
-}}
-
-async function fetchInvidious(url) {
-const apiUrl = `https://invidious.io/api/v1/get_video_info`
-const response = await fetch(`${apiUrl}?url=${encodeURIComponent(url)}`)
-const data = await response.json()
-if (data && data.video) {
-const videoInfo = data.video
-return videoInfo
-} else {
-throw new Error("No se pudo obtener información del video desde Invidious")
 }}
