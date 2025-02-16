@@ -323,6 +323,19 @@ originalConsoleError.apply(console, arguments)
 }
 
 const connectionOptions = {
+logger: pino({ level: "fatal" }),
+printQRInTerminal: opcion == '1' ? true : methodCodeQR ? true : false,
+mobile: MethodMobile, 
+auth: {
+creds: state.creds,
+keys: makeCacheableSignalKeyStore(state.keys, Pino({ level: "fatal" }).child({ level: "fatal" })),
+},
+browser: opcion == '1' ? ['GataBotLite-MD', 'Edge', '2.0.0'] : methodCodeQR ? ['GataBotLite-MD', 'Edge', '2.0.0'] : ["Ubuntu", "Chrome", "110.0.1587.56"],
+version: version,
+generateHighQualityLinkPreview: true
+};
+
+/*const connectionOptions = {
 logger: pino({ level: 'silent' }),
 printQRInTerminal: opcion == '1' ? true : methodCodeQR ? true : false,
 mobile: MethodMobile, 
@@ -342,7 +355,7 @@ msgRetryCounterCache,
 msgRetryCounterMap,
 defaultQueryTimeoutMs: undefined,   
 version: [2, 3000, 1015901307]
-}
+}*/
 
 /*const supportedLanguages = ['es', 'en', 'pt', 'ar', 'id']
 const configPath = path.join(__dirname, 'config.js')
@@ -388,6 +401,7 @@ process.send('reset')
 }}*/
 
 global.conn = makeWASocket(connectionOptions)
+
 if (!fs.existsSync(`./${authFile}/creds.json`)) {
 if (opcion === '2' || methodCode) {
 opcion = '2'
