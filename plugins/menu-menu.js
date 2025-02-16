@@ -216,9 +216,9 @@ const vi = ['https://telegra.ph/file/405daebd4bc0d69e5d165.mp4',
 'https://telegra.ph/file/c25afc1685b13210ce602.mp4']
 try {
 let messages = [
-["🌟 Opción 1", "Descripción de la primera opción", gataMenu.getRandom()],
-["🔥 Opción 2", "Descripción de la segunda opción", gataMenu.getRandom()],
-["🚀 Opción 3", "Descripción de la tercera opción", gataMenu.getRandom()]
+["🌟 Opción 1", "Descripción de la primera opción", 'https://qu.ax/uzhXd.jpg'],
+["🔥 Opción 2", "Descripción de la segunda opción", 'https://qu.ax/uzhXd.jpg'],
+["🚀 Opción 3", "Descripción de la tercera opción", 'https://qu.ax/uzhXd.jpg']
 ]
 console.log(messages)
 await conn.sendCarousel(m.chat, `Mensaje`, "Search", messages, m)
