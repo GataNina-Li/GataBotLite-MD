@@ -215,21 +215,14 @@ const vi = ['https://telegra.ph/file/405daebd4bc0d69e5d165.mp4',
 'https://telegra.ph/file/1d0ad9f79f65f39895b08.mp4',
 'https://telegra.ph/file/c25afc1685b13210ce602.mp4']
 try {
-let fkontak = { key: {participant: `0@s.whatsapp.net`, ...(m.chat ? { remoteJid: `6285600793871-1614953337@g.us` } : {}) }, message: { 'contactMessage': { 'displayName': `${m.pushName}`, 'vcard': `BEGIN:VCARD\nVERSION:3.0\nN:XL;${m.pushName},;;;\nFN:${m.pushName},\nitem1.TEL;waid=${m.sender.split('@')[0]}:${m.sender.split('@')[0]}\nitem1.X-ABLabel:Ponsel\nEND:VCARD`, 'jpegThumbnail': null, thumbnail: null,sendEphemeral: true}}}
 await conn.sendMessage(m.chat, { video: { url: vi.getRandom() }, gifPlayback: true, caption: menu,
-contextInfo: { 
-  forwardingScore: 99, 
-  isForwarded: true, 
-forwardedNewsletterMessageInfo: { 
-  newsletterName: 'Canal', 
-  newsletterJid: '120363160031023229@newsletter' }, 
-externalAdReply: { 
-  title: wm, 
-  body: null, 
-  thumbnailUrl: gataMenu.getRandom(), 
-  sourceUrl: md, 
-  mediaType: 1, 
-  renderLargerThumbnail: false 
+contextInfo: {
+mentionedJid: [m.sender, global.conn.user.jid],
+forwardingScore: 99,
+isForwarded: true,
+forwardedNewsletterMessageInfo: {
+newsletterJid: '120363321103874131@newsletter',
+newsletterName: 'Gata'
 }}}, { quoted: fkontak })
 
 //await conn.sendMessage(m.chat, { video: { url: vi.getRandom() }, gifPlayback: true, caption: menu, contextInfo: fakeChannel2 })
