@@ -4,44 +4,25 @@ import yts from 'yt-search'
 import ytdl from 'ytdl-core'
 import axios from 'axios'
 let tempStorage = {}
-const youtubeRegex = /^(https?:\/\/)?(www\.)?(youtube\.com\/watch\?v=|youtu\.be\/)[a-zA-Z0-9_-]{11}(\S+)?$/
 const youtubeRegexID = /(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/))([a-zA-Z0-9_-]{11})/
 
 const handler = async (m, {conn, command, args, text, usedPrefix}) => {
 if (!text) return m.reply(lenguajeGB.smsMalused2() + `*${usedPrefix + command} Billie Eilish - Bellyache*`)
 
 const yt_play = await search(args.join(' '))
+
 let ytplay2 = await yts(text)
-//console.log(ytplay2)
-
-const videos = ytplay2.videos
 const videoIdToFind = text.match(youtubeRegexID)
-console.log(videoIdToFind)
-const video = videos.find(item => item.videoId === videoIdToFind)
-if (video) {
-console.log("Video encontrado:", video)
-ytplay2 = video
-} else {
-console.log("No se encontró el video.")
+if (videoIdToFind) {
+const videoId = videoIdToFind[1]  
+console.log(videoId)
+ytplay2 = ytplay2.videos.find(item => item.videoId === videoId)
+console.log(ytplay2)
+if (!ytplay2) {
+ytplay2 = null
+}} else {
+ytplay2 = await yts(text)
 }
-
-
-/*if (youtubeRegex.test(text)) {
-const videoIdMatch = text.match(youtubeRegexID)
-if (videoIdMatch && videoIdMatch[1]) {
-const videoId = videoIdMatch[1]
-const video = ytplay2.find(item => item.videoId === videoIdToFind)
-if (videos.length > 0) {
-console.log("Video encontrado:", videos[0])
-} else {
-console.log("No se encontró el video.")
-}       
-        
-}
-} else {
-    console.log("El texto no es una URL válida de YouTube.");
-}
-*/
   
 let caption = `*◜⋯ ⋯ ⋯ Y O U T U B E ⋯ ⋯ ⋯◞*
 *◎ ${lenguajeGB.smsYT1()}*
