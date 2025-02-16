@@ -103,8 +103,12 @@ const response = await fetch(APIs.delirius.url + `download/ytmp4?url=${userVideo
 const json = await response.json()
 console.log(json)
 let caption = `🎬 *${json.data.title}*\n📺 *Canal:* ${json.data.author}\n📁 *Calidad:* ${json.data.download.quality}\n📦 *Tamaño:* ${json.data.download.size}`
-let buff = await conn.getFile(json.data.download.url)
-console.log(buff)
+//let buff = await conn.getFile(json.data.download.url)
+let bug = await fetch(json.data.download.url, { method: 'HEAD' })
+.then(response => console.log(response.url))
+.catch(error => console.error('Error:', error))
+
+console.log(bug)
 await conn.sendMessage(m.chat, { [typeVideo.type]: { url: json.data.download.url }, mimetype: 'video/mp4', fileName: json.data.download.filename, ...(typeVideo.caption && { caption: caption }) }, { quoted: gata.resp })
   
 //} catch {
