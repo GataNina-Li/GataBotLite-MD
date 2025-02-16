@@ -221,7 +221,7 @@ let messages = [
 ["🚀 Opción 3", "Descripción de la tercera opción", gataMenu.getRandom()]
 ]
 console.log(messages)
-await conn.sendCarousel(m.chat, `Mensaje`, "Search", messages, m)
+await conn.sendCarousel(m.chat, `Mensaje`, "Search", [messages], m)
 /*await conn.sendMessage(m.chat, { video: { url: vi.getRandom() }, gifPlayback: true, caption: menu,
 contextInfo: {
 mentionedJid: [m.sender, global.conn.user.jid],
