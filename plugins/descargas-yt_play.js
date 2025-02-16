@@ -106,7 +106,7 @@ let caption = `🎬 *${json.data.title}*\n📺 *Canal:* ${json.data.author}\n�
 //let buff = await conn.getFile(json.data.download.url)
 let url = await fetch(json.data.download.url, { method: 'HEAD' }).then(response => response.url)
 console.log(url)
-await conn.sendMessage(m.chat, { [typeVideo.type]: url, mimetype: 'video/mp4', fileName: json.data.download.filename, ...(typeVideo.caption && { caption: caption }) }, { quoted: gata.resp })
+conn.sendFile(m.chat, url, json.data.download.filename, caption, gata.resp)
 //await conn.sendMessage(m.chat, { [typeVideo.type]: { url: url }, mimetype: 'video/mp4', fileName: json.data.download.filename, ...(typeVideo.caption && { caption: caption }) }, { quoted: gata.resp })
   
 //} catch {
