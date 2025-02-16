@@ -9,15 +9,16 @@ const youtubeRegexID = /(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/))([a-z
 const handler = async (m, {conn, command, args, text, usedPrefix}) => {
 if (!text) return m.reply(lenguajeGB.smsMalused2() + `*${usedPrefix + command} Billie Eilish - Bellyache*`)
 
+const videoIdToFind = text.match(youtubeRegexID)
+  
 const yt_play = await search(args.join(' '))
-
-let ytplay2 = await yts(text)
-console.log(ytplay2)
+let ytplay2 = await yts(videoIdToFind ? 'https://youtu.be/' + videoIdToFind[1] : text)
+  
 const videoIdToFind = text.match(youtubeRegexID)
 if (videoIdToFind) {
 const videoId = videoIdToFind[1]  
 console.log(videoId)
-ytplay2 = ytplay2.videos.find(item => item.videoId === videoId)
+ytplay2 = ytplay2.all.find(item => item.videoId === videoId) || ytplay2.videos.find(item => item.videoId === videoId)
 console.log(ytplay2)
 if (!ytplay2) {
 ytplay2 = null
