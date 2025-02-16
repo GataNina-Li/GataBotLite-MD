@@ -4,11 +4,16 @@ import yts from 'yt-search'
 import ytdl from 'ytdl-core'
 import axios from 'axios'
 let tempStorage = {}
+const youtubeRegex = /^(https?:\/\/)?(www\.)?(youtube\.com\/watch\?v=|youtu\.be\/)[a-zA-Z0-9_-]{11}(\S+)?$/
 
 const handler = async (m, {conn, command, args, text, usedPrefix}) => {
 if (!text) return m.reply(lenguajeGB.smsMalused2() + `*${usedPrefix + command} Billie Eilish - Bellyache*`)
+
 const yt_play = await search(args.join(' '))
+console.log(yt_play)
 const ytplay2 = await yts(text)
+console.log(ytplay2)
+  
 let caption = `*◜⋯ ⋯ ⋯ Y O U T U B E ⋯ ⋯ ⋯◞*
 *◎ ${lenguajeGB.smsYT1()}*
 ${yt_play[0].title}
