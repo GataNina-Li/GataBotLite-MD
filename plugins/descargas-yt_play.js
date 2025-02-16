@@ -9,17 +9,17 @@ const youtubeRegexID = /(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/))([a-z
 const handler = async (m, {conn, command, args, text, usedPrefix}) => {
 if (!text) return m.reply(lenguajeGB.smsMalused2() + `*${usedPrefix + command} Billie Eilish - Bellyache*`)
 
-let videoIdToFind = text.match(youtubeRegexID) || text
+let videoIdToFind = text.match(youtubeRegexID) || null
   
 const yt_play = await search(args.join(' '))
-let ytplay2 = await yts(videoIdToFind)
+let ytplay2 = await yts(videoIdToFind === null ? text : 'https://youtu.be/' + videoIdToFind[1])
   
-if (videoIdToFind[1]) {
+if (videoIdToFind) {
 const videoId = videoIdToFind[1]  
 ytplay2 = ytplay2.all.find(item => item.videoId === videoId) || ytplay2.videos.find(item => item.videoId === videoId)
 } 
 ytplay2 = Array.isArray(ytplay2) ? ytplay2[0] : ytplay2  
-  
+console.log(ytplay2)  
 let caption = `*◜⋯ ⋯ ⋯ Y O U T U B E ⋯ ⋯ ⋯◞*
 *◎ ${lenguajeGB.smsYT1()}*
 ${ytplay2?.title}
