@@ -42,9 +42,9 @@ ${ytplay2?.url.replace(/^https:\/\//, "")}
 > "👍" o "video" → *Video*
 > "🙏" o "audiodoc" → *Audio (doc)*
 > "😮" o "videodoc" → *Video (doc)*`
-tempStorage[m.sender] = { url: yt_play.url, title: yt_play.title, resp: m, usedPrefix: usedPrefix, command: command }
+tempStorage[m.sender] = { url: ytplay2.url, title: ytplay2.title, resp: m, usedPrefix: usedPrefix, command: command }
 
-await conn.sendMessage(m.chat, {text: caption, contextInfo: { externalAdReply: { title: wm, body: wait2.replace(/\*/g, ''), thumbnailUrl: yt_play2.thumbnail, sourceUrl: md, mediaType: 1, showAdAttribution: false, renderLargerThumbnail: true }}});
+await conn.sendMessage(m.chat, {text: caption, contextInfo: { externalAdReply: { title: wm, body: wait2.replace(/\*/g, ''), thumbnailUrl: ytplay2.thumbnail, sourceUrl: md, mediaType: 1, showAdAttribution: false, renderLargerThumbnail: true }}});
 }
 
 handler.before = async (m, { conn }) => {
