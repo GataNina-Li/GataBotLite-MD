@@ -11,23 +11,18 @@ const handler = async (m, {conn, command, args, text, usedPrefix}) => {
 if (!text) return m.reply(lenguajeGB.smsMalused2() + `*${usedPrefix + command} Billie Eilish - Bellyache*`)
 
 const yt_play = await search(args.join(' '))
-//console.log(yt_play)
-const ytplay2 = await yts(text)
+let ytplay2 = await yts(text)
 //console.log(ytplay2)
 
-// Accede a la propiedad 'videos' que contiene el arreglo de videos
-const videos = ytplay2.videos;
-
-// Definir el ID del video que deseas encontrar
-const videoIdToFind = 's-qrm3jwpl4';
-
-// Buscar el video utilizando .find() o .filter()
-const video = videos.find(item => item.videoId === videoIdToFind);
-
+const videos = ytplay2.videos
+const videoIdToFind = text.match(youtubeRegexID)
+console.log(videoIdToFind)
+const video = videos.find(item => item.videoId === videoIdToFind)
 if (video) {
-    console.log("Video encontrado:", video);
+console.log("Video encontrado:", video)
+ytplay2 = video
 } else {
-    console.log("No se encontró el video.");
+console.log("No se encontró el video.")
 }
 
 
