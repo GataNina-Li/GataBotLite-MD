@@ -14,7 +14,7 @@ let videoIdToFind = text.match(youtubeRegexID)
 const yt_play = await search(args.join(' '))
 let ytplay2 = await yts(videoIdToFind ? 'https://youtu.be/' + videoIdToFind[1] : text)
   
-/*if (videoIdToFind) {
+if (videoIdToFind) {
 const videoId = videoIdToFind[1]  
 console.log(videoId)
 ytplay2 = ytplay2.all.find(item => item.videoId === videoId) || ytplay2.videos.find(item => item.videoId === videoId)
@@ -23,7 +23,7 @@ if (!ytplay2) {
 ytplay2 = null
 }} else {
 ytplay2 = await yts(text)
-}*/
+}
   
 let caption = `*◜⋯ ⋯ ⋯ Y O U T U B E ⋯ ⋯ ⋯◞*
 *◎ ${lenguajeGB.smsYT1()}*
