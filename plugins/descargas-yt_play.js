@@ -13,15 +13,13 @@ if (!text) return m.reply(lenguajeGB.smsMalused2() + `*${usedPrefix + command} B
 const yt_play = await search(args.join(' '))
 //console.log(yt_play)
 const ytplay2 = await yts(text)
-
+console.log(ytplay2)
 
 if (youtubeRegex.test(text)) {
 const videoIdMatch = text.match(youtubeRegexID)
 if (videoIdMatch && videoIdMatch[1]) {
 const videoId = videoIdMatch[1]
-
-const videos = ytplay2.filter(item => item.videoId === videoId)
-
+const video = ytplay2.find(item => item.videoId === videoIdToFind)
 if (videos.length > 0) {
 console.log("Video encontrado:", videos[0])
 } else {
