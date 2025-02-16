@@ -8,7 +8,7 @@ const youtubeRegexID = /(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/))([a-z
 
 const handler = async (m, {conn, command, args, text, usedPrefix}) => {
 try {
-if (!tex) return m.reply(lenguajeGB.smsMalused2() + `*${usedPrefix + command} Billie Eilish - Bellyache*\n*${usedPrefix + command} https://youtu.be/gBRi6aZJGj4*`)
+if (!text) return m.reply(lenguajeGB.smsMalused2() + `*${usedPrefix + command} Billie Eilish - Bellyache*\n*${usedPrefix + command} https://youtu.be/gBRi6aZJGj4*`)
 
 let videoIdToFind = text.match(youtubeRegexID) || null
   
