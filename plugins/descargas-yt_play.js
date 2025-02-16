@@ -10,7 +10,7 @@ const handler = async (m, {conn, command, args, text, usedPrefix}) => {
 if (!text) return m.reply(lenguajeGB.smsMalused2() + `*${usedPrefix + command} Billie Eilish - Bellyache*`)
 
 const yt_play = await search(args.join(' '))
-console.log(yt_play)
+//console.log(yt_play)
 const ytplay2 = await yts(text)
 console.log(ytplay2)
   
@@ -18,13 +18,16 @@ let caption = `*◜⋯ ⋯ ⋯ Y O U T U B E ⋯ ⋯ ⋯◞*
 *◎ ${lenguajeGB.smsYT1()}*
 ${yt_play[0].title}
 
+*◎ ${lenguajeGB.smsYT2()}*
+${yt_play[0].description}
+
 *◎ ${lenguajeGB.smsYT3()}*
 ${secondString(yt_play[0].duration.seconds)}
 
 *◎ ${lenguajeGB.smsYT4()}*
 ${MilesNumber(yt_play[0].views)}
 
-*◎ URL*
+*◎ ${lenguajeGB.smsYT5()}*
 ${yt_play[0].url}
 *◜⋯ ⋯ ⋯ ${gt} ⋯ ⋯ ⋯◞*
 
