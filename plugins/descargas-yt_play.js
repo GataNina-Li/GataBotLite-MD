@@ -7,7 +7,8 @@ let tempStorage = {}
 const youtubeRegexID = /(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/))([a-zA-Z0-9_-]{11})/
 
 const handler = async (m, {conn, command, args, text, usedPrefix}) => {
-if (!text) return m.reply(lenguajeGB.smsMalused2() + `*${usedPrefix + command} Billie Eilish - Bellyache*\n*${usedPrefix + command} https://youtu.be/gBRi6aZJGj4*`)
+try {
+if (!tex) return m.reply(lenguajeGB.smsMalused2() + `*${usedPrefix + command} Billie Eilish - Bellyache*\n*${usedPrefix + command} https://youtu.be/gBRi6aZJGj4*`)
 
 let videoIdToFind = text.match(youtubeRegexID) || null
   
@@ -44,6 +45,9 @@ ${ytplay2?.url.replace(/^https:\/\//, "")}
 > "😮" o "videodoc" → *Video (doc)*`
 tempStorage[m.sender] = { url: ytplay2.url, title: ytplay2.title, resp: m, usedPrefix: usedPrefix, command: command }
 await conn.sendMessage(m.chat, {text: caption, contextInfo: { externalAdReply: { title: wm, body: wait2.replace(/\*/g, ''), thumbnailUrl: ytplay2.thumbnail, sourceUrl: md, mediaType: 1, showAdAttribution: false, renderLargerThumbnail: true }}});
+} catch (e) {
+reportError(e, conn, m, tempStorage[m.sender])
+}
 }
 
 handler.before = async (m, { conn }) => {
@@ -160,19 +164,6 @@ await m.react(notsent)
 async function search(query, options = {}) {
 const search = await yts.search({query, hl: 'es', gl: 'ES', ...options})
 return search.videos
-}
-
-function secondString(seconds) {
-seconds = Number(seconds)
-const d = Math.floor(seconds / (3600 * 24))
-const h = Math.floor((seconds % (3600 * 24)) / 3600)
-const m = Math.floor((seconds % 3600) / 60)
-const s = Math.floor(seconds % 60)
-const dDisplay = d > 0 ? d + (d == 1 ? ' día, ' : ' días, ') : ''
-const hDisplay = h > 0 ? h + (h == 1 ? ' hora, ' : ' horas, ') : ''
-const mDisplay = m > 0 ? m + (m == 1 ? ' minuto, ' : ' minutos, ') : ''
-const sDisplay = s > 0 ? s + (s == 1 ? ' segundo' : ' segundos') : ''
-return dDisplay + hDisplay + mDisplay + sDisplay
 }
 
 function MilesNumber(number) {
