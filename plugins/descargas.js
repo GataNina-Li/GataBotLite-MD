@@ -18,17 +18,17 @@ const LimitVid = 425 * 1024 * 1024; //425MB
 let handler = async (m, { conn, text, usedPrefix, command, args }) => {
 let q, v, yt, dl_url, ttl, size, lolhuman, lolh, n, n2, n3, n4, cap, qu, currentQuality
 const isCommand1 = /^(gimage|imagen?)$/i.test(command)
-const isCommand2 = /^(play|play2)$/i.test(command)
+//const isCommand2 = /^(play|play2)$/i.test(command)
 //const isCommand3 = /^(play2)$/i.test(command)
-const isCommand4 = /^(fgmp3|dlmp3|getaud|yt(a|mp3)?)$/i.test(command)
-const isCommand5 = /^(ytmp3doc|ytadoc)$/i.test(command)
-const isCommand6 = /^(fgmp4|dlmp4|getvid|yt(v|mp4)?)$/i.test(command)
-const isCommand7 = /^(ytmp4doc|ytvdoc|play4|play3)$/i.test(command)
+//const isCommand4 = /^(fgmp3|dlmp3|getaud|yt(a|mp3)?)$/i.test(command)
+//const isCommand5 = /^(ytmp3doc|ytadoc)$/i.test(command)
+//const isCommand6 = /^(fgmp4|dlmp4|getvid|yt(v|mp4)?)$/i.test(command)
+//const isCommand7 = /^(ytmp4doc|ytvdoc|play4|play3)$/i.test(command)
 const isCommand8 = /^(facebook|fb|facebookdl|fbdl)$/i.test(command)
 const isCommand9 = /^(mediafire(dl)?|dlmediafire)$/i.test(command)
-const isCommand10 = /^(ytmax)$/i.test(command)
+//const isCommand10 = /^(ytmax)$/i.test(command)
 const isCommand11 = /^(tkdl|tiktok)$/i.test(command)
-const isCommand12 = /^(ytmaxdoc)$/i.test(command)
+//const isCommand12 = /^(ytmaxdoc)$/i.test(command)
 const isCommand13 = /^(dalle|openiamage|aiimage|aiimg|aimage|iaimagen|openaimage|openaiimage)$/i.test(command)
 const isCommand14 = /^(openjourney|journey|midjourney)$/i.test(command)
 const isCommand15 = /^(spotify|music)$/i.test(command)
@@ -223,7 +223,7 @@ reportError(e2);
 reportError(error);
 }
 break;
-*/            
+           
 case isCommand4:
 if (!args[0]) return m.reply(lenguajeGB.smsMalused2() + `*${usedPrefix + command} https://youtu.be/ejemplo*\n*${usedPrefix + command} https://www.youtube.com/ejemplo*`)
 await conn.reply(m.chat, lenguajeGB.smsAvisoEG() + '*' + lenguajeGB.smsYTA1() + '*', m)
@@ -317,7 +317,7 @@ videoResult(m)
 reportError(e)
 }
 break
-        
+*/        
 case isCommand8:
 if (!text) return m.reply(lenguajeGB.smsMalused2() + `\n*${usedPrefix}${command}* https://fb.watch/kAOXy3wf2L/?mibextid=Nif5oz\n\n*${usedPrefix}${command}* https://www.facebook.com/reel/1662783117489590?s=yWDuG2&fs=e&mibextid=Nif5oz`)
 if (!args[0].match(/www.facebook.com|fb.watch|web.facebook.com|business.facebook.com|video.fb.com/g)) throw lenguajeGB.smsAvisoFG() + lenguajeGB.smsyFBvid1()
@@ -420,7 +420,7 @@ return { name, size, date, mime, link }
 }
 break 
         
-case isCommand10:
+/*case isCommand10:
 if (!args[0]) return m.reply(lenguajeGB.smsMalused2() + `*${usedPrefix + command} https://youtu.be/ejemplo*\n*${usedPrefix + command} https://www.youtube.com/ejemplo*`)
 await conn.reply(m.chat, lenguajeGB.smsAvisoEG() + '*' + lenguajeGB.smsYTV1() + '*', m)
 try { 
@@ -460,7 +460,7 @@ reportError(e)
 }} catch (e) {
 reportError(e)
 }
-break
+break*/
 
 case isCommand11:
 if (!text) return conn.reply(m.chat, `${lenguajeGB['smsMalused2']()}\n*${usedPrefix + command} https://vm.tiktok.com/ZM2e66NBM/?t=1*`, m)
@@ -532,7 +532,7 @@ reportError(e)
 }}
 break
   
-case isCommand12:
+/*case isCommand12:
 if (!args[0]) return m.reply(lenguajeGB.smsMalused2() + `*${usedPrefix + command} https://youtu.be/ejemplo*\n*${usedPrefix + command} https://www.youtube.com/ejemplo*`)
 await conn.reply(m.chat, lenguajeGB.smsAvisoEG() + '*' + lenguajeGB.smsYTV2() + '*', m)
 try { 
@@ -569,7 +569,7 @@ videoResult(m)
 } catch (e) {
 reportError(e)
 }
-break
+break*/
         
 case isCommand13:
 if (args.length >= 1) {
@@ -731,7 +731,7 @@ reportError(e)}
 break   
         
 }}
-handler.command = /^(gimage|imagen?|play|play2|fgmp3|dlmp3|getaud|yt(a|mp3)?|ytmp3doc|ytadoc|fgmp4|dlmp4|getvid|yt(v|mp4)?|ytmp4doc|ytvdoc|facebook|fb|facebookdl|fbdl|mediafire(dl)?|dlmediafire|ytmax|ytmaxdoc|tiktok|tkdl|dalle|openiamage|aiimage|aiimg|aimage|iaimagen|openaimage|openaiimage|openjourney|journey|midjourney|spotify|music|spot(ify)?search|i(nsta)?g(ram)?(dl)?|igimage|igdownload|(dl)?tw(it(ter(dl|x)?)?)?|x|t?tx|gitclone|clonarepo|clonarrepo|repoclonar|bardimg|bardimage|geminiimg|geminiimage|geminimg|geminimage)$/i
+handler.command = /^(gimage|imagen?|facebook|fb|facebookdl|fbdl|mediafire(dl)?|dlmediafire|tiktok|tkdl|dalle|openiamage|aiimage|aiimg|aimage|iaimagen|openaimage|openaiimage|openjourney|journey|midjourney|spotify|music|spot(ify)?search|i(nsta)?g(ram)?(dl)?|igimage|igdownload|(dl)?tw(it(ter(dl|x)?)?)?|x|t?tx|gitclone|clonarepo|clonarrepo|repoclonar|bardimg|bardimage|geminiimg|geminiimage|geminimg|geminimage)$/i
 handler.register = true
 export default handler
 
