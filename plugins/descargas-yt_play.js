@@ -44,7 +44,7 @@ ${ytplay2?.url.replace(/^https:\/\//, "")}
 > "🙏" o "audiodoc" → *Audio (doc)*
 > "😮" o "videodoc" → *Video (doc)*`
 tempStorage[m.sender] = { url: ytplay2.url, title: ytplay2.title, resp: m, usedPrefix: usedPrefix, command: command }
-await conn.sendMessage(m.chat, {text: caption, contextInfo: { forwardingScore: 1, isForwarded: true, forwardedNewsletterMessageInfo: { newsletterJid: channelRD.id, serverMessageId: '', newsletterName: channelRD.name }  externalAdReply: { title: wm, body: wait2.replace(/\*/g, ''), thumbnailUrl: ytplay2.thumbnail, sourceUrl: md, mediaType: 1, showAdAttribution: false, renderLargerThumbnail: true }}});
+await conn.sendMessage(m.chat, {text: caption, contextInfo: { forwardedNewsletterMessageInfo: { newsletterJid: channelRD.id, serverMessageId: '', newsletterName: channelRD.name }, forwardingScore: 9999999, isForwarded: true,  externalAdReply: { title: wm, body: wait2.replace(/\*/g, ''), thumbnailUrl: ytplay2.thumbnail, sourceUrl: md, mediaType: 1, showAdAttribution: true, containsAutoReply: true, renderLargerThumbnail: true }}});
 } catch (e) {
 m.reply('Error')
 console.log(e)
