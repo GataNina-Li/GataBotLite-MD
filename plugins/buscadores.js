@@ -222,19 +222,19 @@ const hasill22 = await tioress22.json()
 if (hasill22.result == 'error' || hasill22.result == '' || !hasill22.result) return 
 const hasill22_result = await translate(`${hasill22.result}`, {to: idioma, autoCorrect: true})
 const audio7 = await tts(hasill22_result.text, idioma)
-await conn.sendMessage(m.chat, {audio: audio7, fileName: 'error.mp3', mimetype: 'audio/mpeg', ptt: true}, {quoted: m})            
+await conn.sendMessage(m.chat, {audio: audio7, fileName: 'error.mp3', mimetype: 'audio/mpeg', ptt: true }, { quoted: m})            
 } catch (e) {
 reportError(e)
 }
 break   
 
 case isCommand8:
-if (!text) throw `*Escriba un texto usando el comando para usar a Gemini*`
+if (!text) return m.reply(`*Escriba un texto para usar a Gemini usando:*\n*${usedPrefix + command}* Hola Gemini, que puedes hacer?`)
 await conn.sendPresenceUpdate('composing', m.chat)       
 try {
-var apii = await fetch(`https://aemt.me/gemini?text=${text}`)
-var res = await apii.json()
-await m.reply(res.result)
+var api = await fetch(APIs.alyachan.url + `ai-gemini?q=${text}&apikey=${APIs.alyachan.key}`)
+var res = await api.json()
+await m.reply(res.data.content)
 } catch (e) {
 reportError(e)
 }
