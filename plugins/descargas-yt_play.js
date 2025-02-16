@@ -81,9 +81,13 @@ await conn.reply(m.chat, lenguajeGB.smsAvisoEG() + `*${lenguajeGB.smsYTA1()}*`, 
 await conn.reply(m.chat, lenguajeGB.smsAvisoEG() + `*${lenguajeGB.smsYTA2()}*`, fkontak, m || null)
 }
 try {
-const response = await fetch(APIs.delirius.url + `download/ytmp3?url=${userVideoData.url}`)
+const response = await fetch(APIs.alyachan.url + `yta?url=${userVideoData.url}&apikey=${APIs.alyachan.key}`)
 const json = await response.json()
-await conn.sendMessage(m.chat, { [typeAudio]: { url: json.data.download.url }, mimetype: 'audio/mpeg', fileName: json.data.download.filename }, { quoted: gata.resp })
+await conn.sendMessage(m.chat, { [typeAudio]: { url: json.data.url }, mimetype: 'audio/mpeg', fileName: json.data.filename }, { quoted: gata.resp })
+
+//const response = await fetch(APIs.delirius.url + `download/ytmp3?url=${userVideoData.url}`)
+//const json = await response.json()
+//await conn.sendMessage(m.chat, { [typeAudio]: { url: json.data.download.url }, mimetype: 'audio/mpeg', fileName: json.data.download.filename }, { quoted: gata.resp })
 } catch {   
 try {
 const response = await fetch(APIs.ryzendesu.url + `downloader/ytmp3?url=${userVideoData.url}`)
