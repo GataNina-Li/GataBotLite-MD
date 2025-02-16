@@ -33,56 +33,54 @@ console.log(e)
 
 switch (true) {     
 case isCommand1:
-const databaseFolder = './database'
-const zipPath = './database_backup.zip'
-  
-if (!fs.existsSync(databaseFolder)) {
-await m.reply('⚠️ La carpeta *.database* no existe.')
-return
-}
+const databaseFolder = './database';
+const tarPath = './database_backup.tar.gz'; 
+let option = parseInt(text);
 
-if (conn.user.jid != global.conn.user.jid) {
-if (!fs.existsSync(`./GataJadiBot/${conn.user.jid.split`@`[0]}/creds.json`)) {
-await m.reply('⚠️ El archivo *creds.json* del Sub Bot no existe.')
-return
-}
-} else if (!fs.existsSync('./GataBotSession/creds.json')) {
-await m.reply('⚠️ El archivo *creds.json* no existe.')
-return
-}
+if (![1, 2].includes(option)) return await m.reply(`*⚠️ ¿QUÉ HAGO? UN BACKUP DE LA SESIÓN O BASE DE DATOS?*. USAR DE LA SIGUIENTE MANERA. EJEMPLO:\n${usedPrefix + command} 1 _(Enviar la session "creds.json")_\n${usedPrefix + command} 2 _(Enviar la base de datos)_`);
+try {
+let d = new Date();
+let date = d.toLocaleDateString('es', { day: 'numeric', month: 'long', year: 'numeric' });
+
+if (option === 1) {  
+const path = conn.user.jid !== global.conn.user.jid
+? `./GataJadiBot/${conn.user.jid.split`@`[0]}/creds.json`
+: `./GataBotSession/creds.json`;
+if (!fs.existsSync(path)) return await m.reply('⚠️ El archivo *creds.json* no existe.');            
+
+let creds = fs.readFileSync(path);
+await conn.reply(m.sender, `📁 *Sesión* (${date})`, fkontak);
+await conn.sendMessage(m.sender, { document: creds, mimetype: 'application/json', fileName: `creds.json` }, { quoted: m });
+
+} else if (option === 2) { 
+if (!fs.existsSync(databaseFolder)) return await m.reply('⚠️ La carpeta *database* no existe.');
 
 await m.reply(`_*🗂️ Preparando envío de base de datos...*_`)
-
-try {
-let d = new Date()
-let date = d.toLocaleDateString('es', { day: 'numeric', month: 'long', year: 'numeric' })
-const path = conn.user.jid != global.conn.user.jid ? `./GataJadiBot/${conn.user.jid.split`@`[0]}/creds.json` : `./GataBotSession/creds.json`
-let creds = await fs.readFileSync(path)
-
-const output = fs.createWriteStream(zipPath)
-const archive = archiver('zip', { zlib: { level: 9 } })
-
+const output = fs.createWriteStream(tarPath);
+const archive = archiver('tar', { 
+  gzip: true,
+  gzipOptions: { level: 9 }  
+});
 output.on('close', async () => {
-console.log(`Archivo .zip creado: ${archive.pointer()} bytes`)
+console.log(`Archivo .tar.gz creado: ${archive.pointer()} bytes`);
+await conn.reply(m.sender, `📂 *Base de datos* (${date})`, fkontak);
+await conn.sendMessage(m.sender, { 
+  document: fs.readFileSync(tarPath), 
+  mimetype: 'application/gzip',
+  fileName: `database.tar.gz` 
+}, { quoted: m });
+fs.unlinkSync(tarPath);  
+});
 
-await conn.reply(m.sender, `*🗓️ Database:* ${date}`, fkontak)
-await conn.sendMessage(m.sender, { document: creds, mimetype: 'application/json', fileName: `creds.json`}, { quoted: m })
-await conn.sendMessage(m.sender, { document: fs.readFileSync(zipPath), mimetype: 'application/zip', fileName: `.database.zip` }, { quoted: m })
-
-fs.unlinkSync(zipPath)
-})
-
-archive.on('error', (err) => {
-throw err
-})
-
+archive.on('error', (err) => { throw err; });
 archive.pipe(output);
-archive.directory(databaseFolder, false)
-archive.finalize()
+archive.directory(databaseFolder, false);
+archive.finalize();
+}
 } catch (e) {
 reportError(e)
+console.log(e)
 }
-
 /*await conn.reply(m.sender, lenguajeGB.smsResP1(), fkontak)
 try {
 let d = new Date
