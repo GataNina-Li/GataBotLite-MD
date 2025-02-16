@@ -17,7 +17,6 @@ let ytplay2 = await yts(videoIdToFind ? 'https://youtu.be/' + videoIdToFind[1] :
 if (videoIdToFind) {
 const videoId = videoIdToFind[1]  
 ytplay2 = ytplay2.all.find(item => item.videoId === videoId) || ytplay2.videos.find(item => item.videoId === videoId)
-console.log(ytplay2)
 } 
 ytplay2 = Array.isArray(ytplay2) ? ytplay2[0] : ytplay2  
   
@@ -43,7 +42,7 @@ ${ytplay2?.url.replace(/^https:\/\//, "")}
 > "👍" o "video" → *Video*
 > "🙏" o "audiodoc" → *Audio (doc)*
 > "😮" o "videodoc" → *Video (doc)*`
-tempStorage[m.sender] = { url: yt_play[0].url, title: yt_play[0].title, resp: m, usedPrefix: usedPrefix, command: command }
+tempStorage[m.sender] = { url: yt_play.url, title: yt_play.title, resp: m, usedPrefix: usedPrefix, command: command }
 
 await conn.sendMessage(m.chat, {text: caption, contextInfo: { externalAdReply: { title: wm, body: wait2.replace(/\*/g, ''), thumbnailUrl: yt_play[0].thumbnail, sourceUrl: md, mediaType: 1, showAdAttribution: false, renderLargerThumbnail: true }}});
 }
