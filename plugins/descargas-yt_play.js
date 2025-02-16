@@ -7,7 +7,7 @@ let tempStorage = {}
 const youtubeRegexID = /(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/))([a-zA-Z0-9_-]{11})/
 
 const handler = async (m, {conn, command, args, text, usedPrefix}) => {
-if (!text) return m.reply(lenguajeGB.smsMalused2() + `*${usedPrefix + command} Billie Eilish - Bellyache*`)
+if (!text) return m.reply(lenguajeGB.smsMalused2() + `*${usedPrefix + command} Billie Eilish - Bellyache*\n*${usedPrefix + command} https://youtu.be/gBRi6aZJGj4*`)
 
 let videoIdToFind = text.match(youtubeRegexID) || null
   
@@ -43,7 +43,6 @@ ${ytplay2?.url.replace(/^https:\/\//, "")}
 > "🙏" o "audiodoc" → *Audio (doc)*
 > "😮" o "videodoc" → *Video (doc)*`
 tempStorage[m.sender] = { url: ytplay2.url, title: ytplay2.title, resp: m, usedPrefix: usedPrefix, command: command }
-
 await conn.sendMessage(m.chat, {text: caption, contextInfo: { externalAdReply: { title: wm, body: wait2.replace(/\*/g, ''), thumbnailUrl: ytplay2.thumbnail, sourceUrl: md, mediaType: 1, showAdAttribution: false, renderLargerThumbnail: true }}});
 }
 
