@@ -236,13 +236,18 @@ await conn.sendPresenceUpdate('composing', m.chat)
 //var res = await api.json()
 //await m.reply(res.data.content)
 //} catch (e) {
+//try {
+//var api = await fetch(APIs.alyachan.url + `bard-google-ai?q=${text}&apikey=${APIs.alyachan.key}`)
+//var res = await api.json()
+//await m.reply(res.data.chats.trim())
+//} catch {
 try {
-var api = await fetch(APIs.alyachan.url + `bard-google-ai?q=${text}&apikey=${APIs.alyachan.key}`)
+var api = await fetch(APIs.exonity.url + `ai/gemini?message=${text}`)
 var res = await api.json()
-await m.reply(res.data.chats)
+await m.reply(res.result.trim())
 } catch (e) {
 reportError(e)
-}//}
+}//}}
 break
 
 case isCommand9:
