@@ -255,7 +255,7 @@ await conn.sendPresenceUpdate('composing', m.chat)
 //var api = await fetch(APIs.siputzx.url + `ai/bard?query=${text}`)
 //var res = await api.json()
 //await m.reply(res.data.trim())  
-} catch {
+//} catch {
 try {
 var api = await fetch(APIs.delirius.url + `ia/gemini?query=${text}`)
 var res = await api.json()
