@@ -16,20 +16,19 @@ const ytplay2 = await yts(text)
 
 
 if (youtubeRegex.test(text)) {
-const videoIdMatch = text.match(youtubeRegexID);
-    if (videoIdMatch && videoIdMatch[1]) {
-        const videoId = videoIdMatch[1];
+const videoIdMatch = text.match(youtubeRegexID)
+if (videoIdMatch && videoIdMatch[1]) {
+const videoId = videoIdMatch[1]
 
-       
-        const videoDetails = ytplay2.find(video => video.videoId === videoId);
+const videos = ytplay2.filter(item => item.videoId === videoId)
 
-        if (videoDetails) {
-            // Aquí tienes el fragmento de JSON correspondiente al video
-            console.log(videoDetails);
-        } else {
-            console.log("Video no encontrado en el JSON.");
-        }
-    }
+if (videos.length > 0) {
+console.log("Video encontrado:", videos[0])
+} else {
+console.log("No se encontró el video.")
+}       
+        
+}
 } else {
     console.log("El texto no es una URL válida de YouTube.");
 }
