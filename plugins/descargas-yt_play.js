@@ -20,6 +20,7 @@ ytplay2 = ytplay2.all.find(item => item.videoId === videoId) || ytplay2.videos.f
 } 
 ytplay2 = Array.isArray(ytplay2) ? ytplay2[0] : ytplay2  
 console.log(ytplay2)  
+console.log(ytplay2?.views)
 let caption = `*◜⋯ ⋯ ⋯ Y O U T U B E ⋯ ⋯ ⋯◞*
 *◎ ${lenguajeGB.smsYT1()}*
 ${ytplay2?.title}
