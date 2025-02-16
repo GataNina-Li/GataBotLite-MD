@@ -104,12 +104,9 @@ const json = await response.json()
 console.log(json)
 let caption = `🎬 *${json.data.title}*\n📺 *Canal:* ${json.data.author}\n📁 *Calidad:* ${json.data.download.quality}\n📦 *Tamaño:* ${json.data.download.size}`
 //let buff = await conn.getFile(json.data.download.url)
-let bug = await fetch(json.data.download.url, { method: 'HEAD' })
-.then(response => console.log(response.url))
-.catch(error => console.error('Error:', error))
-
+let bug = await fetch(json.data.download.url, { method: 'HEAD' }).then(response => console.log(response.url))
 console.log(bug)
-await conn.sendMessage(m.chat, { [typeVideo.type]: { url: json.data.download.url }, mimetype: 'video/mp4', fileName: json.data.download.filename, ...(typeVideo.caption && { caption: caption }) }, { quoted: gata.resp })
+await conn.sendMessage(m.chat, { [typeVideo.type]: { url: json.data.download.url || bug }, mimetype: 'video/mp4', fileName: json.data.download.filename, ...(typeVideo.caption && { caption: caption }) }, { quoted: gata.resp })
   
 //} catch {
 //try {
