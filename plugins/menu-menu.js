@@ -214,25 +214,17 @@ let menu = `*◈ ${user.registered === true ? user.name : `👉 ${usedPrefix}${l
 const vi = ['https://telegra.ph/file/405daebd4bc0d69e5d165.mp4',
 'https://telegra.ph/file/1d0ad9f79f65f39895b08.mp4',
 'https://telegra.ph/file/c25afc1685b13210ce602.mp4']
+ 
 try {
-let messages = [
-["🌟 Opción 1", "Hola1", "Descripción de la primera opción", 'https://qu.ax/uzhXd.jpg'],
-["🔥 Opción 2", "Descripción de la segunda opción", 'https://qu.ax/uzhXd.jpg'],
-["🚀 Opción 3", "Descripción de la tercera opción", 'https://qu.ax/uzhXd.jpg']
-]
-console.log(messages)
-await conn.sendCarousel(m.chat, `Mensaje`, "Search", messages, m)
-/*await conn.sendMessage(m.chat, { video: { url: vi.getRandom() }, gifPlayback: true, caption: menu,
+await conn.sendMessage(m.chat, { video: { url: vi.getRandom() }, gifPlayback: true, caption: menu,
 contextInfo: {
 mentionedJid: [m.sender, global.conn.user.jid],
 forwardingScore: 99,
 isForwarded: true,
 forwardedNewsletterMessageInfo: {
-newsletterJid: '120363321103874131@newsletter',
-newsletterName: 'Gata'
-}}}, { quoted: m })*/
-
-//await conn.sendMessage(m.chat, { video: { url: vi.getRandom() }, gifPlayback: true, caption: menu, contextInfo: fakeChannel2 })
+newsletterJid: '120363169294281316@newsletter',
+newsletterName: 'GB - UPDATE 🐈'
+}}}, { quoted: fkontak })
 //await conn.sendMessage(m.chat, { video: { url: vi.getRandom() }, gifPlayback: true, caption: menu, mentions: [m.sender] }, { quoted: fkontak }) 
 } catch (error) {
 console.log(error)
