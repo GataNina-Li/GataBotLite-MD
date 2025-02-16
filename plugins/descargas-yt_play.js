@@ -28,7 +28,7 @@ ${secondString(yt_play[0].duration.seconds)}
 ${MilesNumber(yt_play[0].views)}
 
 *◎ ${lenguajeGB.smsYT5()}*
-${yt_play[0].url}
+${yt_play[0].url.replace(/^https:\/\//, "")}
 *◜⋯ ⋯ ⋯ ${gt} ⋯ ⋯ ⋯◞*
 
 *_Para seleccionar, reacciona o escribe respondiendo a este mensaje:_*
