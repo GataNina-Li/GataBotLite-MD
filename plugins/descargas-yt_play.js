@@ -13,9 +13,25 @@ if (!text) return m.reply(lenguajeGB.smsMalused2() + `*${usedPrefix + command} B
 const yt_play = await search(args.join(' '))
 //console.log(yt_play)
 const ytplay2 = await yts(text)
-console.log(ytplay2)
+//console.log(ytplay2)
 
-if (youtubeRegex.test(text)) {
+// Accede a la propiedad 'videos' que contiene el arreglo de videos
+const videos = ytplay2.videos;
+
+// Definir el ID del video que deseas encontrar
+const videoIdToFind = 's-qrm3jwpl4';
+
+// Buscar el video utilizando .find() o .filter()
+const video = videos.find(item => item.videoId === videoIdToFind);
+
+if (video) {
+    console.log("Video encontrado:", video);
+} else {
+    console.log("No se encontró el video.");
+}
+
+
+/*if (youtubeRegex.test(text)) {
 const videoIdMatch = text.match(youtubeRegexID)
 if (videoIdMatch && videoIdMatch[1]) {
 const videoId = videoIdMatch[1]
@@ -30,7 +46,7 @@ console.log("No se encontró el video.")
 } else {
     console.log("El texto no es una URL válida de YouTube.");
 }
-
+*/
   
 let caption = `*◜⋯ ⋯ ⋯ Y O U T U B E ⋯ ⋯ ⋯◞*
 *◎ ${lenguajeGB.smsYT1()}*
