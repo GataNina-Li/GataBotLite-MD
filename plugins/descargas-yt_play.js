@@ -16,31 +16,25 @@ let ytplay2 = await yts(videoIdToFind ? 'https://youtu.be/' + videoIdToFind[1] :
   
 if (videoIdToFind) {
 const videoId = videoIdToFind[1]  
-console.log(videoId)
 ytplay2 = ytplay2.all.find(item => item.videoId === videoId) || ytplay2.videos.find(item => item.videoId === videoId)
-console.log(ytplay2)
-console.log(ytplay2.title)
-if (!ytplay2) {
-ytplay2 = null
-}} else {
-ytplay2 = await yts(text)
-}
+} 
+ytplay2 = Array.isArray(ytplay2) ? ytplay2[0] : ytplay2  
   
 let caption = `*◜⋯ ⋯ ⋯ Y O U T U B E ⋯ ⋯ ⋯◞*
 *◎ ${lenguajeGB.smsYT1()}*
-${ytplay2[0]?.title}
+${ytplay2?.title}
 
 *◎ ${lenguajeGB.smsYT2()}*
-${ytplay2[0]?.description}
+${ytplay2?.description}
 
 *◎ ${lenguajeGB.smsYT3()}*
-${secondString(ytplay2[0]?.duration?.seconds)}
+${ytplay2?.timestamp}
 
 *◎ ${lenguajeGB.smsYT4()}*
-${MilesNumber(ytplay2[0]?.views)}
+${MilesNumber(ytplay2?.views)}
 
 *◎ ${lenguajeGB.smsYT5()}*
-${ytplay2[0]?.url.replace(/^https:\/\//, "")}
+${ytplay2?.url.replace(/^https:\/\//, "")}
 *◜⋯ ⋯ ⋯ ${gt} ⋯ ⋯ ⋯◞*
 
 *_Para seleccionar, reacciona o escribe respondiendo a este mensaje:_*
