@@ -223,11 +223,12 @@ isForwarded: true,
 forwardedNewsletterMessageInfo: {
 newsletterJid: '120363321103874131@newsletter',
 newsletterName: 'Gata'
-}}}, { quoted: fkontak })
+}}}, { quoted: m })
 
 //await conn.sendMessage(m.chat, { video: { url: vi.getRandom() }, gifPlayback: true, caption: menu, contextInfo: fakeChannel2 })
 //await conn.sendMessage(m.chat, { video: { url: vi.getRandom() }, gifPlayback: true, caption: menu, mentions: [m.sender] }, { quoted: fkontak }) 
 } catch (error) {
+console.log(error)
 try {
 await conn.sendMessage(m.chat, { image: { url: gataMenu.getRandom() }, gifPlayback: false, caption: menu, mentions: [m.sender, global.conn.user.jid] }, { quoted: fkontak }) 
 } catch (error) {
