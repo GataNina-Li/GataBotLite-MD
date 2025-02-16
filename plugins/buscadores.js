@@ -249,6 +249,7 @@ await conn.sendPresenceUpdate('composing', m.chat)
 try {
 var api = await fetch(APIs.ryzendesu.url + `ai/gemini?text=${text}`)
 var res = await api.json()
+console.log(res)
 await m.reply(`${res.answer.choices[0].message.content.trim()}\n\n> _*Model:* ${res.answer.model}_`)
 } catch (e) {
 reportError(e)
