@@ -19,6 +19,7 @@ const videoId = videoIdToFind[1]
 console.log(videoId)
 ytplay2 = ytplay2.all.find(item => item.videoId === videoId) || ytplay2.videos.find(item => item.videoId === videoId)
 console.log(ytplay2)
+console.log(ytplay2.title)
 if (!ytplay2) {
 ytplay2 = null
 }} else {
