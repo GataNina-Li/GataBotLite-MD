@@ -173,6 +173,14 @@ const sDisplay = s > 0 ? s + (s == 1 ? ' segundo' : ' segundos') : ''
 return dDisplay + hDisplay + mDisplay + sDisplay
 }
 
+function MilesNumber(number) {
+const exp = /(\d)(?=(\d{3})+(?!\d))/g;
+const rep = '$1.';
+const arr = number.toString().split('.');
+arr[0] = arr[0].replace(exp, rep);
+return arr[1] ? arr.join('.') : arr[0];
+}
+
 async function getFileSize(url) {
 try {
 const response = await fetch(url, { method: 'HEAD' })
