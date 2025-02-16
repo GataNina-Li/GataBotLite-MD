@@ -231,38 +231,38 @@ break
 case isCommand8:
 if (!text) return m.reply(`*Escriba un texto para usar a Gemini usando:*\n*${usedPrefix + command}* Hola Gemini, que puedes hacer?`)
 await conn.sendPresenceUpdate('composing', m.chat)       
-//try {
-//var api = await fetch(APIs.alyachan.url + `ai-gemini?q=${text}&apikey=${APIs.alyachan.key}`)
-//var res = await api.json()
-//await m.reply(res.data.content)
-//} catch (e) {
-//try {
-//var api = await fetch(APIs.alyachan.url + `bard-google-ai?q=${text}&apikey=${APIs.alyachan.key}`)
-//var res = await api.json()
-//await m.reply(res.data.chats.trim())
-//} catch {
-//try {
-//var api = await fetch(APIs.exonity.url + `ai/gemini?message=${text}`)
-//var res = await api.json()
-//await m.reply(res.result.trim())
-//} catch {
-//try {
-//var api = await fetch(APIs.ryzendesu.url + `ai/gemini?text=${text}`)
-//var res = await api.json()
-//await m.reply(`${res.answer.choices[0].message.content.trim()}\n\n> _*Model:* ${res.answer.model}_`)
-// } catch {
-//try {
-//var api = await fetch(APIs.siputzx.url + `ai/bard?query=${text}`)
-//var res = await api.json()
-//await m.reply(res.data.trim())  
-//} catch {
+try {
+var api = await fetch(APIs.alyachan.url + `ai-gemini?q=${text}&apikey=${APIs.alyachan.key}`)
+var res = await api.json()
+await m.reply(res.data.content)
+} catch (e) {
+try {
+var api = await fetch(APIs.alyachan.url + `bard-google-ai?q=${text}&apikey=${APIs.alyachan.key}`)
+var res = await api.json()
+await m.reply(res.data.chats.trim())
+} catch {
+try {
+var api = await fetch(APIs.exonity.url + `ai/gemini?message=${text}`)
+var res = await api.json()
+await m.reply(res.result.trim())
+} catch {
+try {
+var api = await fetch(APIs.ryzendesu.url + `ai/gemini?text=${text}`)
+var res = await api.json()
+await m.reply(`${res.answer.choices[0].message.content.trim()}\n\n> _*Model:* ${res.answer.model}_`)
+} catch {
+try {
+var api = await fetch(APIs.siputzx.url + `ai/bard?query=${text}`)
+var res = await api.json()
+await m.reply(res.data.trim())  
+} catch {
 try {
 var api = await fetch(APIs.delirius.url + `ia/gemini?query=${text}`)
 var res = await api.json()
 await m.reply(res.message.trim())  
 } catch (e) {
 reportError(e)
-}//}}}}}
+}}}}}}
 break
 
 case isCommand9:
