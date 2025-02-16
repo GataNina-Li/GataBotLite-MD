@@ -5,6 +5,7 @@ import ytdl from 'ytdl-core'
 import axios from 'axios'
 let tempStorage = {}
 const youtubeRegex = /^(https?:\/\/)?(www\.)?(youtube\.com\/watch\?v=|youtu\.be\/)[a-zA-Z0-9_-]{11}(\S+)?$/
+const youtubeRegexID = /(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/))([a-zA-Z0-9_-]{11})/
 
 const handler = async (m, {conn, command, args, text, usedPrefix}) => {
 if (!text) return m.reply(lenguajeGB.smsMalused2() + `*${usedPrefix + command} Billie Eilish - Bellyache*`)
@@ -12,7 +13,27 @@ if (!text) return m.reply(lenguajeGB.smsMalused2() + `*${usedPrefix + command} B
 const yt_play = await search(args.join(' '))
 //console.log(yt_play)
 const ytplay2 = await yts(text)
-console.log(ytplay2)
+
+
+if (youtubeRegex.test(text)) {
+const videoIdMatch = text.match(youtubeRegexID);
+    if (videoIdMatch && videoIdMatch[1]) {
+        const videoId = videoIdMatch[1];
+
+       
+        const videoDetails = ytplay2.find(video => video.videoId === videoId);
+
+        if (videoDetails) {
+            // Aquí tienes el fragmento de JSON correspondiente al video
+            console.log(videoDetails);
+        } else {
+            console.log("Video no encontrado en el JSON.");
+        }
+    }
+} else {
+    console.log("El texto no es una URL válida de YouTube.");
+}
+
   
 let caption = `*◜⋯ ⋯ ⋯ Y O U T U B E ⋯ ⋯ ⋯◞*
 *◎ ${lenguajeGB.smsYT1()}*
