@@ -10,9 +10,9 @@ const handler = async (m, {conn, command, args, text, usedPrefix}) => {
 if (!text) return m.reply(lenguajeGB.smsMalused2() + `*${usedPrefix + command} Billie Eilish - Bellyache*`)
 
 const yt_play = await search(args.join(' '))
-console.log(yt_play)
 
 let ytplay2 = await yts(text)
+console.log(ytplay2)
 const videoIdToFind = text.match(youtubeRegexID)
 if (videoIdToFind) {
 const videoId = videoIdToFind[1]  
