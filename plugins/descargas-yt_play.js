@@ -46,9 +46,9 @@ ${ytplay2?.url.replace(/^https:\/\//, "")}
 tempStorage[m.sender] = { url: ytplay2.url, title: ytplay2.title, resp: m, usedPrefix: usedPrefix, command: command }
 await conn.sendMessage(m.chat, {text: caption, contextInfo: { externalAdReply: { title: wm, body: wait2.replace(/\*/g, ''), thumbnailUrl: ytplay2.thumbnail, sourceUrl: md, mediaType: 1, showAdAttribution: false, renderLargerThumbnail: true }}});
 } catch (e) {
-reportError(e, conn, m, tempStorage[m.sender])
-}
-}
+m.reply('Error')
+console.log(e)
+}}
 
 handler.before = async (m, { conn }) => {
 const text = m.text.trim().toLowerCase()
