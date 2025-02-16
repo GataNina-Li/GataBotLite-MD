@@ -246,15 +246,18 @@ await conn.sendPresenceUpdate('composing', m.chat)
 //var res = await api.json()
 //await m.reply(res.result.trim())
 //} catch {
+//try {
+//var api = await fetch(APIs.ryzendesu.url + `ai/gemini?text=${text}`)
+//var res = await api.json()
+//await m.reply(`${res.answer.choices[0].message.content.trim()}\n\n> _*Model:* ${res.answer.model}_`)
+// } catch {
 try {
-var api = await fetch(`https://api.ryzendesu.vip/api/ai/gemini?text=${text}`)//fetch(APIs.ryzendesu.url + `ai/gemini?text=${text}`)
+var api = await fetch(APIs.siputzx.url + `ai/bard?query=${text}`)
 var res = await api.json()
-conn.getFile(api)
-console.log(res)
-await m.reply(`${res.answer.choices[0].message.content.trim()}\n\n> _*Model:* ${res.answer.model}_`)
+await m.reply(res.data.trim())    
 } catch (e) {
 reportError(e)
-}//}}}
+}//}}}}
 break
 
 case isCommand9:
