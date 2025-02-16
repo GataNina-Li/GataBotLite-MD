@@ -247,7 +247,7 @@ await conn.sendPresenceUpdate('composing', m.chat)
 //await m.reply(res.result.trim())
 //} catch {
 try {
-var api = await fetch(APIs.ryzendesu.url + `ai/gemini?text=${text}`)
+var api = await fetch(`https://api.ryzendesu.vip/api/ai/gemini?text=${text}`)//fetch(APIs.ryzendesu.url + `ai/gemini?text=${text}`)
 var res = await api.json()
 conn.getFile(api)
 console.log(res)
