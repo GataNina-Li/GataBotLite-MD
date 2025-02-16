@@ -231,13 +231,18 @@ break
 case isCommand8:
 if (!text) return m.reply(`*Escriba un texto para usar a Gemini usando:*\n*${usedPrefix + command}* Hola Gemini, que puedes hacer?`)
 await conn.sendPresenceUpdate('composing', m.chat)       
+//try {
+//var api = await fetch(APIs.alyachan.url + `ai-gemini?q=${text}&apikey=${APIs.alyachan.key}`)
+//var res = await api.json()
+//await m.reply(res.data.content)
+//} catch (e) {
 try {
-var api = await fetch(APIs.alyachan.url + `ai-gemini?q=${text}&apikey=${APIs.alyachan.key}`)
+var api = await fetch(APIs.alyachan.url + `bard-google-ai?q=${text}&apikey=${APIs.alyachan.key}`)
 var res = await api.json()
-await m.reply(res.data.content)
+await m.reply(res.data.chats)
 } catch (e) {
 reportError(e)
-}
+}//}
 break
 
 case isCommand9:
