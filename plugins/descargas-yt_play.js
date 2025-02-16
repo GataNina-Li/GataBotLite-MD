@@ -27,19 +27,19 @@ ytplay2 = await yts(text)
   
 let caption = `*◜⋯ ⋯ ⋯ Y O U T U B E ⋯ ⋯ ⋯◞*
 *◎ ${lenguajeGB.smsYT1()}*
-${yt_play2[0]?.title}
+${ytplay2[0]?.title}
 
 *◎ ${lenguajeGB.smsYT2()}*
-${yt_play2[0]?.description}
+${ytplay2[0]?.description}
 
 *◎ ${lenguajeGB.smsYT3()}*
-${secondString(yt_play2[0]?.duration?.seconds)}
+${secondString(ytplay2[0]?.duration?.seconds)}
 
 *◎ ${lenguajeGB.smsYT4()}*
-${MilesNumber(yt_play2[0]?.views)}
+${MilesNumber(ytplay2[0]?.views)}
 
 *◎ ${lenguajeGB.smsYT5()}*
-${yt_play2[0]?.url.replace(/^https:\/\//, "")}
+${ytplay2[0]?.url.replace(/^https:\/\//, "")}
 *◜⋯ ⋯ ⋯ ${gt} ⋯ ⋯ ⋯◞*
 
 *_Para seleccionar, reacciona o escribe respondiendo a este mensaje:_*
