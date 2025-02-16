@@ -3,6 +3,9 @@ import fetch from 'node-fetch'
 import yts from 'yt-search'
 import ytdl from 'ytdl-core'
 import axios from 'axios'
+import { createRequire } from 'module';
+const require = createRequire(import.meta.url);
+const { ytmp3, ytmp4 } = require("@hiudyy/ytdl");
 let tempStorage = {}
 const youtubeRegexID = /(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/))([a-zA-Z0-9_-]{11})/
 
@@ -82,6 +85,10 @@ const json = await response.json()
 await conn.sendMessage(m.chat, { [typeAudio]: { url: json.data.download.url }, mimetype: 'audio/mpeg', fileName: json.data.download.filename }, { quoted: gata.resp })
 } catch {   
 try {
+const audiodlp = await ytmp3(userVideoData.url);
+conn.sendMessage(m.chat, { audio: audiodlp, mimetype: "audio/mpeg" }, { quoted: gata.resp });
+} catch {
+try {
 const response = await fetch(APIs.ryzendesu.url + `downloader/ytmp3?url=${userVideoData.url}`)
 const json = await response.json()
 await conn.sendMessage(m.chat, { [typeAudio]: { url: json.url }, mimetype: 'audio/mpeg', fileName: json.filename }, { quoted: gata.resp })
@@ -107,7 +114,7 @@ const json = await response.json()
 await conn.sendMessage(m.chat, { [typeAudio]: { url: json.data.url }, mimetype: 'audio/mpeg', fileName: json.data.filename }, { quoted: gata.resp })
 } catch (e) { 
 reportError(e, conn, m, gata)
-}}}}}}
+}}}}}}}
   
 } else if ((typeVideo.type === "video" || typeVideo.type === "document") && ['👍', '😮', 'video', 'videodoc'].includes(text)) {
 await conn.reply(m.chat, lenguajeGB.smsAvisoEG() + `*${typeVideo.type === "video" ? lenguajeGB.smsYTV1() : lenguajeGB.smsYTV2()}*`, fkontak, m || null)
@@ -117,6 +124,10 @@ const json = await response.json()
 let caption = `🎬 *${json.data.title}*\n📺 *Canal:* ${json.data.author}\n📁 *Calidad:* ${json.data.download.quality}\n📦 *Tamaño:* ${json.data.download.size}`
 //let url = await fetch(json.data.download.url, { method: 'HEAD' }).then(response => response.url)
 await conn.sendMessage(m.chat, { [typeVideo.type]: { url: json.data.download.url }, mimetype: 'video/mp4', fileName: json.data.download.filename, ...(typeVideo.caption && { caption: caption }) }, { quoted: gata.resp })
+} catch {
+try {
+const video = await ytmp4(userVideoData.url);
+await conn.sendMessage(m.chat, { video: { url: video }, fileName: `video.mp4`, mimetype: 'video/mp4', caption: `${gt}`}, { quoted: gata.resp })
 } catch {
 try {
 const response = await fetch(APIs.alyachan.url + `ytv?url=${userVideoData.url}&apikey=${APIs.alyachan.key}`)
@@ -137,7 +148,7 @@ let caption = `🎬 *${json.result.title}*`
 await conn.sendMessage(m.chat, { [typeVideo.type]: { url: json.result.dl }, mimetype: 'video/mp4', fileName: json.result.title + '.mp4', ...(typeVideo.caption && { caption: caption }) }, { quoted: gata.resp })
 } catch (e) {
 reportError(e, conn, m, gata)
-}}}}
+}}}}}
 }
 
 } catch (error) {
