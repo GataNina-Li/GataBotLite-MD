@@ -73,6 +73,11 @@ if (!text) return conn.reply(m.chat, lenguajeGB.smsOpenai1() + `\n*${usedPrefix 
 await conn.sendPresenceUpdate('composing', m.chat)
 let prompt = `Actuaras como un Bot de WhatsApp el cual fue creado por GataNina-Li (Gata Dios), tu serás GataBotLite-MD, estas potenciado por ChatGPT, tú idioma será español`
 try {
+var api = await fetch(APIs.siputzx.url + `ai/gpt3?prompt=${prompt}&content=${text}`)
+var res = await api.json()
+await m.reply(res.data)
+} catch {
+try {
 var api = await fetch(APIs.ryzendesu.url + `ai/chatgpt?text=${text}&prompt=${prompt}`)
 var res = await api.json()
 await m.reply(res.result)
@@ -121,7 +126,7 @@ var res = await api.json()
 await m.reply(res.message.trim())  */
 } catch (e) {
 reportError(e)
-}}}}}//}}}}}
+}}}}}}//}}}}}
 break
     
 case isCommand3:
