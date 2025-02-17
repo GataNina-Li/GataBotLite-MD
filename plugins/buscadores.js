@@ -18,7 +18,7 @@ const idioma = 'es'
 
 let handler = async (m, { conn, command, usedPrefix, args, text }) => {
 const isCommand1 = /^(googlef?)$/i.test(command)
-const isCommand2 = /(openai|chatgpt|ia|ai)$/i.test(command)
+const isCommand2 = /(openai|chatgpt)$/i.test(command)
 const isCommand3 = /^(bot|simi|simsimi|alexa|bixby|cortana|siri|okgoogle)$/i.test(command)
 const isCommand4 = /^(githubstalk|usuariogithub|usergithub)$/i.test(command)
 const isCommand5 = /^(yt(s|search))$/i.test(command)
@@ -26,6 +26,7 @@ const isCommand6 = /^(translate|traducir|trad)$/i.test(command)
 const isCommand7 = /^(openaivoz|chatgptvoz|iavoz|robotvoz|openai2voz|chatgpt2voz|ia2voz|robot2voz|gatavoz|GataBotvoz|gptvoz|ai_voz|aivoce)$/i.test(command)
 const isCommand8 = /^(gemini|bard)$/i.test(command)
 const isCommand9 = /^(bing|bingia|iabing|copilot)$/i.test(command)
+const isCommand10 = /^(ia|ai)$/i.test(command)
     
 let fkontak = { "key": { "participants":"0@s.whatsapp.net", "remoteJid": "status@broadcast", "fromMe": false, "id": "Halo" }, "message": { "contactMessage": { "vcard": `BEGIN:VCARD\nVERSION:3.0\nN:Sy;Bot;;;\nFN:y\nitem1.TEL;waid=${m.sender.split('@')[0]}:${m.sender.split('@')[0]}\nitem1.X-ABLabel:Ponsel\nEND:VCARD` }}, "participant": "0@s.whatsapp.net" }
 async function reportError(e) {
