@@ -67,6 +67,7 @@ const optionsAudio = {
 "audiodoc": "document"
 }
 const typeAudio = optionsAudio[text]
+console.log(typeAudio)
 
 const optionsVideo = {
 "👍": { type: "video", caption: true },
