@@ -23,7 +23,7 @@ const videoId = videoIdToFind[1]
 ytplay2 = ytplay2.all.find(item => item.videoId === videoId) || ytplay2.videos.find(item => item.videoId === videoId)
 } 
 ytplay2 = ytplay2.all?.[0] || ytplay2.videos?.[0] || ytplay2  
-let raudiodlp = await ytmp3(userVideoData.url)
+let raudiodlp = await ytmp3(ytplay2?.url)
 console.log(raudiodlp)
   
 let caption = `*◜⋯ ⋯ ⋯ Y O U T U B E ⋯ ⋯ ⋯◞*
