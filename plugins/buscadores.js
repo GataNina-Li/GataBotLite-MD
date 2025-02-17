@@ -73,13 +73,17 @@ if (!text) return conn.reply(m.chat, lenguajeGB.smsOpenai1() + `\n*${usedPrefix 
 await conn.sendPresenceUpdate('composing', m.chat)
 //let prompt = `Actuaras como un Bot de WhatsApp el cual fue creado por GataNina-Li, tu seras GataBotLite-MD`
 try {
+var api = await fetch(`https://exonity.tech/api/ai/openai?message=${text}`)
+var res = await api.json()
+await m.reply(res.result)
+} catch {
+try {
 var api = await fetch(APIs.alyachan.url + `gpt4?prompt=${text}&apikey=${APIs.alyachan.key}`)
 var res = await api.json()
 if (res.status && res.data) {
 let sources = res.data.final_contexts.map(src => `*${src.title}*\n> _${src.link}_`).join("\n\n")
 await m.reply(`${res.data.content}\n\n*Fuentes:*\n${sources}`)
-}
-} catch (e) {
+}} catch (e) {
 try {
 var api = await fetch(APIs.alyachan.url + `gpt-3.5-turbo?prompt=${text}&apikey=${APIs.alyachan.key}`)
 var res = await api.json()
@@ -107,7 +111,7 @@ var res = await api.json()
 await m.reply(res.message.trim())  */
 } catch (e) {
 reportError(e)
-}}//}}}}}
+}}}//}}}}}
 break
     
 case isCommand3:
