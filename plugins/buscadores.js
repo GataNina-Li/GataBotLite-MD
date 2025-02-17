@@ -73,46 +73,46 @@ if (!text) return conn.reply(m.chat, lenguajeGB.smsOpenai1() + `\n*${usedPrefix 
 await conn.sendPresenceUpdate('composing', m.chat)
 let prompt = `Actuaras como un Bot de WhatsApp el cual fue creado por GataNina-Li (Gata Dios), tu serás GataBotLite-MD, estas potenciado por ChatGPT, tú idioma será español`
 try {
-var api = await fetch(APIs.davidcyriltech.url + `ai/chatbot?query=${text}`)
-var res = await api.json()
+let api = await fetch(APIs.davidcyriltech.url + `ai/chatbot?query=${text}`)
+let res = await api.json()
 await m.reply(res.result)
 } catch {
 try {
-var api = await fetch(APIs.delirius.url + `ia/gptprompt?text=${text}&prompt=${prompt}`)
-var res = await api.json()
-var result = res.data.replace(/\\n/g, ' ').replace(/^"|"$/g, '')
+let api = await fetch(APIs.delirius.url + `ia/gptprompt?text=${text}&prompt=${prompt}`)
+let res = await api.json()
+let result = res.data.replace(/\\n/g, ' ').replace(/^"|"$/g, '')
 await m.reply(result.data)
 } catch {
 try {
-var api = await fetch(APIs.siputzx.url + `ai/gpt3?prompt=${prompt}&content=${text}`)
-var res = await api.json()
+let api = await fetch(APIs.siputzx.url + `ai/gpt3?prompt=${prompt}&content=${text}`)
+let res = await api.json()
 await m.reply(res.data)
 } catch {
 try {
-var api = await fetch(APIs.ryzendesu.url + `ai/chatgpt?text=${text}&prompt=${prompt}`)
-var res = await api.json()
+let api = await fetch(APIs.ryzendesu.url + `ai/chatgpt?text=${text}&prompt=${prompt}`)
+let res = await api.json()
 await m.reply(res.result)
 } catch {
 try {
-var api = await fetch(APIs.exonity.url + `ai/gptlogic2?message=${text}&prompt=${prompt}&realtime=true`)
-var res = await api.json()
+let api = await fetch(APIs.exonity.url + `ai/gptlogic2?message=${text}&prompt=${prompt}&realtime=true`)
+let res = await api.json()
 await m.reply(res.result.replace(/^"|"$/g, '').replace(/\n/g, ' '))
 } catch {
 try {
-var api = await fetch(APIs.exonity.url + `ai/openai?message=${text}`)
-var res = await api.json()
+let api = await fetch(APIs.exonity.url + `ai/openai?message=${text}`)
+let res = await api.json()
 await m.reply(res.result)
 } catch {
 try {
-var api = await fetch(APIs.alyachan.url + `gpt4?prompt=${text}&apikey=${APIs.alyachan.key}`)
-var res = await api.json()
+let api = await fetch(APIs.alyachan.url + `gpt4?prompt=${text}&apikey=${APIs.alyachan.key}`)
+let res = await api.json()
 if (res.status && res.data) {
 let sources = res.data.final_contexts.map(src => `*${src.title}*\n> _${src.link}_`).join("\n\n")
 await m.reply(`${res.data.content}\n\n*Fuentes:*\n${sources}`)
 }} catch (e) {
 try {
-var api = await fetch(APIs.alyachan.url + `gpt-3.5-turbo?prompt=${text}&apikey=${APIs.alyachan.key}`)
-var res = await api.json()
+let api = await fetch(APIs.alyachan.url + `gpt-3.5-turbo?prompt=${text}&apikey=${APIs.alyachan.key}`)
+let res = await api.json()
 await m.reply(res.data.content)
 } catch (e) {
 reportError(e)
