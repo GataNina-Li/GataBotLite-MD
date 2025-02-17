@@ -75,7 +75,7 @@ let prompt = `Actuaras como un Bot de WhatsApp el cual fue creado por GataNina-L
 try {
 var api = await fetch(APIs.exonity.url + `ai/gptlogic2?message=${text}&prompt=${prompt}&realtime=true`)
 var res = await api.json()
-await m.reply(res.result)
+await m.reply(res.result.replace(/\n/g, '\n'))
 } catch {
 try {
 var api = await fetch(APIs.exonity.url + `ai/openai?message=${text}`)
