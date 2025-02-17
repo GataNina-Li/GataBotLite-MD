@@ -73,12 +73,12 @@ if (!text) return conn.reply(m.chat, lenguajeGB.smsOpenai1() + `\n*${usedPrefix 
 await conn.sendPresenceUpdate('composing', m.chat)
 //let prompt = `Actuaras como un Bot de WhatsApp el cual fue creado por GataNina-Li, tu seras GataBotLite-MD`
 try {
-await fetch(APIs.alyachan.url + `gpt4?prompt=${text}&apikey=${APIs.alyachan.key}`).then(response => response.json()).then(data => {
-if (data.status && data.data) {
-let sources = data.data.final_contexts.map(source => `**${source.title}**\n> ${source.link}`).join("\n\n")
-let formattedResponse = `${data.data.content}\n\nFuentes:\n${sources}`
-await m.reply(formattedResponse) 
-}})
+var api = await fetch(APIs.alyachan.url + `gpt4?prompt=${text}&apikey=${APIs.alyachan.key}`)
+var res = await api.json()
+if (res.status && res.data) {
+let sources = res.data.final_contexts.map(src => `*${src.title}*\n> _${src.link}_`).join("\n\n")
+await m.reply(`${res.data.content}\n\n*Fuentes:*\n${sources}`)
+}
 } catch (e) {
 try {
 var api = await fetch(APIs.alyachan.url + `gpt-3.5-turbo?prompt=${text}&apikey=${APIs.alyachan.key}`)
