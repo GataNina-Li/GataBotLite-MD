@@ -6,7 +6,7 @@ let usuario = `@${m.sender.split`@`[0]}`
 let inf = lenguajeGB['smsAvisoIIG']()
 	
 if (!m.messageStubType || !m.isGroup || !chat.detect) return
-const botIsAdminCommunity = groupMetadata.participants.some(p => p.id === conn.user.jid && (p.admin === 'admin' || p.admin === 'superadmin'))
+const botIsAdminCommunity = groupMetadata.participants.some(p => p.id === conn.user.jid && (p.admin === 'admin' || p.admin === 'superadmin')) || null
 
 if (m.messageStubType === 21) { // Anunciar nuevo nombre del grupo
 await conn.sendMessage(m.chat, { text: lenguajeGB.smsAutodetec1(inf, usuario, m), mentions: [m.sender] })   
