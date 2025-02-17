@@ -116,7 +116,7 @@ var res = await api.json()
 await m.reply(res.data.content)
 } catch (e) {
 reportError(e)
-}}}}}}}
+}}}}}}}}
 break
     
 case isCommand3:
