@@ -78,9 +78,8 @@ const optionsVideo = {
 const typeVideo = optionsVideo[text]
   
 try {
-console.log(typeAudio.type)
 if ((typeAudio === "audio" || typeAudio === "document") && ['❤️', '🙏', 'audio', 'audiodoc'].includes(text)) {
-await conn.reply(m.chat, lenguajeGB.smsAvisoEG() + `*${typeAudio.type === "audio" ? lenguajeGB.smsYTA1() : lenguajeGB.smsYTA2()}*`, fkontak, m || null)
+await conn.reply(m.chat, lenguajeGB.smsAvisoEG() + `*${!typeAudio || typeAudio.type === "audio" ? lenguajeGB.smsYTA1() : lenguajeGB.smsYTA2()}*`, fkontak, m || null)
 try {
 const response = await fetch(APIs.delirius.url + `download/ytmp3?url=${userVideoData.url}`)
 const json = await response.json()
@@ -119,7 +118,7 @@ reportError(e, conn, m, gata)
 }}}}}}}
   
 } else if ((typeVideo.type === "video" || typeVideo.type === "document") && ['👍', '😮', 'video', 'videodoc'].includes(text)) {
-await conn.reply(m.chat, lenguajeGB.smsAvisoEG() + `*${typeVideo.type === "video" ? lenguajeGB.smsYTV1() : lenguajeGB.smsYTV2()}*`, fkontak, m || null)
+await conn.reply(m.chat, lenguajeGB.smsAvisoEG() + `*${!typeVideo || typeVideo.type === "video" ? lenguajeGB.smsYTV1() : lenguajeGB.smsYTV2()}*`, fkontak, m || null)
 try {
 const response = await fetch(APIs.delirius.url + `download/ytmp4?url=${userVideoData.url}`)
 const json = await response.json()
