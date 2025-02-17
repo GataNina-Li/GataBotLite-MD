@@ -77,6 +77,7 @@ const optionsVideo = {
 const typeVideo = optionsVideo[text]
   
 try {
+console.log(typeAudio.type)
 if ((typeAudio === "audio" || typeAudio === "document") && ['❤️', '🙏', 'audio', 'audiodoc'].includes(text)) {
 await conn.reply(m.chat, lenguajeGB.smsAvisoEG() + `*${typeAudio.type === "audio" ? lenguajeGB.smsYTA1() : lenguajeGB.smsYTA2()}*`, fkontak, m || null)
 try {
