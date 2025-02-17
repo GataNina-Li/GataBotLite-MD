@@ -73,6 +73,17 @@ if (!text) return conn.reply(m.chat, lenguajeGB.smsOpenai1() + `\n*${usedPrefix 
 await conn.sendPresenceUpdate('composing', m.chat)
 let prompt = `Actuaras como un Bot de WhatsApp el cual fue creado por GataNina-Li (Gata Dios), tu serás GataBotLite-MD, estas potenciado por ChatGPT, tú idioma será español`
 try {
+var api = await fetch(APIs.davidcyriltech.url + `ai/chatbot?query=${text}`)
+var res = await api.json()
+await m.reply(res.result)
+} catch {
+try {
+var api = await fetch(APIs.delirius.url + `ia/gptprompt?text=${text}&prompt=${prompt}`)
+var res = await api.json()
+var result = res.data.replace(/\\n/g, ' ').replace(/^"|"$/g, '')
+await m.reply(result.data)
+} catch {
+try {
 var api = await fetch(APIs.siputzx.url + `ai/gpt3?prompt=${prompt}&content=${text}`)
 var res = await api.json()
 await m.reply(res.data)
@@ -103,30 +114,9 @@ try {
 var api = await fetch(APIs.alyachan.url + `gpt-3.5-turbo?prompt=${text}&apikey=${APIs.alyachan.key}`)
 var res = await api.json()
 await m.reply(res.data.content)
-
-/*} catch {
-try {
-var api = await fetch(APIs.exonity.url + `ai/gemini?message=${text}`)
-var res = await api.json()
-await m.reply(res.result.trim())
-} catch {
-try {
-var api = await fetch(APIs.ryzendesu.url + `ai/gemini?text=${text}`)
-var res = await api.json()
-await m.reply(`${res.answer.choices[0].message.content.trim()}\n\n> _*Model:* ${res.answer.model}_`)
-} catch {
-try {
-var api = await fetch(APIs.siputzx.url + `ai/bard?query=${text}`)
-var res = await api.json()
-await m.reply(res.data.trim())  
-} catch {
-try {
-var api = await fetch(APIs.delirius.url + `ia/gemini?query=${text}`)
-var res = await api.json()
-await m.reply(res.message.trim())  */
 } catch (e) {
 reportError(e)
-}}}}}}//}}}}}
+}}}}}}}
 break
     
 case isCommand3:
