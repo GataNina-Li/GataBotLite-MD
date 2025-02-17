@@ -23,8 +23,6 @@ const videoId = videoIdToFind[1]
 ytplay2 = ytplay2.all.find(item => item.videoId === videoId) || ytplay2.videos.find(item => item.videoId === videoId)
 } 
 ytplay2 = ytplay2.all?.[0] || ytplay2.videos?.[0] || ytplay2  
-let raudiodlp = await ytmp3(ytplay2?.url)
-console.log(raudiodlp)
   
 let caption = `*◜⋯ ⋯ ⋯ Y O U T U B E ⋯ ⋯ ⋯◞*
 *◎ ${lenguajeGB.smsYT1()}*
@@ -87,8 +85,8 @@ const json = await response.json()
 await conn.sendMessage(m.chat, { [typeAudio]: { url: json.data.download.url }, mimetype: 'audio/mpeg', fileName: json.data.download.filename }, { quoted: gata.resp })
 } catch {   
 try {
-const audiodlp = await ytmp3(userVideoData.url);
-conn.sendMessage(m.chat, { audio: audiodlp, mimetype: "audio/mpeg" }, { quoted: gata.resp });
+const response = await ytmp3(userVideoData.url);
+await conn.sendMessage(m.chat, { [typeAudio]: response, mimetype: 'audio/mpeg', fileName: gata.title + '.mp3' }, { quoted: gata.resp })
 } catch {
 try {
 const response = await fetch(APIs.ryzendesu.url + `downloader/ytmp3?url=${userVideoData.url}`)
@@ -128,8 +126,8 @@ let caption = `🎬 *${json.data.title}*\n📺 *Canal:* ${json.data.author}\n�
 await conn.sendMessage(m.chat, { [typeVideo.type]: { url: json.data.download.url }, mimetype: 'video/mp4', fileName: json.data.download.filename, ...(typeVideo.caption && { caption: caption }) }, { quoted: gata.resp })
 } catch {
 try {
-const video = await ytmp4(userVideoData.url);
-await conn.sendMessage(m.chat, { video: { url: video }, fileName: `video.mp4`, mimetype: 'video/mp4', caption: `${gt}`}, { quoted: gata.resp })
+const response = await ytmp4(userVideoData.url);
+await conn.sendMessage(m.chat, { [typeVideo.type]: response, mimetype: 'video/mp4', fileName: gata.title + '.mp4' }, { quoted: gata.resp })
 } catch {
 try {
 const response = await fetch(APIs.alyachan.url + `ytv?url=${userVideoData.url}&apikey=${APIs.alyachan.key}`)
