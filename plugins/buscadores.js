@@ -71,9 +71,14 @@ break
 case isCommand2:
 if (!text) return conn.reply(m.chat, lenguajeGB.smsOpenai1() + `\n*${usedPrefix + command}* ${lenguajeGB.smsOpenai2()}\n\n*${usedPrefix + command}* ${lenguajeGB.smsOpenai3()}` , m)
 await conn.sendPresenceUpdate('composing', m.chat)
-//let prompt = `Actuaras como un Bot de WhatsApp el cual fue creado por GataNina-Li, tu seras GataBotLite-MD`
+let prompt = `Actuaras como un Bot de WhatsApp el cual fue creado por GataNina-Li (Gata Dios), tu serás GataBotLite-MD, estas potenciado por ChatGPT`
 try {
-var api = await fetch(`https://exonity.tech/api/ai/openai?message=${text}`)
+var api = await fetch(APIs.exonity.url + `ai/gptlogic2?message=${text}&prompt=${prompt}&realtime=true`)
+var res = await api.json()
+await m.reply(res.result)
+} catch {
+try {
+var api = await fetch(APIs.exonity.url + `ai/openai?message=${text}`)
 var res = await api.json()
 await m.reply(res.result)
 } catch {
@@ -111,7 +116,7 @@ var res = await api.json()
 await m.reply(res.message.trim())  */
 } catch (e) {
 reportError(e)
-}}}//}}}}}
+}}}}//}}}}}
 break
     
 case isCommand3:
