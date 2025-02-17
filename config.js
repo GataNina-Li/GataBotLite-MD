@@ -60,11 +60,12 @@ alyachan: { url: 'https://api.alyachan.dev/api/', key: 'Gata-Dios' },
 exonity: { url: 'https://exonity.tech/api/', key: 'GataDios' },
 ryzendesu: { url: 'https://api.ryzendesu.vip/api/', key: null },
 neoxr: { url: 'https://api.neoxr.eu/api/', key: null },
+davidcyriltech: { url: 'https://api.davidcyriltech.my.id/', key: null },
 dorratz: { url: 'https://api.dorratz.com/', key: null },
 siputzx: { url: 'https://api.siputzx.my.id/api/', key: null },
 vreden: { url: 'https://api.vreden.web.id/api/', key: null },
 delirius: { url: 'https://delirius-apiofc.vercel.app/', key: null },
-fgmods: { url: 'https://api.fgmods.xyz/api/', key: null },
+fgmods: { url: 'https://api.fgmods.xyz/api/', key: 'elrebelde21' },
 popcat: { url: 'https://api.popcat.xyz', key: null }
 }
 
