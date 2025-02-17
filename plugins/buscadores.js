@@ -71,11 +71,11 @@ break
 case isCommand2:
 if (!text) return conn.reply(m.chat, lenguajeGB.smsOpenai1() + `\n*${usedPrefix + command}* ${lenguajeGB.smsOpenai2()}\n\n*${usedPrefix + command}* ${lenguajeGB.smsOpenai3()}` , m)
 await conn.sendPresenceUpdate('composing', m.chat)
-let prompt = `Actuaras como un Bot de WhatsApp el cual fue creado por GataNina-Li (Gata Dios), tu serás GataBotLite-MD, estas potenciado por ChatGPT`
+let prompt = `Actuaras como un Bot de WhatsApp el cual fue creado por GataNina-Li (Gata Dios), tu serás GataBotLite-MD, estas potenciado por ChatGPT, tú idioma será español`
 try {
 var api = await fetch(APIs.exonity.url + `ai/gptlogic2?message=${text}&prompt=${prompt}&realtime=true`)
 var res = await api.json()
-await m.reply(res.result.replace(/^"|"$/g, '').replace(/\n/g, '\n'))
+await m.reply(res.result.replace(/^"|"$/g, '').replace(/\n/g, '\n\n'))
 } catch {
 try {
 var api = await fetch(APIs.exonity.url + `ai/openai?message=${text}`)
