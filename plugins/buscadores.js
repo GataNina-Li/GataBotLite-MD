@@ -69,29 +69,42 @@ reportError(e)
 break
     
 case isCommand2:
-if (args.length >= 1) {
-text = args.slice(0).join(" ")
-} else if (m.quoted && m.quoted.text) {
-text = m.quoted.text
-} else return conn.reply(m.chat, lenguajeGB.smsOpenai1() + `\n*${usedPrefix + command}* ${lenguajeGB.smsOpenai2()}\n\n*${usedPrefix + command}* ${lenguajeGB.smsOpenai3()}` , m)
+if (!text) return conn.reply(m.chat, lenguajeGB.smsOpenai1() + `\n*${usedPrefix + command}* ${lenguajeGB.smsOpenai2()}\n\n*${usedPrefix + command}* ${lenguajeGB.smsOpenai3()}` , m)
 await conn.sendPresenceUpdate('composing', m.chat)
+//let prompt = `Actuaras como un Bot de WhatsApp el cual fue creado por GataNina-Li, tu seras GataBotLite-MD`
 try {
-let syms = `Actuaras como un Bot de WhatsApp el cual fue creado por GataNina-Li, tu seras GataBotLite-MD`
-let res = await gpt.ChatGpt(text, syms)
-await m.reply(res.text)
+var api = await fetch(APIs.alyachan.url + `gpt-3.5-turbo?prompt=${text}&apikey=${APIs.alyachan.key}`)
+var res = await api.json()
+await m.reply(res.data.content)
+
+/*} catch (e) {
+try {
+var api = await fetch(APIs.alyachan.url + `bard-google-ai?q=${text}&apikey=${APIs.alyachan.key}`)
+var res = await api.json()
+await m.reply(res.data.chats.trim())
 } catch {
-try {   
-let ia2 = await fetch(`https://api.amosayomide05.cf/gpt/?question=${text}&string_id=${m.sender}`) //fetch(`https://api.ibeng.tech/api/info/openai?text=${text}&apikey=tamvan`)
-let resu2 = await ia2.json()
-m.reply(resu2.response.trim())    
-} catch {        
-try {    
-let tioress = await fetch(`https://skizo.tech/api/openai?apikey=${lolkeysapi}&text=${text}`)
-let hasill = await tioress.json()
-m.reply(`${hasill.result}`.trim())   
+try {
+var api = await fetch(APIs.exonity.url + `ai/gemini?message=${text}`)
+var res = await api.json()
+await m.reply(res.result.trim())
+} catch {
+try {
+var api = await fetch(APIs.ryzendesu.url + `ai/gemini?text=${text}`)
+var res = await api.json()
+await m.reply(`${res.answer.choices[0].message.content.trim()}\n\n> _*Model:* ${res.answer.model}_`)
+} catch {
+try {
+var api = await fetch(APIs.siputzx.url + `ai/bard?query=${text}`)
+var res = await api.json()
+await m.reply(res.data.trim())  
+} catch {
+try {
+var api = await fetch(APIs.delirius.url + `ia/gemini?query=${text}`)
+var res = await api.json()
+await m.reply(res.message.trim())  */
 } catch (e) {
 reportError(e)
-}}}
+}//}}}}}
 break
     
 case isCommand3:
