@@ -122,7 +122,6 @@ await conn.groupRequestParticipantsUpdate(m.chat, [rawUser], 'approve');
 console.error(`Error al aprobar la solicitud de ${usersConPrefijo}:`, error);
 }}
 return;
-}
 /*if (m.messageStubType === 172 && botIsAdminCommunity) { // Unirse mediante enlace o vinculación de grupo con la comunidad
 let usuario = m.messageStubParameters[0]
 let metodo = m.messageStubParameters[2] === 'invite_link' ? 'un enlace de invitación' : 'un grupo vinculado a la comunidad'
