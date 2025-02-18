@@ -242,15 +242,56 @@ break
 case isCommand7:
 if (!text) throw `*${lenguajeGB['smsOpenai1']()} ${usedPrefix + command}* ${lenguajeGB.smsOpenai2()}\n\n*${usedPrefix + command}* ${lenguajeGB.smsOpenai3()}`
 await conn.sendPresenceUpdate('recording', m.chat)
+let prompt = `Actuaras como un Bot de WhatsApp el cual fue creado por GataNina-Li (Gata Dios), tu serás GataBotLite-MD, estas potenciado por ChatGPT, tú idioma será español`
+let finalText = ''
+try {
+let api = await fetch(APIs.delirius.url + `ia/gptprompt?text=${text}&prompt=${prompt}`)
+let res = await api.json()
+finalText = res.data.replace(/\\n/g, ' ').replace(/^"|"$/g, '') 
+} catch {
+try {
+let api = await fetch(APIs.siputzx.url + `ai/gpt3?prompt=${prompt}&content=${text}`)
+let res = await api.json()
+finalText = res.data
+} catch {
 try {
 let api = await fetch(APIs.alyachan.url + `gpt-3.5-turbo?prompt=${text}&apikey=${APIs.alyachan.key}`)
 let res = await api.json()
-await m.reply(res.data.content)
-let result = await translate(res.data.content, {to: idioma, autoCorrect: true})
-let audio = await tts(result.text, idioma)
-await conn.sendMessage(m.chat, {audio: audio, fileName: 'error.mp3', mimetype: 'audio/mpeg', ptt: true }, { quoted: m})            
+finalText = res.data.content
+} catch {
+try {
+let api = await fetch(APIs.ryzendesu.url + `ai/chatgpt?text=${text}&prompt=${prompt}`)
+let res = await api.json()
+finalText = res.result
+} catch {
+try {
+let api = await fetch(APIs.exonity.url + `ai/gptlogic2?message=${text}&prompt=${prompt}&realtime=true`)
+let res = await api.json()
+finalText = res.result.replace(/^"|"$/g, '').replace(/\n/g, ' ')
+} catch {
+try {
+let api = await fetch(APIs.exonity.url + `ai/openai?message=${text}`)
+let res = await api.json()
+finalText = res.result
+} catch {
+try {
+let api = await fetch(APIs.alyachan.url + `gpt4?prompt=${text}&apikey=${APIs.alyachan.key}`)
+let res = await api.json()
+if (res.status && res.data) {
+let sources = res.data.final_contexts.map(src => `*${src.title}*\n> _${src.link}_`).join("\n\n")
+finalText = `${res.data.content}\n\n*Fuentes:*\n${sources}`
+}} catch (e) {
+try {
+let api = await fetch(APIs.davidcyriltech.url + `ai/chatbot?query=${text}`)
+let res = await api.json()
+finalText = res.result
 } catch (e) {
-reportError(e)
+finalText = "Lo siento, no pude obtener una respuesta."
+}}}}}}}}
+if (finalText) {
+let result = await translate(finalText, { to: idioma, autoCorrect: true })
+let audio = await tts(result.text, idioma)
+await conn.sendMessage(m.chat, { audio: audio, fileName: 'audio.mp3', mimetype: 'audio/mpeg', ptt: true }, { quoted: m })
 }
 break   
 
