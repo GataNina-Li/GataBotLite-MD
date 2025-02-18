@@ -30,53 +30,6 @@ await conn.sendMessage(m.chat, { text: lenguajeGB.smsAutodetec3(inf, usuario, m,
 } else if (m.messageStubType === 26) { // Cerrar o abrir grupo [on/off]
 await conn.sendMessage(m.chat, { text: lenguajeGB.smsAutodetec5(inf, groupMetadata, m, usuario), mentions: [m.sender] })  
 
-} else if (chat.welcome && m.messageStubType == 27 && conn.user.jid != global.conn.user.jid) { //welcome para los sub bot
-let subject = groupMetadata.subject
-let descs = groupMetadata.desc || "😻 𝗦𝘂𝗽𝗲𝗿 𝙂𝙖𝙩𝙖𝘽𝙤𝙩𝙇𝙞𝙩𝙚-𝙈𝘿 😻";
-let userName = `${m.messageStubParameters[0].split`@`[0]}`;
-let defaultWelcome = `*╭┈⊰* ${subject}  *⊰┈ ✦*\n*┊✨ BIENVENIDO(A)!!*\n┊💖 @${userName}\n┊📄 *LEA LA DESCRIPCIÓN DEL GRUPO*\n*╰┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈ ✦*\n${descs}\n`;
-let textWel = chat.sWelcome ? chat.sWelcome
-.replace(/@user/g, `@${userName}`)
-.replace(/@group/g, subject) 
-.replace(/@desc/g, descs)
-: defaultWelcome;
-        
-await conn.sendMessage(m.chat, { text: textWel, 
-contextInfo:{
-forwardingScore: 9999999,
-isForwarded: true, 
-mentionedJid:[m.sender, m.messageStubParameters[0]],
-externalAdReply: {
-showAdAttribution: true,
-renderLargerThumbnail: true,
-thumbnailUrl: pp, 
-title: [wm, '😻 𝗦𝘂𝗽𝗲𝗿 ' + gt + ' 😻', '🌟 centergatabot.gmail.com'].getRandom(),
-containsAutoReply: true,
-mediaType: 1, 
-sourceUrl: accountsgb }}}, { quoted: fkontak }) 
-
-} else if (chat.welcome && (m.messageStubType == 28 || m.messageStubType == 32) && conn.user.jid != global.conn.user.jid ) { //Despida para los sub bot
-let subject = groupMetadata.subject;
-let userName = `${m.messageStubParameters[0].split`@`[0]}`;
-let defaultBye = `*╭┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈⊰*\n┊ *@${userName}*\n┊ *NO FUE DIGNO(A) DE ESTAR AQUÍ!!* 🌟\n*╰┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈⊰*`;
-let textBye = chat.sBye ? chat.sBye
-.replace(/@user/g, `@${userName}`)
-.replace(/@group/g, subject)
-: defaultBye;
-await conn.sendMessage(m.chat, { text: textBye, 
-contextInfo:{
-forwardingScore: 9999999,
-isForwarded: true, 
-mentionedJid:[m.sender, m.messageStubParameters[0]],
-externalAdReply: {
-showAdAttribution: true,
-renderLargerThumbnail: true,
-thumbnailUrl: pp, 
-title: [wm, '😻 𝗦𝘂𝗽𝗲𝗿 ' + gt + ' 😻', '🌟 centergatabot.gmail.com'].getRandom(),
-containsAutoReply: true,
-mediaType: 1, 
-sourceUrl: accountsgb }}}, { quoted: fkontak }) 
-
 } else if (m.messageStubType == 29) { // Detectar nuevo admin
 await conn.sendMessage(m.chat, { text: lenguajeGB.smsAutodetec6(inf, m, groupMetadata, usuario), mentions: [`${m.sender}`,`${m.messageStubParameters[0]}`] }) 
 
@@ -103,6 +56,46 @@ await conn.sendMessage(m.chat, { text: `Solicitud de ingreso de @${usuario.split
 } catch (error) {
 console.error(`Error al aprobar la solicitud de @${usuario.split('@')[0]}: `, error)
 }
+
+} else if (chat.welcome && m.messageStubType == 27 && conn.user.jid != global.conn.user.jid) { // Bienvenida (sub bots)
+let subject = groupMetadata.subject
+let descs = groupMetadata.desc || "😻 𝗦𝘂𝗽𝗲𝗿 𝙂𝙖𝙩𝙖𝘽𝙤𝙩𝙇𝙞𝙩𝙚-𝙈𝘿 😻"
+let userName = `${m.messageStubParameters[0].split`@`[0]}`
+let defaultWelcome = `*╭┈⊰* ${subject}  *⊰┈ ✦*\n*┊✨ BIENVENIDO(A)!!*\n┊💖 @${userName}\n┊📄 *LEA LA DESCRIPCIÓN DEL GRUPO*\n*╰┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈ ✦*\n${descs}\n`
+let textWel = chat.sWelcome ? chat.sWelcome.replace(/@user/g, `@${userName}`).replace(/@group/g, subject) .replace(/@desc/g, descs) : defaultWelcome
+await conn.sendMessage(m.chat, { text: textWel, 
+contextInfo:{
+forwardingScore: 9999999,
+isForwarded: true, 
+mentionedJid:[m.sender, m.messageStubParameters[0]],
+externalAdReply: {
+showAdAttribution: true,
+renderLargerThumbnail: true,
+thumbnailUrl: pp, 
+title: [wm, '😻 𝗦𝘂𝗽𝗲𝗿 ' + gt + ' 😻', '🌟 centergatabot.gmail.com'].getRandom(),
+containsAutoReply: true,
+mediaType: 1, 
+sourceUrl: accountsgb }}}, { quoted: fkontak }) 
+
+} else if (chat.welcome && (m.messageStubType == 28 || m.messageStubType == 32) && conn.user.jid != global.conn.user.jid ) { // Despedida (sub bot)
+let subject = groupMetadata.subject
+let userName = `${m.messageStubParameters[0].split`@`[0]}`
+let defaultBye = `*╭┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈⊰*\n┊ *@${userName}*\n┊ *NO FUE DIGNO(A) DE ESTAR AQUÍ!!* 🌟\n*╰┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈⊰*`;
+let textBye = chat.sBye ? chat.sBye.replace(/@user/g, `@${userName}`).replace(/@group/g, subject) : defaultBye
+await conn.sendMessage(m.chat, { text: textBye, 
+contextInfo:{
+forwardingScore: 9999999,
+isForwarded: true, 
+mentionedJid:[m.sender, m.messageStubParameters[0]],
+externalAdReply: {
+showAdAttribution: true,
+renderLargerThumbnail: true,
+thumbnailUrl: pp, 
+title: [wm, '😻 𝗦𝘂𝗽𝗲𝗿 ' + gt + ' 😻', '🌟 centergatabot.gmail.com'].getRandom(),
+containsAutoReply: true,
+mediaType: 1, 
+sourceUrl: accountsgb }}}, { quoted: fkontak }) 
+
 } else {
 if (m.messageStubType === 2) return
 console.log({ messageStubType: m.messageStubType, messageStubParameters: m.messageStubParameters, type: WAMessageStubType[m.messageStubType] })
