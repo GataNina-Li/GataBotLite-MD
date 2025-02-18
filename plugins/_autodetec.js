@@ -1,16 +1,16 @@
 let WAMessageStubType = (await import(global.baileys)).default
 export async function before(m, { conn, participants, groupMetadata }) {
-	
+
 let chat = global.db.data.chats[m.chat] 
 let usuario = `@${m.sender.split`@`[0]}`
 let inf = lenguajeGB['smsAvisoIIG']()
-	
+
 if (!m.messageStubType || !m.isGroup || !chat.detect) return
 const botIsAdminCommunity = groupMetadata.participants.some(p => p.id === conn.user.jid && (p.admin === 'admin' || p.admin === 'superadmin')) || null
 
 if (m.messageStubType === 21) { // Anunciar nuevo nombre del grupo
 await conn.sendMessage(m.chat, { text: lenguajeGB.smsAutodetec1(inf, usuario, m), mentions: [m.sender] })   
-  
+
 } else if (m.messageStubType === 22) { // Nueva foto del grupo
 let pp = await conn.profilePictureUrl(m.chat, 'image').catch(_ => gataMenu)
 await conn.sendMessage(m.chat, { image: { url: pp }, caption: lenguajeGB.smsAutodetec2(inf, usuario, groupMetadata), mentions: [m.sender] })
@@ -24,62 +24,10 @@ await conn.sendMessage(m.chat, { text: mensaje, mentions: [m.sender] })
 
 } else if (m.messageStubType === 25) { // Permitir o no configurar el grupo [on/off]
 await conn.sendMessage(m.chat, { text: lenguajeGB.smsAutodetec3(inf, usuario, m, groupMetadata), mentions: [m.sender] })  
-	
+
 } else if (m.messageStubType === 26) { // Cerrar o abrir grupo [on/off]
 await conn.sendMessage(m.chat, { text: lenguajeGB.smsAutodetec5(inf, groupMetadata, m, usuario), mentions: [m.sender] })  
 
-} else if (chat.detect && m.messageStubType == 25) {
-await conn.sendMessage(m.chat, { text: edit, mentions: [m.sender] }, { quoted: fkontak })  
-	
-} else if (chat.detect && m.messageStubType == 26) {
-await conn.sendMessage(m.chat, { text: status, mentions: [m.sender] }, { quoted: fkontak })  
-
-} else if (chat.welcome && m.messageStubType == 27 && conn.user.jid != global.conn.user.jid) { //welcome para los sub bot
-let subject = groupMetadata.subject
-let descs = groupMetadata.desc || "😻 𝗦𝘂𝗽𝗲𝗿 𝙂𝙖𝙩𝙖𝘽𝙤𝙩𝙇𝙞𝙩𝙚-𝙈𝘿 😻";
-let userName = `${m.messageStubParameters[0].split`@`[0]}`;
-let defaultWelcome = `*╭┈⊰* ${subject}  *⊰┈ ✦*\n*┊✨ BIENVENIDO(A)!!*\n┊💖 @${userName}\n┊📄 *LEA LA DESCRIPCIÓN DEL GRUPO*\n*╰┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈ ✦*\n${descs}\n`;
-let textWel = chat.sWelcome ? chat.sWelcome
-.replace(/@user/g, `@${userName}`)
-.replace(/@group/g, subject) 
-.replace(/@desc/g, descs)
-: defaultWelcome;
-        
-await conn.sendMessage(m.chat, { text: textWel, 
-contextInfo:{
-forwardingScore: 9999999,
-isForwarded: true, 
-mentionedJid:[m.sender, m.messageStubParameters[0]],
-externalAdReply: {
-showAdAttribution: true,
-renderLargerThumbnail: true,
-thumbnailUrl: pp, 
-title: [wm, '😻 𝗦𝘂𝗽𝗲𝗿 ' + gt + ' 😻', '🌟 centergatabot.gmail.com'].getRandom(),
-containsAutoReply: true,
-mediaType: 1, 
-sourceUrl: accountsgb }}}, { quoted: fkontak }) 
-
-} else if (chat.welcome && (m.messageStubType == 28 || m.messageStubType == 32) && conn.user.jid != global.conn.user.jid ) { //Despidan para los sub bot
-let subject = groupMetadata.subject;
-let userName = `${m.messageStubParameters[0].split`@`[0]}`;
-let defaultBye = `*╭┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈⊰*\n┊ *@${userName}*\n┊ *NO FUE DIGNO(A) DE ESTAR AQUÍ!!* 🌟\n*╰┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈⊰*`;
-let textBye = chat.sBye ? chat.sBye
-.replace(/@user/g, `@${userName}`)
-.replace(/@group/g, subject)
-: defaultBye;
-await conn.sendMessage(m.chat, { text: textBye, 
-contextInfo:{
-forwardingScore: 9999999,
-isForwarded: true, 
-mentionedJid:[m.sender, m.messageStubParameters[0]],
-externalAdReply: {
-showAdAttribution: true,
-renderLargerThumbnail: true,
-thumbnailUrl: pp, 
-title: [wm, '😻 𝗦𝘂𝗽𝗲𝗿 ' + gt + ' 😻', '🌟 centergatabot.gmail.com'].getRandom(),
-containsAutoReply: true,
-mediaType: 1, 
-sourceUrl: accountsgb }}}, { quoted: fkontak }) 
 } else if (m.messageStubType == 29) { // Detectar nuevo admin
 await conn.sendMessage(m.chat, { text: lenguajeGB.smsAutodetec6(inf, m, groupMetadata, usuario), mentions: [`${m.sender}`,`${m.messageStubParameters[0]}`] }) 
 
@@ -95,34 +43,7 @@ await conn.sendMessage(m.chat, { text: mensaje, mentions: [m.sender] })
 let all_member_add = m.messageStubParameters[0] === 'all_member_add' ? "✅ *Ahora todos pueden añadir usuarios.*" : "⚠ *Ahora solo los administradores pueden añadir usuarios.*"
 await conn.sendMessage(m.chat, { text: all_member_add, mentions: [m.sender] }) 
 
-} else if (m.messageStubType === 172 && m.messageStubParameters.length > 0 && botIsAdminCommunity) {
-const rawUser = m.messageStubParameters[0];
-const users = rawUser.split('@')[0]; 
-const prefijosProhibidos = ['91', '92', '222', '93', '265', '61', '62', '966', '229', '40', '49', '20', '963', '967', '234', '210', '212'];
-const usersConPrefijo = users.startsWith('+') ? users : `+${users}`;
-let metodo = m.messageStubParameters[2] === 'invite_link' ? 'un enlace de invitación' : 'un grupo vinculado a la comunidad'
-let mensaje = `🚪 @${rawUser.split('@')[0]} ha solicitado unirse mediante ${metodo}.`
-await conn.sendMessage(m.chat, { text: mensaje, mentions: [rawUser] })
-
-if (chat.antifake) {
-if (prefijosProhibidos.some(prefijo => usersConPrefijo.startsWith(prefijo))) {
-try {
-await conn.groupRequestParticipantsUpdate(m.chat, [rawUser], 'reject');
-} catch (error) {
-console.error(`Error al rechazar la solicitud de ${usersConPrefijo}:`, error);
-}} else {
-try {
-await conn.groupRequestParticipantsUpdate(m.chat, [rawUser], 'approve');
-} catch (error) {
-console.error(`Error al aprobar la solicitud de ${usersConPrefijo}:`, error);
-}}} else {
-try {
-await conn.groupRequestParticipantsUpdate(m.chat, [rawUser], 'approve');
-} catch (error) {
-console.error(`Error al aprobar la solicitud de ${usersConPrefijo}:`, error);
-}}
-return;
-/*if (m.messageStubType === 172 && botIsAdminCommunity) { // Unirse mediante enlace o vinculación de grupo con la comunidad
+} else if (m.messageStubType === 172 && botIsAdminCommunity) { // Unirse mediante enlace o vinculación de grupo con la comunidad
 let usuario = m.messageStubParameters[0]
 let metodo = m.messageStubParameters[2] === 'invite_link' ? 'un enlace de invitación' : 'un grupo vinculado a la comunidad'
 let mensaje = `🚪 @${usuario.split('@')[0]} ha solicitado unirse mediante ${metodo}.`
@@ -133,7 +54,7 @@ await conn.groupRequestParticipantsUpdate(m.chat, [usuario], 'approve')
 await conn.sendMessage(m.chat, { text: `Solicitud de ingreso de @${usuario.split('@')[0]} aprobada automáticamente ya que el anti fake está desactivado.`, mentions: [usuario] })
 } catch (error) {
 console.error(`Error al aprobar la solicitud de @${usuario.split('@')[0]}: `, error)
-}}*/
+}}
 
 } else {
 if (m.messageStubType === 2) return
