@@ -19,14 +19,14 @@ const idioma = 'es'
 let handler = async (m, { conn, command, usedPrefix, args, text }) => {
 const isCommand1 = /^(googlef?)$/i.test(command)
 const isCommand2 = /(openai|chatgpt)$/i.test(command)
-const isCommand3 = /^(bot|simi|simsimi|alexa|bixby|cortana|siri|okgoogle)$/i.test(command)
+const isCommand3 = /^(simi|simsimi|alexa|bixby|cortana|siri|okgoogle)$/i.test(command)
 const isCommand4 = /^(githubstalk|usuariogithub|usergithub)$/i.test(command)
 const isCommand5 = /^(yt(s|search))$/i.test(command)
 const isCommand6 = /^(translate|traducir|trad)$/i.test(command)
 const isCommand7 = /^(openaivoz|chatgptvoz|iavoz|robotvoz|openai2voz|chatgpt2voz|ia2voz|robot2voz|gatavoz|GataBotvoz|gptvoz|ai_voz|aivoce)$/i.test(command)
 const isCommand8 = /^(gemini|bard)$/i.test(command)
 const isCommand9 = /^(bing|bingia|iabing|copilot)$/i.test(command)
-const isCommand10 = /^(ia|ai)$/i.test(command)
+const isCommand10 = /^(ia|ai|bot)$/i.test(command)
     
 let fkontak = { "key": { "participants":"0@s.whatsapp.net", "remoteJid": "status@broadcast", "fromMe": false, "id": "Halo" }, "message": { "contactMessage": { "vcard": `BEGIN:VCARD\nVERSION:3.0\nN:Sy;Bot;;;\nFN:y\nitem1.TEL;waid=${m.sender.split('@')[0]}:${m.sender.split('@')[0]}\nitem1.X-ABLabel:Ponsel\nEND:VCARD` }}, "participant": "0@s.whatsapp.net" }
 async function reportError(e) {
@@ -73,11 +73,6 @@ if (!text) return conn.reply(m.chat, lenguajeGB.smsOpenai1() + `\n*${usedPrefix 
 await conn.sendPresenceUpdate('composing', m.chat)
 let prompt = `Actuaras como un Bot de WhatsApp el cual fue creado por GataNina-Li (Gata Dios), tu serás GataBotLite-MD, estas potenciado por ChatGPT, tú idioma será español`
 try {
-let api = await fetch(APIs.davidcyriltech.url + `ai/chatbot?query=${text}`)
-let res = await api.json()
-await m.reply(res.result)
-} catch {
-try {
 let api = await fetch(APIs.delirius.url + `ia/gptprompt?text=${text}&prompt=${prompt}`)
 let res = await api.json()
 let result = res.data.replace(/\\n/g, ' ').replace(/^"|"$/g, '')
@@ -87,6 +82,11 @@ try {
 let api = await fetch(APIs.siputzx.url + `ai/gpt3?prompt=${prompt}&content=${text}`)
 let res = await api.json()
 await m.reply(res.data)
+} catch {
+try {
+let api = await fetch(APIs.alyachan.url + `gpt-3.5-turbo?prompt=${text}&apikey=${APIs.alyachan.key}`)
+let res = await api.json()
+await m.reply(res.data.content)
 } catch {
 try {
 let api = await fetch(APIs.ryzendesu.url + `ai/chatgpt?text=${text}&prompt=${prompt}`)
@@ -111,9 +111,9 @@ let sources = res.data.final_contexts.map(src => `*${src.title}*\n> _${src.link}
 await m.reply(`${res.data.content}\n\n*Fuentes:*\n${sources}`)
 }} catch (e) {
 try {
-let api = await fetch(APIs.alyachan.url + `gpt-3.5-turbo?prompt=${text}&apikey=${APIs.alyachan.key}`)
+let api = await fetch(APIs.davidcyriltech.url + `ai/chatbot?query=${text}`)
 let res = await api.json()
-await m.reply(res.data.content)
+await m.reply(res.result)
 } catch (e) {
 reportError(e)
 }}}}}}}}
@@ -295,11 +295,9 @@ case isCommand9:
 if (!text) throw `*Escriba un texto usando el comando para usar Copilot*`
 await conn.sendPresenceUpdate('composing', m.chat)
 try {
-const API_COPILOT = `https://aemt.me/bingai?text=${encodeURIComponent(text)}`
-const response = await fetch(API_COPILOT)
-const data = await response.json()
-const respuestaAPI = data.result
-await conn.reply(m.chat, respuestaAPI, m)
+let api = await fetch(APIs.exonity.url + `ai/copilot?message=${text}`)
+let res = await api.json()
+await m.reply(res.result)
 } catch (e) {
 reportError(e)
 }
