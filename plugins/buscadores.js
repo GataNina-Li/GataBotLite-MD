@@ -241,14 +241,14 @@ break
 
 case isCommand7:
 if (!text) throw `*${lenguajeGB['smsOpenai1']()} ${usedPrefix + command}* ${lenguajeGB.smsOpenai2()}\n\n*${usedPrefix + command}* ${lenguajeGB.smsOpenai3()}`
-try {
 await conn.sendPresenceUpdate('recording', m.chat)
-const tioress22 = await fetch(`https://skizo.tech/api/openai?apikey=${lolkeysapi}&text=${text}`)
-const hasill22 = await tioress22.json()
-if (hasill22.result == 'error' || hasill22.result == '' || !hasill22.result) return 
-const hasill22_result = await translate(`${hasill22.result}`, {to: idioma, autoCorrect: true})
-const audio7 = await tts(hasill22_result.text, idioma)
-await conn.sendMessage(m.chat, {audio: audio7, fileName: 'error.mp3', mimetype: 'audio/mpeg', ptt: true }, { quoted: m})            
+try {
+let api = await fetch(APIs.alyachan.url + `gpt-3.5-turbo?prompt=${text}&apikey=${APIs.alyachan.key}`)
+let res = await api.json()
+await m.reply(res.data.content)
+let result = await translate(res.data.content, {to: idioma, autoCorrect: true})
+let audio = await tts(result.text, idioma)
+await conn.sendMessage(m.chat, {audio: audio, fileName: 'error.mp3', mimetype: 'audio/mpeg', ptt: true }, { quoted: m})            
 } catch (e) {
 reportError(e)
 }
