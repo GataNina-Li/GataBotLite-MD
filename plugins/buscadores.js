@@ -336,9 +336,12 @@ case isCommand9:
 if (!text) throw `*Escriba un texto usando el comando para usar Copilot*`
 await conn.sendPresenceUpdate('composing', m.chat)
 try {
-let api = await fetch(APIs.exonity.url + `ai/copilot?message=${text}`)
-let res = await api.json()
-await m.reply(res.result)
+var api = await fetch(APIs.alyachan.url + `ai-copilot?q=${text}&apikey=${APIs.alyachan.key}`)
+var res = await api.json()
+await m.reply(res.data.content.trim())
+//let api = await fetch(APIs.exonity.url + `ai/copilot?message=${text}`)
+//let res = await api.json()
+//await m.reply(res.result)
 } catch (e) {
 reportError(e)
 }
