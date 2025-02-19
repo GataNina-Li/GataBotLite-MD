@@ -1,7 +1,7 @@
 let WAMessageStubType = (await import(global.baileys)).default
 import './_content.js'
 export async function before(m, { conn, participants, groupMetadata }) {
-let pp = await conn.profilePictureUrl(m.messageStubParameters[0], 'image').catch(_ => gataMenu.getRandom())
+let pp = await conn.profilePictureUrl(m.messageStubParameters[0], 'image').catch(_ => gataMenu.getRandom()) || null
 let img = await (await fetch(`${pp}`)).buffer()
 let chat = global.db.data.chats[m.chat] 
 let usuario = `@${m.sender.split`@`[0]}`
