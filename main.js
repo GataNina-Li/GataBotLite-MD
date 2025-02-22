@@ -247,8 +247,9 @@ fs.mkdirSync(rutaJadiBot)
 if (!fs.existsSync(respaldoDir)) fs.mkdirSync(respaldoDir);
 
 const {state, saveState, saveCreds} = await useMultiFileAuthState(global.authFile)
-const msgRetryCounterMap = (MessageRetryMap) => { };
-const msgRetryCounterCache = new NodeCache()
+const msgRetryCounterMap = new Map();
+const msgRetryCounterCache = new NodeCache({ stdTTL: 0, checkperiod: 0 });
+const userDevicesCache = new NodeCache({ stdTTL: 0, checkperiod: 0 });
 const {version} = await fetchLatestBaileysVersion();
 let phoneNumber = global.botNumberCode
 
@@ -323,39 +324,27 @@ originalConsoleError.apply(console, arguments)
 }
 
 const connectionOptions = {
-logger: pino({ level: "fatal" }),
-printQRInTerminal: opcion == '1' ? true : methodCodeQR ? true : false,
-mobile: MethodMobile, 
-auth: {
-creds: state.creds,
-keys: makeCacheableSignalKeyStore(state.keys, Pino({ level: "fatal" }).child({ level: "fatal" })),
-},
-browser: opcion == '1' ? ['GataBotLite-MD', 'Edge', '2.0.0'] : methodCodeQR ? ['GataBotLite-MD', 'Edge', '2.0.0'] : ["Ubuntu", "Chrome", "110.0.1587.56"],
-version: version,
-generateHighQualityLinkPreview: true
-};
-
-/*const connectionOptions = {
 logger: pino({ level: 'silent' }),
 printQRInTerminal: opcion == '1' ? true : methodCodeQR ? true : false,
 mobile: MethodMobile, 
-browser: opcion == '1' ? ['GataBotLite-MD', 'Edge', '2.0.0'] : methodCodeQR ? ['GataBotLite-MD', 'Edge', '2.0.0'] : ['Ubuntu', 'Chrome', '110.0.1587.56'],
+browser: opcion == '1' ? ['GataBotLite-MD', 'Edge', '20.0.04'] : methodCodeQR ? ['GataBotLite-MD', 'Edge', '20.0.04'] : ["Ubuntu", "Chrome", "20.0.04"],
 auth: {
 creds: state.creds,
 keys: makeCacheableSignalKeyStore(state.keys, Pino({ level: "fatal" }).child({ level: "fatal" })),
 },
 markOnlineOnConnect: true, 
 generateHighQualityLinkPreview: true, 
+syncFullHistory: false,
 getMessage: async (clave) => {
 let jid = jidNormalizedUser(clave.remoteJid)
 let msg = await store.loadMessage(jid, clave.id)
 return msg?.message || ""
 },
-msgRetryCounterCache,
-msgRetryCounterMap,
-defaultQueryTimeoutMs: undefined,   
-version: [2, 3000, 1015901307]
-}*/
+msgRetryCounterCache, // Resolver mensajes en espera
+msgRetryCounterMap, // Determinar si se debe volver a intentar enviar un mensaje o no
+defaultQueryTimeoutMs: undefined,
+version: [2, 3000, 1015901307],
+}
 
 /*const supportedLanguages = ['es', 'en', 'pt', 'ar', 'id']
 const configPath = path.join(__dirname, 'config.js')
@@ -401,7 +390,6 @@ process.send('reset')
 }}*/
 
 global.conn = makeWASocket(connectionOptions)
-
 if (!fs.existsSync(`./${authFile}/creds.json`)) {
 if (opcion === '2' || methodCode) {
 opcion = '2'
