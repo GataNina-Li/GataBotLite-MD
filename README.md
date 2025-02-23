@@ -123,11 +123,11 @@ npm install -g ffmpeg imagemagick git yarn && npm i && node --no-warnings index.
 - [x] **Configuración** <details><summary>**Ajustes del Servidor - GataBotLite-MD**</summary><img src="https://telegra.ph/file/2c6d9f2888d9687c6815d.jpg"></details>
 ------------------------
 ### 🎇 Hosting Py
-<a href="https://dahs.hostingpy.shop/"><img src="https://files.catbox.moe/lr92z2.jpg" height="130px"></a>
+<a href="https://dash.hostingpy.shop/"><img src="https://files.catbox.moe/lr92z2.jpg" height="130px"></a>
 
-- **Dashboard:** [`Aquí`](https://dahs.hostingpy.shop/)
+- **Dashboard:** [`Aquí`](https://dash.hostingpy.shop/)
 - **Panel:** [`Aquí`](https://panel.hostingpy.shop/)
-- **Registrarse:** [`Aquí`](https://dahs.hostingpy.shop/register?ref=GataDios)
+- **Registrarse:** [`Aquí`](https://dash.hostingpy.shop/register?ref=GataDios)
 - **Canal de WhatsApp:** [`Aquí`](https://whatsapp.com/channel/0029Vak4e1R4NVifmh8Tvi3q)
 - **Comunidad:** [`Aquí`](https://chat.whatsapp.com/HT9YFbWTuqO0DQrq6Xxhvx)
 - **Contacto:** [`AdrianOficial`](https://wa.me/595976126756)
