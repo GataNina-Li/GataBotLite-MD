@@ -305,7 +305,7 @@ console.log(chalk.bold.redBright(lenguajeGB['methodCode11'](chalk)))
 }} while (opcion !== '1' && opcion !== '2' || fs.existsSync(`./${authFile}/creds.json`))
 }
 
-console.info = () => {} 
+/*console.info = () => {} 
 const originalConsoleWarn = console.warn
 console.warn = function() {
 const message = arguments[0]
@@ -321,9 +321,25 @@ if (typeof message === 'string' && (message.includes(atob("RmFpbGVkIHRvIGRlY3J5c
 arguments[0] = ""
 }
 originalConsoleError.apply(console, arguments)
+}*/
+
+console.info = () => {} 
+console.debug = () => {} 
+['log', 'warn', 'error'].forEach(methodName => redefineConsoleMethod(methodName, filterStrings))
+const connectionOptions = {
+logger: pino({ level: "fatal" }),
+printQRInTerminal: opcion == '1' ? true : methodCodeQR ? true : false,
+mobile: MethodMobile, 
+auth: {
+creds: state.creds,
+keys: makeCacheableSignalKeyStore(state.keys, Pino({ level: "fatal" }).child({ level: "fatal" })),
+},
+browser: opcion == '1' ? ['GataBotLite-MD', 'Edge', '20.0.04'] : methodCodeQR ? ['GataBotLite-MD', 'Edge', '20.0.04'] : ["Ubuntu", "Chrome", "20.0.04"],
+version,
+generateHighQualityLinkPreview: true
 }
 
-const connectionOptions = {
+/*const connectionOptions = {
 logger: pino({ level: 'silent' }),
 printQRInTerminal: opcion == '1' ? true : methodCodeQR ? true : false,
 mobile: MethodMobile, 
@@ -344,7 +360,7 @@ msgRetryCounterCache, // Resolver mensajes en espera
 msgRetryCounterMap, // Determinar si se debe volver a intentar enviar un mensaje o no
 defaultQueryTimeoutMs: undefined,
 version: [2, 3000, 1015901307],
-}
+}*/
 
 /*const supportedLanguages = ['es', 'en', 'pt', 'ar', 'id']
 const configPath = path.join(__dirname, 'config.js')
