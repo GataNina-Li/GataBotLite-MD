@@ -4,9 +4,9 @@ import axios from 'axios'
 import fs from 'fs'
 const { generateWAMessageFromContent, prepareWAMessageMedia, proto }  = (await import(global.baileys))
 
-//let handler = m => m
-//handler.before = async function (m, { conn } ) {
-export async function before(m, { conn, text }) {	
+let handler = m => m
+handler.before = async function (m, { conn } ) {
+// export async function before(m, { conn, text }) {	
 
 global.canalIdGB = ["120363160031023229@newsletter", "120363169294281316@newsletter", "120363203805910750@newsletter", "120363302472386010@newsletter"]
 global.canalNombreGB = ["INFINITY-WA 💫", "GB - UPDATE 🐈", "Tips sobre GataBot 🤩", "NEW PROJECT: YartexBot-MD ✨"]
@@ -17,7 +17,7 @@ global.fakeChannel2 = { mentionedJid: [m.sender], isForwarded: true, forwardedNe
 global.fkontak = { "key": { "participants":"0@s.whatsapp.net", "remoteJid": "status@broadcast", "fromMe": false, "id": "Halo" }, "message": { "contactMessage": { "vcard": `BEGIN:VCARD\nVERSION:3.0\nN:Sy;Bot;;;\nFN:y\nitem1.TEL;waid=${m.sender.split('@')[0]}:${m.sender.split('@')[0]}\nitem1.X-ABLabel:Ponsel\nEND:VCARD` }}, "participant": "0@s.whatsapp.net" }
 
 }
-//export default handler
+export default handler
 
 async function getRandomChannel() {
 let randomIndex = Math.floor(Math.random() * canalIdGB.length)
