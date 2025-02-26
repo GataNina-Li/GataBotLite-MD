@@ -1,6 +1,6 @@
 <p align="center"> 
 <a href="https://github.com/GataNina-Li"><img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&weight=3000&size=14&duration=3000&pause=2000&color=48E2FF&background=5AFFAB00&width=435&lines=%C2%A1El+equipo+de+GataBot+te+desea+una+Feliz+Navidad!+%F0%9F%A4%97%E2%98%83%EF%B8%8F" height="70px"></a> 
-<img src="https://qu.ax/POucW.png" alt="GataBotLite-MD" width="1520" height="500" />
+<img src="https://qu.ax/eLDGQ.png" alt="GataBotLite-MD" width="500" height="500" />
 </p>
 <p align="center">
 <a href="https://github.com/GataNina-Li/GataBot-MD"><img title="GataBot-MD" src="https://img.shields.io/badge/🌸 ESTÁ ES UNA VERSIÓN SIMPLIFICADA DE GataBotMD 🌸 -red?colorA=%233CCED8&colorB=%233CCED8&style=for-the-badge"></a>
@@ -8,7 +8,7 @@
 
 <div align="center">
   
-[![Gmail](https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:centergatabot@gmail.com)
+[![Gmail](https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:evogb.help@gmail.com)
 [![Support](https://img.shields.io/badge/Support-2CA5E0?style=for-the-badge&logo=telegram&logoColor=white)](https://t.me/SoporteGataBot)
 [![WhatsApp](https://img.shields.io/badge/STAFF-25D366?style=for-the-badge&logo=whatsapp&logoColor=white)](https://wa.me/message/C45GXBEFTPONE1)
 [![Facebook](https://img.shields.io/badge/Facebook-1877F2?style=for-the-badge&logo=facebook&logoColor=white)](https://facebook.com/groups/872989990425789/)
