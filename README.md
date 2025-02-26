@@ -16,16 +16,25 @@
 [![PayPal](https://img.shields.io/badge/PayPal-00457C?style=for-the-badge&logo=paypal&logoColor=white)](https://paypal.me/OficialGD)
 </div>
 
-### Cuentas Oficiales:
-> Al acceder a la plataforma, obtendrás acceso a todos los enlaces oficiales de GataBot. Además, te mantendremos informado con boletines y mensajes exclusivos sobre las últimas novedades. La página se actualiza constantemente para ofrecerte la información más relevante. ¡No te pierdas ninguna actualización y únete a nuestra comunidad ahora mismo!
+### Página Oficial
+> Accede a la plataforma para encontrar todos los enlaces oficiales de GataBot y recibir actualizaciones exclusivas. La página se actualiza constantemente con las últimas novedades. ¡Únete a nuestra comunidad ahora!
 
 <a href="https://www.atom.bio/gatabot/">
 <img src="https://img.shields.io/badge/GataBot_Accounts-000000%7D?style=for-the-badge&logo=biolink&logoColor=white">
 </a>
-  
-#### DISPONIBLE EN:
-> - [x] TERMUX, REPLIT, WINDOWS, ZIPPONODES, BOXMINE-HOST
 
+## ✅ Plataformas Disponibles  
+<details>
+  <summary>Haz clic para ver las plataformas disponibles</summary>
+
+  - 📱 **Termux**  
+  - 💻 **Replit**  
+  - 🖥 **Windows**  
+  - ☁️ **SkyUltraPlus**
+  - ⛏️ **BoxMine Host**
+  - 🎇 **Hosting-Py**
+
+</details>
 
 [`♻️ App Termux`](https://f-droid.org/es/packages/com.termux/)
 ### 🌸 INSTALACIÓN AUTOMÁTICA 🌸
