@@ -1,5 +1,4 @@
 <p align="center"> 
-<a href="https://github.com/GataNina-Li"><img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&weight=3000&size=14&duration=3000&pause=2000&color=48E2FF&background=5AFFAB00&width=435&lines=%C2%A1El+equipo+de+GataBot+te+desea+una+Feliz+Navidad!+%F0%9F%A4%97%E2%98%83%EF%B8%8F" height="70px"></a> 
 <img src="https://qu.ax/eLDGQ.png" alt="GataBotLite-MD" width="500" height="500" />
 </p>
 <p align="center">
