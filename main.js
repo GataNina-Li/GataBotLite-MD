@@ -433,15 +433,18 @@ console.log('[⚠] No se encontró el archivo creds.json para respaldar.');
 }};
 
 const restoreCreds = () => {
+try {
 if (fs.existsSync(credsFile)) {
-fs.copyFileSync(backupFile, credsFile);
-console.log(`[✅] creds.json reemplazado desde el respaldo.`);
+fs.copyFileSync(backupFile, credsFile)
+console.log(`[✅] creds.json reemplazado desde el respaldo.`)
 } else if (fs.existsSync(backupFile)) {
-fs.copyFileSync(backupFile, credsFile);
-console.log(`[✅] creds.json restaurado desde el respaldo.`);
+fs.copyFileSync(backupFile, credsFile)
+console.log(`[✅] creds.json restaurado desde el respaldo.`)
 } else {
-console.log('[⚠] No se encontró ni el archivo creds.json ni el respaldo.');
-}};
+console.log('[⚠] No se encontró ni el archivo creds.json ni el respaldo.')
+}} catch (error) {
+console.error(`[❌] Error al restaurar creds.json`)
+}}
 
 setInterval(async () => {
 await backupCreds();
