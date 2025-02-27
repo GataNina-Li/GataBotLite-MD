@@ -4,7 +4,7 @@ let handler = async (m, { conn }) => {
     let quoted = m.quoted;
     if (!quoted) return conn.reply(m.chat, `*Responde a un mensaje de una sola vez "ViewOnce" para ver su contenido.*`, m);
 
-    // Detectar si el mensaje viene desde WhatsApp Web (anidado en mediaMessage)
+   
     let viewOnceMessage = quoted.viewOnce ? quoted : 
         quoted.mediaMessage?.imageMessage || 
         quoted.mediaMessage?.videoMessage || 
