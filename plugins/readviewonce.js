@@ -6,7 +6,7 @@ if (!quoted) return conn.reply(m.chat, `*Responde a un mensaje de una sola vez "
 
 let viewOnceMessage = quoted.viewOnce ? quoted : quoted.mediaMessage?.imageMessage || quoted.mediaMessage?.videoMessage || quoted.mediaMessage?.audioMessage
 console.log(viewOnceMessage)
-if (!viewOnceMessage && !(quoted?.viewOnce || quoted?.mediaMessage?.imageMessage?.viewOnce || quoted?.mediaMessage?.videoMessage?.viewOnce || quoted?.mediaMessage?.audioMessage?.viewOnce)) return conn.reply(m.chat, `❌ No es un mensaje de imagen, video o audio ViewOnce.`, m)
+if (!viewOnceMessage && (quoted?.viewOnce || quoted?.mediaMessage?.imageMessage?.viewOnce || quoted?.mediaMessage?.videoMessage?.viewOnce || quoted?.mediaMessage?.audioMessage?.viewOnce)) return conn.reply(m.chat, `❌ No es un mensaje de imagen, video o audio ViewOnce.`, m)
 
 let messageType = viewOnceMessage.mimetype || quoted.mtype
 let stream = await downloadContentFromMessage(viewOnceMessage, messageType.split('/')[0])
