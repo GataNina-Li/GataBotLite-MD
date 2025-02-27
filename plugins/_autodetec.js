@@ -2,14 +2,12 @@ let WAMessageStubType = (await import(global.baileys)).default
 import './_content.js'
 
 export async function before(m, { conn, participants, groupMetadata }) {
+let chat = global.db.data.chats[m.chat] 
 if (!m.messageStubType || !m.isGroup || !chat.detect) return
   
 let pp = await conn.profilePictureUrl(m.messageStubParameters[0], 'image').catch(_ => gataMenu.getRandom()) || null
-
-let chat = global.db.data.chats[m.chat] 
 let usuario = `@${m.sender.split`@`[0]}`
 let inf = lenguajeGB['smsAvisoIIG']()
-
 const botIsAdminCommunity = groupMetadata?.participants?.some(p => p.id === conn.user.jid && (p.admin === 'admin' || p.admin === 'superadmin')) || null
 
 if (m.messageStubType === 21) { // Anunciar nuevo nombre del grupo
