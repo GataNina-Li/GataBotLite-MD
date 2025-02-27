@@ -97,6 +97,6 @@ mediaType: 1,
 sourceUrl: accountsgb }}}, { quoted: fkontak }) 
 
 } else {
-if (m.messageStubType === 2) return
-console.log({ messageStubType: m.messageStubType, messageStubParameters: m.messageStubParameters, type: WAMessageStubType[m.messageStubType] })
+//if (m.messageStubType === 2) return
+//console.log({ messageStubType: m.messageStubType, messageStubParameters: m.messageStubParameters, type: WAMessageStubType[m.messageStubType] })
 }}
