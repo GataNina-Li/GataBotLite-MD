@@ -1,29 +1,40 @@
 let { downloadContentFromMessage } = (await import('@whiskeysockets/baileys'));
 
 let handler = async (m, { conn }) => {
-let quoted = m.quoted || (m.mediaMessage?.imageMessage || m.mediaMessage?.videoMessage || m.mediaMessage?.audioMessage)
+    let quoted = m.quoted;
+
     
-if (!quoted) return conn.reply(m.chat, `*Responde a un mensaje de una sola vez "ViewOnce" para ver su contenido.*`, m)
+    if (!quoted) return conn.reply(m.chat, `*Responde a un mensaje de una sola vez "ViewOnce" para ver su contenido.*`, m);
+    
+   
+    let viewOnceMessage = quoted.viewOnce ? quoted : 
+        quoted.mediaMessage?.imageMessage || 
+        quoted.mediaMessage?.videoMessage || 
+        quoted.mediaMessage?.audioMessage;
 
-let buffer = await quoted.download?.(false)
-if (!buffer) return conn.reply(m.chat, `❌ No se pudo descargar el contenido.`, m)
+    if (!viewOnceMessage) return conn.reply(m.chat, `❌ No es un mensaje de imagen, video o audio ViewOnce.`, m);
 
-let messageType = quoted.mtype || m.mediaType
+    
+    let buffer = await viewOnceMessage.download?.(false);
+    if (!buffer) return conn.reply(m.chat, `❌ No se pudo descargar el contenido.`, m);
 
-if (/videoMessage/.test(messageType)) {
-await conn.sendMessage(m.chat, { video: buffer, caption: quoted.caption || '', mimetype: 'video/mp4' }, { quoted: m })
+    let messageType = viewOnceMessage.mimetype || quoted.mtype;
 
-} else if (/imageMessage/.test(messageType)) {
-await conn.sendMessage(m.chat, { image: buffer, caption: quoted.caption || '' }, { quoted: m })
+    if (messageType.includes('video')) {
+        await conn.sendMessage(m.chat, { video: buffer, caption: viewOnceMessage.caption || '', mimetype: 'video/mp4' }, { quoted: m });
 
-} else if (/audioMessage/.test(messageType)) {
-await conn.sendMessage(m.chat, { audio: buffer, mimetype: 'audio/mp4', ptt: false }, { quoted: m })
+    } else if (messageType.includes('image')) {
+        await conn.sendMessage(m.chat, { image: buffer, caption: viewOnceMessage.caption || '' }, { quoted: m });
 
-} else {
-return conn.reply(m.chat, `❌ No es un mensaje de imagen, video o audio ViewOnce.`, m)
-}}
+    } else if (messageType.includes('audio')) {
+        await conn.sendMessage(m.chat, { audio: buffer, mimetype: 'audio/mp4', ptt: false }, { quoted: m });
 
-handler.command = ['readviewonce', 'read', 'viewonce', 'ver']
-handler.register = true
+    } else {
+        return conn.reply(m.chat, `❌ No es un mensaje de imagen, video o audio ViewOnce.`, m);
+    }
+};
 
-export default handler
+handler.command = ['readviewonce', 'read', 'viewonce', 'ver'];
+handler.register = true;
+
+export default handler;
