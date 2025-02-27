@@ -83,11 +83,7 @@ await conn.reply(m.chat, lenguajeGB.smsAvisoEG() + `*${!typeAudio || typeAudio.t
 try {
 const response = await fetch(APIs.neoxr.url + `youtube?url=${userVideoData.url}&type=audio&quality=128kbps&apikey=${APIs.neoxr.key}`)
 const json = await response.json()
-console.log(json)
 await conn.sendMessage(m.chat, { [typeAudio]: { url: json.data.url }, mimetype: 'audio/mpeg', fileName: json.data.filename }, { quoted: gata.resp })
-//const response = await fetch(APIs.delirius.url + `download/ytmp3?url=${userVideoData.url}`)
-//const json = await response.json()
-//await conn.sendMessage(m.chat, { [typeAudio]: { url: json.data.download.url }, mimetype: 'audio/mpeg', fileName: json.data.download.filename }, { quoted: gata.resp })
 } catch {   
 try {
 const response = await ytmp3(userVideoData.url);
@@ -114,9 +110,9 @@ let { data } = await res.json();
 await conn.sendMessage(m.chat, { [typeAudio]: { url: data.dl }, mimetype: 'audio/mpeg' }, { quoted: gata.resp })
 } catch {
 try {   
-//const response = await fetch(APIs.neoxr.url + `youtube?url=${userVideoData.url}&type=audio&quality=128kbps&apikey=${APIs.neoxr.key}`)
-//const json = await response.json()
-//await conn.sendMessage(m.chat, { [typeAudio]: { url: json.data.url }, mimetype: 'audio/mpeg', fileName: json.data.filename }, { quoted: gata.resp })
+const response = await fetch(APIs.delirius.url + `download/ytmp3?url=${userVideoData.url}`)
+const json = await response.json()
+await conn.sendMessage(m.chat, { [typeAudio]: { url: json.data.download.url }, mimetype: 'audio/mpeg', fileName: json.data.download.filename }, { quoted: gata.resp })
 } catch (e) { 
 reportError(e, conn, m, gata)
 }}}}}}}
@@ -124,11 +120,16 @@ reportError(e, conn, m, gata)
 } else if ((typeVideo.type === "video" || typeVideo.type === "document") && ['👍', '😮', 'video', 'videodoc'].includes(text)) {
 await conn.reply(m.chat, lenguajeGB.smsAvisoEG() + `*${!typeVideo || typeVideo.type === "video" ? lenguajeGB.smsYTV1() : lenguajeGB.smsYTV2()}*`, fkontak, m || null)
 try {
-const response = await fetch(APIs.delirius.url + `download/ytmp4?url=${userVideoData.url}`)
+const response = await fetch(APIs.neoxr.url + `youtube?url=${userVideoData.url}&type=video&quality=480p&apikey=${APIs.neoxr.key}`)
 const json = await response.json()
-let caption = `🎬 *${json.data.title}*\n📺 *Canal:* ${json.data.author}\n📁 *Calidad:* ${json.data.download.quality}\n📦 *Tamaño:* ${json.data.download.size}`
+console.log(json)
+let caption = `🎬 *${json.title}*\n📺 *Canal:* ${json.channel}\n📁 *Calidad:* ${json.data.quality}\n📦 *Tamaño:* ${json.data.size}`
+await conn.sendMessage(m.chat, { [typeVideo.type]: { url: json.data.url }, mimetype: 'video/mp4', fileName: json.data.filename, ...(typeVideo.caption && { caption: caption }) }, { quoted: gata.resp })
+//const response = await fetch(APIs.delirius.url + `download/ytmp4?url=${userVideoData.url}`)
+//const json = await response.json()
+//let caption = `🎬 *${json.data.title}*\n📺 *Canal:* ${json.data.author}\n📁 *Calidad:* ${json.data.download.quality}\n📦 *Tamaño:* ${json.data.download.size}`
 //let url = await fetch(json.data.download.url, { method: 'HEAD' }).then(response => response.url)
-await conn.sendMessage(m.chat, { [typeVideo.type]: { url: json.data.download.url }, mimetype: 'video/mp4', fileName: json.data.download.filename, ...(typeVideo.caption && { caption: caption }) }, { quoted: gata.resp })
+//await conn.sendMessage(m.chat, { [typeVideo.type]: { url: json.data.download.url }, mimetype: 'video/mp4', fileName: json.data.download.filename, ...(typeVideo.caption && { caption: caption }) }, { quoted: gata.resp })
 } catch {
 try {
 const response = await ytmp4(userVideoData.url);
