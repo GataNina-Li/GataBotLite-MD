@@ -1,4 +1,4 @@
-/*let WAMessageStubType = (await import(global.baileys)).default
+let WAMessageStubType = (await import(global.baileys)).default
 import './_content.js'
 export async function before(m, { conn, participants, groupMetadata }) {
 let pp = await conn.profilePictureUrl(m.messageStubParameters[0], 'image').catch(_ => gataMenu.getRandom()) || null
@@ -100,4 +100,3 @@ sourceUrl: accountsgb }}}, { quoted: fkontak })
 if (m.messageStubType === 2) return
 console.log({ messageStubType: m.messageStubType, messageStubParameters: m.messageStubParameters, type: WAMessageStubType[m.messageStubType] })
 }}
-*/
