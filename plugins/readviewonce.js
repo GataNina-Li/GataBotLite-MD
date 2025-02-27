@@ -2,26 +2,29 @@ let { downloadContentFromMessage } = (await import('@whiskeysockets/baileys'));
 
 let handler = async (m, { conn }) => {
     let quoted = m.quoted;
-
-    
     if (!quoted) return conn.reply(m.chat, `*Responde a un mensaje de una sola vez "ViewOnce" para ver su contenido.*`, m);
-    
-   
+
+    // Detectar si el mensaje viene desde WhatsApp Web (anidado en mediaMessage)
     let viewOnceMessage = quoted.viewOnce ? quoted : 
         quoted.mediaMessage?.imageMessage || 
         quoted.mediaMessage?.videoMessage || 
         quoted.mediaMessage?.audioMessage;
-
-    console.log(viewOnceMessage)
-
+console.log(viewOnceMessage)
     if (!viewOnceMessage) return conn.reply(m.chat, `❌ No es un mensaje de imagen, video o audio ViewOnce.`, m);
 
-    
-    let buffer = await viewOnceMessage.download?.(false);
-    if (!buffer) return conn.reply(m.chat, `❌ No se pudo descargar el contenido.`, m);
-
+   
     let messageType = viewOnceMessage.mimetype || quoted.mtype;
+    let stream = await downloadContentFromMessage(viewOnceMessage, messageType.split('/')[0]);
+    
+    if (!stream) return conn.reply(m.chat, `❌ No se pudo descargar el contenido.`, m);
 
+   
+    let buffer = Buffer.from([]);
+    for await (const chunk of stream) {
+        buffer = Buffer.concat([buffer, chunk]);
+    }
+
+    
     if (messageType.includes('video')) {
         await conn.sendMessage(m.chat, { video: buffer, caption: viewOnceMessage.caption || '', mimetype: 'video/mp4' }, { quoted: m });
 
