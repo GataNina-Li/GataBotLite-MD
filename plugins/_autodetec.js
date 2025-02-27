@@ -95,8 +95,6 @@ title: [wm, '😻 𝗦𝘂𝗽𝗲𝗿 ' + gt + ' 😻', '🌟 centergatabot.gma
 containsAutoReply: true,
 mediaType: 1, 
 sourceUrl: accountsgb }}}, { quoted: fkontak }) 
-
-} else {
 //if (m.messageStubType === 2) return
 //console.log({ messageStubType: m.messageStubType, messageStubParameters: m.messageStubParameters, type: WAMessageStubType[m.messageStubType] })
 }}
