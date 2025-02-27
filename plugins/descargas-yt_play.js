@@ -81,9 +81,13 @@ try {
 if ((typeAudio === "audio" || typeAudio === "document") && ['❤️', '🙏', 'audio', 'audiodoc'].includes(text)) {
 await conn.reply(m.chat, lenguajeGB.smsAvisoEG() + `*${!typeAudio || typeAudio.type === "audio" ? lenguajeGB.smsYTA1() : lenguajeGB.smsYTA2()}*`, fkontak, m || null)
 try {
-const response = await fetch(APIs.delirius.url + `download/ytmp3?url=${userVideoData.url}`)
+const response = await fetch(APIs.neoxr.url + `youtube?url=${userVideoData.url}&type=audio&quality=128kbps&apikey=${APIs.neoxr.key}`)
 const json = await response.json()
-await conn.sendMessage(m.chat, { [typeAudio]: { url: json.data.download.url }, mimetype: 'audio/mpeg', fileName: json.data.download.filename }, { quoted: gata.resp })
+console.log(json)
+await conn.sendMessage(m.chat, { [typeAudio]: { url: json.data.url }, mimetype: 'audio/mpeg', fileName: json.data.filename }, { quoted: gata.resp })
+//const response = await fetch(APIs.delirius.url + `download/ytmp3?url=${userVideoData.url}`)
+//const json = await response.json()
+//await conn.sendMessage(m.chat, { [typeAudio]: { url: json.data.download.url }, mimetype: 'audio/mpeg', fileName: json.data.download.filename }, { quoted: gata.resp })
 } catch {   
 try {
 const response = await ytmp3(userVideoData.url);
@@ -110,9 +114,9 @@ let { data } = await res.json();
 await conn.sendMessage(m.chat, { [typeAudio]: { url: data.dl }, mimetype: 'audio/mpeg' }, { quoted: gata.resp })
 } catch {
 try {   
-const response = await fetch(APIs.alyachan.url + `yta?url=${userVideoData.url}&apikey=${APIs.alyachan.key}`)
-const json = await response.json()
-await conn.sendMessage(m.chat, { [typeAudio]: { url: json.data.url }, mimetype: 'audio/mpeg', fileName: json.data.filename }, { quoted: gata.resp })
+//const response = await fetch(APIs.neoxr.url + `youtube?url=${userVideoData.url}&type=audio&quality=128kbps&apikey=${APIs.neoxr.key}`)
+//const json = await response.json()
+//await conn.sendMessage(m.chat, { [typeAudio]: { url: json.data.url }, mimetype: 'audio/mpeg', fileName: json.data.filename }, { quoted: gata.resp })
 } catch (e) { 
 reportError(e, conn, m, gata)
 }}}}}}}
