@@ -1,3 +1,5 @@
+// Este código fue hecho por https://github.com/Hidekijs, modificado por https://github.com/GataNina-Li.
+
 let { downloadContentFromMessage } = (await import('@whiskeysockets/baileys'))
 
 let handler = async (m, { conn }) => {
@@ -5,20 +7,6 @@ let quoted = m.quoted
 if (!quoted) return conn.reply(m.chat, `*Responde a un mensaje de una sola vez "ViewOnce" para ver su contenido.*`, m)
 
 let viewOnceMessage = quoted.viewOnce ? quoted : quoted.mediaMessage?.imageMessage || quoted.mediaMessage?.videoMessage || quoted.mediaMessage?.audioMessage
-
-if (
-  !viewOnceMessage && 
-  (
-    quoted?.viewOnce === false || 
-    quoted?.mediaMessage?.imageMessage?.viewOnce === false || 
-    quoted?.mediaMessage?.videoMessage?.viewOnce === false || 
-    quoted?.mediaMessage?.audioMessage?.viewOnce === false
-  )
-) {
-  return conn.reply(m.chat, `*❌ El mensaje no es ViewOnce.*`, m)
-}
-
-
 let messageType = viewOnceMessage.mimetype || quoted.mtype
 let stream = await downloadContentFromMessage(viewOnceMessage, messageType.split('/')[0])
     
@@ -29,6 +17,7 @@ for await (const chunk of stream) {
 buffer = Buffer.concat([buffer, chunk])
 }
 
+try {
 if (messageType.includes('video')) {
 await conn.sendMessage(m.chat, { video: buffer, caption: viewOnceMessage.caption || '', mimetype: 'video/mp4' }, { quoted: m })
 
@@ -37,12 +26,12 @@ await conn.sendMessage(m.chat, { image: buffer, caption: viewOnceMessage.caption
 
 } else if (messageType.includes('audio')) {
 await conn.sendMessage(m.chat, { audio: buffer, mimetype: 'audio/ogg; codecs=opus', ptt: viewOnceMessage.ptt || false }, { quoted: m })
-
-} else {
-return conn.reply(m.chat, `❌ No es un mensaje de imagen, video o audio ViewOnce.`, m)
+  
+}} catch {
+conn.reply(m.chat, `*❌ No es un mensaje de imagen, video o audio ViewOnce.*`, m)
 }}
 
-handler.command = ['readviewonce', 'read', 'viewonce', 'ver'];
-handler.register = true;
+handler.command = /^(readviewonce|read|viewonce|ver)$/i
+handler.register = true
 
-export default handler;
+export default handler
