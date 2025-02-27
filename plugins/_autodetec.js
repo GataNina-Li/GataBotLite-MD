@@ -1,13 +1,15 @@
 let WAMessageStubType = (await import(global.baileys)).default
 import './_content.js'
+
 export async function before(m, { conn, participants, groupMetadata }) {
+if (!m.messageStubType || !m.isGroup || !chat.detect) return
+  
 let pp = await conn.profilePictureUrl(m.messageStubParameters[0], 'image').catch(_ => gataMenu.getRandom()) || null
-let img = await (await fetch(`${pp}`)).buffer()
+
 let chat = global.db.data.chats[m.chat] 
 let usuario = `@${m.sender.split`@`[0]}`
 let inf = lenguajeGB['smsAvisoIIG']()
 
-//if (!m.messageStubType || !m.isGroup || !chat.detect) return
 const botIsAdminCommunity = groupMetadata?.participants?.some(p => p.id === conn.user.jid && (p.admin === 'admin' || p.admin === 'superadmin')) || null
 
 if (m.messageStubType === 21) { // Anunciar nuevo nombre del grupo
@@ -95,6 +97,8 @@ title: [wm, '😻 𝗦𝘂𝗽𝗲𝗿 ' + gt + ' 😻', '🌟 centergatabot.gma
 containsAutoReply: true,
 mediaType: 1, 
 sourceUrl: accountsgb }}}, { quoted: fkontak }) 
-//if (m.messageStubType === 2) return
-//console.log({ messageStubType: m.messageStubType, messageStubParameters: m.messageStubParameters, type: WAMessageStubType[m.messageStubType] })
+
+} else {
+if (m.messageStubType === 2) return
+console.log({ messageStubType: m.messageStubType, messageStubParameters: m.messageStubParameters, type: WAMessageStubType[m.messageStubType] })
 }}
