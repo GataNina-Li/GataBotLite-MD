@@ -6,6 +6,7 @@ let handler = async (m, { conn }) => {
 let quoted = m.quoted
 if (!quoted) return conn.reply(m.chat, `*Responde a un mensaje de una sola vez "ViewOnce" para ver su contenido.*`, m)
 
+try {
 let viewOnceMessage = quoted.viewOnce ? quoted : quoted.mediaMessage?.imageMessage || quoted.mediaMessage?.videoMessage || quoted.mediaMessage?.audioMessage
 let messageType = viewOnceMessage.mimetype || quoted.mtype
 let stream = await downloadContentFromMessage(viewOnceMessage, messageType.split('/')[0])
@@ -17,7 +18,6 @@ for await (const chunk of stream) {
 buffer = Buffer.concat([buffer, chunk])
 }
 
-try {
 if (messageType.includes('video')) {
 await conn.sendMessage(m.chat, { video: buffer, caption: viewOnceMessage.caption || '', mimetype: 'video/mp4' }, { quoted: m })
 
