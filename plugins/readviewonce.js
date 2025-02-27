@@ -12,6 +12,8 @@ let handler = async (m, { conn }) => {
         quoted.mediaMessage?.videoMessage || 
         quoted.mediaMessage?.audioMessage;
 
+    console.log(viewOnceMessage)
+
     if (!viewOnceMessage) return conn.reply(m.chat, `❌ No es un mensaje de imagen, video o audio ViewOnce.`, m);
 
     
