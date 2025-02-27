@@ -32,7 +32,11 @@ console.log(viewOnceMessage)
         await conn.sendMessage(m.chat, { image: buffer, caption: viewOnceMessage.caption || '' }, { quoted: m });
 
     } else if (messageType.includes('audio')) {
-        await conn.sendMessage(m.chat, { audio: buffer, mimetype: 'audio/mp4', ptt: false }, { quoted: m });
+        await conn.sendMessage(m.chat, { 
+            audio: buffer, 
+            mimetype: 'audio/ogg; codecs=opus', 
+            ptt: viewOnceMessage.ptt || false 
+        }, { quoted: m })
 
     } else {
         return conn.reply(m.chat, `❌ No es un mensaje de imagen, video o audio ViewOnce.`, m);
