@@ -8,11 +8,16 @@ let viewOnceMessage = quoted.viewOnce ? quoted : quoted.mediaMessage?.imageMessa
 
 if (
   !viewOnceMessage && 
-  !(quoted?.viewOnce || 
-  quoted?.mediaMessage?.imageMessage?.viewOnce || 
-  quoted?.mediaMessage?.videoMessage?.viewOnce || 
-  quoted?.mediaMessage?.audioMessage?.viewOnce)
-) return conn.reply(m.chat, `*❌ No es un mensaje de imagen, video o audio ViewOnce.*`, m)
+  (
+    quoted?.viewOnce === false || 
+    quoted?.mediaMessage?.imageMessage?.viewOnce === false || 
+    quoted?.mediaMessage?.videoMessage?.viewOnce === false || 
+    quoted?.mediaMessage?.audioMessage?.viewOnce === false
+  )
+) {
+  return conn.reply(m.chat, `*❌ El mensaje no es ViewOnce.*`, m)
+}
+
 
 let messageType = viewOnceMessage.mimetype || quoted.mtype
 let stream = await downloadContentFromMessage(viewOnceMessage, messageType.split('/')[0])
