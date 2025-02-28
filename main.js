@@ -323,7 +323,7 @@ arguments[0] = ""
 originalConsoleError.apply(console, arguments)
 }
 
-const connectionOptions = {
+/*const connectionOptions = {
 logger: pino({ level: 'silent' }),
 printQRInTerminal: opcion == '1' ? true : methodCodeQR ? true : false,
 mobile: MethodMobile, 
@@ -344,7 +344,21 @@ msgRetryCounterCache, // Resolver mensajes en espera
 msgRetryCounterMap, // Determinar si se debe volver a intentar enviar un mensaje o no
 defaultQueryTimeoutMs: undefined,
 version,
-}
+}*/
+
+const connectionOptions = {
+logger: pino({ level: "fatal" }),
+printQRInTerminal: opcion == '1' ? true : methodCodeQR ? true : false,
+mobile: MethodMobile, 
+auth: {
+creds: state.creds,
+keys: makeCacheableSignalKeyStore(state.keys, Pino({ level: "fatal" }).child({ level: "fatal" })),
+},
+browser: opcion == '1' ? ['GataBotLite-MD', 'Edge', '20.0.04'] : methodCodeQR ? ['GataBotLite-MD', 'Edge', '20.0.04'] : ["Ubuntu", "Chrome", "20.0.04"],
+version: version,
+msgRetryCounterMap,
+generateHighQualityLinkPreview: true
+};
 
 /*const supportedLanguages = ['es', 'en', 'pt', 'ar', 'id']
 const configPath = path.join(__dirname, 'config.js')
@@ -390,6 +404,7 @@ process.send('reset')
 }}*/
 
 global.conn = makeWASocket(connectionOptions)
+
 if (!fs.existsSync(`./${authFile}/creds.json`)) {
 if (opcion === '2' || methodCode) {
 opcion = '2'
