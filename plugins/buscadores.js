@@ -339,7 +339,6 @@ try {
 //var api = await fetch(APIs.alyachan.url + `ai-copilot?q=${text}&apikey=${APIs.alyachan.key}`)
 //var res = await api.json()
 //console.log(res)
-await m.reply(res.data.content)
 let api = await fetch(APIs.exonity.url + `ai/copilot?message=${text}`)
 let res = await api.json()
 await m.reply(res.result)
