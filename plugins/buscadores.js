@@ -299,9 +299,10 @@ case isCommand8:
 if (!text) return m.reply(`*Escriba un texto para usar a Gemini usando:*\n*${usedPrefix + command}* Hola Gemini, que puedes hacer?`)
 await conn.sendPresenceUpdate('composing', m.chat)       
 try {
-var api = await fetch(APIs.alyachan.url + `ai-gemini?q=${text}&apikey=${APIs.alyachan.key}`)
+var api = await fetch(APIs.neoxr.url + `gemini-chat?q=${text}&apikey=${APIs.neoxr.key}`)
 var res = await api.json()
-await m.reply(res.data.content)
+console.log(res)
+await m.reply(res.data.message)
 } catch (e) {
 try {
 var api = await fetch(APIs.alyachan.url + `bard-google-ai?q=${text}&apikey=${APIs.alyachan.key}`)
@@ -338,7 +339,6 @@ await conn.sendPresenceUpdate('composing', m.chat)
 try {
 let api = await fetch(APIs.neoxr.url + `bing-chat?q=${text}&apikey=${APIs.neoxr.key}`)
 let res = await api.json()
-console.log(res)
 await m.reply(res.data.message)
 } catch (e) {
 try {
