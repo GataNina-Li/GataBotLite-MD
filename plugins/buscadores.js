@@ -333,7 +333,7 @@ reportError(e)
 break
 
 case isCommand9:
-if (!text) throw `*Escriba un texto usando el comando para usar Copilot*`
+if (!text) return m.reply(`*Escriba un texto usando el comando para usar Copilot*`)
 await conn.sendPresenceUpdate('composing', m.chat)
 try {
 //var api = await fetch(APIs.alyachan.url + `ai-copilot?q=${text}&apikey=${APIs.alyachan.key}`)
