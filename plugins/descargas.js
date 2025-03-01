@@ -54,7 +54,8 @@ if (!text) return m.reply(lenguajeGB.smsMalused2() + `\n*${usedPrefix + command}
 //if (prohibited.some(word => m.text.toLowerCase().includes(word))) return m.reply('⚠️😾')      
 let api_google = await fetch(APIs.neoxr.url + `goimg?q=${text}&apikey=${APIs.neoxr.key}`)
 let res_google = await api_google.json()
-let images = res_google.data.slice(0, 5).map(image => ({
+let shuffled = res_google.data.sort(() => 0.5 - Math.random())
+let images = shuffled.slice(0, 5).map(image => ({
 image: { url: image.url }, 
 caption: image.origin?.title || text, 
 }))
