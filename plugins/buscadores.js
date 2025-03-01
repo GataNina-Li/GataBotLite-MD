@@ -38,7 +38,21 @@ console.log(e)
 switch (true) {     
 case isCommand1:
 //const fetch = (await import('node-fetch')).default
-let img = 'https://wpbr.mx/blog/wp-content/uploads/2015/09/Nuevo-logo-de-google.jpg' || gataMenu.getRandom()
+try {
+let api = await fetch(APIs.neoxr.url + `goimg?q=${text}&apikey=${APIs.neoxr.key}`)
+let res = await api.json()
+
+let images = res.data.slice(0, 5).map(image => ({
+image: { url: image.url }, 
+caption: image.origin?.title || text, 
+}))
+await conn.sendAlbumMessage(m.chat, images, { quoted: m })
+} catch (e) {
+reportError(e)
+}
+
+        
+/*let img = 'https://wpbr.mx/blog/wp-content/uploads/2015/09/Nuevo-logo-de-google.jpg' || gataMenu.getRandom()
 let url = 'https://google.com/search?q=' + encodeURIComponent(text)
 if (args.length >= 1) {
 text = args.slice(0).join(" ")
@@ -65,7 +79,7 @@ let msg = translatedResults.join('\n\n')
 await conn.sendFile(m.chat, img, '', url + '\n\n' + msg, m)
 } catch (e) {
 reportError(e)
-}}
+}}*/
 break
     
 case isCommand2:
@@ -305,11 +319,6 @@ console.log(res)
 await m.reply(res.data.message)
 } catch (e) {
 try {
-var api = await fetch(APIs.alyachan.url + `bard-google-ai?q=${text}&apikey=${APIs.alyachan.key}`)
-var res = await api.json()
-await m.reply(res.data.chats.trim())
-} catch {
-try {
 var api = await fetch(APIs.exonity.url + `ai/gemini?message=${text}`)
 var res = await api.json()
 await m.reply(res.result.trim())
@@ -330,12 +339,17 @@ var res = await api.json()
 await m.reply(res.message.trim())  
 } catch (e) {
 reportError(e)
-}}}}}}
+}}}}}
 break
 
 case isCommand9:
 if (!text) return m.reply(`*Escriba un texto usando el comando para usar Copilot*`)
 await conn.sendPresenceUpdate('composing', m.chat)
+try {
+let api = await fetch(APIs.neoxr.url + `copilot?q=${text}&apikey=${APIs.neoxr.key}`)
+let res = await api.json()
+await m.reply(res.data.message)
+} catch (e) {
 try {
 let api = await fetch(APIs.neoxr.url + `bing-chat?q=${text}&apikey=${APIs.neoxr.key}`)
 let res = await api.json()
@@ -347,7 +361,7 @@ let res = await api.json()
 await m.reply(res.result)
 } catch (e) {
 reportError(e)
-}}
+}}}
 break 
         
 }}
