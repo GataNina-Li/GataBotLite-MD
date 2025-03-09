@@ -667,20 +667,21 @@ reportError(e)}
 break
         
 case isCommand17:
-if (!args[0]) return m.reply(lenguajeGB.smsMalused2() + `*${usedPrefix + command}* ` + 'https://www.instagram.com/reel/CrWooCiKGKP/?utm_source=ig_web_copy_link&igshid=MzRlODBiNWFlZA==')
-try{
-let apineox = await fetch(`https://api.neoxr.eu/api/ig?url=${args[0]}&apikey=GataDios`)
-let json3 = await apineox.json()
-let videoig = json3.data.url
-let shortUrl1 = await (await fetch(`https://tinyurl.com/api-create.php?url=${args[0]}`)).text()
-let txt1 = `🔗 *URL:* ${shortUrl1}`.trim()
+if (!args[0]) { return m.reply(lenguajeGB.smsMalused2() + `*${usedPrefix + command}* ` + 'https://www.instagram.com/reel/CrWooCiKGKP/?utm_source=ig_web_copy_link&igshid=MzRlODBiNWFlZA==')}
+try {
+let apiResponse = await fetch(`https://api.neoxr.eu/api/ig-fetch?url=${args[0]}&apikey=GataDios`)
+let responseJson = await apiResponse.json()
+if (!responseJson.status || !responseJson.data || !responseJson.data[0].url) { throw new Error('Respuesta inválida de la API Neox')}
+let videoUrl = responseJson.data[0].url;
+let shortUrl = await (await fetch(`https://tinyurl.com/api-create.php?url=${args[0]}`)).text()
+let messageText = `🔗 *URL corta:* ${shortUrl}`.trim()
 await m.reply(wait)
-try{
-await conn.sendFile(m.chat, videoig, 'error.mp4', txt1, m)  
+try {
+await conn.sendFile(m.chat, videoUrl, 'video.mp4', messageText, m)
 } catch (e) {
-await conn.sendMessage(m.chat, { image: { url: videoig }, caption: txt1 }, { quoted: m })
-}} catch (e) {
-reportError(e)} 
+await conn.sendMessage(m.chat, { image: { url: videoUrl }, caption: messageText }, { quoted: m })}
+} catch (e) {
+reportError(e)}
 break
 
 case isCommand18:
