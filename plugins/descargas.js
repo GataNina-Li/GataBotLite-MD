@@ -567,27 +567,23 @@ reportError(e)
 break*/
         
 case isCommand13:
-if (args.length >= 1) {
-text = args.slice(0).join(" ")
-} else if (m.quoted && m.quoted.text) {
-text = m.quoted.text
-} else return conn.reply(m.chat, `${lenguajeGB['smsMalused3']()}\n*${usedPrefix + command} ${lenguajeGB.smsIAimage2()}*`, m)
-await m.reply(wait) 
+if (!args[0]) {
+return conn.reply(m.chat, `${lenguajeGB['smsMalused3']()}\n*${usedPrefix + command} ${lenguajeGB.smsIAimage2()}*`, m)
+}
+const prompt = args.join(' ')
+const apiUrl = `https://api.dorratz.com/v3/ai-image?prompt=${prompt}`
 try {
-let urlDALLE = `https://aemt.me/dalle?text=${text}`
-await conn.sendFile(m.chat, await (await fetch(urlDALLE)).buffer(), 'image.jpg', lenguajeGB.smsIAimage() + `\n\n_${text}_`, m)
-} catch {
-try{   
-let response = await fetch(`https://api.lolhuman.xyz/api/diffusion-prompt?apikey=${lolkeysapi}&prompt=${text}`)
-let image = await response.buffer()
-await conn.sendFile(m.chat, image, 'image.jpg', lenguajeGB.smsIAimage() + `\n\n_${text}_`, m)
-} catch {
-try{
-let res = `https://api.lolhuman.xyz/api/dall-e?apikey=${lolkeysapi}&text=${text}`  
-await conn.sendFile(m.chat, res, 'image.jpg', lenguajeGB.smsIAimage() + `\n\n_${text}_`, m)
-} catch (e) {
-reportError(e)} 
-}}      
+await m.reply(wait)
+const response = await axios.get(apiUrl)
+if (response.data && response.data.data && response.data.data.image_link) {
+const imageUrl = response.data.data.image_link;
+await conn.sendFile(m.chat, imageUrl, 'image.jpg', lenguajeGB.smsIAimage() + `\n\n_${text}_`, m)
+} else {
+throw new Error('No se encontró una imagen con dicha descripción.')
+}
+} catch (error) {
+reportError(e)
+}
 break
         
 case isCommand14:
