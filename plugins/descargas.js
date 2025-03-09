@@ -51,7 +51,7 @@ if (!buffer) {
 conn.reply(m.chat, `No se encontraron resultados para "${text}".`, m)
 break
 }
-await conn.sendMessage(m.chat, { image: buffer }, { quoted: m })
+await conn.sendAlbumMessage(m.chat, { url: buffer }, { quoted: m })
 }
 } catch (e) {
 reportError(e)
