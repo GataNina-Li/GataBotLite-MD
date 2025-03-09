@@ -98,6 +98,7 @@ break
 case isCommand3:
 if (!args[0]) return m.reply(lenguajeGB.smsMalused2() + `*${usedPrefix + command} https://www.mediafire.com/file/04kaaqx9oe3tb8b/DOOM_v13_CLONE%255BCOM.FM%255D.apk/file*`)
 try {
+m.reply(wait)
 const res = await fetch(`https://api.neoxr.eu/api/mediafire?url=${args[0]}&apikey=GataDios`)
 if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`)
 const data = await res.json()
