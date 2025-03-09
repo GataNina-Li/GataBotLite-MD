@@ -305,7 +305,6 @@ break
 
 case isCommand11:
 if (!text) return m.reply(lenguajeGB.smsMalused2() + `*${usedPrefix + command}* ${md}`)
-//await m.reply(`*${lenguajeGB.smsGit()}*`);
 conn.reply(m.chat, `${lenguajeGB.smsAvisoEG()} ${lenguajeGB.smsGit()}`, m, {
 contextInfo: { externalAdReply :{ mediaUrl: null, mediaType: 1, description: null, 
 title: igfg, 
