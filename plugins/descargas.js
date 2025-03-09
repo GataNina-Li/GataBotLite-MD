@@ -41,6 +41,7 @@ await m.react(notsent)
 switch (true) {     
 case isCommand1:
 if (!text) return m.reply(lenguajeGB.smsMalused2() + `\n*${usedPrefix + command} Gata*`)
+try {
 let api_google = await fetch(APIs.neoxr.url + `goimg?q=${text}&apikey=${APIs.neoxr.key}`)
 let res_google = await api_google.json()
 let shuffled = res_google.data.sort(() => 0.5 - Math.random())
