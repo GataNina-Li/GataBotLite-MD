@@ -459,72 +459,39 @@ break*/
 
 case isCommand11:
 if (!text) return conn.reply(m.chat, `${lenguajeGB['smsMalused2']()}\n*${usedPrefix + command} https://vm.tiktok.com/ZM2e66NBM/?t=1*`, m)
-if (!/(?:https:?\/{2})?(?:w{3}|vm|vt|t)?\.?tiktok.com\/([^\s&]+)/gi.test(text)) return conn.reply(m.chat, `${lenguajeGB['smsAvisoFG']()}*${lenguajeGB['smsYT6']()}*`, m)  
-await conn.reply(m.chat, `${lenguajeGB['smsAvisoEG']()}*${lenguajeGB['smsTiktok']()}*`, m)  
+if (!/(?:https:?\/{2})?(?:w{3}|vm|vt|t)?\.?tiktok.com\/([^\s&]+)/gi.test(text)) 
+return conn.reply(m.chat, `${lenguajeGB['smsAvisoFG']()}*${lenguajeGB['smsYT6']()}*`, m)
+await conn.reply(m.chat, `${lenguajeGB['smsAvisoEG']()}*${lenguajeGB['smsTiktok']()}*`, m)
 try {
-let response = await fetch(APIs.aemt.url + `download/tikdl?url=${text}`)
-let data = await response.json()
-const { result } = data
-const { info_video, url: { nowm } } = result || {}
-const { author_info = {} } = result
-const { nickname, profile, id } = author_info
-const { 
-title = 'No encontrado', 
-region = 'No encontrado', 
-thumbnail = 'No encontrado', 
-duration = 'No encontrado', 
-total_download = 'No encontrado', 
-total_play = 'No encontrado', 
-total_share = 'No encontrado', 
-total_comment = 'No encontrado' 
-} = info_video || {}
+const response = await fetch(`https://api.dorratz.com/v2/tiktok-dl?url=${text}`)
+const { data } = await response.json()
+const { id, region, title, duration, repro: total_play, like: total_like, share: total_share, comment: total_comment, download: total_download, author, media, } = data
+const { username, nickname } = author
+const { hd } = media
 const minutes = Math.floor(duration / 60)
 const seconds = duration % 60
-let durationText = ''
-if (minutes > 0) {
-durationText += `${minutes} minutos`
-if (seconds > 0) durationText += ` y ${seconds} segundos`
-} else {
-durationText += `${seconds} segundos`
-}
-const flag = codeToEmoji(region)
-const country = flagToCountry(flag).name
-response = await fetch(APIs.aemt.url + `download/tiktokslide?url=${text}`)
-data = await response.json()
-const { music_info, author: author_info2, digg_count } = data.result.data
-const { id: id_audio, title: title_audio, author: author_audio } = music_info
-const { unique_id, avatar } = author_info2
-let txtTK = `
+const durationText = minutes > 0 ? `${minutes} minutos${seconds > 0 ? ` y ${seconds} segundos` : ''}` : `${seconds} segundos`
+const txtTK = `
 > *INFORMACIÓN DE USUARIO*\n
-👤 *Usuario:* \`${unique_id}\` 
-🔗 *Enlace:* tiktok.com/@${unique_id} 
-📌 *Nombre:* ${nickname}
-🆔 \`${id}\`
-✨ *País:* ${flag} \`\`\`${country}\`\`\`\n
+👤 *Usuario:* \`${username}\` 
+🔗 *Enlace:* tiktok.com/@${username} 
+📌 *Nombre:* ${nickname || 'No encontrado'}\n
 > *INFORMACIÓN DEL VÍDEO*\n
 🕒 *Duración:* ${durationText}
-📝 *Descripción:* ${title.replace(/(?:^|\s)(#[^#\s]+)(?=\s|$)/g, ' _$1_').replace(/(?:^|\s)(@[^\s]+)(?=\s|$)/g, ' *$1*')}\n
+📝 *Descripción:* ${title || 'No encontrado'}\n
 > *INFORMACIÓN DEL SONIDO*\n
-🎙️ *Autor:* ${author_audio}
-🎶 *Música:* ${title_audio}
-📀 *Cover:* ${title_audio && id_audio ? `tiktok.com/music/${title_audio.trim().replace(/ /g, '-')}-${id_audio}` : 'Desconocido'}\n
+🎙️ *Autor:* ${music.author || 'Desconocido'}
+🎶 *Música:* ${music.title || 'Desconocido'}\n
 > *INFORMACIÓN ADICIONAL*\n
-👀 *Reproducciones:* ${formatNumber(total_play)}
-❤️ *Me gusta:* ${formatNumber(digg_count)}
-📈 *Descargas:* ${formatNumber(total_download)}
-🔁 *Compartidos:* ${formatNumber(total_share)}
-💬 *Comentarios:* ${formatNumber(total_comment)}`.trim()
-await conn.sendMessage(m.chat, { video: { url: nowm }, mimetype: 'video/mp4', caption: txtTK }, { quoted: m }) 
-await conn.sendMessage(m.chat, { audio: { url: nowm }, fileName: 'tiktok.mp3', mimetype: 'audio/mp4', ptt: false }, { quoted: m }) 
-} catch (e) {
-try{
-const responseTK = await fetch(APIs.aemt.url + `download/ttdl?url=${text}`)
-const dataTK = await responseTK.json()  
-await conn.sendMessage(m.chat, { video: { url: dataTK.result.video }, mimetype: 'video/mp4', caption: null }, { quoted: m }) 
-await conn.sendMessage(m.chat, { audio: { url: dataTK.result.audio }, fileName: 'tiktok.mp3', mimetype: 'audio/mp4', ptt: false }, { quoted: m }) 
+👀 *Reproducciones:* ${total_play}
+❤️ *Me gusta:* ${total_like}
+📈 *Descargas:* ${total_download}
+🔁 *Compartidos:* ${total_share}
+💬 *Comentarios:* ${total_comment}`.trim()
+await conn.sendMessage(m.chat, { video: { url: hd }, mimetype: 'video/mp4', caption: txtTK }, { quoted: m })
 } catch (e) {
 reportError(e)
-}}
+}
 break
   
 /*case isCommand12:
