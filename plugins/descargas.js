@@ -97,57 +97,26 @@ break
         
 case isCommand3:
 if (!args[0]) return m.reply(lenguajeGB.smsMalused2() + `*${usedPrefix + command} https://www.mediafire.com/file/04kaaqx9oe3tb8b/DOOM_v13_CLONE%255BCOM.FM%255D.apk/file*`)
-m.react("✨") 
-try {  
-const res = await fetch(`https://deliriussapi-oficial.vercel.app/api/mediafire?url=${args[0]}`);
-if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
-const data = await res.json();
-const fileDataArray = data.data;
-fileDataArray.forEach((fileData) => {
-const caption = `🗂️ ${fileData.filename}
-⚖️ ${fileData.size}
-📡 ${fileData.mime}
-
-${lenguajeGB.smsMediaFr()}`.trim();
-m.reply(caption);
-conn.sendFile(m.chat, fileData.link, fileData.filename, '', m, null, {mimetype: fileData.mime, asDocument: true, 
-});
-m.react(`✅`);
-});
-} catch (error) {
 try {
-let res = await mediafiredl(args[0])  
-let res2 = await mediafireDl(args[0])  
-let { filename:name, ext:mime, url, filesizeH:peso } = res
-let { date } = res2   
-let caption = `
-🗂️ ${name}
-⌛ ${date}
-⚖️ ${peso}
-📡 ${mime}
+const res = await fetch(`https://api.neoxr.eu/api/mediafire?url=${args[0]}&apikey=GataDios`)
+if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`)
+const data = await res.json()
+if (!data || !data.data) 
+throw new Error("No se encontró información del archivo")
+const fileData = data.data
+const caption = `🗂️ Nombre: ${fileData.filename}
+⚖️ Tamaño: ${fileData.size}
+📡 Tipo MIME: ${fileData.mime}
+🖇️ Extensión: ${fileData.extension}
 
 ${lenguajeGB.smsMediaFr()}`.trim()
-await m.reply(caption)  
-await conn.sendFile(m.chat, url, name, '', m, null, { mimetype: mime, asDocument: true })
-m.react(`✅`);
-} catch (e) {
-await m.reply(lenguajeGB['smsMalError3']() + '\n*' + lenguajeGB.smsMensError1() + '*\n*' + usedPrefix + `${lenguajeGB.lenguaje() == 'es' ? 'reporte' : 'report'}` + '* ' + `${lenguajeGB.smsMensError2()} ` + usedPrefix + command)
-console.log(`❗❗ ${lenguajeGB['smsMensError2']()} ${usedPrefix + command} ❗❗`)
-console.log(e)
-m.react(`❌`)}}   
-async function mediafireDl(url) {
-const res = await axios.get(`https://www-mediafire-com.translate.goog/${url.replace('https://www.mediafire.com/','')}?_x_tr_sl=en&_x_tr_tl=fr&_x_tr_hl=en&_x_tr_pto=wapp`)
-const $ = cheerio.load(res.data)
-const link = $('#downloadButton').attr('href')
-const name = $('body > main > div.content > div.center > div > div.dl-btn-cont > div.dl-btn-labelWrap > div.promoDownloadName.notranslate > div').attr('title').replaceAll(' ','').replaceAll('\n','')
-const date = $('body > main > div.content > div.center > div > div.dl-info > ul > li:nth-child(2) > span').text()
-const size = $('#downloadButton').text().replace('Download', '').replace('(', '').replace(')', '').replace('\n', '').replace('\n', '').replace('                         ', '').replaceAll(' ','')
-let mime = ''
-let rese = await axios.head(link)
-mime = rese.headers['content-type']
-return { name, size, date, mime, link }
+await m.reply(caption)
+await conn.sendFile(m.chat, fileData.url, fileData.filename, '', m, null, { mimetype: fileData.mime, asDocument: true })
+} catch (error) {
+console.error(error)
+await m.reply(lenguajeGB['smsMalError3']() + '\n*' + lenguajeGB.smsMensError1() + '*\n*' + usedPrefix + `${lenguajeGB.lenguaje() == 'es' ? 'reporte' : 'report'}` + '* ' + `${lenguajeGB.smsMensError2()} ${usedPrefix + command}`)
 }
-break 
+break
 
 case isCommand4:
 if (!text) return conn.reply(m.chat, `${lenguajeGB['smsMalused2']()}\n*${usedPrefix + command} https://vm.tiktok.com/ZM2e66NBM/?t=1*`, m)
