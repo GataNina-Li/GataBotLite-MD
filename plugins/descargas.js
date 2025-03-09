@@ -41,13 +41,18 @@ await m.react(notsent)
 switch (true) {     
 case isCommand1:
 if (!text) m.reply(lenguajeGB.smsMalused2() + `\n*${usedPrefix + command} Gata*`)
-conn.reply(m.chat, wait, m);
-const google = `https://api.dorratz.com/googleimagen?text=${text}`
+conn.reply(m.chat, wait, m)
 try {
+for (let i = 0; i < 5; i++) { 
+const google = `https://api.dorratz.com/googleimagen?text=${text}&index=${i}`
 const res = await fetch(google)
 const buffer = await res.buffer()
-if (!buffer) return conn.reply(m.chat, `No se encontraron resultados para "${text}".`, m)
+if (!buffer) {
+conn.reply(m.chat, `No se encontraron resultados para "${text}".`, m)
+break
+}
 await conn.sendMessage(m.chat, { image: buffer }, { quoted: m })
+}
 } catch (e) {
 reportError(e)
 }
