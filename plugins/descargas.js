@@ -480,8 +480,8 @@ const txtTK = `
 🕒 *Duración:* ${durationText}
 📝 *Descripción:* ${title || 'No encontrado'}\n
 > *INFORMACIÓN DEL SONIDO*\n
-🎙️ *Autor:* ${music.author || 'Desconocido'}
-🎶 *Música:* ${music.title || 'Desconocido'}\n
+🎙️ *Autor:* ${data.music.author || 'Desconocido'}
+🎶 *Música:* ${data.music.title || 'Desconocido'}\n
 > *INFORMACIÓN ADICIONAL*\n
 👀 *Reproducciones:* ${total_play}
 ❤️ *Me gusta:* ${total_like}
