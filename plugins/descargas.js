@@ -39,7 +39,7 @@ const isCommand19 = /^(gitclone|clonarepo|clonarrepo|repoclonar)$/i.test(command
 const isCommand20 = /^(bardimg|bardimage|geminiimg|geminiimage|geminimg|geminimage)$/i.test(command)
 
 async function reportError(e) {
-let errb = await m.reply(lenguajeGB['smsMalError3']() + '\n*' + lenguajeGB.smsMensError1() + '*\n*' + usedPrefix + `${lenguajeGB.lenguaje() == 'es' ? 'reporte' : 'report'}` + '* ' + `${lenguajeGB.smsMensError2()} ` + usedPrefix + command)
+let errb = await m.reply(`${e}\n\n` + lenguajeGB['smsMalError3']() + '\n*' + lenguajeGB.smsMensError1() + '*\n*' + usedPrefix + `${lenguajeGB.lenguaje() == 'es' ? 'reporte' : 'report'}` + '* ' + `${lenguajeGB.smsMensError2()} ` + usedPrefix + command)
 await console.log(`❗❗ ${lenguajeGB['smsMensError2']()} ${usedPrefix + command} ❗❗`)
 await console.log(e)
 let faultkey = await conn.sendMessage(m.chat, { react: { text: fault, key: errb.key }})
