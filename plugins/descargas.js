@@ -48,7 +48,7 @@ let images = shuffled.slice(0, 5).map(image => ({
 image: { url: image.url }, 
 caption: image.origin?.title || text, 
 }))
-await conn.sendAlbumMessage(m.chat, images, { quoted: m })        
+await conn.sendMessage(m.chat, { image: { url: images }}, { quoted: m })      
 break
  
 case isCommand2:
