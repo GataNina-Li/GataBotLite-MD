@@ -43,16 +43,18 @@ case isCommand1:
 if (!text) m.reply(lenguajeGB.smsMalused2() + `\n*${usedPrefix + command} Gata*`)
 conn.reply(m.chat, wait, m)
 try {
+const images = []
 for (let i = 0; i < 5; i++) { 
-const google = `https://api.dorratz.com/googleimagen?text=${text}&index=${i}`
+const google = `https://api.dorratz.com/googleimagen?text=${text}&index=${i}`;
 const res = await fetch(google)
 const buffer = await res.buffer()
 if (!buffer) {
 conn.reply(m.chat, `No se encontraron resultados para "${text}".`, m)
 break
 }
-await conn.sendMessage(m.chat, { image: buffer }, { quoted: m })
-}
+images.push({ image: buffer })}
+if (images.length > 0) {
+await conn.sendMessage(m.chat, { images }, { quoted: m })}
 } catch (e) {
 reportError(e)
 }
