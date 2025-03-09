@@ -674,7 +674,7 @@ let responseJson = await apiResponse.json()
 if (!responseJson.status || !responseJson.data || !responseJson.data[0].url) { throw new Error('Respuesta inválida de la API Neox')}
 let videoUrl = responseJson.data[0].url;
 let shortUrl = await (await fetch(`https://tinyurl.com/api-create.php?url=${args[0]}`)).text()
-let messageText = `🔗 *URL corta:* ${shortUrl}`.trim()
+let messageText = `🔗 *URL:* ${shortUrl}`.trim()
 await m.reply(wait)
 try {
 await conn.sendFile(m.chat, videoUrl, 'video.mp4', messageText, m)
