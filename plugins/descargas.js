@@ -40,19 +40,17 @@ await m.react(notsent)
 
 switch (true) {     
 case isCommand1:
-if (!text) return m.reply(lenguajeGB.smsMalused2() + `\n*${usedPrefix + command} Gata*`)
+if (!text) m.reply(lenguajeGB.smsMalused2() + `\n*${usedPrefix + command} Gata*`)
+conn.reply(m.chat, wait, m);
+const google = `https://api.dorratz.com/googleimagen?text=${text}`
 try {
-let api_google = await fetch(APIs.neoxr.url + `goimg?q=${text}&apikey=${APIs.neoxr.key}`)
-let res_google = await api_google.json()
-let shuffled = res_google.data.sort(() => 0.5 - Math.random())
-let images = shuffled.slice(0, 5).map(image => ({
-image: { url: image.url }, 
-caption: image.origin?.title || text, 
-}))
-await conn.sendMessage(m.chat, { image: { url: images }}, { quoted: m }) 
+const res = await fetch(google)
+const buffer = await res.buffer()
+if (!buffer) return conn.reply(m.chat, `No se encontraron resultados para "${text}".`, m)
+await conn.sendMessage(m.chat, { image: buffer }, { quoted: m })
 } catch (e) {
-m.reply(e)
-}     
+reportError(e)
+}
 break
  
 case isCommand2:
