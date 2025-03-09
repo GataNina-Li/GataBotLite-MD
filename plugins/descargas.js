@@ -467,7 +467,7 @@ const response = await fetch(`https://api.dorratz.com/v2/tiktok-dl?url=${text}`)
 const { data } = await response.json()
 const { id, region, title, duration, repro: total_play, like: total_like, share: total_share, comment: total_comment, download: total_download, author, media, } = data
 const { username, nickname } = author
-const { hd } = media
+const { hd, music } = media
 const minutes = Math.floor(duration / 60)
 const seconds = duration % 60
 const durationText = minutes > 0 ? `${minutes} minutos${seconds > 0 ? ` y ${seconds} segundos` : ''}` : `${seconds} segundos`
