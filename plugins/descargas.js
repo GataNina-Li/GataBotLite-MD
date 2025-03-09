@@ -112,6 +112,10 @@ const caption = `🗂️ Nombre: ${fileData.filename}
 
 ${lenguajeGB.smsMediaFr()}`.trim()
 await m.reply(caption)
+const fileRes = await fetch(fileData.url)
+if (!fileRes.ok) throw new Error("Error al descargar el archivo desde el enlace proporcionado")
+const buffer = await fileRes.buffer()
+if (!buffer) throw new Error("El archivo descargado está vacío o no es válido")
 await conn.sendFile(m.chat, fileData.url, fileData.filename, '', m, null, { mimetype: fileData.mime, asDocument: true })
 } catch (error) {
 console.error(error)
