@@ -669,18 +669,17 @@ break
 case isCommand17:
 if (!args[0]) return m.reply(lenguajeGB.smsMalused2() + `*${usedPrefix + command}* ` + 'https://www.instagram.com/reel/CrWooCiKGKP/?utm_source=ig_web_copy_link&igshid=MzRlODBiNWFlZA==')
 try{
-let human = await fetch(`https://api.lolhuman.xyz/api/instagram?apikey=${lolkeysapi}&url=${args[0]}`)
-let json3 = await human.json()
-let ig_ = json3.result
+let apineox = await fetch(`https://api.neoxr.eu/api/ig?url=${args[0]}&apikey=GataDios`)
+let json3 = await apineox.json()
+let videoig = json3.data.url
 let shortUrl1 = await (await fetch(`https://tinyurl.com/api-create.php?url=${args[0]}`)).text()
 let txt1 = `🔗 *URL:* ${shortUrl1}`.trim()
 await m.reply(wait)
 try{
-await conn.sendFile(m.chat, ig_, 'error.mp4', txt1, m)  
+await conn.sendFile(m.chat, videoig, 'error.mp4', txt1, m)  
+//} catch (e) {
+//await conn.sendMessage(m.chat, { image: { url: ig_ }, caption: txt1 }, { quoted: m })}
 } catch (e) {
-await conn.sendMessage(m.chat, { image: { url: ig_ }, caption: txt1 }, { quoted: m })    
-}} catch (e) {
-m.reply(e)
 reportError(e)} 
 break
 
