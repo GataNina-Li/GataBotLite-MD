@@ -143,7 +143,7 @@ codeBot = await m.reply(secret);
 //}} else {
 //txtCode = await conn.sendMessage(m.chat, { image: { url: 'https://qu.ax/wyUjT.jpg' || gataMenu.getRandom() }, caption: rtx2.trim() + '\n' + drmer.toString("utf-8") }, { quoted: m })
 //codeBot = await m.reply(secret);
-}
+//}
 console.log(secret);
 }
 if ((txtCode && txtCode.key) || (txtCode && txtCode.id)) {
