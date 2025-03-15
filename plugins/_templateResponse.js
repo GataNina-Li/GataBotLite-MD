@@ -7,7 +7,7 @@ const {
   areJidsSameUser,
   decryptPollVote,
 } = (await import('@whiskeysockets/baileys')).default;
- 
+
 export async function all(m, chatUpdate) {
   /* if (m.message.pollUpdateMessage) {
     console.log(m.message.pollUpdateMessage)
