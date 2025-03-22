@@ -1,6 +1,7 @@
 import { readdirSync, statSync, unlinkSync, existsSync, readFileSync, watch, rmSync, promises as fsPromises } from "fs";
 const fs = { ...fsPromises, existsSync };
 import path, { join } from 'path' 
+import { fileURLToPath } from 'url'
 import ws from 'ws';
 
 let handler = async (m, { conn: _envio, command, usedPrefix, args, text, isOwner}) => {
@@ -46,37 +47,50 @@ break
     
 case isCommand3:
 //if (global.db.data.settings[conn.user.jid].jadibotmd) return m.reply(`${lenguajeGB['smsSoloOwnerJB']()}`)
-const users = [...new Set([...global.conns.filter((conn) => conn.user && conn.ws.socket && conn.ws.socket.readyState !== ws.CLOSED).map((conn) => conn)])];
-function convertirMsADiasHorasMinutosSegundos(ms) {
-var segundos = Math.floor(ms / 1000);
-var minutos = Math.floor(segundos / 60);
-var horas = Math.floor(minutos / 60);
-var días = Math.floor(horas / 24);
-segundos %= 60;
-minutos %= 60;
-horas %= 24;
-var resultado = "";
-if (días !== 0) {
-resultado += días + " días, ";
-}
-if (horas !== 0) {
-resultado += horas + " horas, ";
-}
-if (minutos !== 0) {
-resultado += minutos + " minutos, ";
-}
-if (segundos !== 0) {
-resultado += segundos + " segundos";
-}
-return resultado;
-}
-const message = users.map((v, index) => `[ ${index + 1} ]\n🐈 wa.me/${v.user.jid.replace(/[^0-9]/g, '')}?text=${usedPrefix}estado\n👤 ${lenguajeGB.smsBT8()} : ${v.user.name || '-'}\n🔰 ${lenguajeGB.smsBT7()} : ${ v.uptime ? convertirMsADiasHorasMinutosSegundos(Date.now() - v.uptime) : "Desconocido"}`).join('\n\n__________________________\n\n');
-const replyMessage = message.length === 0 ? `${lenguajeGB.smsJBCom4()}` : message;
-const totalUsers = users.length;
-const responseMessage = `${lenguajeGB.smsJBCom3()} ${totalUsers || '0'}\n\n${replyMessage.trim()}`.trim();
-await _envio.sendMessage(m.chat, {text: responseMessage, mentions: _envio.parseMention(responseMessage)}, {quoted: m})
+// carpetas creadas
+const __filename = fileURLToPath(import.meta?.url)
+const __dirname = path?.dirname(__filename)
+const carpetaBase = path?.resolve(__dirname, '..', 'GataJadiBot')
+const cantidadCarpetas = (fs?.readdirSync(carpetaBase, { withFileTypes: true }).filter(item => item?.isDirectory())?.length) || 0
+
+// servidor
+let _uptime = process.uptime() * 1000
+let uptime = convertirMs(_uptime)
+
+const users = [...new Set([...global.conns.filter((conn) => conn.user && conn.ws.socket && conn.ws.socket.readyState !== ws.CLOSED).map((conn) => conn)])]
+
+const message = users.map((v, index) => {
+const botConfig = global.db.data.users[v.user.jid] || {};
+const botNumber = botConfig.privacy ? `[ OCULTÓ POR PRIVACIDAD ]` : `wa.me/${v.user.jid.replace(/[^0-9]/g, '')}?text=${usedPrefix}serbot%20code`;
+const prestarStatus = botConfig.privacy ? '' : (botConfig.prestar ? '✅ Prestar el bot para unirlo a grupos' : '');
+    
+return `👤 \`[${index + 1}]\` *${v.user.name || global.db.data.users[v.user.jid]?.name || 'Anónimo' }*
+⏱️ \`\`\`${v.uptime ? convertirMs(Date.now() - v.uptime) : "Desconocido"}\`\`\`
+🐈 ${botNumber}
+${prestarStatus}`
+}).join('\n\n∵ ∵ ∵ ∵ ∵ ∵ ∵ ∵ ∵ ∵\n\n')
+
+const replyMessage = message.length === 0 ? `${lenguajeGB.smsJBCom4()}\n🐈 wa.me/${conn.user.jid.replace(/[^0-9]/g, '')}?text=${usedPrefix}serbot%20code` : message
+const totalUsers = users.length
+
+const responseMessage = `${lenguajeGB.smsJBCom3()}
+
+${totalUsers ? `💠 *Sub Bots conectados:* ${totalUsers || 0}\n` : ''}${cantidadCarpetas ? `📁 *Sesiones creadas:* ${cantidadCarpetas}\n` : ''}${totalUsers ? `📁 *Sesiones activas:* ${totalUsers || 0}\n` : ''}💻 *Servidor:* \`\`\`${uptime}\`\`\`\n\n${replyMessage.trim()}`.trim()
+
+try { 
+await conn.sendMessage(m.chat, { image: { url: ['https://qu.ax/spUwF.jpeg', 'https://qu.ax/ZfKAD.jpeg', 'https://qu.ax/UKUqX.jpeg'].getRandom() }, caption: responseMessage }, { quoted: m })
+} catch {
+await conn.sendMessage(m.chat, { text: responseMessage }, { quoted: m })
 break    
-}}
+}}}
 
 handler.command = /^(deletesesion|eliminarsesion|borrarsesion|delsesion|delsession|cerrarsesion|berhenti|pausesb|detenersb|pausarsb|listjadibot|bots|subsbots|subbots)$/i
 export default handler
+
+function convertirMs(ms) {
+  const s = Math.floor(ms / 1000) % 60;
+  const m = Math.floor(ms / 60000) % 60;
+  const h = Math.floor(ms / 3600000) % 24;
+  const d = Math.floor(ms / 86400000);
+  return [ d > 0 ? `${d}d` : "", `${h}h`, `${m}m`, `${s}s` ].filter(Boolean).join(" ")
+}
