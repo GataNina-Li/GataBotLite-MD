@@ -1,4 +1,7 @@
 let WAMessageStubType = (await import(global.baileys)).default
+import chalk from 'chalk'
+import { readdirSync, unlinkSync, existsSync, promises as fs, rmSync } from 'fs'
+import path from 'path';
 import './_content.js'
 
 export async function before(m, { conn, participants, groupMetadata }) {
@@ -10,7 +13,18 @@ let usuario = `@${m.sender.split`@`[0]}`
 let inf = lenguajeGB['smsAvisoIIG']()
 const botIsAdminCommunity = groupMetadata?.participants?.some(p => p.id === conn.user.jid && (p.admin === 'admin' || p.admin === 'superadmin')) || null
 
-if (m.messageStubType === 21) { // Anunciar nuevo nombre del grupo
+if (m.messageStubType == 2) { //Eliminacion de basura pre-key que provocar undefined en chat
+const uniqid = (m.isGroup ? m.chat : m.sender).split('@')[0]
+const sessionPath = './GataBotSession/'
+for (const file of await fs.readdir(sessionPath)) {
+if (file.includes(uniqid)) {
+await fs.unlink(path.join(sessionPath, file))
+console.log(`${chalk.yellow.bold('[ ⚠️ Archivo Eliminado ]')} ${chalk.greenBright(`'${file}'`)}\n` +
+`${chalk.blue('(Session PreKey)')} ${chalk.redBright('que provoca el "undefined" en el chat')}`
+)
+}}
+
+} else if (m.messageStubType === 21) { // Anunciar nuevo nombre del grupo
 await conn.sendMessage(m.chat, { text: lenguajeGB.smsAutodetec1(inf, usuario, m), mentions: [m.sender] })   
 
 } else if (m.messageStubType === 22) { // Nueva foto del grupo
