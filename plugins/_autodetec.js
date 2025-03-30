@@ -78,7 +78,7 @@ await conn.sendMessage(m.chat, { text: mensaje, mentions: [usuario] })
 try {
 let prefijoUsuario = parsePhoneNumber('+' + usuario.split('@')[0]).countryCallingCode
 let numeroValido = chat.sCondition.some(prefijo => {
-return prefijo === usuario.split('@')[0] || prefijo === prefijoUsuario
+return prefijo == usuario.split('@')[0] || prefijo == prefijoUsuario
 }) 
 if (numeroValido) {
 await conn.sendMessage(m.chat, { text: `🚫 *@${usuario.split('@')[0]}* ha sido rechazado automáticamente debido a coincidencias con la lista antifake.`, mentions: [usuario] })
