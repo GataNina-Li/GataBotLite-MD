@@ -130,17 +130,16 @@ npm install -g ffmpeg imagemagick git yarn && npm i && node --no-warnings index.
 
 - [x] **Configuración** <details><summary>**Ajustes del Servidor - GataBotLite-MD**</summary><img src="https://telegra.ph/file/2c6d9f2888d9687c6815d.jpg"></details>
 ------------------------
-### 🎇 Hosting Py
-<a href="https://dash.hostingpy.shop/"><img src="https://files.catbox.moe/lr92z2.jpg" height="130px"></a>
+### 🎇 EDRACLOUD HOST
+<a href="https://test.crxsmods.site"><img src="https://qu.ax/pXdEg.jpg" height="130px"></a>
 
-- **Dashboard:** [`Aquí`](https://dash.hostingpy.shop/)
-- **Panel:** [`Aquí`](https://panel.hostingpy.shop/)
-- **Registrarse:** [`Aquí`](https://dash.hostingpy.shop/register?ref=GataDios)
+- **Página:** [`Aquí`](https://test.crxsmods.site)
+- **Apk:** [`Aquí`](https://www.mediafire.com/file/6fqf72hfh06e4k4/EdraCloud)
 - **Canal de WhatsApp:** [`Aquí`](https://whatsapp.com/channel/0029Vak4e1R4NVifmh8Tvi3q)
 - **Comunidad:** [`Aquí`](https://chat.whatsapp.com/HT9YFbWTuqO0DQrq6Xxhvx)
-- **Contacto:** [`AdrianOficial`](https://wa.me/595976126756)
+- **Contacto:** [`Adrian`](https://wa.me/595976126756)
 
-- [x] **Configuración** <details><summary>**Ajustes del Servidor - GataBotLite-MD**</summary><img src="https://i.imgur.com/kScB4D5.png"></details>
+- [x] **Configuración** <details><summary>**Ajustes del Servidor - GataBot-MD**</summary><img src="https://i.imgur.com/jD7AT0x.png"></details>
 -----
 ### ¡TK HOST!
 <a href="https://dahs.hostingpy.shop"><img src="https://qu.ax/UzvYt.jpeg" height="130px"></a>
