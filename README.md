@@ -141,17 +141,6 @@ npm install -g ffmpeg imagemagick git yarn && npm i && node --no-warnings index.
 
 - [x] **Configuración** <details><summary>**Ajustes del Servidor - GataBotLite-MD**</summary><img src="https://i.imgur.com/jD7AT0x.png"></details>
 -----
-### ¡TK HOST!
-<a href="https://dahs.hostingpy.shop"><img src="https://qu.ax/UzvYt.jpeg" height="130px"></a>
-
-- **Dashboard:** [`Aquí`](https://dash.tk-joanhost.com/register?ref=GataDios)
-- **Panel:** [`Aquí`](https://panel.tk-joanhost.com)
-- **Canal de WhatsApp:** [`Aquí`](https://whatsapp.com/channel/0029VaGGynJLY6d43krQYR2g)
-- **Comunidad:** [`Aquí`](https://chat.whatsapp.com/DOlxV0eOoH7HDunGuZCOCb)
-- **Contacto:** [`Matias`](https://wa.me/5491164123932)
-
-- [x] **Configuración** <details><summary>**Ajustes del Servidor - GataBotLite-MD**</summary><img src="https://qu.ax/Fjmrr.png"></details>
------
 ## 🌻 INSTALACIÓN PARA WINDOWS/VPS/RDP 🌻
 <a href="https://youtu.be/SaxYKnnZo3E">
 <img src="https://img.shields.io/badge/Tutorial-FF0000?style=for-the-badge&logo=youtube&logoColor=white" alt="Tutorial"> </a>
