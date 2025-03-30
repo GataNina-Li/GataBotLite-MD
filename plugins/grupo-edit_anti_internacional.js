@@ -18,7 +18,8 @@ reply = (await conn.reply(m.chat, `> *Hemos encontrado prefijos/números ya conf
 \`\`\`[1]\`\`\` \`Combinar\` _Se juntarán los prefijos existentes con los recientes._\n
 \`\`\`[2]\`\`\` \`Reemplazar\` _Se eliminarán los prefijos existentes para agregar los recientes._\n
 \`\`\`[3]\`\`\` \`Eliminar\` _Se usarán los prefijos predeterminados, eliminando los existentes y recientes._\n
-\`\`\`[4]\`\`\` \`Cancelar\` _No se realizarán cambios._`, m)).key.id
+\`\`\`[4]\`\`\` \`Cancelar\` _No se realizarán cambios._\n
+> _Desactiva las auto-respuestas para poder elegir una opción_ *(${usedPrefix + command}off autoresponder)*`, m)).key.id
 }
 
 handler.before = async function (m, { conn, isOwner, isROwner, isAdmin }) {
