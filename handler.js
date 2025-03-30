@@ -98,6 +98,7 @@ if (!('sWelcome' in chat)) chat.sWelcome = ''
 if (!('sBye' in chat)) chat.sBye = ''                    
 if (!('sPromote' in chat)) chat.sPromote = ''              
 if (!('sDemote' in chat)) chat.sDemote = '' 
+if (!('sCondition' in chat)) chat.sCondition = ''
 if (!('delete' in chat)) chat.delete = true                  
 if (!('antiver' in chat)) chat.viewonce = true         
 if (!('modoadmin' in chat)) chat.modoadmin = false
@@ -126,6 +127,7 @@ sWelcome: '',
 sBye: '',
 sPromote: '',
 sDemote: '', 
+sCondition: '',
 delete: true,
 antiver: true,
 modoadmin: false,
@@ -502,14 +504,20 @@ const isBotAdminNn = botTt2?.admin === "admin" || false
 text = (action === 'add' ? (chat.sWelcome || this.welcome || conn.welcome || 'Welcome, @user!').replace('@subject', await this.getName(id)).replace('@desc', groupMetadata.desc?.toString() || '😻 𝗦𝘂𝗽𝗲𝗿 𝙂𝙖𝙩𝙖𝘽𝙤𝙩𝙇𝙞𝙩𝙚-𝙈𝘿 😻') :
 (chat.sBye || this.bye || conn.bye || 'Bye, @user!')).replace('@user', '@' + user.split('@')[0])
 			    
-if (chat.antifake && botTt.restrict && isBotAdminNn && action === 'add') {
-const numerosPermitidos = ["1", "2", "4", "6", "7", "8", "9"] //PUEDES EDITAR LOS USUARIOS QUE SE ELIMINARÁN SI EMPIEZA POR CUALQUIER DE ESOS NÚMEROS	
-if (numerosPermitidos.some(num => user.startsWith(num))) {	
-this.sendMessage(id, { text:`*${lenguajeGB['smsAvisoAG']()}${lenguajeGB['smsInt1']()} @${user.split("@")[0]} ${lenguajeGB['smsInt2']()}*`, mentions: [user] }, { quoted: null });          
-let responseb = await this.groupParticipantsUpdate(id, [user], 'remove')
-if (responseb[0].status === "404") return      
-return    
-}}    
+if (chat.antifake && isBotAdminNn && action === 'add') {
+const prefijosPredeterminados = [2, 4, 6, 7, 8, 9] // Puedes personalizar los prefijos de los usuarios que deseas eliminar, especificando los que deben ser bloqueados si el número empieza con alguno de ellos.
+let prefijos = (Array.isArray(chat.sCondition) && chat.sCondition.length > 0) || chat.sCondition !== "" ? chat.sCondition : prefijosPredeterminados
+const comienzaConPrefijo = prefijos.some(prefijo => user.startsWith(`+${prefijo}`))
+if (comienzaConPrefijo) {
+let texto = mid.mAdvertencia + mid.mFake2(user)
+await conn.sendMessage(id, { text: texto, mentions: [user] })
+if (m.key.participant && m.key.id) {
+await conn.sendMessage(id, { delete: { remoteJid: m.chat, fromMe: false, id: m.key.id, participant: m.key.participant }})
+}
+//let responseb = await conn.groupParticipantsUpdate(id, [user], 'remove')
+//if (responseb[0].status === "404") return
+}}
+	
 this.sendFile(id, apii.data, 'pp.jpg', text, null, false, { mentions: [user] }) 
 }}}
 	     
