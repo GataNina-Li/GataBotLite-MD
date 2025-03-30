@@ -6,7 +6,6 @@ import path from 'path';
 import './_content.js'
 
 export async function before(m, { conn, participants, groupMetadata }) {
-console.log({ messageStubType: m.messageStubType, messageStubParameters: m.messageStubParameters, type: WAMessageStubType[m.messageStubType] })
 
 let chat = global.db.data.chats[m.chat] 
 if (!m.messageStubType || !m.isGroup || !chat.detect) return
