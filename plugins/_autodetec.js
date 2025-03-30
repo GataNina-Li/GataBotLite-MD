@@ -65,8 +65,8 @@ let metodo = m.messageStubParameters[2] === 'invite_link' ? 'un enlace de invita
 let mensaje = `🚪 @${usuario.split('@')[0]} ha solicitado unirse mediante ${metodo}.`
 await conn.sendMessage(m.chat, { text: mensaje, mentions: [usuario] })
 try {
-await conn.groupRequestParticipantsUpdate(m.chat, [usuario], 'approve')
-await conn.sendMessage(m.chat, { text: `Solicitud de ingreso de @${usuario.split('@')[0]} aprobada automáticamente ya que el anti fake está desactivado.`, mentions: [usuario] })
+//await conn.groupRequestParticipantsUpdate(m.chat, [usuario], 'approve')
+//await conn.sendMessage(m.chat, { text: `Solicitud de ingreso de @${usuario.split('@')[0]} aprobada automáticamente ya que el anti fake está desactivado.`, mentions: [usuario] })
 } catch (error) {
 console.error(`Error al aprobar la solicitud de @${usuario.split('@')[0]}: `, error)
 }
