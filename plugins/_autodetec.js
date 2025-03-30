@@ -72,7 +72,7 @@ console.error(`Error al aprobar la solicitud de @${usuario.split('@')[0]}: `, er
 }
 
 } else if (chat.welcome && m.messageStubType == 27){ //&& conn.user.jid != global.conn.user.jid) { // Bienvenida (sub bots)
-let msg = "El usuario (@user) fue añadido al grupo (@group) por el usuario @sender"
+let msg = "El usuario (@sender) fue añadido al grupo (@group) por el usuario @user"
 //if (m.messageStubParameters.some(param => param.endsWith('@s.whatsapp.net'))) {
 //if (m.key.fromMe) return
 
