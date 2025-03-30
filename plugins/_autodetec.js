@@ -72,7 +72,7 @@ await conn.sendMessage(m.chat, { text: mensaje, mentions: [m.sender] })
 let all_member_add = m.messageStubParameters[0] === 'all_member_add' ? "✅ *Ahora todos pueden añadir usuarios.*" : "⚠ *Ahora solo los administradores pueden añadir usuarios.*"
 await conn.sendMessage(m.chat, { text: all_member_add, mentions: [m.sender] }) 
 
-} else if (m.messageStubType === 172 && botIsAdminCommunity && chat.antifake) { // Unirse mediante enlace o vinculación de grupo con la comunidad
+} else if (m.messageStubType === 172 && botIsAdminCommunity && chat.antifake && !m.messageStubParameters.some(param => param === 'rejected')) { // Unirse mediante enlace o vinculación de grupo con la comunidad
 let usuario = m.messageStubParameters[0]
 let metodo = m.messageStubParameters[2] === 'invite_link' ? 'un enlace de invitación' : 'un grupo vinculado a la comunidad'
 let mensaje = `🚪 @${usuario.split('@')[0]} ha solicitado unirse mediante ${metodo}.`
