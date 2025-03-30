@@ -99,7 +99,7 @@ thumbnailUrl: pp,
 title: [wm, '😻 𝗦𝘂𝗽𝗲𝗿 ' + gt + ' 😻', '🌟 centergatabot.gmail.com'].getRandom(),
 containsAutoReply: true,
 mediaType: 1, 
-sourceUrl: accountsgb }}}, { quoted: fkontak }) */
+sourceUrl: accountsgb }}}, { quoted: fkontak })
 
 } else if (chat.welcome && !chat.welcome2 && (m.messageStubType == 28 || m.messageStubType == 32) && conn.user.jid != global.conn.user.jid ) { // Despedida (sub bot)
 let subject = groupMetadata.subject
