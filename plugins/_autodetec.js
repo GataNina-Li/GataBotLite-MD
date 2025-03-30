@@ -71,23 +71,19 @@ try {
 console.error(`Error al aprobar la solicitud de @${usuario.split('@')[0]}: `, error)
 }
 
-} else if (chat.welcome && m.messageStubType == 27 && conn.user.jid != global.conn.user.jid) { // Bienvenida (sub bots)
+} else if (chat.welcome && m.messageStubType == 27){ //&& conn.user.jid != global.conn.user.jid) { // Bienvenida (sub bots)
 let msg = "El usuario (@user) fue añadido al grupo (@group) por el usuario @sender"
 //if (m.messageStubParameters.some(param => param.endsWith('@s.whatsapp.net'))) {
-if (m.key.fromMe) return
+//if (m.key.fromMe) return
 
 let v = {}
-        const chat = conn.chats[m.chat]
 
         v.sender = m.messageStubParameters[0];
         v.senderNumber = v.sender.split('@')[0];
         v._sender = m.key.participant || m.participant;
         v._senderNumber = v._sender.split('@')[0];
 
-        msg = msg
-            .replace(/\@user/gi, '@' + v._senderNumber)
-            .replace(/\@sender/gi, '@' + v.senderNumber)
-            .replace(/\@group/gi, chat.subject);
+        msg = msg.replace(/\@user/gi, '@' + v._senderNumber).replace(/\@sender/gi, '@' + v.senderNumber).replace(/\@group/gi, chat.subject);
 
         await conn.reply(m.chat, msg);
     //}
