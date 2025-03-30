@@ -48,7 +48,7 @@ await conn.sendMessage(m.chat, { text: lenguajeGB.smsAutodetec3(inf, usuario, m,
 await conn.sendMessage(m.chat, { text: lenguajeGB.smsAutodetec5(inf, groupMetadata, m, usuario), mentions: [m.sender] })  
 
 } else if (!chat.welcome && chat.welcome2 && m.messageStubType == 27) { // Bienvenida alterna solo si alguin agregó a un usuario al grupo y la bienvenida (1) este desactivada
-let msg = (m.key.participant || m.participant) ? `✨ El usuario *@user* ha sido añadido al grupo *(@group)* por *@sender*.` : `✨ El usuario *@user* ha sido añadido al grupo *(@group)*.`
+let msg = (m.key.participant || m.participant) ? `✨ El usuario *@sender* ha sido añadido al grupo *(@group)* por *@user*.` : `✨ El usuario *@sender* ha sido añadido al grupo *(@group)*.`
 let v = {}
 v.sender = m.messageStubParameters[0]
 v.senderNumber = v.sender.split('@')[0]
