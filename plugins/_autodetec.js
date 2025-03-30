@@ -72,12 +72,31 @@ console.error(`Error al aprobar la solicitud de @${usuario.split('@')[0]}: `, er
 }
 
 } else if (chat.welcome && m.messageStubType == 27 && conn.user.jid != global.conn.user.jid) { // Bienvenida (sub bots)
-let subject = groupMetadata.subject
-let descs = groupMetadata.desc || "😻 𝗦𝘂𝗽𝗲𝗿 𝙂𝙖𝙩𝙖𝘽𝙤𝙩𝙇𝙞𝙩𝙚-𝙈𝘿 😻"
-let userName = `${m.messageStubParameters[0].split`@`[0]}`
-let defaultWelcome = `*╭┈⊰* ${subject}  *⊰┈ ✦*\n*┊✨ BIENVENIDO(A)!!*\n┊💖 @${userName}\n┊📄 *LEA LA DESCRIPCIÓN DEL GRUPO*\n*╰┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈ ✦*\n${descs}\n`
-let textWel = chat.sWelcome ? chat.sWelcome.replace(/@user/g, `@${userName}`).replace(/@group/g, subject) .replace(/@desc/g, descs) : defaultWelcome
-await conn.sendMessage(m.chat, { text: textWel, 
+let msg = "El usuario (@user) fue añadido al grupo (@group) por el usuario @sender"
+if (m.messageStubParameters.some(param => param.endsWith('@s.whatsapp.net'))) {
+if (m.key.fromMe) return
+
+let v = {}
+        const chat = conn.chats[m.chat]
+
+        v.sender = m.messageStubParameters[0];
+        v.senderNumber = v.sender.split('@')[0];
+        v._sender = m.key.participant || m.participant;
+        v._senderNumber = v._sender.split('@')[0];
+
+        msg = msg
+            .replace(/\@user/gi, '@' + v._senderNumber)
+            .replace(/\@sender/gi, '@' + v.senderNumber)
+            .replace(/\@group/gi, chat.subject);
+
+        await conn.reply(m.chat, msg);
+    }
+//let subject = groupMetadata.subject
+//let descs = groupMetadata.desc || "😻 𝗦𝘂𝗽𝗲𝗿 𝙂𝙖𝙩𝙖𝘽𝙤𝙩𝙇𝙞𝙩𝙚-𝙈𝘿 😻"
+//let userName = `${m.messageStubParameters[0].split`@`[0]}`
+//let defaultWelcome = `*╭┈⊰* ${subject}  *⊰┈ ✦*\n*┊✨ BIENVENIDO(A)!!*\n┊💖 @${userName}\n┊📄 *LEA LA DESCRIPCIÓN DEL GRUPO*\n*╰┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈ ✦*\n${descs}\n`
+//let textWel = chat.sWelcome ? chat.sWelcome.replace(/@user/g, `@${userName}`).replace(/@group/g, subject) .replace(/@desc/g, descs) : defaultWelcome
+/*await conn.sendMessage(m.chat, { text: textWel, 
 contextInfo:{
 forwardingScore: 9999999,
 isForwarded: true, 
@@ -89,7 +108,7 @@ thumbnailUrl: pp,
 title: [wm, '😻 𝗦𝘂𝗽𝗲𝗿 ' + gt + ' 😻', '🌟 centergatabot.gmail.com'].getRandom(),
 containsAutoReply: true,
 mediaType: 1, 
-sourceUrl: accountsgb }}}, { quoted: fkontak }) 
+sourceUrl: accountsgb }}}, { quoted: fkontak }) */
 
 } else if (chat.welcome && (m.messageStubType == 28 || m.messageStubType == 32) && conn.user.jid != global.conn.user.jid ) { // Despedida (sub bot)
 let subject = groupMetadata.subject
