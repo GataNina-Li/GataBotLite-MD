@@ -2,14 +2,14 @@ let numerosPrefijos, contenido, reply
 
 const handler = async (m, { conn, command, text, usedPrefix, isOwner, isROwner, isAdmin }) => {
 if (!isOwner || !isROwner || !isAdmin) return m.reply(`*No tienes permisos para usar este comando*`)
-
+let chat = global.db.data.chats[m.chat]
+  
 if (!text || !/\d/.test(text)) {
 m.reply(`Agrega el prefijo del código de país, etiqueta o escribe el número de un usuario específico.\n\n> Si son varios, sepáralos por coma (,)\n\n*Ejemplo:*\n- *${usedPrefix + command}* +57\n- *${usedPrefix + command}* +57, +212, @tag, +num\n\n> *Al configurar esto, se eliminarán los usuarios con prefijos configurados o números específicos; ya sea cuando alguien ingrese o cuando escriba en el grupo*`)
 return
 }
 await obtenerPrefijos(text)
 
-let chat = global.db.data.chats[m.chat]
 if (chat.sCondition && chat.sCondition.length > 0) {
 reply = (await conn.reply(m.chat, `> *Hemos encontrado prefijos/números ya configurados*
 *Reciente:* \`\`\`${chat.sCondition.map(prefijo => `+${prefijo}`).join(', ')}\`\`\`
@@ -69,7 +69,6 @@ return `+${prefijoLimpio}`
 })
 numerosPrefijos = prefijosLimpios.map(prefijo => parseInt(prefijo.replace(/\D/g, ''), 10)).filter((valor, indice, self) => self.indexOf(valor) === indice)
 
-let chat = global.db.data.chats[m.chat]
 if (!chat.sCondition) {
 chat.sCondition = []
 }
