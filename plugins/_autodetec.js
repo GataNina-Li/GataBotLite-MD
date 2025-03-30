@@ -1,6 +1,6 @@
 let WAMessageStubType = (await import(global.baileys)).default
 import chalk from 'chalk'
-import { getCountryPrefix } from 'libphonenumber-js'
+import { parsePhoneNumber } from 'libphonenumber-js'
 import { readdirSync, unlinkSync, existsSync, promises as fs, rmSync } from 'fs'
 import path from 'path';
 import './_content.js'
@@ -76,13 +76,13 @@ let metodo = m.messageStubParameters[2] === 'invite_link' ? 'un enlace de invita
 let mensaje = `🚪 @${usuario.split('@')[0]} ha solicitado unirse mediante ${metodo}.`
 await conn.sendMessage(m.chat, { text: mensaje, mentions: [usuario] })
 try {
-let prefijoUsuario = getCountryPrefix('+' + usuario.split('@')[0])  
+let prefijoUsuario = parsePhoneNumber('+' + usuario.split('@')[0]).countryCallingCode
 let numeroValido = chat.sCondition.some(prefijo => {
-return prefijo === usuario.split('@')[0] || prefijo === prefijoUsuario.replace('+', '')
+return prefijo === usuario.split('@')[0] || prefijo === prefijoUsuario
 }) 
 if (numeroValido) {
 await conn.sendMessage(m.chat, { text: `🚫 *@${usuario.split('@')[0]}* ha sido rechazado automáticamente debido a coincidencias con la lista antifake.`, mentions: [usuario] })
-await conn.groupRequestParticipantsUpdate(m.chat, [usuario], 'reject')
+await conn.groupRequestParticipantsUpdate(m.chat, [usuario], 'reject') 
 return
 } else {
 await conn.groupRequestParticipantsUpdate(m.chat, [usuario], 'approve')
