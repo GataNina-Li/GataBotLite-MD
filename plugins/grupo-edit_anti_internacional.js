@@ -1,17 +1,17 @@
 let numerosPrefijos, contenido, reply
 
 const handler = async (m, { conn, command, text, usedPrefix, isOwner, isROwner, isAdmin }) => {
-if (!isOwner || !isROwner || !isAdmin) return m.reply(mid.mAdvertencia + `*No tienes permisos para usar este comando*`)
+if (!isOwner || !isROwner || !isAdmin) return m.reply(`*No tienes permisos para usar este comando*`)
 
 if (!text || !/\d/.test(text)) {
-m.reply(mid.mInfo + `Agrega el prefijo del código de país, etiqueta o escribe el número de un usuario específico.\n\n> Si son varios, sepáralos por coma (,)\n\n*Ejemplo:*\n- *${usedPrefix + command}* +57\n- *${usedPrefix + command}* +57, +212, @tag, +num\n\n${mid.mAdvertencia}> *Al configurar esto, se eliminarán los usuarios con prefijos configurados o números específicos; ya sea cuando alguien ingrese o cuando escriba en el grupo*`)
+m.reply(`Agrega el prefijo del código de país, etiqueta o escribe el número de un usuario específico.\n\n> Si son varios, sepáralos por coma (,)\n\n*Ejemplo:*\n- *${usedPrefix + command}* +57\n- *${usedPrefix + command}* +57, +212, @tag, +num\n\n${mid.mAdvertencia}> *Al configurar esto, se eliminarán los usuarios con prefijos configurados o números específicos; ya sea cuando alguien ingrese o cuando escriba en el grupo*`)
 return
 }
 await obtenerPrefijos(text)
 
 let chat = global.db.data.chats[m.chat]
 if (chat.sCondition && chat.sCondition.length > 0) {
-reply = (await conn.reply(m.chat, mid.mInfo + `> *Hemos encontrado prefijos/números ya configurados*
+reply = (await conn.reply(m.chat, `> *Hemos encontrado prefijos/números ya configurados*
 *Reciente:* \`\`\`${chat.sCondition.map(prefijo => `+${prefijo}`).join(', ')}\`\`\`
 *Existente:* \`\`\`${chat.sCondition.join(', ')}\`\`\`\n
 *Responde a este mensaje eligiendo un número para:*
@@ -31,20 +31,20 @@ if (m.quoted && m.quoted.id === reply && ['a', '1', 'combinar'].includes(m.text.
 if (!isOwner || !isROwner || !isAdmin) return m.reply(mid.mError + `*Esta acción no te corresponde realizar*`)
 chat.sCondition = [...new Set([...chat.sCondition, ...numerosPrefijos])]
 const prefijosConSigno = chat.sCondition.map(prefijo => `+${prefijo}`)
-m.reply(mid.mExito + `Los prefijos se han *combinado* correctamente.\n\n*Nueva configuración:* \`\`\`${prefijosConSigno.join(', ')}\`\`\``)
+m.reply(`Los prefijos se han *combinado* correctamente.\n\n*Nueva configuración:* \`\`\`${prefijosConSigno.join(', ')}\`\`\``)
 }
 
 if (m.quoted && m.quoted.id === reply && ['b', '2', 'reemplazar'].includes(m.text.toLowerCase())) {
 if (!isOwner || !isROwner || !isAdmin) return m.reply(`*Esta acción no te corresponde realizar*`)
 chat.sCondition = [...numerosPrefijos]
 const prefijosConSigno = chat.sCondition.map(prefijo => `+${prefijo}`)
-m.reply(mid.mExito + `Los prefijos se han *reemplazado* correctamente.\n\n*Nueva configuración:* \`\`\`${prefijosConSigno.join(', ')}\`\`\``)
+m.reply(`Los prefijos se han *reemplazado* correctamente.\n\n*Nueva configuración:* \`\`\`${prefijosConSigno.join(', ')}\`\`\``)
 }
 
 if (m.quoted && m.quoted.id === reply && ['c', '3', 'eliminar'].includes(m.text.toLowerCase())) {
 if (!isOwner || !isROwner || !isAdmin) return m.reply(`*Esta acción no te corresponde realizar*`)
 chat.sCondition = []
-m.reply(mid.mExito + 'La configuración personalizada se ha 🗑️ *eliminado* correctamente.\n\n> *Se utilizará la configuración predeterminada*')
+m.reply('La configuración personalizada se ha 🗑️ *eliminado* correctamente.\n\n> *Se utilizará la configuración predeterminada*')
 }
 
 if (m.quoted && m.quoted.id === reply && ['d', '4', 'cancelar'].includes(m.text.toLowerCase())) {
@@ -77,5 +77,5 @@ chat.sCondition.push(...numerosPrefijos)
 chat.sCondition = [...new Set(chat.sCondition)]
 
 const prefijosConSigno = chat.sCondition.map(prefijo => `+${prefijo}`)
-m.reply(mid.mExito + `Configuración guardada: *${prefijosConSigno.join(', ')}*\n\n> Puede agregar más si desea`)
+m.reply(`Configuración guardada: *${prefijosConSigno.join(', ')}*\n\n> Puede agregar más si desea`)
 }
