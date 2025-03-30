@@ -8,7 +8,7 @@ if (!text || !/\d/.test(text)) {
 m.reply(`Agrega el prefijo del código de país, etiqueta o escribe el número de un usuario específico.\n\n> Si son varios, sepáralos por coma (,)\n\n*Ejemplo:*\n- *${usedPrefix + command}* +57\n- *${usedPrefix + command}* +57, +212, @tag, +num\n\n> *Al configurar esto, se eliminarán los usuarios con prefijos configurados o números específicos; ya sea cuando alguien ingrese o cuando escriba en el grupo*`)
 return
 }
-await obtenerPrefijos(text)
+await obtenerPrefijos(text, chat)
 
 if (chat.sCondition && chat.sCondition.length > 0) {
 reply = (await conn.reply(m.chat, `> *Hemos encontrado prefijos/números ya configurados*
@@ -58,7 +58,7 @@ handler.register = true
 handler.group = true
 export default handler
 
-async function obtenerPrefijos(input) {
+async function obtenerPrefijos(input, chat) {
 const prefijos = input.split(',').map(prefijo => prefijo.trim())
 const prefijosLimpios = prefijos.map(prefijo => {
 let prefijoLimpio = prefijo.replace(/[^0-9+]/g, '')
