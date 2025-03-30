@@ -44,6 +44,16 @@ await conn.sendMessage(m.chat, { text: lenguajeGB.smsAutodetec3(inf, usuario, m,
 } else if (m.messageStubType === 26) { // Cerrar o abrir grupo [on/off]
 await conn.sendMessage(m.chat, { text: lenguajeGB.smsAutodetec5(inf, groupMetadata, m, usuario), mentions: [m.sender] })  
 
+} else if (!chat.welcome && chat.welcome2 && m.messageStubType == 27) { // Bienvenida alterna solo si alguin agregó a un usuario al grupo y la bienvenida (1) este desactivada
+let msg = (m.key.participant || m.participant) ? `✨ El usuario *@user* ha sido añadido al grupo *(@group)* por *@sender*.` : `✨ El usuario *@user* ha sido añadido al grupo *(@group)*.`
+let v = {}
+v.sender = m.messageStubParameters[0]
+v.senderNumber = v.sender.split('@')[0]
+v._sender = m.key.participant || m.participant
+v._senderNumber = v._sender.split('@')[0]
+msg = msg.replace(/\@user/gi, '@' + v._senderNumber).replace(/\@sender/gi, '@' + v.senderNumber).replace(/\@group/gi, groupMetadata.subject)
+await conn.reply(m.chat, msg)
+
 } else if (m.messageStubType == 29) { // Detectar nuevo admin
 await conn.sendMessage(m.chat, { text: lenguajeGB.smsAutodetec6(inf, m, groupMetadata, usuario), mentions: [`${m.sender}`,`${m.messageStubParameters[0]}`] }) 
 
@@ -65,34 +75,19 @@ let metodo = m.messageStubParameters[2] === 'invite_link' ? 'un enlace de invita
 let mensaje = `🚪 @${usuario.split('@')[0]} ha solicitado unirse mediante ${metodo}.`
 await conn.sendMessage(m.chat, { text: mensaje, mentions: [usuario] })
 try {
-//await conn.groupRequestParticipantsUpdate(m.chat, [usuario], 'approve')
-//await conn.sendMessage(m.chat, { text: `Solicitud de ingreso de @${usuario.split('@')[0]} aprobada automáticamente ya que el anti fake está desactivado.`, mentions: [usuario] })
+await conn.groupRequestParticipantsUpdate(m.chat, [usuario], 'approve')
+await conn.sendMessage(m.chat, { text: `Solicitud de ingreso de @${usuario.split('@')[0]} aprobada automáticamente ya que el anti fake está desactivado.`, mentions: [usuario] })
 } catch (error) {
 console.error(`Error al aprobar la solicitud de @${usuario.split('@')[0]}: `, error)
 }
 
-} else if (chat.welcome && m.messageStubType == 27){ //&& conn.user.jid != global.conn.user.jid) { // Bienvenida (sub bots)
-let msg = "El usuario (@sender) fue añadido al grupo (@group) por el usuario @user"
-//if (m.messageStubParameters.some(param => param.endsWith('@s.whatsapp.net'))) {
-//if (m.key.fromMe) return
-
-let v = {}
-
-        v.sender = m.messageStubParameters[0];
-        v.senderNumber = v.sender.split('@')[0];
-        v._sender = m.key.participant || m.participant;
-        v._senderNumber = v._sender.split('@')[0];
-
-        msg = msg.replace(/\@user/gi, '@' + v._senderNumber).replace(/\@sender/gi, '@' + v.senderNumber).replace(/\@group/gi, chat.subject);
-
-        await conn.reply(m.chat, msg);
-    //}
-//let subject = groupMetadata.subject
-//let descs = groupMetadata.desc || "😻 𝗦𝘂𝗽𝗲𝗿 𝙂𝙖𝙩𝙖𝘽𝙤𝙩𝙇𝙞𝙩𝙚-𝙈𝘿 😻"
-//let userName = `${m.messageStubParameters[0].split`@`[0]}`
-//let defaultWelcome = `*╭┈⊰* ${subject}  *⊰┈ ✦*\n*┊✨ BIENVENIDO(A)!!*\n┊💖 @${userName}\n┊📄 *LEA LA DESCRIPCIÓN DEL GRUPO*\n*╰┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈ ✦*\n${descs}\n`
-//let textWel = chat.sWelcome ? chat.sWelcome.replace(/@user/g, `@${userName}`).replace(/@group/g, subject) .replace(/@desc/g, descs) : defaultWelcome
-/*await conn.sendMessage(m.chat, { text: textWel, 
+} else if (chat.welcome && !chat.welcome2 && m.messageStubType == 27 && conn.user.jid != global.conn.user.jid) { // Bienvenida (sub bots)
+let subject = groupMetadata.subject
+let descs = groupMetadata.desc || "😻 𝗦𝘂𝗽𝗲𝗿 𝙂𝙖𝙩𝙖𝘽𝙤𝙩𝙇𝙞𝙩𝙚-𝙈𝘿 😻"
+let userName = `${m.messageStubParameters[0].split`@`[0]}`
+let defaultWelcome = `*╭┈⊰* ${subject}  *⊰┈ ✦*\n*┊✨ BIENVENIDO(A)!!*\n┊💖 @${userName}\n┊📄 *LEA LA DESCRIPCIÓN DEL GRUPO*\n*╰┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈ ✦*\n${descs}\n`
+let textWel = chat.sWelcome ? chat.sWelcome.replace(/@user/g, `@${userName}`).replace(/@group/g, subject) .replace(/@desc/g, descs) : defaultWelcome
+await conn.sendMessage(m.chat, { text: textWel, 
 contextInfo:{
 forwardingScore: 9999999,
 isForwarded: true, 
@@ -106,7 +101,7 @@ containsAutoReply: true,
 mediaType: 1, 
 sourceUrl: accountsgb }}}, { quoted: fkontak }) */
 
-} else if (chat.welcome && (m.messageStubType == 28 || m.messageStubType == 32) && conn.user.jid != global.conn.user.jid ) { // Despedida (sub bot)
+} else if (chat.welcome && !chat.welcome2 && (m.messageStubType == 28 || m.messageStubType == 32) && conn.user.jid != global.conn.user.jid ) { // Despedida (sub bot)
 let subject = groupMetadata.subject
 let userName = `${m.messageStubParameters[0].split`@`[0]}`
 let defaultBye = `*╭┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈⊰*\n┊ *@${userName}*\n┊ *NO FUE DIGNO(A) DE ESTAR AQUÍ!!* 🌟\n*╰┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈⊰*`;
