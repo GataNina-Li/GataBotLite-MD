@@ -86,7 +86,7 @@ await conn.groupRequestParticipantsUpdate(m.chat, [usuario], 'reject')
 return
 } else {
 await conn.groupRequestParticipantsUpdate(m.chat, [usuario], 'approve')
-await conn.sendMessage(m.chat, { text: `Solicitud de ingreso de @${usuario.split('@')[0]} aprobada automáticamente ya que el anti fake está desactivado.`, mentions: [usuario] })
+await conn.sendMessage(m.chat, { text: `Solicitud de ingreso de @${usuario.split('@')[0]} aprobada automáticamente ya que el anti fake está activado y no es una amenaza.`, mentions: [usuario] })
 }} catch (error) {
 console.error(`Error al aprobar la solicitud de @${usuario.split('@')[0]}: `, error)
 }
