@@ -139,7 +139,7 @@ npm install -g ffmpeg imagemagick git yarn && npm i && node --no-warnings index.
 - **Comunidad:** [`Aquí`](https://chat.whatsapp.com/HT9YFbWTuqO0DQrq6Xxhvx)
 - **Contacto:** [`Adrian`](https://wa.me/595976126756)
 
-- [x] **Configuración** <details><summary>**Ajustes del Servidor - GataBot-MD**</summary><img src="https://i.imgur.com/jD7AT0x.png"></details>
+- [x] **Configuración** <details><summary>**Ajustes del Servidor - GataBotLite-MD**</summary><img src="https://i.imgur.com/jD7AT0x.png"></details>
 -----
 ### ¡TK HOST!
 <a href="https://dahs.hostingpy.shop"><img src="https://qu.ax/UzvYt.jpeg" height="130px"></a>
