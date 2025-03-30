@@ -29,6 +29,18 @@ throw false
 }
 chat.welcome = isEnable
 break
+
+case 'welcome2': case 'bienvenida2':
+if (!m.isGroup) {
+if (!isOwner) {
+global.dfail('group', m, conn)
+throw false
+}} else if (!(isAdmin || isOwner)) {
+global.dfail('admin', m, conn)
+throw false
+}
+chat.welcome2 = isEnable
+break
 		
 case 'detect': case 'avisos': case 'autodetectar':
 if (!m.isGroup) {
