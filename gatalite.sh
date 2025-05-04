@@ -1,4 +1,4 @@
-# Código creado por @gata_dios      
+# Código creado por maleebot 
 
 #!/data/data/com.termux/files/usr/bin/bash 
 # Interpretación determinada para la ejecución     
@@ -156,12 +156,11 @@ git clone https://github.com/GataNina-Li/GataBotLite-MD.git
 echo -e "\033[01;32m\033[01mLa clonación se ha descargado e instalado correctamente.\nThe clone has been downloaded and installed successfully.\n\033[0m"
 
 echo -e "\033[01;32m\033[01mCambiando al directorio del repositorio!!\nChanging to the repository directory!!\n\033[0m" 
-cd GataBotLite-MD
-
+cd MaleeBot
 echo -e "\e[36m
 █░█ █▀█ █▀▄ ▄▀█ ▀█▀ █▀▀   █▄█ ▄▀█ █▀█ █▄░█
 █▄█ █▀▀ █▄▀ █▀█ ░█░ ██▄   ░█░ █▀█ █▀▄ █░▀█\n\e[0m"
-
+pollo
 echo -e "\033[0;34mSe actualizará yarn automáticamente. Esto puede tomar tiempo, Espere por favor.\nIt will update yarn automatically. This may take time, please wait..\n\033[0m"
 if yarn install 2>&1 >/dev/null | grep -E -i -q '(command not found|unable to locate package|E: Could not get lock|debconf: delaying package configuration|Package not found|Failed to fetch|404 Not Found|Hash sum mismatch|503 Service Unavailable|504 Gateway Timeout|408 Request Timeout|Connection timed out|Temporary failure resolving)'; then
 error=$(yarn install 2>&1 >/dev/null)
