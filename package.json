@@ -71,6 +71,7 @@
 "moment-timezone": "^0.5.34",
 "mongoose": "^6.3.3",
 "node-fetch": "^3.2.0",
+"node-cache": "^5.1.2",
 "google-it": "^1.6.3",
 "inquirer": "^9.2.7",
 "node-gtts": "^2.0.2",
