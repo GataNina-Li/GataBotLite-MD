@@ -8,8 +8,8 @@ import axios from 'axios'
 import moment from 'moment-timezone'
 import { en, es, id, ar, pt, de, it } from './lib/idiomas/total-idiomas.js'
 
-// ES ➜ Agregué primero el número del Bot como prioridad
-// ES ➜ Si desea recibir reportes debe de usar los tres parámetros (Número, nombre y true)
+// ES ➜ Agregué primero el número del Bot como prioridad 4991022475
+// ES ➜ Si desea recibir reportes debe de usar los tres parámetros (4941513027, chumaa, true)
 // EN ➜ Add the Bot number as priority first
 // EN ➜ If you want to receive reports you must use the three parameters (Number, name and true)
 global.owner = [
