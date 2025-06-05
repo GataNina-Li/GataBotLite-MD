@@ -8,7 +8,7 @@ import axios from 'axios'
 import moment from 'moment-timezone'
 import { en, es, id, ar, pt, de, it } from './lib/idiomas/total-idiomas.js'
 
-// ES ➜ Agregué primero el número del Bot como prioridad
+// ES ➜ Agregué primero el número del Bot como prioridad "+524991022475"
 // ES ➜ Si desea recibir reportes debe de usar los tres parámetros (Número, nombre y true)
 // EN ➜ Add the Bot number as priority first
 // EN ➜ If you want to receive reports you must use the three parameters (Number, name and true)
